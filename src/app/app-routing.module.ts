@@ -32,6 +32,10 @@ const routes: Routes = [
   {
     path: 'admission',
     loadChildren: () => import('./views/admission/admission.module').then(m => m.AdmissionModule)
+  },
+  {
+    path: 'documents',
+    loadChildren: () => import('./views/documents/documents.module').then(m => m.DocumentsModule)
   }
 ];
 
