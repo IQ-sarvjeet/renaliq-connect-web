@@ -8,6 +8,7 @@ import { SigninComponent } from './views/signin/signin.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterComponent } from './components/footer/footer.component';
     SigninComponent,
     ForgotPasswordComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
