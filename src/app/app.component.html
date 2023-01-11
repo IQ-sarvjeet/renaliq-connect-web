@@ -1,4 +1,12 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
-<app-bar-chart></app-bar-chart>
+<app-bar-chart 
+    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
+</app-bar-chart>
+<app-bar-chart-horizontal 
+    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
+</app-bar-chart-horizontal>
+<app-doughnut-chart 
+    [config]="{ apiUrl: 'assets/mockData/doughnutchart.json', side: 'vertical', title: 'Patient Age'}">
+</app-doughnut-chart>

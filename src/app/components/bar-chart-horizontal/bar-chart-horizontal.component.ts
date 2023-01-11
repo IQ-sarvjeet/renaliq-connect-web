@@ -16,31 +16,12 @@ type BarChartConfig = {
   title: string;
 }
 
-// option = {
-//   title: {
-//     text: "Patient Age"
-//   },
-//   xAxis: {
-//     type: 'value'
-//   },
-//   yAxis: {
-//     type: 'category',
-//     data: ['40', '60', '80']
-//   },
-//   series: [
-//     {
-//       data: [120, 200, 150],
-//       type: 'bar'
-//     }
-//   ]
-// };
-
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  selector: 'app-bar-chart-horizontal',
+  templateUrl: './bar-chart-horizontal.component.html',
+  styleUrls: ['./bar-chart-horizontal.component.scss']
 })
-export class BarChartComponent {
+export class BarChartHorizontalComponent {
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -57,7 +38,7 @@ export class BarChartComponent {
     })
   }
   private renderChart(chartData: ChartApiResponse): void {
-    const chartDom = document.getElementById('barChart');
+    const chartDom = document.getElementById('barChartH');
     if (chartDom) {
       const myChart = echarts.init(chartDom);
       let option: EChartsOption;
@@ -65,10 +46,10 @@ export class BarChartComponent {
         title: {
           text: this.chartConfig.title
         },
-        yAxis: {
+        xAxis: {
           type: 'value'
         },
-        xAxis: {
+        yAxis: {
           type: 'category',
           data: chartData.axis
         },
