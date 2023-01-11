@@ -1221,6 +1221,52 @@ function resetData() {
 // DONUT CHART JS
 $(document).ready(function () {
   createChart("donutChart", donutChartData);
+
+  sidemenudropdown();
+  if (window.innerWidth >= 992) {
+    let li = document.querySelectorAll(".side-menu li");
+    li.forEach((e, i) => {
+      e.classList.remove("is-expanded");
+    });
+    var animationSpeed = 300;
+    // first level
+    var parent = $("[data-bs-toggle='sub-slide']").parents("ul");
+    var ul = parent.find("ul:visible").slideUp(animationSpeed);
+    ul.removeClass("open");
+    var parent1 = $("[data-bs-toggle='sub-slide2']").parents("ul");
+    var ul1 = parent1.find("ul:visible").slideUp(animationSpeed);
+    ul1.removeClass("open");
+  }
+  $("body").addClass("horizontal");
+  $(".main-content").addClass("hor-content");
+  $(".main-content").removeClass("app-content");
+  $(".main-container").addClass("container");
+  $(".main-container").removeClass("container-fluid");
+  $(".app-header").addClass("hor-header");
+  $(".hor-header").removeClass("app-header");
+  $(".app-sidebar").addClass("horizontal-main");
+  $(".main-sidemenu").addClass("container");
+  $("body").removeClass("sidebar-mini");
+  $("body").removeClass("sidenav-toggled");
+  $("body").removeClass("horizontal-hover");
+  $("body").removeClass("default-menu");
+  $("body").removeClass("icontext-menu");
+  $("body").removeClass("icon-overlay");
+  $("body").removeClass("closed-leftmenu");
+  $("body").removeClass("hover-submenu");
+  $("body").removeClass("hover-submenu1");
+  $("#slide-left").removeClass("d-none");
+  $("#slide-right").removeClass("d-none");
+  document.querySelector(".horizontal .side-menu").style.flexWrap = "nowrap";
+  // $('#slide-left').addClass('d-none');
+  // $('#slide-right').addClass('d-none');
+  // document.querySelector('.horizontal .side-menu').style.flexWrap = 'wrap'
+  // menuClick();
+  localStorage.setItem("noahorizontal", "true");
+  localStorage.removeItem("noasidebarMini");
+  localStorage.removeItem("noahorizontalHover");
+  checkHoriMenu();
+  responsive();
 });
 const donutChartData = {
   type: "doughnut",

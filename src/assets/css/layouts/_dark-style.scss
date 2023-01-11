@@ -1,9 +1,9 @@
-@import "../scss/variables";
+@import "../variables";
 
 // DARK MODE STYLES //
 
 body.dark-mode.bg-img1 {
-  background: url(../images/media/bg-img1.jpg);
+  background: url(../../images/media/bg-img1.jpg);
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
@@ -82,7 +82,7 @@ body.dark-mode.bg-img1 {
 }
 
 body.dark-mode.bg-img2 {
-  background: url(../images/media/bg-img2.jpg);
+  background: url(../../images/media/bg-img2.jpg);
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
@@ -163,7 +163,7 @@ body.dark-mode.bg-img2 {
 }
 
 body.dark-mode.bg-img3 {
-  background: url(../images/media/bg-img3.jpg);
+  background: url(../../images/media/bg-img3.jpg);
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
@@ -242,7 +242,7 @@ body.dark-mode.bg-img3 {
 }
 
 body.dark-mode.bg-img4 {
-  background: url(../images/media/bg-img4.jpg);
+  background: url(../../images/media/bg-img4.jpg);
   background-blend-mode: overlay;
   background-size: cover;
   background-position: center;
@@ -6665,7 +6665,7 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     color: $dark-text;
   }
   .bg-patterns {
-    background: url("../images/patterns/1-dark.png");
+    background: url("../../images/patterns/1-dark.png");
   }
   .apexcharts-legend-text {
     color: $dark-text !important;

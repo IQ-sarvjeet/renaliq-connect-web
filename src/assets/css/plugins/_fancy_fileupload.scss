@@ -16,7 +16,7 @@
 	  border-radius: 5px;
 	  padding: 0;
 	  background-color: #f5f6fb;
-	  background-image: url('../plugins/fancyuploder/fancy_upload.png');
+	  background-image: url('../../plugins/fancyuploder/fancy_upload.png');
 	  background-repeat: no-repeat;
 	  background-position: center center;
 	  opacity: 0.85;
@@ -68,11 +68,11 @@
 	}
   
 	.ff_fileupload_recordaudio {
-	  background-image: url('../plugins/fancyuploder/fancy_microphone.png');
+	  background-image: url('../../plugins/fancyuploder/fancy_microphone.png');
 	}
   
 	.ff_fileupload_recordvideo {
-	  background-image: url('../plugins/fancyuploder/fancy_webcam.png');
+	  background-image: url('../../plugins/fancyuploder/fancy_webcam.png');
 	}
   
 	.ff_fileupload_recordvideo_preview {
@@ -232,11 +232,11 @@
   
 	  button {
 		&.ff_fileupload_start_upload {
-		  background-image: url('../plugins/fancyuploder/fancy_okay.png');
+		  background-image: url('../../plugins/fancyuploder/fancy_okay.png');
 		}
   
 		&.ff_fileupload_remove_file {
-		  background-image: url('../plugins/fancyuploder/fancy_remove.png');
+		  background-image: url('../../plugins/fancyuploder/fancy_remove.png');
 		}
 	  }
   

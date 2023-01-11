@@ -1,10 +1,11 @@
 @font-face {
   font-family: "lg";
-  src: url("../plugins/gallery/fonts/lg.eot?n1z373");
-  src: url("../plugins/gallery/fonts/lg.eot?#iefixn1z373") format("embedded-opentype"),
-    url("../plugins/gallery/fonts/lg.woff?n1z373") format("woff"),
-    url("../plugins/gallery/fonts/lg.ttf?n1z373") format("truetype"),
-    url("../plugins/gallery/fonts/lg.svg?n1z373#lg") format("svg");
+  src: url("../../plugins/gallery/fonts/lg.eot?n1z373");
+  src: url("../../plugins/gallery/fonts/lg.eot?#iefixn1z373")
+      format("embedded-opentype"),
+    url("../../plugins/gallery/fonts/lg.woff?n1z373") format("woff"),
+    url("../../plugins/gallery/fonts/lg.ttf?n1z373") format("truetype"),
+    url("../../plugins/gallery/fonts/lg.svg?n1z373#lg") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -480,7 +481,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom {
       cursor: pointer;
     }
   }
-
 
   .lg-has-html5 {
     .lg-video-play {
