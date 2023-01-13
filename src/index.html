@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  dir="ltr"
-  style="
-    --primary01: rgba(38, 132, 255, 0.1);
-    --primary02: rgba(38, 132, 255, 0.2);
-    --primary03: rgba(38, 132, 255, 0.3);
-    --primary06: rgba(38, 132, 255, 0.6);
-    --primary09: rgba(38, 132, 255, 0.9);
-  "
->
+<html lang="en" dir="ltr">
   <head>
     <!-- META DATA -->
     <meta charset="UTF-8" />
@@ -31,9 +21,20 @@
     <title>Welcome to RenalIQConnect</title>
     <meta http-equiv="imagetoolbar" content="no" />
   </head>
-  <body class="ltr app light-mode horizontal">
+  <body class="ltr app light-mode horizontal sidebar-gone">
     <div class="horizontalMenucontainer">
       <app-root></app-root>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        class="d-none"
+      >
+        <defs>
+          <g id="svg_test" viewBox="0 0 28 27"></g>
+        </defs>
+      </svg>
       <!-- JQUERY JS -->
       <script src="./assets/js/jquery.min.js"></script>
       <!-- BOOTSTRAP JS -->
@@ -53,9 +54,81 @@
       <!-- COLOR THEME JS -->
       <script src="./assets/js/themeColors.js"></script>
       <!-- DONUT CHART JS -->
-      <script src="./assets/js/chart.min.js"></script>
+
       <!-- CUSTOM JS -->
       <script src="./assets/js/custom.js"></script>
+      <script src="./assets/js/chart.min.js"></script>
+      <script>
+        $(document).ready(function () {
+          $(".select2-default").select2({
+            minimumResultsForSearch: -1,
+          });
+          // DONUT CHART JS
+          const donutChartData = {
+            type: "doughnut",
+            data: {
+              labels: [
+                "CKD Stage 3a",
+                "CKD Stage 3b",
+                "CKD Stage 4",
+                "CKD Stage 4",
+                "ESKD",
+              ],
+              datasets: [
+                {
+                  label: "Test",
+                  data: [47, 19, 71, 51, 22],
+                  backgroundColor: [
+                    "rgba(8, 48, 80, 0.2)",
+                    "rgba(8, 48, 80, 0.5)",
+                    "rgba(8, 48, 80, 0.75)",
+                    "rgba(8, 48, 80, 1)",
+                    "rgba(38, 132, 255, 1)",
+                  ],
+                  borderColor: [
+                    "rgba(8, 48, 80, 0.2)",
+                    "rgba(8, 48, 80, 0.5)",
+                    "rgba(8, 48, 80, 0.75)",
+                    "rgba(8, 48, 80, 1)",
+                    "rgba(38, 132, 255, 1)",
+                  ],
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              title: {
+                display: false,
+                text: "This is Title",
+              },
+              animation: {
+                animateScale: true,
+                animateRotate: true,
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+
+              legend: {
+                position: "right",
+                labels: {
+                  boxWidth: 10,
+                  padding: 12,
+                },
+              },
+            },
+          };
+          function createChart(chartId, chartData) {
+            const ctx = document.getElementById("donutChart");
+            const donutChart = new Chart(ctx, {
+              type: chartData.type,
+              data: chartData.data,
+              options: chartData.options,
+            });
+          }
+          alert("test");
+          setTimeout(createChart("donutChart", donutChartData), 5000);
+        });
+      </script>
     </div>
   </body>
 </html>

@@ -771,7 +771,7 @@
       !document.querySelector("body").classList.contains("login-img") &&
       !document.querySelector("body").classList.contains("error-bg")
     ) {
-      checkHoriMenu();
+      //checkHoriMenu();
       responsive();
       sidemenudropdown();
       document.querySelector(".horizontal .side-menu").style.flexWrap =
@@ -845,6 +845,8 @@
     responsive();
   } else {
   }
+
+  
 })(jQuery);
 
 // OFF-CANVAS STYLE
@@ -1216,70 +1218,4 @@ function resetData() {
     sidemenudropdown();
     responsive();
   }
-}
-
-// DONUT CHART JS
-$(document).ready(function () {
-  createChart("donutChart", donutChartData);
-});
-const donutChartData = {
-  type: "doughnut",
-  data: {
-    labels: [
-      "CKD Stage 3a",
-      "CKD Stage 3b",
-      "CKD Stage 4",
-      "CKD Stage 4",
-      "ESKD",
-    ],
-    datasets: [
-      {
-        label: "Test",
-        data: [47, 19, 71, 51, 22],
-        backgroundColor: [
-          "rgba(8, 48, 80, 0.2)",
-          "rgba(8, 48, 80, 0.5)",
-          "rgba(8, 48, 80, 0.75)",
-          "rgba(8, 48, 80, 1)",
-          "rgba(38, 132, 255, 1)",
-        ],
-        borderColor: [
-          "rgba(8, 48, 80, 0.2)",
-          "rgba(8, 48, 80, 0.5)",
-          "rgba(8, 48, 80, 0.75)",
-          "rgba(8, 48, 80, 1)",
-          "rgba(38, 132, 255, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  },
-  options: {
-    title: {
-      display: false,
-      text: "This is Title",
-    },
-    animation: {
-      animateScale: true,
-      animateRotate: true,
-    },
-    responsive: true,
-    maintainAspectRatio: false,
-
-    legend: {
-      position: "right",
-      labels: {
-        boxWidth: 10,
-        padding: 12,
-      },
-    },
-  },
-};
-function createChart(chartId, chartData) {
-  const ctx = document.getElementById(chartId);
-  const donutChart = new Chart(ctx, {
-    type: chartData.type,
-    data: chartData.data,
-    options: chartData.options,
-  });
 }
