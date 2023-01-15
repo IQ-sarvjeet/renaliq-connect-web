@@ -1592,6 +1592,23 @@ a.card-tabs-item {
     bottom: -10rem;
   }
 }
+.card-btn {
+  cursor: pointer;
+  opacity: 0.75;
+
+  .card-btn__input {
+    display: none;
+  }
+
+  &.is-active {
+    opacity: 1;
+    border: 1px solid $dark !important;
+
+    .card-btn__input {
+      display: block;
+    }
+  }
+}
 @media (max-width: 767px) {
   .card {
     margin-bottom: 1rem;

@@ -310,6 +310,12 @@
   $(".clickable-row").on("click", function () {
     window.location = $(this).data("href");
   });
+
+  // FORGOT PASSWORD
+  $(document).on("click", ".card-btn", function () {
+    $(".card-btn").removeClass("is-active");
+    $(this).addClass("is-active");
+  });
 })(jQuery);
 
 // OFF-CANVAS STYLE

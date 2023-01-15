@@ -39,7 +39,7 @@ input {
   &:-moz-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -48,7 +48,7 @@ textarea {
   &:-moz-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -269,6 +269,7 @@ iframe {
 @media (max-width: 768px) {
   .wrap-login100 {
     max-width: 100%;
+    display: block;
   }
 
   .login100-form {
