@@ -1,13 +1,9 @@
 <app-header></app-header>
-<!-- GLOBAL-LOADER -->
-<div id="global-loader">
-  <img src="../../assets/images/loader.svg" class="loader-img" alt="Loader" />
-</div>
-<!-- /GLOBAL-LOADER -->
-<!-- PAGE -->
-<div class="page is-expanded">
-  <div class="page-main">
-    <router-outlet></router-outlet>
+<div class="app-content main-content mt-0">
+  <div class="side-app">
+    <div class="main-container container-fluid">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 <app-footer></app-footer>

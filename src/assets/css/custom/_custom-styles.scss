@@ -202,7 +202,7 @@ a.icon {
 }
 
 .donut-chart {
-  background: #fff;
+  background: $background;
   height: 130px;
 
   &__wrapper {
@@ -212,7 +212,6 @@ a.icon {
     height: 130px;
   }
 }
-
 @media (max-width: 992px) {
   .hor-content .container,
   .mobile-header .container,
