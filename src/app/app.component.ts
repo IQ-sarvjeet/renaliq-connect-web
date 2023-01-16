@@ -54,8 +54,10 @@ export class AppComponent {
       }
     }
     // ----- Horizontal Style ------- //
-    $('.select2-default').select2({
-      minimumResultsForSearch: -1,
+
+    //______Select2
+    $('.select2').select2({
+      minimumResultsForSearch: Infinity,
     });
   }
 }
