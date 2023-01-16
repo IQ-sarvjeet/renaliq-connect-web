@@ -1,0 +1,39 @@
+<div class="card border">
+    <div class="card-header title-submenu d-flex">
+      <h3 class="card-title flex-fill">{{chartConfig.title}}</h3>
+      <nav class="nav">
+        <div class="dropdown">
+          <a
+            class="nav-link text-muted fs-16 p-0 ps-4"
+            href="javascript:;"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fe fe-more-vertical"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-edit me-1"></i> Edit</a
+            >
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-trash-2 me-1"></i> Delete</a
+            >
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="card-body pt-1">
+        <div class="row my-3" *ngFor="let data of chartData">
+            <div class="col-4">{{data.key}}</div>
+            <div class="col-6">
+            <div class="progress progress-sm my-1">
+                <div class="progress-bar bg-dark"
+                    [class]="data.value > 50 ? 'bg-primary progress-bar-striped progress-bar-animated wp-' + data.value: 'bg-dark wp-' + data.value">
+                </div>
+            </div>
+            </div>
+            <div class="col-2 text-right">{{data.value}}%</div>
+        </div>
+    </div>
+</div>

@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { SharedModule } from './components/shared.module';
 
 @NgModule({
   declarations: [
@@ -22,8 +23,10 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent]
 })
