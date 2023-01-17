@@ -19,7 +19,7 @@ import { SharedModule } from './components/shared.module';
     ForgotPasswordComponent,
     HeaderComponent,
     FooterComponent,
-    BarChartComponent
+    BarChartComponent,
   ],
   imports: [
     BrowserModule,
