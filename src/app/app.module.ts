@@ -1,11 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  provideHttpClient,
-  withInterceptors,
-  withJsonpSupport,
-  withXsrfConfiguration
-} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,8 +9,7 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
-import { BarChartHorizontalComponent } from './components/bar-chart-horizontal/bar-chart-horizontal.component';
-import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-chart.component';
+import { SharedModule } from './components/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,26 +20,14 @@ import { DoughnutChartComponent } from './components/doughnut-chart/doughnut-cha
     HeaderComponent,
     FooterComponent,
     BarChartComponent,
-    BarChartHorizontalComponent,
-    DoughnutChartComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [
-    provideHttpClient(
-      withXsrfConfiguration({ cookieName: '', headerName: '' }),
-      withJsonpSupport(),
-      withInterceptors([
-        (req, next) => {
-          // We can use the inject() function inside this function
-          // For example: inject(AuthService)
-          return next(req);
-        },
-      ])
-    ),
-  ],
+  exports: [],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
