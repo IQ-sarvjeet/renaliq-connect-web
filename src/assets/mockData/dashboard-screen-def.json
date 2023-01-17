@@ -1,0 +1,67 @@
+{
+  "container": "container-fluid",
+  "section": {
+    "title": "test section",
+    "row": [
+      {
+        "col": [
+          {
+            "size": "4",
+            "component": {
+              "type": "PatientByState",
+              "config": {}
+            }
+          },
+          {
+            "size": "4",
+            "component": {
+              "type": "ProgressBarChartWidget",
+              "config": {
+                "title": "Patient By Risk Categor",
+                "apiUrl": "assets/mockData/patientByRiskCategoryChartData.json"
+              }
+            }
+          },
+          {
+            "size": "4",
+            "component": {
+              "type": "CareTeamList",
+              "config": {}
+            }
+          }
+        ]
+      },
+      {
+        "col": [
+          {
+            "size": "4",
+            "component": {
+              "type": "ProgressBarChartWidget",
+              "config": {
+                "title": "Patient By Comorbidity",
+                "apiUrl": "assets/mockData/patientByComorbidityChartData.json"
+              }
+            }
+          },
+          {
+            "size": "4",
+            "component": {
+              "type": "ProgressBarChartWidget",
+              "config": {
+                "title": "Patient By Age Group",
+                "apiUrl": "assets/mockData/patientByAgeGroupChartData.json"
+              }
+            }
+          },
+          {
+            "size": "4",
+            "component": {
+              "type": "LatestUpdates",
+              "config": {}
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

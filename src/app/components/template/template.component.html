@@ -1,0 +1,13 @@
+<div class="row" *ngFor="let renderRow of templateConfig?.section?.row">
+    <div class="col-12"
+        *ngFor="let renderColumn of renderRow.col"
+        [class]="'col-md-' + renderColumn.size">
+        <app-patient-by-stage *ngIf="renderColumn.component.type === 'PatientByState'"></app-patient-by-stage>
+        <app-progress-bar-chart-widget
+            *ngIf="renderColumn.component.type === 'ProgressBarChartWidget'"
+            [config]="renderColumn.component.config">
+        </app-progress-bar-chart-widget>
+        <app-care-team *ngIf="renderColumn.component.type === 'CareTeamList'"></app-care-team>
+        <app-latest-updates *ngIf="renderColumn.component.type === 'LatestUpdates'"></app-latest-updates>
+    </div>
+</div>

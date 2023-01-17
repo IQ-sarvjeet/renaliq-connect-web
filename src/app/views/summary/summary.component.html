@@ -75,31 +75,33 @@
       <!-- BLOCK-1 END-->
 
       <!-- BLOCK-2 -->
-      <div class="row">
-        <div class="col-12 col-xl-8">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <app-patient-by-stage></app-patient-by-stage>
-            </div>
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByRiskCategor"></app-progress-bar-chart-widget>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByComorbidity"></app-progress-bar-chart-widget>
-            </div>
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByAgeGroup"></app-progress-bar-chart-widget>
-            </div>
-          </div>
+      <!-- <div class="row">
+        <div class="col-12 col-md-4">
+          <app-patient-by-stage></app-patient-by-stage>
         </div>
-        <div class="col-12 col-xl-4">
+        <div class="col-12 col-md-4">
+          <app-progress-bar-chart-widget [config]="patientByRiskCategor"></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-4">
           <app-care-team></app-care-team>
+        </div>
+      </div> -->
+      <!-- BLOCK-2 END -->
+      
+      <!-- BLOCK-3 -->
+      <!-- <div class="row">
+        <div class="col-12 col-md-4">
+          <app-progress-bar-chart-widget [config]="patientByComorbidity"></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-4">
+          <app-progress-bar-chart-widget [config]="patientByAgeGroup"></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-4">
           <app-latest-updates></app-latest-updates>
         </div>
-      </div>
-      <!-- BLOCK-2 END -->
+      </div> -->
+      <!-- BLOCK-3 END -->
+      <app-template [templateConfigUrl]="'assets/mockData/dashboard-screen-def.json'"></app-template>
     </div>
   </div>
 </div>

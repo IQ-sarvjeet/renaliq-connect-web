@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/components/shared.module';
 import { CareTeamComponent } from './care-team/care-team.component';
 import { LatestUpdatesComponent } from './latest-updates/latest-updates.component';
 import { PatientByStageComponent } from './patient-by-stage/patient-by-stage.component';
+import { TemplateComponent } from 'src/app/components/template/template.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
     DescriptionCardComponent,
     CareTeamComponent,
     LatestUpdatesComponent,
-    PatientByStageComponent
+    PatientByStageComponent,
+    TemplateComponent
   ],
   imports: [
     RouterModule.forChild(routes),
