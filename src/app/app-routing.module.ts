@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/summary/summary.module').then(m => m.SummaryModule)
   },
   {
-    path: 'signin',
+    path: 'login',
     component: SigninComponent
   },
   {
