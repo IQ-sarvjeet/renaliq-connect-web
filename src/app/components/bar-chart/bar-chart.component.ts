@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
-import { LocalizedString } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as echarts from 'echarts';
 
 type ChartApiResponse = {
@@ -16,24 +14,6 @@ type BarChartConfig = {
   title: string;
 }
 
-// option = {
-//   title: {
-//     text: "Patient Age"
-//   },
-//   xAxis: {
-//     type: 'value'
-//   },
-//   yAxis: {
-//     type: 'category',
-//     data: ['40', '60', '80']
-//   },
-//   series: [
-//     {
-//       data: [120, 200, 150],
-//       type: 'bar'
-//     }
-//   ]
-// };
 
 @Component({
   selector: 'app-bar-chart',
@@ -41,23 +21,28 @@ type BarChartConfig = {
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent {
+  @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor(private httpClient: HttpClient) {
+  constructor() {
 
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
-    this.httpClient.get(url).subscribe((data: any) => {
-      console.log(data);
+    // this.httpClient.get(url).subscribe((data: any) => {
+    //   console.log(data);
+    //   this.renderChart(data);
+    // })
+    fetch(url).then((response: any) => response.json())
+    .then((data: any) => {
       this.renderChart(data);
-    })
+    });
   }
   private renderChart(chartData: ChartApiResponse): void {
-    const chartDom = document.getElementById('barChart');
+    const chartDom = this.barChart.nativeElement;
     if (chartDom) {
       const myChart = echarts.init(chartDom);
       let option: EChartsOption;

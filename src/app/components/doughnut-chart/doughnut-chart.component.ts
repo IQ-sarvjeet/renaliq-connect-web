@@ -22,15 +22,19 @@ export class DoughnutChartComponent {
     this.fetchChartData(inputValue.apiUrl);
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor(private httpClient: HttpClient) {
+  constructor() {
 
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
-    this.httpClient.get(url).subscribe((data: any) => {
-      console.log(data);
+    // this.httpClient.get(url).subscribe((data: any) => {
+    //   console.log(data);
+    //   this.renderChart(data);
+    // })
+    fetch(url).then((response: any) => response.json())
+    .then((data: any) => {
       this.renderChart(data);
-    })
+    });
   }
   private renderChart(chartData: any): void {
     const chartDom = document.getElementById('doughnutChart');

@@ -8,7 +8,6 @@ import { SigninComponent } from './views/signin/signin.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { SharedModule } from './components/shared.module';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { SharedModule } from './components/shared.module';
     ForgotPasswordComponent,
     HeaderComponent,
     FooterComponent,
-    BarChartComponent,
   ],
   imports: [
     BrowserModule,
