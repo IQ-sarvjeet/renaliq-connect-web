@@ -1,6 +1,6 @@
 <!-- app-Header -->
-<div class="header sticky hor-header">
-  <div class="main-container container">
+<div class="app-header header sticky">
+  <div class="container-fluid main-container">
     <div class="d-flex">
       <a
         aria-label="Hide Sidebar"
@@ -23,12 +23,14 @@
       </a>
       <!-- LOGO -->
       <div class="main-header-center d-none d-md-block">
-        <select class="form-select">
-          <option selected>ES Renal Group</option>
-          <option value="1">ES Renal Group 2</option>
-          <option value="2">ES Renal Group 4</option>
-          <option value="3">ES Renal Group 3</option>
-        </select>
+        <div class="form-group mt-1 mb-0">
+          <select class="form-control select2 form-select">
+            <option selected>ES Renal Group</option>
+            <option value="1">ES Renal Group 2</option>
+            <option value="2">ES Renal Group 4</option>
+            <option value="3">ES Renal Group 3</option>
+          </select>
+        </div>
       </div>
       <div class="d-flex order-lg-2 ms-auto header-right-icons">
         <button
@@ -374,7 +376,7 @@
                     </svg>
                     Profile
                   </a>
-                  <a class="dropdown-item" href="login.html">
+                  <a class="dropdown-item" href="/signin">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="w-inner-icn"

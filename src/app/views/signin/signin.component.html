@@ -1,1 +1,88 @@
-<p>signin works!</p>
+<div class="container-login100 d-md-flex">
+  <div class="d-none d-md-flex wrap-figure100 flex-fill">
+    <div>
+      <img
+        class="wrap-figure100__img"
+        src="../../../assets/images/login.jpg"
+        alt="More Lives, Better Lived."
+      />
+      <div class="p-4">© 2022 Somatus. All Rights Reserved</div>
+    </div>
+  </div>
+  <div class="wrap-login100">
+    <div>
+      <div class="card-body p-6 p-lg-7">
+        <form class="validate-form">
+          <div class="text-center mb-6">
+            <img
+              class="img-fluid"
+              src="../../../assets/images/brand/renalliqconnect.png"
+              alt="renallIQconnect"
+            />
+          </div>
+          <label class="text-gray" for="emailAddress">Email or username</label>
+          <div
+            class="wrap-input100 validate-input"
+            data-bs-validate="Valid email is required: ex@abc.xyz"
+          >
+            <input
+              class="input100"
+              type="text"
+              name="email"
+              placeholder="Email"
+              id="emailAddress"
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="zmdi zmdi-email" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="d-flex mt-4">
+            <div class="flex-fill">
+              <label class="text-gray" for="password">Password</label>
+            </div>
+            <div>
+              <a href="/forgotPassword" class="text-primary ms-1"
+                >Forgot Password?</a
+              >
+            </div>
+          </div>
+          <div
+            class="wrap-input100 validate-input"
+            data-bs-validate="Password is required"
+          >
+            <input
+              class="input100"
+              type="password"
+              name="pass"
+              placeholder="Password"
+              id="password"
+            />
+            <span class="focus-input100"></span>
+            <span class="symbol-input100">
+              <i class="zmdi zmdi-lock" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="container-login100-form-btn">
+            <a href="/summary" class="login100-form-btn btn-dark">Sign in</a>
+          </div>
+          <div class="text-center pt-3">
+            <p class="mb-0">
+              You dont Have an Account?
+              <a href="/signup" class="text-primary ms-1">Sign Up</a>
+            </p>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer px-6 px-lg-7 py-4">
+        <div class="p-4 text-center bg-light fw-semibold">
+          Signin (Somatus Team)<br />In Application this functionality merged
+          with Signin only
+        </div>
+        <div class="p-4 text-dark fw-semibold px-6 px-lg-7 py-4 text-center">
+          Ver : 2.0
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

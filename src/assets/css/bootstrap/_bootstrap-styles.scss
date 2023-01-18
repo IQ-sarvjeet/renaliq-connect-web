@@ -1,10 +1,15 @@
 :root {
+  --primary01: rgba(38, 132, 255, 0.1);
+  --primary02: rgba(38, 132, 255, 0.2);
+  --primary03: rgba(38, 132, 255, 0.3);
+  --primary06: rgba(38, 132, 255, 0.6);
+  --primary09: rgba(38, 132, 255, 0.9);
   --primary-bg-color: #2684ff;
   --primary-bg-hover: #005fdc;
   --primary-bg-border: #2684ff;
   --dark-body: #0d3050;
   --dark-theme: rgba(0, 0, 0, 0.3);
-  --dark-bg: rgba(0, 0, 0, 0.2);
+  --dark-bg: rgba(160, 148, 148, 0.2);
   --dark-border: rgba(255, 255, 255, 0.15);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
@@ -31,6 +36,7 @@ html {
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
   -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
 }
 @-ms-viewport {
   width: device-width;
