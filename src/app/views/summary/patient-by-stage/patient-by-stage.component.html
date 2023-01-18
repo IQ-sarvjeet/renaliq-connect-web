@@ -5,7 +5,10 @@
     </div>
     <div class="card-body pt-3">
       <div class="donut-chart__wrapper">
-        <canvas class="donut-chart" id="donutChart"></canvas>
+        <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
+        <app-doughnut-chart 
+          [config]="{ apiUrl: 'assets/mockData/doughnutchart.json', side: 'vertical', title: 'Patient Age'}">
+        </app-doughnut-chart>
       </div>
     </div>
 </div>
