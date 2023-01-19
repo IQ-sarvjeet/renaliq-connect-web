@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { LocalizedString } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as echarts from 'echarts';
 
 type EChartsOption = echarts.EChartsOption;
@@ -17,6 +17,7 @@ type BarChartConfig = {
   styleUrls: ['./doughnut-chart.component.scss']
 })
 export class DoughnutChartComponent {
+  @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -37,24 +38,28 @@ export class DoughnutChartComponent {
     });
   }
   private renderChart(chartData: any): void {
-    const chartDom = document.getElementById('doughnutChart');
-    if (chartDom) {
-      const myChart = echarts.init(chartDom);
+    // const chartDom = document.getElementById('doughnutChart');
+    const chartEle = this.doughnutChart.nativeElement;
+    if (chartEle) {
+      const chartRef = echarts.init(chartEle);
       let option: EChartsOption;
       option = {
+        color: ["#083050", "#46647c", "#8397a7", "#ced6dc", "#2684ff"],
         tooltip: {
           trigger: 'item'
         },
         legend: {
           top: '5%',
-          left: 'center'
+          right: '5%',
+          width: '30%'
         },
         series: [
           {
             name: 'Access From',
             type: 'pie',
-            radius: ['40%', '70%'],
+            radius: ['50%', '90%'],
             avoidLabelOverlap: false,
+            left: '-50%',
             label: {
               show: false,
               position: 'center'
@@ -62,7 +67,7 @@ export class DoughnutChartComponent {
             emphasis: {
               label: {
                 show: true,
-                fontSize: 40,
+                fontSize: 15,
                 fontWeight: 'bold'
               }
             },
@@ -73,7 +78,7 @@ export class DoughnutChartComponent {
           }
         ]
       };
-      option && myChart.setOption(option);
+      option && chartRef.setOption(option);
     }
   }
 }

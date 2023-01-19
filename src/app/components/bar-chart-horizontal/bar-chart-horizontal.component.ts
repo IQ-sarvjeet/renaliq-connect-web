@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { LocalizedString } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import * as echarts from 'echarts';
 
 type ChartApiResponse = {
@@ -22,6 +22,7 @@ type BarChartConfig = {
   styleUrls: ['./bar-chart-horizontal.component.scss']
 })
 export class BarChartHorizontalComponent {
+  @ViewChild('barChartH', { static: false }) barChartH!: ElementRef<HTMLDivElement>;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -42,9 +43,10 @@ export class BarChartHorizontalComponent {
     });
   }
   private renderChart(chartData: ChartApiResponse): void {
-    const chartDom = document.getElementById('barChartH');
-    if (chartDom) {
-      const myChart = echarts.init(chartDom);
+    // const chartDom = document.getElementById('barChartH');
+    const chartEle = this.barChartH.nativeElement;
+    if (chartEle) {
+      const barChartRef = echarts.init(chartEle);
       let option: EChartsOption;
       option = {
         title: {
@@ -64,7 +66,7 @@ export class BarChartHorizontalComponent {
           }
         ]
       };
-      option && myChart.setOption(option);
+      option && barChartRef.setOption(option);
     }
   }
 }
