@@ -16,10 +16,13 @@ export class ProgressBarChartWidgetComponent {
     }
   }
   private loadChartData(url: string): void {
-    fetch(url).then((response: any) => response.json())
-    .then((data: any) => {
-      console.log('response:', data);
-      this.chartData = data;
-    });
+    setTimeout(() => {
+      fetch(url).then((response: any) => response.json())
+      .then((data: any) => {
+        console.log('response:', data);
+        this.chartData = data;
+      });
+    }, 10000)
+    
   }
 }
