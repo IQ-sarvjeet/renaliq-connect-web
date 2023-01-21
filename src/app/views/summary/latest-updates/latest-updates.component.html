@@ -1,30 +1,28 @@
-<div class="mb-5">
-    <div class="pb-3 border-bottom">
-      <h3 class="card-title">Latest Updates</h3>
-    </div>
-    <div class="py-3">
-      <ul class="task-list">
-        <li *ngFor="let update of latestUpdates">
-          <a href="#">
-            <i class="task-icon bg-warning"></i>
-            <p class="fw-semibold mb-1 fs-13 text-dark">
-              {{update.title}}<span
-                class="text-muted fs-12 ms-2 ms-auto float-end"
-                >{{update.updateTime}}</span
-              >
-            </p>
-            <span class="text-muted fs-12">
-                {{update.description}}
-            </span>
-          </a>
-        </li>
-        <li>
-            <span class="d-block mt-1">
-                <a href="#" class="btn btn-dark btn-sm">
-                  Join Meeting
-                </a>
-            </span>
-        </li>
-      </ul>
-    </div>
+<div>
+  <div class="pb-3 border-bottom">
+    <h3 class="card-title">Latest Updates</h3>
+  </div>
+  <div class="py-3">
+    <ul class="task-list">
+      <li *ngFor="let update of latestUpdates">
+        <a href="#">
+          <i class="task-icon bg-warning"></i>
+          <p class="fw-semibold mb-1 fs-13 text-dark">
+            {{ update.title
+            }}<span class="text-muted fs-12 ms-2 ms-auto float-end">{{
+              update.updateTime
+            }}</span>
+          </p>
+          <span class="text-muted fs-12">
+            {{ update.description }}
+          </span>
+        </a>
+      </li>
+      <li>
+        <span class="d-block mt-1">
+          <a href="#" class="btn btn-dark btn-sm"> Join Meeting </a>
+        </span>
+      </li>
+    </ul>
+  </div>
 </div>

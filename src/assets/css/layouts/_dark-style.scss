@@ -2730,6 +2730,10 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     border-bottom: 1px solid $border-dark;
   }
   .header {
+    background: rgba($white, 0.1) !important;
+    border-bottom: 1px solid $border-dark !important;
+  }
+  .sub-header {
     background: $dark-body !important;
     border-bottom: 1px solid $border-dark !important;
   }
@@ -2740,7 +2744,7 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     color: #ffffff !important;
   }
   .footer {
-    background: transparent;
+    background: rgba($white, 0.1) !important;
     border-top: 1px solid $border-dark;
     .social ul li a {
       color: $dark-text;

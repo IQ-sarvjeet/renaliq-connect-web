@@ -1,7 +1,6 @@
-<div class="main-content mt-0 hor-content">
-  <div class="side-app">
-    <!-- PAGE-HEADER -->
-    <div class="py-3 border-bottom">
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
       <div class="row">
         <div class="col-6 col-sm-8 col-md-5">
           <h1 class="page-title pt-1">Summary</h1>
@@ -13,10 +12,7 @@
               class="form-control"
               type="text"
             />
-            <button
-              class="input-group-text bg-white text-secondary"
-              type="button"
-            >
+            <button class="input-group-text" type="button">
               <i class="fa fa-search"></i>
             </button>
           </div>
@@ -29,588 +25,98 @@
               value="13 Sep 22 - 20 Sep 22"
               type="text"
             />
-            <button
-              class="input-group-text bg-white text-secondary"
-              type="button"
-            >
+            <button class="input-group-text" type="button">
               <i class="fa fa-calendar"></i>
             </button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-
-
-
-
-
-
-
-    <!-- <div class="row mt-5">
-      <div class="col-12 col-lg-5 col-xl-6">
-        <div class="row my-3">
-          <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
-            <div class="d-flex">
-              <div>
-                <i class="icon icon-user text-primary fs-13 me-2"></i>
-              </div>
-              <div class="flex-fill">
-                Patients
-                <div class="text-dark fw-bold fs-22">2,765</div>
-                <span class="text-success fw-semibold fs-12">
-                  <span class="mx-1"><i class="fa fa-caret-up fs-16"></i></span>
-                  10%
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
-            <div class="d-flex">
-              <div>
-                <i class="icon icon-target text-primary fs-13 me-2"></i>
-              </div>
-              <div class="flex-fill">
-                Admissions
-                <div class="text-dark fw-bold fs-22">253</div>
-                <span class="text-red fw-semibold fs-12">
-                  <span class="mx-1"
-                    ><i class="fa fa-caret-down fs-16"></i
-                  ></span>
-                  10%
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
-            <div class="d-flex">
-              <div>
-                <i class="icon icon-people text-primary fs-13 me-2"></i>
-              </div>
-              <div class="flex-fill">
-                Engaged Patients
-                <div class="text-dark fw-bold fs-22">100</div>
-                <span class="text-success fw-semibold fs-12">
-                  <span class="mx-1"><i class="fa fa-caret-up fs-16"></i></span>
-                  10%
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
-            <div class="d-flex">
-              <div>
-                <i class="icon icon-tag text-primary fs-13 me-2"></i>
-              </div>
-              <div class="flex-fill">
-                Admission
-                <div class="text-dark fw-bold fs-22">
-                  5
-                  <span class="text-mute fw-normal fs-12">(Last 7 Days)</span>
-                </div>
-                <span class="text-success fw-semibold fs-12">
-                  <span class="mx-1"><i class="fa fa-caret-up fs-16"></i></span>
-                  12%
-                </span>
-              </div> -->
-
-
-
-
-
-
-
-
-
-    <!-- PAGE-HEADER END -->
-
-    <div class="main-container container">
-      <!-- BLOCK-1 -->
-      <div class="row mt-5">
-        <div class="col-12 col-lg-5 col-xl-6">
-          <div class="row my-3">
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
+  <div class="main-container container">
+    <!-- BLOCK-1 -->
+    <div class="form-row mt-5">
+      <div class="col-12 col-xl-6">
+        <div class="card">
+          <div class="row p-3">
+            <div class="col-6 col-sm-3 border-end">
               <app-data-card [cardData]="patients"></app-data-card>
             </div>
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
+            <div class="col-6 col-sm-3 border-end">
               <app-data-card [cardData]="admissions"></app-data-card>
             </div>
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
+            <div class="col-6 col-sm-3 border-end">
               <app-data-card [cardData]="engagedPatients"></app-data-card>
             </div>
-            <div class="col-6 col-sm-3 col-lg-6 col-xl-3 border-end">
+            <div class="col-6 col-sm-3">
               <app-data-card [cardData]="admissionRecent">
-                <span description class="text-mute fw-normal fs-12">(Last 7 Days)</span>
+                <span description class="text-mute fw-normal fs-12"
+                  >(Last 7 Days)</span
+                >
               </app-data-card>
             </div>
           </div>
         </div>
-        <div class="col-12 col-lg-7 col-xl-6">
-          <div class="row form-row">
-            <div class="col-12 col-sm-6 col-12 col-lg-4">
-              <app-description-card [cardData]="patientInsight"></app-description-card>
-            </div>
-            <div class="col-12 col-sm-6 col-12 col-lg-4">
-              <app-description-card [cardData]="qualityMatrics"></app-description-card>
-            </div>
-            <div class="col-12 col-sm-6 col-lg-4">
-              <app-description-card [cardData]="riskStratification"></app-description-card>
-            </div>
-          </div>
-        </div>
       </div>
-      <!-- BLOCK-1 END-->
-
-      <!-- BLOCK-2 -->
-      <div class="row">
-        <div class="col-12 col-xl-8">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <app-patient-by-stage></app-patient-by-stage>
-            </div>
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByRiskCategor"></app-progress-bar-chart-widget>
-            </div>
+      <div class="col-12 col-xl-6">
+        <div class="row form-row">
+          <div class="col-12 col-sm-4">
+            <app-description-card
+              [cardData]="patientInsight"
+            ></app-description-card>
           </div>
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByComorbidity"></app-progress-bar-chart-widget>
-            </div>
-            <div class="col-12 col-md-6">
-              <app-progress-bar-chart-widget [config]="patientByAgeGroup"></app-progress-bar-chart-widget>
-            </div>
+          <div class="col-12 col-sm-4">
+            <app-description-card
+              [cardData]="qualityMatrics"
+            ></app-description-card>
           </div>
-        </div>
-        <div class="col-12 col-xl-4">
-          <app-care-team></app-care-team>
-          <app-latest-updates></app-latest-updates>
+          <div class="col-12 col-sm-4">
+            <app-description-card
+              [cardData]="riskStratification"
+            ></app-description-card>
+          </div>
         </div>
       </div>
     </div>
     <!-- BLOCK-1 END-->
-
-
-
-
-
-
-
-
-    <!-- <div class="col-12 col-lg-7 col-xl-6">
-      <div class="row form-row">
-        <div class="col-12 col-sm-6 col-lg-4">
-          <a href="#">
-            <div class="card card-style">
-              <div class="card-body p-3">
-                <div class="d-flex">
-                  <div>
-                    <i class="icon icon-pie-chart fs-16 me-2"></i>
-                  </div>
-                  <h4 class="card-title mb-1 fs-16 flex-fill">
-                    Patient Insight
-                  </h4>
-                </div>
-                <p class="fs-12 op-0-8">
-                  Insight of your patient popullation, including trend &
-                  performance comparision.
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-sm-6 col-12 col-lg-4">
-          <a href="#">
-            <div class="card card-style">
-              <div class="card-body p-3">
-                <div class="d-flex">
-                  <div>
-                    <i class="icon icon-equalizer fs-16 me-2"></i>
-                  </div>
-                  <h4 class="card-title mb-1 fs-16 flex-fill">
-                    Clinical Quality Matrics
-                  </h4>
-                </div>
-                <p class="card-text fs-12 op-0-8">
-                  Practice current performance on clinical quality matics
-                </p>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-12 col-sm-6 col-lg-4">
-          <a href="#">
-            <div class="card card-style">
-              <div class="card-body p-3">
-                <div class="d-flex">
-                  <div>
-                    <i class="icon icon-people fs-16 me-2"></i>
-                  </div>
-                  <h4 class="card-title mb-1 fs-16 flex-fill">
-                    Risk Stratification
-                  </h4>
-                </div>
-                <p class="card-text fs-12 op-0-8">
-                  Insight of Patient Risk Stratification for the patient
-                  associated with Somatus
-                </p>
-              </div>
-            </div>
-          </a>
-        </div> -->
-
-
-
-
-
-
-
-
-
-
     <!-- BLOCK-2 -->
-    <!-- <div class="row">
+    <div class="row">
       <div class="col-12 col-xl-8">
         <div class="row">
           <div class="col-12 col-md-6">
-            <div class="card border">
-              <div class="card-header border-bottom title-submenu d-flex">
-                <h3 class="card-title flex-fill">Patient by Stage</h3>
-                <a href="#" class="ms-auto">View Patients</a>
-              </div>
-              <div class="card-body pt-3">
-                <div class="donut-chart__wrapper">
-                  <canvas class="donut-chart" id="donutChart"></canvas>
-                </div>
-              </div>
-            </div>
+            <app-patient-by-stage></app-patient-by-stage>
           </div>
           <div class="col-12 col-md-6">
-            <div class="card border">
-              <div class="card-header title-submenu d-flex">
-                <h3 class="card-title flex-fill">Patient By Risk Category</h3>
-                <nav class="nav">
-                  <div class="dropdown">
-                    <a
-                      class="nav-link text-muted fs-16 p-0 ps-4"
-                      href="javascript:;"
-                      data-bs-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      ><i class="fe fe-more-vertical"></i
-                    ></a>
-                    <div class="dropdown-menu dropdown-menu-start">
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-edit me-1"></i> Edit</a
-                      >
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-trash-2 me-1"></i> Delete</a
-                      >
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div class="card-body pt-1">
-                <div class="row my-3">
-                  <div class="col-4">Highest</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-44"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">44%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">High</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div
-                        class="progress-bar bg-primary progress-bar-striped progress-bar-animated wp-47"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">47%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">Medium</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-20"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">20%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">Low</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-5"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">5%</div>
-                </div>
-              </div>
-            </div>
+            <app-progress-bar-chart-widget
+              [config]="patientByRiskCategor"
+            ></app-progress-bar-chart-widget>
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-md-6">
-            <div class="card border">
-              <div class="card-header title-submenu d-flex">
-                <h3 class="card-title flex-fill">Patient By Comorbidity</h3>
-                <nav class="nav">
-                  <div class="dropdown">
-                    <a
-                      class="nav-link text-muted fs-16 p-0 ps-4"
-                      href="javascript:;"
-                      data-bs-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      ><i class="fe fe-more-vertical"></i
-                    ></a>
-                    <div class="dropdown-menu dropdown-menu-start">
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-edit me-1"></i> Edit</a
-                      >
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-trash-2 me-1"></i> Delete</a
-                      >
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div class="card-body pt-1">
-                <div class="row my-3">
-                  <div class="col-4">Diabeties</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-44"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">44%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">Hypertession</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div
-                        class="progress-bar bg-primary progress-bar-striped progress-bar-animated wp-47"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">47%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">Heart Failure</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-20"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">20%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">Low</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-5"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">5%</div>
-                </div>
-              </div>
-            </div>
+            <app-progress-bar-chart-widget
+              [config]="patientByComorbidity"
+            ></app-progress-bar-chart-widget>
           </div>
           <div class="col-12 col-md-6">
-            <div class="card border">
-              <div class="card-header title-submenu d-flex">
-                <h3 class="card-title flex-fill">Patient By Age Group</h3>
-                <nav class="nav">
-                  <div class="dropdown">
-                    <a
-                      class="nav-link text-muted fs-16 p-0 ps-4"
-                      href="javascript:;"
-                      data-bs-toggle="dropdown"
-                      role="button"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      ><i class="fe fe-more-vertical"></i
-                    ></a>
-                    <div class="dropdown-menu dropdown-menu-start">
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-edit me-1"></i> Edit</a
-                      >
-                      <a class="dropdown-item" href="#"
-                        ><i class="fe fe-trash-2 me-1"></i> Delete</a
-                      >
-                    </div>
-                  </div>
-                </nav>
-              </div>
-              <div class="card-body pt-1">
-                <div class="row my-3">
-                  <div class="col-4">&lt; 65</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-44"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">44%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">65 - 74</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div
-                        class="progress-bar bg-primary progress-bar-striped progress-bar-animated wp-47"
-                      ></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">47%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">75 - 84</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-20"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">20%</div>
-                </div>
-                <div class="row my-3">
-                  <div class="col-4">&gt; 85</div>
-                  <div class="col-6">
-                    <div class="progress progress-sm my-1">
-                      <div class="progress-bar bg-dark wp-5"></div>
-                    </div>
-                  </div>
-                  <div class="col-2 text-right">5%</div>
-                </div>
-              </div>
-            </div>
+            <app-progress-bar-chart-widget
+              [config]="patientByAgeGroup"
+            ></app-progress-bar-chart-widget>
           </div>
         </div>
       </div>
       <div class="col-12 col-xl-4">
-        <div class="mb-5">
-          <div class="border-bottom pb-3">
-            <div class="d-flex">
-              <h3 class="card-title mb-0">Care Team</h3>
-              <a href="#" class="ms-auto">View All</a>
-            </div>
+        <div class="row">
+          <div class="col-12 col-md-6 col-xl-12">
+            <app-care-team></app-care-team>
           </div>
-          <div>
-            <ul class="list-group blog-autors">
-              <li class="list-group-item border-bottom py-2">
-                <a href="#" class="text-dark">
-                  <div class="media mt-0 d-sm-flex d-block">
-                    <img
-                      class="avatar-md rounded-circle me-3 my-auto"
-                      src="../assets/images/faces/11.jpg"
-                      alt="Image description"
-                    />
-                    <div class="media-body d-sm-flex d-block">
-                      <div class="d-flex align-items-center">
-                        <div class="mt-1">
-                          <h5 class="mb-1">Allie Grater</h5>
-                          <p class="mb-0 text-13 text-primary">
-                            Nurse Care Manager
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item border-bottom py-2">
-                <a href="#" class="text-dark">
-                  <div class="media mt-0 d-sm-flex d-block">
-                    <img
-                      class="avatar-md rounded-circle me-3 my-auto"
-                      src="../assets/images/faces/7.jpg"
-                      alt="Image description"
-                    />
-                    <div class="media-body d-sm-flex d-block">
-                      <div class="d-flex align-items-center">
-                        <div class="mt-1">
-                          <h5 class="mb-1">Kevin Martin</h5>
-                          <p class="mb-0 text-13 text-primary">Dietitian</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="list-group-item border-bottom py-2">
-                <a href="#" class="text-dark">
-                  <div class="media mt-0 d-sm-flex d-block">
-                    <img
-                      class="avatar-md rounded-circle me-3 my-auto"
-                      src="../assets/images/faces/5.jpg"
-                      alt="Image description"
-                    />
-                    <div class="media-body d-sm-flex d-block">
-                      <div class="d-flex align-items-center">
-                        <div class="mt-1">
-                          <h5 class="mb-1">Krysia Eurydyka</h5>
-                          <p class="mb-0 text-13 text-primary">Dietitian</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="mb-5">
-          <div class="pb-3 border-bottom">
-            <h3 class="card-title">Latest Updates</h3>
-          </div>
-          <div class="py-3">
-            <ul class="task-list">
-              <li>
-                <a href="#">
-                  <i class="task-icon bg-warning"></i>
-                  <p class="fw-semibold mb-1 fs-13 text-dark">
-                    Practice Summary Report<span
-                      class="text-muted fs-12 ms-2 ms-auto float-end"
-                      >12 min ago</span
-                    >
-                  </p>
-                  <span class="text-muted fs-12">
-                    Practice Summary Report Practice Summary Report
-                    <span class="d-block"
-                      >by Sean practice-summary-aug-22.pdf</span
-                    >
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <i class="task-icon bg-primary"></i>
-                  <p class="fw-semibold mb-1 fs-13 text-dark">
-                    Review Meeting Schedule<span
-                      class="text-muted fs-12 ms-2 ms-auto float-end"
-                      >45 min ago</span
-                    >
-                  </p>
-                  <span class="text-muted fs-12">
-                    Project meeting with john @10:15
-                    <span class="d-block mt-1"
-                      ><a href="#" class="btn btn-dark btn-sm">
-                        Join Meeting
-                      </a></span
-                    >
-                  </span>
-                </a>
-              </li>
-            </ul>
+          <div class="col-12 col-md-6 col-xl-12">
+            <app-latest-updates></app-latest-updates>
           </div>
         </div>
       </div>
-    </div> -->
+    </div>
     <!-- BLOCK-2 END -->
   </div>
 </div>

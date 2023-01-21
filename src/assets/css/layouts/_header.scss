@@ -8,9 +8,16 @@
 }
 
 .header {
-  background: $offwhite;
+  background: $white;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  border-bottom: 1px solid $border;
+}
+
+.sub-header {
+  background: rgba($white, 0.5);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid $border;
 }
 
