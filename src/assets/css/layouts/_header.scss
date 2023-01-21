@@ -1238,6 +1238,10 @@ body.fixed-header .header {
   line-height: 2.2rem;
   border-radius: 50px !important;
 }
+.dropdown .avatar__wrap {
+  width: 2.5rem;
+  height: 2.5rem;
+}
 
 .dropdown-item {
   &:hover .dropdown-icon,
