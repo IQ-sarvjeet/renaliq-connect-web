@@ -14,6 +14,8 @@ export class PatientComponent {
         sSearch: '',
         lengthMenu: '_MENU_',
       },
+      searching: false,
+      lengthChange: false,
     });
   }
 }
