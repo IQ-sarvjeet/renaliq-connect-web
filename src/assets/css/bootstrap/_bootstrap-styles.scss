@@ -10,7 +10,8 @@
   --dark-body: #0d3050;
   --dark-theme: rgba(0, 0, 0, 0.3);
   --dark-bg: rgba(160, 148, 148, 0.2);
-  --dark-border: rgba(255, 255, 255, 0.15);
+  --border: rgba(0, 0, 0, 0.05);
+  --dark-border: rgba(255, 255, 255, 0.2);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -38,6 +39,18 @@ html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
+body::-webkit-scrollbar {
+  width: 0.675rem;
+}
+body::-webkit-scrollbar-track {
+  background: rgba($black, 0.1);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #294865;
+  border-radius: 0.125rem;
+  border: 0.125rem solid rgba($black, 0.1);
+}
+
 @-ms-viewport {
   width: device-width;
 }
@@ -531,22 +544,9 @@ body {
   touch-action: manipulation;
   -webkit-font-feature-settings: "liga" 0;
   font-feature-settings: "liga" 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden !important;
   position: relative;
-  * {
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-      transition: 0.3s background;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #ced4da;
-    }
-    &:hover::-webkit-scrollbar-thumb {
-      background: #adb5bd;
-    }
-  }
 }
 @media print {
   body {

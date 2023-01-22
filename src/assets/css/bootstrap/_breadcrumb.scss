@@ -65,6 +65,7 @@
   margin-bottom: 0rem;
   list-style: none;
   border-radius: 7px;
+  font-size: 11px;
 }
 
 .breadcrumb-item {
@@ -72,11 +73,11 @@
     color: $dark;
   }
   + .breadcrumb-item {
-    padding-left: 0.5rem;
+    padding-left: 0.375rem;
 
     &::before {
       display: inline-block;
-      padding-right: 0.5rem;
+      padding-right: 0.375rem;
       color: $info;
       content: "/e92f";
     }

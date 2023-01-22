@@ -8,10 +8,14 @@
 }
 
 .header {
-  background: $offwhite;
+  background: $white;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid $border;
+}
+
+.sub-header {
+  padding-top: 0.75rem;
 }
 
 body.fixed-header .header {
@@ -1231,6 +1235,10 @@ body.fixed-header .header {
   line-height: 2.2rem;
   border-radius: 50px !important;
 }
+.dropdown .avatar__wrap {
+  width: 2.5rem;
+  height: 2.5rem;
+}
 
 .dropdown-item {
   &:hover .dropdown-icon,
@@ -1348,7 +1356,9 @@ body.fixed-header .header {
 .app-header .container-fluid.main-container div:first-child {
   align-items: center !important;
 }
-
+.select2-container {
+  z-index: 999;
+}
 @media (min-width: 1135px) {
   .main-header-center .form-control {
     width: 100%;
@@ -1357,21 +1367,21 @@ body.fixed-header .header {
 
 @media (min-width: 992px) {
   .main-header-center .form-control {
-    height: 40px;
-    border-radius: 20px;
-    background: $background;
+    height: 32px;
   }
 }
 
 .main-header-center .form-control {
-  padding: 1rem 1.5rem;
+  padding: 1rem 0 1rem 2.25rem;
+  border-radius: 0;
+  border: none;
 }
 
 @media (min-width: 992px) {
   .main-header-center .btn {
     position: absolute;
-    top: -1px;
-    right: 12px;
+    top: -4px;
+    left: 0;
     background-color: transparent;
     height: 40px;
     color: #707787;
@@ -1384,8 +1394,7 @@ body.fixed-header .header {
 .header .main-header-center {
   position: relative;
   align-items: center;
-  max-width: 176px;
-  width: 176px;
+  width: 100%;
 }
 
 .header .main-header-center i:hover {
@@ -1470,8 +1479,8 @@ body.fixed-header .header {
 }
 .main-header-center .btn svg {
   fill: #294865 !important;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 @media (max-width: 991.98px) {
   .side-header {

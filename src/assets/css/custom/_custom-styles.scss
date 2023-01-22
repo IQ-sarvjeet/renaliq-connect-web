@@ -751,7 +751,7 @@ a.chip:hover {
 }
 
 #back-to-top {
-  background-color: $primary;
+  background-color: $secondary;
   color: $white;
   position: fixed;
   bottom: 20px;
@@ -760,23 +760,22 @@ a.chip:hover {
   display: none;
   text-align: center;
   z-index: 10000;
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   background-repeat: no-repeat;
   background-position: center;
   transition: background-color 0.1s linear;
   -moz-transition: background-color 0.1s linear;
   -webkit-transition: background-color 0.1s linear;
   -o-transition: background-color 0.1s linear;
-  border-radius: 50%;
+  border-radius: 0.25rem;
+  opacity: 0.75;
   i {
-    padding-top: 15px;
-    font-size: 16px;
+    padding-top: 12px;
+    font-size: 14px;
   }
   &:hover {
-    background: $white !important;
-    border: 1px solid $primary;
-    color: $primary;
+    opacity: 1;
   }
 }
 
@@ -2041,12 +2040,12 @@ small,
     bottom: 0;
     height: 88%;
     left: 15px;
-    border-left: 1px solid #e0e9f1;
+    border-left: 1px solid var(--border);
   }
 
   li {
     position: relative;
-    min-height: 73px;
+    margin-bottom: 1rem;
     padding-left: 55px;
 
     &:last-child:after {
@@ -2080,7 +2079,7 @@ small,
         width: 5px;
         height: 1px;
         top: 5px;
-        background: #e0e9f1;
+        background: var(--border);
         display: none;
       }
     }
@@ -3519,7 +3518,7 @@ svg {
 
           &:hover,
           &:focus {
-            color: $primary;
+            color: $secondary;
           }
         }
         .select2-selection__placeholder {
@@ -4442,6 +4441,7 @@ a.custom-blog-content:hover {
     border: 1px solid transparent;
 
     &:hover {
+      background: $offwhite;
       border-color: $border;
       transform: scaleX(1.03);
       box-shadow: rgba(169, 184, 200, 0.15) 0px 3px 9px 0px;
@@ -5081,7 +5081,7 @@ a.custom-blog-content:hover {
 }
 .select2-container--default
   .select2-results__option--highlighted[aria-selected] {
-  background-color: $primary !important;
+  background-color: $secondary !important;
 }
 .apexcharts-yaxis-texts-g text {
   fill: #818181 !important;

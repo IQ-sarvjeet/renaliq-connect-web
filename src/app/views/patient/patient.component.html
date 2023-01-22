@@ -1,10 +1,9 @@
 <router-outlet></router-outlet>
-<div class="main-content mt-0 hor-content">
-  <div class="side-app">
-    <!-- PAGE-HEADER -->
-    <div class="py-3 border-bottom">
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
       <div class="row">
-        <div class="col-6 col-sm-8 col-md-5">
+        <div class="col-12 col-sm-4 col-md-5">
           <h1 class="page-title m-0">Patient</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -13,58 +12,45 @@
             <li class="breadcrumb-item active" aria-current="page">Patient</li>
           </ol>
         </div>
-        <div class="col-6 col-sm-4 col-md-7 pt-1">
-          <div class="d-flex">
-            <div class="flex-fill">
-              <div class="input-group">
-                <input
-                  placeholder="Search Patient..."
-                  class="form-control"
-                  type="text"
-                />
-                <button
-                  class="input-group-text bg-white text-secondary"
-                  type="button"
-                >
-                  <i class="fa fa-search"></i>
-                </button>
-              </div>
-            </div>
-            <div>
-              <a href="#" class="p-1 text-secondary fs-16 ms-3 align-middle"
-                ><i class="fa fa-filter"></i
-              ></a>
-              <a href="#" class="btn btn-outline-secondary ms-3"
-                ><i class="icon icon-share-alt me-1"></i> Export</a
-              >
-              <a href="#" class="btn btn-dark ms-3">Add Patient</a>
-              <a
-                href="#"
-                class="p-1 text-secondary fs-16 ms-3 align-middle"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                ><i class="icon icon-options-vertical"></i
-              ></a>
-              <div class="dropdown-menu dropdown-menu-start">
-                <a class="dropdown-item" href="#"
-                  ><i class="fe fe-edit-2 me-2"></i> Edit</a
-                >
-                <a class="dropdown-item" href="#"
-                  ><i class="fe fe-trash-2 me-2"></i> Delete</a
-                >
-              </div>
-            </div>
+        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+          <a href="#" class="p-1 text-secondary fs-16 ms-3 align-middle"
+            ><i class="fa fa-filter"></i
+          ></a>
+          <a href="#" class="btn btn-outline-secondary ms-3"
+            ><i class="icon icon-share-alt me-1"></i> Export</a
+          >
+          <a href="#" class="btn btn-dark ms-3">Add Patient</a>
+          <a
+            href="#"
+            class="p-1 text-secondary fs-16 ms-3 align-middle"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="icon icon-options-vertical"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-edit-2 me-2"></i> Edit</a
+            >
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-trash-2 me-2"></i> Delete</a
+            >
           </div>
         </div>
       </div>
     </div>
-    <div class="py-4">
+  </div>
+
+  <div class="main-container container">
+    <div class="card my-4 p-4">
       <div class="table-responsive">
-        <table id="data-table" class="table text-nowrap mb-0 table-bordered">
+        <table
+          id="data-table"
+          class="table text-nowrap m-0 table-bordered table-striped"
+        >
           <thead class="table-head">
             <tr class="text-secondary">
-              <th class="bg-transparent border-bottom-0 wp-1 fs-12">
+              <th class="bg-transparent border-bottom-0 wp-2 fs-12">
                 <div class="checkbox">
                   <div class="custom-checkbox custom-control">
                     <input
@@ -80,7 +66,7 @@
                   </div>
                 </div>
               </th>
-              <th class="bg-transparent border-bottom-0 wp-15 fs-12">
+              <th class="bg-transparent border-bottom-0 wp-20 fs-12">
                 PATIENT
               </th>
               <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
@@ -96,7 +82,9 @@
               <th class="bg-transparent border-bottom-0 fs-12">
                 LAST DISCHARGE
               </th>
-              <th class="bg-transparent border-bottom-0 no-btn fs-12"></th>
+              <th class="bg-transparent border-bottom-0 no-btn fs-12">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -120,7 +108,223 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/11.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Skyler Hilda</h6></a
+                    >
+                    <span class="badge badge-xs bg-success">Approved</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>
+                <div class="d-flex">
+                  <div class="flex-fill">
+                    <div class="progress progress-sm mt-1">
+                      <div class="progress-bar bg-danger wp-75"></div>
+                    </div>
+                  </div>
+                  <div class="ms-2">High</div>
+                </div>
+              </td>
+              <td class="text-center">Nike Snaker</td>
+              <td class="text-center">Intrusted</td>
+              <td class="text-center">
+                22/09/11 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">
+                22/08/11 <strong class="fw-semibold">(22)</strong>
+              </td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <div class="checkbox m-auto">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      data-checkboxes="mygroup"
+                      class="custom-control-input"
+                      id="checkbox-1"
+                    />
+                    <label
+                      for="checkbox-1"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/11.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Skyler Hilda</h6></a
+                    >
+                    <span class="badge badge-xs bg-danger">Rejected</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>
+                <div class="d-flex">
+                  <div class="flex-fill">
+                    <div class="progress progress-sm mt-1">
+                      <div class="progress-bar bg-primary wp-50"></div>
+                    </div>
+                  </div>
+                  <div class="ms-2">Medium</div>
+                </div>
+              </td>
+              <td class="text-center">Nike Snaker</td>
+              <td class="text-center">Intrusted</td>
+              <td class="text-center">
+                22/09/11 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">
+                22/08/11 <strong class="fw-semibold">(22)</strong>
+              </td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <div class="checkbox m-auto">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      data-checkboxes="mygroup"
+                      class="custom-control-input"
+                      id="checkbox-1"
+                    />
+                    <label
+                      for="checkbox-1"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/11.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Skyler Hilda</h6></a
+                    >
+                    <span class="badge badge-xs bg-warning">Pending</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>
+                <div class="d-flex">
+                  <div class="flex-fill">
+                    <div class="progress progress-sm mt-1">
+                      <div class="progress-bar bg-warning wp-25"></div>
+                    </div>
+                  </div>
+                  <div class="ms-2">Low</div>
+                </div>
+              </td>
+              <td class="text-center">Nike Snaker</td>
+              <td class="text-center">Intrusted</td>
+              <td class="text-center">
+                22/09/11 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">
+                22/08/11 <strong class="fw-semibold">(22)</strong>
+              </td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <div class="checkbox m-auto">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      data-checkboxes="mygroup"
+                      class="custom-control-input"
+                      id="checkbox-1"
+                    />
+                    <label
+                      for="checkbox-1"
+                      class="custom-control-label"
+                    ></label>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -155,7 +359,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -191,7 +395,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -226,7 +430,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -262,7 +466,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -297,7 +501,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -333,7 +537,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -368,7 +572,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -404,7 +608,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -439,7 +643,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -475,7 +679,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -510,7 +714,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -546,7 +750,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -581,7 +785,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -617,7 +821,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -652,7 +856,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -688,7 +892,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -723,7 +927,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -759,7 +963,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -794,7 +998,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -830,7 +1034,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -865,7 +1069,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
@@ -901,7 +1105,7 @@
               <td>
                 <div class="d-flex align-items-center">
                   <span
-                    class="data-image avatar avatar-md rounded-circle"
+                    class="data-image avatar avatar-sm rounded-circle"
                     style="background-image: url(../assets/images/users/11.jpg)"
                   ></span>
                   <div class="user-details ms-2">
@@ -936,220 +1140,7 @@
               <td class="text-center">
                 <a
                   href="#"
-                  class="br-5 px-2 py-1 text-secondary"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  ><i class="fe fe-more-vertical"></i
-                ></a>
-                <div class="dropdown-menu dropdown-menu-start">
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
-                  >
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-info me-2"></i> Info</a
-                  >
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center">
-                <div class="checkbox m-auto">
-                  <div class="custom-checkbox custom-control">
-                    <input
-                      type="checkbox"
-                      data-checkboxes="mygroup"
-                      class="custom-control-input"
-                      id="checkbox-1"
-                    />
-                    <label
-                      for="checkbox-1"
-                      class="custom-control-label"
-                    ></label>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span
-                    class="data-image avatar avatar-md rounded-circle"
-                    style="background-image: url(../assets/images/users/11.jpg)"
-                  ></span>
-                  <div class="user-details ms-2">
-                    <a class="text-secondary" href="#"
-                      ><h6 class="mb-0">Skyler Hilda</h6></a
-                    >
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                79/06/15 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">CKD4</td>
-              <td>
-                <div class="d-flex">
-                  <div class="flex-fill">
-                    <div class="progress progress-sm mt-1">
-                      <div class="progress-bar bg-danger wp-75"></div>
-                    </div>
-                  </div>
-                  <div class="ms-2">High</div>
-                </div>
-              </td>
-              <td class="text-center">Nike Snaker</td>
-              <td class="text-center">Intrusted</td>
-              <td class="text-center">
-                22/09/11 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">
-                22/08/11 <strong class="fw-semibold">(22)</strong>
-              </td>
-              <td class="text-center">
-                <a
-                  href="#"
-                  class="br-5 px-2 py-1 text-secondary"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  ><i class="fe fe-more-vertical"></i
-                ></a>
-                <div class="dropdown-menu dropdown-menu-start">
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
-                  >
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-info me-2"></i> Info</a
-                  >
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center">
-                <div class="checkbox m-auto">
-                  <div class="custom-checkbox custom-control">
-                    <input
-                      type="checkbox"
-                      data-checkboxes="mygroup"
-                      class="custom-control-input"
-                      id="checkbox-1"
-                    />
-                    <label
-                      for="checkbox-1"
-                      class="custom-control-label"
-                    ></label>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span
-                    class="data-image avatar avatar-md rounded-circle"
-                    style="background-image: url(../assets/images/users/11.jpg)"
-                  ></span>
-                  <div class="user-details ms-2">
-                    <a class="text-secondary" href="#"
-                      ><h6 class="mb-0">Skyler Hilda</h6></a
-                    >
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                79/06/15 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">CKD4</td>
-              <td>
-                <div class="d-flex">
-                  <div class="flex-fill">
-                    <div class="progress progress-sm mt-1">
-                      <div class="progress-bar bg-primary wp-50"></div>
-                    </div>
-                  </div>
-                  <div class="ms-2">Medium</div>
-                </div>
-              </td>
-              <td class="text-center">Nike Snaker</td>
-              <td class="text-center">Intrusted</td>
-              <td class="text-center">
-                22/09/11 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">
-                22/08/11 <strong class="fw-semibold">(22)</strong>
-              </td>
-              <td class="text-center">
-                <a
-                  href="#"
-                  class="br-5 px-2 py-1 text-secondary"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  ><i class="fe fe-more-vertical"></i
-                ></a>
-                <div class="dropdown-menu dropdown-menu-start">
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
-                  >
-                  <a class="dropdown-item" href="#"
-                    ><i class="fe fe-info me-2"></i> Info</a
-                  >
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center">
-                <div class="checkbox m-auto">
-                  <div class="custom-checkbox custom-control">
-                    <input
-                      type="checkbox"
-                      data-checkboxes="mygroup"
-                      class="custom-control-input"
-                      id="checkbox-1"
-                    />
-                    <label
-                      for="checkbox-1"
-                      class="custom-control-label"
-                    ></label>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="d-flex align-items-center">
-                  <span
-                    class="data-image avatar avatar-md rounded-circle"
-                    style="background-image: url(../assets/images/users/11.jpg)"
-                  ></span>
-                  <div class="user-details ms-2">
-                    <a class="text-secondary" href="#"
-                      ><h6 class="mb-0">Skyler Hilda</h6></a
-                    >
-                  </div>
-                </div>
-              </td>
-              <td class="text-center">
-                79/06/15 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">CKD4</td>
-              <td>
-                <div class="d-flex">
-                  <div class="flex-fill">
-                    <div class="progress progress-sm mt-1">
-                      <div class="progress-bar bg-warning wp-25"></div>
-                    </div>
-                  </div>
-                  <div class="ms-2">Low</div>
-                </div>
-              </td>
-              <td class="text-center">Nike Snaker</td>
-              <td class="text-center">Intrusted</td>
-              <td class="text-center">
-                22/09/11 <strong class="fw-semibold">(43)</strong>
-              </td>
-              <td class="text-center">
-                22/08/11 <strong class="fw-semibold">(22)</strong>
-              </td>
-              <td class="text-center">
-                <a
-                  href="#"
-                  class="br-5 px-2 py-1 text-secondary"
+                  class="br-5 px-2 py-1"
                   data-bs-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"

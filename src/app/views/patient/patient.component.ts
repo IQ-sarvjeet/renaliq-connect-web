@@ -14,6 +14,14 @@ export class PatientComponent {
         sSearch: '',
         lengthMenu: '_MENU_',
       },
+      searching: false,
+      lengthChange: false,
+      columnDefs: [
+        {
+          targets: [0, 9],
+          orderable: false,
+        },
+      ],
     });
   }
 }

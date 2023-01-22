@@ -122,6 +122,18 @@ iframe {
   overflow-y: auto;
 }
 
+.wrap-login100::-webkit-scrollbar {
+  width: 0.675rem;
+}
+.wrap-login100::-webkit-scrollbar-track {
+  background: rgba($black, 0.1);
+}
+.wrap-login100::-webkit-scrollbar-thumb {
+  background-color: #294865;
+  border-radius: 0.125rem;
+  border: 0.125rem solid rgba($black, 0.1);
+}
+
 /*------------------------------------------------------------------
   [  ]*/
 

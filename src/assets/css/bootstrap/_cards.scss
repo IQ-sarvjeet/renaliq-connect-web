@@ -1560,36 +1560,29 @@ a.card-tabs-item {
 }
 
 .card-style {
-  background: rgb(107, 163, 214);
-  background: linear-gradient(
-    45deg,
-    rgba(107, 163, 214, 1) 0%,
-    rgba(107, 163, 214, 1) 50%,
-    rgba(158, 206, 250, 1) 100%
-  );
+  background: $offwhite;
+  border: 1px solid $secondary !important;
   color: $dark;
   overflow: hidden;
-  &:after {
-    content: "";
-    display: block;
-    border-radius: 50%;
-    width: 10rem;
-    height: 10rem;
-    border: 2rem solid rgba(255, 255, 255, 0.1);
-    position: absolute;
-    left: -6rem;
-    top: -6rem;
-  }
+
   &:before {
     content: "";
+    background: $secondary;
     display: block;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
-    width: 12rem;
-    height: 12rem;
-    border: 1rem solid rgba(255, 255, 255, 0.1);
     position: absolute;
-    right: -2.5rem;
-    bottom: -10rem;
+    right: -2rem;
+    bottom: -2rem;
+  }
+  &:after {
+    content: "\f178";
+    color: $white;
+    position: absolute;
+    right: 0.375rem;
+    bottom: 0.375rem;
+    font: normal normal normal 14px/1 FontAwesome;
   }
 }
 .card-btn {
