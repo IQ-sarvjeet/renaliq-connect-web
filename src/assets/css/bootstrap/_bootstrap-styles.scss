@@ -40,7 +40,7 @@ html {
   scroll-behavior: smooth;
 }
 body::-webkit-scrollbar {
-  width: 0.75rem;
+  width: 0.675rem;
 }
 body::-webkit-scrollbar-track {
   background: rgba($black, 0.1);
@@ -544,7 +544,7 @@ body {
   touch-action: manipulation;
   -webkit-font-feature-settings: "liga" 0;
   font-feature-settings: "liga" 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden !important;
   position: relative;
 }

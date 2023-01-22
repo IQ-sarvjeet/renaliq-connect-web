@@ -1341,7 +1341,6 @@ body.dark-mode::-webkit-scrollbar-thumb {
     border-left: 1px solid $border-dark;
   }
   .task-list {
-
     &:before {
       border-left: 1px solid $border-dark;
     }
@@ -5048,6 +5047,11 @@ body.dark-mode::-webkit-scrollbar-thumb {
     background: $dark-body;
     box-shadow: 0 3px 9px 0 rgba(28, 28, 51, 0.15);
   }
+
+  .wrap-login100::-webkit-scrollbar-thumb {
+    background-color: $primary;
+  }
+
   .login100-form-title {
     color: $dark-text;
   }
