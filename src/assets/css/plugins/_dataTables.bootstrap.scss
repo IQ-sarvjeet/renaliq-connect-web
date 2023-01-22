@@ -251,6 +251,12 @@ div {
 }
 
 table {
+  .sorting_disabled {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
   &.dataTable.table-sm {
     > thead > tr > th:not(.sorting_disabled) {
       padding-right: 20px;
