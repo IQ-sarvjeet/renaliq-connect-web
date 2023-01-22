@@ -4441,6 +4441,7 @@ a.custom-blog-content:hover {
     border: 1px solid transparent;
 
     &:hover {
+      background: $offwhite;
       border-color: $border;
       transform: scaleX(1.03);
       box-shadow: rgba(169, 184, 200, 0.15) 0px 3px 9px 0px;

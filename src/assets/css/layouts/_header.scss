@@ -15,10 +15,7 @@
 }
 
 .sub-header {
-  background: rgba($white, 0.5);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid $border;
+  padding-top: 0.75rem;
 }
 
 body.fixed-header .header {
@@ -1375,18 +1372,16 @@ body.fixed-header .header {
 }
 
 .main-header-center .form-control {
-  padding: 1rem 0;
+  padding: 1rem 0 1rem 2.25rem;
   border-radius: 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border: none;
 }
 
 @media (min-width: 992px) {
   .main-header-center .btn {
     position: absolute;
     top: -4px;
-    right: 0;
+    left: 0;
     background-color: transparent;
     height: 40px;
     color: #707787;

@@ -251,7 +251,7 @@ div {
 }
 
 table {
-  .sorting_disabled {
+  thead tr th:first-child .sorting_disabled {
     &:before,
     &:after {
       display: none;

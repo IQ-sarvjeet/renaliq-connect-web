@@ -2770,7 +2770,6 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
   .sub-header {
     background: $dark-body !important;
-    border-bottom: 1px solid $border-dark !important;
   }
   .nav-unread {
     background: #ecd938;
@@ -4631,13 +4630,11 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
   .header .main-header-center .form-control {
     border: none;
-    border-bottom: 1px solid $border-dark;
     background-color: transparent;
   }
   .header .main-header-center .form-control:focus,
   .header .main-header-center .form-control:active {
     border: none !important;
-    border-bottom: 1px solid $primary !important;
   }
   .box-white-shadow {
     box-shadow: 0 5px 10px rgba(255, 255, 255, 0.3) !important;
