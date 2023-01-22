@@ -1340,8 +1340,19 @@ body.dark-mode::-webkit-scrollbar-thumb {
   .tl-blog:before {
     border-left: 1px solid $border-dark;
   }
-  .task-list:before {
-    border-left: 1px solid $border-dark;
+  .task-list {
+
+    &:before {
+      border-left: 1px solid $border-dark;
+    }
+    li {
+      .task-icon {
+        &::before {
+          content: "";
+          background: $border-dark;
+        }
+      }
+    }
   }
   .task-list {
     color: $dark-text;
@@ -2511,6 +2522,9 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
   .progress-bar {
     color: #fff;
+  }
+  .progress-bar.bg-dark {
+    background-color: $offwhite !important;
   }
   .list-group-item.active {
     background-color: #f6f4fb;

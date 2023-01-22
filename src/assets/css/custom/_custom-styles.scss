@@ -2040,7 +2040,7 @@ small,
     bottom: 0;
     height: 88%;
     left: 15px;
-    border-left: 1px solid #e0e9f1;
+    border-left: 1px solid var(--border);
   }
 
   li {
@@ -2079,7 +2079,7 @@ small,
         width: 5px;
         height: 1px;
         top: 5px;
-        background: #e0e9f1;
+        background: var(--border);
         display: none;
       }
     }
