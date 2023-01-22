@@ -350,6 +350,24 @@ body.dark-mode::-webkit-scrollbar-thumb {
   .apexcharts-yaxis-title text {
     fill: $white-8 !important;
   }
+  .sub-header {
+    .text-secondary {
+      color: #2684ff !important;
+    }
+    .btn-dark {
+      color: #fff !important;
+      background-color: #2684ff !important;
+      border-color: #2684ff !important;
+    }
+    .btn-outline-secondary {
+      color: #2684ff !important;
+      background-color: transparent !important;
+      border-color: #2684ff !important;
+      i {
+        color: #2684ff !important;
+      }
+    }
+  }
   @media (max-width: 767.98px) {
     .demo-icon.nav-link.icon svg {
       fill: $white !important;
