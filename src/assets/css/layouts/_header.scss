@@ -1359,7 +1359,9 @@ body.fixed-header .header {
 .app-header .container-fluid.main-container div:first-child {
   align-items: center !important;
 }
-
+.select2-container {
+  z-index: 999;
+}
 @media (min-width: 1135px) {
   .main-header-center .form-control {
     width: 100%;

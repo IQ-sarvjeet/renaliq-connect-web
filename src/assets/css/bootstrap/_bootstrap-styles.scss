@@ -38,6 +38,18 @@ html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
+body::-webkit-scrollbar {
+  width: 0.75rem;
+}
+body::-webkit-scrollbar-track {
+  background: rgba($black, 0.1);
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #294865;
+  border-radius: 0.125rem;
+  border: 0.125rem solid rgba($black, 0.1);
+}
+
 @-ms-viewport {
   width: device-width;
 }
@@ -534,19 +546,6 @@ body {
   overflow-y: scroll;
   overflow-x: hidden !important;
   position: relative;
-  * {
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-      transition: 0.3s background;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #ced4da;
-    }
-    &:hover::-webkit-scrollbar-thumb {
-      background: #adb5bd;
-    }
-  }
 }
 @media print {
   body {

@@ -336,10 +336,14 @@ body.dark-mode {
   color: $dark-text;
   background-color: $dark-body;
 }
-body.dark-mode *::-webkit-scrollbar-thumb,
-body.dark-mode *:hover::-webkit-scrollbar-thumb {
-  background: $white-2;
+body.dark-mode::-webkit-scrollbar-track {
+  background: rgba($black, 0.2);
 }
+body.dark-mode::-webkit-scrollbar-thumb {
+  background-color: #2684ff;
+  border: 0.125rem solid rgba($black, 0.2);
+}
+
 .dark-mode {
   .apexcharts-yaxis-texts-g text,
   .apexcharts-xaxis-texts-g text,
@@ -2730,7 +2734,7 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     border-bottom: 1px solid $border-dark;
   }
   .header {
-    background: rgba($white, 0.1) !important;
+    background: #264562 !important;
     border-bottom: 1px solid $border-dark !important;
   }
   .sub-header {
@@ -4594,9 +4598,15 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.2);
     }
   }
-  .header .form-control {
-    border: 1px solid $border-dark;
+  .header .main-header-center .form-control {
+    border: none;
+    border-bottom: 1px solid $border-dark;
     background-color: transparent;
+  }
+  .header .main-header-center .form-control:focus,
+  .header .main-header-center .form-control:active {
+    border: none !important;
+    border-bottom: 1px solid $primary !important;
   }
   .box-white-shadow {
     box-shadow: 0 5px 10px rgba(255, 255, 255, 0.3) !important;
