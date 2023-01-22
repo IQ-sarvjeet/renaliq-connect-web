@@ -3,7 +3,7 @@
   <div class="sub-header">
     <div class="main-container container">
       <div class="row">
-        <div class="col-6 col-sm-8 col-md-5">
+        <div class="col-12 col-sm-4 col-md-5">
           <h1 class="page-title m-0">Patient</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -12,7 +12,7 @@
             <li class="breadcrumb-item active" aria-current="page">Patient</li>
           </ol>
         </div>
-        <div class="col-6 col-sm-4 col-md-7 pt-1 text-end">
+        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
           <a href="#" class="p-1 text-secondary fs-16 ms-3 align-middle"
             ><i class="fa fa-filter"></i
           ></a>
@@ -47,7 +47,7 @@
         <table id="data-table" class="table text-nowrap m-0 table-bordered">
           <thead class="table-head">
             <tr class="text-secondary">
-              <th class="bg-transparent border-bottom-0 wp-1 fs-12">
+              <th class="bg-transparent border-bottom-0 wp-3 fs-12">
                 <div class="checkbox">
                   <div class="custom-checkbox custom-control">
                     <input
@@ -79,7 +79,9 @@
               <th class="bg-transparent border-bottom-0 fs-12">
                 LAST DISCHARGE
               </th>
-              <th class="bg-transparent border-bottom-0 no-btn fs-12"></th>
+              <th class="bg-transparent border-bottom-0 no-btn fs-12">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody class="table-body">
@@ -110,6 +112,7 @@
                     <a class="text-secondary" href="#"
                       ><h6 class="mb-0">Skyler Hilda</h6></a
                     >
+                    <span class="badge badge-xs bg-success">Approved</span>
                   </div>
                 </div>
               </td>
@@ -181,6 +184,7 @@
                     <a class="text-secondary" href="#"
                       ><h6 class="mb-0">Skyler Hilda</h6></a
                     >
+                    <span class="badge badge-xs bg-danger">Rejected</span>
                   </div>
                 </div>
               </td>
@@ -252,6 +256,7 @@
                     <a class="text-secondary" href="#"
                       ><h6 class="mb-0">Skyler Hilda</h6></a
                     >
+                    <span class="badge badge-xs bg-gray">Pending</span>
                   </div>
                 </div>
               </td>

@@ -16,6 +16,12 @@ export class PatientComponent {
       },
       searching: false,
       lengthChange: false,
+      columnDefs: [
+        {
+          targets: [0, 9],
+          orderable: false,
+        },
+      ],
     });
   }
 }
