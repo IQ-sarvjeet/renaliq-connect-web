@@ -392,15 +392,6 @@ function sales() {
 }
 
 (function () {
-  //______Data-Table
-  $("#data-table").DataTable({
-    language: {
-      searchPlaceholder: "Search...",
-      sSearch: "",
-      lengthMenu: "_MENU_",
-    },
-  });
-
   //______Select2
   $(".select2").select2({
     minimumResultsForSearch: Infinity,
