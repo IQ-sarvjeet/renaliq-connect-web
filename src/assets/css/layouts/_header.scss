@@ -1263,10 +1263,14 @@ body.fixed-header .header {
     background: #fff;
     position: absolute;
     top: -7px;
-    right: 6%;
+    left: 6%;
     transform: rotate(45deg);
     border-top: 1px solid $border;
     border-left: 1px solid $border;
+  }
+  .dropdown-menu-end.dropdown-menu-arrow:before {
+    left: auto;
+    right: 6%;
   }
 }
 .side-header {

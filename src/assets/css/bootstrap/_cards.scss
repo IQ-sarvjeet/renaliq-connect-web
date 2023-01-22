@@ -1561,13 +1561,15 @@ a.card-tabs-item {
 
 .card-style {
   background: $offwhite;
-  border: 1px solid $secondary !important;
+  border: 1px solid rgba($secondary, 0.5) !important;
   color: $dark;
+  min-height: 101px;
   overflow: hidden;
+  transition: 0.3s linear all;
 
   &:before {
     content: "";
-    background: $secondary;
+    background: rgba($secondary, 0.1);
     display: block;
     width: 4rem;
     height: 4rem;
@@ -1575,14 +1577,28 @@ a.card-tabs-item {
     position: absolute;
     right: -2rem;
     bottom: -2rem;
+    transition: 0.3s linear all;
   }
   &:after {
     content: "\f178";
-    color: $white;
+    color: $secondary;
     position: absolute;
     right: 0.375rem;
     bottom: 0.375rem;
     font: normal normal normal 14px/1 FontAwesome;
+    transition: 0.3s linear all;
+  }
+
+  &:hover {
+    border: 1px solid $secondary !important;
+
+    &:before {
+      content: "";
+      background: $secondary;
+    }
+    &:after {
+      color: $white;
+    }
   }
 }
 .card-btn {
