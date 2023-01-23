@@ -1590,11 +1590,18 @@ a.card-tabs-item {
   }
 
   &:hover {
-    border: 1px solid $secondary !important;
+    background: $white;
+    border: 1px solid $primary !important;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+
+    h4,
+    .icon {
+      color: $primary;
+    }
 
     &:before {
       content: "";
-      background: $secondary;
+      background: $primary;
     }
     &:after {
       color: $white;
