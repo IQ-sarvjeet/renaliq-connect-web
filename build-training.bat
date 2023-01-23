@@ -1,0 +1,1 @@
+ng build --prod --configuration=training --output-hashing=all
