@@ -6,22 +6,5 @@ declare const $: any;
   styleUrls: ['./patient.component.scss'],
 })
 export class PatientComponent {
-  ngOnInit(): void {
-    //______Data-Table
-    $('#data-table').DataTable({
-      language: {
-        searchPlaceholder: 'Search...',
-        sSearch: '',
-        lengthMenu: '_MENU_',
-      },
-      searching: false,
-      lengthChange: false,
-      columnDefs: [
-        {
-          targets: [0, 9],
-          orderable: false,
-        },
-      ],
-    });
-  }
+  ngOnInit(): void {}
 }

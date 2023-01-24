@@ -4,6 +4,7 @@ import { BarChartHorizontalComponent } from './bar-chart-horizontal/bar-chart-ho
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ProgressBarChartWidgetComponent } from './progress-bar-chart-widget/progress-bar-chart-widget.component';
+import { GridComponent } from './grid/grid.component';
 
 @NgModule({
  imports:      [ CommonModule ],
@@ -11,13 +12,15 @@ import { ProgressBarChartWidgetComponent } from './progress-bar-chart-widget/pro
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
     DoughnutChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    GridComponent
 ],
  exports: [ 
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
     DoughnutChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    GridComponent
  ]
 })
 export class SharedModule { }
