@@ -40,6 +40,10 @@ const routes: Routes = [
   {
     path: 'documents',
     loadChildren: () => import('./views/documents/documents.module').then(m => m.DocumentsModule)
+  },
+  {
+    path: 'patientProfile',
+    loadChildren: () => import('./views/patient-profile/patient-profile.module').then(m => m.PatientProfileModule)
   }
 ];
 
