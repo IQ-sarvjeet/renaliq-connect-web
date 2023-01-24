@@ -11,20 +11,20 @@ export class SigninComponent {
 
   username: any = 'connectadmin@yopmail.com';
   password: any = 'Pass@123'
+
   constructor(private _httpclientwapperSerivce: HttpClientWapperService) {
   }
-
-
 
   ngOnInit(): void {
     $('.header').remove();
     $('.footer').remove();
     $('#back-to-top').remove();
 
-    this.login();
+    this.loginRequest();
   }
 
-  public async login() {
+  public async loginRequest() {
+
     let model: any = {
       username: this.username,
       password: this.password,
@@ -34,7 +34,7 @@ export class SigninComponent {
       client_secret: environment.clientSecret,
     }
 
-    var result = await this._httpclientwapperSerivce.login(model).toPromise();
+    var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
 
     console.log("login Token :- " + result.access_token);
     console.log("login Scope :- " + result.scope);
