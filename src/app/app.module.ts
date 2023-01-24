@@ -9,6 +9,9 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
+import { environment } from './environments/environment';
+import { BASE_PATH } from './api-client/variables';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { SharedModule } from './components/shared.module';
     SharedModule
   ],
   exports: [],
-  providers: [],
+  providers: [
+    { provide: BASE_PATH, useValue: environment.baseApiUrl },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
