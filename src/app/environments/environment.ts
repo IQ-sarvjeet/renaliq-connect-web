@@ -5,8 +5,14 @@
 export const environment = {
   production: false,
   baseApiUrl: 'https://localhost:5001',
-  appUrl:'https://localhost:4200',
- 
+  appUrl: 'https://localhost:4200',
+  grantType: 'password',
+  scope: 'ConnectApi',
+  clientId: 'WebUI.Admin',
+  clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
+
+  //Username: tom@yopmail.com
+  //Password: Pass@12345
 };
 
 /*
