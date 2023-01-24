@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListComponent } from './list.component';
+import { TranstionCareComponent } from './transtion-care.component';
 
-describe('ListComponent', () => {
-  let component: ListComponent;
-  let fixture: ComponentFixture<ListComponent>;
+describe('TranstionCareComponent', () => {
+  let component: TranstionCareComponent;
+  let fixture: ComponentFixture<TranstionCareComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListComponent ]
+      declarations: [ TranstionCareComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ListComponent);
+    fixture = TestBed.createComponent(TranstionCareComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
