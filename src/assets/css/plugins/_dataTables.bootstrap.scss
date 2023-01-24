@@ -336,3 +336,14 @@ div {
 #delete-datatable tr {
   cursor: pointer;
 }
+.fieldset-title {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+}
+.sorting_off {
+  &:before,
+  &:after {
+    display: none !important;
+  }
+}

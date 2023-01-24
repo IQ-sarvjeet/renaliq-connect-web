@@ -1,1 +1,437 @@
-<p>admission works!</p>
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-5 align-item-center d-flex">
+          <div class="mt-3">
+            <h1 class="page-title m-0">Admissions</h1>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="javascript:void(0);">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Patient Admissions
+              </li>
+            </ol>
+          </div>
+        </div>
+        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="border rounded-2 py-2 px-3 bg-white">
+                <div class="row text-start">
+                  <div class="col-12 col-md-6">
+                    <div class="d-flex align-items-center">
+                      <div class="d-flex text-truncate align-items-center">
+                        <i class="fa fa-circle text-success me-2"></i>
+                        <div class="flex-fill">
+                          <div class="fs-12">Admissions</div>
+                          <div class="fs-10">(90 Days)</div>
+                        </div>
+                      </div>
+                      <div class="flex-fill mx-4">
+                        <div class="fs-11">15%</div>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar bg-success wp-15"></div>
+                        </div>
+                      </div>
+                      <div>1,276</div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-6 border-start">
+                    <div class="d-flex align-items-center">
+                      <div class="d-flex text-truncate align-items-center">
+                        <i class="fa fa-circle text-warning me-2"></i>
+                        <div class="flex-fill">
+                          <div class="fs-12">Discharge</div>
+                          <div class="fs-10">(90 Days)</div>
+                        </div>
+                      </div>
+                      <div class="flex-fill mx-4">
+                        <div class="fs-11">85%</div>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar bg-warning wp-85"></div>
+                        </div>
+                      </div>
+                      <div>2,334</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4 align-item-center d-flex">
+              <div class="input-group">
+                <input
+                  class="form-control fs-12"
+                  placeholder="Date"
+                  value="13 Sep 22 - 20 Sep 22"
+                  type="text"
+                />
+                <button class="input-group-text bg-white" type="button">
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-container container">
+    <div class="card my-4 p-1">
+      <div class="row mt-2 mb-3">
+        <div class="col-12 col-md-4">
+          <div class="border rounded-2 p-3">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <i class="fa fa-circle text-success me-1"></i> Admissions
+                  </div>
+                  <div class="flex-fill mx-4">
+                    <div class="fs-11">15%</div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success wp-15"></div>
+                    </div>
+                  </div>
+                  <div>276</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 border-start">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <i class="fa fa-circle text-warning me-1"></i> Discharge
+                  </div>
+                  <div class="flex-fill mx-4">
+                    <div class="fs-11">85%</div>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-warning wp-85"></div>
+                    </div>
+                  </div>
+                  <div>234</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-8">
+          <div class="border rounded-2 p-3 position-relative">
+            <div class="fieldset-title px-1 bg-white fs-12">Admission by</div>
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-3">
+                <div class="d-flex align-items-center">
+                  <div class="text-truncate">CKD Stage 4</div>
+                  <div class="flex-fill mx-4">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-success wp-15"></div>
+                    </div>
+                    <div class="fs-11 text-truncate">78% Discharge</div>
+                  </div>
+                  <div>162</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3 border-start">
+                <div class="d-flex align-items-center">
+                  <div class="text-truncate">CKD Stage 3a</div>
+                  <div class="flex-fill mx-4">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-warning wp-50"></div>
+                    </div>
+                    <div class="fs-11 text-truncate">50% Discharge</div>
+                  </div>
+                  <div>382</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3 border-start">
+                <div class="d-flex align-items-center">
+                  <div class="text-truncate">CKD Stage 3b</div>
+                  <div class="flex-fill mx-4">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-danger wp-20"></div>
+                    </div>
+                    <div class="fs-11 text-truncate">20% Discharge</div>
+                  </div>
+                  <div>276</div>
+                </div>
+              </div>
+              <div class="col-12 col-md-6 col-lg-3 border-start">
+                <div class="d-flex align-items-center">
+                  <div class="text-truncate">EKSD</div>
+                  <div class="flex-fill mx-4">
+                    <div class="progress progress-xs">
+                      <div class="progress-bar bg-primary wp-60"></div>
+                    </div>
+                    <div class="fs-11 text-truncate">60% Discharge</div>
+                  </div>
+                  <div>234</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table
+          id="admissionTable"
+          class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
+        >
+          <thead class="table-head">
+            <tr class="text-secondary">
+              <th
+                class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
+              ></th>
+              <th class="bg-transparent border-bottom-0 wp-20 fs-12">
+                PATIENT
+              </th>
+              <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
+              <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
+              <th class="bg-transparent border-bottom-0 fs-12">
+                CASE CATEGORY
+              </th>
+              <th class="bg-transparent border-bottom-0 fs-12 wp-20">
+                DIAGNOSIS
+              </th>
+              <th class="bg-transparent border-bottom-0 fs-12">
+                FACITLITY NAME
+              </th>
+              <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
+              <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
+              <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-success"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/1.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Rose Torson</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>Nike snakers</td>
+              <td>101-Neoplasms Tumors</td>
+              <td>Intrusted</td>
+              <td class="text-center">22/09/14</td>
+              <td class="text-center">22/09/15</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-primary"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/2.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Danya Garcia</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>Nike snakers</td>
+              <td>204-Tobacco use diagnosis</td>
+              <td>Intrusted</td>
+              <td class="text-center">22/09/14</td>
+              <td class="text-center">22/09/15</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-primary"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/12.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Joseph Oliver</h6></a
+                    >
+                    <span class="badge badge-xs bg-danger">Re-admission</span>
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>Nike snakers</td>
+              <td>253-Nephrologist visit prior</td>
+              <td>Intrusted</td>
+              <td class="text-center">22/09/14</td>
+              <td class="text-center">22/09/15</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-primary"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/4.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Jennifer Summers</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>Nike snakers</td>
+              <td>204-Tobacco use diagnosis</td>
+              <td>Intrusted</td>
+              <td class="text-center">22/09/14</td>
+              <td class="text-center">22/09/15</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-primary"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/5.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a class="text-secondary" href="#"
+                      ><h6 class="mb-0">Lucy Garcia</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td class="text-center">
+                79/06/15 <strong class="fw-semibold">(43)</strong>
+              </td>
+              <td class="text-center">CKD4</td>
+              <td>Nike snakers</td>
+              <td>101-Neoplasms Tumors</td>
+              <td>Intrusted</td>
+              <td class="text-center">22/09/14</td>
+              <td class="text-center">22/09/15</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit-2 me-2"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-info me-2"></i> Info</a
+                  >
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
