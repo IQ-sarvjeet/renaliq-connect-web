@@ -10,6 +10,10 @@
   -ms-user-select: none;
   user-select: none;
 }
+.dataTable .custom-control {
+  min-height: 1rem;
+  padding-left: 0;
+}
 .custom-control-inline {
   display: -ms-inline-flexbox;
   display: inline-flex;

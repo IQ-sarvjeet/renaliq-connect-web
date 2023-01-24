@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./views/summary/summary.module').then(m => m.SummaryModule)
   },
   {
-    path: 'signin',
+    path: 'login',
     component: SigninComponent
   },
   {
@@ -40,11 +40,15 @@ const routes: Routes = [
   {
     path: 'documents',
     loadChildren: () => import('./views/documents/documents.module').then(m => m.DocumentsModule)
+  },
+  {
+    path: 'patientProfile',
+    loadChildren: () => import('./views/patient-profile/patient-profile.module').then(m => m.PatientProfileModule)
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

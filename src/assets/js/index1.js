@@ -1,5 +1,4 @@
-
-'use strict';
+"use strict";
 
 // let primaryColorVal = getComputedStyle(document.documentElement).getPropertyValue('--primary-bg-color').trim();
 // myVarVal = localStorage.getItem("primaryColor") || localStorage.getItem("darkPrimary") || localStorage.getItem("transparentPrimary") || localStorage.getItem("transparentBgImgPrimary")  || primaryColorVal;
@@ -10,20 +9,20 @@ function sales() {
     var options = {
       series: [
         {
-          name: 'REVENUE',
+          name: "REVENUE",
           data: [
             [1327359700000, 30.95],
             [1327446000000, 31.34],
             [1327532400000, 31.18],
             [1327618800000, 31.05],
-            [1327878000000, 31.00],
+            [1327878000000, 31.0],
             [1327964400000, 30.95],
             [1328050800000, 31.24],
             [1328137200000, 31.29],
             [1328223600000, 31.85],
             [1328482800000, 31.86],
             [1328569200000, 32.28],
-            [1328655600000, 32.10],
+            [1328655600000, 32.1],
             [1328742000000, 32.65],
             [1328828400000, 32.21],
             [1329087600000, 32.35],
@@ -38,7 +37,7 @@ function sales() {
             [1330297200000, 33.27],
             [1330383600000, 33.27],
             [1330470000000, 32.89],
-            [1330556400000, 33.10],
+            [1330556400000, 33.1],
             [1330642800000, 33.73],
             [1330902000000, 33.22],
             [1330988400000, 31.99],
@@ -55,12 +54,12 @@ function sales() {
             [1332284400000, 33.56],
             [1332370800000, 33.71],
             [1332457200000, 33.81],
-            [1332712800000, 34.40],
+            [1332712800000, 34.4],
             [1332799200000, 34.63],
             [1332885600000, 34.46],
             [1332972000000, 34.48],
             [1333058400000, 34.31],
-            [1333317600000, 34.70],
+            [1333317600000, 34.7],
             [1333404000000, 34.31],
             [1333490400000, 33.46],
             [1333576800000, 33.59],
@@ -75,7 +74,7 @@ function sales() {
             [1334786400000, 32.91],
             [1334872800000, 33.06],
             [1335132000000, 32.62],
-            [1335218400000, 32.40],
+            [1335218400000, 32.4],
             [1335304800000, 33.13],
             [1335391200000, 33.26],
             [1335477600000, 33.58],
@@ -88,7 +87,7 @@ function sales() {
             [1336428000000, 32.67],
             [1336514400000, 32.52],
             [1336600800000, 31.92],
-            [1336687200000, 32.20],
+            [1336687200000, 32.2],
             [1336946400000, 32.23],
             [1337032800000, 32.33],
             [1337119200000, 32.36],
@@ -98,13 +97,13 @@ function sales() {
             [1337637600000, 32.01],
             [1337724000000, 32.18],
             [1337810400000, 31.54],
-            [1337896800000, 31.60],
+            [1337896800000, 31.6],
             [1338242400000, 32.05],
             [1338328800000, 31.29],
             [1338415200000, 31.05],
             [1338501600000, 29.82],
             [1338760800000, 30.31],
-            [1338847200000, 30.70],
+            [1338847200000, 30.7],
             [1338933600000, 31.69],
             [1339020000000, 31.32],
             [1339106400000, 31.65],
@@ -129,10 +128,10 @@ function sales() {
             [1341525600000, 31.37],
             [1341784800000, 30.43],
             [1341871200000, 30.44],
-            [1341957600000, 30.20],
+            [1341957600000, 30.2],
             [1342044000000, 30.14],
             [1342130400000, 30.65],
-            [1342389600000, 30.40],
+            [1342389600000, 30.4],
             [1342476000000, 30.65],
             [1342562400000, 31.43],
             [1342648800000, 31.89],
@@ -153,14 +152,14 @@ function sales() {
             [1344463200000, 32.65],
             [1344549600000, 32.64],
             [1344808800000, 32.27],
-            [1344895200000, 32.10],
+            [1344895200000, 32.1],
             [1344981600000, 32.91],
             [1345068000000, 33.65],
-            [1345154400000, 33.80],
+            [1345154400000, 33.8],
             [1345413600000, 33.92],
             [1345500000000, 33.75],
             [1345586400000, 33.84],
-            [1345672800000, 33.50],
+            [1345672800000, 33.5],
             [1345759200000, 32.26],
             [1346018400000, 32.32],
             [1346104800000, 32.06],
@@ -182,13 +181,13 @@ function sales() {
             [1348092000000, 34.53],
             [1348178400000, 33.83],
             [1348437600000, 33.41],
-            [1348524000000, 32.90],
+            [1348524000000, 32.9],
             [1348610400000, 32.53],
-            [1348696800000, 32.80],
+            [1348696800000, 32.8],
             [1348783200000, 32.44],
             [1349042400000, 32.62],
             [1349128800000, 32.57],
-            [1349215200000, 32.60],
+            [1349215200000, 32.6],
             [1349301600000, 32.68],
             [1349388000000, 32.47],
             [1349647200000, 32.23],
@@ -204,7 +203,7 @@ function sales() {
             [1350856800000, 33.49],
             [1350943200000, 33.31],
             [1351029600000, 33.36],
-            [1351116000000, 33.40],
+            [1351116000000, 33.4],
             [1351202400000, 34.01],
             [1351638000000, 34.02],
             [1351724400000, 34.36],
@@ -213,8 +212,8 @@ function sales() {
             [1352156400000, 34.39],
             [1352242800000, 33.47],
             [1352329200000, 32.98],
-            [1352415600000, 32.90],
-            [1352674800000, 32.70],
+            [1352415600000, 32.9],
+            [1352674800000, 32.7],
             [1352761200000, 32.54],
             [1352847600000, 32.23],
             [1352934000000, 32.64],
@@ -222,15 +221,15 @@ function sales() {
             [1353279600000, 32.92],
             [1353366000000, 32.64],
             [1353452400000, 32.84],
-            [1353625200000, 33.40],
-            [1353884400000, 33.30],
+            [1353625200000, 33.4],
+            [1353884400000, 33.3],
             [1353970800000, 33.18],
             [1354057200000, 33.88],
             [1354143600000, 34.09],
             [1354230000000, 34.61],
-            [1354489200000, 34.70],
-            [1354575600000, 35.30],
-            [1354662000000, 35.40],
+            [1354489200000, 34.7],
+            [1354575600000, 35.3],
+            [1354662000000, 35.4],
             [1354748400000, 35.14],
             [1354834800000, 35.48],
             [1355094000000, 35.75],
@@ -245,8 +244,8 @@ function sales() {
             [1356044400000, 37.71],
             [1356303600000, 37.53],
             [1356476400000, 37.55],
-            [1356562800000, 37.30],
-            [1356649200000, 36.90],
+            [1356562800000, 37.3],
+            [1356649200000, 36.9],
             [1356908400000, 37.68],
             [1357081200000, 38.34],
             [1357167600000, 37.75],
@@ -263,16 +262,16 @@ function sales() {
             [1358463600000, 37.98],
             [1358809200000, 37.95],
             [1358895600000, 38.25],
-            [1358982000000, 38.10],
+            [1358982000000, 38.1],
             [1359068400000, 38.32],
             [1359327600000, 38.24],
             [1359414000000, 38.52],
             [1359500400000, 37.94],
             [1359586800000, 37.83],
             [1359673200000, 38.34],
-            [1359932400000, 38.10],
+            [1359932400000, 38.1],
             [1360018800000, 38.51],
-            [1360105200000, 38.40],
+            [1360105200000, 38.4],
             [1360191600000, 38.07],
             [1360278000000, 39.12],
             [1360537200000, 38.64],
@@ -286,167 +285,157 @@ function sales() {
             [1361487600000, 38.55],
             [1361746800000, 38.11],
             [1361833200000, 38.59],
-            [1361919600000, 39.60],
-          ]
+            [1361919600000, 39.6],
+          ],
         },
-
       ],
       chart: {
-        id: 'chartD',
-        type: 'area',
+        id: "chartD",
+        type: "area",
         height: 345,
         zoom: {
-          autoScaleYaxis: false
-        }
+          autoScaleYaxis: false,
+        },
       },
 
       colors: [myVarVal],
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       markers: {
         size: 0,
-        style: 'hollow',
+        style: "hollow",
       },
       grid: {
-        borderColor: '#f7f9fa',
+        borderColor: "#f7f9fa",
       },
       xaxis: {
-        type: 'datetime',
-        min: new Date('01 Feb 2012').getTime(),
+        type: "datetime",
+        min: new Date("01 Feb 2012").getTime(),
         axisBorder: {
           show: true,
-          color: 'rgba(119, 119, 142, 0.05)',
+          color: "rgba(119, 119, 142, 0.05)",
           offsetX: 0,
           offsetY: 0,
         },
         axisTicks: {
           show: true,
-          borderType: 'solid',
-          color: 'rgba(119, 119, 142, 0.05)',
+          borderType: "solid",
+          color: "rgba(119, 119, 142, 0.05)",
           width: 6,
           offsetX: 0,
-          offsetY: 0
+          offsetY: 0,
         },
         labels: {
           show: true,
           rotate: -90,
           style: {
-            fontSize: '11px',
-            fontFamily: 'Helvetica, Arial, sans-serif',
+            fontSize: "11px",
+            fontFamily: "Helvetica, Arial, sans-serif",
             fontWeight: 400,
-            cssClass: 'apexcharts-xaxis-label',
+            cssClass: "apexcharts-xaxis-label",
           },
         },
         tooltip: {
-          enabled: false
-        }
+          enabled: false,
+        },
       },
       yaxis: {
         title: {
-          text: 'Growth',
+          text: "Growth",
           style: {
-            color: '#adb5be',
-            fontSize: '14px',
-            fontFamily: 'poppins, sans-serif',
+            color: "#adb5be",
+            fontSize: "14px",
+            fontFamily: "poppins, sans-serif",
             fontWeight: 600,
-            cssClass: 'apexcharts-yaxis-label',
+            cssClass: "apexcharts-yaxis-label",
           },
         },
         labels: {
           formatter: function (y) {
             return y.toFixed(0) + "";
-          }
-        }
+          },
+        },
       },
       tooltip: {
         x: {
-          format: 'dd MMM yyyy'
-        }
+          format: "dd MMM yyyy",
+        },
       },
       stroke: {
         show: true,
-        curve: 'smooth',
-        lineCap: 'butt',
+        curve: "smooth",
+        lineCap: "butt",
         colors: undefined,
         width: 1,
         dashArray: 0,
       },
       fill: {
-        type: 'gradient',
+        type: "gradient",
         gradient: {
           shadeIntensity: 1,
           opacityFrom: 0.75,
           opacityTo: 0.5,
-          stops: [0, 200]
-        }
+          stops: [0, 200],
+        },
       },
 
       legend: {
         position: "top",
-        show: true
-      }
+        show: true,
+      },
     };
-    document.getElementById('chartD').innerHTML = '';
+    document.getElementById("chartD").innerHTML = "";
     var chart = new ApexCharts(document.querySelector("#chartD"), options);
     chart.render();
   }, 300);
 }
 
 (function () {
-
-  //______Data-Table
-  $('#data-table').DataTable({
-    language: {
-      searchPlaceholder: 'Search...',
-      sSearch: '',
-      lengthMenu: '_MENU_',
-    }
-  });
-
-  //______Select2 
-  $('.select2').select2({
-    minimumResultsForSearch: Infinity
+  //______Select2
+  $(".select2").select2({
+    minimumResultsForSearch: Infinity,
   });
 
   //select2 with indicator
   function selectStatus(status) {
-    if (!status.id) { return status.text; }
+    if (!status.id) {
+      return status.text;
+    }
     var $status = $(
-      '<span class="status-indicator projects">' + status.text + '</span>',
+      '<span class="status-indicator projects">' + status.text + "</span>"
     );
     var $statusText = $status.text().split(" ").join("").toLowerCase();
     if ($statusText === "inprogress") {
       $status.addClass("in-progress");
-    }
-    else if ($statusText === "onhold") {
+    } else if ($statusText === "onhold") {
       $status.addClass("on-hold");
-    }
-    else if ($statusText === "completed") {
+    } else if ($statusText === "completed") {
       $status.addClass("completed");
-    }
-    else {
+    } else {
       $status.addClass("empty");
     }
     return $status;
-  };
+  }
 
   //upload
   $(".select2-status-search").select2({
     templateResult: selectStatus,
     templateSelection: selectStatus,
-    escapeMarkup: function (s) { return s; }
+    escapeMarkup: function (s) {
+      return s;
+    },
   });
 
-  var $file = $('#task-file-input'),
-    $label = $file.next('label'),
-    $labelText = $label.find('span'),
-    $labelRemove = $('i.remove'),
+  var $file = $("#task-file-input"),
+    $label = $file.next("label"),
+    $labelText = $label.find("span"),
+    $labelRemove = $("i.remove"),
     labelDefault = $labelText.text();
 
   // on file change
-  $file.on('change', function (event) {
-    var fileName = $file.val().split('\\').pop();
+  $file.on("change", function (event) {
+    var fileName = $file.val().split("\\").pop();
     if (fileName) {
       $labelText.text(fileName);
       $labelRemove.show();
@@ -456,33 +445,30 @@ function sales() {
     }
   });
 
-  // Remove file   
-  $labelRemove.on('click', function (event) {
+  // Remove file
+  $labelRemove.on("click", function (event) {
     $file.val("");
     $labelText.text(labelDefault);
     $labelRemove.hide();
-    console.log($file)
+    console.log($file);
   });
-
 })();
 
 //todo task
-const subTaskContainer = document.querySelector('.sub-list-container');
+const subTaskContainer = document.querySelector(".sub-list-container");
 if (subTaskContainer) {
-
-  const subTaskElement = document.querySelector('.sub-list-item');
-  const addSubTaskBtn = document.querySelector('#addTask');
-  const subTaskInput = document.querySelector('#subTaskInput');
-  const errorNote = document.querySelector('#errorNote');
-  const deleteAllTasks = document.querySelector('#deleteAllTasks');
-  const completedAllBtn = document.querySelector('#completedAll');
-
+  const subTaskElement = document.querySelector(".sub-list-item");
+  const addSubTaskBtn = document.querySelector("#addTask");
+  const subTaskInput = document.querySelector("#subTaskInput");
+  const errorNote = document.querySelector("#errorNote");
+  const deleteAllTasks = document.querySelector("#deleteAllTasks");
+  const completedAllBtn = document.querySelector("#completedAll");
 
   setTimeout(() => {
     setInterval(() => {
-      const deleteBtn = document.querySelectorAll('.delete-main');
+      const deleteBtn = document.querySelectorAll(".delete-main");
       for (let i = 0; i < deleteBtn.length; i++) {
-        deleteBtn[i].addEventListener('click', deleteSubTask);
+        deleteBtn[i].addEventListener("click", deleteSubTask);
       }
     }, 10);
   }, 1);
@@ -500,14 +486,11 @@ if (subTaskContainer) {
 
     if (count % 2 != 0) {
       for (let i = 0; i < allTasks.length; i++) {
-
-        allTasks[i].classList.remove('task-completed');
+        allTasks[i].classList.remove("task-completed");
       }
-    }
-    else {
+    } else {
       for (let i = 0; i < allTasks.length; i++) {
-
-        allTasks[i].classList.add('task-completed');
+        allTasks[i].classList.add("task-completed");
       }
     }
     count++;
@@ -515,7 +498,7 @@ if (subTaskContainer) {
 
   //remove all tasks
   function removeAllTasks() {
-    subTaskContainer.innerHTML = ' ';
+    subTaskContainer.innerHTML = " ";
   }
 
   //add new task
@@ -523,14 +506,13 @@ if (subTaskContainer) {
   function addNewTask() {
     errorNote.innerText = "";
     var newSubTask = taskCopy.cloneNode(true);
-    newSubTask.classList.remove('task-completed')
+    newSubTask.classList.remove("task-completed");
     var newTaskText = subTaskInput.value;
     if (newTaskText.length !== 0) {
       subTaskContainer.appendChild(newSubTask);
       newSubTask.children[0].children[1].innerText = newTaskText;
       subTaskInput.value = "";
-    }
-    else {
+    } else {
       errorNote.innerText = "Please Enter Valid Input";
     }
   }
@@ -540,15 +522,14 @@ if (subTaskContainer) {
     var currentSubList = $e.target;
     var subListParent = currentSubList.parentElement.parentElement;
 
-    if (subListParent.classList.contains('task-completed')) {
-      subListParent.classList.remove('task-completed');
-    }
-    else {
-      subListParent.classList.add('task-completed');
+    if (subListParent.classList.contains("task-completed")) {
+      subListParent.classList.remove("task-completed");
+    } else {
+      subListParent.classList.add("task-completed");
     }
   }
 
-  completedAllBtn.addEventListener('click', markAllCompleted); // mark all completed
-  deleteAllTasks.addEventListener('click', removeAllTasks);   //delete all tasks
-  addSubTaskBtn.addEventListener('click', addNewTask);    //create new task
+  completedAllBtn.addEventListener("click", markAllCompleted); // mark all completed
+  deleteAllTasks.addEventListener("click", removeAllTasks); //delete all tasks
+  addSubTaskBtn.addEventListener("click", addNewTask); //create new task
 }

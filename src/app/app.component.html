@@ -1,13 +1,14 @@
 <app-header></app-header>
-<!-- GLOBAL-LOADER -->
-<div id="global-loader">
-  <img src="../../assets/images/loader.svg" class="loader-img" alt="Loader" />
-</div>
-<!-- /GLOBAL-LOADER -->
-<!-- PAGE -->
-<div class="page is-expanded">
-  <div class="page-main">
-    <router-outlet></router-outlet>
-  </div>
+<div class="app-content main-content mt-0">
+  <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
+<!-- <app-bar-chart 
+    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
+</app-bar-chart>
+<app-bar-chart-horizontal 
+    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
+</app-bar-chart-horizontal>
+<app-doughnut-chart 
+    [config]="{ apiUrl: 'assets/mockData/doughnutchart.json', side: 'vertical', title: 'Patient Age'}">
+</app-doughnut-chart> -->

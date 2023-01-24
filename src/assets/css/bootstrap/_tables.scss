@@ -480,7 +480,7 @@
 
 .table-striped tbody tr {
   &:nth-of-type(odd) {
-    background-color: $primary-01;
+    background-color: rgba($offwhite, 0.25);
   }
   &:nth-of-type(even) {
     background: transparent;

@@ -3,12 +3,14 @@ import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-cha
 import { DataCardInput } from './summary-interfaces/data-card';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
 
+declare const $: any;
+
 
 
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
-  styleUrls: ['./summary.component.scss']
+  styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent {
   patients: DataCardInput = {
