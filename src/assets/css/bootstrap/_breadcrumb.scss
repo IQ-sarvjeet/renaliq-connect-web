@@ -228,7 +228,7 @@
 .breadcrumb-item + .breadcrumb-item::before {
   float: none;
   padding-right: 0.5rem;
-  color: #d6dfe7;
+  color: #cccccc;
   content: var(--bs-breadcrumb-divider, "\e92f");
   font-family: "feather" !important;
 }
