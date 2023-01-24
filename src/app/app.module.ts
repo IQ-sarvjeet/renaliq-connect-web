@@ -11,6 +11,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
 import { environment } from './environments/environment';
 import { BASE_PATH } from './api-client/variables';
+import { ApiModule } from './api-client';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { BASE_PATH } from './api-client/variables';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    ApiModule,
   ],
   exports: [],
   providers: [

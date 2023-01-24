@@ -9,9 +9,12 @@ declare const $: any;
 })
 export class SigninComponent {
 
+  username: any = 'connectadmin@yopmail.com';
+  password: any = 'Pass@123'
   constructor(private _httpclientwapperSerivce: HttpClientWapperService) {
-
   }
+
+
 
   ngOnInit(): void {
     $('.header').remove();
@@ -19,24 +22,23 @@ export class SigninComponent {
     $('#back-to-top').remove();
 
     this.login();
-
   }
 
   public async login() {
-
     let model: any = {
-      username: 'tom@yopmail.com',
-      password: 'Pass@12345',
+      username: this.username,
+      password: this.password,
       grant_type: environment.grantType,
       scope: environment.scope,
       client_id: environment.clientId,
       client_secret: environment.clientSecret,
     }
 
-    var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+    var result = await this._httpclientwapperSerivce.login(model).toPromise();
 
-    console.log("login Result :- " + result);
-
+    console.log("login Token :- " + result.access_token);
+    console.log("login Scope :- " + result.scope);
+    console.log("login token_type :- " + result.token_type);
   }
 
 }

@@ -7,12 +7,9 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
-import { ChangePasswordModel } from '../model/changePasswordModel';
-import { RegisterModel } from '../model/registerModel';
-import { UserActivityLogEditModel } from '../model/userActivityLogEditModel';
-
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
@@ -36,15 +33,15 @@ export class HttpClientWapperService {
    * @param consumes string[] mime-types
    * @return true: consumes contains 'multipart/form-data', false: otherwise
    */
-  private canConsumeForm(consumes: string[]): boolean {
-    const form = 'multipart/form-data';
-    for (const consume of consumes) {
-      if (form === consume) {
-        return true;
-      }
-    }
-    return false;
-  }
+  //private canConsumeForm(consumes: string[]): boolean {
+  //  const form = 'multipart/form-data';
+  //  for (const consume of consumes) {
+  //    if (form === consume) {
+  //      return true;
+  //    }
+  //  }
+  //  return false;
+  //}
 
 
   /**
@@ -58,20 +55,12 @@ export class HttpClientWapperService {
   public apiAccountLoginPost(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
   public apiAccountLoginPost(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
-    let headers = this.defaultHeaders;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: '*/*',
+    });
 
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = [
-    ];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = [
-    ];
-
+    debugger
     return this.httpClient.request<any>('post', `${this.basePath}/connect/token`,
       {
         withCredentials: this.configuration.withCredentials,
@@ -80,8 +69,22 @@ export class HttpClientWapperService {
         reportProgress: reportProgress
       }
     );
+  };
+
+
+  public login(model: any): Observable<any> {
+    let headers = new HttpHeaders(
+      {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Accept: '*/*',
+      }
+    );
+
+    const body = new HttpParams({ fromObject: model });
+    const options = { headers: headers };
+    return this.httpClient.post(`${environment.baseApiUrl}/connect/token`, body.toString(), options);
   }
 
- 
+
 
 }
