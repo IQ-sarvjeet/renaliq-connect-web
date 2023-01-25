@@ -9,8 +9,14 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
+import { environment } from './environments/environment';
+import { BASE_PATH } from './api-client/variables';
+import { ApiModule } from './api-client';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestHeadersInterceptor } from './shared/services/request-headers-interceptor';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { ErrorsComponent } from './views/errors/errors.component';
+
 
 @NgModule({
   declarations: [
@@ -26,10 +32,19 @@ import { ErrorsComponent } from './views/errors/errors.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    ApiModule,
   ],
   exports: [],
-  providers: [],
+  providers: [
+    { provide: BASE_PATH, useValue: environment.baseApiUrl },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestHeadersInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
