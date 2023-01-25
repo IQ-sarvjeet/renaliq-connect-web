@@ -4,19 +4,26 @@ import { PatientComponent } from './patient.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { SharedModule } from 'src/app/components/shared.module';
+import { InsightComponent } from './insight/insight.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PatientComponent,
-    children: []
+    component: PatientListComponent,
+  },
+  {
+    path: 'insight',
+    component: InsightComponent,
   }
 ];
 
 @NgModule({
   declarations: [
     PatientComponent,
-    PatientHeaderComponent
+    PatientHeaderComponent,
+    InsightComponent,
+    PatientListComponent
   ],
   imports: [
     RouterModule.forChild(routes),

@@ -7,8 +7,13 @@ declare const $: any;
 })
 export class SignupComponent {
   ngOnInit(): void {
-    $('.header').remove();
-    $('.footer').remove();
-    $('#back-to-top').remove();
+    $('.header').addClass('d-none');
+    $('.footer').addClass('d-none');
+    $('#back-to-top').addClass('d-none');
+  }
+  ngOnDestroy(): void {
+    $('.header').removeClass('d-none');
+    $('.footer').removeClass('d-none');
+    $('#back-to-top').removeClass('d-none');
   }
 }
