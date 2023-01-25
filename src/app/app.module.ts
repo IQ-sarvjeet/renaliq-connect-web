@@ -9,6 +9,8 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { ErrorsComponent } from './views/errors/errors.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { SharedModule } from './components/shared.module';
     ForgotPasswordComponent,
     HeaderComponent,
     FooterComponent,
+    ResetPasswordComponent,
+    ErrorsComponent,
   ],
   imports: [
     BrowserModule,
