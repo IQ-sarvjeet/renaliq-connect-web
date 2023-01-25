@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
 declare const $: any;
@@ -40,6 +41,8 @@ export class SigninComponent {
     var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
 
     this._localStorage.setItem("connect_tk", result.access_token)
+
+    setCookie('connect_tk', result.access_token, '0.5');
 
     console.log("login Token :- " + result.access_token);
     console.log("login Scope :- " + result.scope);
