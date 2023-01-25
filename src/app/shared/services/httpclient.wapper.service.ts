@@ -1,4 +1,4 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Injectable, } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
@@ -16,8 +16,7 @@ export class HttpClientWapperService {
       {
         'Content-Type': 'application/x-www-form-urlencoded',
         Accept: '*/*',
-      }
-    );
+      });
 
     const body = new HttpParams({ fromObject: model });
     const options = { headers: headers };

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../api-client';
 import { environment } from '../../environments/environment';
+import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
@@ -46,9 +47,9 @@ export class SigninComponent {
 
     var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
 
-    this._localStorage.setItem("connect_tk", result.access_token)
+    this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token)
 
-    setCookie('connect_tk', result.access_token, '0.5');
+    setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
 
     console.log("login Token :- " + result.access_token);
     console.log("login Scope :- " + result.scope);

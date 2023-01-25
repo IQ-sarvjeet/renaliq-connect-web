@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { LocalStorageService } from './localstorage.service';
 import { Router } from '@angular/router';
+import { CommonConstants } from '../common-constants/common-constants';
 
 
 @Injectable()
@@ -26,7 +27,7 @@ export class RequestHeadersInterceptor implements HttpInterceptor {
   }
 
   addAuthToken(request: HttpRequest<any>) {
-    const token = this._localStorage.getItem("connect_tk");
+    const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
 
     return request.clone({
       setHeaders: {
