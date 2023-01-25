@@ -23,15 +23,16 @@ export class SigninComponent {
   }
 
   ngOnInit(): void {
-      $('.header').addClass('d-none');
-      $('.footer').addClass('d-none');
-      $('#back-to-top').addClass('d-none');
+    $('.header').addClass('d-none');
+    $('.footer').addClass('d-none');
+    $('#back-to-top').addClass('d-none');
 
     this.loginRequest();
 
     //setTimeout(() => {
     //  this.testAPI();
     //}, 9000);
+
   }
 
   public async loginRequest() {
@@ -58,14 +59,9 @@ export class SigninComponent {
 
 
   public async testAPI() {
-
     var result = await this._accountService.apiAccountLogoutPost().toPromise();
-
   }
 
-
-
-   
 
 
 
@@ -73,6 +69,7 @@ export class SigninComponent {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
     $('#back-to-top').removeClass('d-none');
-    }
+  }
 
 }
+
