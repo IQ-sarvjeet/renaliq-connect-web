@@ -11,20 +11,18 @@ const routes: Routes = [
   {
     path: '',
     component: ReportsComponent,
-    children: [
-      {
-        path: 'riskAnalysis',
-        component: RiskAnalysisComponent
-      },
-      {
-        path: 'qualityMatrix',
-        component: QualityMatrixComponent
-      },
-      {
-        path: 'patientInsight',
-        component: PatientInsightComponent
-      }
-    ]
+  },
+  {
+    path: 'riskAnalysis',
+    component: RiskAnalysisComponent
+  },
+  {
+    path: 'qualityMatrix',
+    component: QualityMatrixComponent
+  },
+  {
+    path: 'insight',
+    component: PatientInsightComponent
   }
 ];
 

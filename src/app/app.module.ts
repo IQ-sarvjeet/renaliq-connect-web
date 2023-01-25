@@ -14,6 +14,8 @@ import { BASE_PATH } from './api-client/variables';
 import { ApiModule } from './api-client';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHeadersInterceptor } from './shared/services/request-headers-interceptor';
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { ErrorsComponent } from './views/errors/errors.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { RequestHeadersInterceptor } from './shared/services/request-headers-int
     ForgotPasswordComponent,
     HeaderComponent,
     FooterComponent,
+    ResetPasswordComponent,
+    ErrorsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 declare const $: any;
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-errors',
+  templateUrl: './errors.component.html',
+  styleUrls: ['./errors.component.scss'],
 })
-export class SignupComponent {
+export class ErrorsComponent {
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');

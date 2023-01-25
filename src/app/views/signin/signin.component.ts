@@ -23,9 +23,9 @@ export class SigninComponent {
   }
 
   ngOnInit(): void {
-    $('.header').remove();
-    $('.footer').remove();
-    $('#back-to-top').remove();
+      $('.header').addClass('d-none');
+      $('.footer').addClass('d-none');
+      $('#back-to-top').addClass('d-none');
 
     this.loginRequest();
 
@@ -64,5 +64,15 @@ export class SigninComponent {
   }
 
 
+
+   
+
+
+
+  ngOnDestroy(): void {
+    $('.header').removeClass('d-none');
+    $('.footer').removeClass('d-none');
+    $('#back-to-top').removeClass('d-none');
+    }
 
 }
