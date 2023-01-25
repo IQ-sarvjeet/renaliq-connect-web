@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientWapperService } from '../../api-client/api/httpclient.wapper.service';
 import { environment } from '../../environments/environment';
+import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
+import { LocalStorageService } from '../../shared/services/localstorage.service';
 declare const $: any;
 @Component({
   selector: 'app-signin',
@@ -12,7 +13,9 @@ export class SigninComponent {
   username: any = 'connectadmin@yopmail.com';
   password: any = 'Pass@123'
 
-  constructor(private _httpclientwapperSerivce: HttpClientWapperService) {
+  constructor(private _httpclientwapperSerivce: HttpClientWapperService,
+    private _localStorage: LocalStorageService
+  ) {
   }
 
   ngOnInit(): void {
@@ -35,6 +38,8 @@ export class SigninComponent {
     }
 
     var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+
+    this._localStorage.setItem("connect_tk", result.access_token)
 
     console.log("login Token :- " + result.access_token);
     console.log("login Scope :- " + result.scope);
