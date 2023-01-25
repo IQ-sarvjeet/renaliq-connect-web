@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HighchartsChartModule } from 'highcharts-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SignupComponent } from './views/signup/signup.component';
@@ -11,6 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { ErrorsComponent } from './views/errors/errors.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ErrorsComponent } from './views/errors/errors.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HighchartsChartModule,
+    HttpClientModule
   ],
   exports: [],
   providers: [],

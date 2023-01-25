@@ -1,14 +1,15 @@
 <app-header></app-header>
 <div class="app-content main-content mt-0">
-  <router-outlet></router-outlet>
+  <div class="side-app">
+    <div class="main-container container-fluid">
+      <div id="main-head" style="text-align:center">
+        <app-bar-chart [config]="{
+          apiUrl: 'assets/mockData/barChart.json',
+          title: 'Bar chart'
+        }"></app-bar-chart>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
 <app-footer></app-footer>
-<!-- <app-bar-chart 
-    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
-</app-bar-chart>
-<app-bar-chart-horizontal 
-    [config]="{ apiUrl: 'assets/mockData/chart.json', side: 'vertical', title: 'Patient Age'}">
-</app-bar-chart-horizontal>
-<app-doughnut-chart 
-    [config]="{ apiUrl: 'assets/mockData/doughnutchart.json', side: 'vertical', title: 'Patient Age'}">
-</app-doughnut-chart> -->

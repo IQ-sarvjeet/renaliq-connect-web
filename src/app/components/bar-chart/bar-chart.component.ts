@@ -1,16 +1,12 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import * as echarts from 'echarts';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import * as Highcharts from 'highcharts';
 
 type ChartApiResponse = {
-  axis: any;
-  series: any;
-}
-
-type EChartsOption = echarts.EChartsOption;
-
+  categories: any;
+    series: any;
+  }
 type BarChartConfig = {
   apiUrl: string;
-  side: string;  
   title: string;
 }
 
@@ -26,45 +22,75 @@ export class BarChartComponent {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
   }
+  chart: any;
+  Highcharts = Highcharts;
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor() {
-
-  }
-  ngOnInit() {}
-  private fetchChartData(url: string): void {
-    // this.httpClient.get(url).subscribe((data: any) => {
-    //   console.log(data);
-    //   this.renderChart(data);
-    // })
-    fetch(url).then((response: any) => response.json())
-    .then((data: any) => {
-      this.renderChart(data);
-    });
-  }
-  private renderChart(chartData: ChartApiResponse): void {
-    const chartDom = this.barChart.nativeElement;
-    if (chartDom) {
-      const myChart = echarts.init(chartDom);
-      let option: EChartsOption;
-      option = {
+  option :any = {
+        chart: {
+          type: "bar"
+        },
+        colors: [
+            '#0D2F4F',
+            '#5A7287',
+            '#95A3B2',
+            '#B2BCC7'
+            
+        ],
         title: {
           text: this.chartConfig.title
         },
+        xAxis:{},
         yAxis: {
-          type: 'value'
+          min:0,
+          max:2000,
+          tickInterval: 500,
+          title: {
+            text: "Patient By Age",
+            align: "high"
+          },
+          labels: {
+            overflow: "justify"
+          },
+          
         },
-        xAxis: {
-          type: 'category',
-          data: chartData.axis
+        plotOptions: {
+          bar: {
+            dataLabels: {
+              enabled: true
+            },
+            colorByPoint: true
+          },
         },
-        series: [
-          {
-            data: chartData.series,
-            type: 'bar'
-          }
-        ]
+        credits: {
+          enabled: false
+        },
+        series: [{
+          type: 'column',
+          name: 'Unemployed',
+          colorByPoint: true,
+          data: [],
+          showInLegend: false
+        }]
       };
-      option && myChart.setOption(option);
-    }
+  constructor() {
+
   }
+  ngOnInit() {this.chart = Highcharts.chart("barChart", this.option);}
+  protected renderChart(chartData: ChartApiResponse): void {
+      console.log('chartData:', chartData);
+      
+        this.option.xAxis.categories = chartData.categories;
+        this.option.series[0].data = chartData.series;
+        this.chart.update({...this.option})
+    }
+  private fetchChartData(url: string): void {
+      // this.httpClient.get(url).subscribe((data: any) => {
+      //   console.log(data);
+      //   this.renderChart(data);
+      // })
+      fetch(url).then((response: any) => response.json())
+      .then((data: any) => {
+        this.renderChart(data);
+      });
+    } 
 }
