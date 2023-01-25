@@ -9,8 +9,7 @@ import { SignupComponent } from './views/signup/signup.component';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./views/summary/summary.module').then((m) => m.SummaryModule),
+    component: ResetPasswordComponent,
   },
   {
     path: 'login',

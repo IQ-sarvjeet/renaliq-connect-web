@@ -189,7 +189,7 @@ iframe {
   height: 45px;
   padding: 0 30px 0 40px;
   border-radius: 5px;
-  border: 1px solid #ecf0fa;
+  border: 1px solid var(--border);
 }
 
 /*------------------------------------------------------------------
@@ -326,7 +326,7 @@ iframe {
     line-height: 36px;
     font-size: 1.2em;
     text-align: center;
-    border-right: 1px solid #ecf0fa;
+    border-right: 1px solid var(--border);
   }
 
   &.btn-lg {
