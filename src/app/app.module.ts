@@ -12,7 +12,8 @@ import { SharedModule } from './components/shared.module';
 import { environment } from './environments/environment';
 import { BASE_PATH } from './api-client/variables';
 import { ApiModule } from './api-client';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestHeadersInterceptor } from './shared/services/request-headers-interceptor';
 
 
 @NgModule({
@@ -34,6 +35,11 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [],
   providers: [
     { provide: BASE_PATH, useValue: environment.baseApiUrl },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestHeadersInterceptor,
+      multi: true
+    },
   ],
   bootstrap: [AppComponent]
 })
