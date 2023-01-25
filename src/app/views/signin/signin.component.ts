@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../../api-client';
 import { environment } from '../../environments/environment';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
@@ -15,7 +16,8 @@ export class SigninComponent {
   password: any = 'Pass@123'
 
   constructor(private _httpclientwapperSerivce: HttpClientWapperService,
-    private _localStorage: LocalStorageService
+    private _localStorage: LocalStorageService,
+    private _accountService: AccountService,
   ) {
   }
 
@@ -25,6 +27,10 @@ export class SigninComponent {
     $('#back-to-top').remove();
 
     this.loginRequest();
+
+    //setTimeout(() => {
+    //  this.testAPI();
+    //}, 9000);
   }
 
   public async loginRequest() {
@@ -48,5 +54,14 @@ export class SigninComponent {
     console.log("login Scope :- " + result.scope);
     console.log("login token_type :- " + result.token_type);
   }
+
+
+  public async testAPI() {
+
+    var result = await this._accountService.apiAccountLogoutPost().toPromise();
+
+  }
+
+
 
 }
