@@ -1,13 +1,7 @@
 <app-header></app-header>
 <div class="app-content main-content mt-0">
   <div class="side-app">
-    <div class="main-container container-fluid">
-      <div id="main-head" style="text-align:center">
-        <app-bar-chart [config]="{
-          apiUrl: 'assets/mockData/barChart.json',
-          title: 'Bar chart'
-        }"></app-bar-chart>
-      </div>
+    <div class="main-container container-fluid">      
       <router-outlet></router-outlet>
     </div>
   </div>
