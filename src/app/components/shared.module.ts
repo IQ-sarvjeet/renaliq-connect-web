@@ -5,6 +5,9 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ProgressBarChartWidgetComponent } from './progress-bar-chart-widget/progress-bar-chart-widget.component';
 import { GridComponent } from './grid/grid.component';
+import { LocalStorageService } from '../shared/services/localstorage.service';
+import { LoggerService } from '../shared/services/logger.service';
+import { HttpClientWapperService } from '../shared/services/httpclient.wapper.service';
 import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
@@ -15,13 +18,23 @@ import { HighchartsChartModule } from 'highcharts-angular';
     DoughnutChartComponent,
     BarChartComponent,
     GridComponent
-],
+  ],
+
+  providers: [
+    LocalStorageService,
+    LoggerService,
+    HttpClientWapperService
+  ],
+
  exports: [ 
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
     DoughnutChartComponent,
     BarChartComponent,
-    GridComponent
- ]
+   GridComponent,
+
+   
+  ],
+ 
 })
 export class SharedModule { }

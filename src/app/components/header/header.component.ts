@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AccountService } from '../../api-client';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  constructor(private _accountService: AccountService) {
+  }
+
+
+  public async logout() {
+    var result = await this._accountService.apiAccountLogoutPost().toPromise();
+  }
+
+
+
 
 }
