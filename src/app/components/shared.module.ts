@@ -5,9 +5,10 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ProgressBarChartWidgetComponent } from './progress-bar-chart-widget/progress-bar-chart-widget.component';
 import { GridComponent } from './grid/grid.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
- imports:      [ CommonModule ],
+ imports:      [ CommonModule, HighchartsChartModule, ],
  declarations: [
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,

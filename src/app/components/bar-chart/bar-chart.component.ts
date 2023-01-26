@@ -5,7 +5,7 @@ type ChartApiResponse = {
   categories: any;
     series: any;
   }
-type BarChartConfig = {
+export type BarChartConfig = {
   apiUrl: string;
   title: string;
 }
@@ -17,15 +17,14 @@ type BarChartConfig = {
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent {
-  @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
+  // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
+  private chartConfig: BarChartConfig = {} as BarChartConfig;
+  Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
   }
-  chart: any;
-  Highcharts = Highcharts;
-  private chartConfig: BarChartConfig = {} as BarChartConfig;
-  option :any = {
+  option: any = {
         chart: {
           type: "bar"
         },
@@ -37,9 +36,11 @@ export class BarChartComponent {
             
         ],
         title: {
-          text: this.chartConfig.title
+          text: ''
         },
-        xAxis:{},
+        xAxis:{
+          categories: []
+        },
         yAxis: {
           min:0,
           max:2000,
@@ -75,14 +76,26 @@ export class BarChartComponent {
   constructor() {
 
   }
-  ngOnInit() {this.chart = Highcharts.chart("barChart", this.option);}
+  ngOnInit() {}
+  
   protected renderChart(chartData: ChartApiResponse): void {
-      console.log('chartData:', chartData);
-      
-        this.option.xAxis.categories = chartData.categories;
-        this.option.series[0].data = chartData.series;
-        this.chart.update({...this.option})
+    const series = this.option.series;
+    series[0].data = chartData.series;
+    this.option = {
+      ...this.option,
+      title: {
+        ...this.option.title,
+        text: this.chartConfig.title 
+      },
+      xAxis: {
+        ...this.option.xAxis,
+        categories: chartData.categories
+      },
+      series: [
+        ...series
+      ]
     }
+  }
   private fetchChartData(url: string): void {
       // this.httpClient.get(url).subscribe((data: any) => {
       //   console.log(data);
