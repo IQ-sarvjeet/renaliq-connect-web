@@ -12,7 +12,6 @@ type EChartsOption = echarts.EChartsOption;
 
 type BarChartConfig = {
   apiUrl: string;
-  side: string;  
   title: string;
 }
 

@@ -6,6 +6,8 @@ import { QualityMatrixComponent } from './quality-matrix/quality-matrix.componen
 import { PatientInsightComponent } from './patient-insight/patient-insight.component';
 import { RiskAnalysisComponent } from './risk-analysis/risk-analysis.component';
 import { ReportsGridComponent } from './reports-grid/reports-grid.component';
+import { SharedModule } from 'src/app/components/shared.module';
+import { RiskStratificationAnalysisComponent } from './risk-stratification-analysis/risk-stratification-analysis.component';
 
 const routes: Routes = [
   {
@@ -22,7 +24,16 @@ const routes: Routes = [
   },
   {
     path: 'insight',
-    component: PatientInsightComponent
+    children: [
+      {
+        path: '',
+        component: PatientInsightComponent
+      },
+      {
+        path: 'risk',
+        component: RiskStratificationAnalysisComponent
+      }
+    ]
   }
 ];
 
@@ -32,11 +43,13 @@ const routes: Routes = [
     QualityMatrixComponent,
     PatientInsightComponent,
     RiskAnalysisComponent,
-    ReportsGridComponent
+    ReportsGridComponent,
+    RiskStratificationAnalysisComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class ReportsModule { }
