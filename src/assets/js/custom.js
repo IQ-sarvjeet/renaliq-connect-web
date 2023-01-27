@@ -6,6 +6,20 @@
     $("#global-loader").fadeOut("slow");
   });
 
+  //PAWWORD SHOW HIDE
+  $(document).on("click", ".input-password__icon", function () {
+    if ($(this).parent().hasClass("is-show")) {
+      $(this).parent().removeClass("is-show");
+      $(this)
+        .closest("div.input-password")
+        .find("input")
+        .attr("type", "password");
+    } else {
+      $(this).parent().addClass("is-show");
+      $(this).closest("div.input-password").find("input").attr("type", "text");
+    }
+  });
+
   //COLOR THEME
   $(document).on("click", "a[data-theme]", function () {
     $("head link#theme").attr("href", $(this).data("theme"));
