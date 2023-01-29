@@ -66,18 +66,22 @@
           </div>
           <div *ngIf="signInForm.get('password').touched && signInForm.get('password').invalid" class="errors" >
              <div *ngIf="signInForm.get('password').hasError('required')"> * Password is required </div>
+             <div *ngIf="signInForm.get('password').hasError('pattern')"> * Password is not valid</div>
             </div>
           <div class="container-login100-form-btn" >
-            <button type="submit" class="login100-form-btn btn-dark" >Sign in</button>
+            <button type="submit" class="login100-form-btn btn-dark" [disabled]="!signInForm.valid" >Sign in</button>
           </div>
           <div class="text-center pt-3">
             <p class="mb-1">
               Forgot Password?
               <a [routerLink]="['/forgotPassword']" class="text-primary ms-1">Click Here</a>
             </p>
-            <p class="mb-0">
+            <!-- <p class="mb-0">
               Dont't Have an account?
               <a href="/signup" class="text-primary ms-1">Sign Up</a>
+            </p> -->
+            <p class="mb-1 errors">
+             {{errorMsg}}
             </p>
           </div>
           <hr />
