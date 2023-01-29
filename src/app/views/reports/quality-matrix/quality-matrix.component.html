@@ -1,1 +1,379 @@
-<p>quality-matrix works!</p>
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-6 col-sm-9 col-md-10">
+          <h1 class="page-title m-0">Clinical Quality Matrics</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/reports#/reports">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Clinical Quality Matrics
+            </li>
+          </ol>
+        </div>
+        <div class="col-6 col-sm-3 col-md-2">
+          <div class="input-group">
+            <input
+              class="form-control fs-12"
+              placeholder="Date"
+              value="13 Sep 22 - 20 Sep 22"
+              type="text"
+            />
+            <button class="input-group-text bg-white" type="button">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-container container">
+    <div
+      class="alert alert-light bg-white alert-dismissible border mt-3 p-0 rounded-5"
+    >
+      <button
+        type="button"
+        class="btn-close p-2"
+        data-bs-dismiss="alert"
+        aria-hidden="true"
+      >
+        ×
+      </button>
+      <div class="d-md-flex">
+        <div class="flex-fill">
+          <div class="p-5">
+            <div class="mb-3">
+              <strong class="fw-semibold fs-16"
+                >What is Clinical Quality Matrics ?</strong
+              >
+            </div>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            semper ligula efficitur diam venenatis, a tristique felis elementum.
+            Praesent congue ex at faucibus lobortis. Nam ultricies ac nisi et
+            tincidunt. Morbi mattis libero id ante mollis, et fringilla purus
+            egestas. Pellentesque molestie tortor ipsum, fermentum aliquet purus
+            porttitor id. Nulla vel posuere arcu. Aliquam sed neque egestas sem
+            lobortis sagittis nec et eros.
+          </div>
+        </div>
+        <div class="col-12 col-md-2 p-0 text-end">
+          <img
+            src="../../../../assets/images/risk-analysis.png"
+            alt="Patient Risk Stratification Analysis"
+            class="w-100 h-100"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="card p-2">
+      <div class="table-responsive mb-0">
+        <table class="table table-sm text-nowrap text-md-nowrap mb-0">
+          <thead>
+            <tr>
+              <th>QUALITY BONUS TIER</th>
+              <th></th>
+              <th class="text-center">POPULATION</th>
+              <th class="text-center">NUMERATOR</th>
+              <th>DENOMINATOR</th>
+              <th class="text-center" width="120">PERFORMANCE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-light">
+              <td colspan="6">Other</td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-primary">50%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="bg-light">
+              <td colspan="6">TIER 2</td>
+            </tr>
+
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-primary">50%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="bg-light">
+              <td colspan="6">TIER 1</td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-primary">50%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a href="" class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a href="" class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
