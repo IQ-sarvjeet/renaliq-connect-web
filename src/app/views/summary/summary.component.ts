@@ -40,17 +40,20 @@ export class SummaryComponent {
     performance: 'up',
   };
   patientInsight: DescriptionCardInput = {
+    redirectTo: '/reports/insight',
     iconClass: 'icon-eye',
     cardTitle: 'Patient Insight',
     description:
       'Insight of your patient popullation, including trend & performance comparision.',
   };
   qualityMatrics: DescriptionCardInput = {
+    redirectTo: '/reports/qualityMatrix',
     iconClass: 'icon-briefcase',
     cardTitle: 'Clinical Quality Matrics',
     description: 'Practice current performance on clinical quality matics',
   };
   riskStratification: DescriptionCardInput = {
+    redirectTo: '/reports/riskAnalysis',
     iconClass: 'icon-people',
     cardTitle: 'Risk Stratification',
     description:

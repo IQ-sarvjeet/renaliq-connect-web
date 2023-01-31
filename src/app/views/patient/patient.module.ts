@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PatientHeaderComponent } from './patient-header/patient-header.component';
 import { SharedModule } from 'src/app/components/shared.module';
 import { PatientListComponent } from './patient-list/patient-list.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
   declarations: [
     PatientComponent,
     PatientHeaderComponent,
-    PatientListComponent
+    PatientListComponent,
+    AddPatientComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
