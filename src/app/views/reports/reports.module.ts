@@ -16,25 +16,25 @@ const routes: Routes = [
   },
   {
     path: 'riskAnalysis',
-    component: RiskAnalysisComponent
+    component: RiskAnalysisComponent,
   },
   {
     path: 'qualityMatrix',
-    component: QualityMatrixComponent
+    component: QualityMatrixComponent,
   },
   {
     path: 'insight',
     children: [
       {
         path: '',
-        component: PatientInsightComponent
+        component: PatientInsightComponent,
       },
       {
         path: 'risk',
-        component: RiskStratificationAnalysisComponent
-      }
-    ]
-  }
+        component: RiskStratificationAnalysisComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
@@ -44,12 +44,8 @@ const routes: Routes = [
     PatientInsightComponent,
     RiskAnalysisComponent,
     ReportsGridComponent,
-    RiskStratificationAnalysisComponent
+    RiskStratificationAnalysisComponent,
   ],
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    SharedModule
-  ]
+  imports: [RouterModule.forChild(routes), CommonModule, SharedModule],
 })
-export class ReportsModule { }
+export class ReportsModule {}

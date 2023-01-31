@@ -131,7 +131,6 @@ iframe {
 .wrap-login100::-webkit-scrollbar-thumb {
   background-color: rgba($secondary, 0.75);
   border-radius: 0.125rem;
-  border: 0.125rem solid rgba($black, 0.1);
   -webkit-transition: all 0.4s;
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -197,6 +196,34 @@ iframe {
 
   &:focus {
     border-color: $secondary;
+  }
+}
+
+.input-password {
+  input {
+    padding-right: 40px;
+  }
+
+  &__icon {
+    position: absolute;
+    opacity: 0.5;
+    right: 1rem;
+    top: 0.75rem;
+    font-size: 18px !important;
+    cursor: pointer;
+  }
+
+  .fe-eye-off {
+    display: none;
+  }
+
+  &.is-show {
+    .fe-eye {
+      display: none;
+    }
+    .fe-eye-off {
+      display: inline-block;
+    }
   }
 }
 
