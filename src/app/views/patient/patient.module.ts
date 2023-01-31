@@ -19,7 +19,7 @@ const routes: Routes = [
     PatientComponent,
     PatientHeaderComponent,
     PatientListComponent,
-    AddPatientComponent
+    AddPatientComponent,
   ],
   imports: [
     RouterModule.forChild(routes),
