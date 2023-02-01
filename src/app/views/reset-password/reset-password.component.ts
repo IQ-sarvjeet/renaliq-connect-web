@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/api-client';
+import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 declare const $: any;
 let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 @Component({
@@ -13,16 +14,16 @@ export class ResetPasswordComponent implements OnInit{
   resetForm:any = FormGroup;
   errorMsg :any ="";
   private token: string;
-  private email: string;
 
-  constructor(private _accountService: AccountService, private route: ActivatedRoute,private router: Router, private fb: FormBuilder){
+  constructor(private _accountService: AccountService, private route: ActivatedRoute, private router: Router,
+               private fb: FormBuilder, private _localStorage: LocalStorageService){
     this.token = this.route.snapshot.queryParams['token'];
-    this.email = this.route.snapshot.queryParams['email'];
   }
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
+    this._localStorage.clearAll();
     this.intializeform();
   } 
   intializeform() {
@@ -38,12 +39,15 @@ export class ResetPasswordComponent implements OnInit{
       return;
     }
     
-    let password = form.get('password');
-    let confirmPassword = form.get('confirmPassword');
+    let password = form.get('password')?.value;
+    let confirmPassword = form.get('confirmPassword')?.value;
     if(password != confirmPassword){
       this.errorMsg = "Password and Confirm Password not matched."
      return;
     } 
+    if(!this.token){
+      this.errorMsg ="Not authorized request.";
+    }
 
     let model: any = {
       password: form.value.password,
@@ -51,10 +55,11 @@ export class ResetPasswordComponent implements OnInit{
     };
     try {
      // var result = await this._accountService.apiAccountLoginPost(model).toPromise();
-      this.router.navigate(['']);
+      this._localStorage.clearAll();
+      this.router.navigate(['login']);
     } catch(ex:any) {
       console.log(ex);
-      alert(ex.error?.error_description);
+      this.errorMsg=ex.message;
     }
   }
   ngOnDestroy(): void {

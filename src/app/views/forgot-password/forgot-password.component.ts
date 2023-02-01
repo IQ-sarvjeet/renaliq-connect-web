@@ -35,22 +35,25 @@ export class ForgotPasswordComponent implements OnInit{
     this.errorMsg="";
     this.successMsg ="";
     if (form.invalid) {
-      this.errorMsg="Email or Mobile Number is not valid.";
       return;
     }
     let model: any = {
       email: form.value.emailId,
-      phoneNumber : form.value.mobileNumber
+      phoneNumber : form.value.mobileNumber,
+      isEmail :  form.value.emailId != ""
     };
     try {
       var result = await this._accountService.apiAccountLogoutPost().toPromise();
-      this.successMsg =" We have send a link to reset password."
+      if(result){
+       this.successMsg ="Link to reset password sent.";
+      }
     } catch (ex: any) {
       console.log(ex);
-      this.errorMsg=ex.error;
+      this.errorMsg=ex.message;
     }
   }
   resetField(type:any){
+    this.errorMsg="";
     if(type == this.fields.email){
       this.form.controls['mobileNumber'].clearValidators(null);
       this.form.controls['emailId'].setValidators([Validators.required, Validators.email]);
