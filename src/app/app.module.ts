@@ -17,6 +17,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RequestHeadersInterceptor } from './shared/services/request-headers-interceptor';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { ErrorsComponent } from './views/errors/errors.component';
+import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ErrorsComponent } from './views/errors/errors.component';
     FooterComponent,
     ResetPasswordComponent,
     ErrorsComponent,
+    TwoFectorAuthComponent,
   ],
   imports: [
     BrowserModule,
