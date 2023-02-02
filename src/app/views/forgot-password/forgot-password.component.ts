@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/api-client';
 declare const $: any;
+let pattern = /^\d{10}$/;
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
@@ -27,7 +28,7 @@ export class ForgotPasswordComponent implements OnInit{
   intializeform() {
     this.form = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      mobileNumber: ['', [Validators.required]],
+      mobileNumber: ['', [Validators.required,Validators.pattern(pattern)]],
     });
   }
 
@@ -62,7 +63,7 @@ export class ForgotPasswordComponent implements OnInit{
     }
     else if(type == this.fields.mobile){
       this.form.controls['emailId'].clearValidators(null);
-      this.form.controls['mobileNumber'].setValidators(Validators.required);
+      this.form.controls['mobileNumber'].setValidators([Validators.required,Validators.pattern(pattern)]);
       this.form.get('emailId').patchValue("");
       this.form.get('emailId').markAsUntouched();
     }
