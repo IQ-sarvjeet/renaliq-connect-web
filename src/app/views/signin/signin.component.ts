@@ -8,6 +8,7 @@ import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
 declare const $: any;
+let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -15,7 +16,7 @@ declare const $: any;
 })
 export class SigninComponent {
   signInForm: any = FormGroup;
-  
+  errorMsg :any ="";
   constructor(
     private _httpclientwapperSerivce: HttpClientWapperService,
     private fb: FormBuilder,
@@ -33,7 +34,7 @@ export class SigninComponent {
   intializeform() {
     this.signInForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required,Validators.pattern(pattern)]],
     });
   }
   public async onSubmit(form: FormGroup) {
@@ -62,8 +63,10 @@ export class SigninComponent {
       );
       this.route.navigate(['']);
     } catch(ex:any) {
-      console.log(ex);
-      alert(ex.error?.error_description);
+      this.errorMsg =
+        ex.error?.error == 'invalid_grant'
+          ? 'Invalid username or password'
+          : ex.error?.error_description;
     }
   }
 
