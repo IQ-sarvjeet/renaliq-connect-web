@@ -3185,10 +3185,6 @@ svg {
   }
 }
 
-.form-control:focus {
-  border-color: $primary;
-}
-
 .ckbox {
   display: block;
   position: relative;
@@ -5515,5 +5511,6 @@ div.dataTables_wrapper div.dataTables_length label {
 .gmap_iframe {
   height: 292px !important;
 }
-.mw-200 { max-width: 200px; }
-
+.mw-200 {
+  max-width: 200px;
+}
