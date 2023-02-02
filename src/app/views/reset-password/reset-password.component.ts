@@ -50,16 +50,16 @@ export class ResetPasswordComponent implements OnInit{
     }
 
     let model: any = {
-      password: form.value.password,
+      password: form.value.password.trim(),
       token :  this.token
     };
     try {
-     // var result = await this._accountService.apiAccountLoginPost(model).toPromise();
+      var result = await this._accountService.apiAccountResetPasswordPost(model).toPromise();
       this._localStorage.clearAll();
       this.router.navigate(['login']);
     } catch(ex:any) {
       console.log(ex);
-      this.errorMsg=ex.message;
+      this.errorMsg=ex.error?.message?.message;;
     }
   }
   ngOnDestroy(): void {

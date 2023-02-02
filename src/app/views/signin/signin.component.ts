@@ -43,13 +43,14 @@ export class SigninComponent {
     }
 
     let model: any = {
-      username: form.value.emailId,
-      password: form.value.password,
+      username: form.value.emailId.trim(),
+      password: form.value.password.trim(),
       grant_type: environment.grantType,
       scope: environment.scope,
       client_id: environment.clientId,
       client_secret: environment.clientSecret,
     };
+    debugger;
     try {
       var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
       this._localStorage.setItem(

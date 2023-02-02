@@ -39,18 +39,17 @@ export class ForgotPasswordComponent implements OnInit{
       return;
     }
     let model: any = {
-      email: form.value.emailId,
-      phoneNumber : form.value.mobileNumber,
+      email: form.value.emailId.trim(),
+      phoneNumber : form.value.mobileNumber.trim(),
       isEmail :  form.value.emailId != ""
     };
+    debugger;
     try {
-      var result = await this._accountService.apiAccountLogoutPost().toPromise();
-      if(result){
-       this.successMsg ="Link to reset password has been sent.";
-      }
+      var result = await this._accountService.apiAccountForgotPasswordPost(model).toPromise();
+      this.successMsg ="Link to reset password has been sent.";
     } catch (ex: any) {
       console.log(ex);
-      this.errorMsg=ex.message;
+      this.errorMsg=ex.error?.message?.message;
     }
   }
   resetField(type:any){
