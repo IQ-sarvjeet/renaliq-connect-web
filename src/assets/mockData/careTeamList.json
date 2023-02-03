@@ -24,4 +24,10 @@
         "name": "Martin",
         "designation": "Nurse Care Manager"
     }
+    ,
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Andrew Glan",
+        "designation": "Nurse Care Manager"
+    }
 ]
