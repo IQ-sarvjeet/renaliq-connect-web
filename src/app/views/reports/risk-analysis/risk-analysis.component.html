@@ -1,1 +1,123 @@
-<p>risk-analysis works!</p>
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-5">
+          <h1 class="page-title m-0">Patient Risk Stratification Analysis</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/reports#/reports">Reports</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a routerLink="/reports/insight">Patient Insight</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Risk Stratification Analysis
+            </li>
+          </ol>
+        </div>
+        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+          <a routerLink="/reports/insight" class="btn btn-danger ms-3">Close</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-3 pt-3 border-top">
+    <div class="main-container container">
+      <div>
+        <strong class="fw-semibold fs-16"
+          >Overview of your attributed patient risk & SDoH factors</strong
+        >
+      </div>
+      <div
+        class="alert alert-light bg-white alert-dismissible border mt-3 p-0 rounded-5"
+      >
+        <button
+          type="button"
+          class="btn-close p-2"
+          data-bs-dismiss="alert"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+        <div class="d-md-flex">
+          <div class="flex-fill">
+            <div class="p-5">
+              <div class="mb-3">
+                <strong class="fw-semibold fs-16"
+                  >What is Patient Risk Stratification Analysis?</strong
+                >
+              </div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              semper ligula efficitur diam venenatis, a tristique felis
+              elementum. Praesent congue ex at faucibus lobortis. Nam ultricies
+              ac nisi et tincidunt. Morbi mattis libero id ante mollis, et
+              fringilla purus egestas. Pellentesque molestie tortor ipsum,
+              fermentum aliquet purus porttitor id. Nulla vel posuere arcu.
+              Aliquam sed neque egestas sem lobortis sagittis nec et eros.
+            </div>
+          </div>
+          <div class="col-12 col-md-2 p-0 text-end">
+            <img
+              src="../../../../assets/images/risk-analysis.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 h-100"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12 col-md-4">
+          <div class="card border">
+            <div class="card-header title-submenu d-flex">
+              <h3 class="card-title flex-fill">Patient by Stage</h3>
+            </div>
+            <div class="card-body pt-0">
+              <div class="row mb-2">
+                <div class="col-12">CKD Stage 3a</div>
+                <div class="col-10">
+                  <div class="progress progress-sm my-1">
+                    <div class="progress-bar bg-primary wp-bg-dark wp-75"></div>
+                  </div>
+                </div>
+                <div class="col-2 text-right">75%</div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-12">CKD Stage 4</div>
+                <div class="col-10">
+                  <div class="progress progress-sm my-1">
+                    <div class="progress-bar bg-dark wp-bg-dark wp-45"></div>
+                  </div>
+                </div>
+                <div class="col-2 text-right">45%</div>
+              </div>
+              <div class="row mb-2">
+                <div class="col-12">ESKD</div>
+                <div class="col-10">
+                  <div class="progress progress-sm my-1">
+                    <div class="progress-bar bg-dark wp-bg-dark wp-15"></div>
+                  </div>
+                </div>
+                <div class="col-2 text-right">15%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <app-progress-bar-chart-widget
+            [config]="patientByPayerLOB"
+          ></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-4">
+          <app-progress-bar-chart-widget
+            [config]="patientByRiskCategory"
+          ></app-progress-bar-chart-widget>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

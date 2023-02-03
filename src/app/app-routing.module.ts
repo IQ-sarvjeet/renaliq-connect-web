@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { SigninComponent } from './views/signin/signin.component';
 import { SignupComponent } from './views/signup/signup.component';
+import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
 
 const routes: Routes = [
   {
@@ -63,6 +65,10 @@ const routes: Routes = [
   {
     path: 'resetPassword',
     component: ResetPasswordComponent,
+  },
+  {
+    path: 'twofectorauth',
+    component: TwoFectorAuthComponent,
   },
   {
     path: 'error',

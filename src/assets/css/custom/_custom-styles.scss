@@ -769,7 +769,7 @@ a.chip:hover {
   -webkit-transition: background-color 0.1s linear;
   -o-transition: background-color 0.1s linear;
   border-radius: 0.25rem;
-  opacity: 0.75;
+  opacity: 0.25;
   i {
     padding-top: 12px;
     font-size: 14px;
@@ -3185,10 +3185,6 @@ svg {
   }
 }
 
-.form-control:focus {
-  border-color: $primary;
-}
-
 .ckbox {
   display: block;
   position: relative;
@@ -5439,7 +5435,7 @@ div.dataTables_wrapper div.dataTables_length label {
   }
 }
 .tabs-menu1 ul li {
-  border-bottom: 3px solid transparent !important;
+  /*border-bottom: 3px solid transparent !important;*/
 }
 .pricing-body li {
   white-space: nowrap;
@@ -5497,3 +5493,24 @@ div.dataTables_wrapper div.dataTables_length label {
   }
 }
 /* ----------------------------------------------------------------------*/
+.rounded-5 {
+  border-radius: 0.75rem !important;
+}
+.mapouter {
+  position: relative;
+  text-align: right;
+  width: 100%;
+  height: 292px;
+}
+.gmap_canvas {
+  overflow: hidden;
+  background: none !important;
+  width: 100%;
+  height: 292px;
+}
+.gmap_iframe {
+  height: 292px !important;
+}
+.mw-200 {
+  max-width: 200px;
+}

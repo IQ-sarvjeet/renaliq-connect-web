@@ -1,24 +1,53 @@
-<div>
-    patient-profile works!
-    <app-patient-profile-header></app-patient-profile-header>
-    <div class="row">
-        <div class="col-12 col-xl-3">
-            <app-patient-profile-section></app-patient-profile-section>
-        </div>
-        <div class="col-12 col-xl-9">
-            <app-patient-profile-medical>
-                <app-patient-profile-nav></app-patient-profile-nav>
-                <div class="row">
-                    <div class="col-12 col-xl-9">
-                        <app-transtion-care></app-transtion-care>
-                        <app-medication></app-medication>
-                        <app-engagement-timeline></app-engagement-timeline>
-                    </div>
-                    <div class="col-12 col-xl-3">
-                        <app-care-member></app-care-member>
-                    </div>
+<div class="side-app">
+  <app-patient-profile-header></app-patient-profile-header>
+  <div class="main-container container">
+    <div class="row mt-3">
+      <div class="col-12 col-md-3">
+        <app-patient-profile-section></app-patient-profile-section>
+      </div>
+      <div class="col-12 col-md-6">
+        <app-patient-profile-medical>
+          <div class="card border">
+            <app-patient-profile-nav></app-patient-profile-nav>
+            <div class="card-body px-0">
+              <div class="d-flex">
+                <div class="px-5">
+                  <div class="fs-12 op-0-75">Kidney State</div>
+                  <div class="fw-semibold">ESKD</div>
                 </div>
-            </app-patient-profile-medical>
-        </div>
+                <div class="px-5 border-start">
+                  <div class="fs-12 op-0-75">Modality Type</div>
+                  <div class="fw-semibold">AVF</div>
+                </div>
+                <div class="px-5 border-start">
+                  <div class="fs-12 op-0-75">EGFR State</div>
+                  <div class="fw-semibold">-</div>
+                </div>
+                <div class="px-5 border-start">
+                  <div class="fs-12 op-0-75">Transplant</div>
+                  <div class="fw-semibold">Not Eligible</div>
+                </div>
+                <div class="px-5 border-start">
+                  <div class="fs-12 op-0-75">Access Type</div>
+                  <div class="fw-semibold">-</div>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <app-transtion-care></app-transtion-care>
+            </div>
+            <div class="card-body">
+              <app-medication></app-medication>
+            </div>
+            <div class="card-body">
+              <app-engagement-timeline></app-engagement-timeline>
+            </div>
+          </div>
+        </app-patient-profile-medical>
+      </div>
+      <div class="col-12 col-md-3">
+        <app-care-member></app-care-member>
+      </div>
     </div>
+  </div>
 </div>

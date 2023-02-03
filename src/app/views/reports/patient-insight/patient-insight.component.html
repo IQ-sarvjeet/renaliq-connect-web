@@ -1,22 +1,245 @@
-<div>
-    <h3>patient-insight works!</h3>
-    <div class="row"></div>
-    <div class="row">
-        <h4>Overview of Your attributed patient</h4>
-        <div class="row">
-            <div class="col-12 col-md-2 col-xl-2">Patient</div>
-            <div class="col-12 col-md-2 col-xl-2">Locations</div>
-            <div class="col-12 col-md-3 col-xl-3">Progress Bar</div>
-            <div class="col-12 col-md-5 col-xl-5" style="height: 300px;">
-                <app-bar-chart [config]="{
-                apiUrl: 'assets/mockData/barChart.json',
-                title: 'Bar chart'
-              }"></app-bar-chart>
-            </div>
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-4 col-md-5">
+          <h1 class="page-title m-0">Patient Insight</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/reports#/reports">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Patient Insight
+            </li>
+          </ol>
         </div>
+        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+          <a routerLink="/reports/riskAnalysis" class="btn btn-dark ms-3"
+            >Risk Stratification Analysis</a
+          >
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-xl-8">Map</div>
-        <div class="col-12 col-xl-4">Bar Chart</div>
+  </div>
+  <div class="mt-3 pt-3 border-top">
+    <div class="main-container container">
+      <div>
+        <strong class="fw-semibold fs-16"
+          >Overview of your attributed patient population’s, demographic</strong
+        >
+      </div>
+      <div
+        class="alert alert-light bg-white alert-dismissible border mt-3 p-0 rounded-5"
+      >
+        <button
+          type="button"
+          class="btn-close p-2"
+          data-bs-dismiss="alert"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+        <div class="d-md-flex">
+          <div class="flex-fill">
+            <div class="p-5">
+              <div class="mb-3">
+                <strong class="fw-semibold fs-16"
+                  >What is Patient Insight ?</strong
+                >
+              </div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+              semper ligula efficitur diam venenatis, a tristique felis
+              elementum. Praesent congue ex at faucibus lobortis. Nam ultricies
+              ac nisi et tincidunt. Morbi mattis libero id ante mollis, et
+              fringilla purus egestas. Pellentesque molestie tortor ipsum,
+              fermentum aliquet purus porttitor id. Nulla vel posuere arcu.
+              Aliquam sed neque egestas sem lobortis sagittis nec et eros.
+            </div>
+          </div>
+          <div class="col-12 col-md-2 p-0 text-end">
+            <img
+              src="../../../../assets/images/risk-analysis.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 h-100"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3 p-2">
+        <div class="row">
+          <div class="col-12 col-md-7 mt-4 pt-6">
+            <div class="row">
+              <div class="col-6 col-md-3 border-end">
+                <div class="d-flex ps-4">
+                  <div>
+                    <i class="icon text-primary fs-13 me-2 icon-user"></i>
+                  </div>
+                  <div class="flex-fill text-truncate">
+                    Patients
+                    <div class="text-dark fw-bold fs-23">2,765</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3 border-end">
+                <div class="d-flex">
+                  <div>
+                    <i
+                      class="icon text-primary fs-13 me-2 icon-location-pin"
+                    ></i>
+                  </div>
+                  <div class="flex-fill text-truncate">
+                    NO of Locations
+                    <div class="text-dark fw-bold fs-23">13</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-6">
+                <div class="pt-5">
+                  <div class="progress overflow-visible">
+                    <div
+                      class="progress-bar bg-primary wp-bg-dark wp-55 position-relative text-start ps-3 overflow-visible"
+                    >
+                      <span class="progress-info text-nowrap text-dark ps-3"
+                        >Male : 1530</span
+                      >
+                      55%
+                    </div>
+                    <span class="ps-3 position-relative"
+                      ><span class="progress-info text-nowrap ps-3"
+                        >Female: 1235</span
+                      >45%</span
+                    >
+                  </div>
+                </div>
+                <div class="text-center fs-11 mt-1">Patient By Gender</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-5 text-center" style="height: 160px;">
+            <!-- <img
+              src="../../../../assets/images/chart01.jpg"
+              class="img-fluid m-auto"
+            />
+            <div class="fs-12 fw-semibold mt-3">Patient By Age</div> -->
+              <app-bar-chart [config]="{
+                apiUrl: 'assets/mockData/barChart.json',
+                title: ''
+              }"></app-bar-chart>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="card border mb-2">
+            <div class="card-header border-bottom title-submenu d-flex">
+              <h3 class="card-title flex-fill">
+                Patient - Demographics population’s
+              </h3>
+              <nav class="nav">
+                <div class="dropdown">
+                  <a
+                    class="nav-link text-muted fs-16 p-0 ps-4"
+                    href="javascript:;"
+                    data-bs-toggle="dropdown"
+                    role="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    ><i class="fe fe-more-vertical"></i
+                  ></a>
+                  <div class="dropdown-menu dropdown-menu-start">
+                    <a class="dropdown-item" href="#"
+                      ><i class="fe fe-edit me-1"></i> Edit</a
+                    >
+                    <a class="dropdown-item" href="#"
+                      ><i class="fe fe-trash-2 me-1"></i> Delete</a
+                    >
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="card-body p-0">
+              <div class="d-flex p-4">
+                <div class="checkbox me-4">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="Age"
+                    />
+                    <label for="Age" class="custom-control-label">Age</label>
+                  </div>
+                </div>
+                <div class="checkbox me-4">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="DiseaseState"
+                    />
+                    <label for="DiseaseState" class="custom-control-label"
+                      >Disease State</label
+                    >
+                  </div>
+                </div>
+                <div class="checkbox me-4">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="EducationLevel"
+                    />
+                    <label for="EducationLevel" class="custom-control-label"
+                      >Education Level</label
+                    >
+                  </div>
+                </div>
+                <div class="checkbox me-4">
+                  <div class="custom-checkbox custom-control">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="IncomeLevel"
+                    />
+                    <label for="IncomeLevel" class="custom-control-label"
+                      >Income Level</label
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="px-1 pb-1">
+                <div class="mapouter">
+                  <div class="gmap_canvas">
+                    <iframe
+                      class="gmap_iframe"
+                      width="100%"
+                      frameborder="0"
+                      scrolling="no"
+                      marginheight="0"
+                      marginwidth="0"
+                      src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=University of Oxford&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fs-11 op-0-7 mb-4">
+            <i>Data Updated on : 10 Sep 2022 11:30 AM</i>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 text-center">
+          <div class="card p-4">
+            <div class="text-center fw-semibold fs-16 mb-4">
+              Patient Quaterly Engagement
+            </div>
+            <img src="../../../../assets/images/chart03.jpg" class="m-auto" />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

@@ -12,7 +12,7 @@
   <div class="wrap-login100">
     <div class="w-100">
       <div class="card-body p-6 p-lg-7">
-        <form class="validate-form">
+        <form  [formGroup]='signInForm' (ngSubmit)='onSubmit(signInForm)' novalidate class="validate-form">
           <div class="text-center mb-6">
             <img
               class="img-fluid"
@@ -26,6 +26,7 @@
             data-bs-validate="Valid email is required: ex@abc.xyz"
           >
             <input
+              formControlName="emailId"
               class="input100"
               type="text"
               name="email"
@@ -37,6 +38,10 @@
               <i class="zmdi zmdi-email" aria-hidden="true"></i>
             </span>
           </div>
+          <div *ngIf="signInForm.get('emailId').touched && signInForm.get('emailId').invalid" class="errors" >
+          <div *ngIf="signInForm.get('emailId').hasError('required')"> * Email is required </div>
+          <div *ngIf="signInForm.get('emailId').hasError('email')"> * Enter the valid email </div>
+          </div>
           <div class="d-flex mt-4">
             <div class="flex-fill">
               <label class="text-gray" for="password">Password</label>
@@ -47,6 +52,7 @@
             data-bs-validate="Password is required"
           >
             <input
+              formControlName="password"
               class="input100"
               type="password"
               name="pass"
@@ -58,17 +64,24 @@
               <i class="zmdi zmdi-lock" aria-hidden="true"></i>
             </span>
           </div>
-          <div class="container-login100-form-btn">
-            <a href="/" class="login100-form-btn btn-dark">Sign in</a>
+          <div *ngIf="signInForm.get('password').touched && signInForm.get('password').invalid" class="errors" >
+             <div *ngIf="signInForm.get('password').hasError('required')"> * Password is required </div>
+             <div *ngIf="signInForm.get('password').hasError('pattern')"> * Password is not valid</div>
+            </div>
+          <div class="container-login100-form-btn" >
+            <button type="submit" class="login100-form-btn btn-dark" [disabled]="!signInForm.valid" >Sign in</button>
           </div>
           <div class="text-center pt-3">
             <p class="mb-1">
               Forgot Password?
-              <a href="/forgotPassword" class="text-primary ms-1">Click Here</a>
+              <a [routerLink]="['/forgotPassword']" class="text-primary ms-1">Click Here</a>
             </p>
-            <p class="mb-0">
+            <!-- <p class="mb-0">
               Dont't Have an account?
               <a href="/signup" class="text-primary ms-1">Sign Up</a>
+            </p> -->
+            <p class="mb-1 errors">
+             {{errorMsg}}
             </p>
           </div>
           <hr />
@@ -78,3 +91,4 @@
     </div>
   </div>
 </div>
+

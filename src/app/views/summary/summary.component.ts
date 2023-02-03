@@ -5,8 +5,6 @@ import { DescriptionCardInput } from './summary-interfaces/description-card';
 
 declare const $: any;
 
-
-
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -18,54 +16,59 @@ export class SummaryComponent {
     cardTitle: 'Patients',
     value: '253',
     percentile: 10,
-    performance: 'up'
-  }
+    performance: 'up',
+  };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
     cardTitle: 'Admissions',
     value: '253',
     percentile: 10,
-    performance: 'down'
-  }
+    performance: 'down',
+  };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Engaged Patients',
     value: '100',
     percentile: 10,
-    performance: 'up'
-  }
+    performance: 'up',
+  };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Admission',
     value: '5',
     percentile: 12,
-    performance: 'up'
-  }
+    performance: 'up',
+  };
   patientInsight: DescriptionCardInput = {
+    redirectTo: '/reports/insight',
     iconClass: 'icon-eye',
     cardTitle: 'Patient Insight',
-    description: 'Insight of your patient popullation, including trend & performance comparision.'
-  }
+    description:
+      'Insight of your patient popullation, including trend & performance comparision.',
+  };
   qualityMatrics: DescriptionCardInput = {
+    redirectTo: '/reports/qualityMatrix',
     iconClass: 'icon-briefcase',
     cardTitle: 'Clinical Quality Matrics',
-    description: 'Practice current performance on clinical quality matics'
-  }
+    description: 'Practice current performance on clinical quality matics',
+  };
   riskStratification: DescriptionCardInput = {
+    redirectTo: '/reports/riskAnalysis',
     iconClass: 'icon-people',
     cardTitle: 'Risk Stratification',
-    description: 'Insight of Patient Risk Stratification for the patient associated with Somatus'
-  }
+    description:
+      'Insight of Patient Risk Stratification for the patient associated with Somatus',
+  };
   patientByRiskCategor: ProgressBarChartWidgetInput = {
-    title: 'Patient By Risk Categor',
-    apiUrl: 'assets/mockData/patientByRiskCategoryChartData.json'
-  }
+    title: 'Patient By Risk Category',
+    apiUrl: 'assets/mockData/patientByRiskCategoryChartData.json',
+  };
   patientByComorbidity: ProgressBarChartWidgetInput = {
     title: 'Patient By Comorbidity',
-    apiUrl: 'assets/mockData/patientByComorbidityChartData.json'
-  }
+    apiUrl: 'assets/mockData/patientByComorbidityChartData.json',
+  };
   patientByAgeGroup: ProgressBarChartWidgetInput = {
     title: 'Patient By Age Group',
-    apiUrl: 'assets/mockData/patientByAgeGroupChartData.json'
-  }
+    apiUrl: 'assets/mockData/patientByAgeGroupChartData.json',
+  };
 }
