@@ -18,7 +18,7 @@ export class GridComponent {
       lengthChange: false,
       columnDefs: [
         {
-          targets: [0, 9],
+          targets: [0, 8],
           orderable: false,
         },
       ],
