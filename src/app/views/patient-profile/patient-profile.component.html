@@ -9,38 +9,248 @@
         <app-patient-profile-medical>
           <div class="card border">
             <app-patient-profile-nav></app-patient-profile-nav>
-            <div class="card-body px-0">
-              <div class="d-flex">
-                <div class="px-5">
-                  <div class="fs-12 op-0-75">Kidney State</div>
-                  <div class="fw-semibold">ESKD</div>
+            <div class="tab-content">
+              <div class="border-top tab-pane show active" id="Summary">
+                <div class="card-body px-0">
+                  <div class="d-flex">
+                    <div class="px-5">
+                      <div class="fs-12 op-0-75">Kidney State</div>
+                      <div class="fw-semibold">ESKD</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Modality Type</div>
+                      <div class="fw-semibold">AVF</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">EGFR State</div>
+                      <div class="fw-semibold">-</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Transplant</div>
+                      <div class="fw-semibold">Not Eligible</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Access Type</div>
+                      <div class="fw-semibold">-</div>
+                    </div>
+                  </div>
                 </div>
-                <div class="px-5 border-start">
-                  <div class="fs-12 op-0-75">Modality Type</div>
-                  <div class="fw-semibold">AVF</div>
+                <div class="card-body">
+                  <app-transtion-care></app-transtion-care>
                 </div>
-                <div class="px-5 border-start">
-                  <div class="fs-12 op-0-75">EGFR State</div>
-                  <div class="fw-semibold">-</div>
+                <div class="card-body">
+                  <app-medication></app-medication>
                 </div>
-                <div class="px-5 border-start">
-                  <div class="fs-12 op-0-75">Transplant</div>
-                  <div class="fw-semibold">Not Eligible</div>
-                </div>
-                <div class="px-5 border-start">
-                  <div class="fs-12 op-0-75">Access Type</div>
-                  <div class="fw-semibold">-</div>
+                <div class="card-body">
+                  <app-engagement-timeline></app-engagement-timeline>
                 </div>
               </div>
-            </div>
-            <div class="card-body">
-              <app-transtion-care></app-transtion-care>
-            </div>
-            <div class="card-body">
-              <app-medication></app-medication>
-            </div>
-            <div class="card-body">
-              <app-engagement-timeline></app-engagement-timeline>
+              <div class="border-top tab-pane" id="Allergies">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table border text-nowrap text-md-nowrap mb-0">
+                      <thead>
+                        <tr class="bg-gray-200">
+                          <td class="col-3">ALLERGY</td>
+                          <td class="col-2">REACTION</td>
+                          <td class="col-2">REACTION TYPE</td>
+                          <td class="col-3">SYMPTOMS</td>
+                          <td class="col-2">LAST UPDATED</td>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="border-top">
+                          <td>Sulfa Allergy</td>
+                          <td>Servere</td>
+                          <td>Stevens-Johnsons syndrome</td>
+                          <td>
+                            Usually a reaction to medicine that starts with
+                            flu-like symptoms, followed by a painful rash that
+                            spread and dlisters
+                          </td>
+                          <td>11/01/2022</td>
+                        </tr>
+                        <tr class="border-top">
+                          <td>Peanut Allergy</td>
+                          <td>Life Threatening</td>
+                          <td>Anaphlyxis</td>
+                          <td>
+                            Usually a reaction to medicine that starts with
+                            flu-like symptoms, followed by a painful rash that
+                            spread and dlisters
+                          </td>
+                          <td>11/01/2022</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="border-top tab-pane" id="Engagement">
+                <div class="card-body">
+                  <app-engagement-timeline></app-engagement-timeline>
+                </div>
+              </div>
+              <div class="border-top tab-pane" id="Labs">
+                <div class="card-body">
+                  <table class="table border text-nowrap text-md-nowrap mb-0">
+                    <thead>
+                      <tr class="bg-gray-200">
+                        <td>LAB DESCRIPTION</td>
+                        <td>LAB VALUE</td>
+                        <td>LAB DATE</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-top">
+                        <td>GFT</td>
+                        <td class="col-3">17</td>
+                        <td class="col-3">10/23/2021</td>
+                      </tr>
+                      <tr class="border-top">
+                        <td>HgA1c</td>
+                        <td class="col-3">7.5</td>
+                        <td class="col-3">07/15/2022</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="border-top tab-pane" id="Vaccination">
+                <div class="card-body">
+                  <table class="table border text-nowrap text-md-nowrap mb-0">
+                    <thead>
+                      <tr class="bg-gray-200">
+                        <td>VACCINATION NAME</td>
+                        <td>VACCINATION DATE</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-top">
+                        <td>Covid-19 Booster</td>
+                        <td class="col-3">10/10/2022</td>
+                      </tr>
+                      <tr class="border-top">
+                        <td>Flu Vax</td>
+                        <td class="col-3">10/20/2022</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="border-top tab-pane" id="Contacts">
+                <div class="card-body">
+                  <table class="table border text-nowrap text-md-nowrap mb-0">
+                    <thead>
+                      <tr class="bg-gray-200">
+                        <td class="col-3">NAME</td>
+                        <td class="col-2">TYPE</td>
+                        <td class="col-2">PHONE</td>
+                        <td class="col-2">NUMBER</td>
+                        <td class="col-2">STATUS</td>
+                        <td class="col-1">IS_PRIMARY</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="border-top">
+                        <td>Surender</td>
+                        <td>Patient</td>
+                        <td>Fax</td>
+                        <td>1111-111-111</td>
+                        <td>Unconfirmed</td>
+                        <td class="text-center">
+                          <i class="fe fe-check text-success"></i>
+                        </td>
+                      </tr>
+                      <tr class="border-top">
+                        <td>Surender</td>
+                        <td>Patient</td>
+                        <td>Cellular</td>
+                        <td>1111-111-111</td>
+                        <td>Invalid</td>
+                        <td class="text-center"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="border-top tab-pane" id="DialysisTransplant">
+                <div class="card-body px-0">
+                  <div class="d-flex">
+                    <div class="px-5">
+                      <div class="fs-12 op-0-75">Transplant</div>
+                      <div class="fw-semibold">Eligible</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Transplant Status</div>
+                      <div class="fw-semibold">Active</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Ascular Access</div>
+                      <div class="fw-semibold">AVF</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">RRT Start</div>
+                      <div class="fw-semibold">Yes</div>
+                    </div>
+                    <div class="px-5 border-start">
+                      <div class="fs-12 op-0-75">Reffered</div>
+                      <div class="fw-semibold">Yes</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="card-header title-submenu p-0 d-block">
+                    <h3 class="card-title">Transtplant Status</h3>
+                    <div class="mt-3">
+                      <span class="badge bg-success me-2 op-0-6">Active</span>
+                      <span class="badge bg-primary me-2 op-0-6"
+                        >Somatus Transplant Center</span
+                      >
+                      <span class="badge bg-light me-2 op-0-6"
+                        >RRT Started in Last 90 Days : NO</span
+                      >
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="row">
+                    <div class="col-4 pt-2">
+                      <div class="d-flex">
+                        <div><i class="fa fa-circle text-success"></i></div>
+                        <div class="flex-fill ps-3">Referred Transplant On</div>
+                      </div>
+                    </div>
+                    <div class="col-8 pt-2">2022/09/02</div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 pt-2">
+                      <div class="d-flex">
+                        <div><i class="fa fa-circle text-success"></i></div>
+                        <div class="flex-fill ps-3">Listed for Transplant</div>
+                      </div>
+                    </div>
+                    <div class="col-8 pt-2">2022/09/24</div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 pt-2">
+                      <div class="d-flex">
+                        <div><i class="fa fa-circle text-warning"></i></div>
+                        <div class="flex-fill ps-3">RRT Started</div>
+                      </div>
+                    </div>
+                    <div class="col-8 pt-2">2022/09/24</div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-4 pt-2">
+                      <div class="d-flex">
+                        <div><i class="fa fa-circle text-warning"></i></div>
+                        <div class="flex-fill ps-3">Dialysis Crash Date</div>
+                      </div>
+                    </div>
+                    <div class="col-8 pt-2">N/A</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </app-patient-profile-medical>
