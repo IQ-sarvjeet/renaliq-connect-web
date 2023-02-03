@@ -12,6 +12,16 @@
     {
         "imageSrc": "../assets/images/faces/5.jpg",
         "name": "Allie Grater",
-        "designation": "Krysia Eurydyka"
+        "designation": "Diatetian"
+    },
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Hohn Deo",
+        "designation": "Care Manager"
+    },
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Martin",
+        "designation": "Nurse Care Manager"
     }
 ]
