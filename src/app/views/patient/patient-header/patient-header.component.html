@@ -1,22 +1,26 @@
 <div class="main-container container">
-    <div class="row">
-      <div class="col-12 col-sm-4 col-md-5">
-        <h1 class="page-title m-0">Patient</h1>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="javascript:void(0);">Home</a>
-          </li>
-          <li class="breadcrumb-item active" aria-current="page">Patient</li>
-        </ol>
-      </div>
-      <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
-        <a href="#" class="p-1 text-secondary fs-16 ms-3 align-middle"
-          ><i class="fa fa-filter"></i
-        ></a>
-        <a href="#" class="btn btn-outline-secondary ms-3"
-          ><i class="icon icon-share-alt me-1"></i> Export</a
-        >
-        <!--
+  <div class="row">
+    <div class="col-12 col-sm-4 col-md-5">
+      <h1 class="page-title m-0">Patient</h1>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0);">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Patient</li>
+      </ol>
+    </div>
+    <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+      <a
+        data-bs-target="#modalFilter"
+        data-bs-toggle="modal"
+        href="javascript:void(0)"
+        class="p-1 text-secondary fs-16 ms-3 align-middle"
+        ><i class="fa fa-filter"></i
+      ></a>
+      <a href="#" class="btn btn-outline-secondary ms-3"
+        ><i class="icon icon-share-alt me-1"></i> Export</a
+      >
+      <!--
         <a href="#" class="btn btn-dark ms-3">Add Patient</a>
         <a
           href="#"
@@ -36,6 +40,109 @@
         
         </div>
         -->
+    </div>
+  </div>
+</div>
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="searchPatient" class="text-gray mb-1">Patient</label>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search by Patient"
+            id="searchPatient"
+            class="form-control form-control-lg"
+          />
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-6">
+            <label for="stage" class="text-gray mb-1">Stage</label>
+            <select class="form-select" id="stage">
+              <option selected>CKD4</option>
+              <option value="1">CKD4</option>
+              <option value="2">CKD4</option>
+              <option value="3">CKD4</option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="riskCategory" class="text-gray mb-1"
+              >Risk Category</label
+            >
+            <select class="form-select" id="riskCategory">
+              <option selected>Low</option>
+              <option value="1">Medium</option>
+              <option value="2">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-6">
+            <label for="careMember" class="text-gray mb-1">Care Member</label>
+            <input
+              type="text"
+              name="text"
+              placeholder="Search by Care Member"
+              id="careMember"
+              class="form-control form-control-lg"
+            />
+          </div>
+          <div class="col-6">
+            <label for="status" class="text-gray mb-1">Status</label>
+            <select class="form-select" id="status">
+              <option selected>Intrusted</option>
+              <option value="1">Not Intrusted</option>
+              <option value="2">Intrusted</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row mt-4">
+          <div class="col-6">
+            <label for="Assignment" class="text-gray mb-1">Assignment</label>
+            <div class="input-group input-group-lg">
+              <input
+                class="fs-13 form-control"
+                placeholder="Date"
+                value="13 Sep 22 - 20 Sep 22"
+                type="text"
+                id="Assignment"
+              />
+              <button class="input-group-text bg-white" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-6">
+            <label for="Discharge" class="text-gray mb-1">Discharge</label>
+            <div class="input-group input-group-lg">
+              <input
+                class="fs-13 form-control"
+                placeholder="Date"
+                value="13 Sep 22 - 20 Sep 22"
+                type="text"
+                id="Discharge"
+              />
+              <button class="input-group-text bg-white" type="button">
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+        <button class="btn btn-primary" data-bs-dismiss="modal">Update</button>
       </div>
     </div>
+  </div>
 </div>
