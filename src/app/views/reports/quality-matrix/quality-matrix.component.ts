@@ -5,6 +5,4 @@ import { Component } from '@angular/core';
   templateUrl: './quality-matrix.component.html',
   styleUrls: ['./quality-matrix.component.scss']
 })
-export class QualityMatrixComponent {
-
-}
+export class QualityMatrixComponent {}
