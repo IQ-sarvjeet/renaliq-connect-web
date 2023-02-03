@@ -119,12 +119,16 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-5 text-center">
-            <img
+          <div class="col-12 col-md-5 text-center" style="height: 160px;">
+            <!-- <img
               src="../../../../assets/images/chart01.jpg"
               class="img-fluid m-auto"
             />
-            <div class="fs-12 fw-semibold mt-3">Patient By Age</div>
+            <div class="fs-12 fw-semibold mt-3">Patient By Age</div> -->
+              <app-bar-chart [config]="{
+                apiUrl: 'assets/mockData/barChart.json',
+                title: ''
+              }"></app-bar-chart>
           </div>
         </div>
       </div>

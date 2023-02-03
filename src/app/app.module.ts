@@ -19,7 +19,6 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 import { ErrorsComponent } from './views/errors/errors.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
