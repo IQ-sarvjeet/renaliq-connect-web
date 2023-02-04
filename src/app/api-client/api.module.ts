@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { AccountService } from './api/account.service';
+
 @NgModule({
   imports:      [],
   declarations: [],
@@ -12,7 +13,7 @@ import { AccountService } from './api/account.service';
     AccountService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]
