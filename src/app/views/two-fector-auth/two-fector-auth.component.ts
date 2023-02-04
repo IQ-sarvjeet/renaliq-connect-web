@@ -64,14 +64,14 @@ export class TwoFectorAuthComponent {
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
       if (result) {
-        this.login();
+        this.login(form);
       }
     },
       (error: any) => { console.log(error?.error?.message?.message); });
 
   };
 
-  public async login() {
+  public async login(form: any) {
     let model: any = {
       username: this.username,
       password: this.password,
