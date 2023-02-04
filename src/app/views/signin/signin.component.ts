@@ -58,8 +58,8 @@ export class SigninComponent {
 
     var result = await this._accountService.apiAccountLoginPost(model).subscribe((result: any) => {
       if (result) {
-        console.log(result);
-        this.route.navigate(['']);
+        this._localStorage.setItem(CommonConstants.TWO_FA_KEY, JSON.stringify(model));
+        this.route.navigate(['/twofectorauth']);
       }
     },
       (error) => {
