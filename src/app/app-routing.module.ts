@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
@@ -55,7 +56,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'patientProfile',
+    path: 'patient-profile',
     loadChildren: () =>
       import('./views/patient-profile/patient-profile.module').then(
         (m) => m.PatientProfileModule

@@ -21,6 +21,8 @@
     "highcharts": "^10.3.2",
     "highcharts-angular": "^3.0.0",
     "echarts": "^5.4.1",
+    "highcharts": "^10.3.3",
+    "highcharts-angular": "^3.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

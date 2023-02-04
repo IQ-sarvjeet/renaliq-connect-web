@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,6 @@ import { RequestHeadersInterceptor } from './shared/services/request-headers-int
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { ErrorsComponent } from './views/errors/errors.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
-
 
 @NgModule({
   declarations: [
@@ -37,6 +37,8 @@ import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.
     SharedModule,
     HttpClientModule,
     ApiModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   exports: [],
   providers: [

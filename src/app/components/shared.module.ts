@@ -8,9 +8,10 @@ import { GridComponent } from './grid/grid.component';
 import { LocalStorageService } from '../shared/services/localstorage.service';
 import { LoggerService } from '../shared/services/logger.service';
 import { HttpClientWapperService } from '../shared/services/httpclient.wapper.service';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
- imports:      [ CommonModule ],
+ imports:      [ CommonModule, HighchartsChartModule, ],
  declarations: [
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
