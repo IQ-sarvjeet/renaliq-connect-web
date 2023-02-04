@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../../api-client';
 import { Router } from '@angular/router';
-import { environment } from '../../environments/environment';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
+import { environment } from '../../../environments/environment';
 declare const $: any;
 let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 @Component({
