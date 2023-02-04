@@ -31,9 +31,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     BarChartHorizontalComponent,
     DoughnutChartComponent,
     BarChartComponent,
-   GridComponent,
-
-   
+    GridComponent,
   ],
  
 })

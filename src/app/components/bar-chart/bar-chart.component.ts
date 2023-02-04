@@ -25,54 +25,26 @@ export class BarChartComponent {
     this.fetchChartData(inputValue.apiUrl);
   }
   option: any = {
-        chart: {
-          type: "bar"
-        },
-        colors: [
-            '#0D2F4F',
-            '#5A7287',
-            '#95A3B2',
-            '#B2BCC7'
-            
-        ],
-        title: {
-          text: ''
-        },
-        xAxis:{
-          categories: []
-        },
-        yAxis: {
-          min:0,
-          max:2000,
-          tickInterval: 500,
-          title: {
-            text: "Patient By Age",
-            align: "high"
-          },
-          labels: {
-            overflow: "justify"
-          },
-          
-        },
-        plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: true
-            },
-            colorByPoint: true
-          },
-        },
-        credits: {
-          enabled: false
-        },
-        series: [{
-          type: 'column',
-          name: 'Unemployed',
-          colorByPoint: true,
-          data: [],
-          showInLegend: false
-        }]
-      };
+    title: {
+      text: '',
+      align: 'left'
+    },
+    colors: ['#51debb'],
+    subtitle: {
+        text: '',
+        align: 'left'
+    },
+    xAxis: {
+        categories: []
+    },
+    series: [{
+        type: 'column',
+        name: 'Unemployed',
+        colorByPoint: true,
+        data: [],
+        showInLegend: false
+    }]
+  };
   constructor() {
 
   }
@@ -88,7 +60,6 @@ export class BarChartComponent {
         text: this.chartConfig.title 
       },
       xAxis: {
-        ...this.option.xAxis,
         categories: chartData.categories
       },
       series: [

@@ -125,10 +125,10 @@
               class="img-fluid m-auto"
             />
             <div class="fs-12 fw-semibold mt-3">Patient By Age</div> -->
-              <app-bar-chart [config]="{
-                apiUrl: 'assets/mockData/barChart.json',
-                title: ''
-              }"></app-bar-chart>
+            <app-bar-chart-horizontal [config]="{
+              apiUrl: 'assets/mockData/barChart.json',
+              title: ''
+            }"></app-bar-chart-horizontal>
           </div>
         </div>
       </div>
@@ -233,10 +233,15 @@
         </div>
         <div class="col-12 col-md-4 text-center">
           <div class="card p-4">
-            <div class="text-center fw-semibold fs-16 mb-4">
+            <!-- <div class="text-center fw-semibold fs-16 mb-4">
               Patient Quaterly Engagement
             </div>
-            <img src="../../../../assets/images/chart03.jpg" class="m-auto" />
+            <img src="../../../../assets/images/chart03.jpg" class="m-auto" /> -->
+            <app-bar-chart [config]="{
+              apiUrl: 'assets/mockData/chart.json',
+              title: 'Patient Quaterly Engagement'
+            }"></app-bar-chart>
+            
           </div>
         </div>
       </div>
