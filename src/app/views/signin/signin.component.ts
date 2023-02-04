@@ -16,32 +16,62 @@ let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 })
 export class SigninComponent {
   signInForm: any = FormGroup;
-  errorMsg :any ="";
+  errorMsg: any = "";
+
   constructor(
     private _httpclientwapperSerivce: HttpClientWapperService,
     private fb: FormBuilder,
     private _localStorage: LocalStorageService,
     private _accountService: AccountService,
     private route: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
     this.intializeform();
-  }
+  };
+
+
   intializeform() {
     this.signInForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,Validators.pattern(pattern)]],
+      password: ['', [Validators.required, Validators.pattern(pattern)]],
     });
-  }
+  };
+
   public async onSubmit(form: FormGroup) {
     if (form.invalid) {
       return;
     }
+    await this.twoFALogin(form);
+  };
 
+
+  public async twoFALogin(form: FormGroup) {
+    let model: any = {
+      username: form.value.emailId.trim(),
+      password: form.value.password.trim(),
+      rememberMe: false
+    };
+
+    var result = await this._accountService.apiAccountLoginPost(model).subscribe((result: any) => {
+      if (result) {
+        console.log(result);
+        this.route.navigate(['']);
+      }
+    },
+      (error) => {
+        console.log(error?.error?.message?.message);
+      });
+
+    console.log(result);
+  }
+
+
+
+  public async login(form: FormGroup) {
     let model: any = {
       username: form.value.emailId.trim(),
       password: form.value.password.trim(),
@@ -50,7 +80,7 @@ export class SigninComponent {
       client_id: environment.clientId,
       client_secret: environment.clientSecret,
     };
-    debugger;
+
     try {
       var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
       this._localStorage.setItem(
@@ -63,13 +93,15 @@ export class SigninComponent {
         CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY
       );
       this.route.navigate(['']);
-    } catch(ex:any) {
+    } catch (ex: any) {
       this.errorMsg =
         ex.error?.error == 'invalid_grant'
           ? 'Invalid username or password'
           : ex.error?.error_description;
     }
   }
+
+
 
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
