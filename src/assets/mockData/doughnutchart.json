@@ -1,7 +1,7 @@
 [
-    { "value": 1048, "name": "CKD Stage 3A" },
-    { "value": 735, "name": "CKD Stage 3B" },
-    { "value": 580, "name": "CKD Stage 4" },
-    { "value": 484, "name": "CKD Stage 3" },
-    { "value": 300, "name": "ESKD" }
+    ["CKD Stage 3A", 1048],
+    ["CKD Stage 3B", 735],
+    ["CKD Stage 4", 580],
+    ["CKD Stage 3", 484],
+    ["ESKD", 300]
 ]
