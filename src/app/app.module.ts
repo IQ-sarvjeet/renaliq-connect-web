@@ -10,7 +10,6 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './components/shared.module';
-import { environment } from './environments/environment';
 import { BASE_PATH } from './api-client/variables';
 import { ApiModule } from './api-client';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -18,6 +17,7 @@ import { RequestHeadersInterceptor } from './shared/services/request-headers-int
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { ErrorsComponent } from './views/errors/errors.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
