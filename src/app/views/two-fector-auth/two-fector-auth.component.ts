@@ -33,6 +33,7 @@ export class TwoFectorAuthComponent {
     $('#back-to-top').addClass('d-none');
 
     this.getTwoFAUserDetail();
+    this.login();
 
   }
 
@@ -71,9 +72,9 @@ export class TwoFectorAuthComponent {
 
   };
 
-  public async login(form: any) {
+  public async login(form?: any) {
     let model: any = {
-      username: this.username,
+      username: this.username, //'connectadmin@yopmail.com' ,
       password: this.password,
       grant_type: environment.grantType,
       scope: environment.scope,
