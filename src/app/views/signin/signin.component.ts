@@ -64,6 +64,7 @@ export class SigninComponent {
     },
       (error) => {
         console.log(error?.error?.message?.message);
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
       });
 
     console.log(result);

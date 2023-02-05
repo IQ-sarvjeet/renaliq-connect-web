@@ -33,8 +33,7 @@ export class TwoFectorAuthComponent {
     $('#back-to-top').addClass('d-none');
 
     this.getTwoFAUserDetail();
-    this.login();
-
+    //this.token();
   }
 
   getTwoFAUserDetail() {
@@ -44,17 +43,14 @@ export class TwoFectorAuthComponent {
       this.username = userData.username;
       this.password = userData.password;
     }
-    console.log(userData);
-
-  }
+  };
 
   public async onSubmit(form: any) {
     if (form.invalid)
       return;
 
     await this.twoFALogin(form);
-
-  }
+  };
 
   public async twoFALogin(form:any) {
     let model: any = {
@@ -65,16 +61,15 @@ export class TwoFectorAuthComponent {
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
       if (result) {
-        this.login(form);
+        this.token(form);
       }
     },
       (error: any) => { console.log(error?.error?.message?.message); });
-
   };
 
-  public async login(form?: any) {
+  public async token(form?: any) {
     let model: any = {
-      username: this.username, //'connectadmin@yopmail.com' ,
+      username: this.username,
       password: this.password,
       grant_type: environment.grantType,
       scope: environment.scope,
@@ -86,6 +81,7 @@ export class TwoFectorAuthComponent {
       if (result) {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.route.navigate(['']);
       }
     },
@@ -94,12 +90,11 @@ export class TwoFectorAuthComponent {
       });
   };
 
-
-
-
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
     $('#back-to-top').removeClass('d-none');
-  }
+  };
+
+
 }
