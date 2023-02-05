@@ -11,7 +11,7 @@ import { PatientByStageComponent } from './patient-by-stage/patient-by-stage.com
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
     component: SummaryComponent
   }
 ];

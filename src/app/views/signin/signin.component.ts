@@ -30,7 +30,18 @@ export class SigninComponent {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
+
+    this.redirectSummaryDashboard();
+
     this.intializeform();
+  };
+
+  redirectSummaryDashboard() {
+    let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    if (token != null) {
+      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+      this.route.navigate(['/summary/dashboard']);
+    }
   };
 
 
@@ -66,9 +77,7 @@ export class SigninComponent {
         console.log(error?.error?.message?.message);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
       });
-
-    console.log(result);
-  }
+  };
 
 
 
@@ -82,25 +91,11 @@ export class SigninComponent {
       client_secret: environment.clientSecret,
     };
 
-    try {
-      var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
-      this._localStorage.setItem(
-        CommonConstants.CONNECT_TOKEN_KEY,
-        result.access_token
-      );
-      setCookie(
-        CommonConstants.CONNECT_TOKEN_KEY,
-        result.access_token,
-        CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY
-      );
-      this.route.navigate(['']);
-    } catch (ex: any) {
-      this.errorMsg =
-        ex.error?.error == 'invalid_grant'
-          ? 'Invalid username or password'
-          : ex.error?.error_description;
-    }
-  }
+    var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+    this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
+    setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+    this.route.navigate(['/summary']);
+  };
 
 
 

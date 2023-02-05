@@ -32,9 +32,20 @@ export class TwoFectorAuthComponent {
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
 
+    this.redirectSummaryDashboard();
+
     this.getTwoFAUserDetail();
     //this.token();
   }
+
+  redirectSummaryDashboard() {
+    let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    if (token != null) {
+      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+      this.route.navigate(['/summary/dashboard']);
+    }
+  };
+
 
   getTwoFAUserDetail() {
     let jsonData = this._localStorage.getItem(CommonConstants.TWO_FA_KEY);
@@ -52,7 +63,7 @@ export class TwoFectorAuthComponent {
     await this.twoFALogin(form);
   };
 
-  public async twoFALogin(form:any) {
+  public async twoFALogin(form: any) {
     let model: any = {
       username: this.username,
       twoFactorCode: this.twoFACode,
@@ -82,11 +93,13 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.route.navigate(['']);
+        this.route.navigate(['/summary/dashboard']);
       }
     },
       (error: any) => {
         console.log(error?.error?.message?.message);
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.route.navigate(['/login']);
       });
   };
 
@@ -94,6 +107,7 @@ export class TwoFectorAuthComponent {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
     $('#back-to-top').removeClass('d-none');
+    this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
   };
 
 

@@ -11,8 +11,7 @@ import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () =>
-      import('./views/summary/summary.module').then((m) => m.SummaryModule),
+    component: SigninComponent,
   },
   {
     path: 'login',
@@ -26,6 +25,12 @@ const routes: Routes = [
     path: 'forgotPassword',
     component: ForgotPasswordComponent,
   },
+  //{
+  //  path: '',
+  //  loadChildren: () =>
+  //    import('./views/summary/summary.module').then((m) => m.SummaryModule),
+  //},
+
   {
     path: 'summary',
     loadChildren: () =>
@@ -80,4 +85,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
