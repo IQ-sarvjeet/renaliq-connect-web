@@ -42,7 +42,7 @@ export class SigninComponent {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
       this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-      this.route.navigate(['/summary']);
+      this.route.navigate(['/summary/dashboard']);
     }
   };
 
@@ -97,7 +97,7 @@ export class SigninComponent {
     let result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
     this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
     setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-    this.route.navigate(['/summary']);
+    this.route.navigate(['/summary/dashboard']);
   };
 
   hideToster() {
