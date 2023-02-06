@@ -18,8 +18,8 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
 import { ErrorsComponent } from './views/errors/errors.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
 import { environment } from '../environments/environment';
-import { ToastsComponent } from './views/toster/toasts.component';
 import { SummaryModule } from './views/summary/summary.module';
+import { ToastsComponent } from './views/toasts/toasts.component';
 
 @NgModule({
   declarations: [
