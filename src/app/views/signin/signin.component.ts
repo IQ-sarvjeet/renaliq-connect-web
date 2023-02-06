@@ -17,6 +17,8 @@ let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 export class SigninComponent {
   signInForm: any = FormGroup;
   errorMsg: any = "";
+  showToster: boolean = false;
+  errorMessage: any = '';
 
   constructor(
     private _httpclientwapperSerivce: HttpClientWapperService,
@@ -40,7 +42,7 @@ export class SigninComponent {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
       this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-      this.route.navigate(['/summary/dashboard']);
+      this.route.navigate(['/summary']);
     }
   };
 
@@ -67,14 +69,15 @@ export class SigninComponent {
       rememberMe: false
     };
 
-    var result = await this._accountService.apiAccountLoginPost(model).subscribe((result: any) => {
+    await this._accountService.apiAccountLoginPost(model).subscribe((result: any) => {
       if (result) {
         this._localStorage.setItem(CommonConstants.TWO_FA_KEY, JSON.stringify(model));
         this.route.navigate(['/twofectorauth']);
       }
     },
       (error) => {
-        console.log(error?.error?.message?.message);
+        this.showToster = true;
+        this.errorMessage = error?.error?.message?.message;
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
       });
   };
@@ -91,13 +94,19 @@ export class SigninComponent {
       client_secret: environment.clientSecret,
     };
 
-    var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+    let result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
     this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
     setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
     this.route.navigate(['/summary']);
   };
 
+  hideToster() {
+    this.showToster = false;
+  }
 
+  ShowToastsResponse(event: any) {
+    this.showToster = event;
+  }
 
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');

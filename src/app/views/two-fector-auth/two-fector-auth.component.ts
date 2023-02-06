@@ -20,6 +20,10 @@ export class TwoFectorAuthComponent {
   username: any = '';
   twoFACode: any = '';
   password: any = '';
+  showToster: boolean = false;
+  errorMessage: any = '';
+
+
   constructor(private _localStorage: LocalStorageService,
     private _accountService: AccountService,
     private _httpclientwapperSerivce: HttpClientWapperService,
@@ -42,7 +46,7 @@ export class TwoFectorAuthComponent {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
       this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-      this.route.navigate(['/summary/dashboard']);
+      this.route.navigate(['/summary']);
     }
   };
 
@@ -75,10 +79,14 @@ export class TwoFectorAuthComponent {
         this.token(form);
       }
     },
-      (error: any) => { console.log(error?.error?.message?.message); });
+      (error: any) => {
+        this.showToster = true;
+        this.errorMessage = error?.error?.message?.message;
+      });
   };
 
   public async token(form?: any) {
+    let that = this;
     let model: any = {
       username: this.username,
       password: this.password,
@@ -88,20 +96,52 @@ export class TwoFectorAuthComponent {
       client_secret: environment.clientSecret,
     };
 
-    var data = await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
+    await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
       if (result) {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.route.navigate(['/summary/dashboard']);
+        that.route.navigate(['/summary']);
       }
     },
       (error: any) => {
-        console.log(error?.error?.message?.message);
+        this.showToster = true;
+        this.errorMessage = error?.error?.message?.message;
+
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.route.navigate(['/login']);
       });
   };
+
+
+  public async resendTwoFAToken() {
+    let model: any = {
+      username: this.username,
+      password: this.password,
+      rememberMe: false
+    };
+
+    await this._accountService.apiAccountAuthtokenResendPost(model).subscribe(async (result: any) => {
+      if (result) {
+        this.showToster = true;
+        this.errorMessage = "Verification code sent sucssessfully.";
+      }
+    },
+      (error: any) => {
+        this.showToster = true;
+        this.errorMessage = error?.error?.message?.message;
+      });
+  };
+
+  hideToster() {
+    this.showToster = false;
+  };
+
+  ShowToastsResponse(event: any) {
+    this.showToster = event;
+  };
+
+
 
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
