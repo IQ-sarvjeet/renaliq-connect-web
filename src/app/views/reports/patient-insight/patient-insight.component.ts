@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 // import * as Highcharts from 'highcharts';
 import * as Highcharts from "highcharts/highmaps";
+import * as MarkerClusters from "highcharts/modules/marker-clusters";
+
 // import topology from "@highcharts/mapdata/custom/europe.topo.json";
+MarkerClusters.default(Highcharts);
+console.log('MarkerClusters.default:::::', MarkerClusters.default)
 
 @Component({
   selector: 'app-patient-insight',
@@ -10,18 +14,19 @@ import * as Highcharts from "highcharts/highmaps";
 })
 export class PatientInsightComponent {
   Highcharts: any = Highcharts;
+  MarkerClusters: any = MarkerClusters;
   chartConstructor = "mapChart";
   option: any = {
     chart: {
+        type: 'mapChart'
         // map: topology
     },
     title: {
-        text: 'European Train Stations Near Airports',
+        text: '',
         align: 'left'
     },
     subtitle: {
-        text: 'Source: <a href="https://github.com/trainline-eu/stations">' +
-            'github.com/trainline-eu/stations</a>',
+        text: '',
         align: 'left'
     },
     mapNavigation: {
@@ -104,7 +109,7 @@ export class PatientInsightComponent {
         },
         colorKey: 'clusterPointsAmount',
         name: 'Cities',
-        // data: data,
+        data: [],
         color: this.Highcharts.getOptions().colors[5],
         marker: {
             lineWidth: 1,
@@ -131,6 +136,7 @@ export class PatientInsightComponent {
           // this.option.chart.map = topology;
       // });
     // const data = await Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@1e9e659c2d60fbe27ef0b41e2f93112dd68fb7a3/samples/data/european-train-stations-near-airports.json');
+    // const data = await fetch('https://cdn.jsdelivr.net/gh/highcharts/highcharts@1e9e659c2d60fbe27ef0b41e2f93112dd68fb7a3/samples/data/european-train-stations-near-airports.json').then(response => response.json());
     const data = await fetch('https://cdn.jsdelivr.net/gh/highcharts/highcharts@1e9e659c2d60fbe27ef0b41e2f93112dd68fb7a3/samples/data/european-train-stations-near-airports.json').then(response => response.json());
     // this.option.chart.map = topology;
     console.log('data:::::', data);
@@ -142,7 +148,6 @@ export class PatientInsightComponent {
         map: topology
       }
     }
-    this.Highcharts
     // this.Highcharts.mapChart('mapChartContainer', this.option);
     // this.Highcharts.mapChart(this.option);
   }
