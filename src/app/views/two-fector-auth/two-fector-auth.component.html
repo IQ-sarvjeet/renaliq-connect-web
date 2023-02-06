@@ -1,24 +1,20 @@
 <div class="container-login100 d-md-flex">
   <div class="d-none d-md-flex wrap-figure100 flex-fill">
     <div>
-      <img
-        class="wrap-figure100__img"
-        src="../../../assets/images/login.jpg"
-        alt="More Lives, Better Lived."
-      />
+      <img class="wrap-figure100__img"
+           src="../../../assets/images/login.jpg"
+           alt="More Lives, Better Lived." />
       <div class="p-4">© 2022 Somatus. All Rights Reserved</div>
     </div>
   </div>
   <div class="wrap-login100">
     <div class="w-100">
       <div class="card-body p-6 p-lg-7">
-        <form class="validate-form">
+        <form class="validate-form" name="twoFAForm" #twoFAForm="ngForm">
           <div class="text-center mb-6">
-            <img
-              class="img-fluid"
-              src="../../../assets/images/brand/renalliqconnect.png"
-              alt="renallIQconnect"
-            />
+            <img class="img-fluid"
+                 src="../../../assets/images/brand/renalliqconnect.png"
+                 alt="renallIQconnect" />
           </div>
           <div class="text-center mb-4">
             <h3 class="fw-bold">
@@ -31,15 +27,14 @@
           </div>
           <label class="text-gray" for="emailAddress">Email or username</label>
           <div class="wrap-input100">
-            <input
-              class="input100"
-              type="text"
-              name="email"
-              placeholder="Email"
-              id="emailAddress"
-              value="hemant.kumar@esolutionsfirst.com"
-              readonly
-            />
+            <input class="input100"
+                   type="text"
+                   name="email"
+                   placeholder="Email"
+                   id="emailAddress"
+                   [(ngModel)]="username"
+                   #email="ngModel"
+                   readonly />
             <span class="focus-input100"></span>
             <span class="symbol-input100">
               <i class="zmdi zmdi-email" aria-hidden="true"></i>
@@ -47,29 +42,30 @@
           </div>
           <div class="d-flex mt-4">
             <div class="flex-fill">
-              <label class="text-gray" for="verificationCode"
-                >Verification Code</label
-              >
+              <label class="text-gray" for="verificationCode">Verification Code</label>
             </div>
           </div>
           <div class="wrap-input100">
-            <input
-              class="input100"
-              type="text"
-              name="pass"
-              placeholder="Enter 6 digit verification code"
-              id="verificationCode"
-            />
+            <input class="input100"
+                   type="text"
+                   name="pass"
+                   [(ngModel)]="twoFACode"
+                   #pass="ngModel"
+                   placeholder="Enter 6 digit verification code"
+                   id="verificationCode" required />
             <span class="focus-input100"></span>
             <span class="symbol-input100">
               <i class="zmdi zmdi-lock" aria-hidden="true"></i>
             </span>
+            <span class="text-danger"
+                  *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid">
+              Verification code is required
+            </span>
+
           </div>
-          <div class="container-login100-form-btn">
-            <a href="/" class="login100-form-btn btn-dark"
-              ><i class="icon icon-lock align-top me-2"></i> CONFIRM</a
-            >
-          </div>
+          <button class="container-login100-form-btn login100-form-btn btn-dark" [disabled]="!twoFAForm.valid" (click)="onSubmit(twoFAForm);">
+            <i class="icon icon-lock align-top me-2"></i> CONFIRM
+          </button>
           <div class="text-center pt-3">
             <p class="mb-1">
               Please
