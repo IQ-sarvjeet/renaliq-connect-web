@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 // import * as Highcharts from 'highcharts';
 import * as Highcharts from "highcharts/highmaps";
 import * as MarkerClusters from "highcharts/modules/marker-clusters";
+import * as ModulesData from "highcharts/modules/data";
+import * as Coloraxis from "highcharts/modules/coloraxis";
 
 // import topology from "@highcharts/mapdata/custom/europe.topo.json";
 MarkerClusters.default(Highcharts);
-console.log('MarkerClusters.default:::::', MarkerClusters.default)
+// ModulesData.default(Highcharts);
+// Coloraxis.default(Highcharts);
 
 @Component({
   selector: 'app-patient-insight',
