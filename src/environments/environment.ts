@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://localhost:5001',
+  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net/',
   appUrl: 'https://localhost:4200',
   grantType: 'password',
   scope: 'ConnectApi',
