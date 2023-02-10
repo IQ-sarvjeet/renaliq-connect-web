@@ -54,7 +54,6 @@
           </div>
           <div *ngIf="signInForm.get('password').touched && signInForm.get('password').invalid" class="errors">
             <div *ngIf="signInForm.get('password').hasError('required')"> * Password is required </div>
-            <div *ngIf="signInForm.get('password').hasError('pattern')"> * Password is not valid</div>
           </div>
           <div class="container-login100-form-btn">
             <button type="submit" class="login100-form-btn btn-dark" [disabled]="signInForm.invalid">Sign in</button>
@@ -68,9 +67,9 @@
               Dont't Have an account?
               <a href="/signup" class="text-primary ms-1">Sign Up</a>
             </p> -->
-            <p class="mb-1 errors">
-              {{errorMsg}}
-            </p>
+          </div>
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            Error! {{errorMessage}}
           </div>
           <hr />
           <div class="text-center fs-12 op-0-5 text-sm-end">Ver : 2.0</div>
@@ -183,8 +182,6 @@
       </div>
     </div>
   </div>
-
-  <app-toster [showToster]="showToster" [errorMessage]="errorMessage" (showResult)="ShowToastsResponse($event);" ></app-toster>
 
 </div>
 

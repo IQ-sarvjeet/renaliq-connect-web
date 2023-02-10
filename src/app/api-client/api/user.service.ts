@@ -154,7 +154,7 @@ export class UserService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/User/${encodeURIComponent(String(userid))}/practice/list`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/User/${encodeURIComponent(String(userId))}/practice/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

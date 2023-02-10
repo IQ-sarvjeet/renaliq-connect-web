@@ -43,7 +43,6 @@ export class ForgotPasswordComponent implements OnInit{
       phoneNumber : form.value.mobileNumber.trim(),
       isEmail :  form.value.emailId != ""
     };
-    debugger;
     try {
       var result = await this._accountService.apiAccountForgotPasswordPost(model).toPromise();
       this.successMsg ="Link to reset password has been sent.";
@@ -54,6 +53,7 @@ export class ForgotPasswordComponent implements OnInit{
   }
   resetField(type:any){
     this.errorMsg="";
+    this.successMsg="";
     if(type == this.fields.email){
       this.form.controls['mobileNumber'].clearValidators(null);
       this.form.controls['emailId'].setValidators([Validators.required, Validators.email]);
