@@ -19,7 +19,7 @@ export class RequestHeadersInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this._router.url.includes("/login") && request.url.includes("/connect/token")) {
+    if (this._router.url.includes("/twofectorauth") && request.url.includes("/connect/token")) {
       return next.handle(request);
     }
 

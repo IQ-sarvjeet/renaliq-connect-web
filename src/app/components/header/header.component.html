@@ -58,6 +58,7 @@
           class="form-control"
           placeholder="Search Patient..."
           type="search"
+          #searchInput
         />
         <button class="btn ps-0">
           <svg
@@ -70,6 +71,26 @@
             />
           </svg>
         </button>
+        <div id="ui-autocomplete" class="search-results">
+          <!-- <div *ngIf="patientSearchedList && patientSearchedList.length === 0" 
+            class="alert alert-danger d-flex m-0">
+              <svg xmlns="http://www.w3.org/2000/svg" 
+              width="16" height="16" fill="currentColor" 
+              class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" 
+              viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                  <use xlink:href="#exclamation-triangle-fill"></use>
+              </svg>
+              <div>
+                  No Patient found!
+              </div>
+          </div> -->
+          <div *ngFor="let patient of patientSearchedList;"
+              class="search-results__item"
+              (click)="patientSelectHandler(patient)">
+              <div class="flex-fill">{{patient.name}}</div>
+              <div>{{patient.patientId}}</div>     
+          </div>
+        </div>
       </div>
       <div class="d-flex order-lg-2 ms-auto header-right-icons">
         <div class="dropdown d-xl-none d-md-block d-none">
@@ -182,14 +203,14 @@
                   <div
                     class="dropdown-menu dropdown-menu-end dropdown-menu-arrow py-1"
                   >
-                    <a
-                      class="dropdown-item"
+                    <!-- <a
+                      class="dropdown-item border-top"
                       routerLink="/reports/insight"
                     >
                       Patient Insight
-                    </a>
+                    </a> -->
                     <a
-                      class="dropdown-item border-top"
+                      class="dropdown-item"
                       routerLink="/reports/qualityMatrix"
                     >
                       Clinical Quality Matrics

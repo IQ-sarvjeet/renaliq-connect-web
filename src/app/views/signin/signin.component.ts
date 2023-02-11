@@ -16,32 +16,75 @@ let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 })
 export class SigninComponent {
   signInForm: any = FormGroup;
-  errorMsg :any ="";
+  errorMsg: any = "";
+  showToster: boolean = false;
+  errorMessage: any = '';
+
   constructor(
     private _httpclientwapperSerivce: HttpClientWapperService,
     private fb: FormBuilder,
     private _localStorage: LocalStorageService,
     private _accountService: AccountService,
     private route: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
+
+    this.redirectSummaryDashboard();
+
     this.intializeform();
-  }
+  };
+
+  redirectSummaryDashboard() {
+    let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    if (token != null) {
+      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+      this.route.navigate(['/summary/dashboard']);
+    }
+  };
+
+
   intializeform() {
     this.signInForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required,Validators.pattern(pattern)]],
+      password: ['', [Validators.required, Validators.pattern(pattern)]],
     });
-  }
+  };
+
   public async onSubmit(form: FormGroup) {
     if (form.invalid) {
       return;
     }
+    await this.twoFALogin(form);
+  };
 
+
+  public async twoFALogin(form: FormGroup) {
+    let model: any = {
+      username: form.value.emailId.trim(),
+      password: form.value.password.trim(),
+      rememberMe: false
+    };
+
+    await this._accountService.apiAccountLoginPost(model).subscribe((result: any) => {
+      if (result) {
+        this._localStorage.setItem(CommonConstants.TWO_FA_KEY, JSON.stringify(model));
+        this.route.navigate(['/twofectorauth']);
+      }
+    },
+      (error) => {
+        this.showToster = true;
+        this.errorMessage = error?.error?.message?.message;
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+      });
+  };
+
+
+
+  public async login(form: FormGroup) {
     let model: any = {
       username: form.value.emailId.trim(),
       password: form.value.password.trim(),
@@ -50,25 +93,19 @@ export class SigninComponent {
       client_id: environment.clientId,
       client_secret: environment.clientSecret,
     };
-    debugger;
-    try {
-      var result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
-      this._localStorage.setItem(
-        CommonConstants.CONNECT_TOKEN_KEY,
-        result.access_token
-      );
-      setCookie(
-        CommonConstants.CONNECT_TOKEN_KEY,
-        result.access_token,
-        CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY
-      );
-      this.route.navigate(['']);
-    } catch(ex:any) {
-      this.errorMsg =
-        ex.error?.error == 'invalid_grant'
-          ? 'Invalid username or password'
-          : ex.error?.error_description;
-    }
+
+    let result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+    this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
+    setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+    this.route.navigate(['/summary/dashboard']);
+  };
+
+  hideToster() {
+    this.showToster = false;
+  }
+
+  ShowToastsResponse(event: any) {
+    this.showToster = event;
   }
 
   ngOnDestroy(): void {

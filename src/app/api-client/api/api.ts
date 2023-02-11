@@ -1,3 +1,17 @@
 export * from './account.service';
 import { AccountService } from './account.service';
-export const APIS = [AccountService];
+export * from './admission.service';
+import { AdmissionService } from './admission.service';
+export * from './careMember.service';
+import { CareMemberService } from './careMember.service';
+export * from './clinicalQualityMatrix.service';
+import { ClinicalQualityMatrixService } from './clinicalQualityMatrix.service';
+export * from './notification.service';
+import { NotificationService } from './notification.service';
+export * from './patient.service';
+import { PatientService } from './patient.service';
+export * from './practice.service';
+import { PracticeService } from './practice.service';
+export * from './user.service';
+import { UserService } from './user.service';
+export const APIS = [AccountService, AdmissionService, CareMemberService, ClinicalQualityMatrixService, NotificationService, PatientService, PracticeService, UserService];

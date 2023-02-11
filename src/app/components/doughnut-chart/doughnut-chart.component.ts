@@ -51,7 +51,7 @@ export class DoughnutChartComponent {
       align: 'right',
       layout: 'vertical'
     },
-    colors: ["#083050", "#46647c", "#8397a7", "#ced6dc", "#2684ff"],
+    colors: ["#76ADDB", "#C8DB70", "#0B314F", "#ECF1FE", "#d96716"],
     series: [{
       type: 'pie',
       name: '',

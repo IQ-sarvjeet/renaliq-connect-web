@@ -13,7 +13,7 @@ declare const $: any;
 export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
-    cardTitle: 'Patients',
+    cardTitle: 'Attributed Patients',
     value: '253',
     percentile: 10,
     performance: 'up',
