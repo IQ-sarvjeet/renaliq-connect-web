@@ -61,11 +61,11 @@ export class SummaryComponent {
   };
   patientByRiskCategor: ProgressBarChartWidgetInput = {
     title: 'Patient By Risk Category',
-    apiUrl: 'assets/mockData/patientByRiskCategoryChartData.json',
+    apiUrl: 'Patient/summary/riskcategory',
   };
   patientByComorbidity: ProgressBarChartWidgetInput = {
     title: 'Patient By Chronic Conditions',
-    apiUrl: 'assets/mockData/patientByComorbidityChartData.json',
+    apiUrl: 'Patient/summary/chronicconditions',
   };
   patientByAgeGroup: ProgressBarChartWidgetInput = {
     title: 'Patient By Age Group',
