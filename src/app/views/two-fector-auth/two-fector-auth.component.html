@@ -76,6 +76,9 @@
               verification code
             </p>
           </div>
+          <div *ngIf="successMsg" class="alert alert-success" role="alert">
+            Success! {{successMsg}}
+          </div>
           <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
             Error! {{errorMessage}}
           </div>
