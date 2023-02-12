@@ -28,8 +28,8 @@
             <div class="col-4">{{data.key}}</div>
             <div class="col-6">
             <div class="progress progress-sm my-1">
-                <div class="progress-bar"
-                    [class]="data.value > 50 ? 'bg-primary progress-bar-striped progress-bar-animated wp-' + data.value: 'bg-dark wp-' + data.value">
+                <div class="progress-bar progress-bar-bg-color"
+                    [class]="data.value > 50 ? 'progress-bar-striped progress-bar-animated wp-' + data.value: 'wp-' + data.value">
                 </div>
             </div>
             </div>
