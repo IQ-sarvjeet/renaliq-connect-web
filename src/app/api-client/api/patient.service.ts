@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { PatientFilterModel } from '../model/patientFilterModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -57,49 +58,6 @@ export class PatientService {
     /**
      * 
      * 
-     * @param practiceId 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiPatientCountGet(practiceId?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientCountGet(practiceId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientCountGet(practiceId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientCountGet(practiceId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (practiceId !== undefined && practiceId !== null) {
-            queryParameters = queryParameters.set('practiceId', <any>practiceId);
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/count`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -135,13 +93,18 @@ export class PatientService {
     /**
      * 
      * 
+     * @param practiceId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientCountPracticeIdGet(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientCountPracticeIdGet(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientCountPracticeIdGet(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientCountPracticeIdGet(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPatientCountPracticeIdGet.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -157,8 +120,53 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/list`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/count/${encodeURIComponent(String(practiceId))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientListPost(body?: PatientFilterModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientListPost(body?: PatientFilterModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientListPost(body?: PatientFilterModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientListPost(body?: PatientFilterModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Patient/list`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -214,15 +222,13 @@ export class PatientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryAgeGet(practiceId?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryAgeGet(practiceId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryAgeGet(practiceId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryAgeGet(practiceId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryAgePracticeIdGet(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryAgePracticeIdGet(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryAgePracticeIdGet(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryAgePracticeIdGet(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (practiceId !== undefined && practiceId !== null) {
-            queryParameters = queryParameters.set('practiceId', <any>practiceId);
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPatientSummaryAgePracticeIdGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -239,9 +245,8 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/age`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/age/${encodeURIComponent(String(practiceId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -253,13 +258,18 @@ export class PatientService {
     /**
      * 
      * 
+     * @param practiceId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryChronicconditionsGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryChronicconditionsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryChronicconditionsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryChronicconditionsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryChronicconditionsPracticeIdGet(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryChronicconditionsPracticeIdGet(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryChronicconditionsPracticeIdGet(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryChronicconditionsPracticeIdGet(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPatientSummaryChronicconditionsPracticeIdGet.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -275,7 +285,7 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/chronicconditions`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/chronicconditions/${encodeURIComponent(String(practiceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -477,15 +487,13 @@ export class PatientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryRiskcategoryGet(practiceId?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryRiskcategoryGet(practiceId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryRiskcategoryGet(practiceId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryRiskcategoryGet(practiceId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryRiskcategoryPracticeIdGet(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryRiskcategoryPracticeIdGet(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryRiskcategoryPracticeIdGet(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryRiskcategoryPracticeIdGet(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (practiceId !== undefined && practiceId !== null) {
-            queryParameters = queryParameters.set('practiceId', <any>practiceId);
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPatientSummaryRiskcategoryPracticeIdGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -502,9 +510,8 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/riskcategory`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/riskcategory/${encodeURIComponent(String(practiceId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -520,15 +527,13 @@ export class PatientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryStageGet(practiceId?: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryStageGet(practiceId?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryStageGet(practiceId?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryStageGet(practiceId?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryStagePracticeIdGet(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryStagePracticeIdGet(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryStagePracticeIdGet(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryStagePracticeIdGet(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (practiceId !== undefined && practiceId !== null) {
-            queryParameters = queryParameters.set('practiceId', <any>practiceId);
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPatientSummaryStagePracticeIdGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -545,9 +550,8 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/stage`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/stage/${encodeURIComponent(String(practiceId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
