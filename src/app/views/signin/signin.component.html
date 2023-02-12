@@ -10,13 +10,13 @@
     </div>
   </div>
   <div class="wrap-login100 col-md-6 col-lg-5 col-xl-4">
-    <div class="w-100">
-      <div class="card-body p-6 p-lg-6">
+    <div class="card-body pt-0 w-100">
+      <div class="example mt-4">
         <form
           [formGroup]="signInForm"
           (ngSubmit)="onSubmit(signInForm)"
           novalidate
-          class="validate-form"
+          class="row g-3 needs-validation"
         >
           <div class="text-center mb-6">
             <img
@@ -25,39 +25,79 @@
               alt="renallIQconnect"
             />
           </div>
-          <label class="text-gray" for="emailAddress">Email or username</label>
-          <div
-            class="wrap-input100 validate-input"
-            data-bs-validate="Valid email is required: ex@abc.xyz"
-          >
-            <input
-              formControlName="emailId"
-              class="input100"
-              type="text"
-              name="email"
-              placeholder="Email"
-              id="emailAddress"
-            />
-            <span class="focus-input100"></span>
-            <span class="symbol-input100">
-              <i class="zmdi zmdi-email" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div
-            *ngIf="
-              signInForm.get('emailId').touched &&
-              signInForm.get('emailId').invalid
-            "
-            class="errors"
-          >
-            <div *ngIf="signInForm.get('emailId').hasError('required')">
-              * Email is required
+          <div class="col-12">
+            <label class="form-label" for="emailAddress">Email or username</label>
+            <div
+              class="wrap-input100"
+              data-bs-validate="Valid email is required: ex@abc.xyz"
+            >
+              <input
+                formControlName="emailId"
+                class="form-control input100"
+                type="text"
+                name="email"
+                placeholder="Email"
+                id="emailAddress"
+              />
+              <span class="symbol-input100"
+                ><i aria-hidden="true" class="zmdi zmdi-email"></i
+              ></span>
+              <!-- <div class="invalid-feedback" *ngIf="signInForm.get('emailId').touched && signInForm.get('emailId').invalid
+              ">
+              {{signInForm.get('emailId').hasError('required') ? '* Email is required' : '* Enter the valid email'}}
+                Please provide a valid email.
+              </div> -->
+
+              <div *ngIf="signInForm.get('emailId').touched &&
+                  signInForm.get('emailId').invalid"
+                class="invalid-feedback"
+              >
+                <div *ngIf="signInForm.get('emailId').hasError('required')">
+                  * Email is required
+                </div>
+                <div *ngIf="signInForm.get('emailId').hasError('email')">
+                  * Enter the valid email
+                </div>
+              </div>
+
             </div>
-            <div *ngIf="signInForm.get('emailId').hasError('email')">
-              * Enter the valid email
+          </div>
+
+
+          <div class="col-12">
+            <label for="password2" class="form-label">Password</label>
+            <div
+              data-bs-validate="Password is required"
+              class="wrap-input100 input-password"
+            >
+              <input
+                id="password2"
+                type="password"
+                name="confirmPassword"
+                placeholder="Password"
+                formcontrolname="password"
+                class="form-control input100"
+                required
+              />
+              <i class="fe fe-eye input-password__icon"></i>
+              <i class="fe fe-eye-off input-password__icon"></i>
+              <span class="symbol-input100">
+                <i aria-hidden="true" class="zmdi zmdi-lock"></i>
+              </span>
+
+              <div *ngIf="signInForm.get('password').touched &&
+                    signInForm.get('password').invalid"
+                  class="invalid-feedback">
+                  <div *ngIf="signInForm.get('password').hasError('required')">
+                    * Password is required
+                  </div>
+              </div>
             </div>
           </div>
-          <div class="d-flex mt-4">
+
+
+
+          <!-- <div class="d-flex mt-4">
             <div class="flex-fill">
               <label class="text-gray" for="password">Password</label>
             </div>
@@ -79,7 +119,8 @@
               <i class="zmdi zmdi-lock" aria-hidden="true"></i>
             </span>
           </div>
-          <div
+           -->
+          <!-- <div
             *ngIf="
               signInForm.get('password').touched &&
               signInForm.get('password').invalid
@@ -89,7 +130,8 @@
             <div *ngIf="signInForm.get('password').hasError('required')">
               * Password is required
             </div>
-          </div>
+          </div> -->
+
           <div class="container-login100-form-btn">
             <button
               type="submit"
@@ -99,6 +141,9 @@
               Sign in
             </button>
           </div>
+
+
+
           <div class="text-center pt-3">
             <p class="mb-1">
               Forgot Password?
