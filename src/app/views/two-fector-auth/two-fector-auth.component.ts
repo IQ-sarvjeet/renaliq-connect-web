@@ -46,7 +46,7 @@ export class TwoFectorAuthComponent {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
       this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-      this.route.navigate(['/summary/dashboard']);
+      this.route.navigate(['/summary']);
     }
   };
 
@@ -101,7 +101,7 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        that.route.navigate(['/summary/dashboard']);
+        that.route.navigate(['/summary/']);
       }
     },
       (error: any) => {
