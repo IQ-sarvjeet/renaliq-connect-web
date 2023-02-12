@@ -14,7 +14,6 @@ export class HeaderComponent {
     private _localStorage: LocalStorageService,
     private route: Router
   ) {}
-
   public async logOut() {
     try {
       var result = await this._accountService.apiAccountLogoutPost().toPromise();

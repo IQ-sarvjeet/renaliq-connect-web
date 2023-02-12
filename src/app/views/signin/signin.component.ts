@@ -50,7 +50,7 @@ export class SigninComponent {
   intializeform() {
     this.signInForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern(pattern)]],
+      password: ['', [Validators.required]],
     });
   };
 

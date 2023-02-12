@@ -1,7 +1,7 @@
 <div class="card border">
     <div class="card-header title-submenu d-flex">
       <h3 class="card-title flex-fill">{{chartConfig.title}}</h3>
-      <nav class="nav">
+      <!-- <nav class="nav">
         <div class="dropdown">
           <a
             class="nav-link text-muted fs-16 p-0 ps-4"
@@ -21,15 +21,15 @@
             >
           </div>
         </div>
-      </nav>
+      </nav> -->
     </div>
     <div class="card-body pt-1">
         <div class="row my-3" *ngFor="let data of chartData">
             <div class="col-4">{{data.key}}</div>
             <div class="col-6">
             <div class="progress progress-sm my-1">
-                <div class="progress-bar"
-                    [class]="data.value > 50 ? 'bg-primary progress-bar-striped progress-bar-animated wp-' + data.value: 'bg-dark wp-' + data.value">
+                <div class="progress-bar progress-bar-bg-color"
+                    [class]="data.value > 50 ? 'progress-bar-striped progress-bar-animated wp-' + data.value: 'wp-' + data.value">
                 </div>
             </div>
             </div>
