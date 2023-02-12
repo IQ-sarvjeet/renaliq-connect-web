@@ -4,16 +4,30 @@ import { HttpClient } from '@angular/common/http';
 
 
 import { AccountService } from './api/account.service';
+import { AdmissionService } from './api/admission.service';
+import { CareMemberService } from './api/careMember.service';
+import { ClinicalQualityMatrixService } from './api/clinicalQualityMatrix.service';
+import { NotificationService } from './api/notification.service';
+import { PatientService } from './api/patient.service';
+import { PracticeService } from './api/practice.service';
+import { UserService } from './api/user.service';
 
 @NgModule({
   imports:      [],
   declarations: [],
   exports:      [],
   providers: [
-    AccountService ]
+    AccountService,
+    AdmissionService,
+    CareMemberService,
+    ClinicalQualityMatrixService,
+    NotificationService,
+    PatientService,
+    PracticeService,
+    UserService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
+  public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]
