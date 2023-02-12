@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
-// import { PatientService } from 'src/app/api-client';
+import { PatientService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-search',
@@ -10,25 +10,9 @@ import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs
 })
 export class SearchComponent {
   @ViewChild('searchInput') searchInput!: ElementRef;
-  patientList: any = [
-    { 
-      id: 154, 
-      name: "John Doe",
-      enrollmentNo: "ENROLL-001"
-    },
-    { 
-      id: 154, 
-      name: "Ricky",
-      enrollmentNo: "ENROLL-002"
-    },
-    { 
-      id: 154, 
-      name: "Sachin Doe",
-      enrollmentNo: "ENROLL-003"
-    }
-  ]
   patientSearchedList: any = [];
-  constructor(private route: Router) {
+  patientNotFound: boolean = false;
+  constructor(private route: Router, private _patientService: PatientService) {
 
   }
   ngAfterViewInit() {
@@ -47,16 +31,18 @@ export class SearchComponent {
       });
   }
   filterPatients(text: string) {
-    // this._patientService.apiPatientSearchSearchStringGet(text).subscribe((response: any) => {
-    //   console.log('Patient search response:', response);
-    // })
-    this.patientSearchedList = this.patientList.filter((item: any) => { 
-      return String(item.name).toLocaleLowerCase().indexOf(String(text).toLocaleLowerCase()) !== -1
-    });
+    this.patientNotFound = false;
+    this._patientService.apiPatientSearchSearchStringGet(text).subscribe((response: any) => {
+      this.patientSearchedList = response;
+      if (response.length === 0) {
+        this.patientNotFound = true;
+      }
+    })
   }
   patientSelectHandler(patient: any) {
+    this.patientNotFound = false;
     this.searchInput.nativeElement.value = '';
     this.patientSearchedList = [];
-    this.route.navigate(['/patient']);
+    this.route.navigate(['/patient-profile']);
   }
 }
