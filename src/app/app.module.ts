@@ -20,6 +20,7 @@ import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.
 import { environment } from '../environments/environment';
 import { SummaryModule } from './views/summary/summary.module';
 import { ToastsComponent } from './views/toasts/toasts.component';
+import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ToastsComponent } from './views/toasts/toasts.component';
     ResetPasswordComponent,
     ErrorsComponent,
     TwoFectorAuthComponent,
-    ToastsComponent
+    ToastsComponent,
+    SampleUiComponent
   ],
   imports: [
     BrowserModule,

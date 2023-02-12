@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { SigninComponent } from './views/signin/signin.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
@@ -79,6 +80,10 @@ const routes: Routes = [
     path: 'error',
     component: ErrorsComponent,
   },
+  {
+    path: 'sampleui',
+    component: SampleUiComponent
+  }
 ];
 
 @NgModule({
