@@ -22,6 +22,7 @@ export class TwoFectorAuthComponent {
   password: any = '';
   showToster: boolean = false;
   errorMessage: any = '';
+  successMsg :any ="";
   isDisabled: boolean = false;
 
   constructor(private _localStorage: LocalStorageService,
@@ -123,10 +124,11 @@ export class TwoFectorAuthComponent {
     };
 
     await this._accountService.apiAccountAuthtokenResendPost(model).subscribe(async (result: any) => {
+      this.successMsg ="";
       if (result) {
         this.showToster = true;
         this.isDisabled = false;
-        this.errorMessage = "Verification code sent successfully.";
+        this.successMsg = "Verification code sent successfully.";
       }
     },
       (error: any) => {
