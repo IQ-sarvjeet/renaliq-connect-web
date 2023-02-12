@@ -76,12 +76,13 @@
               verification code
             </p>
           </div>
+          <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+            Error! {{errorMessage}}
+          </div>
           <hr />
           <div class="text-center fs-12 op-0-5">Ver : 2.0</div>
         </form>
       </div>
     </div>
   </div>
-  <app-toster [showToster]="showToster" [errorMessage]="errorMessage" (showResult)="ShowToastsResponse($event);"></app-toster>
-
 </div>
