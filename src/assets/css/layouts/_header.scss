@@ -1377,8 +1377,12 @@ body.fixed-header .header {
 
 .main-header-center .form-control {
   padding: 1rem 0 1rem 2.25rem;
-  border-radius: 0;
-  border: none;
+  border: 1px solid transparent;
+  transition: all ease 0.2s;
+
+  &:focus {
+    border: 1px solid #0d3050;
+  }
 }
 
 @media (min-width: 992px) {
