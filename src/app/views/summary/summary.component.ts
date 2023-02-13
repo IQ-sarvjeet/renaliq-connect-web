@@ -69,6 +69,6 @@ export class SummaryComponent {
   };
   patientByAgeGroup: ProgressBarChartWidgetInput = {
     title: 'Patient By Age Group',
-    apiUrl: 'assets/mockData/patientByAgeGroupChartData.json',
+    apiUrl: 'Patient/summary/age',
   };
 }
