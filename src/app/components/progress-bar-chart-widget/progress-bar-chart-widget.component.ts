@@ -19,7 +19,6 @@ export class ProgressBarChartWidgetComponent {
   private loadChartData(url: string): void {
     fetch(`${environment.baseApiUrl}api/${url}`).then((response: any) => response.json())
     .then((data: any) => {
-      console.log('response:', data);
       this.chartData = data;
     });
   }
