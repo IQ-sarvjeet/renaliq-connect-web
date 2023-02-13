@@ -1385,6 +1385,40 @@ body.fixed-header .header {
       border: 1px solid #0d3050;
     }
   }
+  .is-active {
+    .form-control {
+      border: 1px solid #0d3050;
+      border-radius: 0.25rem 0.25rem 0 0;
+    }
+  }
+}
+
+.search-results {
+  background-color: $white;
+  border-radius: 0 0 0.25rem 0.25rem;
+  border: 1px solid #0d3050;
+  border-top: none;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 34px;
+  width: 100%;
+  z-index: 9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  max-height: 400px;
+
+  &__item {
+    border-bottom: 0.0625rem solid $gray-200;
+    cursor: pointer;
+    display: flex;
+    padding: 0.5rem 1rem;
+    // transition: $transition-base;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.025);
+    }
+  }
 }
 
 @media (min-width: 992px) {
