@@ -18,147 +18,152 @@
           alt="renallIQconnect"
         />
       </div>
-      <hr />
-      <div class="py-3">
-        <h2 class="fw-bold">Enter Verification Code<br />to Continue</h2>
-      </div>
+      <hr class="mb-0" />
     </div>
     <form
       class="aside-section validate-form"
       name="twoFAForm"
       #twoFAForm="ngForm"
     >
-      <div
-        class="alert alert-danger d-flex fade show mt-3"
-        *ngIf="errorMessage"
-        role="alert"
-      >
-        <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
-        <div class="flex-fill">
-          {{ errorMessage }}
+      <div class="flex-fill pt-4 pb-6">
+        <div>
+          <h2 class="fw-bold">Enter Verification Code<br />to Continue</h2>
         </div>
-      </div>
-      <div
-        class="alert alert-success d-flex fade show mt-3"
-        *ngIf="successMsg"
-        role="alert"
-      >
-        <div><i class="fa fa-check-circle-o me-2" aria-hidden="true"></i></div>
-        <div class="flex-fill">
-          {{ successMsg }}
+        <div class="text-gray mb-6">
+          We send to <span class="text-primary">hellouser@site.com</span>. If
+          you don't see it, check your spam.
         </div>
-      </div>
-      <div class="text-gray mt-3 mb-6">
-        We send to <span class="text-primary">hellouser@site.com</span>. If you
-        don't see it, check your spam.
-      </div>
-      <label class="form-label my-3" for="verificationCode"
-        ><i class="zmdi zmdi-lock me-1" aria-hidden="true"></i> Verification
-        Code</label
-      >
-      <div class="wrap-input100">
-        <div class="form-row">
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-          <div class="col-2">
-            <input
-              class="input100 ps-4 text-center"
-              type="text"
-              name="pass"
-              [(ngModel)]="twoFACode"
-              #pass="ngModel"
-              id="verificationCode"
-              required
-            />
-          </div>
-        </div>
-
-        <span
-          class="text-danger"
-          *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
+        <div
+          class="alert alert-danger d-flex fade show"
+          *ngIf="errorMessage"
+          role="alert"
         >
-          Verification code is required
-        </span>
-      </div>
-
-      <div class="row">
-        <div class="col-6 py-2">
-          <a
-            [routerLink]="['#']"
-            (click)="resendTwoFAToken()"
-            [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
-            [style.pointer-events]="isDisabled ? 'none' : 'auto'"
-            class="d-inline-block fw-semibold mt-2"
-            >Resend verification code</a
-          >
+          <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+          <div class="flex-fill">
+            {{ errorMessage }}
+          </div>
         </div>
-        <div class="col-6 text-end py-2">
-          <button
-            type="submit"
-            class="btn btn-dark py-2 px-6"
-            [disabled]="!twoFAForm.valid"
-            (click)="onSubmit(twoFAForm)"
+        <div
+          class="alert alert-success d-flex fade show"
+          *ngIf="successMsg"
+          role="alert"
+        >
+          <div>
+            <i class="fa fa-check-circle-o me-2" aria-hidden="true"></i>
+          </div>
+          <div class="flex-fill">
+            {{ successMsg }}
+          </div>
+        </div>
+
+        <label class="form-label my-3" for="verificationCode"
+          ><i class="zmdi zmdi-lock me-1" aria-hidden="true"></i> Verification
+          Code</label
+        >
+        <div class="wrap-input100">
+          <div class="form-row">
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+            <div class="col-2">
+              <input
+                class="input100 ps-4 text-center"
+                type="text"
+                name="pass"
+                [(ngModel)]="twoFACode"
+                #pass="ngModel"
+                id="verificationCode"
+                required
+              />
+            </div>
+          </div>
+
+          <span
+            class="text-danger"
+            *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
           >
-            Confirm
-          </button>
+            Verification code is required
+          </span>
+        </div>
+
+        <div class="row">
+          <div class="col-6 py-2">
+            <a
+              [routerLink]="['#']"
+              (click)="resendTwoFAToken()"
+              [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
+              [style.pointer-events]="isDisabled ? 'none' : 'auto'"
+              class="d-inline-block fw-semibold mt-2"
+              >Resend verification code</a
+            >
+          </div>
+          <div class="col-6 text-end py-2">
+            <button
+              type="submit"
+              class="btn btn-dark py-2 px-6"
+              [disabled]="!twoFAForm.valid"
+              (click)="onSubmit(twoFAForm)"
+            >
+              Confirm
+            </button>
+          </div>
         </div>
       </div>
     </form>
     <div>
-      <hr />
+      <hr class="mt-0" />
       <div class="text-center fs-12 op-0-5 text-sm-end pb-3">Ver : 2.0</div>
     </div>
   </div>
