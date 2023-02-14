@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { async } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -24,15 +25,23 @@ export class TwoFectorAuthComponent {
   errorMessage: any = '';
   successMsg :any ="";
   isDisabled: boolean = false;
+  twoFAForm: FormGroup = this.fb.group({
+    digit1: [''],
+    digit2: [''],
+    digit3: [''],
+    digit4: [''],
+    digit5: [''],
+    digit6: [''],
+  })
 
   constructor(private _localStorage: LocalStorageService,
     private _accountService: AccountService,
     private _httpclientwapperSerivce: HttpClientWapperService,
-    private route: Router) {
+    private route: Router,
+    private fb: FormBuilder) {
   }
-
-
   ngOnInit(): void {
+    
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
@@ -61,23 +70,21 @@ export class TwoFectorAuthComponent {
     }
   };
 
-  public async onSubmit(form: any) {
-    if (form.invalid)
-      return;
-
-    await this.twoFALogin(form);
+  public async onSubmit() {
+    await this.twoFALogin();
   };
 
-  public async twoFALogin(form: any) {
+  public async twoFALogin() {
+    const formValues = this.twoFAForm.value;
     let model: any = {
       username: this.username,
-      twoFactorCode: this.twoFACode,
+      twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
       rememberMe: false
     };
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
       if (result) {
-        this.token(form);
+        this.token();
       }
     },
       (error: any) => {
@@ -86,7 +93,7 @@ export class TwoFectorAuthComponent {
       });
   };
 
-  public async token(form?: any) {
+  public async token() {
     let that = this;
     let model: any = {
       username: this.username,
@@ -145,7 +152,19 @@ export class TwoFectorAuthComponent {
   ShowToastsResponse(event: any) {
     this.showToster = event;
   };
-
+  onDigitInput(event: any){
+    let element;
+    if (event.code !== 'Backspace')
+         element = event.srcElement.nextElementSibling;
+ 
+     if (event.code === 'Backspace')
+         element = event.srcElement.previousElementSibling;
+ 
+     if(element == null)
+         return;
+     else
+         element.focus();
+  }
 
 
   ngOnDestroy(): void {
