@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { BarChartHorizontalComponent } from './bar-chart-horizontal/bar-chart-horizontal.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
@@ -34,7 +35,8 @@ import { SearchComponent } from './search/search.component';
     DoughnutChartComponent,
     BarChartComponent,
     GridComponent,
-    SearchComponent
+    SearchComponent,
+    RouterModule
   ],
  
 })
