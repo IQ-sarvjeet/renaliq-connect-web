@@ -12,6 +12,16 @@ declare const $: any;
 export class GridComponent implements OnInit {
   private _subscriptions = new Subscription();
   errorMsg: any = "";
+  gridData: any = {
+    items: [],
+    pagingModel: { 
+      pageSize: environment.pageSize,
+      totalRecords:0,
+      currentPage: 1,
+      totalPages: 0
+    }
+  }
+  
   list: any = [];
   filterModel: any = {
     currentPage: 1,
@@ -29,22 +39,31 @@ export class GridComponent implements OnInit {
   constructor(private _patientService: PatientService,private _interactionService: InteractionService) { }
 
   ngOnInit(): void {
-    this.bindPatientList(this.filterModel);
-    let sub = this._interactionService.getpatientFilter$.subscribe((model) => {this.bindPatientList(model); });
+    this.bindPatientList();
+    let sub = this._interactionService.getpatientFilter$.subscribe((model) => 
+    {
+      this.filterModel=model;
+      this.bindPatientList();
+     });
     this._subscriptions.add(sub);
   }
 
-  public async bindPatientList(model: any) {
+  public async bindPatientList() {
     try {
-      var result = await this._patientService.apiPatientListPost(model).toPromise();
+      var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
       console.log(result);
       this.list = result?.data;
+      this.gridData.items = this.list;
+      this.gridData.pagingModel = result?.pagingModel;
     } 
     catch (ex: any) {
       this.errorMsg = ex.error?.message?.message;
     }
   }
-
+  public gotoPage(page: number): void {
+    this.filterModel.currentPage = page;
+    this.bindPatientList();
+  }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
   }
