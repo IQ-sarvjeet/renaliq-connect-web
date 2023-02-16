@@ -82,7 +82,9 @@ iframe {
   [ login ]*/
 
 .aside-section {
-  min-height: calc(100% - 18.25rem);
+  min-height: calc(100% - 10.875rem);
+  display: flex;
+  align-items: center;
 
   &__outer {
     position: absolute;
@@ -332,10 +334,6 @@ iframe {
 }
 
 @media (max-width: 768px) {
-  .aside-section {
-    min-height: calc(100% - 17rem);
-  }
-
   .wrap-login100 {
     max-width: 100%;
     display: block;

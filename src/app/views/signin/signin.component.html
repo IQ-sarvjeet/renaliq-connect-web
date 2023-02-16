@@ -9,19 +9,16 @@
       <div class="px-4 py-2">© 2022 Somatus. All Rights Reserved</div>
     </div>
   </div>
-  <div class="col-md-6 col-lg-5 col-xl-4 px-6 bg-white">
+  <div class="col-md-6 col-lg-5 col-xl-4 px-7 bg-white">
     <div>
-      <div class="pt-6 pb-3">
+      <div class="pt-7 pb-3">
         <img
           class="img-fluid"
           src="../../../assets/images/brand/renalliqconnect.png"
           alt="renallIQconnect"
         />
       </div>
-      <hr />
-      <div class="py-3">
-        <h2 class="fw-bold">Welcome to<br />RenalIQConnect</h2>
-      </div>
+      <hr class="mb-0" />
     </div>
     <form
       [formGroup]="signInForm"
@@ -29,103 +26,108 @@
       novalidate
       class="aside-section needs-validation was-validated"
     >
-      <div
-        class="alert alert-danger d-flex fade show"
-        *ngIf="errorMessage"
-        role="alert"
-      >
-        <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
-        <div class="flex-fill">
-          {{ errorMessage }}
+      <div class="flex-fill pt-4 pb-6">
+        <div class="pb-3">
+          <h2 class="fw-bold">Welcome to<br />RenalIQConnect</h2>
         </div>
-      </div>
-      <label class="form-label mt-3" for="emailAddress"
-        >Email or username</label
-      >
-      <div
-        class="wrap-input100"
-        data-bs-validate="Valid email is required: ex@abc.xyz"
-      >
-        <input
-          formControlName="emailId"
-          class="form-control input100"
-          type="email"
-          name="email"
-          placeholder="Email"
-          id="emailAddress"
-          required
-        />
-        <span class="symbol-input100"
-          ><i aria-hidden="true" class="zmdi zmdi-email"></i
-        ></span>
         <div
-          *ngIf="
-            signInForm.get('emailId').touched &&
-            signInForm.get('emailId').invalid
-          "
-          class="invalid-feedback"
+          class="alert alert-danger d-flex fade show"
+          *ngIf="errorMessage"
+          role="alert"
         >
-          <div *ngIf="signInForm.get('emailId').hasError('required')">
-            * Email is required
-          </div>
-          <div *ngIf="signInForm.get('emailId').hasError('email')">
-            * Enter the valid email
+          <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+          <div class="flex-fill">
+            {{ errorMessage }}
           </div>
         </div>
-      </div>
-      <label for="password2" class="form-label mt-3">Password</label>
-      <div
-        data-bs-validate="Password is required"
-        class="wrap-input100 input-password"
-      >
-        <input
-          id="password2"
-          type="password"
-          name="confirmPassword"
-          placeholder="Password"
-          formControlName="password"
-          class="form-control input100"
-          required
-        />
-        <i class="fe fe-eye input-password__icon"></i>
-        <i class="fe fe-eye-off input-password__icon"></i>
-        <span class="symbol-input100">
-          <i aria-hidden="true" class="zmdi zmdi-lock"></i>
-        </span>
+        <label class="form-label mt-3" for="emailAddress"
+          >Email or username</label
+        >
+        <div
+          class="wrap-input100"
+          data-bs-validate="Valid email is required: ex@abc.xyz"
+        >
+          <input
+            formControlName="emailId"
+            class="form-control input100"
+            type="email"
+            name="email"
+            placeholder="Email"
+            id="emailAddress"
+            required
+          />
+          <span class="symbol-input100"
+            ><i aria-hidden="true" class="zmdi zmdi-email"></i
+          ></span>
+          <div
+            *ngIf="
+              signInForm.get('emailId').touched &&
+              signInForm.get('emailId').invalid
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="signInForm.get('emailId').hasError('required')">
+              * Email is required
+            </div>
+            <div *ngIf="signInForm.get('emailId').hasError('email')">
+              * Enter the valid email
+            </div>
+          </div>
+        </div>
+        <label for="password2" class="form-label mt-3">Password</label>
+        <div
+          data-bs-validate="Password is required"
+          class="wrap-input100 input-password"
+        >
+          <input
+            id="password2"
+            type="password"
+            name="confirmPassword"
+            placeholder="Password"
+            formControlName="password"
+            class="form-control input100"
+            required
+          />
+          <i class="fe fe-eye input-password__icon"></i>
+          <i class="fe fe-eye-off input-password__icon"></i>
+          <span class="symbol-input100">
+            <i aria-hidden="true" class="zmdi zmdi-lock"></i>
+          </span>
 
-        <div
-          *ngIf="
-            signInForm.get('password').touched &&
-            signInForm.get('password').invalid
-          "
-          class="invalid-feedback"
-        >
-          <div *ngIf="signInForm.get('password').hasError('required')">
-            * Password is required
+          <div
+            *ngIf="
+              signInForm.get('password').touched &&
+              signInForm.get('password').invalid
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="signInForm.get('password').hasError('required')">
+              * Password is required
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-6 py-2">
-          <a
-            [routerLink]="['/forgotPassword']"
-            class="d-inline-block fw-semibold mt-2"
-            >Forgot Password?</a
-          >
-        </div>
-        <div class="col-6 text-end py-2">
-          <button
-            type="submit"
-            class="btn btn-dark py-2 px-6"
-            [disabled]="signInForm.invalid"
-          >
-            Sign in
-          </button>
+        <div class="row">
+          <div class="col-6 py-2">
+            <a
+              [routerLink]="['/forgotPassword']"
+              class="d-inline-block fw-semibold mt-2"
+              >Forgot Password?</a
+            >
+          </div>
+          <div class="col-6 text-end py-2">
+            <button
+              type="submit"
+              class="btn btn-dark py-2 px-6"
+              [disabled]="signInForm.invalid"
+            >
+              Sign in
+            </button>
+          </div>
         </div>
       </div>
     </form>
     <div>
-      <hr />
+      <hr class="mt-0" />
       <div class="text-center fs-12 op-0-5 text-sm-end pb-3">Ver : 2.0</div>
     </div>
   </div>
