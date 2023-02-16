@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PatientService } from 'src/app/api-client';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { DataCardInput } from './summary-interfaces/data-card';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
@@ -14,29 +15,29 @@ export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
     cardTitle: 'Attributed Patients',
-    value: '253',
-    percentile: 10,
+    count: '',
+    percentile: null,
     performance: 'up',
   };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
     cardTitle: 'Admissions',
-    value: '253',
-    percentile: 10,
+    count: '',
+    percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Engaged Patients',
-    value: '100',
-    percentile: 10,
+    count: '',
+    percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Admission',
-    value: '5',
-    percentile: 12,
+    count: '',
+    percentile: null,
     performance: 'up',
   };
   patientInsight: DescriptionCardInput = {
@@ -71,4 +72,28 @@ export class SummaryComponent {
     title: 'Patient By Age Group',
     apiUrl: 'Patient/summary/age',
   };
+  constructor(private _patientService: PatientService) {
+    
+  }
+  ngOnInit() {
+    this._patientService.apiPatientCountGet().subscribe((response: any) => {
+      this.admissions = {
+        ...this.admissions,
+        ...response.totalAdmission
+      };
+      this.patients = {
+        ...this.patients,
+        ...response.totalPatient
+      }
+      this.engagedPatients = {
+        ...this.engagedPatients,
+        ...response.totalEngagedPatient
+      }
+      this.admissionRecent = {
+        ...this.admissionRecent,
+        ...response.totalRecentAdmission
+      }
+
+    })
+  }
 }
