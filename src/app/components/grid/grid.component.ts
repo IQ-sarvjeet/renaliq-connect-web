@@ -53,7 +53,7 @@ export class GridComponent implements OnInit {
       var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
       console.log(result);
       this.list = result?.data;
-      this.gridData.items = this.list;
+      this.gridData.items = result?.data;
       this.gridData.pagingModel = result?.pagingModel;
     } 
     catch (ex: any) {
