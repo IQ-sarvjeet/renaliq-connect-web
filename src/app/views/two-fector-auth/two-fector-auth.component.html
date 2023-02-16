@@ -23,7 +23,8 @@
     <form
       class="aside-section validate-form"
       name="twoFAForm"
-      #twoFAForm="ngForm"
+      [formGroup]="twoFAForm"
+      (ngSubmit)="onSubmit()"
     >
       <div class="flex-fill pt-4 pb-6">
         <div>
@@ -33,28 +34,6 @@
           We send to <span class="text-primary">hellouser@site.com</span>. If
           you don't see it, check your spam.
         </div>
-        <div
-          class="alert alert-danger d-flex fade show"
-          *ngIf="errorMessage"
-          role="alert"
-        >
-          <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
-          <div class="flex-fill">
-            {{ errorMessage }}
-          </div>
-        </div>
-        <div
-          class="alert alert-success d-flex fade show"
-          *ngIf="successMsg"
-          role="alert"
-        >
-          <div>
-            <i class="fa fa-check-circle-o me-2" aria-hidden="true"></i>
-          </div>
-          <div class="flex-fill">
-            {{ successMsg }}
-          </div>
-        </div>
 
         <label class="form-label my-3" for="verificationCode"
           ><i class="zmdi zmdi-lock me-1" aria-hidden="true"></i> Verification
@@ -62,77 +41,85 @@
         >
         <div class="wrap-input100">
           <div class="form-row">
-            <div class="col-2">
+            <div class="col-12">
               <input
                 class="input100 ps-4 text-center"
+                style="display: inline; width: 15%"
+                type="text"
+                maxlength="1"
+                name="pass"
+                formControlName="digit1"
+                id="verificationCode"
+                (keyup)="onDigitInput($event)"
+                required
+              />
+              <input
+                class="input100 ps-4 text-center"
+                style="display: inline; width: 15%; margin-left: 2%"
                 type="text"
                 name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
+                maxlength="1"
+                formControlName="digit2"
+                (keyup)="onDigitInput($event)"
                 id="verificationCode"
                 required
               />
-            </div>
-            <div class="col-2">
               <input
                 class="input100 ps-4 text-center"
+                style="display: inline; width: 15%; margin-left: 2%"
                 type="text"
                 name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
+                maxlength="1"
+                formControlName="digit3"
+                id="verificationCode"
+                (keyup)="onDigitInput($event)"
+                required
+              />
+              <input
+                class="input100 ps-4 text-center"
+                style="display: inline; width: 15%; margin-left: 2%"
+                type="text"
+                name="pass"
+                maxlength="1"
+                formControlName="digit4"
+                id="verificationCode"
+                (keyup)="onDigitInput($event)"
+                required
+              />
+              <input
+                class="input100 ps-4 text-center"
+                style="display: inline; width: 15%; margin-left: 2%"
+                type="text"
+                name="pass"
+                maxlength="1"
+                formControlName="digit5"
+                (keyup)="onDigitInput($event)"
                 id="verificationCode"
                 required
               />
-            </div>
-            <div class="col-2">
               <input
                 class="input100 ps-4 text-center"
+                style="display: inline; width: 16%; margin-left: 1%"
                 type="text"
                 name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
-                id="verificationCode"
-                required
-              />
-            </div>
-            <div class="col-2">
-              <input
-                class="input100 ps-4 text-center"
-                type="text"
-                name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
-                id="verificationCode"
-                required
-              />
-            </div>
-            <div class="col-2">
-              <input
-                class="input100 ps-4 text-center"
-                type="text"
-                name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
-                id="verificationCode"
-                required
-              />
-            </div>
-            <div class="col-2">
-              <input
-                class="input100 ps-4 text-center"
-                type="text"
-                name="pass"
-                [(ngModel)]="twoFACode"
-                #pass="ngModel"
+                maxlength="1"
+                formControlName="digit6"
+                (keyup)="onDigitInput($event)"
                 id="verificationCode"
                 required
               />
             </div>
           </div>
 
+          <!-- <span
+          class="text-danger"
+          *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
+        >
+          Verification code is required
+        </span> -->
           <span
             class="text-danger"
-            *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
+            *ngIf="twoFAForm.touched && twoFAForm.invalid"
           >
             Verification code is required
           </span>
@@ -154,7 +141,6 @@
               type="submit"
               class="btn btn-dark py-2 px-6"
               [disabled]="!twoFAForm.valid"
-              (click)="onSubmit(twoFAForm)"
             >
               Confirm
             </button>

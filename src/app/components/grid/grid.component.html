@@ -863,4 +863,8 @@
       </tr>
     </tbody>
   </table>
+  <app-pagination 
+    [pagingModel]="gridData.pagingModel"
+    (gotoPageHandler)="gotoPage($event)">
+  </app-pagination>
 </div>

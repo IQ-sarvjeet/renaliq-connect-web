@@ -10,6 +10,7 @@ import { LoggerService } from '../shared/services/logger.service';
 import { HttpClientWapperService } from '../shared/services/httpclient.wapper.service';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SearchComponent } from './search/search.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -19,7 +20,8 @@ import { SearchComponent } from './search/search.component';
     DoughnutChartComponent,
     BarChartComponent,
     GridComponent,
-    SearchComponent
+    SearchComponent,
+    PaginationComponent
   ],
 
   providers: [

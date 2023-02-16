@@ -1,0 +1,30 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center justify-content-md-end mt-2 mb-0">
+      <li class="page-item" 
+        [ngClass]="{'disabled': pagingModel.currentPage === 1}">
+      <button class="page-link" 
+        tabindex="-1" aria-disabled="true"
+        (click)="gotoPage(pagingModel.currentPage - 1)">
+          <i class="fa fa-angle-left"></i>
+      </button>
+      </li>
+      <ng-container *ngFor="let page of [].constructor(pagingModel.totalPages); let currentIndex = index;">
+        <li *ngIf="currentIndex >= 0" class="page-item d-none d-sm-block" 
+            [ngClass]="{'active': pagingModel.currentPage === currentIndex + 1}">
+            <button class="page-link"
+            (click)="gotoPage(currentIndex + 1)">{{currentIndex + 1}}</button>
+        </li>
+        <li *ngIf="currentIndex < 0" 
+          class="page-item disabled d-none d-sm-block">
+            <a class="page-link bg-white" 
+            href="#" tabindex="-1" aria-disabled="true">...</a>
+        </li>
+      </ng-container>
+      <li class="page-item" 
+        [ngClass]="{'disabled': pagingModel.currentPage >= pagingModel.totalPages}">
+          <button class="page-link" (click)="gotoPage(pagingModel.currentPage + 1)">
+              <i class="fa fa-angle-right"></i>
+          </button>
+      </li>
+    </ul>
+</nav>

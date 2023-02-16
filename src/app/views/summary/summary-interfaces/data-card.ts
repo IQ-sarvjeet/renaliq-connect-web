@@ -1,7 +1,7 @@
 export type DataCardInput = {
     iconClass: string;
     cardTitle: string;
-    value: string;
-    percentile: number;
+    count: string;
+    percentile: number | null;
     performance: string;
 }
