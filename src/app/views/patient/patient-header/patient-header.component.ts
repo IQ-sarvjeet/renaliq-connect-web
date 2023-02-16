@@ -20,12 +20,13 @@ export class PatientHeaderComponent {
       riskCategory:'',
       careMember:'',
       status:'',
-      assignment:null,
-      discharge:null
+      assignment:[],
+      discharge:[]
     }
   };
 
   submit(){
+    debugger;
   this._interactionService.setPatientFilter(this.filter);
   }
 }

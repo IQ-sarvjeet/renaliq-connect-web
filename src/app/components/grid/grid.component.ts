@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { PatientService } from 'src/app/api-client';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
+import * as moment from 'moment';
 declare const $: any;
 @Component({
   selector: 'app-grid',
@@ -32,8 +33,8 @@ export class GridComponent implements OnInit {
       riskCategory: '',
       careMember: '',
       status: '',
-      assignment: null,
-      discharge: null
+      assignment: [],
+      discharge: []
     }
   };
   constructor(private _patientService: PatientService,private _interactionService: InteractionService) { }
@@ -43,6 +44,7 @@ export class GridComponent implements OnInit {
     let sub = this._interactionService.getpatientFilter$.subscribe((model) => 
     {
       this.filterModel=model;
+      this.filterModel.currentPage = 1;
       this.bindPatientList();
      });
     this._subscriptions.add(sub);
@@ -63,6 +65,12 @@ export class GridComponent implements OnInit {
   public gotoPage(page: number): void {
     this.filterModel.currentPage = page;
     this.bindPatientList();
+  }
+  getFormatDob(dob:Date){
+    return moment(dob).format('YY/MM/DD');
+  }
+  getAge(dob:any){
+    return moment().diff(dob, 'years');
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
