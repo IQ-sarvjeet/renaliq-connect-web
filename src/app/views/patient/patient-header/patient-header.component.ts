@@ -12,19 +12,6 @@ export class PatientHeaderComponent {
   constructor(  private _interactionService: InteractionService,){
 
   }
-  filterModel: FilterModel = {
-    currentPage: 1,
-    pageSize: environment.pageSize,
-    patientFilter: {
-      searchKey: '',
-      stage: '',
-      riskCategory: '',
-      careMember: '',
-      status: '',
-      assignment: [],
-      discharge: []
-    }
-  };
   filter: FilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
