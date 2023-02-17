@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { async } from 'rxjs';
+import { timer } from 'rxjs';
+import { EventService } from 'src/app/services/event.service';
 import { environment } from '../../../environments/environment';
 import { AccountService } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
@@ -22,9 +23,12 @@ export class TwoFectorAuthComponent {
   twoFACode: any = '';
   password: any = '';
   showToster: boolean = false;
-  errorMessage: any = '';
+  errorMessage: any;
   successMsg :any ="";
   isDisabled: boolean = false;
+  showLoading: boolean = false;
+  showResendCode: boolean = false;
+  private timerSubscription: any;
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
     digit2: [''],
@@ -38,7 +42,8 @@ export class TwoFectorAuthComponent {
     private _accountService: AccountService,
     private _httpclientwapperSerivce: HttpClientWapperService,
     private route: Router,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+    private eventService: EventService) {
   }
   ngOnInit(): void {
     
@@ -49,7 +54,9 @@ export class TwoFectorAuthComponent {
     this.redirectSummaryDashboard();
 
     this.getTwoFAUserDetail();
-    //this.token();
+    this.timerSubscription = timer(10000).subscribe(() => {
+      this.showResendCode = true;
+    })
   }
 
   redirectSummaryDashboard() {
@@ -71,6 +78,7 @@ export class TwoFectorAuthComponent {
   };
 
   public async onSubmit() {
+    this.showLoading = true;
     await this.twoFALogin();
   };
 
@@ -90,6 +98,7 @@ export class TwoFectorAuthComponent {
       (error: any) => {
         this.showToster = true;
         this.errorMessage = error?.error?.message?.message;
+        this.showLoading = false;
       });
   };
 
@@ -109,6 +118,11 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Welcom ${this.username}`,
+          type: 'success',
+        })
         that.route.navigate(['/summary/']);
       }
     },
@@ -122,7 +136,8 @@ export class TwoFectorAuthComponent {
   };
 
 
-  public async resendTwoFAToken() {
+  public async resendTwoFAToken($event: any) {
+    $event.preventDefault();
     this.isDisabled=true
     let model: any = {
       username: this.username,
@@ -159,11 +174,13 @@ export class TwoFectorAuthComponent {
  
      if (event.code === 'Backspace')
          element = event.srcElement.previousElementSibling;
- 
-     if(element == null)
-         return;
-     else
-         element.focus();
+
+    if(element == null) {
+      this.onSubmit();
+      return;
+    } else {
+      element.focus();
+    }
   }
 
 
@@ -172,6 +189,7 @@ export class TwoFectorAuthComponent {
     $('.footer').removeClass('d-none');
     $('#back-to-top').removeClass('d-none');
     this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+    this.timerSubscription.unsubscribe();
   };
 
 

@@ -10,6 +10,7 @@
     </div>
   </div>
   <div class="col-md-6 col-lg-5 col-xl-4 px-7 bg-white">
+    <app-spinner *ngIf="showLoading"></app-spinner>
     <div>
       <div class="pt-7 pb-3">
         <img
@@ -31,7 +32,7 @@
           <h2 class="fw-bold">Enter Verification Code<br />to Continue</h2>
         </div>
         <div class="text-gray mb-6">
-          We send to <span class="text-primary">hellouser@site.com</span>. If
+          We send to <span class="text-primary">{{username}}</span>. If
           you don't see it, check your spam.
         </div>
 
@@ -43,8 +44,7 @@
           <div class="form-row">
             <div class="col-12">
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 15%"
+                class="input100 ps-4 text-center verification-code-input"
                 type="text"
                 maxlength="1"
                 name="pass"
@@ -54,8 +54,7 @@
                 required
               />
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 15%; margin-left: 2%"
+                class="input100 ps-4 text-center verification-code-input ml2perc"
                 type="text"
                 name="pass"
                 maxlength="1"
@@ -65,8 +64,7 @@
                 required
               />
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 15%; margin-left: 2%"
+                class="input100 ps-4 text-center verification-code-input ml2perc"
                 type="text"
                 name="pass"
                 maxlength="1"
@@ -76,8 +74,7 @@
                 required
               />
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 15%; margin-left: 2%"
+                class="input100 ps-4 text-center verification-code-input ml2perc"
                 type="text"
                 name="pass"
                 maxlength="1"
@@ -87,8 +84,7 @@
                 required
               />
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 15%; margin-left: 2%"
+                class="input100 ps-4 text-center verification-code-input ml2perc"
                 type="text"
                 name="pass"
                 maxlength="1"
@@ -98,8 +94,7 @@
                 required
               />
               <input
-                class="input100 ps-4 text-center"
-                style="display: inline; width: 16%; margin-left: 1%"
+                class="input100 ps-4 text-center verification-code-input ml2perc"
                 type="text"
                 name="pass"
                 maxlength="1"
@@ -128,12 +123,12 @@
         <div class="row">
           <div class="col-6 py-2">
             <a
-              [routerLink]="['#']"
-              (click)="resendTwoFAToken()"
+              href="javascript: void(0);"
+              (click)="resendTwoFAToken($event)"
               [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
               [style.pointer-events]="isDisabled ? 'none' : 'auto'"
               class="d-inline-block fw-semibold mt-2"
-              >Resend verification code</a
+              *ngIf="showResendCode">Resend verification code</a
             >
           </div>
           <div class="col-6 text-end py-2">
@@ -146,8 +141,19 @@
             </button>
           </div>
         </div>
+        <div>
+          <div class="alert alert-danger d-flex fade show"
+            *ngIf="errorMessage"
+            role="alert">
+            <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+            <div class="flex-fill">
+              {{ errorMessage }}
+            </div>
+          </div>
+        </div>
       </div>
     </form>
+    
     <div>
       <hr class="mt-0" />
       <div class="text-center fs-12 op-0-5 text-sm-end pb-3">Ver : 2.0</div>
