@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FilterModel } from 'src/app/interfaces/filter.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 
@@ -11,7 +12,20 @@ export class PatientHeaderComponent {
   constructor(  private _interactionService: InteractionService,){
 
   }
-  filter: any = {
+  filterModel: FilterModel = {
+    currentPage: 1,
+    pageSize: environment.pageSize,
+    patientFilter: {
+      searchKey: '',
+      stage: '',
+      riskCategory: '',
+      careMember: '',
+      status: '',
+      assignment: [],
+      discharge: []
+    }
+  };
+  filter: FilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
     patientFilter :{
@@ -26,7 +40,6 @@ export class PatientHeaderComponent {
   };
 
   submit(){
-    debugger;
   this._interactionService.setPatientFilter(this.filter);
   }
 }

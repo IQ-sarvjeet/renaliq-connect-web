@@ -35,7 +35,7 @@
           </div>
         </td>
         <td class="text-center">
-        {{getFormatDob(item.dob)}}<strong class="fw-semibold"> ({{getAge(item.dob)}})</strong>
+        {{getFormatDate(item.dob)}}<strong class="fw-semibold"> ({{getAge(item.dob)}})</strong>
         </td>
         <td class="text-center">{{item.stage}}</td>
         <td>
@@ -44,7 +44,7 @@
               <div class="progress progress-sm mt-1">
                 <div *ngIf="item.riskCategory ==='Medium'" class="progress-bar bg-warning wp-50"></div>
                 <div *ngIf="item.riskCategory ==='Low'" class="progress-bar bg-success wp-25"></div>
-                <div *ngIf="item.riskCategory ==='High'" class="progress-bar bg-danger wp-75"></div>
+                <div *ngIf="item.riskCategory ==='High' || item.riskCategory ==='Highest'" class="progress-bar bg-danger wp-75"></div>
               </div>
             </div>
             <div class="ms-2">{{item.riskCategory}}</div>
@@ -53,10 +53,10 @@
         <td class="text-center"> {{item.careMember}}</td>
         <td class="text-center">{{item.status}}</td>
         <td class="text-center">
-          {{item.lastAssignment}} <strong class="fw-semibold"></strong>
+          {{getFormatDate(item.lastAssignment)}} <strong class="fw-semibold"></strong>
         </td>
         <td class="text-center">
-          {{item.lastDischarge}}<strong class="fw-semibold"></strong>
+          {{getFormatDate(item.lastDischarge)}}<strong class="fw-semibold"></strong>
         </td>
         <td class="text-center">
           <a

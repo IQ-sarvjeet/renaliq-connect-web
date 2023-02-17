@@ -4,6 +4,8 @@ import { PatientService } from 'src/app/api-client';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
+import { GridModel } from 'src/app/interfaces/grid.model';
+import { FilterModel } from 'src/app/interfaces/filter.model';
 declare const $: any;
 @Component({
   selector: 'app-grid',
@@ -13,18 +15,19 @@ declare const $: any;
 export class GridComponent implements OnInit {
   private _subscriptions = new Subscription();
   errorMsg: any = "";
-  gridData: any = {
+
+  gridData: GridModel = {
     items: [],
-    pagingModel: { 
+    pagingModel:{ 
       pageSize: environment.pageSize,
       totalRecords:0,
       currentPage: 1,
       totalPages: 0
     }
   }
-  
   list: any = [];
-  filterModel: any = {
+
+  filterModel: FilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
     patientFilter: {
@@ -66,7 +69,7 @@ export class GridComponent implements OnInit {
     this.filterModel.currentPage = page;
     this.bindPatientList();
   }
-  getFormatDob(dob:Date){
+  getFormatDate(dob:Date){
     return moment(dob).format('YY/MM/DD');
   }
   getAge(dob:any){
