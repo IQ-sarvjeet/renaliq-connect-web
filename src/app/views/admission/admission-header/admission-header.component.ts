@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-admission-header',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./admission-header.component.scss']
 })
 export class AdmissionHeaderComponent {
-
+  @Input() admissionHeaders: any = {}
 }

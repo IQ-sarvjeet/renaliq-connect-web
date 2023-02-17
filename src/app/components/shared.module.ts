@@ -41,6 +41,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     BarChartComponent,
     GridComponent,
     SearchComponent,
+    PaginationComponent,
     SpinnerComponent,
     ToasterComponent
   ],

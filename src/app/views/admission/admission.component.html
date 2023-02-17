@@ -1,9 +1,12 @@
 <div class="side-app">
-  <app-admission-header></app-admission-header>
+  <app-admission-header [admissionHeaders]="admissionHeaders"></app-admission-header>
   <div class="main-container container">
     <div class="card my-1 p-2">
-      <app-admissions-admission-by></app-admissions-admission-by>
-      <app-admissions-grid></app-admissions-grid>
+      <app-admissions-admission-by
+        [admissionHeaders]="admissionHeaders"
+        [dateRange]="dateRange"></app-admissions-admission-by>
+      <app-admissions-grid
+        [dateRange]="dateRange"></app-admissions-grid>
     </div>
   </div>
   <router-outlet></router-outlet>
