@@ -76,8 +76,8 @@
           <thead>
             <tr>
               <th>QUALITY BONUS TIER</th>
-              <th></th>
               <th class="text-center">POPULATION</th>
+              <th class="text-center">POPULATION COUNT</th>
               <th class="text-center">NUMERATOR</th>
               <th>DENOMINATOR</th>
               <th class="text-center" width="120">PERFORMANCE</th>
@@ -104,6 +104,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -133,6 +134,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -162,6 +164,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -191,6 +194,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -226,6 +230,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -255,6 +260,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -284,6 +290,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -313,6 +320,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -342,6 +350,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -376,6 +385,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -405,6 +415,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -434,6 +445,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -457,9 +469,13 @@
 <div class="modal fade" id="modalChart">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
+      <app-spinner *ngIf="openChartModal"></app-spinner>
       <div class="modal-header bg-gray-200">
         <h4 class="modal-title fw-semibold">Other - Engagement Rate</h4>
-        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+        <button aria-label="Close"
+          class="btn-close" 
+          data-bs-dismiss="modal"
+          (click)="modalClosed()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -467,11 +483,12 @@
         <h5 class="text-center">Quaterly performence matrix - Q4 2022</h5>
 
         <div class="text-center">
-          <img
+          <app-bar-chart [config]="chartConfig"></app-bar-chart>
+          <!-- <img
             src="../../../../assets/images/chart.png"
             alt="Quaterly performence matrix"
             class="img-fluid"
-          />
+          /> -->
         </div>
       </div>
     </div>
