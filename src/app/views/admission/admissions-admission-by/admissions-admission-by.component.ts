@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AdmissionService } from 'src/app/api-client';
+import { AdmissionHeaders } from '../interfaces/admission';
 
 @Component({
   selector: 'app-admissions-admission-by',
@@ -29,7 +30,7 @@ export class AdmissionsAdmissionByComponent {
       totalPatients: 234,
     }
   ]
-  @Input() admissionHeaders: any = {}
+  @Input() admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
   @Input() set dateRange(value: any) {
     this.getAdmissionSummary(value.fromDate, value.toDate);
   }

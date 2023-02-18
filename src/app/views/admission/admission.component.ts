@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AdmissionService } from 'src/app/api-client';
+import { AdmissionHeaders } from './interfaces/admission';
 
 declare const $: any;
 @Component({
@@ -8,7 +9,7 @@ declare const $: any;
   styleUrls: ['./admission.component.scss'],
 })
 export class AdmissionComponent {
-  admissionHeaders: any = {
+  admissionHeaders: AdmissionHeaders = {
     admissionBy: 19,
     dischargeBy: 19,
     dischargeByPercentage: 100,
@@ -22,22 +23,6 @@ export class AdmissionComponent {
   }
   constructor(private admissionService: AdmissionService) {}
   ngOnInit(): void {
-    //______Data-Table
-    // $('#admissionTable').DataTable({
-    //   language: {
-    //     searchPlaceholder: 'Search...',
-    //     sSearch: '',
-    //     lengthMenu: '_MENU_',
-    //   },
-    //   searching: false,
-    //   lengthChange: false,
-    //   columnDefs: [
-    //     {
-    //       targets: [0, 9],
-    //       orderable: false,
-    //     },
-    //   ],
-    // });
     this.getAdmissionSummary();
   }
   getAdmissionSummary() {

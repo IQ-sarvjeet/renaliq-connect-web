@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AdmissionHeaders } from '../interfaces/admission';
 
 @Component({
   selector: 'app-admission-header',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./admission-header.component.scss']
 })
 export class AdmissionHeaderComponent {
-  @Input() admissionHeaders: any = {}
+  @Input() admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
 }

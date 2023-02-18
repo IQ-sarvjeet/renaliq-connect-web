@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { AdmissionFilterModel, AdmissionService, SortOrder } from 'src/app/api-client';
+import { AdmissionFilterModel, AdmissionService } from 'src/app/api-client';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-admissions-grid',
@@ -7,6 +8,7 @@ import { AdmissionFilterModel, AdmissionService, SortOrder } from 'src/app/api-c
   styleUrls: ['./admissions-grid.component.scss']
 })
 export class AdmissionsGridComponent {
+  moment = moment;
   admissionList: any = {
     items: [],
     pagingModel: {
