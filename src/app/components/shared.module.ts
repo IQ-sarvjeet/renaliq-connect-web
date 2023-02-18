@@ -12,6 +12,8 @@ import { HttpClientWapperService } from '../shared/services/httpclient.wapper.se
 import { HighchartsChartModule } from 'highcharts-angular';
 import { SearchComponent } from './search/search.component';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { ToasterComponent } from './toaster/toaster.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -22,7 +24,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     BarChartComponent,
     GridComponent,
     SearchComponent,
-    PaginationComponent
+    PaginationComponent,
+    SpinnerComponent,
+    ToasterComponent
   ],
 
   providers: [
@@ -38,6 +42,9 @@ import { PaginationComponent } from './pagination/pagination.component';
     BarChartComponent,
     GridComponent,
     SearchComponent,
+    PaginationComponent,
+    SpinnerComponent,
+    ToasterComponent,
     RouterModule
   ],
  

@@ -8,7 +8,7 @@
                 <i class="fa fa-circle text-warning me-1"></i> Admissions
               </div>
               
-              <div class="fs-19 ms-4">{{patientsStatus.admissions}}</div>
+              <div class="fs-19 ms-4">{{admissionHeaders.admissionBy}}</div>
             </div>
           </div>
           <div class="col-12 col-md-7 border-start">
@@ -17,13 +17,17 @@
                 <i class="fa fa-circle text-success me-1"></i> Discharge
               </div>
               <div class="flex-fill mx-4">
-                <div class="fs-11">{{patientsStatus.dischargedPercent}}%</div>
+                <div class="fs-11">{{admissionHeaders.dischargeByPercentage}}%</div>
                 <div class="progress progress-xs">
-                  <div class="progress-bar bg-success wp-85"
-                    [ngClass]="'wp-' + patientsStatus.dischargedPercent"></div>
+                  <div class="progress-bar bg-success"
+                    [class.bg-success]="admissionHeaders.dischargeByPercentage > 70"
+                    [class.bg-warning]="admissionHeaders.dischargeByPercentage < 51 && admissionHeaders.dischargeByPercentage < 70"
+                    [class.bg-danger]="admissionHeaders.dischargeByPercentage < 30"
+                    [class.bg-primary]="admissionHeaders.dischargeByPercentage > 60 && admissionHeaders.dischargeByPercentage < 70"
+                    [ngClass]="'wp-' + admissionHeaders.dischargeByPercentage"></div>
                 </div>
               </div>
-              <div class="fs-19 ms-4">{{patientsStatus.discharged}}</div>
+              <div class="fs-19 ms-4">{{admissionHeaders.dischargeBy}}</div>
             </div>
           </div>
         </div>
@@ -51,45 +55,6 @@
               <div class="fs-19 ms-4">{{item.totalPatients}}</div>
             </div>
           </div>
-          <!-- <div class="col-12 col-md-6 col-lg-3 border-start">
-            <div class="d-flex align-items-center">
-              <div class="text-truncate1">CKD Stage 3a</div>
-              <div class="flex-fill mx-3">
-                <div class="fs-11 text-truncate">50% Discharge</div>
-
-                <div class="progress progress-xs">
-                  <div class="progress-bar bg-warning wp-50"></div>
-                </div>
-              </div>
-              <div class="fs-19 ms-4">382</div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 border-start">
-            <div class="d-flex align-items-center">
-              <div class="text-truncate1">CKD Stage 3b</div>
-              <div class="flex-fill mx-3">
-                <div class="fs-11 text-truncate">20% Discharge</div>
-
-                <div class="progress progress-xs">
-                  <div class="progress-bar bg-danger wp-20"></div>
-                </div>
-              </div>
-              <div class="fs-19 ms-4">276</div>
-            </div>
-          </div>
-          <div class="col-12 col-md-6 col-lg-3 border-start">
-            <div class="d-flex align-items-center">
-              <div class="text-truncate">EKSD</div>
-              <div class="flex-fill mx-3">
-                <div class="fs-11 text-truncate">60% Discharge</div>
-
-                <div class="progress progress-xs">
-                  <div class="progress-bar bg-primary wp-60"></div>
-                </div>
-              </div>
-              <div class="fs-19 ms-4">234</div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>

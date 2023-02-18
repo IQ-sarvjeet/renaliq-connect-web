@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { AdmissionService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-admissions-admission-by',
@@ -28,9 +29,17 @@ export class AdmissionsAdmissionByComponent {
       totalPatients: 234,
     }
   ]
-  patientsStatus: any = {
-    admissions: 276,
-    discharged: 234,
-    dischargedPercent: 85,
+  @Input() admissionHeaders: any = {}
+  @Input() set dateRange(value: any) {
+    this.getAdmissionSummary(value.fromDate, value.toDate);
+  }
+  constructor(private admissionService: AdmissionService){}
+  ngOnInit() {
+    
+  }
+  getAdmissionSummary(fromDate: Date, toDate: Date) {
+    this.admissionService.apiAdmissionSummaryStageFromdateTodateGet(fromDate, toDate).subscribe((data: any) => {
+      console.log('Addmission summary:', data);
+    })
   }
 }

@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdmissionHeaderComponent } from './admission-header/admission-header.component';
 import { AdmissionsAdmissionByComponent } from './admissions-admission-by/admissions-admission-by.component';
 import { AdmissionsGridComponent } from './admissions-grid/admissions-grid.component';
+import { SharedModule } from 'src/app/components/shared.module';
 
 const routes: Routes = [
   {
@@ -22,7 +23,8 @@ const routes: Routes = [
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class AdmissionModule { }

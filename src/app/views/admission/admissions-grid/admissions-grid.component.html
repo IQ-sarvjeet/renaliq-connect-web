@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody class="table-body">
-        <tr>
+        <tr *ngFor="let gridRow of admissionList.items">
           <td class="text-center">
             <i class="fa fa-circle text-success"></i>
           </td>
@@ -40,20 +40,20 @@
               ></span>
               <div class="user-details ms-2">
                 <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Rose Torson</h6></a
+                  ><h6 class="mb-0">{{gridRow.fullName}}</h6></a
                 >
               </div>
             </div>
           </td>
           <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
+            {{gridRow.dob}} <strong class="fw-semibold">(43)</strong>
           </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>101-Neoplasms Tumors</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
+          <td class="text-center">{{gridRow.stage}}</td>
+          <td>{{gridRow.caseCategory}}</td>
+          <td>{{gridRow.diagnosis}}</td>
+          <td>{{gridRow.facilityName}}</td>
+          <td class="text-center">{{gridRow.admissionDate}}</td>
+          <td class="text-center">{{gridRow.dischargeDate}}</td>
           <td class="text-center">
             <a
               href="#"
@@ -64,325 +64,7 @@
               ><i class="fe fe-more-vertical"></i
             ></a>
             <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#/patient-profile"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/2.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Danya Garcia</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>204-Tobacco use diagnosis</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/12.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Joseph Oliver</h6></a
-                >
-                <span class="badge badge-xs bg-danger">Re-admission</span>
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>253-Nephrologist visit prior</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/4.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Jennifer Summers</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>204-Tobacco use diagnosis</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/2.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Danya Garcia</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>204-Tobacco use diagnosis</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/12.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Joseph Oliver</h6></a
-                >
-                <span class="badge badge-xs bg-danger">Re-admission</span>
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>253-Nephrologist visit prior</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/4.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">Jennifer Summers</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>204-Tobacco use diagnosis</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
-              >
-            </div>
-          </td>
-        </tr>
-        
-        <tr>
-          <td class="text-center">
-            <i class="fa fa-circle text-primary"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/5.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#"
-                  ><h6 class="mb-0">Lucy Garcia</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            79/06/15 <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">CKD4</td>
-          <td>Nike snakers</td>
-          <td>101-Neoplasms Tumors</td>
-          <td>Intrusted</td>
-          <td class="text-center">22/09/14</td>
-          <td class="text-center">22/09/15</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" href="#"
+              <a class="dropdown-item" routerLink="/patient-profile"
                 ><i class="fe fe-edit-2 me-2"></i> Edit</a
               >
               <a class="dropdown-item" href="#"
@@ -393,4 +75,8 @@
         </tr>
       </tbody>
     </table>
+    <app-pagination 
+      [pagingModel]="admissionList.pagingModel"
+      (gotoPageHandler)="gotoPage($event)">
+  </app-pagination>
 </div>

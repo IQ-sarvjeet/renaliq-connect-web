@@ -29,7 +29,7 @@
                         </div>
                       </div>
                       
-                      <div class="fs-22 ms-4">1,276</div>
+                      <div class="fs-22 ms-4">{{admissionHeaders.admissionLastNinetyDays}}</div>
                     </div>
                   </div>
                   <div class="col-12 col-md-7 border-start">
@@ -42,12 +42,17 @@
                         </div>
                       </div>
                       <div class="flex-fill mx-4">
-                        <div class="fs-11">83%</div>
+                        <div class="fs-11">{{admissionHeaders.dischargeLastNinetyDaysPercentage}}%</div>
                         <div class="progress progress-xs">
-                          <div class="progress-bar bg-success wp-85"></div>
+                          <div class="progress-bar bg-success"
+                            [class.bg-success]="admissionHeaders.dischargeLastNinetyDaysPercentage > 70"
+                            [class.bg-warning]="admissionHeaders.dischargeLastNinetyDaysPercentage < 51 && admissionHeaders.dischargeLastNinetyDaysPercentage < 70"
+                            [class.bg-danger]="admissionHeaders.dischargeLastNinetyDaysPercentage < 30"
+                            [class.bg-primary]="admissionHeaders.dischargeLastNinetyDaysPercentage > 60 && admissionHeaders.dischargeLastNinetyDaysPercentage < 70"
+                            [ngClass]="'wp-' + admissionHeaders.dischargeLastNinetyDaysPercentage"></div>
                         </div>
                       </div>
-                      <div class="fs-22 ms-4">1,034</div>
+                      <div class="fs-22 ms-4">{{admissionHeaders.dischargeLastNinetyDays}}</div>
                     </div>
                   </div>
                 </div>
