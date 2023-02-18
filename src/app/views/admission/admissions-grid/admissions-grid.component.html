@@ -52,8 +52,8 @@
           <td>{{gridRow.caseCategory}}</td>
           <td>{{gridRow.diagnosis}}</td>
           <td>{{gridRow.facilityName}}</td>
-          <td class="text-center">{{gridRow.admissionDate}}</td>
-          <td class="text-center">{{gridRow.dischargeDate}}</td>
+          <td class="text-center">{{moment(gridRow.admissionDate).format('YY/MM/DD')}}</td>
+          <td class="text-center">{{moment(gridRow.dischargeDate).format('YY/MM/DD')}}</td>
           <td class="text-center">
             <a
               href="#"
