@@ -61,27 +61,33 @@
             name="text"
             placeholder="Search by Patient"
             id="searchPatient"
+            [(ngModel)]="filter.patientFilter.searchKey"
             class="form-control form-control-lg"
           />
         </div>
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="text-gray mb-1">Stage</label>
-            <select class="form-select" id="stage">
-              <option selected>CKD4</option>
-              <option value="1">CKD4</option>
-              <option value="2">CKD4</option>
-              <option value="3">CKD4</option>
+            <select class="form-select" [(ngModel)]="filter.patientFilter.stage" id="stage">
+              <!-- <option selected>CKD4</option> -->
+              <option value=""></option>
+              <option value="CKD Stage1">CKD Stage1</option>
+              <option value="CKD Stage2">CKD Stage2</option>
+              <option value="CKD Stage3">CKD Stage3</option>
+              <option value="CKD Stage4">CKD Stage4</option>
+              <option value="CKD Stage3B">CKD Stage3B</option>
+              <option value="ESKD">ESKD</option>
             </select>
           </div>
           <div class="col-6">
             <label for="riskCategory" class="text-gray mb-1"
               >Risk Category</label
             >
-            <select class="form-select" id="riskCategory">
-              <option selected>Low</option>
-              <option value="1">Medium</option>
-              <option value="2">High</option>
+            <select class="form-select" [(ngModel)]="filter.patientFilter.riskCategory" id="riskCategory">
+              <option value=""></option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
             </select>
           </div>
         </div>
@@ -93,15 +99,17 @@
               name="text"
               placeholder="Search by Care Member"
               id="careMember"
+              [(ngModel)]="filter.patientFilter.careMember"
               class="form-control form-control-lg"
             />
           </div>
           <div class="col-6">
             <label for="status" class="text-gray mb-1">Status</label>
-            <select class="form-select" id="status">
-              <option selected>Intrusted</option>
-              <option value="1">Not Intrusted</option>
-              <option value="2">Intrusted</option>
+            <select class="form-select" [(ngModel)]="filter.patientFilter.status" id="status">
+              <option value=""></option>
+              <option value="Engaged">Engaged</option>
+              <option value="New">New</option>
+              <option value="On-hold">On-hold</option>
             </select>
           </div>
         </div>
@@ -113,8 +121,8 @@
               <input
                 class="fs-13 form-control"
                 placeholder="Date"
-                value="13 Sep 22 - 20 Sep 22"
                 type="text"
+                [(ngModel)]="filter.patientFilter.assignment"
                 id="Assignment"
               />
               <button class="input-group-text bg-white" type="button">
@@ -125,10 +133,12 @@
           <div class="col-6">
             <label for="Discharge" class="text-gray mb-1">Discharge</label>
             <div class="input-group input-group-lg">
+                <!-- value="13 Sep 22 - 20 Sep 22" -->
+                <!-- [(ngModel)]="filter.patientFilter.discharge" -->
               <input
                 class="fs-13 form-control"
-                placeholder="Date"
-                value="13 Sep 22 - 20 Sep 22"
+                placeholder="Date"            
+                [(ngModel)]="filter.patientFilter.discharge"
                 type="text"
                 id="Discharge"
               />
@@ -141,7 +151,7 @@
       </div>
       <div class="modal-footer">
         <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary" data-bs-dismiss="modal">Update</button>
+        <button class="btn btn-primary"  data-bs-dismiss="modal" (click)="submit()">Update</button>
       </div>
     </div>
   </div>
