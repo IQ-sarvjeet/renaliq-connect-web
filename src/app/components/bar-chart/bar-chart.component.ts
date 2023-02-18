@@ -1,15 +1,11 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { BarChartConfig } from 'src/app/interfaces/bar-chart-config';
 
 type ChartApiResponse = {
   categories: any;
     series: any;
   }
-export type BarChartConfig = {
-  apiUrl: string;
-  title: string;
-}
-
 
 @Component({
   selector: 'app-bar-chart',
@@ -53,12 +49,14 @@ export class BarChartComponent {
   protected renderChart(chartData: ChartApiResponse): void {
     const series = this.option.series;
     series[0].data = chartData.series;
+    const colors = this.chartConfig.colors ? this.chartConfig.colors: this.option.colors;
     this.option = {
       ...this.option,
       title: {
         ...this.option.title,
         text: this.chartConfig.title 
       },
+      colors,
       xAxis: {
         categories: chartData.categories
       },

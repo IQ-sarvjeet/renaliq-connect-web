@@ -18,8 +18,8 @@ export class AdmissionComponent {
     dischargeLastNinetyDaysPercentage: 30
   }
   dateRange: any = {
-    fromDate: new Date('2023-10-01'),
-    toDate: new Date("2023-10-03")
+    fromDate: '2023-10-01',
+    toDate: "2023-10-03"
   }
   constructor(private admissionService: AdmissionService) {}
   ngOnInit(): void {
@@ -27,7 +27,7 @@ export class AdmissionComponent {
   }
   getAdmissionSummary() {
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe((data: any) => {
-      console.log('Addmission summary:', data);
+      this.admissionHeaders = data;
     })
   }
 }

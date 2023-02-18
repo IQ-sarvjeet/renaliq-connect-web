@@ -1,5 +1,7 @@
 export * from './admissionFilterModel';
 export * from './changePasswordModel';
+export * from './clinicalPatientMatrixFilter';
+export * from './clinicalPatientMatrixFilterModel';
 export * from './email2FAModel';
 export * from './forgotPasswordModel';
 export * from './loginModel';
