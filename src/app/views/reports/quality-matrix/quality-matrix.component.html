@@ -87,9 +87,10 @@
                   <td class="text-center">{{item.numerator}}</td>
                   <td class="text-center">{{item.denominator}}</td>
                   <td>
-                    <span class="fs-11 text-primary">50%</span>
+                    <span class="fs-11 text-primary">{{item.avgNumDeno}}%</span>
                     <div class="progress progress-sm">
-                      <div class="progress-bar bg-primary wp-50"></div>
+                      <div class="progress-bar  wp-50"
+                           [ngClass]="{'bg-success': item.isTargetAchive === true, 'bg-danger' : item.isTargetAchive === false}"></div>
                     </div>
                     <span class="fs-11" *ngIf="item.targetTypeSign=='='">Traget {{item.targetFormula}}{{item.targetTypeSign}} {{item.target}}</span>
                     <span class="fs-11" *ngIf="item.targetTypeSign=='%'">Traget {{item.targetFormula}} {{item.target}}{{item.targetTypeSign}}</span>
@@ -118,7 +119,7 @@
               <td>
                 <span class="fs-11 text-success">70%</span>
                 <div class="progress progress-sm">
-                  <div class="progress-bar bg-success wp-70"></div>
+                  <div class="progress-bar bg-primary bg-success wp-70"></div>
                 </div>
                 <span class="fs-11">Target > 80%</span>
               </td>
