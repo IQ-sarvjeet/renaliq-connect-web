@@ -754,8 +754,8 @@ a.chip:hover {
   background-color: $secondary;
   color: $white;
   position: fixed;
-  bottom: 40px;
-  right: 20px;
+  bottom: 45px;
+  right: 30px;
   z-index: 99;
   display: none;
   text-align: center;
@@ -776,6 +776,7 @@ a.chip:hover {
   }
   &:hover {
     opacity: 1;
+    background-color: $secondary;
   }
 }
 
@@ -3120,7 +3121,7 @@ table.dataTable > thead .sorting {
     display: flex;
     overflow: hidden;
     font-size: 0.703125rem;
-    background-color: #ebecf5;
+    background-color: $black-1;
     border-radius: 7px;
     box-shadow: 0 5px 10px rgba(227, 228, 237, 0.3);
     position: relative;
@@ -4437,7 +4438,7 @@ a.custom-blog-content:hover {
     border: 1px solid transparent;
 
     &:hover {
-      background: $offwhite;
+      background: $white;
       border-color: $border;
       transform: scaleX(1.03);
       box-shadow: rgba(169, 184, 200, 0.15) 0px 3px 9px 0px;
