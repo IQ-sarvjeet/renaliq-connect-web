@@ -9,10 +9,10 @@
   min-width: 0;
   word-wrap: break-word;
   background-color: $white;
-  border: inherit !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   background-clip: border-box;
   border-radius: 5px;
-  box-shadow: 0 4px 16px 0 rgba(169, 184, 200, 0.15);
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.05);
   > {
     hr {
       margin-right: 0;
@@ -789,7 +789,6 @@ a.card-tabs-item {
   min-width: 0;
   word-wrap: break-word;
   background-color: $white;
-  border: 1px solid transparent;
   background-clip: border-box;
   border-radius: 5px;
   > {
@@ -1070,6 +1069,7 @@ a.card-tabs-item {
   background-color: transparenrt;
   .card-title {
     margin-bottom: 0;
+    font-family: "Domine";
   }
   &.border-0 + .card-body {
     padding-top: 0;
@@ -1084,6 +1084,7 @@ a.card-tabs-item {
   font-size: 1rem;
   font-weight: 500;
   margin-bottom: 1.5rem;
+  font-family: "Domine";
 }
 .reg {
   text-align: center;

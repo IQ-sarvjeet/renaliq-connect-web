@@ -346,7 +346,7 @@ function sales() {
           style: {
             color: "#adb5be",
             fontSize: "14px",
-            fontFamily: "poppins, sans-serif",
+            fontFamily: "Rubik, sans-serif",
             fontWeight: 600,
             cssClass: "apexcharts-yaxis-label",
           },
