@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
 import { GridModel } from 'src/app/interfaces/grid.model';
+import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,64 +13,64 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
-  private _subscriptions = new Subscription();
-  errorMsg: any = "";
-  gridData: GridModel = {
-    items: [],
-    pagingModel:{ 
-      pageSize: environment.pageSize,
-      totalRecords:0,
-      currentPage: 1,
-      totalPages: 0
-    }
+  numeratorList :any=[];
+  metricList :any=[];
+ 
+  ngOnInit(): void {
+    this.bindMetricList();
+    this.bindNumeratorList();
   }
-  list: any = [];
+  constructor(private _interactionService: InteractionService){
+
+  }
   filterModel: ClinicalPatientMetricFilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
-    patientFilter: {
+    filter: {
       patientName: '',
       metricId: 0,
-      numerator: null,
+      numerator: 0,
       dateRange: []
     }
   };
-  constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService) { }
-
-  ngOnInit(): void {
-    this.bindClinicalPatientMetricList();
-    // let sub = this._interactionService.getpatientFilter$.subscribe((model) => 
-    // {
-    //   this.filterModel=model;
-    //   this.filterModel.currentPage = 1;
-    //   this.bindPatientList();
-    //  });
-    // this._subscriptions.add(sub);
+  bindNumeratorList() {
+    this.numeratorList = [
+      { 'Id': 167, 'Name': '167' },
+      { 'Id': 520, 'Name': '520' },
+      { 'Id': 733, 'Name': '733' },
+      { 'Id': 948, 'Name': '948' },
+      { 'Id': 814, 'Name': '814' },
+      { 'Id': 326, 'Name': '326' },
+    ]    
   }
-
-  public async bindClinicalPatientMetricList() {
-    try {
-      // var result =//await this._clinicalQualityMatrixService.apiPatientListPost(this.filterModel).toPromise();
-      // console.log(result);
-      // this.list = result?.data;
-      // this.gridData.items = result?.data;
-      // this.gridData.pagingModel = result?.pagingModel;
-    } 
-    catch (ex: any) {
-      this.errorMsg = ex.error?.message?.message;
-    }
+  bindMetricList() {
+    this.metricList = [
+      { 'Id': 1, 'Name': 'ACEI/ARB Adherence/Day' },
+      { 'Id': 2, 'Name': 'Acute Inpatient Admissions per 1,000 - CKD' },
+      { 'Id': 3, 'Name':  'Acute Inpatient Admissions per 1,000 - ESKD'},
+      { 'Id': 4, 'Name': 'Advanced Care Planning (ACP)' },
+      { 'Id': 5, 'Name': 'Blood Pressure Management' },
+      { 'Id': 6, 'Name': 'Engagement Rate' },
+      { 'Id': 7, 'Name': 'Completed Transplant Evaluation Rate' },
+      { 'Id': 8, 'Name': 'Diabetic Management - HbA1c less than 8.0' },
+      { 'Id': 9, 'Name': 'Diuretics Adherence' },
+      { 'Id': 10, 'Name': 'PD /Home New Starts' },
+      { 'Id': 11, 'Name': 'Planned Dialysis Starts' },
+      { 'Id': 12, 'Name': 'Readmission Rate (30)day' },
+      { 'Id': 13, 'Name': 'Statin Adherence' },
+      { 'Id': 14, 'Name': 'SGLT2 Inhibitor Rate' },
+      { 'Id': 15, 'Name': 'Vascular Access Prevalence (CVC Prevalence Rate)' },
+    ]    
   }
-  public gotoPage(page: number): void {
-    this.filterModel.currentPage = page;
-    this.bindClinicalPatientMetricList();
+  onNumeratorSelected(event:any){
+   this.filterModel.filter.numerator=event.value;
+   this.setFilter();
   }
-  getFormatDate(dob:Date){
-    return moment(dob).format('YY/MM/DD');
-  }
-  getAge(dob:any){
-    return moment().diff(dob, 'years');
-  }
-  ngOnDestroy() {
-    this._subscriptions.unsubscribe();
-  }
+  onMetricSelected(event:any){
+    this.filterModel.filter.metricId=event.value;
+    this.setFilter();
+   }
+   setFilter(){
+     this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
+   }
 }

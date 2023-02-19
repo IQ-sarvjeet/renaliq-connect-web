@@ -54,17 +54,20 @@
             ></span>
             <div class="user-details ms-2">
               <a class="text-secondary" href="#"
-                ><h6 class="mb-0">Skyler Hilda</h6></a
+                ><h6 class="mb-0">{{item.patientName}}</h6></a
               >
-              <span class="badge badge-xs bg-success">Approved</span>
+              <span *ngIf="item.status==='New'" class="badge badge-xs bg-light">{{item.status}}</span>
+              <span *ngIf="item.status==='Approved'" class="badge badge-xs bg-success">{{item.status}}</span>
+              <span *ngIf="item.status==='Rejected'" class="badge badge-xs bg-danger">{{item.status}}</span>
+              <span *ngIf="item.status==='Pending'" class="badge badge-xs bg-warning">{{item.status}}</span>
             </div>
           </div>
         </td>
-        <td>79/06/15 <strong class="fw-semibold">(43)</strong></td>
-        <td>CKD4</td>
-        <td>Other - Advance Care Planning</td>
-        <td class="text-center">43</td>
-        <td class="text-center">152</td>
+        <td>{{getFormatDate(item.dob)}} <strong class="fw-semibold"> ({{getAge(item.dob)}})</strong></td>
+        <td>{{item.stage}}</td>
+        <td>{{item.metricName}}</td>
+        <td class="text-center">{{item.numerator}}</td>
+        <td class="text-center">{{item.denominator}}</td>
         <td class="text-center">
           <a
             href="#"
@@ -86,4 +89,8 @@
       </tr>
     </tbody>
   </table>
+  <app-pagination 
+    [pagingModel]="gridData.pagingModel"
+    (gotoPageHandler)="gotoPage($event)">
+  </app-pagination>
 </div>

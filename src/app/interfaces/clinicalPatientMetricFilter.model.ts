@@ -1,12 +1,12 @@
 export interface ClinicalPatientMetricFilterModel {
     currentPage: number,
     pageSize: number,
-    patientFilter: ClinicalPatientMatrixFilter
+    filter: ClinicalPatientMatrixFilter
 }
 
 export interface ClinicalPatientMatrixFilter {
-      patientName: string,
-      metricId?: number,
-      numerator?: number |null,
-      dateRange?: Date[]
+      metricId?: number;
+      patientName?: string;
+      numerator?: number;
+      dateRange?: Array<Date>;
 }
