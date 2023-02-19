@@ -1,3 +1,4 @@
+import { MbscModule } from '@mobiscroll/angular';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +36,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     TwoFectorAuthComponent,
     SampleUiComponent
   ],
-  imports: [
+  imports: [ 
+    MbscModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,
