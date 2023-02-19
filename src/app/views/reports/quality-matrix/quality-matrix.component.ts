@@ -27,6 +27,7 @@ export class QualityMatrixComponent {
         console.log('onClose:', event);
       }
   };
+
   qualityMatircList: any = [];
 
   constructor(private _qualityService: ClinicalQualityMatrixService,
