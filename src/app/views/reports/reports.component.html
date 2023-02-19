@@ -24,7 +24,7 @@
               class="form-select form-select-sm"
               aria-label="Default select example"
             >
-              <option selected>Select Numerator</option>
+              <option selected value="">Select Numerator</option>
               <option value="1">Select Numerator One</option>
               <option value="2">Select Numerator Two</option>
               <option value="3">Select Numerator Three</option>
@@ -35,7 +35,7 @@
               class="form-select form-select-sm"
               aria-label="Default select example"
             >
-              <option selected>Advance Care Planning</option>
+              <option selected value="">Advance Care Planning</option>
               <option value="1">Advance Care Planning One</option>
               <option value="2">Advance Care Planning Two</option>
               <option value="3">Advance Care Planning Three</option>
@@ -69,7 +69,7 @@
 
   <div class="main-container container">
     <div class="card my-4 p-2">
-      <app-reports-grid></app-reports-grid>
+      <app-reports-grid [list]="gridData.items"></app-reports-grid>
     </div>
   </div>
 </div>
