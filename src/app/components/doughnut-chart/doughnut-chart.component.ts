@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { environment } from 'src/environments/environment';
 
 type BarChartConfig = {
   apiUrl: string;
@@ -66,11 +67,7 @@ export class DoughnutChartComponent {
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
-    // this.httpClient.get(url).subscribe((data: any) => {
-    //   console.log(data);
-    //   this.renderChart(data);
-    // })
-    fetch(url).then((response: any) => response.json())
+    fetch(`${environment.baseApiUrl}api/${url}`).then((response: any) => response.json())
     .then((data: any) => {
       this.renderChart(data);
     });

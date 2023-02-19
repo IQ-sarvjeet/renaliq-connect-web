@@ -12,18 +12,17 @@
             <li class="breadcrumb-item">
               <a href="/reports#/reports">Reports</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Clinical Quality Matrics
+            <li class="breadcrumb-item active" aria-current="page">
+              Clinical Quality Matrics
             </li>
           </ol>
         </div>
         <div class="col-6 col-sm-3 col-md-2">
           <div class="input-group">
-            <input
-              class="form-control fs-12"
-              placeholder="Date"
-              value="13 Sep 22 - 20 Sep 22"
-              type="text"
-            />
+            <input class="form-control fs-12"
+                   placeholder="Date"
+                   value="13 Sep 22 - 20 Sep 22"
+                   type="text" />
             <button class="input-group-text bg-white" type="button">
               <i class="fa fa-calendar"></i>
             </button>
@@ -33,24 +32,18 @@
     </div>
   </div>
   <div class="main-container container">
-    <div
-      class="alert alert-light bg-white alert-dismissible border mt-3 p-0 rounded-5"
-    >
-      <button
-        type="button"
-        class="btn-close p-2"
-        data-bs-dismiss="alert"
-        aria-hidden="true"
-      >
+    <div class="alert alert-light bg-white alert-dismissible border mt-3 p-0 rounded-5">
+      <button type="button"
+              class="btn-close p-2"
+              data-bs-dismiss="alert"
+              aria-hidden="true">
         ×
       </button>
       <div class="d-md-flex">
         <div class="flex-fill">
           <div class="p-5">
             <div class="mb-3">
-              <strong class="fw-semibold fs-16"
-                >What is Clinical Quality Matrics ?</strong
-              >
+              <strong class="fw-semibold fs-16">What is Clinical Quality Matrics ?</strong>
             </div>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             semper ligula efficitur diam venenatis, a tristique felis elementum.
@@ -62,11 +55,9 @@
           </div>
         </div>
         <div class="col-12 col-md-2 p-0 text-end">
-          <img
-            src="../../../../assets/images/risk-analysis.png"
-            alt="Patient Risk Stratification Analysis"
-            class="w-100 h-100"
-          />
+          <img src="../../../../assets/images/risk-analysis.png"
+               alt="Patient Risk Stratification Analysis"
+               class="w-100 h-100" />
         </div>
       </div>
     </div>
@@ -76,47 +67,53 @@
           <thead>
             <tr>
               <th>QUALITY BONUS TIER</th>
-              <th></th>
               <th class="text-center">POPULATION</th>
+              <th class="text-center">POPULATION COUNT</th>
               <th class="text-center">NUMERATOR</th>
-              <th>DENOMINATOR</th>
+              <th class="text-center">DENOMINATOR</th>
               <th class="text-center" width="120">PERFORMANCE</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="bg-light">
-              <td colspan="6"><div class="px-2">OTHER</div></td>
-            </tr>
-            <tr class="border-top">
-              <td>Engagement Rate</td>
-              <td class="text-center">CKD + ESKD</td>
-              <td class="text-center">83.00</td>
-              <td class="text-center">158</td>
-              <td>
-                <span class="fs-11 text-primary">50%</span>
-                <div class="progress progress-sm">
-                  <div class="progress-bar bg-primary wp-50"></div>
-                </div>
-                <span class="fs-11">Target > 80%</span>
-              </td>
-              <td class="text-center">
-                <a
-                  data-bs-target="#modalChart"
-                  data-bs-toggle="modal"
-                  href="javascript:void(0)"
-                  class="btn btn-outline-primary border-0"
-                  ><span
-                    class="icon icon-chart fs-16 mt-1 d-inline-block"
-                  ></span
-                ></a>
-                <a
-                  routerLink="/reports"
-                  class="btn btn-outline-primary border-0 ms-2"
-                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
-                ></a>
-              </td>
-            </tr>
-            <tr class="border-top">
+
+            <ng-container *ngFor="let matirc of qualityMatircList; let i=index;">
+              <tr class="bg-light">
+                <td colspan="6"><div class="px-2">{{matirc.tier}}</div></td>
+              </tr>
+              <ng-container *ngFor="let item of matirc.matrices; let m=index;">
+                <tr class="border-top">
+                  <td>{{item.martricName}}</td>
+                  <td class="text-center">{{item.type}}</td>
+                  <td class="text-center">{{item.numerator}}</td>
+                  <td class="text-center">{{item.denominator}}</td>
+                  <td>
+                    <span class="fs-11 text-primary">{{item.avgNumDeno}}{{item.targetTypeSign=='%'? '%':'' }}</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar  wp-50"
+                           [ngClass]="{'bg-success': item.isTargetAchive === true, 'bg-danger' : item.isTargetAchive === false}"></div>
+                    </div>
+                    <span class="fs-11" *ngIf="item.targetTypeSign=='='">Traget {{item.targetFormula}}{{item.targetTypeSign}} {{item.target}}</span>
+                    <span class="fs-11" *ngIf="item.targetTypeSign=='%'">Traget {{item.targetFormula}} {{item.target}}{{item.targetTypeSign}}</span>
+                  </td>
+                  <td class="text-center">
+                    <a data-bs-target="#modalChart"
+                       data-bs-toggle="modal"
+                       href="javascript:void(0)"
+                       (click)="openChart()"
+                       class="btn btn-outline-primary border-0">
+                      <span class="icon icon-chart fs-16 mt-1 d-inline-block"></span>
+                    </a>
+                    <a routerLink="/reports"
+                       class="btn btn-outline-primary border-0 ms-2">
+                      <span class="icon icon-list fs-16 mt-1 d-inline-block"></span>
+                    </a>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+
+            <!--<tr class="border-top">
               <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
               <td class="text-center">CKD</td>
               <td class="text-center">0.00</td>
@@ -124,7 +121,7 @@
               <td>
                 <span class="fs-11 text-success">70%</span>
                 <div class="progress progress-sm">
-                  <div class="progress-bar bg-success wp-70"></div>
+                  <div class="progress-bar bg-primary bg-success wp-70"></div>
                 </div>
                 <span class="fs-11">Target > 80%</span>
               </td>
@@ -133,6 +130,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -162,6 +160,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -191,6 +190,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -226,6 +226,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -255,6 +256,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -284,6 +286,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -313,6 +316,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -342,6 +346,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -376,6 +381,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -405,6 +411,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -434,6 +441,7 @@
                   data-bs-target="#modalChart"
                   data-bs-toggle="modal"
                   href="javascript:void(0)"
+                  (click)="openChart()"
                   class="btn btn-outline-primary border-0"
                   ><span
                     class="icon icon-chart fs-16 mt-1 d-inline-block"
@@ -445,7 +453,9 @@
                   ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
                 ></a>
               </td>
-            </tr>
+            </tr>-->
+
+
           </tbody>
         </table>
       </div>
@@ -457,9 +467,13 @@
 <div class="modal fade" id="modalChart">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
+      <app-spinner *ngIf="openChartModal"></app-spinner>
       <div class="modal-header bg-gray-200">
         <h4 class="modal-title fw-semibold">Other - Engagement Rate</h4>
-        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+        <button aria-label="Close"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                (click)="modalClosed()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -467,11 +481,11 @@
         <h5 class="text-center">Quaterly performence matrix - Q4 2022</h5>
 
         <div class="text-center">
-          <img
-            src="../../../../assets/images/chart.png"
-            alt="Quaterly performence matrix"
-            class="img-fluid"
-          />
+          <app-bar-chart [config]="chartConfig"></app-bar-chart>
+          <!--<img
+           src="../../../../assets/images/chart.png"
+           alt="Quaterly performence matrix"
+           class="img-fluid" />-->
         </div>
       </div>
     </div>
