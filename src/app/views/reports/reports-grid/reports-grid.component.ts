@@ -14,6 +14,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reports-grid.component.scss']
 })
 export class ReportsGridComponent implements OnInit  {
+  @Input() metricId : any;
   _subscriptions = new Subscription();
   errorMsg: any = "";
   gridData: GridModel = {
@@ -36,12 +37,11 @@ export class ReportsGridComponent implements OnInit  {
       dateRange: []
     }
   };
-  metricId :any;
+
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
-    private _interactionService: InteractionService, public route: ActivatedRoute,) { }
+    private _interactionService: InteractionService) { }
 
   ngOnInit(): void {
-    this.metricId= [this.route.snapshot.params['id']];
     this.bindClinicalPatientMetricList();
     let sub = this._interactionService.getClinicalPatientMatrixFilter$.subscribe((model) => 
     {
@@ -51,7 +51,21 @@ export class ReportsGridComponent implements OnInit  {
      });
     this._subscriptions.add(sub);
   }
-
+  
+  public async getMetric(metricId :any) {
+    if(metricId){
+      try {
+        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
+        if(result){
+          
+        }
+      } 
+      catch (ex: any) {
+        this.errorMsg = ex.error?.message?.message;
+      }
+    }
+  
+  }
   public async bindClinicalPatientMetricList() {
     try {
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();

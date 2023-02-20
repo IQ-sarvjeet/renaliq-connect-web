@@ -1,4 +1,7 @@
 <div class="table-responsive">
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    Error! {{ errorMsg }}
+  </div>
   <table
     id="data-table"
     class="table text-nowrap m-0 table-bordered table-striped"

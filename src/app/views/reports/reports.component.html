@@ -35,7 +35,6 @@
               aria-label="Default select example"
               (change)="onMetricSelected($event.target)"
             >
-            <option selected value="0">Select Metric</option>
             <option  *ngFor="let item of metricList" value="{{item.Id}}">{{item.Name}}</option>
             </select>
           </div>
@@ -63,11 +62,14 @@
         </div>
       </div>
     </div>
+    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+      Error! {{ errorMsg }}
+    </div>
   </div>
 
   <div class="main-container container">
     <div class="card my-4 p-2">
-      <app-reports-grid ></app-reports-grid>
+      <app-reports-grid [metricId]="metricId"></app-reports-grid>
     </div>
   </div>
 </div>

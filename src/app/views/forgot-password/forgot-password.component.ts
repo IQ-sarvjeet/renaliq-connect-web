@@ -45,7 +45,12 @@ export class ForgotPasswordComponent implements OnInit{
     };
     try {
       var result = await this._accountService.apiAccountForgotPasswordPost(model).toPromise();
-      this.successMsg ="Link to reset password has been sent.";
+      if(model.isEmail){
+      this.successMsg ="We've sent an email message containing a verification code to your inbox.";
+      }
+      else{
+        this.successMsg ="We've sent you a text message containing a verification code to your phone.";
+      }
     } catch (ex: any) {
       console.log(ex);
       this.errorMsg=ex.error?.message?.message;

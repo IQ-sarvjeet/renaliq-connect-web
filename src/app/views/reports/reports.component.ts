@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
@@ -11,14 +13,18 @@ import { environment } from 'src/environments/environment';
 export class ReportsComponent implements OnInit {
   numeratorList :any=[];
   metricList :any=[];
+  metricId :any;
+  errorMsg: any = "";
 
- 
+  constructor(private _interactionService: InteractionService,public route: ActivatedRoute,private _clinicalQualityMatrixService: ClinicalQualityMatrixService,){
+  }
   ngOnInit(): void {
+    this.metricId= this.route.snapshot.params['id'];
+    debugger;
     this.bindMetricList();
     this.bindNumeratorList();
   }
-  constructor(private _interactionService: InteractionService){
-  }
+  
   filterModel: ClinicalPatientMetricFilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
@@ -38,6 +44,17 @@ export class ReportsComponent implements OnInit {
       { 'Id': 814, 'Name': '814' },
       { 'Id': 326, 'Name': '326' },
     ]    
+  }
+  public async getMetricList() {
+      try {
+        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
+        if(result){
+          
+        }
+      } 
+      catch (ex: any) {
+        this.errorMsg = ex.error?.message?.message;
+      }
   }
   bindMetricList() {
     this.metricList = [
