@@ -27,8 +27,8 @@ export class AdmissionsGridComponent {
     sortOrderBy: 0
   }
   @Input() set dateRange(value: any) {
-    this.filters.formDateTime = value.fromDate;
-    this.filters.endDateTime = value.toDate;
+    this.filters.formDateTime = new Date(value.fromDate);
+    this.filters.endDateTime = new Date(value.toDate);
     this.getAdmissionList();
   }
   constructor(private admissionService: AdmissionService) {}

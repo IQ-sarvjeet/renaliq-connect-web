@@ -1,5 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import { Component } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { DataCardInput } from './summary-interfaces/data-card';
@@ -72,24 +71,6 @@ export class SummaryComponent {
   patientByAgeGroup: ProgressBarChartWidgetInput = {
     title: 'Patient By Age Group',
     apiUrl: 'Patient/summary/age',
-  };
-
-  @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
-  dateRangeFilter: any = "02/06/2023 - 02/14/2023";
-  dateRangeOptions: MbscDatepickerOptions = {
-      theme: 'ios',
-      controls: ['calendar'],
-      select: 'range',
-      defaultValue: this.dateRangeFilter,
-      onChange: (value: any) => {
-        console.log('Date change value:', value);
-      },
-      onActiveDateChange: (event, inst) => {
-        console.log('onActiveDateChange:', event, ':::event::', inst);
-      },
-      onClose: (event) => {
-        console.log('onClose:', event);
-      }
   };
   constructor(private _patientService: PatientService) {
     
