@@ -14,6 +14,7 @@ export class ReportsComponent implements OnInit {
   numeratorList :any=[];
   metricList :any=[];
   metricId :any;
+  metricName:string='';
   errorMsg: any = "";
 
   constructor(private _interactionService: InteractionService,public route: ActivatedRoute,private _clinicalQualityMatrixService: ClinicalQualityMatrixService,){
@@ -23,6 +24,7 @@ export class ReportsComponent implements OnInit {
     debugger;
     this.bindMetricList();
     this.bindNumeratorList();
+    this.getMetric();
   }
   
   filterModel: ClinicalPatientMetricFilterModel = {
@@ -45,41 +47,41 @@ export class ReportsComponent implements OnInit {
       { 'Id': 326, 'Name': '326' },
     ]    
   }
-  public async getMetricList() {
+  public async bindMetricList() {
       try {
-        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
+        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixMetricsGet().toPromise();
+        console.log(result);
         if(result){
-          
+          this.metricList =result;
         }
       } 
       catch (ex: any) {
         this.errorMsg = ex.error?.message?.message;
       }
   }
-  bindMetricList() {
-    this.metricList = [
-      { 'Id': 1, 'Name': 'ACEI/ARB Adherence/Day' },
-      { 'Id': 2, 'Name': 'Acute Inpatient Admissions per 1,000 - CKD' },
-      { 'Id': 3, 'Name':  'Acute Inpatient Admissions per 1,000 - ESKD'},
-      { 'Id': 4, 'Name': 'Advanced Care Planning (ACP)' },
-      { 'Id': 5, 'Name': 'Blood Pressure Management' },
-      { 'Id': 6, 'Name': 'Engagement Rate' },
-      { 'Id': 7, 'Name': 'Completed Transplant Evaluation Rate' },
-      { 'Id': 8, 'Name': 'Diabetic Management - HbA1c less than 8.0' },
-      { 'Id': 9, 'Name': 'Diuretics Adherence' },
-      { 'Id': 10, 'Name': 'PD /Home New Starts' },
-      { 'Id': 11, 'Name': 'Planned Dialysis Starts' },
-      { 'Id': 12, 'Name': 'Readmission Rate (30)day' },
-      { 'Id': 13, 'Name': 'Statin Adherence' },
-      { 'Id': 14, 'Name': 'SGLT2 Inhibitor Rate' },
-      { 'Id': 15, 'Name': 'Vascular Access Prevalence (CVC Prevalence Rate)' },
-    ]    
+  public async getMetric() {
+    if(this.metricId){
+      try {
+        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixMetricMetricIdGet(this.metricId).toPromise();
+        if(result){
+          this.metricName = result?.name;
+        }
+      } 
+      catch (ex: any) {
+        this.errorMsg = ex.error?.message?.message;
+      }
+    }
+  
   }
   onNumeratorSelected(event:any){
    this.filterModel.filter.numerator=event.value;
    this.setFilter();
   }
   onMetricSelected(event:any){
+    let metric = this.metricList.filter((x:any) => x.id == event.value);
+    if(metric){
+    this.metricName = metric[0]?.name;
+    }
     this.filterModel.filter.metricId=event.value;
     this.setFilter();
    }

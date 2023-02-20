@@ -5,14 +5,14 @@
     <div class="main-container container">
       <div class="row">
         <div class="col-12 col-sm-4 col-md-5">
-          <h1 class="page-title m-0">Clinical Quality Matrics - Patients by Engagement Rate </h1>
+          <h1 class="page-title m-0">Clinical Quality Matrics - {{metricName}} </h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a href="javascript:void(0);">Home</a>
             </li>
             <li class="breadcrumb-item" aria-current="page">Reports</li>
             <li class="breadcrumb-item" aria-current="page">Clinical Quality Matrics</li>
-            <li class="breadcrumb-item" aria-current="page">Engagement Rate</li>
+            <li class="breadcrumb-item" aria-current="page">{{metricName}}</li>
             <li class="breadcrumb-item active" aria-current="page">Patients</li>
 
 
@@ -30,12 +30,13 @@
             </select>
           </div>
           <div class="d-inline-block ms-3">
-            <select
+            <select  
               class="form-select form-select-sm"
               aria-label="Default select example"
               (change)="onMetricSelected($event.target)"
+              [(ngModel)]="metricId"
             >
-            <option  *ngFor="let item of metricList" value="{{item.Id}}">{{item.Name}}</option>
+            <option  *ngFor="let item of metricList"  value="{{item.id}}">{{item.name}}</option>
             </select>
           </div>
           <div class="d-inline-block ms-3">

@@ -42,6 +42,7 @@ export class ReportsGridComponent implements OnInit  {
     private _interactionService: InteractionService) { }
 
   ngOnInit(): void {
+    this.filterModel.filter.metricId=this.metricId;
     this.bindClinicalPatientMetricList();
     let sub = this._interactionService.getClinicalPatientMatrixFilter$.subscribe((model) => 
     {
@@ -52,20 +53,6 @@ export class ReportsGridComponent implements OnInit  {
     this._subscriptions.add(sub);
   }
   
-  public async getMetric(metricId :any) {
-    if(metricId){
-      try {
-        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
-        if(result){
-          
-        }
-      } 
-      catch (ex: any) {
-        this.errorMsg = ex.error?.message?.message;
-      }
-    }
-  
-  }
   public async bindClinicalPatientMetricList() {
     try {
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();

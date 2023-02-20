@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { ReportsComponent } from './reports.component';
 import { RouterModule, Routes } from '@angular/router';
 import { QualityMatrixComponent } from './quality-matrix/quality-matrix.component';
@@ -52,6 +53,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    FormsModule,
     HighchartsChartModule,
     SharedModule],
 })
