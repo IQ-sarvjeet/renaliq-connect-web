@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MbscModule } from '@mobiscroll/angular';
 import { CommonModule } from '@angular/common';
 import { AdmissionComponent } from './admission.component';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,6 +23,7 @@ const routes: Routes = [
     AdmissionsGridComponent
   ],
   imports: [
+    MbscModule,
     RouterModule.forChild(routes),
     CommonModule,
     SharedModule

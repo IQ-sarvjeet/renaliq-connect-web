@@ -69,7 +69,11 @@ export class DoughnutChartComponent {
   private fetchChartData(url: string): void {
     fetch(`${environment.baseApiUrl}api/${url}`).then((response: any) => response.json())
     .then((data: any) => {
-      this.renderChart(data);
+      const gridData: any = [];
+      data.forEach((item: any) => {
+        gridData.push([item.key, Number(item.value)]);
+      })
+      this.renderChart(gridData);
     });
   }
   private renderChart(chartData: any): void {

@@ -30,4 +30,12 @@ export class AdmissionComponent {
       this.admissionHeaders = data;
     })
   }
+  dateRangeChangeHandler($event: string) {
+    const dates: any = $event.split(' - ');
+    this.dateRange = {
+      fromDate: dates[0].replaceAll('/', '-'),
+      toDate: dates[1].replaceAll('/', '-')
+    }
+    this.getAdmissionSummary();
+  }
 }

@@ -19,12 +19,20 @@
         </div>
         <div class="col-6 col-sm-3 col-md-2">
           <div class="input-group">
-            <input class="form-control fs-12"
-                   placeholder="Date"
-                   value="13 Sep 22 - 20 Sep 22"
-                   type="text" />
-            <button class="input-group-text bg-white" type="button">
-              <i class="fa fa-calendar"></i>
+            <mbsc-datepicker 
+              class="form-control fs-12"
+              #rangeDatepicker
+              [options]="dateRangeOptions" 
+              placeholder="Select date range" ></mbsc-datepicker>
+            <!-- <input
+              class="form-control fs-12"
+              placeholder="Date"
+              value="13 Sep 22 - 20 Sep 22"
+              type="text"
+            /> -->
+            <button class="input-group-text bg-white"
+              type="button"
+              (click)="rangeDatepicker.open()">
             </button>
           </div>
         </div>

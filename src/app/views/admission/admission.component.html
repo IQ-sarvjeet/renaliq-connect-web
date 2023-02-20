@@ -1,5 +1,7 @@
 <div class="side-app">
-  <app-admission-header [admissionHeaders]="admissionHeaders"></app-admission-header>
+  <app-admission-header 
+    [admissionHeaders]="admissionHeaders"
+    (dateRangeChangeHandler)="dateRangeChangeHandler($event)"></app-admission-header>
   <div class="main-container container">
     <div class="card my-1 p-2">
       <app-admissions-admission-by
