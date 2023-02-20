@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import * as moment from 'moment';
-import { Subscription } from 'rxjs';
-import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
-import { GridModel } from 'src/app/interfaces/grid.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 
@@ -15,13 +11,13 @@ import { environment } from 'src/environments/environment';
 export class ReportsComponent implements OnInit {
   numeratorList :any=[];
   metricList :any=[];
+
  
   ngOnInit(): void {
     this.bindMetricList();
     this.bindNumeratorList();
   }
   constructor(private _interactionService: InteractionService){
-
   }
   filterModel: ClinicalPatientMetricFilterModel = {
     currentPage: 1,

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
@@ -35,9 +36,12 @@ export class ReportsGridComponent implements OnInit  {
       dateRange: []
     }
   };
-  constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,private _interactionService: InteractionService) { }
+  metricId :any;
+  constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
+    private _interactionService: InteractionService, public route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.metricId= [this.route.snapshot.params['id']];
     this.bindClinicalPatientMetricList();
     let sub = this._interactionService.getClinicalPatientMatrixFilter$.subscribe((model) => 
     {
