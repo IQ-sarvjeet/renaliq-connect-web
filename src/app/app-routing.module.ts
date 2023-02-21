@@ -48,6 +48,11 @@ const routes: Routes = [
       import('./views/reports/reports.module').then((m) => m.ReportsModule),
   },
   {
+    path: 'reports/:id',
+    loadChildren: () =>
+      import('./views/reports/reports.module').then((m) => m.ReportsModule),
+  },
+  {
     path: 'admission',
     loadChildren: () =>
       import('./views/admission/admission.module').then(

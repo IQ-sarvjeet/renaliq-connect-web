@@ -333,4 +333,79 @@ export class ClinicalQualityMatrixService {
         );
     }
 
+    /**
+     * 
+     * 
+     * @param metricId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiClinicalQualityMatrixMetricMetricIdGet(metricId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiClinicalQualityMatrixMetricMetricIdGet(metricId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiClinicalQualityMatrixMetricMetricIdGet(metricId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiClinicalQualityMatrixMetricMetricIdGet(metricId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (metricId === null || metricId === undefined) {
+            throw new Error('Required parameter metricId was null or undefined when calling apiClinicalQualityMatrixMetricMetricIdGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/ClinicalQualityMatrix/metric/${encodeURIComponent(String(metricId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiClinicalQualityMatrixMetricsGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiClinicalQualityMatrixMetricsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiClinicalQualityMatrixMetricsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiClinicalQualityMatrixMetricsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/ClinicalQualityMatrix/metrics`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
 }
