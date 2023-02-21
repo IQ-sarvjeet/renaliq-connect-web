@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { environment } from 'src/environments/environment';
@@ -16,10 +17,12 @@ export class ProgressBarChartWidgetComponent {
       this.loadChartData(inputValue.apiUrl);
     }
   }
+  constructor(private httpClient: HttpClient) {
+
+  }
   private loadChartData(url: string): void {
-    fetch(`${environment.baseApiUrl}api/${url}`).then((response: any) => response.json())
-    .then((data: any) => {
+    this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((data: any) => {
       this.chartData = data;
-    });
+    })
   }
 }
