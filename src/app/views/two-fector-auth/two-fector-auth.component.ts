@@ -24,7 +24,7 @@ export class TwoFectorAuthComponent {
   password: any = '';
   showToster: boolean = false;
   errorMessage: any;
-  successMsg :any ="";
+  successMsg: any = "";
   isDisabled: boolean = false;
   showLoading: boolean = false;
   showResendCode: boolean = false;
@@ -46,7 +46,7 @@ export class TwoFectorAuthComponent {
     private eventService: EventService) {
   }
   ngOnInit(): void {
-    
+
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
@@ -85,6 +85,8 @@ export class TwoFectorAuthComponent {
   };
 
   public async twoFALogin() {
+    this.successMsg = "";
+    this.errorMessage = "";
     const formValues = this.twoFAForm.value;
     let model: any = {
       username: this.username,
@@ -93,8 +95,6 @@ export class TwoFectorAuthComponent {
     };
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
-      this.successMsg = "";
-      this.errorMessage = "";
       if (result) {
         this.token();
       }
@@ -103,6 +103,11 @@ export class TwoFectorAuthComponent {
         this.showToster = true;
         this.errorMessage = error?.error?.message?.message;
         this.showLoading = false;
+        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+          this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+          this.route.navigate(['/login']);
+        }
+
       });
   };
 
@@ -144,8 +149,8 @@ export class TwoFectorAuthComponent {
     $event.preventDefault();
     this.successMsg = "";
     this.errorMessage = "";
-
-    this.isDisabled=true
+    this.showLoading = true;
+    this.isDisabled = true
     let model: any = {
       username: this.username,
       password: this.password,
@@ -153,18 +158,23 @@ export class TwoFectorAuthComponent {
     };
 
     await this._accountService.apiAccountAuthtokenResendPost(model).subscribe(async (result: any) => {
-      this.successMsg = "";
-      this.errorMessage = "";
       if (result) {
         this.showToster = true;
         this.isDisabled = false;
         this.successMsg = "Verification code sent successfully.";
+        this.showLoading = false;
       }
     },
       (error: any) => {
         this.showToster = true;
         this.isDisabled = false;
+        this.showLoading = false;
         this.errorMessage = error?.error?.message?.message;
+
+        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+          this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+          this.route.navigate(['/login']);
+        }
       });
   };
 
@@ -175,15 +185,15 @@ export class TwoFectorAuthComponent {
   ShowToastsResponse(event: any) {
     this.showToster = event;
   };
-  onDigitInput(event: any){
+  onDigitInput(event: any) {
     let element;
     if (event.code !== 'Backspace')
-         element = event.srcElement.nextElementSibling;
- 
-     if (event.code === 'Backspace')
-         element = event.srcElement.previousElementSibling;
+      element = event.srcElement.nextElementSibling;
 
-    if(element == null) {
+    if (event.code === 'Backspace')
+      element = event.srcElement.previousElementSibling;
+
+    if (element == null) {
       this.onSubmit();
       return;
     } else {
