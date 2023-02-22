@@ -1,5 +1,7 @@
 <div class="aside-section__outer row mx-0">
-  <div class="d-none d-md-flex wrap-figure100 col-md-6 col-lg-7 col-xl-8 px-0">
+  <div
+    class="d-none d-md-flex wrap-figure100 col-md-6 col-lg-7 col-xl-8 px-0 bg-gray-300"
+  >
     <div>
       <img
         class="wrap-figure100__img"
@@ -32,8 +34,8 @@
           <h2 class="fw-bold">Enter Verification Code<br />to Continue</h2>
         </div>
         <div class="text-gray mb-6">
-          We send to <span class="text-primary">{{username}}</span>. If
-          you don't see it, check your spam.
+          We send to <span class="text-primary">{{ username }}</span
+          >. If you don't see it, check your spam.
         </div>
 
         <label class="form-label my-3" for="verificationCode"
@@ -128,7 +130,8 @@
               [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
               [style.pointer-events]="isDisabled ? 'none' : 'auto'"
               class="d-inline-block fw-semibold mt-2"
-              *ngIf="showResendCode">Resend verification code</a
+              *ngIf="showResendCode"
+              >Resend verification code</a
             >
           </div>
           <div class="col-6 text-end py-2">
@@ -142,9 +145,11 @@
           </div>
         </div>
         <div>
-          <div class="alert alert-danger d-flex fade show"
+          <div
+            class="alert alert-danger d-flex fade show"
             *ngIf="errorMessage"
-            role="alert">
+            role="alert"
+          >
             <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
             <div class="flex-fill">
               {{ errorMessage }}
@@ -153,7 +158,7 @@
         </div>
       </div>
     </form>
-    
+
     <div>
       <hr class="mt-0" />
       <div class="text-center fs-12 op-0-5 text-sm-end pb-3">Ver : 2.0</div>
