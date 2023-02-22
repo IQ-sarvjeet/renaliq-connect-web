@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { MbscModule } from '@mobiscroll/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PatientComponent } from './patient.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
     AddPatientComponent,
   ],
   imports: [
+    MbscModule,
     RouterModule.forChild(routes),
     CommonModule,
     SharedModule,

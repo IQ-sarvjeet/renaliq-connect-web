@@ -117,15 +117,15 @@
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="Assignment" class="text-gray mb-1">Assignment</label>
-            <div class="input-group input-group-lg">
-              <input
-                class="fs-13 form-control"
-                placeholder="Date"
-                type="text"
-                [(ngModel)]="filter.patientFilter.assignment"
-                id="Assignment"
-              />
-              <button class="input-group-text bg-white" type="button">
+            <div class="input-group">
+              <mbsc-datepicker 
+                class="form-control fs-12"
+                #rangeDatepickerAssignment
+                [options]="dateRangeOptionsAssignment" 
+                placeholder="Select date range" ></mbsc-datepicker>
+              <button class="input-group-text bg-white"
+                type="button"
+                (click)="rangeDatepickerAssignment.open()">
                 <i class="fa fa-calendar"></i>
               </button>
             </div>
@@ -135,7 +135,19 @@
             <div class="input-group input-group-lg">
                 <!-- value="13 Sep 22 - 20 Sep 22" -->
                 <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-              <input
+                <div class="input-group">
+                  <mbsc-datepicker 
+                    class="form-control fs-12"
+                    #rangeDatepicker
+                    [options]="dateRangeOptions" 
+                    placeholder="Select date range" ></mbsc-datepicker>
+                  <button class="input-group-text bg-white"
+                    type="button"
+                    (click)="rangeDatepicker.open()">
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              <!-- <input
                 class="fs-13 form-control"
                 placeholder="Date"            
                 [(ngModel)]="filter.patientFilter.discharge"
@@ -144,7 +156,7 @@
               />
               <button class="input-group-text bg-white" type="button">
                 <i class="fa fa-calendar"></i>
-              </button>
+              </button> -->
             </div>
           </div>
         </div>

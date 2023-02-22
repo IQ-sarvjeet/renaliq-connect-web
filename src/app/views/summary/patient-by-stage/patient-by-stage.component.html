@@ -6,10 +6,9 @@
   <div class="card-body pt-3">
     <div class="donut-chart__wrapper">
       <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
-      <app-doughnut-chart
-        [config]="{ apiUrl: 'assets/mockData/doughnutchart.json', title: '' }"
-      >
-      </app-doughnut-chart>
+      <app-doughnut-chart 
+          [config]="chartConfig">
+        </app-doughnut-chart>
     </div>
   </div>
 </div>

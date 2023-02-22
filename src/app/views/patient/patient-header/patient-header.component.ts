@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
@@ -9,6 +10,39 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./patient-header.component.scss']
 })
 export class PatientHeaderComponent {
+  @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
+  @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
+  dateRangeFilter: any = "02/06/2023 - 02/14/2023";
+  dateRangeOptions: MbscDatepickerOptions = {
+    theme: 'ios',
+    controls: ['calendar'],
+    select: 'range',
+    defaultValue: this.dateRangeFilter,
+    onChange: (value: any) => {
+      console.log('Date change value:', value);
+    },
+    onActiveDateChange: (event, inst) => {
+      console.log('onActiveDateChange:', event, ':::event::', inst);
+    },
+    onClose: (event) => {
+      console.log('onClose:', event);
+    }
+  };
+  dateRangeOptionsAssignment: MbscDatepickerOptions = {
+    theme: 'ios',
+    controls: ['calendar'],
+    select: 'range',
+    defaultValue: this.dateRangeFilter,
+    onChange: (value: any) => {
+      console.log('Date change value:', value);
+    },
+    onActiveDateChange: (event, inst) => {
+      console.log('onActiveDateChange:', event, ':::event::', inst);
+    },
+    onClose: (event) => {
+      console.log('onClose:', event);
+    }
+  };
   constructor(  private _interactionService: InteractionService,){
 
   }
