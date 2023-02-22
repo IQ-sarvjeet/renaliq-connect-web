@@ -60,11 +60,16 @@ export class ReportsComponent implements OnInit {
   bindNumeratorList() {
     this.numeratorList = [
       { 'Id': 167, 'Name': '167' },
+      { 'Id': 172, 'Name': '172' },
+      { 'Id': 244, 'Name': '244' },
+      { 'Id': 309, 'Name': '309' },
+      { 'Id': 326, 'Name': '326' },
+      { 'Id': 338, 'Name': '338' },
       { 'Id': 520, 'Name': '520' },
       { 'Id': 733, 'Name': '733' },
-      { 'Id': 948, 'Name': '948' },
       { 'Id': 814, 'Name': '814' },
-      { 'Id': 326, 'Name': '326' },
+      { 'Id': 948, 'Name': '948' },
+      { 'Id': 986, 'Name': '986' },
     ]    
   }
   public async bindMetricList() {
