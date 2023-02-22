@@ -79,6 +79,8 @@ export class TwoFectorAuthComponent {
 
   public async onSubmit() {
     this.showLoading = true;
+    this.successMsg = "";
+    this.errorMessage = "";
     await this.twoFALogin();
   };
 
@@ -91,6 +93,8 @@ export class TwoFectorAuthComponent {
     };
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
+      this.successMsg = "";
+      this.errorMessage = "";
       if (result) {
         this.token();
       }
@@ -138,6 +142,9 @@ export class TwoFectorAuthComponent {
 
   public async resendTwoFAToken($event: any) {
     $event.preventDefault();
+    this.successMsg = "";
+    this.errorMessage = "";
+
     this.isDisabled=true
     let model: any = {
       username: this.username,
@@ -146,7 +153,8 @@ export class TwoFectorAuthComponent {
     };
 
     await this._accountService.apiAccountAuthtokenResendPost(model).subscribe(async (result: any) => {
-      this.successMsg ="";
+      this.successMsg = "";
+      this.errorMessage = "";
       if (result) {
         this.showToster = true;
         this.isDisabled = false;
