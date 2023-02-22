@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
@@ -13,15 +14,34 @@ import { environment } from 'src/environments/environment';
 export class ReportsComponent implements OnInit {
   numeratorList :any=[];
   metricList :any=[];
-  metricId :any;
   metricName:string='';
+  dateRange:any=[];
   errorMsg: any = "";
-
+  dateRangeOptions: MbscDatepickerOptions = {
+    theme: 'ios',
+    controls: ['calendar'],
+    select: 'range',
+    // defaultValue: this.dateRangeFilter,
+    onChange: (value: any) => {
+      //console.log('Date change value:', value);
+    },
+    onActiveDateChange: (event, inst) => {
+      //console.log('onActiveDateChange:', event, ':::event::', inst);
+    },
+    onClose: (event) => {
+      let dateRange = event.value.filter((x:any)=>x==null);
+      if(dateRange.length  != 0) 
+      {
+        this.filterModel.filter.dateRange = [];
+      }
+      this.setFilter();
+      console.log('onClose:', event);
+    }
+  };
   constructor(private _interactionService: InteractionService,public route: ActivatedRoute,private _clinicalQualityMatrixService: ClinicalQualityMatrixService,){
   }
   ngOnInit(): void {
-    this.metricId= this.route.snapshot.params['id'];
-    debugger;
+    this.filterModel.filter.metricId =this.route.snapshot.params['id'];
     this.bindMetricList();
     this.bindNumeratorList();
     this.getMetric();
@@ -60,9 +80,9 @@ export class ReportsComponent implements OnInit {
       }
   }
   public async getMetric() {
-    if(this.metricId){
+    if(this.filterModel.filter.metricId){
       try {
-        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixMetricMetricIdGet(this.metricId).toPromise();
+        var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixMetricMetricIdGet(this.filterModel.filter.metricId).toPromise();
         if(result){
           this.metricName = result?.name;
         }
@@ -71,10 +91,13 @@ export class ReportsComponent implements OnInit {
         this.errorMsg = ex.error?.message?.message;
       }
     }
-  
+    else{
+      this.errorMsg="Metric id from route is not found.";
+      console.log(this.errorMsg);
+    }
+    //this.setFilter();
   }
-  onNumeratorSelected(event:any){
-   this.filterModel.filter.numerator=event.value;
+  onNumeratorSelected(){
    this.setFilter();
   }
   onMetricSelected(event:any){
@@ -82,7 +105,7 @@ export class ReportsComponent implements OnInit {
     if(metric){
     this.metricName = metric[0]?.name;
     }
-    this.filterModel.filter.metricId=event.value;
+    //this.filterModel.filter.metricId=event.value;
     this.setFilter();
    }
    setFilter(){

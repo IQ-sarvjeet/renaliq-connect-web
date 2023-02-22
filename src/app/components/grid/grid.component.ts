@@ -48,11 +48,25 @@ export class GridComponent implements OnInit {
     {
       this.filterModel=model;
       this.filterModel.currentPage = 1;
+
+      if(this.filterModel.patientFilter.assignment?.length == 2){
+        let assignmentDate =this.filterModel.patientFilter.assignment;
+        this.filterModel.patientFilter.assignment[0] = this.GetDateWithOutTimeZone(assignmentDate[0]);
+        this.filterModel.patientFilter.assignment[1] = this.GetDateWithOutTimeZone(assignmentDate[1]);
+      }
+      if(this.filterModel.patientFilter.discharge?.length == 2){
+        let discharge =this.filterModel.patientFilter.discharge;
+        this.filterModel.patientFilter.discharge[0] =this.GetDateWithOutTimeZone(discharge[0]);
+        this.filterModel.patientFilter.discharge[1] = this.GetDateWithOutTimeZone(discharge[1]);
+      }
       this.bindPatientList();
      });
     this._subscriptions.add(sub);
   }
-
+ public GetDateWithOutTimeZone(date :Date)
+ {
+   return new Date(date.getTime() +  Math.abs(date.getTimezoneOffset()*60000) );
+ }
   public async bindPatientList() {
     try {
       var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
