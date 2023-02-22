@@ -62,19 +62,18 @@ export class DoughnutChartComponent {
     }]
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
-    fetch(`${environment.baseApiUrl}api/${url}`).then((response: any) => response.json())
-    .then((data: any) => {
+    this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((response: any) => {
       const gridData: any = [];
-      data.forEach((item: any) => {
-        gridData.push([item.key, Number(item.value)]);
+      Object.keys(response).forEach((key: string) => {
+        gridData.push([key, response[key]]);
       })
       this.renderChart(gridData);
-    });
+    })
   }
   private renderChart(chartData: any): void {
     const series = this.options.series;
