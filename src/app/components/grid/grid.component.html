@@ -76,7 +76,10 @@
             >
           </div>
         </td>
-      </tr>    
+      </tr>  
+      <tr *ngIf="list.length ==0">
+        <td >No Record Found.</td>
+      </tr>  
     </tbody>
   </table>
   <app-pagination 

@@ -121,8 +121,10 @@
               <mbsc-datepicker 
                 class="form-control fs-12"
                 #rangeDatepickerAssignment
-                [options]="dateRangeOptionsAssignment" 
+                [options]="dateRangeOptionsAssignment"
+                [(ngModel)]="filter.patientFilter.assignment" 
                 placeholder="Select date range" ></mbsc-datepicker>
+                
               <button class="input-group-text bg-white"
                 type="button"
                 (click)="rangeDatepickerAssignment.open()">
@@ -140,6 +142,7 @@
                     class="form-control fs-12"
                     #rangeDatepicker
                     [options]="dateRangeOptions" 
+                    [(ngModel)]="filter.patientFilter.discharge"
                     placeholder="Select date range" ></mbsc-datepicker>
                   <button class="input-group-text bg-white"
                     type="button"
@@ -147,16 +150,6 @@
                     <i class="fa fa-calendar"></i>
                   </button>
                 </div>
-              <!-- <input
-                class="fs-13 form-control"
-                placeholder="Date"            
-                [(ngModel)]="filter.patientFilter.discharge"
-                type="text"
-                id="Discharge"
-              />
-              <button class="input-group-text bg-white" type="button">
-                <i class="fa fa-calendar"></i>
-              </button> -->
             </div>
           </div>
         </div>

@@ -48,11 +48,19 @@ export class ReportsGridComponent implements OnInit  {
     {
       this.filterModel=model;
       this.filterModel.currentPage = 1;
+      if(this.filterModel.filter.dateRange?.length == 2){
+        let discharge =this.filterModel.filter.dateRange;
+        this.filterModel.filter.dateRange[0] =this.GetDateWithOutTimeZone(discharge[0]);
+        this.filterModel.filter.dateRange[1] = this.GetDateWithOutTimeZone(discharge[1]);
+      }
       this.bindClinicalPatientMetricList();
      });
     this._subscriptions.add(sub);
   }
-  
+  public GetDateWithOutTimeZone(date :Date)
+  {
+   return new Date(date.getTime() +  Math.abs(date.getTimezoneOffset()*60000) );
+  }
   public async bindClinicalPatientMetricList() {
     try {
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
