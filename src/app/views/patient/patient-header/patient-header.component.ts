@@ -17,14 +17,19 @@ export class PatientHeaderComponent {
     theme: 'ios',
     controls: ['calendar'],
     select: 'range',
-    defaultValue: this.dateRangeFilter,
+    // defaultValue: this.dateRangeFilter,
     onChange: (value: any) => {
-      console.log('Date change value:', value);
+      //console.log('Date change value:', value);
     },
     onActiveDateChange: (event, inst) => {
-      console.log('onActiveDateChange:', event, ':::event::', inst);
+      //console.log('onActiveDateChange:', event, ':::event::', inst);
     },
     onClose: (event) => {
+      let discharge = event.value.filter((x:any)=>x==null);
+      if(discharge.length  != 0) 
+      {
+        this.filter.patientFilter.discharge = [];
+      }
       console.log('onClose:', event);
     }
   };
@@ -32,14 +37,19 @@ export class PatientHeaderComponent {
     theme: 'ios',
     controls: ['calendar'],
     select: 'range',
-    defaultValue: this.dateRangeFilter,
+    // defaultValue: this.dateRangeFilter,
     onChange: (value: any) => {
-      console.log('Date change value:', value);
+      //console.log('Date change value:', value);
     },
     onActiveDateChange: (event, inst) => {
-      console.log('onActiveDateChange:', event, ':::event::', inst);
+      //console.log('onActiveDateChange:', event, ':::event::', inst);
     },
     onClose: (event) => {
+      let assignment = event.value.filter((x:any)=>x==null);
+      if(assignment.length != 0)
+      {
+        this.filter.patientFilter.assignment = [];
+      }
       console.log('onClose:', event);
     }
   };
