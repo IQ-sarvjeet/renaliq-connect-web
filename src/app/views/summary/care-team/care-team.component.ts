@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PatientService } from 'src/app/api-client';
 import { CareTeam } from '../summary-interfaces/care-team';
 
 @Component({
@@ -8,11 +9,12 @@ import { CareTeam } from '../summary-interfaces/care-team';
 })
 export class CareTeamComponent {
   careTeamList: CareTeam[] = [];
+  constructor(private _patientService: PatientService) {
+
+  }
   ngOnInit() {
-    fetch('assets/mockData/careTeamList.json')
-    .then(response => response.json())
-    .then((data: CareTeam[]) => {
-      this.careTeamList = data;
+    this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
+      this.careTeamList = careTeamMemberList;
     })
   }
 }

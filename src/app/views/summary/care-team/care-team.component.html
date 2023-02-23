@@ -13,6 +13,7 @@
         <a href="#" class="text-dark">
           <div class="media mt-0 d-sm-flex d-block">
             <img
+              *ngIf="member.imageSrc"
               class="avatar-md rounded-circle me-3 my-auto"
               [src]="member.imageSrc"
               alt="Image description"
