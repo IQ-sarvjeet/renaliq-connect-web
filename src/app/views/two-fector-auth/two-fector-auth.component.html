@@ -34,128 +34,119 @@
           <h2 class="fw-bold">Enter Verification Code<br />to Continue</h2>
         </div>
         <div class="text-gray mb-6">
-          We send to <span class="text-primary">{{ username }}</span
-          >. If you don't see it, check your spam.
+          We send to <span class="text-primary">{{ username }}</span>. If you don't see it, check your spam.
         </div>
 
-        <label class="form-label my-3" for="verificationCode"
-          ><i class="zmdi zmdi-lock me-1" aria-hidden="true"></i> Verification
-          Code</label
-        >
+        <label class="form-label my-3" for="verificationCode">
+          <i class="zmdi zmdi-lock me-1" aria-hidden="true"></i> Verification
+          Code
+        </label>
         <div class="wrap-input100">
           <div class="form-row">
             <div class="col-12">
-              <input
-                class="input100 ps-4 text-center verification-code-input"
-                type="text"
-                maxlength="1"
-                name="pass"
-                formControlName="digit1"
-                id="verificationCode"
-                (keyup)="onDigitInput($event)"
-                required
-              />
-              <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
-                type="text"
-                name="pass"
-                maxlength="1"
-                formControlName="digit2"
-                (keyup)="onDigitInput($event)"
-                id="verificationCode"
-                required
-              />
-              <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
-                type="text"
-                name="pass"
-                maxlength="1"
-                formControlName="digit3"
-                id="verificationCode"
-                (keyup)="onDigitInput($event)"
-                required
-              />
-              <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
-                type="text"
-                name="pass"
-                maxlength="1"
-                formControlName="digit4"
-                id="verificationCode"
-                (keyup)="onDigitInput($event)"
-                required
-              />
-              <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
-                type="text"
-                name="pass"
-                maxlength="1"
-                formControlName="digit5"
-                (keyup)="onDigitInput($event)"
-                id="verificationCode"
-                required
-              />
-              <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
-                type="text"
-                name="pass"
-                maxlength="1"
-                formControlName="digit6"
-                (keyup)="onDigitInput($event)"
-                id="verificationCode"
-                required
-              />
+              <input class="input100 ps-4 text-center verification-code-input"
+                     type="text"
+                     maxlength="1"
+                     name="pass"
+                     formControlName="digit1"
+                     id="verificationCode"
+                     (keyup)="onDigitInput($event)"
+                     required />
+              <input class="input100 ps-4 text-center verification-code-input ml2perc"
+                     type="text"
+                     name="pass"
+                     maxlength="1"
+                     formControlName="digit2"
+                     (keyup)="onDigitInput($event)"
+                     id="verificationCode"
+                     required />
+              <input class="input100 ps-4 text-center verification-code-input ml2perc"
+                     type="text"
+                     name="pass"
+                     maxlength="1"
+                     formControlName="digit3"
+                     id="verificationCode"
+                     (keyup)="onDigitInput($event)"
+                     required />
+              <input class="input100 ps-4 text-center verification-code-input ml2perc"
+                     type="text"
+                     name="pass"
+                     maxlength="1"
+                     formControlName="digit4"
+                     id="verificationCode"
+                     (keyup)="onDigitInput($event)"
+                     required />
+              <input class="input100 ps-4 text-center verification-code-input ml2perc"
+                     type="text"
+                     name="pass"
+                     maxlength="1"
+                     formControlName="digit5"
+                     (keyup)="onDigitInput($event)"
+                     id="verificationCode"
+                     required />
+              <input class="input100 ps-4 text-center verification-code-input ml2perc"
+                     type="text"
+                     name="pass"
+                     maxlength="1"
+                     formControlName="digit6"
+                     (keyup)="onDigitInput($event)"
+                     id="verificationCode"
+                     required />
             </div>
           </div>
 
           <!-- <span
-          class="text-danger"
-          *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
-        >
-          Verification code is required
-        </span> -->
-          <span
-            class="text-danger"
-            *ngIf="twoFAForm.touched && twoFAForm.invalid"
-          >
+      class="text-danger"
+      *ngIf="(pass.touched || twoFAForm.submitted) && pass.invalid"
+    >
+      Verification code is required
+    </span> -->
+          <span class="text-danger"
+                *ngIf="twoFAForm.touched && twoFAForm.invalid">
             Verification code is required
           </span>
         </div>
 
         <div class="row">
           <div class="col-6 py-2">
-            <a
-              href="javascript: void(0);"
-              (click)="resendTwoFAToken($event)"
-              [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
-              [style.pointer-events]="isDisabled ? 'none' : 'auto'"
-              class="d-inline-block fw-semibold mt-2"
-              *ngIf="showResendCode"
-              >Resend verification code</a
-            >
+            <a href="javascript: void(0);"
+               (click)="resendTwoFAToken($event)"
+               [style.cursor]="isDisabled ? 'not-allowed' : 'pointer'"
+               [style.pointer-events]="isDisabled ? 'none' : 'auto'"
+               class="d-inline-block fw-semibold mt-2"
+               *ngIf="showResendCode">Resend verification code</a>
           </div>
           <div class="col-6 text-end py-2">
-            <button
-              type="submit"
-              class="btn btn-dark py-2 px-6"
-              [disabled]="!twoFAForm.valid"
-            >
-              Confirm
+            <!--[disabled]="!twoFAForm.valid"-->
+            <button type="submit"
+                    class="btn btn-dark py-2 px-6">
+              Continue
             </button>
           </div>
         </div>
         <div>
-          <div
-            class="alert alert-danger d-flex fade show"
-            *ngIf="errorMessage"
-            role="alert"
-          >
+          <div class="alert alert-danger d-flex fade show"
+               *ngIf="errorMessage"
+               role="alert">
             <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
             <div class="flex-fill">
               {{ errorMessage }}
             </div>
           </div>
         </div>
+
+        <!---->
+        <div>
+          <div class="alert alert-success d-flex fade show"
+               *ngIf="successMsg"
+               role="alert">
+            <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+            <div class="flex-fill">
+              {{ successMsg }}
+            </div>
+          </div>
+        </div>
+
       </div>
     </form>
 
