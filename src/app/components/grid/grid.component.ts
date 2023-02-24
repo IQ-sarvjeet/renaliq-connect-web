@@ -15,7 +15,7 @@ declare const $: any;
 export class GridComponent implements OnInit {
   private _subscriptions = new Subscription();
   errorMsg: any = "";
-
+  showLoading: boolean = false;
   gridData: GridModel = {
     items: [],
     pagingModel:{ 
@@ -69,14 +69,16 @@ export class GridComponent implements OnInit {
  }
   public async bindPatientList() {
     try {
+      this.showLoading = true;
       var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
-      console.log(result);
       this.list = result?.data;
       this.gridData.items = result?.data;
       this.gridData.pagingModel = result?.pagingModel;
+      this.showLoading = false;
     } 
     catch (ex: any) {
       this.errorMsg = ex.error?.message?.message;
+      this.showLoading = false;
     }
   }
   public gotoPage(page: number): void {
