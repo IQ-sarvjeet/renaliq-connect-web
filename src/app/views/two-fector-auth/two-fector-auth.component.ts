@@ -54,7 +54,7 @@ export class TwoFectorAuthComponent {
     this.redirectSummaryDashboard();
 
     this.getTwoFAUserDetail();
-    this.timerSubscription = timer(200).subscribe(() => {
+    this.timerSubscription = timer(100).subscribe(() => {
       this.showResendCode = true;
     })
   }
