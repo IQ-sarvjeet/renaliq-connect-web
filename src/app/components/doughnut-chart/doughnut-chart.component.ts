@@ -46,7 +46,13 @@ export class DoughnutChartComponent {
       }
     },
     tooltip: {
-      valueSuffix: '%',
+      enabled: true,
+      style:{
+        color: '#333333',
+        cursor: 'default',
+        fontSize: '12px',
+        whiteSpace: 'nowrap',
+      }
     },
     legend: {
       align: 'right',
