@@ -38,7 +38,9 @@
       <div>No Patient found!</div>
     </div>
   </div>
-  <div [ngClass]="{ 'search-results': patientSearchedList.length > 0 }">
+  <div [ngClass]="{ 'search-results': patientSearchedList.length > 0 }"
+    *ngIf="visibleDropdown"
+    #patientSearchList>
     <div
       *ngFor="let patient of patientSearchedList"
       class="search-results__item"

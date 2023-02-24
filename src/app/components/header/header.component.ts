@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { AccountService, PracticeService } from '../../api-client';

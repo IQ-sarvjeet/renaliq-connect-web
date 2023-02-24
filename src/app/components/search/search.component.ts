@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { PatientService } from 'src/app/api-client';
@@ -10,10 +10,22 @@ import { PatientService } from 'src/app/api-client';
 })
 export class SearchComponent {
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('patientSearchList') patientSearchList!: ElementRef;
+  visibleDropdown: boolean = false;
+
   patientSearchedList: any = [];
   patientNotFound: boolean = false;
-  constructor(private route: Router, private _patientService: PatientService) {
+  constructor(private route: Router,
+    private _patientService: PatientService,
+    private renderer: Renderer2) {
 
+  }
+  ngOnInit() {
+    this.renderer.listen('window', 'click',(e: Event)=>{
+      if(e.target !== this.patientSearchList.nativeElement) {
+        this.visibleDropdown = false;
+      }
+    });
   }
   ngAfterViewInit() {
     fromEvent(this.searchInput.nativeElement,'keyup')
@@ -32,6 +44,7 @@ export class SearchComponent {
   }
   filterPatients(text: string) {
     this.patientNotFound = false;
+    this.visibleDropdown = true;
     this._patientService.apiPatientSearchSearchStringGet(text).subscribe((response: any) => {
       this.patientSearchedList = response;
       if (response.length === 0) {
