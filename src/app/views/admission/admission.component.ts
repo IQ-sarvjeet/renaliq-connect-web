@@ -9,6 +9,7 @@ declare const $: any;
   styleUrls: ['./admission.component.scss'],
 })
 export class AdmissionComponent {
+  showLoading: boolean = false;
   admissionHeaders: AdmissionHeaders = {
     admissionBy: 19,
     dischargeBy: 19,
@@ -26,8 +27,10 @@ export class AdmissionComponent {
     this.getAdmissionSummary();
   }
   getAdmissionSummary() {
+    this.showLoading = true;
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe((data: any) => {
       this.admissionHeaders = data;
+      this.showLoading = false;
     })
   }
   dateRangeChangeHandler($event: string) {
