@@ -54,7 +54,7 @@ export class TwoFectorAuthComponent {
     this.redirectSummaryDashboard();
 
     this.getTwoFAUserDetail();
-    this.timerSubscription = timer(10000).subscribe(() => {
+    this.timerSubscription = timer(100).subscribe(() => {
       this.showResendCode = true;
     })
   }
@@ -105,7 +105,12 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         if (this.errorMessage == 'Exhausted the number of account verification attempts') {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          this.route.navigate(['/login']);
+
+          let timers = timer(1000).subscribe(() => {
+            this.route.navigate(['/login']);
+          })
+
+
         }
 
       });
@@ -173,7 +178,9 @@ export class TwoFectorAuthComponent {
 
         if (this.errorMessage == 'Exhausted the number of account verification attempts') {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          this.route.navigate(['/login']);
+          let timers = timer(1000).subscribe(() => {
+            this.route.navigate(['/login']);
+          })
         }
       });
   };
