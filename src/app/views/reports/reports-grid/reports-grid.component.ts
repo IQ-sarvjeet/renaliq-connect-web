@@ -17,6 +17,7 @@ export class ReportsGridComponent implements OnInit  {
   @Input() metricId : any;
   _subscriptions = new Subscription();
   errorMsg: any = "";
+  showLoading: boolean = false;
   gridData: GridModel = {
     items: [],
     pagingModel:{ 
@@ -63,13 +64,16 @@ export class ReportsGridComponent implements OnInit  {
   }
   public async bindClinicalPatientMetricList() {
     try {
+      this.showLoading = true;
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
       this.list = result?.data;
       this.gridData.items = result?.data;
       this.gridData.pagingModel = result?.pagingModel;
+      this.showLoading = false;
     } 
     catch (ex: any) {
       this.errorMsg = ex.error?.message?.message;
+      this.showLoading = false;
     }
   }
   getFormatDate(dob:Date){

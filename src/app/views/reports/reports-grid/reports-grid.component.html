@@ -1,4 +1,5 @@
 <div class="table-responsive">
+  <app-spinner *ngIf="showLoading" ></app-spinner>
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     Error! {{ errorMsg }}
   </div>
@@ -90,7 +91,7 @@
           </div>
         </td>
       </tr>
-      <tr *ngIf="list.length ==0">
+      <tr *ngIf="list.length ==0 && !showLoading">
         <td class="text-center">No Record Found.</td>
       </tr>
     </tbody>
