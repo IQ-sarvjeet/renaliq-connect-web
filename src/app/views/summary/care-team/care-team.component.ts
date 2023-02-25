@@ -8,13 +8,19 @@ import { CareTeam } from '../summary-interfaces/care-team';
   styleUrls: ['./care-team.component.scss']
 })
 export class CareTeamComponent {
+  showLoading: boolean = false;
   careTeamList: CareTeam[] = [];
   constructor(private _patientService: PatientService) {
 
   }
   ngOnInit() {
+    this.getCareTeamList();
+  }
+  private getCareTeamList() {
+    this.showLoading = true;
     this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
       this.careTeamList = careTeamMemberList;
+      this.showLoading = false;
     })
   }
 }

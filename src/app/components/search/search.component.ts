@@ -20,13 +20,7 @@ export class SearchComponent {
     private renderer: Renderer2) {
 
   }
-  ngOnInit() {
-    this.renderer.listen('window', 'click',(e: Event)=>{
-      if(e.target !== this.patientSearchList.nativeElement) {
-        this.visibleDropdown = false;
-      }
-    });
-  }
+  ngOnInit() {}
   ngAfterViewInit() {
     fromEvent(this.searchInput.nativeElement,'keyup')
       .pipe(
@@ -41,6 +35,11 @@ export class SearchComponent {
         const text = searchText.target.value;
         this.filterPatients(text);
       });
+    this.renderer.listen('window', 'click',(e: Event)=>{
+      if(!this.patientSearchList || e.target !== this.patientSearchList.nativeElement) {
+        this.visibleDropdown = false;
+      }
+    });
   }
   filterPatients(text: string) {
     this.patientNotFound = false;

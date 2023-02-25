@@ -1,6 +1,7 @@
 <!-- <div #doughnutChart style="width: '100%'; height: '100%';">
 
 </div> -->
+<app-spinner *ngIf="showLoading"></app-spinner>
 <highcharts-chart
     style="width: 100%; height: 100%; display: block;"
     [Highcharts]="Highcharts"

@@ -1,4 +1,5 @@
 <div class="side-app">
+  <app-spinner *ngIf="showLoading"></app-spinner>
   <app-admission-header 
     [admissionHeaders]="admissionHeaders"
     (dateRangeChangeHandler)="dateRangeChangeHandler($event)"></app-admission-header>

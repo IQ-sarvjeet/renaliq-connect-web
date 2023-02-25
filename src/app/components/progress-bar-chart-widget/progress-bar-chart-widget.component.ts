@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./progress-bar-chart-widget.component.scss']
 })
 export class ProgressBarChartWidgetComponent {  
+  showLoading: boolean = false;
   chartConfig: ProgressBarChartWidgetInput = {} as ProgressBarChartWidgetInput;
   chartData: any = [];
   @Input() set config(inputValue: ProgressBarChartWidgetInput) {
@@ -21,8 +22,10 @@ export class ProgressBarChartWidgetComponent {
 
   }
   private loadChartData(url: string): void {
+    this.showLoading = true;
     this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((data: any) => {
       this.chartData = data;
+      this.showLoading = false;
     })
   }
 }

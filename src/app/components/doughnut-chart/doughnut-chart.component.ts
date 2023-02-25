@@ -15,6 +15,7 @@ type BarChartConfig = {
 })
 export class DoughnutChartComponent {
   // @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
+  showLoading: boolean = false;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -73,12 +74,14 @@ export class DoughnutChartComponent {
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
+    this.showLoading = true;
     this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((response: any) => {
       const gridData: any = [];
       Object.keys(response).forEach((key: string) => {
         gridData.push([key, response[key]]);
       })
       this.renderChart(gridData);
+      this.showLoading = false;
     })
   }
   private renderChart(chartData: any): void {
