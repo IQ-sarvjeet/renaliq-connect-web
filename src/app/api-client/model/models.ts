@@ -9,6 +9,7 @@ export * from './loginResponse';
 export * from './patientFilter';
 export * from './patientFilterModel';
 export * from './practiceUserEditModel';
+export * from './practiceViewModel';
 export * from './registerModel';
 export * from './resetPasswordModel';
 export * from './sortOrder';
