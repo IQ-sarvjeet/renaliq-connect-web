@@ -1382,12 +1382,12 @@ body.fixed-header .header {
     transition: all ease 0.2s;
 
     &:focus {
-      border: 1px solid #0d3050;
+      border: 1px solid var(--border);
     }
   }
   .is-active {
     .form-control {
-      border: 1px solid #0d3050;
+      border: 1px solid var(--border);
       border-radius: 0.25rem 0.25rem 0 0;
     }
   }
@@ -1396,7 +1396,7 @@ body.fixed-header .header {
 .search-results {
   background-color: $white;
   border-radius: 0 0 0.25rem 0.25rem;
-  border: 1px solid #0d3050;
+  border: 1px solid var(--border);
   border-top: none;
   display: block;
   position: absolute;

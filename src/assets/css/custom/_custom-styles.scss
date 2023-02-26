@@ -30,20 +30,21 @@
 }
 
 .notifyimg {
+  background-color: $info;
   display: flex;
   align-items: center;
+  border-radius: 0.5rem;
   justify-content: center;
-  color: $white;
-  fill: $white;
+  color: $secondary;
+  fill: $secondary;
   float: left;
   padding: 8px;
-  height: 35px;
-  margin-right: 10px;
-  width: 35px;
-  font-size: 16px;
+  height: 4.25rem;
+  width: 4rem;
+  font-size: 2rem;
   svg {
     width: 1.45rem;
-    fill: $white;
+    fill: $secondary;
   }
 }
 .app-header .dropdown-menu .notifications-menu .notification-each {

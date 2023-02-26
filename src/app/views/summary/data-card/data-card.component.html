@@ -1,12 +1,7 @@
-<div class="d-flex">
-  <div class="me-3 notifyimg bg-primary brround">
-    <i class="icon" [class]="cardData.iconClass"></i>
-  </div>
-  <div class="flex-fill text-truncate">
-    {{ cardData.cardTitle }}
-    <div class="text-dark fw-bold fs-23">
-      {{ cardData.count }}<ng-content select="[description]"></ng-content>
-    </div>
+<div>
+  {{ cardData.cardTitle }}
+  <div class="text-dark fw-bold fs-22 lh-sm">
+    {{ cardData.count }}
     <span
       class="fw-semibold fs-12"
       [class]="cardData.performance === 'up' ? 'text-success' : 'text-danger'"
@@ -21,5 +16,6 @@
       ></span>
       {{ cardData.percentile }}%
     </span>
+    <ng-content select="[description]"></ng-content>
   </div>
 </div>
