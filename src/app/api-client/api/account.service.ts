@@ -21,6 +21,7 @@ import { ChangePasswordModel } from '../model/changePasswordModel';
 import { Email2FAModel } from '../model/email2FAModel';
 import { ForgotPasswordModel } from '../model/forgotPasswordModel';
 import { LoginModel } from '../model/loginModel';
+import { LoginResponse } from '../model/loginResponse';
 import { RegisterModel } from '../model/registerModel';
 import { ResetPasswordModel } from '../model/resetPasswordModel';
 import { UserActivityLogEditModel } from '../model/userActivityLogEditModel';
@@ -113,9 +114,9 @@ export class AccountService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'body', reportProgress?: boolean): Observable<LoginResponse>;
+    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LoginResponse>>;
+    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LoginResponse>>;
     public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
@@ -123,6 +124,9 @@ export class AccountService {
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -140,7 +144,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/authtoken/validate`,
+        return this.httpClient.request<LoginResponse>('post',`${this.basePath}/api/Account/authtoken/validate`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,

@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 
-export interface Email2FAModel { 
-    twoFactorCode: string;
-    username: string;
-    password?: string;
-    rememberMe?: boolean;
+export interface PracticeViewModel { 
+    practiceId?: number;
+    userId?: number;
+    name?: string;
+    npi?: string;
+    isSelected?: boolean;
 }

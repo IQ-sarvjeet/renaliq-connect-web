@@ -17,6 +17,8 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { PracticeUserEditModel } from '../model/practiceUserEditModel';
+import { PracticeViewModel } from '../model/practiceViewModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -135,15 +137,18 @@ export class PracticeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPracticeListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPracticeListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPracticeListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPracticeListGet(observe?: 'body', reportProgress?: boolean): Observable<Array<PracticeViewModel>>;
+    public apiPracticeListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<PracticeViewModel>>>;
+    public apiPracticeListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<PracticeViewModel>>>;
     public apiPracticeListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -154,7 +159,7 @@ export class PracticeService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Practice/list`,
+        return this.httpClient.request<Array<PracticeViewModel>>('get',`${this.basePath}/api/Practice/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -237,13 +242,18 @@ export class PracticeService {
     /**
      * 
      * 
+     * @param practiceId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPracticePatientUpdatePut(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPracticePatientUpdatePut(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPracticePatientUpdatePut(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPracticePatientUpdatePut(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPracticeUpdatePracticeIdPost(practiceId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPracticeUpdatePracticeIdPost(practiceId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPracticeUpdatePracticeIdPost(practiceId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPracticeUpdatePracticeIdPost(practiceId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (practiceId === null || practiceId === undefined) {
+            throw new Error('Required parameter practiceId was null or undefined when calling apiPracticeUpdatePracticeIdPost.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -259,7 +269,7 @@ export class PracticeService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('put',`${this.basePath}/api/Practice/patient/update`,
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Practice/update/${encodeURIComponent(String(practiceId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -296,6 +306,51 @@ export class PracticeService {
 
         return this.httpClient.request<any>('put',`${this.basePath}/api/Practice/update`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPracticeUserSavePost(body?: PracticeUserEditModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPracticeUserSavePost(body?: PracticeUserEditModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPracticeUserSavePost(body?: PracticeUserEditModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPracticeUserSavePost(body?: PracticeUserEditModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Practice/user/save`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
