@@ -87,21 +87,21 @@ export class SigninComponent {
 
 
 
-  public async login(form: FormGroup) {
-    let model: any = {
-      username: form.value.emailId.trim(),
-      password: form.value.password.trim(),
-      grant_type: environment.grantType,
-      scope: environment.scope,
-      client_id: environment.clientId,
-      client_secret: environment.clientSecret,
-    };
+  //public async login(form: FormGroup) {
+  //  let model: any = {
+  //    username: form.value.emailId.trim(),
+  //    password: form.value.password.trim(),
+  //    grant_type: environment.grantType,
+  //    scope: environment.scope,
+  //    client_id: environment.clientId,
+  //    client_secret: environment.clientSecret,
+  //  };
 
-    let result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
-    this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
-    setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-    this.route.navigate(['/summary']);
-  };
+  //  let result = await this._httpclientwapperSerivce.apiAccountLoginPost(model).toPromise();
+  //  this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
+  //  setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+  //  this.route.navigate(['/summary']);
+  //};
 
   hideToster() {
     this.showToster = false;

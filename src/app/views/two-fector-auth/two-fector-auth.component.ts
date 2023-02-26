@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
 import { environment } from '../../../environments/environment';
-import { AccountService } from '../../api-client';
+import { AccountService, Email2FAModel, LoginModel, LoginResponse } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
@@ -88,15 +88,24 @@ export class TwoFectorAuthComponent {
     this.successMsg = "";
     this.errorMessage = "";
     const formValues = this.twoFAForm.value;
-    let model: any = {
+    let model: Email2FAModel = {
       username: this.username,
+      password:this.password,
       twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
       rememberMe: false
     };
 
-    let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: any) => {
+    let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponse) => {
       if (result) {
-        this.token();
+        this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
+        setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Welcom ${this.username}`,
+          type: 'success',
+        })
+        this.route.navigate(['/summary/']);
       }
     },
       (error: any) => {
@@ -116,38 +125,38 @@ export class TwoFectorAuthComponent {
       });
   };
 
-  public async token() {
-    let that = this;
-    let model: any = {
-      username: this.username,
-      password: this.password,
-      grant_type: environment.grantType,
-      scope: environment.scope,
-      client_id: environment.clientId,
-      client_secret: environment.clientSecret,
-    };
+  //public async token() {
+  //  let that = this;
+  //  let model: any = {
+  //    username: this.username,
+  //    password: this.password,
+  //    grant_type: environment.grantType,
+  //    scope: environment.scope,
+  //    client_id: environment.clientId,
+  //    client_secret: environment.clientSecret,
+  //  };
 
-    await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
-      if (result) {
-        this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
-        setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.eventService.openToaster({
-          showToster: true,
-          message: `Welcom ${this.username}`,
-          type: 'success',
-        })
-        that.route.navigate(['/summary/']);
-      }
-    },
-      (error: any) => {
-        this.showToster = true;
-        this.errorMessage = error?.error?.message?.message;
+  //  await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
+  //    if (result) {
+  //      this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
+  //      setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+  //      this.eventService.openToaster({
+  //        showToster: true,
+  //        message: `Welcom ${this.username}`,
+  //        type: 'success',
+  //      })
+  //      that.route.navigate(['/summary/']);
+  //    }
+  //  },
+  //    (error: any) => {
+  //      this.showToster = true;
+  //      this.errorMessage = error?.error?.message?.message;
 
-        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.route.navigate(['/login']);
-      });
-  };
+  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+  //      this.route.navigate(['/login']);
+  //    });
+  //};
 
 
   public async resendTwoFAToken($event: any) {

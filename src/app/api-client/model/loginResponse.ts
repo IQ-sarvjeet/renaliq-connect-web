@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface Email2FAModel { 
-    twoFactorCode: string;
-    username: string;
-    password?: string;
-    rememberMe?: boolean;
+export interface LoginResponse { 
+    accessToken?: string;
+    expiresIn?: number;
+    tokenType?: string;
+    scope?: string;
 }
