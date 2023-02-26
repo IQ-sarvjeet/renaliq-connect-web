@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProgressBarChartWidgetComponent {  
   showLoading: boolean = false;
+  errorMessage: string | null = null;
   chartConfig: ProgressBarChartWidgetInput = {} as ProgressBarChartWidgetInput;
   chartData: any = [];
   @Input() set config(inputValue: ProgressBarChartWidgetInput) {
@@ -24,8 +25,16 @@ export class ProgressBarChartWidgetComponent {
   private loadChartData(url: string): void {
     this.showLoading = true;
     this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((data: any) => {
-      this.chartData = data;
-      this.showLoading = false;
+      if (data) {
+        this.chartData = data;
+        this.showLoading = false;
+        this.errorMessage = null;
+        return;
+      }
+      this.errorMessage = 'No Data';
+    },
+    (error) => {
+      this.errorMessage = error;
     })
   }
 }
