@@ -1,6 +1,8 @@
 <app-spinner *ngIf="showLoading"></app-spinner>
 <highcharts-chart
+    *ngIf="!errorMessage"
     style="width: 100%; height: 100%; display: block;"
     [Highcharts]="Highcharts"
     [options]="option">
 </highcharts-chart>
+<div *ngIf="errorMessage">{{errorMessage}}</div>

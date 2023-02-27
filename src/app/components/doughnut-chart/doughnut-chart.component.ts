@@ -16,6 +16,7 @@ type BarChartConfig = {
 export class DoughnutChartComponent {
   // @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
+  errorMessage: string | null = null;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -61,7 +62,6 @@ export class DoughnutChartComponent {
     },
     colors: ["#76ADDB", "#C8DB70", "#0B314F", "#ECF1FE", "#d96716"],
     series: [{
-      type: 'pie',
       name: '',
       innerSize: '50%',
       data: [],
@@ -76,12 +76,20 @@ export class DoughnutChartComponent {
   private fetchChartData(url: string): void {
     this.showLoading = true;
     this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((response: any) => {
-      const gridData: any = [];
-      Object.keys(response).forEach((key: string) => {
-        gridData.push([key, response[key]]);
-      })
-      this.renderChart(gridData);
-      this.showLoading = false;
+      if (response) {
+        const gridData: any = [];
+        Object.keys(response).forEach((key: string) => {
+          gridData.push([key, response[key]]);
+        })
+        this.renderChart(gridData);
+        this.showLoading = false;
+        this.errorMessage = null;
+        return;
+      }
+      this.errorMessage = 'No Data';
+    },
+    (error) => {
+      this.errorMessage = 'Error';
     })
   }
   private renderChart(chartData: any): void {

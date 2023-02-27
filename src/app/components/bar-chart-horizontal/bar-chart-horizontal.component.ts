@@ -18,6 +18,7 @@ export type BarChartConfig = {
 export class BarChartHorizontalComponent {
   // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
+  errorMessage: string | null = null;
   private chartConfig: BarChartConfig = {} as BarChartConfig;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
@@ -103,8 +104,17 @@ export class BarChartHorizontalComponent {
     // })
     fetch(url).then((response: any) => response.json())
     .then((data: any) => {
-      this.renderChart(data);
-      this.showLoading = false;
+      
+      if (data) {
+        this.renderChart(data);
+        this.showLoading = false;
+        this.errorMessage = null;
+        return;
+      }
+      this.errorMessage = 'No Data';
+    })
+    .catch((error) => {
+      this.errorMessage = 'Error';
     });
   } 
 }
