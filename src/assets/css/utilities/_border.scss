@@ -350,6 +350,9 @@
   }
 }
 @media (min-width: 576px) {
+  .border-sm-end {
+    border-right: 1px solid var(--border) !important;
+  }
   .br-tl-sm-5 {
     border-top-left-radius: 5px;
   }

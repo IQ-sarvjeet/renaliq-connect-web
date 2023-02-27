@@ -30,20 +30,28 @@
 }
 
 .notifyimg {
+  background-color: $info;
   display: flex;
   align-items: center;
+  border-radius: 0.5rem;
   justify-content: center;
-  color: $white;
-  fill: $white;
+  color: $secondary;
+  fill: $secondary;
   float: left;
   padding: 8px;
-  height: 35px;
-  margin-right: 10px;
-  width: 35px;
-  font-size: 16px;
+  height: 4.25rem;
+  width: 4rem;
+  font-size: 2rem;
+
+  &--sm {
+    border-radius: 0.25rem;
+    height: 2.75rem;
+    width: 2.75rem;
+    font-size: 1rem;
+  }
   svg {
     width: 1.45rem;
-    fill: $white;
+    fill: $secondary;
   }
 }
 .app-header .dropdown-menu .notifications-menu .notification-each {
@@ -3490,12 +3498,12 @@ svg {
 
 .dropdown-item {
   i {
-    color: #74788e !important;
+    color: #74788e;
   }
   &:hover,
   &:focus {
     i {
-      color: $primary !important;
+      color: $primary;
     }
   }
 }
