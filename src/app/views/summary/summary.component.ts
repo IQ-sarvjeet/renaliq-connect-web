@@ -15,28 +15,28 @@ export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
     cardTitle: 'Attributed Patients',
-    count: '5,253',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
     cardTitle: 'Admissions',
-    count: '4,253',
+    count: '-',
     percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Engaged Patients',
-    count: '3,253',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Admission Last 7 Days',
-    count: '2,253',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
