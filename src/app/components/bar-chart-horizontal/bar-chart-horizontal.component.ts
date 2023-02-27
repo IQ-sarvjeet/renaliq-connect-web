@@ -114,7 +114,7 @@ export class BarChartHorizontalComponent {
       this.errorMessage = 'No Data';
     })
     .catch((error) => {
-      this.errorMessage = 'No Data';
+      this.errorMessage = 'Error';
     });
   } 
 }

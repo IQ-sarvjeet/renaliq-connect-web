@@ -89,7 +89,7 @@ export class DoughnutChartComponent {
       this.errorMessage = 'No Data';
     },
     (error) => {
-      this.errorMessage = error;
+      this.errorMessage = 'Error';
     })
   }
   private renderChart(chartData: any): void {

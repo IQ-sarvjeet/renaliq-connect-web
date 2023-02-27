@@ -34,9 +34,9 @@ export class HeaderComponent {
     private route: Router
   ) {}
   ngOnInit() {
-    // this.practiceService.apiPracticeListGet().subscribe((practiceList: any) => {
-    //   console.log('practiceList:', practiceList);
-    // })
+    this.practiceService.apiPracticeListGet().subscribe((practiceList: any) => {
+      console.log('practiceList:', practiceList);
+    })
   }
   public async logOut() {
     try {

@@ -34,7 +34,7 @@ export class ProgressBarChartWidgetComponent {
       this.errorMessage = 'No Data';
     },
     (error) => {
-      this.errorMessage = error;
+      this.errorMessage = 'Error';
     })
   }
 }
