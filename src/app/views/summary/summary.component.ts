@@ -15,28 +15,28 @@ export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
     cardTitle: 'Attributed Patients',
-    count: '',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
     cardTitle: 'Admissions',
-    count: '',
+    count: '-',
     percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Engaged Patients',
-    count: '',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
-    cardTitle: 'Admission',
-    count: '',
+    cardTitle: 'Admission Last 7 Days',
+    count: '-',
     percentile: null,
     performance: 'up',
   };
@@ -72,28 +72,25 @@ export class SummaryComponent {
     title: 'Patient By Age Group',
     apiUrl: 'Patient/summary/age',
   };
-  constructor(private _patientService: PatientService) {
-    
-  }
+  constructor(private _patientService: PatientService) {}
   ngOnInit() {
     this._patientService.apiPatientCountGet().subscribe((response: any) => {
       this.admissions = {
         ...this.admissions,
-        ...response.totalAdmission
+        ...response.totalAdmission,
       };
       this.patients = {
         ...this.patients,
-        ...response.totalPatient
-      }
+        ...response.totalPatient,
+      };
       this.engagedPatients = {
         ...this.engagedPatients,
-        ...response.totalEngagedPatient
-      }
+        ...response.totalEngagedPatient,
+      };
       this.admissionRecent = {
         ...this.admissionRecent,
-        ...response.totalRecentAdmission
-      }
-
-    })
+        ...response.totalRecentAdmission,
+      };
+    });
   }
 }

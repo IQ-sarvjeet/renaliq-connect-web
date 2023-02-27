@@ -1,5 +1,4 @@
 <div class="card" *ngIf="!errorMessage">
-  <app-spinner *ngIf="showLoading"></app-spinner>
   <div class="card-header title-submenu d-flex">
     <h3 class="card-title flex-fill">{{ chartConfig.title }}</h3>
     <!-- <nav class="nav">
@@ -25,6 +24,45 @@
       </nav> -->
   </div>
   <div class="card-body pt-1 mh-11">
+    <div *ngIf="showLoading">
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-50"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-75"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+    </div>
+
     <div class="row my-3" *ngFor="let data of chartData">
       <div class="col-4">{{ data.key }}</div>
       <div class="col-6">
