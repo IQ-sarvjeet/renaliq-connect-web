@@ -42,7 +42,7 @@ export class ResetPasswordComponent implements OnInit{
     let password = form.get('password')?.value;
     let confirmPassword = form.get('confirmPassword')?.value;
     if(password != confirmPassword){
-      this.errorMsg = "Password and Confirm Password not matched."
+      this.errorMsg = "New Password and Confirm Password not matched."
      return;
     } 
     if(!this.token){
