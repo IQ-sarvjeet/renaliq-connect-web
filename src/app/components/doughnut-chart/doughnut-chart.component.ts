@@ -86,10 +86,10 @@ export class DoughnutChartComponent {
         this.errorMessage = null;
         return;
       }
-      this.errorMessage = 'No Data';
+      this.errorMessage = 'No data found!';
     },
     (error) => {
-      this.errorMessage = 'Error';
+      this.errorMessage = 'Error in fetching data.';
     })
   }
   private renderChart(chartData: any): void {
