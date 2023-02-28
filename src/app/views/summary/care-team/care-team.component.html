@@ -4,7 +4,7 @@
       <h3 class="card-title mb-0">Care Team</h3>
     </div>
   </div>
-  <div>
+  <div *ngIf="!errorMessage">
     <ul class="list-group blog-autors">
       <span *ngIf="showLoading">
         <li class="border-top py-2">
@@ -89,5 +89,14 @@
         </a>
       </li>
     </ul>
+  </div>
+  <div *ngIf="errorMessage">
+    <div class="alert alert-danger d-flex fade show"
+      role="alert">
+      <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+      <div class="flex-fill">
+        {{ errorMessage }}
+      </div>
+    </div>
   </div>
 </div>

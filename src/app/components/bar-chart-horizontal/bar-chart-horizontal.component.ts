@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
@@ -73,9 +74,7 @@ export class BarChartHorizontalComponent {
           showInLegend: false
         }]
       };
-  constructor() {
-
-  }
+  constructor(private httpClient: HttpClient) {}
   ngOnInit() {}
   
   protected renderChart(chartData: ChartApiResponse): void {
@@ -98,23 +97,17 @@ export class BarChartHorizontalComponent {
   }
   private fetchChartData(url: string): void {
     this.showLoading = true;
-    // this.httpClient.get(url).subscribe((data: any) => {
-    //   console.log(data);
-    //   this.renderChart(data);
-    // })
-    fetch(url).then((response: any) => response.json())
-    .then((data: any) => {
-      
+    this.httpClient.get(url).subscribe((data: any) => {
       if (data) {
         this.renderChart(data);
         this.showLoading = false;
         this.errorMessage = null;
         return;
       }
-      this.errorMessage = 'No Data';
+      this.errorMessage = 'No data found!';
+    },
+    (error) => {
+      this.errorMessage = 'Error in fetching data.';
     })
-    .catch((error) => {
-      this.errorMessage = 'Error';
-    });
   } 
 }

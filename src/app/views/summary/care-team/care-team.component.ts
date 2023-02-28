@@ -9,6 +9,7 @@ import { CareTeam } from '../summary-interfaces/care-team';
 })
 export class CareTeamComponent {
   showLoading: boolean = false;
+  errorMessage: string | null = null;
   careTeamList: CareTeam[] = [];
   constructor(private _patientService: PatientService) {
 
@@ -19,8 +20,15 @@ export class CareTeamComponent {
   private getCareTeamList() {
     this.showLoading = true;
     this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
-      this.careTeamList = careTeamMemberList;
-      this.showLoading = false;
+      if (!careTeamMemberList) {
+        this.careTeamList = careTeamMemberList;
+        this.showLoading = false;
+      } else {
+        this.errorMessage = 'No data found!';
+      }
+    },
+    (error) => {
+      this.errorMessage = 'Error in fetching data.';
     })
   }
 }

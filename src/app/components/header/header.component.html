@@ -40,21 +40,24 @@
             </div>
           </a>
           <div class="dropdown-menu dropdown-menu-arrow mt-1">
-            <a
-              class="dropdown-item border-top"
-              href="javascript: void(0)"
-              *ngFor="let practice of practiceList"
-              (click)="selectPracticeHandlar(practice)"
-            >
-              {{ practice.name }}
-              <span class="d-block opacity-75">{{ practice.practiceId }}</span>
-            </a>
-            <!-- <a class="dropdown-item border-top" href="#">
-              Fort Worth Renal Group
-            </a>
-            <a class="dropdown-item border-top" href="#">
-              Cleveland Kidney & Hypertension Consultants Inc
-            </a> -->
+            <ng-container *ngFor="let practice of practiceList">
+              <a
+                class="dropdown-item border-top"
+                *ngIf="!practice.isSelected"
+                href="javascript: void(0)"
+                (click)="selectPracticeHandlar(practice)"
+              >
+                {{ practice.name }}
+                <span class="d-block opacity-75">{{ practice.practiceId }}</span>
+              </a>
+              <!-- <a class="dropdown-item border-top" href="#">
+                Fort Worth Renal Group
+              </a>
+              <a class="dropdown-item border-top" href="#">
+                Cleveland Kidney & Hypertension Consultants Inc
+              </a> -->
+            </ng-container>
+            
           </div>
         </div>
       </div>

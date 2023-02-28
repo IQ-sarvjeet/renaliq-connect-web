@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { BarChartConfig } from 'src/app/interfaces/bar-chart-config';
@@ -15,6 +16,7 @@ type ChartApiResponse = {
 export class BarChartComponent {
   // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   private chartConfig: BarChartConfig = {} as BarChartConfig;
+  errorMessage: string | null = null;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -41,7 +43,7 @@ export class BarChartComponent {
         showInLegend: false
     }]
   };
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 
   }
   ngOnInit() {}
@@ -66,13 +68,14 @@ export class BarChartComponent {
     }
   }
   private fetchChartData(url: string): void {
-      // this.httpClient.get(url).subscribe((data: any) => {
-      //   console.log(data);
-      //   this.renderChart(data);
-      // })
-      fetch(url).then((response: any) => response.json())
-      .then((data: any) => {
-        this.renderChart(data);
-      });
+      this.httpClient.get(url).subscribe((data: any) => {
+        if (!data) {
+          this.errorMessage = 'No data found!';
+        } else {
+          this.renderChart(data);
+        }
+      }, (error) => {
+        this.errorMessage = 'Error in fetching data.';
+      })
     } 
 }

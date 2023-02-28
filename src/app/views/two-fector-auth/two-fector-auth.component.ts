@@ -173,6 +173,7 @@ export class TwoFectorAuthComponent {
 
     await this._accountService.apiAccountAuthtokenResendPost(model).subscribe(async (result: any) => {
       if (result) {
+        this.twoFAForm.reset();
         this.showToster = true;
         this.isDisabled = false;
         this.successMsg = "Verification code sent successfully.";
@@ -180,6 +181,7 @@ export class TwoFectorAuthComponent {
       }
     },
       (error: any) => {
+        this.twoFAForm.reset();
         this.showToster = true;
         this.isDisabled = false;
         this.showLoading = false;
