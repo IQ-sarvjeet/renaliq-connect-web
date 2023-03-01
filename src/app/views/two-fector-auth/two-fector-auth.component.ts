@@ -102,7 +102,7 @@ export class TwoFectorAuthComponent {
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.eventService.openToaster({
           showToster: true,
-          message: `Welcom ${this.username}`,
+          message: `Welcome ${this.username}`,
           type: 'success',
         })
         this.route.navigate(['/summary/']);
