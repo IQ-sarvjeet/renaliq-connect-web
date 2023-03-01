@@ -17,20 +17,6 @@ type Practice = {
 export class HeaderComponent {
   selectedPractice: Practice = {} as Practice;
   practiceList: Practice[] = [];
-  // practiceList: Practice = [
-  //   {
-  //     name: 'Lynchburg Nephrology',
-  //     practiceId: 'NPI: 3453583',
-  //   },
-  //   {
-  //     name: 'Fort Worth Renal Group',
-  //     practiceId: 'NPI: 3453583',
-  //   },
-  //   {
-  //     name: 'Cleveland Kidney & Hypertension Consultants Inc',
-  //     practiceId: 'NPI: 3453583',
-  //   }
-  // ]
   constructor(
     private _accountService: AccountService,
     private _localStorage: LocalStorageService,
@@ -40,9 +26,13 @@ export class HeaderComponent {
   ngOnInit() {
     this.practiceService.apiPracticeListGet().subscribe((practiceList: any) => {
       this.practiceList = practiceList;
+      if (!practiceList.length) return;
       const selectedItem = practiceList.filter((item: Practice) => item.isSelected);
       if (selectedItem.length > 0) {
         this.selectedPractice = selectedItem[0];
+      } else {
+        this.selectedPractice = this.practiceList[0];
+        this.selectPracticeHandlar(this.selectedPractice);
       }
     })
   }
