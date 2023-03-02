@@ -3,7 +3,7 @@ export const Messages = {
     confirmPasswordRequired: 'Confirm Password is required',
     confirmPasswordValid: 'Confirm Password is not valid',
     continue: 'to Continue',    
-    COPYRIGHT_MESSAGE: '© 2022 Somatus. All Rights Reserved',
+    COPYRIGHT_MESSAGE: '© 2023 Somatus. All Rights Reserved',
     COPYRIGHT_MESSAGE1: '2023, Somatus',
     emailMessage: "We've sent an email message containing a link to Reset your password to your inbox.",
     EMAIL_REQUIRED: 'Email is required',
