@@ -14,3 +14,4 @@ export * from './registerModel';
 export * from './resetPasswordModel';
 export * from './sortOrder';
 export * from './userActivityLogEditModel';
+export * from './userInfoModel';
