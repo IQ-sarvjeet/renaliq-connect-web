@@ -7,6 +7,7 @@ import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
 import { environment } from '../../../environments/environment';
+import { Messages } from 'src/app/shared/common-constants/messages';
 declare const $: any;
 let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 @Component({
@@ -15,6 +16,7 @@ let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
   styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent {
+  messages: any = Messages;
   signInForm: any = FormGroup;
   errorMsg: any = "";
   showToster: boolean = false;
