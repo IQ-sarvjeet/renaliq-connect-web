@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from '../../../environments/environment';
 import { AccountService, Email2FAModel, LoginModel, LoginResponse } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
@@ -18,7 +19,7 @@ declare const $: any;
 
 
 export class TwoFectorAuthComponent {
-
+  messages: any = Messages;
   username: any = '';
   twoFACode: any = '';
   password: any = '';
@@ -112,16 +113,13 @@ export class TwoFectorAuthComponent {
         this.showToster = true;
         this.errorMessage = error?.error?.message?.message;
         this.showLoading = false;
-        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+        if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
 
           let timers = timer(1000).subscribe(() => {
             this.route.navigate(['/login']);
           })
-
-
         }
-
       });
   };
 
@@ -176,7 +174,7 @@ export class TwoFectorAuthComponent {
         this.twoFAForm.reset();
         this.showToster = true;
         this.isDisabled = false;
-        this.successMsg = "Verification code sent successfully.";
+        this.successMsg = this.messages.verificationCodeSuccessfully;
         this.showLoading = false;
       }
     },
@@ -187,7 +185,7 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         this.errorMessage = error?.error?.message?.message;
 
-        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+        if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
           let timers = timer(1000).subscribe(() => {
             this.route.navigate(['/login']);
@@ -219,7 +217,6 @@ export class TwoFectorAuthComponent {
     }
   }
 
-
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
@@ -227,6 +224,5 @@ export class TwoFectorAuthComponent {
     this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
     this.timerSubscription.unsubscribe();
   };
-
 
 }

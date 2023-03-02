@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/api-client';
+import { Messages } from 'src/app/shared/common-constants/messages';
 declare const $: any;
 let pattern = /^\d{10}$/;
 @Component({
@@ -10,6 +11,7 @@ let pattern = /^\d{10}$/;
 })
 
 export class ForgotPasswordComponent implements OnInit{
+  messages: any = Messages;
   form:any = FormGroup;
   errorMsg :any ="";
   successMsg :any ="";
@@ -46,10 +48,10 @@ export class ForgotPasswordComponent implements OnInit{
     try {
       var result = await this._accountService.apiAccountForgotPasswordPost(model).toPromise();
       if(model.isEmail){
-      this.successMsg ="We've sent an email message containing a verification code to your inbox.";
+      this.successMsg = this.messages.emailMessage;
       }
       else{
-        this.successMsg ="We've sent you a text message containing a verification code to your phone.";
+        this.successMsg = this.messages.textMessage;
       }
     } catch (ex: any) {
       console.log(ex);

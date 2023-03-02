@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from 'src/app/api-client';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 declare const $: any;
 let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
@@ -11,6 +12,7 @@ let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
   styleUrls: ['./reset-password.component.scss'],
 })
 export class ResetPasswordComponent implements OnInit{
+  messages: any = Messages;
   resetForm:any = FormGroup;
   errorMsg :any ="";
   private token: string;
@@ -42,11 +44,11 @@ export class ResetPasswordComponent implements OnInit{
     let password = form.get('password')?.value;
     let confirmPassword = form.get('confirmPassword')?.value;
     if(password != confirmPassword){
-      this.errorMsg = "Password and Confirm Password not matched."
+      this.errorMsg = this.messages.errorPasswordsNotMatched;
      return;
     } 
     if(!this.token){
-      this.errorMsg ="Not authorized request.";
+      this.errorMsg = this.messages.errorNotAuthorized;
     }
 
     let model: any = {
@@ -68,5 +70,3 @@ export class ResetPasswordComponent implements OnInit{
     $('#back-to-top').removeClass('d-none');
   }
 }
-
-
