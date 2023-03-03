@@ -91,7 +91,7 @@ export class TwoFectorAuthComponent {
     const formValues = this.twoFAForm.value;
     let model: Email2FAModel = {
       username: this.username,
-      password:this.password,
+      password: this.password,
       twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
       rememberMe: false
     };
@@ -101,12 +101,13 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.eventService.openToaster({
-          showToster: true,
-          message: `Welcome ${this.username}`,
-          type: 'success',
-        })
-        this.route.navigate(['/summary/']);
+        await this.getUserInfo();
+        //this.eventService.openToaster({
+        //  showToster: true,
+        //  message: `Welcome ${this.username}`,
+        //  type: 'success',
+        //});
+        //this.route.navigate(['/summary/']);
       }
     },
       (error: any) => {
@@ -157,6 +158,45 @@ export class TwoFectorAuthComponent {
   //};
 
 
+  public async getUserInfo() {
+    this.successMsg = "";
+    this.errorMessage = "";
+    this.showLoading = true;
+    this.isDisabled = true
+
+
+    await this._accountService.apiAccountUserInfoGet().subscribe(async (result: any) => {
+      if (result) {
+        this.showToster = true;
+        this.isDisabled = false;
+        this.showLoading = false;
+
+        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, result);
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Welcome ${result?.fullName}`,
+          type: 'success',
+        });
+        this.route.navigate(['/summary/']);
+      }
+    },
+      (error: any) => {
+        this.showToster = true;
+        this.isDisabled = false;
+        this.showLoading = false;
+        this.errorMessage = error?.error?.message?.message;
+
+        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+          this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+          let timers = timer(1000).subscribe(() => {
+            this.route.navigate(['/login']);
+          })
+        }
+      });
+  };
+
+
   public async resendTwoFAToken($event: any) {
     $event.preventDefault();
     this.successMsg = "";
@@ -201,6 +241,7 @@ export class TwoFectorAuthComponent {
   ShowToastsResponse(event: any) {
     this.showToster = event;
   };
+
   onDigitInput(event: any) {
     let element;
     if (event.code !== 'Backspace')
