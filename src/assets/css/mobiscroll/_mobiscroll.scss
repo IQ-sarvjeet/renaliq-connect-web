@@ -1,0 +1,14 @@
+.mbsc-textfield {
+    font-size: inherit !important;
+    font-family: inherit;
+}
+.mbsc-ios.mbsc-textfield {
+    padding: 0px !important;
+    height: auto !important;
+}
+.mbsc-ios.mbsc-form-control-wrapper.mbsc-ltr:after,
+.mbsc-ios.mbsc-form-control-wrapper.mbsc-ltr:before {
+    border: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+}

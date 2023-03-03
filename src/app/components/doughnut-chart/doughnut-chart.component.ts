@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { LocalizedString } from '@angular/compiler';
 import { Component, Input } from '@angular/core';
-import * as echarts from 'echarts';
-
-type EChartsOption = echarts.EChartsOption;
+import * as Highcharts from 'highcharts';
+import { environment } from 'src/environments/environment';
 
 type BarChartConfig = {
   apiUrl: string;
-  side: string;  
   title: string;
 }
 
@@ -17,63 +14,96 @@ type BarChartConfig = {
   styleUrls: ['./doughnut-chart.component.scss']
 })
 export class DoughnutChartComponent {
+  // @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
+  showLoading: boolean = false;
+  errorMessage: string | null = null;
+  Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
   }
+  options: any = {
+    chart: {
+      type: 'pie',
+    },
+    title: {
+      text: '',
+      align: 'left'
+    },
+    subtitle: {
+      text: '',
+      align: 'left'
+    },
+    plotOptions: {
+      pie: {
+        dataLabels: {
+          enabled: true,
+          style: {
+            fontWeight: 'bold',
+            color: 'black'
+          }
+        },
+        center: ['30%', '50%'],
+        size: '145%'
+      }
+    },
+    tooltip: {
+      enabled: true,
+      style:{
+        color: '#333333',
+        cursor: 'default',
+        fontSize: '12px',
+        whiteSpace: 'nowrap',
+      }
+    },
+    legend: {
+      align: 'right',
+      layout: 'vertical'
+    },
+    colors: ["#76ADDB", "#C8DB70", "#0B314F", "#ECF1FE", "#d96716"],
+    series: [{
+      name: '',
+      innerSize: '50%',
+      data: [],
+      showInLegend: true
+    }]
+  }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor() {
+  constructor(private httpClient: HttpClient) {
 
   }
   ngOnInit() {}
   private fetchChartData(url: string): void {
-    // this.httpClient.get(url).subscribe((data: any) => {
-    //   console.log(data);
-    //   this.renderChart(data);
-    // })
-    fetch(url).then((response: any) => response.json())
-    .then((data: any) => {
-      this.renderChart(data);
-    });
+    this.showLoading = true;
+    this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((response: any) => {
+      if (response) {
+        const gridData: any = [];
+        Object.keys(response).forEach((key: string) => {
+          gridData.push([key, response[key]]);
+        })
+        this.renderChart(gridData);
+        this.showLoading = false;
+        this.errorMessage = null;
+        return;
+      }
+      this.errorMessage = 'No data found!';
+    },
+    (error) => {
+      this.errorMessage = 'Error in fetching data.';
+    })
   }
   private renderChart(chartData: any): void {
-    const chartDom = document.getElementById('doughnutChart');
-    if (chartDom) {
-      const myChart = echarts.init(chartDom);
-      let option: EChartsOption;
-      option = {
-        tooltip: {
-          trigger: 'item'
-        },
-        legend: {
-          top: '5%',
-          left: 'center'
-        },
-        series: [
-          {
-            name: 'Access From',
-            type: 'pie',
-            radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
-            label: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              label: {
-                show: true,
-                fontSize: 40,
-                fontWeight: 'bold'
-              }
-            },
-            labelLine: {
-              show: false
-            },
-            data: chartData
-          }
-        ]
-      };
-      option && myChart.setOption(option);
+    const series = this.options.series;
+    series[0].data = chartData;
+    this.options = {
+      ...this.options,
+      title: {
+        ...this.options.title,
+        text: this.chartConfig.title 
+      },
+      series: [
+        ...series
+      ]
     }
   }
 }

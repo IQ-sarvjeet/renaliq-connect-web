@@ -10,7 +10,8 @@
   --dark-body: #0d3050;
   --dark-theme: rgba(0, 0, 0, 0.3);
   --dark-bg: rgba(160, 148, 148, 0.2);
-  --dark-border: rgba(255, 255, 255, 0.15);
+  --border: rgba(28, 125, 167, 0.2);
+  --dark-border: rgba(255, 255, 255, 0.2);
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -38,6 +39,26 @@ html {
   -webkit-tap-highlight-color: transparent;
   scroll-behavior: smooth;
 }
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+::-webkit-scrollbar-track {
+  background: rgba($black, 0.1);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba($secondary, 0.75);
+  border-radius: 0.125rem;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: $secondary;
+  }
+}
+
 @-ms-viewport {
   width: device-width;
 }
@@ -56,13 +77,13 @@ section {
 }
 body {
   margin: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 0.8375rem;
   font-weight: 400;
   line-height: 1.5;
   color: $default-color;
   text-align: left;
-  background-color: $background;
+  background-color: $light;
 }
 .number-font {
   font-weight: 600;
@@ -531,22 +552,9 @@ body {
   touch-action: manipulation;
   -webkit-font-feature-settings: "liga" 0;
   font-feature-settings: "liga" 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden !important;
   position: relative;
-  * {
-    &::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-      transition: 0.3s background;
-    }
-    &::-webkit-scrollbar-thumb {
-      background: #ced4da;
-    }
-    &:hover::-webkit-scrollbar-thumb {
-      background: #adb5bd;
-    }
-  }
 }
 @media print {
   body {

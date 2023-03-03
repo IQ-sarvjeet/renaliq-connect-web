@@ -1,1 +1,16 @@
-<p>admission works!</p>
+<div class="side-app">
+  <app-spinner *ngIf="showLoading"></app-spinner>
+  <app-admission-header 
+    [admissionHeaders]="admissionHeaders"
+    (dateRangeChangeHandler)="dateRangeChangeHandler($event)"></app-admission-header>
+  <div class="main-container container">
+    <div class="card my-1 p-2">
+      <app-admissions-admission-by
+        [admissionHeaders]="admissionHeaders"
+        [dateRange]="dateRange"></app-admissions-admission-by>
+      <app-admissions-grid
+        [dateRange]="dateRange"></app-admissions-grid>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -65,6 +65,10 @@
   margin-bottom: 0rem;
   list-style: none;
   border-radius: 7px;
+  font-size: 11px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 8px;
 }
 
 .breadcrumb-item {
@@ -72,11 +76,11 @@
     color: $dark;
   }
   + .breadcrumb-item {
-    padding-left: 0.5rem;
+    padding-left: 0.175rem;
 
     &::before {
       display: inline-block;
-      padding-right: 0.5rem;
+      padding-right: 0.175rem;
       color: $info;
       content: "/e92f";
     }
@@ -88,7 +92,7 @@
   }
 
   &.active {
-    color: $info;
+    color: $primary;
   }
 }
 
@@ -226,8 +230,8 @@
 
 .breadcrumb-item + .breadcrumb-item::before {
   float: none;
-  padding-right: 0.5rem;
-  color: #d6dfe7;
+  padding-right: 0.175rem;
+  color: #cccccc;
   content: var(--bs-breadcrumb-divider, "\e92f");
   font-family: "feather" !important;
 }

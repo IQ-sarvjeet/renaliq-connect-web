@@ -336,15 +336,37 @@ body.dark-mode {
   color: $dark-text;
   background-color: $dark-body;
 }
-body.dark-mode *::-webkit-scrollbar-thumb,
-body.dark-mode *:hover::-webkit-scrollbar-thumb {
-  background: $white-2;
+body.dark-mode::-webkit-scrollbar-track {
+  background: rgba($black, 0.2);
 }
+body.dark-mode::-webkit-scrollbar-thumb {
+  background-color: #2684ff;
+  border: 0.125rem solid rgba($black, 0.2);
+}
+
 .dark-mode {
   .apexcharts-yaxis-texts-g text,
   .apexcharts-xaxis-texts-g text,
   .apexcharts-yaxis-title text {
     fill: $white-8 !important;
+  }
+  .sub-header {
+    .text-secondary {
+      color: #2684ff !important;
+    }
+    .btn-dark {
+      color: #fff !important;
+      background-color: #2684ff !important;
+      border-color: #2684ff !important;
+    }
+    .btn-outline-secondary {
+      color: #2684ff !important;
+      background-color: transparent !important;
+      border-color: #2684ff !important;
+      i {
+        color: #2684ff !important;
+      }
+    }
   }
   @media (max-width: 767.98px) {
     .demo-icon.nav-link.icon svg {
@@ -1336,8 +1358,18 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
   .tl-blog:before {
     border-left: 1px solid $border-dark;
   }
-  .task-list:before {
-    border-left: 1px solid $border-dark;
+  .task-list {
+    &:before {
+      border-left: 1px solid $border-dark;
+    }
+    li {
+      .task-icon {
+        &::before {
+          content: "";
+          background: $border-dark;
+        }
+      }
+    }
   }
   .task-list {
     color: $dark-text;
@@ -2508,6 +2540,9 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
   .progress-bar {
     color: #fff;
   }
+  .progress-bar.bg-dark {
+    background-color: $offwhite !important;
+  }
   .list-group-item.active {
     background-color: #f6f4fb;
     color: #25252a;
@@ -2730,8 +2765,11 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     border-bottom: 1px solid $border-dark;
   }
   .header {
-    background: $dark-body !important;
+    background: #264562 !important;
     border-bottom: 1px solid $border-dark !important;
+  }
+  .sub-header {
+    background: $dark-body !important;
   }
   .nav-unread {
     background: #ecd938;
@@ -2740,7 +2778,7 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     color: #ffffff !important;
   }
   .footer {
-    background: transparent;
+    background: rgba($white, 0.1) !important;
     border-top: 1px solid $border-dark;
     .social ul li a {
       color: $dark-text;
@@ -4590,9 +4628,13 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
       background: rgba(0, 0, 0, 0.2);
     }
   }
-  .header .form-control {
-    border: 1px solid $border-dark;
+  .header .main-header-center .form-control {
+    border: none;
     background-color: transparent;
+  }
+  .header .main-header-center .form-control:focus,
+  .header .main-header-center .form-control:active {
+    border: none !important;
   }
   .box-white-shadow {
     box-shadow: 0 5px 10px rgba(255, 255, 255, 0.3) !important;
@@ -5020,6 +5062,11 @@ body.dark-mode *:hover::-webkit-scrollbar-thumb {
     background: $dark-body;
     box-shadow: 0 3px 9px 0 rgba(28, 28, 51, 0.15);
   }
+
+  .wrap-login100::-webkit-scrollbar-thumb {
+    background-color: $primary;
+  }
+
   .login100-form-title {
     color: $dark-text;
   }

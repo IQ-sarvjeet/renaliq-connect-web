@@ -1,0 +1,81 @@
+<div class="row mt-0 mb-3">
+  <div class="col-12 col-md-4">
+    <div class="border rounded-2 p-4 bg-light">
+      <div class="row">
+        <div class="col-12 col-md-5">
+          <div class="d-flex align-items-center">
+            <div><i class="fa fa-circle text-warning me-1"></i> Admissions</div>
+
+            <div class="fs-19 ms-4">{{ admissionHeaders.admissionBy }}</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-7 border-start">
+          <div class="d-flex align-items-center">
+            <div><i class="fa fa-circle text-success me-1"></i> Discharge</div>
+            <div class="flex-fill mx-4">
+              <div class="fs-11">
+                {{ admissionHeaders.dischargeByPercentage }}%
+              </div>
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar bg-success"
+                  [class.bg-success]="
+                    admissionHeaders.dischargeByPercentage > 70
+                  "
+                  [class.bg-warning]="
+                    admissionHeaders.dischargeByPercentage < 51 &&
+                    admissionHeaders.dischargeByPercentage < 70
+                  "
+                  [class.bg-danger]="
+                    admissionHeaders.dischargeByPercentage < 30
+                  "
+                  [class.bg-primary]="
+                    admissionHeaders.dischargeByPercentage > 60 &&
+                    admissionHeaders.dischargeByPercentage < 70
+                  "
+                  [ngClass]="'wp-' + admissionHeaders.dischargeByPercentage"
+                ></div>
+              </div>
+            </div>
+            <div class="fs-19 ms-4">{{ admissionHeaders.dischargeBy }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-8">
+    <div class="border rounded-2 p-2 pt-3 position-relative bg-light">
+      <div class="fieldset-title px-1 bg-white fs-12">ADMISSION BY STAGES</div>
+      <div class="row">
+        <div
+          class="col-12 col-md-6 col-lg-3"
+          *ngFor="let item of patienByStage"
+        >
+          <div class="d-flex align-items-center">
+            <div class="text-truncate1">{{ item.title }}</div>
+            <div class="flex-fill mx-3">
+              <div class="fs-11 text-truncate">
+                {{ item.dischargedPercent }}% Discharge
+              </div>
+              <div class="progress progress-xs">
+                <div
+                  class="progress-bar bg-success"
+                  [class.bg-success]="item.dischargedPercent > 70"
+                  [class.bg-warning]="
+                    item.dischargedPercent < 51 && item.dischargedPercent < 70
+                  "
+                  [class.bg-danger]="item.dischargedPercent < 30"
+                  [class.bg-primary]="
+                    item.dischargedPercent > 60 && item.dischargedPercent < 70
+                  "
+                  [ngClass]="'wp-' + item.dischargedPercent"
+                ></div>
+              </div>
+            </div>
+            <div class="fs-19 ms-4">{{ item.totalPatients }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

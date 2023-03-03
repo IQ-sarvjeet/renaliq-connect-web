@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PatientService } from 'src/app/api-client';
 import { CareTeam } from '../summary-interfaces/care-team';
 
 @Component({
@@ -7,12 +8,27 @@ import { CareTeam } from '../summary-interfaces/care-team';
   styleUrls: ['./care-team.component.scss']
 })
 export class CareTeamComponent {
+  showLoading: boolean = false;
+  errorMessage: string | null = null;
   careTeamList: CareTeam[] = [];
+  constructor(private _patientService: PatientService) {
+
+  }
   ngOnInit() {
-    fetch('assets/mockData/careTeamList.json')
-    .then(response => response.json())
-    .then((data: CareTeam[]) => {
-      this.careTeamList = data;
+    this.getCareTeamList();
+  }
+  private getCareTeamList() {
+    this.showLoading = true;
+    this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
+      if (!careTeamMemberList) {
+        this.careTeamList = careTeamMemberList;
+        this.showLoading = false;
+      } else {
+        this.errorMessage = 'No data found!';
+      }
+    },
+    (error) => {
+      this.errorMessage = 'Error in fetching data.';
     })
   }
 }

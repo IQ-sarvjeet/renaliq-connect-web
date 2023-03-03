@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { PatientService } from 'src/app/api-client';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { DataCardInput } from './summary-interfaces/data-card';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
 
 declare const $: any;
-
-
 
 @Component({
   selector: 'app-summary',
@@ -15,57 +14,83 @@ declare const $: any;
 export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
-    cardTitle: 'Patients',
-    value: '253',
-    percentile: 10,
-    performance: 'up'
-  }
+    cardTitle: 'Attributed Patients',
+    count: '-',
+    percentile: null,
+    performance: 'up',
+  };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
     cardTitle: 'Admissions',
-    value: '253',
-    percentile: 10,
-    performance: 'down'
-  }
+    count: '-',
+    percentile: null,
+    performance: 'down',
+  };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
     cardTitle: 'Engaged Patients',
-    value: '100',
-    percentile: 10,
-    performance: 'up'
-  }
+    count: '-',
+    percentile: null,
+    performance: 'up',
+  };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
-    cardTitle: 'Admission',
-    value: '5',
-    percentile: 12,
-    performance: 'up'
-  }
+    cardTitle: 'Admission Last 7 Days',
+    count: '-',
+    percentile: null,
+    performance: 'up',
+  };
   patientInsight: DescriptionCardInput = {
+    redirectTo: '/reports/insight',
     iconClass: 'icon-eye',
     cardTitle: 'Patient Insight',
-    description: 'Insight of your patient popullation, including trend & performance comparision.'
-  }
+    description:
+      'Insight of your patient popullation, including trend & performance comparision.',
+  };
   qualityMatrics: DescriptionCardInput = {
+    redirectTo: '/reports/qualityMatrix',
     iconClass: 'icon-briefcase',
     cardTitle: 'Clinical Quality Matrics',
-    description: 'Practice current performance on clinical quality matics'
-  }
+    description: 'Practice current performance on clinical quality matics',
+  };
   riskStratification: DescriptionCardInput = {
+    redirectTo: '/reports/riskAnalysis',
     iconClass: 'icon-people',
     cardTitle: 'Risk Stratification',
-    description: 'Insight of Patient Risk Stratification for the patient associated with Somatus'
-  }
+    description:
+      'Insight of Patient Risk Stratification for the patient associated with Somatus',
+  };
   patientByRiskCategor: ProgressBarChartWidgetInput = {
-    title: 'Patient By Risk Categor',
-    apiUrl: 'assets/mockData/patientByRiskCategoryChartData.json'
-  }
+    title: 'Patient By Risk Category',
+    apiUrl: 'Patient/summary/riskcategory',
+  };
   patientByComorbidity: ProgressBarChartWidgetInput = {
-    title: 'Patient By Comorbidity',
-    apiUrl: 'assets/mockData/patientByComorbidityChartData.json'
-  }
+    title: 'Patient By Chronic Conditions',
+    apiUrl: 'Patient/summary/chronicconditions',
+  };
   patientByAgeGroup: ProgressBarChartWidgetInput = {
     title: 'Patient By Age Group',
-    apiUrl: 'assets/mockData/patientByAgeGroupChartData.json'
+    apiUrl: 'Patient/summary/age',
+  };
+  constructor(private _patientService: PatientService) {}
+  ngOnInit() {
+    this._patientService.apiPatientCountGet().subscribe((response: any) => {
+      this.admissions = {
+        ...this.admissions,
+        ...response.totalAdmission,
+      };
+      this.patients = {
+        ...this.patients,
+        ...response.totalPatient,
+      };
+      this.engagedPatients = {
+        ...this.engagedPatients,
+        ...response.totalEngagedPatient,
+      };
+      this.admissionRecent = {
+        ...this.admissionRecent,
+        ...response.totalRecentAdmission,
+      };
+    });
   }
 }

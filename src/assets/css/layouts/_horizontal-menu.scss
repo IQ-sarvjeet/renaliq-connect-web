@@ -52,7 +52,7 @@
       margin-top: 11px;
     }
     .header .main-header-center {
-      margin-top: 6px;
+      margin-top: 9px;
     }
     .app-sidebar.horizontal-main {
       .side-menu h3 {
@@ -266,6 +266,7 @@
 
     .logo-horizontal {
       display: block;
+      min-width: 185px;
     }
 
     .app-sidebar__toggle {
@@ -418,8 +419,13 @@
   }
 }
 @media (min-width: 768px) and (max-width: 991.98px) {
+  .logo-horizontal {
+    left: auto;
+    position: relative;
+    right: auto;
+  }
   .logo-horizontal .header-brand-img {
-    margin-left: 60px;
+    margin-left: 0;
   }
 }
 @media (max-width: 767.98px) {

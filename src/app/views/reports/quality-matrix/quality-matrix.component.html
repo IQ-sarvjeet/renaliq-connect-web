@@ -1,1 +1,495 @@
-<p>quality-matrix works!</p>
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-6 col-sm-9 col-md-10">
+          <h1 class="page-title m-0">Clinical Quality Matrics</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="/reports#/reports">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Clinical Quality Matrics
+            </li>
+          </ol>
+        </div>
+        <div class="col-6 col-sm-3 col-md-2">
+          <div class="input-group">
+            <!-- <mbsc-datepicker 
+              class="form-control fs-12"
+              #rangeDatepicker
+              [options]="dateRangeOptions" 
+              placeholder="Select date range" ></mbsc-datepicker>
+            <button class="input-group-text bg-white"
+              type="button"
+              (click)="rangeDatepicker.open()">
+              <i class="fa fa-calendar"></i>
+            </button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-container container">
+    <div class="alert bg-white alert-dismissible border mt-3 p-0 rounded-5">
+      <button
+        type="button"
+        class="btn-close p-2"
+        data-bs-dismiss="alert"
+        aria-hidden="true"
+      >
+        ×
+      </button>
+      <div class="d-md-flex">
+        <div class="flex-fill">
+          <div class="p-5">
+            <div class="mb-3">
+              <strong class="fw-semibold fs-16">What is Clinical Quality Matrics ?</strong>
+            </div>
+            As a part of your value-based care agreement with Somatus, we collaborate to manage key metrics specific to the CKD and ESKD patient population we share.
+            These metrics relate to engagement, service use and certain clinical quality metrics.  They are calculated based primarily on claims, and ADT or Admission,
+            Discharges and Transfer data we receive from our interoperability partners.  It allows you to see your patients from the lens of the payer and contrast that view
+            against what you have in your own electronic medical record or other sources, helping to find and close gaps.
+          </div>
+        </div>
+        <div class="col-12 col-md-2 p-0 text-end">
+          <img src="../../../../assets/images/risk-analysis.png"
+               alt="Patient Risk Stratification Analysis"
+               class="w-100 h-100" />
+        </div>
+      </div>
+    </div>
+    <div class="card p-2">
+      <div class="table-responsive mb-0">
+        <table class="table table-sm text-nowrap text-md-nowrap mb-0">
+          <thead>
+            <tr>
+              <th>QUALITY BONUS TIER</th>
+              <th class="text-center">POPULATION</th>
+              <th class="text-center">NUMERATOR </th>
+              <th class="text-center">DENOMINATOR</th>
+              <th class="text-center">PERFORMANCE</th>
+              <th class="text-center" width="120"></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <ng-container *ngFor="let matirc of qualityMatircList; let i=index;">
+              <tr class="bg-light">
+                <td colspan="6"><div class="px-2">{{matirc.tier}}</div></td>
+              </tr>
+              <ng-container *ngFor="let item of matirc.matrices; let m=index;">
+                <tr class="border-top">
+                  <td>{{item.martricName}}</td>
+                  <td class="text-center">{{item.type}}</td>
+                  <td class="text-center">{{item.numerator}}</td>
+                  <td class="text-center">{{item.denominator}}</td>
+                  <td>
+                    <span class="fs-11 text-primary">{{item.avgNumDeno}}{{item.targetTypeSign=='%'? '%':'' }}</span>
+                    <div class="progress progress-sm">
+                      <div class="progress-bar  wp-50"
+                           [ngClass]="{'bg-success': item.isTargetAchive === true, 'bg-danger' : item.isTargetAchive === false}"></div>
+                    </div>
+                    <span class="fs-11" *ngIf="item.targetTypeSign=='='">Traget {{item.targetFormula}}{{item.targetTypeSign}} {{item.target}}</span>
+                    <span class="fs-11" *ngIf="item.targetTypeSign=='%'">Traget {{item.targetFormula}} {{item.target}}{{item.targetTypeSign}}</span>
+                  </td>
+                  <td class="text-center">
+                    <a data-bs-target="#modalChart"
+                       data-bs-toggle="modal"
+                       href="javascript:void(0)"
+                       (click)="openChart()"
+                       class="btn btn-outline-primary border-0">
+                      <span class="icon icon-chart fs-16 mt-1 d-inline-block"></span>
+                    </a>
+                    <a routerLink="/reports/{{ item.matricId }}"
+                       class="btn btn-outline-primary border-0 ms-2">
+                      <span class="icon icon-list fs-16 mt-1 d-inline-block"></span>
+                    </a>
+                  </td>
+                </tr>
+              </ng-container>
+            </ng-container>
+
+            <!--<tr class="border-top">
+              <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Blood Pressure Management - BP less than 140/90</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Diuretics Adherance - Proportion of Days Covered</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="bg-light">
+              <td colspan="6" class="fw-semibold">
+                <div class="px-2">TIER 2</div>
+              </td>
+            </tr>
+
+            <tr class="border-top">
+              <td>Advance Care Planning</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-primary">50%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Transplant Referral</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Peritoneal Dialysis Rate</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Unplanned Dialysis Starts</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Statin Adherence - Proportion of Days Covered (PDC)</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-primary">50%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-primary wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="bg-light">
+              <td colspan="6" class="fw-semibold">
+                <div class="px-2">TIER 1</div>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Admission per 1,000 - CKD</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-success">70%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-success wp-70"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>Admission per 1,000 - ECKD</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-danger">10%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-danger wp-10"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>
+            <tr class="border-top">
+              <td>All-Cause Readmission Rate (30-Days)</td>
+              <td class="text-center">CKD</td>
+              <td class="text-center">0.00</td>
+              <td class="text-center">0.00</td>
+              <td>
+                <span class="fs-11 text-warning">40%</span>
+                <div class="progress progress-sm">
+                  <div class="progress-bar bg-warning wp-50"></div>
+                </div>
+                <span class="fs-11">Target > 80%</span>
+              </td>
+              <td class="text-center">
+                <a
+                  data-bs-target="#modalChart"
+                  data-bs-toggle="modal"
+                  href="javascript:void(0)"
+                  (click)="openChart()"
+                  class="btn btn-outline-primary border-0"
+                  ><span
+                    class="icon icon-chart fs-16 mt-1 d-inline-block"
+                  ></span
+                ></a>
+                <a
+                  routerLink="/reports"
+                  class="btn btn-outline-primary border-0 ms-2"
+                  ><span class="icon icon-list fs-16 mt-1 d-inline-block"></span
+                ></a>
+              </td>
+            </tr>-->
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHART MODAL -->
+<div class="modal fade" id="modalChart">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <app-spinner *ngIf="openChartModal"></app-spinner>
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Other - Engagement Rate</h4>
+        <button aria-label="Close"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                (click)="modalClosed()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center">Quaterly performence matrix - Q4 2022</h5>
+
+        <div class="text-center">
+          <app-bar-chart [config]="chartConfig"></app-bar-chart>
+          <!--<img
+           src="../../../../assets/images/chart.png"
+           alt="Quaterly performence matrix"
+           class="img-fluid" />-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

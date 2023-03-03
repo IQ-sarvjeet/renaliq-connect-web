@@ -1,7 +1,7 @@
 [
-    { "value": 1048, "name": "Search Engine" },
-    { "value": 735, "name": "Direct" },
-    { "value": 580, "name": "Email" },
-    { "value": 484, "name": "Union Ads" },
-    { "value": 300, "name": "Video Ads" }
+    ["CKD Stage 3A", 1048],
+    ["CKD Stage 3B", 735],
+    ["CKD Stage 4", 580],
+    ["CKD Stage 3", 484],
+    ["ESKD", 300]
 ]

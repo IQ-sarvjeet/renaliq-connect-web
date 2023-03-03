@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
+import { MbscModule } from '@mobiscroll/angular';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { PatientComponent } from './patient.component';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './list/list.component';
+import { PatientHeaderComponent } from './patient-header/patient-header.component';
+import { SharedModule } from 'src/app/components/shared.module';
+import { PatientListComponent } from './patient-list/patient-list.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: PatientComponent,
-    children: [
-      {
-        path: 'list',
-        component: ListComponent
-      }
-    ]
+    component: PatientListComponent,
   }
 ];
 
 @NgModule({
   declarations: [
     PatientComponent,
-    ListComponent
+    PatientHeaderComponent,
+    PatientListComponent,
+    AddPatientComponent,
   ],
   imports: [
+    MbscModule,
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class PatientModule { }

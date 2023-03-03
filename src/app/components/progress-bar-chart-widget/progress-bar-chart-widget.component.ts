@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-progress-bar-chart-widget',
@@ -7,6 +9,8 @@ import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-cha
   styleUrls: ['./progress-bar-chart-widget.component.scss']
 })
 export class ProgressBarChartWidgetComponent {  
+  showLoading: boolean = false;
+  errorMessage: string | null = null;
   chartConfig: ProgressBarChartWidgetInput = {} as ProgressBarChartWidgetInput;
   chartData: any = [];
   @Input() set config(inputValue: ProgressBarChartWidgetInput) {
@@ -15,11 +19,22 @@ export class ProgressBarChartWidgetComponent {
       this.loadChartData(inputValue.apiUrl);
     }
   }
+  constructor(private httpClient: HttpClient) {
+
+  }
   private loadChartData(url: string): void {
-    fetch(url).then((response: any) => response.json())
-    .then((data: any) => {
-      console.log('response:', data);
-      this.chartData = data;
-    });
+    this.showLoading = true;
+    this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((data: any) => {
+      if (data) {
+        this.chartData = data;
+        this.showLoading = false;
+        this.errorMessage = null;
+        return;
+      }
+      this.errorMessage = 'No data found!';
+    },
+    (error) => {
+      this.errorMessage = 'Error in fetching data.';
+    })
   }
 }

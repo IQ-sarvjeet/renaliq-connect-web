@@ -391,17 +391,20 @@ fieldset:disabled a.btn {
     background-color: rgba($dark, 0.85) !important;
     border-color: rgba($dark, 0.85);
   }
+
   &:focus,
   &:focus {
     box-shadow: 0 0 0 2px rgba($dark, 0.9);
     border-color: $dark;
   }
+
   &:disabled,
   &:disabled {
     color: $white;
-    background-color: rgba($dark, 0.6);
-    border-color: rgba($dark, 0.6);
+    background-color: rgba($dark, 0.6) !important;
+    border-color: rgba($dark, 0.6)important;
   }
+
   &:not(:disabled):not(.disabled) {
     &:active,
     &.active {
@@ -2315,7 +2318,7 @@ fieldset:disabled a.btn {
 }
 .btn-lg,
 .btn-group-lg > .btn {
-  padding: 0.7rem 2rem;
+  padding: 0.5rem 2rem;
   font-size: 1.325rem;
   line-height: 1.625;
 }

@@ -7,11 +7,27 @@
     {
         "imageSrc": "../assets/images/faces/7.jpg",
         "name": "Kevin Martin",
-        "designation": "Dietitian"
+        "designation": "Patient Health Advocate"
     },
     {
         "imageSrc": "../assets/images/faces/5.jpg",
         "name": "Allie Grater",
-        "designation": "Krysia Eurydyka"
+        "designation": "Diatetian"
+    },
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Hohn Deo",
+        "designation": "Care Manager"
+    },
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Martin",
+        "designation": "Nurse Care Manager"
+    }
+    ,
+    {
+        "imageSrc": "../assets/images/faces/5.jpg",
+        "name": "Andrew Glan",
+        "designation": "Nurse Care Manager"
     }
 ]

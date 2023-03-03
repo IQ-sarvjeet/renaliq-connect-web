@@ -10,6 +10,10 @@
   -ms-user-select: none;
   user-select: none;
 }
+.dataTable .custom-control {
+  min-height: 1rem;
+  padding-left: 0;
+}
 .custom-control-inline {
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -39,7 +43,7 @@
 .custom-control-label {
   &::before {
     position: absolute;
-    top: 0.25rem;
+    top: 0.125rem;
     left: 0;
     display: block;
     width: 1rem;
@@ -54,7 +58,7 @@
   }
   &::after {
     position: absolute;
-    top: 0.25rem;
+    top: 0.125rem;
     left: 0;
     display: block;
     width: 1rem;
@@ -138,10 +142,10 @@
   }
 }
 .form-select-sm {
-  height: calc(1.8125rem + 2px);
-  padding-top: 0.5rem;
+  height: calc(1.8125rem + 4px);
+  padding-top: 0.375rem;
   padding-bottom: 0.5rem;
-  font-size: 75%;
+  font-size: 0.75rem;
 }
 div.dataTables_wrapper div.dataTables_filter input {
   margin-left: 0.5em;

@@ -22,7 +22,7 @@
     background-color: $white;
     outline: 0;
     box-shadow: none;
-    border-color: $border;
+    border-color: $secondary;
   }
   &::-webkit-input-placeholder,
   &::-moz-placeholder,
@@ -149,10 +149,10 @@ select.form-control-sm:not([size]):not([multiple]) {
   }
 }
 .form-control-lg {
-  padding: 0.5rem 1rem;
-  font-size: 1.125rem;
+  padding: 0.625rem 1rem;
+  font-size: 1rem;
   line-height: 1.44444444;
-  border-radius: 7px;
+  border-radius: 4px;
 }
 .input-group-lg > {
   .form-control,
@@ -338,6 +338,23 @@ select.form-control-lg:not([size]):not([multiple]) {
     display: block;
   }
 }
+
+.was-validated input[type="password"].form-control:invalid,
+input[type="password"].form-control.is-invalid,
+.was-validated .input-password input[type="text"].form-control:invalid,
+.input-password input[type="text"].form-control.is-invalid,
+.was-validated .input-password input[type="password"].form-control:valid,
+.input-password input[type="password"].form-control.is-valid,
+.was-validated .input-password input[type="text"].form-control:valid,
+.input-password input[type="text"].form-control.is-valid {
+  padding-right: 4rem;
+
+  + .input-password__icon,
+  + .input-password__icon + .input-password__icon {
+    right: 2.25rem;
+  }
+}
+
 .was-validated .form-file-input:valid:focus ~ .form-file-label,
 .form-file-input.is-valid:focus ~ .form-file-label {
   box-shadow: 0 0 0 2px rgba(94, 186, 0, 0.25);
@@ -358,6 +375,11 @@ select.form-control-lg:not([size]):not([multiple]) {
   border-color: $danger;
   box-shadow: 0 0 0 2px rgba(205, 32, 31, 0.25);
 }
+.was-validated input.form-control.ng-untouched {
+  border-color: inherit !important;
+  background-image: none;
+}
+
 .was-validated .form-control:invalid ~ {
   .invalid-feedback,
   .invalid-tooltip {

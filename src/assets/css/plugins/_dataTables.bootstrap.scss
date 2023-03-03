@@ -6,7 +6,6 @@
 
 table.dataTable {
   clear: both;
-  margin-top: 6px !important;
   margin-bottom: 6px !important;
   max-width: none !important;
   border-collapse: collapse !important;
@@ -252,6 +251,12 @@ div {
 }
 
 table {
+  thead tr th:first-child .sorting_disabled {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
   &.dataTable.table-sm {
     > thead > tr > th:not(.sorting_disabled) {
       padding-right: 20px;
@@ -330,4 +335,15 @@ div {
 
 #delete-datatable tr {
   cursor: pointer;
+}
+.fieldset-title {
+  position: absolute;
+  top: -0.5rem;
+  left: 0.5rem;
+}
+.sorting_off {
+  &:before,
+  &:after {
+    display: none !important;
+  }
 }

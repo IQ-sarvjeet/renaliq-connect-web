@@ -1,7 +1,7 @@
-<div class="card border">
-    <div class="card-header title-submenu d-flex">
-      <h3 class="card-title flex-fill">{{chartConfig.title}}</h3>
-      <nav class="nav">
+<div class="card" *ngIf="!errorMessage">
+  <div class="card-header title-submenu d-flex">
+    <h3 class="card-title flex-fill">{{ chartConfig.title }}</h3>
+    <!-- <nav class="nav">
         <div class="dropdown">
           <a
             class="nav-link text-muted fs-16 p-0 ps-4"
@@ -21,19 +21,72 @@
             >
           </div>
         </div>
-      </nav>
-    </div>
-    <div class="card-body pt-1">
-        <div class="row my-3" *ngFor="let data of chartData">
-            <div class="col-4">{{data.key}}</div>
-            <div class="col-6">
-            <div class="progress progress-sm my-1">
-                <div class="progress-bar bg-dark"
-                    [class]="data.value > 50 ? 'bg-primary progress-bar-striped progress-bar-animated wp-' + data.value: 'bg-dark wp-' + data.value">
-                </div>
-            </div>
-            </div>
-            <div class="col-2 text-right">{{data.value}}%</div>
+      </nav> -->
+  </div>
+  <div class="card-body pt-1 mh-11">
+    <div *ngIf="showLoading">
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
         </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-50"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-75"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
     </div>
+
+    <div class="row my-3" *ngFor="let data of chartData">
+      <div class="col-4">{{ data.key }}</div>
+      <div class="col-6">
+        <div class="progress progress-sm my-1">
+          <div
+            class="progress-bar progress-bar-bg-color"
+            [class]="
+              data.value > 50
+                ? 'progress-bar-striped progress-bar-animated wp-' + data.value
+                : 'wp-' + data.value
+            "
+          ></div>
+        </div>
+      </div>
+      <div class="col-2 text-right">{{ data.value }}%</div>
+    </div>
+  </div>
+</div>
+<div *ngIf="errorMessage">
+  <div class="alert alert-danger d-flex fade show"
+    role="alert">
+    <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+    <div class="flex-fill">
+      {{ errorMessage }}
+    </div>
+  </div>
 </div>
