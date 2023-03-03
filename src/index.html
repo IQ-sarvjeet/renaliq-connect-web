@@ -56,7 +56,9 @@
     <script src="./assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <div id="scrnli_recorder_root"></div>
+    <!-- TOOLTIPS AND POPOVERS JS -->
+    <script src="./assets/js/tooltippopover.js"></script>
+
     <!-- INTERNAL SELECT2 JS -->
     <script src="./assets/plugins/select2/select2.full.min.js"></script>
     <script src="./assets/js/circle-progress.min.js"></script>
@@ -78,75 +80,10 @@
 
     <!-- STICKY JS -->
     <script src="./assets/js/sticky.js"></script>
+
     <!-- COLOR THEME JS -->
     <script src="./assets/js/themeColors.js"></script>
-    <!-- DONUT CHART JS -->
-    <!-- <script src="./assets/js/chart.min.js"></script> -->
-    <!-- CUSTOM JS -->
+
     <script src="./assets/js/custom.js"></script>
-    <!-- <script>
-      $(document).ready(function () {
-        // DONUT CHART JS
-        function donutChart() {
-          var ctx = document.getElementById("donutChart");
-          var myChart = new Chart(ctx, {
-            type: "doughnut",
-            data: {
-              labels: [
-                "CKD Stage 3a",
-                "CKD Stage 3b",
-                "CKD Stage 4",
-                "CKD Stage 4",
-                "ESKD",
-              ],
-              datasets: [
-                {
-                  label: "# of Tomatoes",
-                  data: [47, 19, 71, 51, 22],
-                  backgroundColor: [
-                    "rgba(8, 48, 80, 0.2)",
-                    "rgba(8, 48, 80, 0.5)",
-                    "rgba(8, 48, 80, 0.75)",
-                    "rgba(8, 48, 80, 1)",
-                    "rgba(38, 132, 255, 1)",
-                  ],
-
-                  borderColor: [
-                    "rgba(8, 48, 80, 0.2)",
-                    "rgba(8, 48, 80, 0.5)",
-                    "rgba(8, 48, 80, 0.75)",
-                    "rgba(8, 48, 80, 1)",
-                    "rgba(38, 132, 255, 1)",
-                  ],
-
-                  borderWidth: 1,
-                },
-              ],
-            },
-            options: {
-              title: {
-                display: false,
-                text: "This is Title",
-              },
-              animation: {
-                animateScale: true,
-                animateRotate: true,
-              },
-              responsive: true,
-              maintainAspectRatio: false,
-
-              legend: {
-                position: "right",
-                labels: {
-                  boxWidth: 10,
-                  padding: 12,
-                },
-              },
-            },
-          });
-        }
-        setTimeout(donutChart, 5000);
-      });
-    </script> -->
   </body>
 </html>
