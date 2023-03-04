@@ -20,6 +20,7 @@ export const Messages = {
     error404Header: '404 Error Page Not Found',
     error404Body: 'We couldn′t find the page you are looking for.',
     errorPractice: 'Practice is not assigned to this user, Please contact RenelIQ team.',
+    metricId : 'Metric id from route is not found.',
     mobileRequired: 'Mobile Number is required',
     mobileValid: 'Enter the valid Mobile Number',
     numberOfAttempts: 'Exhausted the number of account verification attempts.',
