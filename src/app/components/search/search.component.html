@@ -35,7 +35,7 @@
       >
         <use xlink:href="#exclamation-triangle-fill"></use>
       </svg>
-      <div>No Patient found!</div>
+      <div>{{message.noPatientFound}}</div>
     </div>
   </div>
   <div [ngClass]="{ 'search-results': patientSearchedList.length > 0 }"

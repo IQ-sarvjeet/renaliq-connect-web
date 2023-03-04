@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Messages } from 'src/app/shared/common-constants/messages';
 
 type ChartApiResponse = {
   categories: any;
@@ -104,10 +105,10 @@ export class BarChartHorizontalComponent {
         this.errorMessage = null;
         return;
       }
-      this.errorMessage = 'No data found!';
+      this.errorMessage = Messages.noData;
     },
     (error) => {
-      this.errorMessage = 'Error in fetching data.';
+      this.errorMessage = Messages.errorFetchingData;
     })
   } 
 }

@@ -2,6 +2,7 @@ import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { debounceTime, distinctUntilChanged, filter, fromEvent, tap } from 'rxjs';
 import { PatientService } from 'src/app/api-client';
+import { Messages } from 'src/app/shared/common-constants/messages';
 
 @Component({
   selector: 'app-search',
@@ -9,6 +10,7 @@ import { PatientService } from 'src/app/api-client';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  message: any = Messages;
   @ViewChild('searchInput') searchInput!: ElementRef;
   @ViewChild('patientSearchList') patientSearchList!: ElementRef;
   visibleDropdown: boolean = false;

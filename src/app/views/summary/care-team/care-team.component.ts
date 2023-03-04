@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { CareTeam } from '../summary-interfaces/care-team';
 
 @Component({
@@ -21,14 +22,14 @@ export class CareTeamComponent {
     this.showLoading = true;
     this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
       if (!careTeamMemberList) {
-        this.errorMessage = 'No data found!';
+        this.errorMessage = Messages.noData;
       } else {
         this.careTeamList = careTeamMemberList;
       }
       this.showLoading = false;
     },
     (error) => {
-      this.errorMessage = 'Error in fetching data.';
+      this.errorMessage = Messages.errorFetchingData;
     })
   }
 }
