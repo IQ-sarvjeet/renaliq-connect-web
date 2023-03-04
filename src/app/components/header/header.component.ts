@@ -30,7 +30,7 @@ export class HeaderComponent {
   ngOnInit() {
     this.practiceService.apiPracticeListGet().subscribe((practiceList: any) => {
       this.practiceList = practiceList;
-      if (practiceList.length) {
+      if (!practiceList.length) {
         this.eventService.errorMessageUpdate({
           type: 'error',
           title: '',
