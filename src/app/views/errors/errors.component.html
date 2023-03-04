@@ -24,17 +24,17 @@
     <div class="aside-section">
       <div class="flex-fill pt-4 pb-6">
         <div>
-          <h2 class="fw-bold">
-            404 Error<br />Page Not Found
+          <h2 class="fw-bold" *ngIf="errorMessage.title">
+            {{errorMessage.title}}
             <i class="fa fa-exclamation-triangle text-danger"></i>
           </h2>
         </div>
-        <div class="text-gray mb-6">
-          We couldn′t find the page you are looking for.
+        <div class="text-gray mb-6" *ngIf="errorMessage.body">
+          {{errorMessage.body}}
         </div>
 
-        <div>
-          <a href="/" class="btn btn-dark"
+        <div *ngIf="errorMessage.type === '404'">
+          <a routerLink="/" class="btn btn-dark"
             ><i class="icon icon-action-undo me-1"></i> Home Page</a
           >
         </div>
