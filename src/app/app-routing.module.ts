@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthguardGuard } from './auth/authguard.guard';
 
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
@@ -36,21 +37,25 @@ const routes: Routes = [
     path: 'summary',
     loadChildren: () =>
       import('./views/summary/summary.module').then((m) => m.SummaryModule),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'patient',
     loadChildren: () =>
       import('./views/patient/patient.module').then((m) => m.PatientModule),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'reports',
     loadChildren: () =>
       import('./views/reports/reports.module').then((m) => m.ReportsModule),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'reports/:id',
     loadChildren: () =>
       import('./views/reports/reports.module').then((m) => m.ReportsModule),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'admission',
@@ -58,6 +63,7 @@ const routes: Routes = [
       import('./views/admission/admission.module').then(
         (m) => m.AdmissionModule
       ),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'documents',
@@ -65,6 +71,7 @@ const routes: Routes = [
       import('./views/documents/documents.module').then(
         (m) => m.DocumentsModule
       ),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'patient-profile',
@@ -72,6 +79,7 @@ const routes: Routes = [
       import('./views/patient-profile/patient-profile.module').then(
         (m) => m.PatientProfileModule
       ),
+    canActivate: [AuthguardGuard]
   },
   {
     path: 'resetPassword',
