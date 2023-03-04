@@ -46,6 +46,13 @@ export class HeaderComponent {
         this.selectedPractice = this.practiceList[0];
         this.selectPracticeHandlar(this.selectedPractice);
       }
+    }, (error: any) => {
+      this.eventService.errorMessageUpdate({
+        type: 'error',
+        title: '',
+        body: this.messages.errorPractice
+      });
+      this.route.navigate(['/error']);
     })
   }
   public async logOut() {

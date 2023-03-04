@@ -21,11 +21,11 @@ export class CareTeamComponent {
     this.showLoading = true;
     this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
       if (!careTeamMemberList) {
-        this.careTeamList = careTeamMemberList;
-        this.showLoading = false;
-      } else {
         this.errorMessage = 'No data found!';
+      } else {
+        this.careTeamList = careTeamMemberList;
       }
+      this.showLoading = false;
     },
     (error) => {
       this.errorMessage = 'Error in fetching data.';
