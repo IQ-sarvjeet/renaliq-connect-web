@@ -79,7 +79,7 @@
         </td>
       </tr>  
       <tr *ngIf="list.length ==0 && !showLoading" >
-        <td >No Record Found.</td>
+        <td >{{message.noRecords}}</td>
       </tr>  
     </tbody>
   </table>

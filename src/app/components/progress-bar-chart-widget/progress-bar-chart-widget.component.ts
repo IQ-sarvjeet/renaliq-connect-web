@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -31,10 +32,10 @@ export class ProgressBarChartWidgetComponent {
         this.errorMessage = null;
         return;
       }
-      this.errorMessage = 'No data found!';
+      this.errorMessage = Messages.noData;
     },
     (error) => {
-      this.errorMessage = 'Error in fetching data.';
+      this.errorMessage = Messages.errorFetchingData;
     })
   }
 }

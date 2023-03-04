@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { DataCardInput } from './summary-interfaces/data-card';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
 
@@ -14,28 +15,28 @@ declare const $: any;
 export class SummaryComponent {
   patients: DataCardInput = {
     iconClass: 'icon-user',
-    cardTitle: 'Attributed Patients',
+    cardTitle: Messages.attributed,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   admissions: DataCardInput = {
     iconClass: 'icon-target',
-    cardTitle: 'Admissions',
+    cardTitle: Messages.admissions,
     count: '-',
     percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
     iconClass: 'icon-people',
-    cardTitle: 'Engaged Patients',
+    cardTitle: Messages.engagedPatients,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
     iconClass: 'icon-people',
-    cardTitle: 'Admission Last 7 Days',
+    cardTitle: Messages.admissions7Days,
     count: '-',
     percentile: null,
     performance: 'up',
@@ -43,33 +44,31 @@ export class SummaryComponent {
   patientInsight: DescriptionCardInput = {
     redirectTo: '/reports/insight',
     iconClass: 'icon-eye',
-    cardTitle: 'Patient Insight',
-    description:
-      'Insight of your patient popullation, including trend & performance comparision.',
+    cardTitle: Messages.patientInsight,
+    description: Messages.patientPopullation,
   };
   qualityMatrics: DescriptionCardInput = {
     redirectTo: '/reports/qualityMatrix',
     iconClass: 'icon-briefcase',
-    cardTitle: 'Clinical Quality Matrics',
-    description: 'Practice current performance on clinical quality matics',
+    cardTitle: Messages.clinicalText1,
+    description: Messages.practiceCurrentPerformance,
   };
   riskStratification: DescriptionCardInput = {
     redirectTo: '/reports/riskAnalysis',
     iconClass: 'icon-people',
-    cardTitle: 'Risk Stratification',
-    description:
-      'Insight of Patient Risk Stratification for the patient associated with Somatus',
+    cardTitle: Messages.riskText1,
+    description: Messages.patientInsightText2,
   };
   patientByRiskCategor: ProgressBarChartWidgetInput = {
-    title: 'Patient By Risk Category',
+    title: Messages.riskText2,
     apiUrl: 'Patient/summary/riskcategory',
   };
   patientByComorbidity: ProgressBarChartWidgetInput = {
-    title: 'Patient By Chronic Conditions',
+    title: Messages.patientText1,
     apiUrl: 'Patient/summary/chronicconditions',
   };
   patientByAgeGroup: ProgressBarChartWidgetInput = {
-    title: 'Patient By Age Group',
+    title: Messages.patientText2,
     apiUrl: 'Patient/summary/age',
   };
   constructor(private _patientService: PatientService) {}
