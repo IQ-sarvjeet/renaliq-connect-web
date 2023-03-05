@@ -101,13 +101,8 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.eventService.userLoggedInUpdate(true);
         await this.getUserInfo();
-        //this.eventService.openToaster({
-        //  showToster: true,
-        //  message: `Welcome ${this.username}`,
-        //  type: 'success',
-        //});
-        //this.route.navigate(['/summary/']);
       }
     },
       (error: any) => {
