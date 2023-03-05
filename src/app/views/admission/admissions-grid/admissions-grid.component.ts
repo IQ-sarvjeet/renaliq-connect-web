@@ -12,7 +12,7 @@ export class AdmissionsGridComponent {
   admissionList: any = {
     items: [],
     pagingModel: {
-      pageSize: 2,
+      pageSize: 10,
       totalRecords: 19,
       currentPage: 1,
       totalPages: 9

@@ -4,6 +4,7 @@ import { LocalStorageService } from 'src/app/shared/services/localstorage.servic
 import { AccountService, PracticeService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
+import { AuthService } from 'src/app/services/auth.service';
 
 type Practice = {
   isSelected: boolean;
@@ -25,34 +26,48 @@ export class HeaderComponent {
     private _localStorage: LocalStorageService,
     private practiceService: PracticeService,
     private route: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private authService: AuthService,
+
   ) {}
   ngOnInit() {
-    this.practiceService.apiPracticeListGet().subscribe((practiceList: any) => {
-      this.practiceList = practiceList;
-      if (!practiceList.length) {
+    this.eventService.userLoggedInSubscription().subscribe({
+      next: (response: boolean) => {
+        if (!this.authService.isLoggedIn()) return;
+        this.loadPracticeList();
+      }
+    })
+  }
+  private loadPracticeList() {
+    this.practiceService.apiPracticeListGet().subscribe({
+      next: (practiceList: any) => {
+        this.practiceList = practiceList;
+        if (!practiceList.length) {
+          this.eventService.errorMessageUpdate({
+            type: 'error',
+            title: '',
+            body: this.messages.errorPractice
+          });
+          this.route.navigate(['/error']);
+          return;
+        };
+        const selectedItem = practiceList.filter((item: Practice) => item.isSelected);
+        if (selectedItem.length > 0) {
+          this.selectedPractice = selectedItem[0];
+        } else {
+          this.selectedPractice = this.practiceList[0];
+          this.selectPracticeHandlar(this.selectedPractice);
+        }
+      },
+      error: (error) => {
         this.eventService.errorMessageUpdate({
           type: 'error',
           title: '',
           body: this.messages.errorPractice
         });
         this.route.navigate(['/error']);
-        return;
-      };
-      const selectedItem = practiceList.filter((item: Practice) => item.isSelected);
-      if (selectedItem.length > 0) {
-        this.selectedPractice = selectedItem[0];
-      } else {
-        this.selectedPractice = this.practiceList[0];
-        this.selectPracticeHandlar(this.selectedPractice);
-      }
-    }, (error: any) => {
-      this.eventService.errorMessageUpdate({
-        type: 'error',
-        title: '',
-        body: this.messages.errorPractice
-      });
-      this.route.navigate(['/error']);
+      },
+      
     })
   }
   public async logOut() {

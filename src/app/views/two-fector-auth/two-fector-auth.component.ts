@@ -106,6 +106,7 @@ export class TwoFectorAuthComponent {
           message: `Welcome ${this.username}`,
           type: 'success',
         })
+        this.eventService.userLoggedInUpdate(true);
         this.route.navigate(['/summary/']);
       }
     },

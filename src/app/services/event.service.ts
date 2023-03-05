@@ -9,6 +9,7 @@ import { Toaster } from '../interfaces/toaster';
 export class EventService {
   private openToaster$: BehaviorSubject<Toaster> = new BehaviorSubject<Toaster>({} as Toaster);
   private errorMessage$: BehaviorSubject<ErrorMessage> = new BehaviorSubject<ErrorMessage>({} as ErrorMessage);
+  private userLoggedInSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -21,5 +22,11 @@ export class EventService {
   }
   errorMessageSubscription(): Observable<ErrorMessage> {
     return this.errorMessage$.asObservable();
+  }
+  userLoggedInUpdate(value: boolean) {
+    this.userLoggedInSuccess$.next(value);
+  }
+  userLoggedInSubscription(): Observable<boolean> {
+    return this.userLoggedInSuccess$.asObservable();
   }
 }

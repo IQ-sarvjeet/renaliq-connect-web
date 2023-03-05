@@ -21,6 +21,7 @@ export class ErrorsComponent {
   }
   ngOnInit(): void {
     this.eventService.errorMessageSubscription().subscribe((message: ErrorMessage) => {
+      console.log('Show error message:', message);
       this.errorMessage = message;
     })
     $('.header').addClass('d-none');
