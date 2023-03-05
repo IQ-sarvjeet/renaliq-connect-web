@@ -185,6 +185,7 @@ export class TwoFectorAuthComponent {
         if (this.errorMessage == 'Exhausted the number of account verification attempts') {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
           let timers = timer(1000).subscribe(() => {
+            this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
             this.route.navigate(['/login']);
           })
         }
