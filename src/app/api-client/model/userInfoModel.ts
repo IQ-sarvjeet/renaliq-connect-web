@@ -10,11 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface PracticeViewModel { 
-    id?: number;
-    practiceId?: number;
-    userId?: number;
-    name?: string;
-    npi?: string;
-    isSelected?: boolean;
+export interface UserInfoModel { 
+    userLoginId?: number;
+    roleId?: number;
+    firstName?: string;
+    lastName?: string;
+    fullName?: string;
+    email?: string;
+    roleName?: string;
+    imageUrl?: string;
 }

@@ -25,6 +25,7 @@ import { LoginResponse } from '../model/loginResponse';
 import { RegisterModel } from '../model/registerModel';
 import { ResetPasswordModel } from '../model/resetPasswordModel';
 import { UserActivityLogEditModel } from '../model/userActivityLogEditModel';
+import { UserInfoModel } from '../model/userInfoModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -452,6 +453,44 @@ export class AccountService {
         return this.httpClient.request<any>('post',`${this.basePath}/api/Account/user/activity/log`,
             {
                 body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiAccountUserInfoGet(observe?: 'body', reportProgress?: boolean): Observable<UserInfoModel>;
+    public apiAccountUserInfoGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfoModel>>;
+    public apiAccountUserInfoGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfoModel>>;
+    public apiAccountUserInfoGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<UserInfoModel>('get',`${this.basePath}/api/Account/user-info`,
+            {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
