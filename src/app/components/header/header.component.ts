@@ -10,6 +10,7 @@ type Practice = {
   isSelected: boolean;
   name: string;
   practiceId: number;
+  npi: string;
 }
 
 @Component({
