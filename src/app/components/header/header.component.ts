@@ -5,6 +5,8 @@ import { AccountService, PracticeService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { AuthService } from 'src/app/services/auth.service';
+import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
+import { UserInfo } from 'src/app/interfaces/user';
 
 type Practice = {
   isSelected: boolean;
@@ -22,6 +24,10 @@ export class HeaderComponent {
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
   practiceList: Practice[] = [];
+  userInfo: UserInfo = {
+    fullName: '',
+    roleName: ''
+  };
   constructor(
     private _accountService: AccountService,
     private _localStorage: LocalStorageService,
@@ -36,6 +42,10 @@ export class HeaderComponent {
       next: (response: boolean) => {
         if (!this.authService.isLoggedIn()) return;
         this.loadPracticeList();
+        const info = this._localStorage.getItem(CommonConstants.USER_INFO_KEY);
+        if (info) {
+          this.userInfo = JSON.parse(info);
+        }
       }
     })
   }

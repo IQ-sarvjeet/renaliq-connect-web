@@ -111,48 +111,14 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
         }
       });
   };
-
-  //public async token() {
-  //  let that = this;
-  //  let model: any = {
-  //    username: this.username,
-  //    password: this.password,
-  //    grant_type: environment.grantType,
-  //    scope: environment.scope,
-  //    client_id: environment.clientId,
-  //    client_secret: environment.clientSecret,
-  //  };
-
-  //  await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
-  //    if (result) {
-  //      this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
-  //      setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.eventService.openToaster({
-  //        showToster: true,
-  //        message: `Welcom ${this.username}`,
-  //        type: 'success',
-  //      })
-  //      that.route.navigate(['/summary/']);
-  //    }
-  //  },
-  //    (error: any) => {
-  //      this.showToster = true;
-  //      this.errorMessage = error?.error?.message?.message;
-
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.route.navigate(['/login']);
-  //    });
-  //};
-
-
   public async getUserInfo() {
     this.successMsg = "";
     this.errorMessage = "";
@@ -165,8 +131,7 @@ export class TwoFectorAuthComponent {
         this.showToster = true;
         this.isDisabled = false;
         this.showLoading = false;
-
-        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, result);
+        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, JSON.stringify(result));
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.eventService.openToaster({
           showToster: true,
@@ -182,11 +147,14 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         this.errorMessage = error?.error?.message?.message;
 
-        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+        if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
+          this.route.navigate(['/login']);
         }
       });
   };
@@ -222,9 +190,11 @@ export class TwoFectorAuthComponent {
 
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
         }
       });
   };
@@ -239,14 +209,13 @@ export class TwoFectorAuthComponent {
 
   onDigitInput(event: any) {
     let element;
-    if (event.code !== 'Backspace')
+    if (event.code !== 'Backspace' || event.code === 'ArrowRight')
       element = event.srcElement.nextElementSibling;
 
-    if (event.code === 'Backspace')
+    if (event.code === 'Backspace' || event.code === 'ArrowLeft')
       element = event.srcElement.previousElementSibling;
 
     if (element == null) {
-      this.onSubmit();
       return;
     } else {
       element.focus();

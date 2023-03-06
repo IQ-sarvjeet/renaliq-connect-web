@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ErrorMessage } from '../interfaces/error-message';
+import { ErrorMessage, ErrorReachedAttempt } from '../interfaces/error-message';
 import { Toaster } from '../interfaces/toaster';
 
 @Injectable({
@@ -10,6 +10,10 @@ export class EventService {
   private openToaster$: BehaviorSubject<Toaster> = new BehaviorSubject<Toaster>({} as Toaster);
   private errorMessage$: BehaviorSubject<ErrorMessage> = new BehaviorSubject<ErrorMessage>({} as ErrorMessage);
   private userLoggedInSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private reachedNoOfAttempts$: BehaviorSubject<ErrorReachedAttempt> = new BehaviorSubject<ErrorReachedAttempt>({
+    showError: false,
+    message: ''
+  });
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -28,5 +32,11 @@ export class EventService {
   }
   userLoggedInSubscription(): Observable<boolean> {
     return this.userLoggedInSuccess$.asObservable();
+  }
+  reachedNoOfAttemptsUpdate(value: ErrorReachedAttempt) {
+    this.reachedNoOfAttempts$.next(value);
+  }
+  reachedNoOfAttemptsSubscription(): Observable<ErrorReachedAttempt> {
+    return this.reachedNoOfAttempts$.asObservable();
   }
 }
