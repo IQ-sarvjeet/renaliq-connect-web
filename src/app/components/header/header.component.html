@@ -33,7 +33,7 @@
               <div>
                 <h6 class="mb-0">{{ selectedPractice.name }}</h6>
                 <div class="fs-12 opacity-75 pt-1 text-muted">
-                  {{ selectedPractice.practiceId }}
+                  {{ selectedPractice.npi }}
                 </div>
               </div>
               <i class="user-angle ms-1 fa fa-angle-down"></i>
@@ -48,7 +48,7 @@
                 (click)="selectPracticeHandlar(practice)"
               >
                 {{ practice.name }}
-                <span class="d-block opacity-75">{{ practice.practiceId }}</span>
+                <span class="d-block opacity-75">{{ practice.npi }}</span>
               </a>
               <!-- <a class="dropdown-item border-top" href="#">
                 Fort Worth Renal Group
