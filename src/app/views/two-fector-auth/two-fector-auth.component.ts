@@ -111,10 +111,14 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
+          // let timers = timer(1000).subscribe(() => {
+          //   this.route.navigate(['/login']);
+          // })
         }
       });
   };
@@ -182,12 +186,18 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         this.errorMessage = error?.error?.message?.message;
 
-        if (this.errorMessage == 'Exhausted the number of account verification attempts') {
+        if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          let timers = timer(1000).subscribe(() => {
-            this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
+          this.route.navigate(['/login']);
+          // let timers = timer(1000).subscribe(() => {
+          //   this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
+          //   this.route.navigate(['/login']);
+          // })
         }
       });
   };
@@ -223,9 +233,14 @@ export class TwoFectorAuthComponent {
 
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
+          // let timers = timer(1000).subscribe(() => {
+          //   this.route.navigate(['/login']);
+          // })
         }
       });
   };
@@ -247,7 +262,7 @@ export class TwoFectorAuthComponent {
       element = event.srcElement.previousElementSibling;
 
     if (element == null) {
-      this.onSubmit();
+      // this.onSubmit();
       return;
     } else {
       element.focus();

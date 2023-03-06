@@ -40,7 +40,7 @@ export const Messages = {
     resetPasswordLink: 'We will send a link to reset your password',
     riskText1: 'Risk Stratification',
     riskText2: 'Patient By Risk Category',
-    sendTo: 'Code was to',
+    sendTo: 'Code was sent to',
     textMessage: "We've sent a text message containing a link to Reset your password.",
     viaSms: 'Reset via SMS',
     verificationCodeText: 'Enter Verification Code',

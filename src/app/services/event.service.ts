@@ -10,6 +10,10 @@ export class EventService {
   private openToaster$: BehaviorSubject<Toaster> = new BehaviorSubject<Toaster>({} as Toaster);
   private errorMessage$: BehaviorSubject<ErrorMessage> = new BehaviorSubject<ErrorMessage>({} as ErrorMessage);
   private userLoggedInSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private reachedNoOfAttempts$: BehaviorSubject<any> = new BehaviorSubject<any>({
+    showError: false,
+    message: ''
+  });
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -28,5 +32,11 @@ export class EventService {
   }
   userLoggedInSubscription(): Observable<boolean> {
     return this.userLoggedInSuccess$.asObservable();
+  }
+  reachedNoOfAttemptsUpdate(value: boolean) {
+    this.userLoggedInSuccess$.next(value);
+  }
+  reachedNoOfAttemptsSubscription(): Observable<boolean> {
+    return this.reachedNoOfAttempts$.asObservable();
   }
 }
