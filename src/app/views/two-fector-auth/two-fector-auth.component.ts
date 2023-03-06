@@ -116,47 +116,9 @@ export class TwoFectorAuthComponent {
             message: this.errorMessage
           });
           this.route.navigate(['/login']);
-          // let timers = timer(1000).subscribe(() => {
-          //   this.route.navigate(['/login']);
-          // })
         }
       });
   };
-
-  //public async token() {
-  //  let that = this;
-  //  let model: any = {
-  //    username: this.username,
-  //    password: this.password,
-  //    grant_type: environment.grantType,
-  //    scope: environment.scope,
-  //    client_id: environment.clientId,
-  //    client_secret: environment.clientSecret,
-  //  };
-
-  //  await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
-  //    if (result) {
-  //      this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
-  //      setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.eventService.openToaster({
-  //        showToster: true,
-  //        message: `Welcom ${this.username}`,
-  //        type: 'success',
-  //      })
-  //      that.route.navigate(['/summary/']);
-  //    }
-  //  },
-  //    (error: any) => {
-  //      this.showToster = true;
-  //      this.errorMessage = error?.error?.message?.message;
-
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.route.navigate(['/login']);
-  //    });
-  //};
-
-
   public async getUserInfo() {
     this.successMsg = "";
     this.errorMessage = "";
@@ -193,10 +155,6 @@ export class TwoFectorAuthComponent {
           });
           this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
           this.route.navigate(['/login']);
-          // let timers = timer(1000).subscribe(() => {
-          //   this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
-          //   this.route.navigate(['/login']);
-          // })
         }
       });
   };
@@ -237,9 +195,6 @@ export class TwoFectorAuthComponent {
             message: this.errorMessage
           });
           this.route.navigate(['/login']);
-          // let timers = timer(1000).subscribe(() => {
-          //   this.route.navigate(['/login']);
-          // })
         }
       });
   };
@@ -261,7 +216,6 @@ export class TwoFectorAuthComponent {
       element = event.srcElement.previousElementSibling;
 
     if (element == null) {
-      // this.onSubmit();
       return;
     } else {
       element.focus();
