@@ -23,7 +23,7 @@ export const Messages = {
     metricId : 'Metric id from route is not found.',
     mobileRequired: 'Mobile Number is required',
     mobileValid: 'Enter the valid Mobile Number',
-    numberOfAttempts: 'Exhausted the number of account verification attempts.',
+    numberOfAttempts: 'Exhausted the number of account verification attempts',
     noData: 'No data found!',
     noPatientFound: 'No Patient found!',
     noRecords: 'No Record Found.',

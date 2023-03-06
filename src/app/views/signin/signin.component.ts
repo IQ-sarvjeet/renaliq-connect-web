@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from '../../api-client';
 import { Router } from '@angular/router';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
-import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
-import { environment } from '../../../environments/environment';
 import { Messages } from 'src/app/shared/common-constants/messages';
+import { EventService } from 'src/app/services/event.service';
+import { ErrorReachedAttempt } from 'src/app/interfaces/error-message';
 declare const $: any;
 let pattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 @Component({
@@ -28,17 +28,21 @@ export class SigninComponent {
     private fb: FormBuilder,
     private _localStorage: LocalStorageService,
     private _accountService: AccountService,
-    private route: Router
+    private route: Router,
+    private eventService: EventService
   ) { }
 
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
-
     this.redirectSummaryDashboard();
-
     this.intializeform();
+    this.eventService.reachedNoOfAttemptsSubscription().subscribe((data: ErrorReachedAttempt) => {
+      if(data.showError) {
+        this.errorMessage = data.message;
+      }
+    })
   };
 
   redirectSummaryDashboard() {

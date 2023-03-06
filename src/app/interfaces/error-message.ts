@@ -3,3 +3,7 @@ export interface ErrorMessage {
     title?: string;
     body?: string;
 }
+export interface ErrorReachedAttempt {
+    showError: boolean
+    message: string
+}

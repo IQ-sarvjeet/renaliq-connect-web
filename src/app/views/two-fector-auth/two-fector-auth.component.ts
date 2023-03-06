@@ -169,8 +169,7 @@ export class TwoFectorAuthComponent {
         this.showToster = true;
         this.isDisabled = false;
         this.showLoading = false;
-
-        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, result);
+        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, JSON.stringify(result));
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.eventService.openToaster({
           showToster: true,
@@ -255,10 +254,10 @@ export class TwoFectorAuthComponent {
 
   onDigitInput(event: any) {
     let element;
-    if (event.code !== 'Backspace')
+    if (event.code !== 'Backspace' || event.code === 'ArrowRight')
       element = event.srcElement.nextElementSibling;
 
-    if (event.code === 'Backspace')
+    if (event.code === 'Backspace' || event.code === 'ArrowLeft')
       element = event.srcElement.previousElementSibling;
 
     if (element == null) {
