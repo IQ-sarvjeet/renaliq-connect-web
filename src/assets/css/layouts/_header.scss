@@ -1236,8 +1236,15 @@ body.fixed-header .header {
   border-radius: 50px !important;
 }
 .dropdown .avatar__wrap {
+  background-color: var(--border);
+  color: $primary;
   width: 2.5rem;
   height: 2.5rem;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  text-align: center;
+  line-height: 2.5rem;
+  font-size: 1.125rem;
 }
 
 .dropdown-item {
