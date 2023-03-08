@@ -1,4 +1,4 @@
-<div class="card" *ngIf="!errorMessage">
+<div class="card">
   <div class="card-header title-submenu d-flex">
     <h3 class="card-title flex-fill">{{ chartConfig.title }}</h3>
     <!-- <nav class="nav">
@@ -24,7 +24,7 @@
       </nav> -->
   </div>
   <div class="card-body pt-1 mh-11">
-    <div *ngIf="showLoading">
+    <div *ngIf="showLoading && !errorMessage">
       <div class="row my-4">
         <div class="col-4"><span class="skeleton-loader"></span></div>
         <div class="col-6">
@@ -79,13 +79,14 @@
       </div>
       <div class="col-2 text-right">{{ data.value }}%</div>
     </div>
-  </div>
-</div>
-<div *ngIf="errorMessage">
-  <div class="alert alert-danger d-flex fade show" role="alert">
-    <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
-    <div class="flex-fill">
-      {{ errorMessage }}
+
+    <div *ngIf="errorMessage">
+      <div class="alert alert-danger d-flex fade show" role="alert">
+        <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+        <div class="flex-fill">
+          {{ errorMessage }}
+        </div>
+      </div>
     </div>
   </div>
 </div>
