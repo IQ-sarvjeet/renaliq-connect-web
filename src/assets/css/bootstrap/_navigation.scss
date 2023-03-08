@@ -280,6 +280,11 @@
     height: 2.5rem;
     font-size: 1.2rem;
     position: relative;
+    &.is-active {
+      &:before {
+        bottom: -1.0625rem;
+      }
+    }
     i {
       font-size: 20px;
     }
