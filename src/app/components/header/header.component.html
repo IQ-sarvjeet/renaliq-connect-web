@@ -33,7 +33,7 @@
               <div>
                 <h6 class="mb-0">{{ selectedPractice.name }}</h6>
                 <div class="fs-12 opacity-75 pt-1 text-muted">
-                  {{ selectedPractice.practiceId }}
+                  {{ selectedPractice.npi }}
                 </div>
               </div>
               <i class="user-angle ms-1 fa fa-angle-down"></i>
@@ -48,7 +48,7 @@
                 (click)="selectPracticeHandlar(practice)"
               >
                 {{ practice.name }}
-                <span class="d-block opacity-75">{{ practice.practiceId }}</span>
+                <span class="d-block opacity-75">{{ practice.npi }}</span>
               </a>
               <!-- <a class="dropdown-item border-top" href="#">
                 Fort Worth Renal Group
@@ -57,7 +57,6 @@
                 Cleveland Kidney & Hypertension Consultants Inc
               </a> -->
             </ng-container>
-            
           </div>
         </div>
       </div>
@@ -230,7 +229,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="notifications-menu ps3 overflow-hidden ps">
+                  <div class="notifications-menu ps3 ps">
                     <a class="dropdown-item border-top" href="#">
                       <div class="d-flex">
                         <div class="notifyimg notifyimg--sm me-3">
@@ -287,6 +286,36 @@
                         </div>
                       </div>
                     </a>
+                    <a class="dropdown-item border-top" href="#">
+                      <div class="d-flex">
+                        <div
+                          class="p-2 notifyimg--sm me-3 alert alert-primary text-center mb-0"
+                        >
+                          <i class="fa fa-download text-primary"></i>
+                        </div>
+                        <div>
+                          <div class="text-primary fs-14 mb-1">
+                            File Reports.pdf Downloaded
+                          </div>
+                          <div class="fs-12 opacity-75">2 hours ago</div>
+                        </div>
+                      </div>
+                    </a>
+                    <a class="dropdown-item border-top" href="#">
+                      <div class="d-flex">
+                        <div
+                          class="p-2 notifyimg--sm me-3 alert alert-warning text-center mb-0"
+                        >
+                          <i class="fa fa-spinner text-warning"></i>
+                        </div>
+                        <div>
+                          <div class="text-warning fs-14 mb-1">
+                            Changed Profile Status
+                          </div>
+                          <div class="fs-12 opacity-75">2 hours ago</div>
+                        </div>
+                      </div>
+                    </a>
                   </div>
                   <!--div class="dropdown-divider m-0"></div>
                   <div class="text-center p-3">
@@ -302,6 +331,7 @@
                   class="nav-link pe-0 leading-none d-flex animate"
                 >
                   <span class="avatar__wrap">
+                    SK
                     <!-- <img
                       src="../../assets/images/faces/6.jpg"
                       alt="profile-user"
@@ -310,8 +340,12 @@
                   </span>
                   <div class="p-1 d-flex d-lg-none-max">
                     <div>
-                      <h6 class="mb-0" id="profile-heading">Elena</h6>
-                      <div class="fs-12 opacity-75">Administrator</div>
+                      <h6 class="mb-0" id="profile-heading">
+                        {{ userInfo.fullName }}
+                      </h6>
+                      <div class="fs-12 opacity-75">
+                        {{ userInfo.roleName }}
+                      </div>
                     </div>
                     <i class="user-angle ms-1 fa fa-angle-down"></i>
                   </div>

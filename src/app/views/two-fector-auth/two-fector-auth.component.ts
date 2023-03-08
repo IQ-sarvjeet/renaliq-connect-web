@@ -91,7 +91,7 @@ export class TwoFectorAuthComponent {
     const formValues = this.twoFAForm.value;
     let model: Email2FAModel = {
       username: this.username,
-      password:this.password,
+      password: this.password,
       twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
       rememberMe: false
     };
@@ -101,12 +101,8 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.eventService.openToaster({
-          showToster: true,
-          message: `Welcome ${this.username}`,
-          type: 'success',
-        })
-        this.route.navigate(['/summary/']);
+        this.eventService.userLoggedInUpdate(true);
+        await this.getUserInfo();
       }
     },
       (error: any) => {
@@ -115,46 +111,53 @@ export class TwoFectorAuthComponent {
         this.showLoading = false;
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
         }
       });
   };
+  public async getUserInfo() {
+    this.successMsg = "";
+    this.errorMessage = "";
+    this.showLoading = true;
+    this.isDisabled = true
 
-  //public async token() {
-  //  let that = this;
-  //  let model: any = {
-  //    username: this.username,
-  //    password: this.password,
-  //    grant_type: environment.grantType,
-  //    scope: environment.scope,
-  //    client_id: environment.clientId,
-  //    client_secret: environment.clientSecret,
-  //  };
 
-  //  await this._httpclientwapperSerivce.apiAccountLoginPost(model).subscribe((result: any) => {
-  //    if (result) {
-  //      this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
-  //      setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.eventService.openToaster({
-  //        showToster: true,
-  //        message: `Welcom ${this.username}`,
-  //        type: 'success',
-  //      })
-  //      that.route.navigate(['/summary/']);
-  //    }
-  //  },
-  //    (error: any) => {
-  //      this.showToster = true;
-  //      this.errorMessage = error?.error?.message?.message;
+    await this._accountService.apiAccountUserInfoGet().subscribe(async (result: any) => {
+      if (result) {
+        this.showToster = true;
+        this.isDisabled = false;
+        this.showLoading = false;
+        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, JSON.stringify(result));
+        this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Welcome ${result?.fullName}`,
+          type: 'success',
+        });
+        this.route.navigate(['/summary/']);
+      }
+    },
+      (error: any) => {
+        this.showToster = true;
+        this.isDisabled = false;
+        this.showLoading = false;
+        this.errorMessage = error?.error?.message?.message;
 
-  //      this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-  //      this.route.navigate(['/login']);
-  //    });
-  //};
+        if (this.errorMessage === this.messages.numberOfAttempts) {
+          this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
+          this.route.navigate(['/login']);
+        }
+      });
+  };
 
 
   public async resendTwoFAToken($event: any) {
@@ -187,9 +190,11 @@ export class TwoFectorAuthComponent {
 
         if (this.errorMessage === this.messages.numberOfAttempts) {
           this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          let timers = timer(1000).subscribe(() => {
-            this.route.navigate(['/login']);
-          })
+          this.eventService.reachedNoOfAttemptsUpdate({
+            showError: true,
+            message: this.errorMessage
+          });
+          this.route.navigate(['/login']);
         }
       });
   };
@@ -201,16 +206,16 @@ export class TwoFectorAuthComponent {
   ShowToastsResponse(event: any) {
     this.showToster = event;
   };
+
   onDigitInput(event: any) {
     let element;
-    if (event.code !== 'Backspace')
+    if (event.code !== 'Backspace' || event.code === 'ArrowRight')
       element = event.srcElement.nextElementSibling;
 
-    if (event.code === 'Backspace')
+    if (event.code === 'Backspace' || event.code === 'ArrowLeft')
       element = event.srcElement.previousElementSibling;
 
     if (element == null) {
-      this.onSubmit();
       return;
     } else {
       element.focus();

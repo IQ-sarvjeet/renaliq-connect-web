@@ -45,10 +45,10 @@
   </div>
   <div class="col-12 col-md-8">
     <div class="border rounded-2 p-2 pt-3 position-relative bg-light">
-      <div class="fieldset-title px-1 bg-white fs-12">ADMISSION BY STAGES</div>
-      <div class="row">
+      <div class="fieldset-title px-1 bg-label fs-12">ADMISSION BY STAGES</div>
+      <div class="row border-start-none">
         <div
-          class="col-12 col-md-6 col-lg-3"
+          class="col-12 col-md-6 col-lg-3 border-start"
           *ngFor="let item of patienByStage"
         >
           <div class="d-flex align-items-center">
@@ -72,7 +72,7 @@
                 ></div>
               </div>
             </div>
-            <div class="fs-19 ms-4">{{ item.totalPatients }}</div>
+            <div class="fs-19 me-3">{{ item.totalPatients }}</div>
           </div>
         </div>
       </div>

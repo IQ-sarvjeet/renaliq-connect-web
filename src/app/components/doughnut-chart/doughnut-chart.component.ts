@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 
 type BarChartConfig = {
@@ -86,10 +87,10 @@ export class DoughnutChartComponent {
         this.errorMessage = null;
         return;
       }
-      this.errorMessage = 'No data found!';
+      this.errorMessage = Messages.noData;
     },
     (error) => {
-      this.errorMessage = 'Error in fetching data.';
+      this.errorMessage = Messages.errorFetchingData;
     })
   }
   private renderChart(chartData: any): void {

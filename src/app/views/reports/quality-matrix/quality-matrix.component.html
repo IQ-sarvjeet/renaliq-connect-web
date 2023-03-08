@@ -35,7 +35,7 @@
     </div>
   </div>
   <div class="main-container container">
-    <div class="alert bg-white alert-dismissible border mt-3 p-0 rounded-5">
+    <div class="alert bg-white alert-dismissible border mt-1 p-0 rounded-5">
       <button
         type="button"
         class="btn-close p-2"
@@ -48,29 +48,39 @@
         <div class="flex-fill">
           <div class="p-5">
             <div class="mb-3">
-              <strong class="fw-semibold fs-16">What is Clinical Quality Matrics ?</strong>
+              <strong class="fw-semibold fs-16"
+                >What is Clinical Quality Matrics ?</strong
+              >
             </div>
-            As a part of your value-based care agreement with Somatus, we collaborate to manage key metrics specific to the CKD and ESKD patient population we share.
-            These metrics relate to engagement, service use and certain clinical quality metrics.  They are calculated based primarily on claims, and ADT or Admission,
-            Discharges and Transfer data we receive from our interoperability partners.  It allows you to see your patients from the lens of the payer and contrast that view
-            against what you have in your own electronic medical record or other sources, helping to find and close gaps.
+            As a part of your value-based care agreement with Somatus, we
+            collaborate to manage key metrics specific to the CKD and ESKD
+            patient population we share. These metrics relate to engagement,
+            service use and certain clinical quality metrics. They are
+            calculated based primarily on claims, and ADT or Admission,
+            Discharges and Transfer data we receive from our interoperability
+            partners. It allows you to see your patients from the lens of the
+            payer and contrast that view against what you have in your own
+            electronic medical record or other sources, helping to find and
+            close gaps.
           </div>
         </div>
         <div class="col-12 col-md-2 p-0 text-end">
-          <img src="../../../../assets/images/risk-analysis.png"
-               alt="Patient Risk Stratification Analysis"
-               class="w-100 h-100" />
+          <img
+            src="../../../../assets/images/risk-analysis.png"
+            alt="Patient Risk Stratification Analysis"
+            class="w-100 h-100"
+          />
         </div>
       </div>
     </div>
     <div class="card p-2">
       <div class="table-responsive mb-0">
-        <table class="table table-sm text-nowrap text-md-nowrap mb-0">
+        <table class="table text-nowrap text-md-nowrap mb-0">
           <thead>
             <tr>
               <th>QUALITY BONUS TIER</th>
               <th class="text-center">POPULATION</th>
-              <th class="text-center">NUMERATOR </th>
+              <th class="text-center">NUMERATOR</th>
               <th class="text-center">DENOMINATOR</th>
               <th class="text-center">PERFORMANCE</th>
               <th class="text-center" width="120"></th>
@@ -78,37 +88,62 @@
             </tr>
           </thead>
           <tbody>
-
-            <ng-container *ngFor="let matirc of qualityMatircList; let i=index;">
+            <ng-container
+              *ngFor="let matirc of qualityMatircList; let i = index"
+            >
               <tr class="bg-light">
-                <td colspan="6"><div class="px-2">{{matirc.tier}}</div></td>
+                <td colspan="6">
+                  <div class="px-2">{{ matirc.tier }}</div>
+                </td>
               </tr>
-              <ng-container *ngFor="let item of matirc.matrices; let m=index;">
+              <ng-container *ngFor="let item of matirc.matrices; let m = index">
                 <tr class="border-top">
-                  <td>{{item.martricName}}</td>
-                  <td class="text-center">{{item.type}}</td>
-                  <td class="text-center">{{item.numerator}}</td>
-                  <td class="text-center">{{item.denominator}}</td>
+                  <td>{{ item.martricName }}</td>
+                  <td class="text-center">{{ item.type }}</td>
+                  <td class="text-center">{{ item.numerator }}</td>
+                  <td class="text-center">{{ item.denominator }}</td>
                   <td>
-                    <span class="fs-11 text-primary">{{item.avgNumDeno}}{{item.targetTypeSign=='%'? '%':'' }}</span>
+                    <span class="fs-11 text-primary"
+                      >{{ item.avgNumDeno
+                      }}{{ item.targetTypeSign == "%" ? "%" : "" }}</span
+                    >
                     <div class="progress progress-sm">
-                      <div class="progress-bar  wp-50"
-                           [ngClass]="{'bg-success': item.isTargetAchive === true, 'bg-danger' : item.isTargetAchive === false}"></div>
+                      <div
+                        class="progress-bar wp-50"
+                        [ngClass]="{
+                          'bg-success': item.isTargetAchive === true,
+                          'bg-danger': item.isTargetAchive === false
+                        }"
+                      ></div>
                     </div>
-                    <span class="fs-11" *ngIf="item.targetTypeSign=='='">Traget {{item.targetFormula}}{{item.targetTypeSign}} {{item.target}}</span>
-                    <span class="fs-11" *ngIf="item.targetTypeSign=='%'">Traget {{item.targetFormula}} {{item.target}}{{item.targetTypeSign}}</span>
+                    <span class="fs-11" *ngIf="item.targetTypeSign == '='"
+                      >Traget {{ item.targetFormula }}{{ item.targetTypeSign }}
+                      {{ item.target }}</span
+                    >
+                    <span class="fs-11" *ngIf="item.targetTypeSign == '%'"
+                      >Traget {{ item.targetFormula }} {{ item.target
+                      }}{{ item.targetTypeSign }}</span
+                    >
                   </td>
                   <td class="text-center">
-                    <a data-bs-target="#modalChart"
-                       data-bs-toggle="modal"
-                       href="javascript:void(0)"
-                       (click)="openChart()"
-                       class="btn btn-outline-primary border-0">
-                      <span class="icon icon-chart fs-16 mt-1 d-inline-block"></span>
+                    <a
+                      data-bs-target="#modalChart"
+                      data-bs-toggle="modal"
+                      href="javascript:void(0)"
+                      (click)="openChart()"
+                      class="btn btn-outline-primary border-0"
+                    >
+                      <span
+                        class="icon icon-chart fs-16 mt-1 d-inline-block"
+                      ></span>
                     </a>
-                    <a routerLink="/reports/{{ item.matricId }}"
-                       class="btn btn-outline-primary border-0 ms-2">
-                      <span class="icon icon-list fs-16 mt-1 d-inline-block"></span>
+                    <a
+                      routerLink="/reports/{{ item.matricId }}"
+                      class="btn btn-outline-primary border-0 ms-2"
+                    >
+                      <span
+                        class="icon icon-list fs-16 mt-1 d-inline-block"
+                      ></span>
                     </a>
                   </td>
                 </tr>
@@ -456,8 +491,106 @@
                 ></a>
               </td>
             </tr>-->
-
-
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+              <td><span class="skeleton-loader"></span></td>
+            </tr>
+            <tr class="border-top">
+              <td colspan="7">
+                <div class="alert alert-danger d-flex fade show" role="alert">
+                  <div>
+                    <i class="fa fa-warning me-2" aria-hidden="true"></i>
+                  </div>
+                  <div class="flex-fill">No data found!</div>
+                </div>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -472,10 +605,12 @@
       <app-spinner *ngIf="openChartModal"></app-spinner>
       <div class="modal-header bg-gray-200">
         <h4 class="modal-title fw-semibold">Other - Engagement Rate</h4>
-        <button aria-label="Close"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                (click)="modalClosed()">
+        <button
+          aria-label="Close"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="modalClosed()"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>

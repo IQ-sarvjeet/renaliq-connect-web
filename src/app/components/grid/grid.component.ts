@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import { GridModel } from 'src/app/interfaces/grid.model';
 import { FilterModel } from 'src/app/interfaces/filter.model';
+import { Messages } from 'src/app/shared/common-constants/messages';
 declare const $: any;
 @Component({
   selector: 'app-grid',
@@ -13,6 +14,7 @@ declare const $: any;
   styleUrls: ['./grid.component.scss']
 })
 export class GridComponent implements OnInit {
+  message: any = Messages;
   private _subscriptions = new Subscription();
   errorMsg: any = "";
   showLoading: boolean = false;

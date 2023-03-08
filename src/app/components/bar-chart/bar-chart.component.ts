@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { BarChartConfig } from 'src/app/interfaces/bar-chart-config';
+import { Messages } from 'src/app/shared/common-constants/messages';
 
 type ChartApiResponse = {
   categories: any;
@@ -14,7 +15,6 @@ type ChartApiResponse = {
   styleUrls: ['./bar-chart.component.scss']
 })
 export class BarChartComponent {
-  // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   private chartConfig: BarChartConfig = {} as BarChartConfig;
   errorMessage: string | null = null;
   Highcharts = Highcharts;
@@ -70,12 +70,12 @@ export class BarChartComponent {
   private fetchChartData(url: string): void {
       this.httpClient.get(url).subscribe((data: any) => {
         if (!data) {
-          this.errorMessage = 'No data found!';
+          this.errorMessage = Messages.noData;
         } else {
           this.renderChart(data);
         }
       }, (error) => {
-        this.errorMessage = 'Error in fetching data.';
+        this.errorMessage = Messages.errorFetchingData;
       })
     } 
 }

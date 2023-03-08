@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net/',
- // baseApiUrl: 'https://localhost:5001',
+  //baseApiUrl: 'http://localhost:5294',
   appUrl: 'https://localhost:4200',
   pageSize: 10,
   clientId: 'WebUI.Admin',
-  clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu'
+  clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };

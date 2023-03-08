@@ -1,4 +1,3 @@
-<app-spinner *ngIf="showLoading"></app-spinner>
 <div class="table-responsive">
   <table
     id="data-table"
@@ -6,7 +5,6 @@
   >
     <thead class="table-head">
       <tr class="text-secondary bg-gray-200">
-        
         <th class="bg-transparent border-bottom-0 wp-25 fs-12">PATIENT</th>
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
         <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
@@ -19,8 +17,117 @@
       </tr>
     </thead>
     <tbody class="table-body">
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
+      <tr *ngIf="showLoading">
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+        <td><span class="skeleton-loader"></span></td>
+      </tr>
       <tr *ngFor="let item of list">
-       
         <td>
           <div class="d-flex align-items-center">
             <!-- <span
@@ -29,35 +136,50 @@
             ></span> -->
             <div class="user-details ms-2">
               <a class="text-secondary" href="#/patient-profile"
-                ><h6 class="mb-0">{{item.patient?.name}}</h6></a
+                ><h6 class="mb-0">{{ item.patient?.name }}</h6></a
               >
               <!--span class="badge badge-xs bg-success">Approved</span-->
             </div>
           </div>
         </td>
         <td class="text-center">
-        {{getFormatDate(item.dob)}}<strong class="fw-semibold"> ({{getAge(item.dob)}})</strong>
+          {{ getFormatDate(item.dob)
+          }}<strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
         </td>
-        <td class="text-center">{{item.stage}}</td>
+        <td class="text-center">{{ item.stage }}</td>
         <td>
           <div class="d-flex">
             <div class="flex-fill">
               <div class="progress progress-sm mt-1">
-                <div *ngIf="item.riskCategory ==='Medium'" class="progress-bar bg-warning wp-50"></div>
-                <div *ngIf="item.riskCategory ==='Low'" class="progress-bar bg-success wp-25"></div>
-                <div *ngIf="item.riskCategory ==='High' || item.riskCategory ==='Highest'" class="progress-bar bg-danger wp-75"></div>
+                <div
+                  *ngIf="item.riskCategory === 'Medium'"
+                  class="progress-bar bg-warning wp-50"
+                ></div>
+                <div
+                  *ngIf="item.riskCategory === 'Low'"
+                  class="progress-bar bg-success wp-25"
+                ></div>
+                <div
+                  *ngIf="
+                    item.riskCategory === 'High' ||
+                    item.riskCategory === 'Highest'
+                  "
+                  class="progress-bar bg-danger wp-75"
+                ></div>
               </div>
             </div>
-            <div class="ms-2">{{item.riskCategory}}</div>
+            <div class="ms-2">{{ item.riskCategory }}</div>
           </div>
         </td>
-        <td class="text-center"> {{item.careMember}}</td>
-        <td class="text-center">{{item.status}}</td>
+        <td class="text-center">{{ item.careMember }}</td>
+        <td class="text-center">{{ item.status }}</td>
         <td class="text-center">
-          {{getFormatDate(item.lastAssignment)}} <strong class="fw-semibold"></strong>
+          {{ getFormatDate(item.lastAssignment) }}
+          <strong class="fw-semibold"></strong>
         </td>
         <td class="text-center">
-          {{getFormatDate(item.lastDischarge)}}<strong class="fw-semibold"></strong>
+          {{ getFormatDate(item.lastDischarge)
+          }}<strong class="fw-semibold"></strong>
         </td>
         <td class="text-center">
           <a
@@ -72,19 +194,20 @@
             <!-- <a class="dropdown-item" href="#/patient-profile"
               ><i class="fe fe-edit-2 me-2"></i> Edit</a
             > -->
-            <a class="dropdown-item" href="#/patient-profile" 
+            <a class="dropdown-item" href="#/patient-profile"
               ><i class="fe fe-info me-2"></i> Detail</a
             >
           </div>
         </td>
-      </tr>  
-      <tr *ngIf="list.length ==0 && !showLoading" >
-        <td >No Record Found.</td>
-      </tr>  
+      </tr>
+      <tr *ngIf="list.length == 0 && !showLoading">
+        <td>{{ message.noRecords }}</td>
+      </tr>
     </tbody>
   </table>
-  <app-pagination 
+  <app-pagination
     [pagingModel]="gridData.pagingModel"
-    (gotoPageHandler)="gotoPage($event)">
+    (gotoPageHandler)="gotoPage($event)"
+  >
   </app-pagination>
 </div>

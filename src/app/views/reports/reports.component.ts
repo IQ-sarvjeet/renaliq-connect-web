@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
+import { Messages } from 'src/app/shared/common-constants/messages';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 
@@ -97,7 +98,7 @@ export class ReportsComponent implements OnInit {
       }
     }
     else{
-      this.errorMsg="Metric id from route is not found.";
+      this.errorMsg = Messages.metricId;
       console.log(this.errorMsg);
     }
     //this.setFilter();
