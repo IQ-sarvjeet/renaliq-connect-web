@@ -5520,9 +5520,36 @@ div.dataTables_wrapper div.dataTables_length label {
 .gmap_iframe {
   height: 292px !important;
 }
+.mw-2 {
+  min-width: 2rem;
+}
+.mw-3 {
+  min-width: 3rem;
+}
+.mw-4 {
+  min-width: 4rem;
+}
+.mw-5 {
+  min-width: 5rem;
+}
 .mw-200 {
   max-width: 200px;
 }
 .mh-11 {
   min-height: 10.5rem;
+}
+.bg-label {
+  background: rgb(248, 251, 253);
+  background: linear-gradient(
+    0deg,
+    rgba(248, 251, 253, 1) 0%,
+    rgba(255, 255, 255, 1) 100%
+  );
+}
+.border-start-none {
+  .col-12 {
+    &:first-child {
+      border: none !important;
+    }
+  }
 }
