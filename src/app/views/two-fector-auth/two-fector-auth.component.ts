@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
+import { StoreService } from 'src/app/services/store.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from '../../../environments/environment';
 import { AccountService, Email2FAModel, LoginModel, LoginResponse } from '../../api-client';
@@ -41,10 +42,10 @@ export class TwoFectorAuthComponent {
 
   constructor(private _localStorage: LocalStorageService,
     private _accountService: AccountService,
-    private _httpclientwapperSerivce: HttpClientWapperService,
     private route: Router,
     private fb: FormBuilder,
-    private eventService: EventService) {
+    private eventService: EventService,
+    private storeService: StoreService) {
   }
   ngOnInit(): void {
 
@@ -55,9 +56,13 @@ export class TwoFectorAuthComponent {
     this.redirectSummaryDashboard();
 
     this.getTwoFAUserDetail();
-    this.timerSubscription = timer(100).subscribe(() => {
+    this.timerSubscription = timer(30000).subscribe(() => {
       this.showResendCode = true;
     })
+    let elementReference = document.querySelector('#verificationCode1');
+    if (elementReference instanceof HTMLElement) {
+        elementReference.focus();
+    }
   }
 
   redirectSummaryDashboard() {
@@ -101,8 +106,8 @@ export class TwoFectorAuthComponent {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-        this.eventService.userLoggedInUpdate(true);
         await this.getUserInfo();
+        this.eventService.userLoggedInUpdate(true);
       }
     },
       (error: any) => {
@@ -124,14 +129,12 @@ export class TwoFectorAuthComponent {
     this.errorMessage = "";
     this.showLoading = true;
     this.isDisabled = true
-
-
     await this._accountService.apiAccountUserInfoGet().subscribe(async (result: any) => {
       if (result) {
         this.showToster = true;
         this.isDisabled = false;
         this.showLoading = false;
-        this._localStorage.setItem(CommonConstants.USER_INFO_KEY, JSON.stringify(result));
+        this.storeService.userInfo(result);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         this.eventService.openToaster({
           showToster: true,
