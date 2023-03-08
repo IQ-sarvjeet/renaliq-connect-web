@@ -121,6 +121,13 @@ iframe {
     max-width: 100%;
   }
 }
+.wrap-figure {
+  &__img {
+    height: auto;
+    max-width: 20rem;
+    width: 100%;
+  }
+}
 .wrap-login100 {
   width: 100%;
   display: flex;

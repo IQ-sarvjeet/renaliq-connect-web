@@ -261,6 +261,18 @@
 }
 
 .nav-link {
+  position: relative;
+  &.is-active {
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0.5rem;
+      right: 0.5rem;
+      bottom: -0.75rem;
+      height: 0.125rem;
+      background-color: $primary;
+    }
+  }
   &.icon {
     margin: 5px 0;
     padding: 12px;
