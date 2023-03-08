@@ -14,6 +14,7 @@ import { SearchComponent } from './search/search.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ToasterComponent } from './toaster/toaster.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -26,7 +27,8 @@ import { ToasterComponent } from './toaster/toaster.component';
     SearchComponent,
     PaginationComponent,
     SpinnerComponent,
-    ToasterComponent
+    ToasterComponent,
+    NotificationsComponent
   ],
 
   providers: [
@@ -45,7 +47,8 @@ import { ToasterComponent } from './toaster/toaster.component';
     PaginationComponent,
     SpinnerComponent,
     ToasterComponent,
-    RouterModule
+    RouterModule,
+    NotificationsComponent
   ],
  
 })
