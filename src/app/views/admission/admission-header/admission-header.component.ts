@@ -9,9 +9,10 @@ import { AdmissionHeaders } from '../interfaces/admission';
 })
 export class AdmissionHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
-  dateRangeFilter: any = "02/06/2023 - 02/14/2023";
+  dateRangeFilter: any = "01/10/2022 - 30/10/2022";
   dateRangeOptions: MbscDatepickerOptions = {
       theme: 'ios',
+      dateFormat: 'DD/MM/YYYY',
       controls: ['calendar'],
       select: 'range',
       defaultValue: this.dateRangeFilter,
@@ -25,4 +26,7 @@ export class AdmissionHeaderComponent {
   };
   @Input() admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
+  ngOnInit() {
+    this.dateRangeChangeHandler.emit(this.dateRangeFilter);
+  }
 }

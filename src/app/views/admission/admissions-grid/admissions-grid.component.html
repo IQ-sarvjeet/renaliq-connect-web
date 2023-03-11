@@ -26,10 +26,10 @@
         </td>
         <td>
           <div class="d-flex align-items-center">
-            <span
+            <!-- <span
               class="data-image avatar avatar-sm rounded-circle"
               style="background-image: url(../assets/images/users/1.jpg)"
-            ></span>
+            ></span> -->
             <div class="user-details ms-2">
               <a class="text-secondary" href="#/patient-profile"
                 ><h6 class="mb-0">{{ gridRow.fullName }}</h6></a
@@ -45,10 +45,10 @@
         <td>{{ gridRow.diagnosis }}</td>
         <td>{{ gridRow.facilityName }}</td>
         <td class="text-center">
-          {{ moment(gridRow.admissionDate).format("YY/MM/DD") }}
+          {{ moment(gridRow.admissionDate).format("DD/MM/YYYY") }}
         </td>
         <td class="text-center">
-          {{ moment(gridRow.dischargeDate).format("YY/MM/DD") }}
+          {{ moment(gridRow.dischargeDate).format("DD/MM/YYYY") }}
         </td>
         <td class="text-center">
           <a
