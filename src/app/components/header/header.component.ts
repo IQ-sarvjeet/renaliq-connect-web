@@ -59,7 +59,7 @@ export class HeaderComponent {
       if(this.userInfo && this.userInfo.fullName) return;
       try {
         const info = await this._accountService.apiAccountUserInfoGet().toPromise();
-        this.userInfo = info as UserInfo;
+        this.storeService.userInfo(info as UserInfo);
       } catch(error: any) {
 
       }

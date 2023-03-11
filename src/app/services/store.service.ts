@@ -6,9 +6,17 @@ import { UserInfo } from '../interfaces/user';
   providedIn: 'root'
 })
 export class StoreService {
+  private userInformation: UserInfo = {
+    fullName: ' ',
+    roleName: ''
+  };
   private userInfo$: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>({} as UserInfo);
   constructor() { }
+  getUserInfo(): UserInfo {
+    return this.userInformation;
+  }
   userInfo(value: UserInfo) {
+    this.userInformation = value;
     this.userInfo$.next(value);
   }
   userInfoSubscription(): Observable<UserInfo> {
