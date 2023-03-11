@@ -1,82 +1,89 @@
 <div class="table-responsive">
-    <table
-      id="admissionTable"
-      class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
-    >
-      <thead class="table-head">
-        <tr class="text-secondary bg-gray-200">
-          <th
-            class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
-          ></th>
-          <th class="bg-transparent border-bottom-0 wp-20 fs-12">
-            PATIENT
-          </th>
-          <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
-          <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
-          <th class="bg-transparent border-bottom-0 fs-12">
-            CASE CATEGORY
-          </th>
-          <th class="bg-transparent border-bottom-0 fs-12 wp-20">
-            DIAGNOSIS
-          </th>
-          <th class="bg-transparent border-bottom-0 fs-12">
-            FACITLITY NAME
-          </th>
-          <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
-          <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
-          <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <tr *ngFor="let gridRow of admissionList.items">
-          <td class="text-center">
-            <i class="fa fa-circle text-success"></i>
-          </td>
-          <td>
-            <div class="d-flex align-items-center">
-              <span
-                class="data-image avatar avatar-sm rounded-circle"
-                style="background-image: url(../assets/images/users/1.jpg)"
-              ></span>
-              <div class="user-details ms-2">
-                <a class="text-secondary" href="#/patient-profile"
-                  ><h6 class="mb-0">{{gridRow.fullName}}</h6></a
-                >
-              </div>
-            </div>
-          </td>
-          <td class="text-center">
-            {{gridRow.dob}} <strong class="fw-semibold">(43)</strong>
-          </td>
-          <td class="text-center">{{gridRow.stage}}</td>
-          <td>{{gridRow.caseCategory}}</td>
-          <td>{{gridRow.diagnosis}}</td>
-          <td>{{gridRow.facilityName}}</td>
-          <td class="text-center">{{moment(gridRow.admissionDate).format('YY/MM/DD')}}</td>
-          <td class="text-center">{{moment(gridRow.dischargeDate).format('YY/MM/DD')}}</td>
-          <td class="text-center">
-            <a
-              href="#"
-              class="br-5 px-2 py-1"
-              data-bs-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              ><i class="fe fe-more-vertical"></i
-            ></a>
-            <div class="dropdown-menu dropdown-menu-start">
-              <a class="dropdown-item" routerLink="/patient-profile"
-                ><i class="fe fe-edit-2 me-2"></i> Edit</a
-              >
-              <a class="dropdown-item" href="#"
-                ><i class="fe fe-info me-2"></i> Info</a
+  <table
+    id="admissionTable"
+    class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
+  >
+    <thead class="table-head">
+      <tr class="text-secondary bg-gray-200">
+        <th
+          class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
+        ></th>
+        <th class="bg-transparent border-bottom-0 wp-20 fs-12">PATIENT</th>
+        <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
+        <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
+        <th class="bg-transparent border-bottom-0 fs-12">CASE CATEGORY</th>
+        <th class="bg-transparent border-bottom-0 fs-12 wp-20">DIAGNOSIS</th>
+        <th class="bg-transparent border-bottom-0 fs-12">FACITLITY NAME</th>
+        <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
+        <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
+        <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <tr *ngFor="let gridRow of admissionList.items">
+        <td class="text-center">
+          <i class="fa fa-circle text-success"></i>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <span
+              class="data-image avatar avatar-sm rounded-circle"
+              style="background-image: url(../assets/images/users/1.jpg)"
+            ></span>
+            <div class="user-details ms-2">
+              <a class="text-secondary" href="#/patient-profile"
+                ><h6 class="mb-0">{{ gridRow.fullName }}</h6></a
               >
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <app-pagination 
-      [pagingModel]="admissionList.pagingModel"
-      (gotoPageHandler)="gotoPage($event)">
+          </div>
+        </td>
+        <td class="text-center">
+          {{ gridRow.dob }} <strong class="fw-semibold">(43)</strong>
+        </td>
+        <td class="text-center">{{ gridRow.stage }}</td>
+        <td>{{ gridRow.caseCategory }}</td>
+        <td>{{ gridRow.diagnosis }}</td>
+        <td>{{ gridRow.facilityName }}</td>
+        <td class="text-center">
+          {{ moment(gridRow.admissionDate).format("YY/MM/DD") }}
+        </td>
+        <td class="text-center">
+          {{ moment(gridRow.dischargeDate).format("YY/MM/DD") }}
+        </td>
+        <td class="text-center">
+          <a
+            href="#"
+            class="br-5 px-2 py-1"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fe fe-more-vertical"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" routerLink="/patient-profile"
+              ><i class="fe fe-edit-2 me-2"></i> Edit</a
+            >
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-info me-2"></i> Info</a
+            >
+          </div>
+        </td>
+      </tr>
+      <tr *ngIf="admissionList.items == 0">
+        <td colspan="10">
+          <div role="alert" class="alert alert-danger d-flex fade show">
+            <div>
+              <i aria-hidden="true" class="fa fa-warning me-2"></i>
+            </div>
+            <div class="flex-fill">No data found!</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <app-pagination
+    [pagingModel]="admissionList.pagingModel"
+    (gotoPageHandler)="gotoPage($event)"
+  >
   </app-pagination>
 </div>
