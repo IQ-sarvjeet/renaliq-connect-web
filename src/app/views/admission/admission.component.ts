@@ -30,7 +30,9 @@ export class AdmissionComponent {
     this.showLoading = true;
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe((data: any) => {
       this.admissionHeaders = data;
-      this.showLoading = false;
+      if(data && data.admissionBy && data.dischargeBy) {
+        this.showLoading = false;
+      }
     })
   }
   dateRangeChangeHandler($event: string) {
