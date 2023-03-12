@@ -9,11 +9,12 @@ import * as moment from 'moment';
 })
 export class AdmissionsGridComponent {
   moment = moment;
+  showLoading: boolean = false;
   admissionList: any = {
     items: [],
     pagingModel: {
       pageSize: 10,
-      totalRecords: 19,
+      totalRecords: 0,
       currentPage: 1,
       totalPages: 9
     }
@@ -34,8 +35,10 @@ export class AdmissionsGridComponent {
   constructor(private admissionService: AdmissionService) {}
   ngOnInit() {}
   private getAdmissionList() {
+    this.showLoading = true;
     this.admissionService.apiAdmissionListPost({...this.filters}).subscribe((data: any) => {
       this.admissionList = data;
+      this.showLoading = false;
     })
   }
   public gotoPage(page: number): void {

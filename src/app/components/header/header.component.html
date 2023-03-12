@@ -36,10 +36,10 @@
                   {{ selectedPractice.npi }}
                 </div>
               </div>
-              <i class="user-angle ms-1 fa fa-angle-down"></i>
+              <i *ngIf="practiceList.length > 1" class="user-angle ms-1 fa fa-angle-down"></i>
             </div>
           </a>
-          <div class="dropdown-menu dropdown-menu-arrow mt-1">
+          <div class="dropdown-menu dropdown-menu-arrow mt-1" *ngIf="practiceList.length > 1">
             <ng-container *ngFor="let practice of practiceList">
               <a
                 class="dropdown-item border-top"
