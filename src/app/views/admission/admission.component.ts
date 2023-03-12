@@ -26,7 +26,6 @@ export class AdmissionComponent {
   }
   constructor(private admissionService: AdmissionService) {}
   ngOnInit(): void {
-    // this.getAdmissionSummary();
   }
   getAdmissionSummary() {
     this.showLoading = true;
