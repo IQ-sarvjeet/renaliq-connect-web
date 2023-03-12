@@ -1,6 +1,10 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import * as moment from 'moment';
 import { AdmissionHeaders } from '../interfaces/admission';
+
+const startOfWeek = moment().startOf('week').toDate();
+const endOfWeek   = moment().endOf('week').toDate();
 
 @Component({
   selector: 'app-admission-header',
@@ -9,7 +13,7 @@ import { AdmissionHeaders } from '../interfaces/admission';
 })
 export class AdmissionHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
-  dateRangeFilter: any = "01/10/2022 - 30/10/2022";
+  dateRangeFilter: any = `${moment(startOfWeek).format('DD/MM/YYYY')} - ${moment(endOfWeek).format('DD/MM/YYYY')}`;
   dateRangeOptions: MbscDatepickerOptions = {
       theme: 'ios',
       dateFormat: 'DD/MM/YYYY',

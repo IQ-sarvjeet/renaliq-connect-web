@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from './interfaces/admission';
 
@@ -12,12 +13,12 @@ export class AdmissionComponent {
   showLoading: boolean = false;
   showNoData: boolean = false;
   admissionHeaders: AdmissionHeaders = {
-    admissionBy: 19,
-    dischargeBy: 19,
-    dischargeByPercentage: 100,
-    admissionLastNinetyDays: 20,
-    dischargeLastNinetyDays: 20,
-    dischargeLastNinetyDaysPercentage: 30
+    admissionBy: 0,
+    dischargeBy: 0,
+    dischargeByPercentage: 0,
+    admissionLastNinetyDays: 0,
+    dischargeLastNinetyDays: 0,
+    dischargeLastNinetyDaysPercentage: 0
   }
   dateRange: any = {
     fromDate: '2023-10-01',
@@ -25,7 +26,7 @@ export class AdmissionComponent {
   }
   constructor(private admissionService: AdmissionService) {}
   ngOnInit(): void {
-    this.getAdmissionSummary();
+    // this.getAdmissionSummary();
   }
   getAdmissionSummary() {
     this.showLoading = true;
@@ -41,9 +42,12 @@ export class AdmissionComponent {
   }
   dateRangeChangeHandler($event: string) {
     const dates: any = $event.split(' - ');
+
+    const fromDate = dates[0].replaceAll('/', '-').split('-');
+    const toDate = dates[1].replaceAll('/', '-').split('-');
     this.dateRange = {
-      fromDate: dates[0].replaceAll('/', '-'),
-      toDate: dates[1].replaceAll('/', '-')
+      fromDate: `${fromDate[2]}-${fromDate[1]}-${fromDate[0]}`,
+      toDate: `${toDate[2]}-${toDate[1]}-${toDate[0]}`
     }
     this.getAdmissionSummary();
   }
