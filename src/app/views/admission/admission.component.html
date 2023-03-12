@@ -4,7 +4,7 @@
     (dateRangeChangeHandler)="dateRangeChangeHandler($event)"
   ></app-admission-header>
   <div class="main-container container">
-    <div class="card mb-5 p-2">
+    <div class="card mb-5 p-2" *ngIf="!showNoData">
       <div *ngIf="showLoading">
         <div class="row mt-0 mb-3">
           <div class="col-12 col-md-4">
@@ -359,6 +359,13 @@
         *ngIf="!showLoading"
         [dateRange]="dateRange"
       ></app-admissions-grid>
+    </div>
+    <div role="alert" class="alert alert-danger d-flex fade show"
+      *ngIf="showNoData">
+      <div>
+        <i aria-hidden="true" class="fa fa-warning me-2"></i>
+      </div>
+      <div class="flex-fill">No data found!</div>
     </div>
   </div>
   <router-outlet></router-outlet>
