@@ -62,13 +62,17 @@
             placeholder="Search by Patient"
             id="searchPatient"
             [(ngModel)]="filter.patientFilter.searchKey"
-            class="form-control form-control-lg"
+            class="form-control"
           />
         </div>
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="text-gray mb-1">Stage</label>
-            <select class="form-select" [(ngModel)]="filter.patientFilter.stage" id="stage">
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.stage"
+              id="stage"
+            >
               <!-- <option selected>CKD4</option> -->
               <option value=""></option>
               <option value="CKD Stage1">CKD Stage1</option>
@@ -83,7 +87,11 @@
             <label for="riskCategory" class="text-gray mb-1"
               >Risk Category</label
             >
-            <select class="form-select" [(ngModel)]="filter.patientFilter.riskCategory" id="riskCategory">
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.riskCategory"
+              id="riskCategory"
+            >
               <option value=""></option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
@@ -100,12 +108,16 @@
               placeholder="Search by Care Member"
               id="careMember"
               [(ngModel)]="filter.patientFilter.careMember"
-              class="form-control form-control-lg"
+              class="form-control"
             />
           </div>
           <div class="col-6">
             <label for="status" class="text-gray mb-1">Status</label>
-            <select class="form-select" [(ngModel)]="filter.patientFilter.status" id="status">
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.status"
+              id="status"
+            >
               <option value=""></option>
               <option value="Engaged">Engaged</option>
               <option value="New">New</option>
@@ -118,16 +130,19 @@
           <div class="col-6">
             <label for="Assignment" class="text-gray mb-1">Assignment</label>
             <div class="input-group">
-              <mbsc-datepicker 
+              <mbsc-datepicker
                 class="form-control fs-12"
                 #rangeDatepickerAssignment
                 [options]="dateRangeOptionsAssignment"
-                [(ngModel)]="filter.patientFilter.assignment" 
-                placeholder="Select date range" ></mbsc-datepicker>
-                
-              <button class="input-group-text bg-white"
+                [(ngModel)]="filter.patientFilter.assignment"
+                placeholder="Select date range"
+              ></mbsc-datepicker>
+
+              <button
+                class="input-group-text bg-white"
                 type="button"
-                (click)="rangeDatepickerAssignment.open()">
+                (click)="rangeDatepickerAssignment.open()"
+              >
                 <i class="fa fa-calendar"></i>
               </button>
             </div>
@@ -135,28 +150,39 @@
           <div class="col-6">
             <label for="Discharge" class="text-gray mb-1">Discharge</label>
             <div class="input-group input-group-lg">
-                <!-- value="13 Sep 22 - 20 Sep 22" -->
-                <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-                <div class="input-group">
-                  <mbsc-datepicker 
-                    class="form-control fs-12"
-                    #rangeDatepicker
-                    [options]="dateRangeOptions" 
-                    [(ngModel)]="filter.patientFilter.discharge"
-                    placeholder="Select date range" ></mbsc-datepicker>
-                  <button class="input-group-text bg-white"
-                    type="button"
-                    (click)="rangeDatepicker.open()">
-                    <i class="fa fa-calendar"></i>
-                  </button>
-                </div>
+              <!-- value="13 Sep 22 - 20 Sep 22" -->
+              <!-- [(ngModel)]="filter.patientFilter.discharge" -->
+              <div class="input-group">
+                <mbsc-datepicker
+                  class="form-control fs-12"
+                  #rangeDatepicker
+                  [options]="dateRangeOptions"
+                  [(ngModel)]="filter.patientFilter.discharge"
+                  placeholder="Select date range"
+                ></mbsc-datepicker>
+                <button
+                  class="input-group-text bg-white"
+                  type="button"
+                  (click)="rangeDatepicker.open()"
+                >
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-        <button class="btn btn-primary"  data-bs-dismiss="modal" (click)="submit()">Update</button>
+        <button class="btn btn-outline-light" data-bs-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Update
+        </button>
       </div>
     </div>
   </div>
