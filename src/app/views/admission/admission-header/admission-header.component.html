@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="fs-22 ms-4">
-                      {{ admissionHeaders.admissionLastNinetyDays }}
+                      {{ admissionHeaders.admissionBy }}
                     </div>
                   </div>
                 </div>
@@ -46,41 +46,41 @@
                     <div class="flex-fill mx-4">
                       <div class="fs-11">
                         {{
-                          admissionHeaders.dischargeLastNinetyDaysPercentage
+                          admissionHeaders.dischargeByPercentage
                         }}%
                       </div>
                       <div class="progress progress-xs">
                         <div
                           class="progress-bar bg-success"
                           [class.bg-success]="
-                            admissionHeaders.dischargeLastNinetyDaysPercentage >
+                            admissionHeaders.dischargeByPercentage >
                             70
                           "
                           [class.bg-warning]="
-                            admissionHeaders.dischargeLastNinetyDaysPercentage <
+                            admissionHeaders.dischargeByPercentage <
                               51 &&
-                            admissionHeaders.dischargeLastNinetyDaysPercentage <
+                            admissionHeaders.dischargeByPercentage <
                               70
                           "
                           [class.bg-danger]="
-                            admissionHeaders.dischargeLastNinetyDaysPercentage <
+                            admissionHeaders.dischargeByPercentage <
                             30
                           "
                           [class.bg-primary]="
-                            admissionHeaders.dischargeLastNinetyDaysPercentage >
+                            admissionHeaders.dischargeByPercentage >
                               60 &&
-                            admissionHeaders.dischargeLastNinetyDaysPercentage <
+                            admissionHeaders.dischargeByPercentage <
                               70
                           "
                           [ngClass]="
                             'wp-' +
-                            admissionHeaders.dischargeLastNinetyDaysPercentage
+                            admissionHeaders.dischargeByPercentage
                           "
                         ></div>
                       </div>
                     </div>
                     <div class="fs-22 ms-4">
-                      {{ admissionHeaders.dischargeLastNinetyDays }}
+                      {{ admissionHeaders.dischargeBy }}
                     </div>
                   </div>
                 </div>
