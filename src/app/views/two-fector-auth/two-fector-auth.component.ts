@@ -102,12 +102,15 @@ export class TwoFectorAuthComponent {
     };
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponse) => {
-      if (result) {
+      if (result && result.accessToken) {
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         await this.getUserInfo();
         this.eventService.userLoggedInUpdate(true);
+      } else {
+        this.errorMessage = 'Unauthorized Access.';
+        this.redirectOnLogin();
       }
     },
       (error: any) => {
@@ -115,15 +118,18 @@ export class TwoFectorAuthComponent {
         this.errorMessage = error?.error?.message?.message;
         this.showLoading = false;
         if (this.errorMessage === this.messages.numberOfAttempts) {
-          this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-          this.eventService.reachedNoOfAttemptsUpdate({
-            showError: true,
-            message: this.errorMessage
-          });
-          this.route.navigate(['/login']);
+          this.redirectOnLogin();
         }
       });
   };
+  private redirectOnLogin() {
+    this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
+    this.eventService.reachedNoOfAttemptsUpdate({
+      showError: true,
+      message: this.errorMessage
+    });
+    this.route.navigate(['/login']);
+  }
   public async getUserInfo() {
     this.successMsg = "";
     this.errorMessage = "";
