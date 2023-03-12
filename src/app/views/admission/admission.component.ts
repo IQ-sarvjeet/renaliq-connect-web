@@ -10,6 +10,7 @@ declare const $: any;
 })
 export class AdmissionComponent {
   showLoading: boolean = false;
+  showNoData: boolean = false;
   admissionHeaders: AdmissionHeaders = {
     admissionBy: 19,
     dischargeBy: 19,
@@ -30,8 +31,11 @@ export class AdmissionComponent {
     this.showLoading = true;
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe((data: any) => {
       this.admissionHeaders = data;
+      this.showLoading = false;
       if(data && data.admissionBy && data.dischargeBy) {
-        this.showLoading = false;
+        this.showNoData = false;
+      } else {
+        this.showNoData = true;
       }
     })
   }
