@@ -1,5 +1,5 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { AccountService, PracticeService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
@@ -7,6 +7,8 @@ import { Messages } from 'src/app/shared/common-constants/messages';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { UserInfo } from 'src/app/interfaces/user';
+import { StoreService } from 'src/app/services/store.service';
+import { filter } from 'rxjs/operators';
 
 type Practice = {
   isSelected: boolean;
@@ -28,6 +30,7 @@ export class HeaderComponent {
     fullName: '',
     roleName: ''
   };
+  currentRoute: string = '/';
   constructor(
     private _accountService: AccountService,
     private _localStorage: LocalStorageService,
@@ -35,17 +38,30 @@ export class HeaderComponent {
     private route: Router,
     private eventService: EventService,
     private authService: AuthService,
-
-  ) {}
+    private storeService: StoreService,
+  ) {
+    route.events.pipe(
+      filter((event: any) => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      this.currentRoute = event.url;
+    });
+  }
   ngOnInit() {
     this.eventService.userLoggedInSubscription().subscribe({
       next: (response: boolean) => {
         if (!this.authService.isLoggedIn()) return;
         this.loadPracticeList();
-        const info = this._localStorage.getItem(CommonConstants.USER_INFO_KEY);
-        if (info) {
-          this.userInfo = JSON.parse(info);
-        }
+      }
+    })
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;
+      if (!this.authService.isLoggedIn()) return;
+      if(this.userInfo && this.userInfo.fullName) return;
+      try {
+        const info = await this._accountService.apiAccountUserInfoGet().toPromise();
+        this.storeService.userInfo(info as UserInfo);
+      } catch(error: any) {
+
       }
     })
   }

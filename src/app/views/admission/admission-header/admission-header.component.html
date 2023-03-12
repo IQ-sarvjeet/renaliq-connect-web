@@ -1,12 +1,13 @@
 <div class="sub-header">
   <div class="main-container container">
     <div class="row">
-      <div class="col-12 col-sm-5 col-md-6 align-item-center d-flex">
+      <div class="col-12 col-sm-5 col-md-5 align-item-center d-flex">
         <div class="mt-3">
           <h1 class="page-title m-0">Admissions</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="javascript:void(0);">Home</a>
+              <a href="javascript:void(0);"
+                routerLink="/">Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               Patient Admissions
@@ -14,9 +15,9 @@
           </ol>
         </div>
       </div>
-      <div class="col-12 col-sm-7 col-md-6 pt-1 text-sm-end">
+      <div class="col-12 col-sm-7 col-md-7 pt-1 text-sm-end">
         <div class="row">
-          <div class="col-12 col-md-8">
+          <div class="col-12 col-md-6 offset-md-2">
             <div class="border rounded-2 py-2 px-3 bg-white">
               <div class="row text-start">
                 <div class="col-12 col-md-5">
@@ -89,15 +90,18 @@
           </div>
           <div class="col-12 col-md-4 align-item-center d-flex">
             <div class="input-group">
-              <mbsc-datepicker 
+              <mbsc-datepicker
                 class="form-control fs-12"
-                style="padding: 0.8rem 0.5rem;"
+                style="padding: 0.8rem 0.5rem"
                 #rangeDatepicker
-                [options]="dateRangeOptions" 
-                placeholder="Select date range" ></mbsc-datepicker>
-              <button class="input-group-text bg-white"
+                [options]="dateRangeOptions"
+                placeholder="Select date range"
+              ></mbsc-datepicker>
+              <button
+                class="input-group-text bg-white"
                 type="button"
-                (click)="rangeDatepicker.open()">
+                (click)="rangeDatepicker.open()"
+              >
                 <i class="fa fa-calendar"></i>
               </button>
             </div>

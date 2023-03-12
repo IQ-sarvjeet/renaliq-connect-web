@@ -22,12 +22,9 @@ export class ReportsComponent implements OnInit {
     theme: 'ios',
     controls: ['calendar'],
     select: 'range',
-    // defaultValue: this.dateRangeFilter,
     onChange: (value: any) => {
-      //console.log('Date change value:', value);
     },
     onActiveDateChange: (event, inst) => {
-      //console.log('onActiveDateChange:', event, ':::event::', inst);
     },
     onClose: (event) => {
       let dateRange = event.value.filter((x:any)=>x==null);
@@ -36,7 +33,6 @@ export class ReportsComponent implements OnInit {
         this.filterModel.filter.dateRange = [];
       }
       this.setFilter();
-      console.log('onClose:', event);
     }
   };
   constructor(private _interactionService: InteractionService,public route: ActivatedRoute,private _clinicalQualityMatrixService: ClinicalQualityMatrixService,){
@@ -76,7 +72,6 @@ export class ReportsComponent implements OnInit {
   public async bindMetricList() {
       try {
         var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixMetricsGet().toPromise();
-        console.log(result);
         if(result){
           this.metricList =result;
         }
@@ -101,7 +96,6 @@ export class ReportsComponent implements OnInit {
       this.errorMsg = Messages.metricId;
       console.log(this.errorMsg);
     }
-    //this.setFilter();
   }
   onNumeratorSelected(){
    this.setFilter();
@@ -111,7 +105,6 @@ export class ReportsComponent implements OnInit {
     if(metric){
     this.metricName = metric[0]?.name;
     }
-    //this.filterModel.filter.metricId=event.value;
     this.setFilter();
    }
    setFilter(){

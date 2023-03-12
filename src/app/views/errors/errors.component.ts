@@ -14,23 +14,19 @@ export class ErrorsComponent {
   errorMessage: ErrorMessage = {
     type: '404',
     title: Messages.error404Header,
-    body: Messages.error404Body
-  }
-  constructor(private eventService: EventService) {
-
-  }
+    body: Messages.error404Body,
+  };
+  constructor(private eventService: EventService) {}
   ngOnInit(): void {
-    this.eventService.errorMessageSubscription().subscribe((message: ErrorMessage) => {
-      console.log('Show error message:', message);
-      this.errorMessage = message;
-    })
-    $('.header').addClass('d-none');
-    $('.footer').addClass('d-none');
+    this.eventService
+      .errorMessageSubscription()
+      .subscribe((message: ErrorMessage) => {
+        console.log('Show error message:', message);
+        this.errorMessage = message;
+      });
     $('#back-to-top').addClass('d-none');
   }
   ngOnDestroy(): void {
-    $('.header').removeClass('d-none');
-    $('.footer').removeClass('d-none');
     $('#back-to-top').removeClass('d-none');
   }
 }

@@ -4,17 +4,23 @@
     <div class="main-container container">
       <div class="row">
         <div class="col-12 col-sm-4 col-md-5">
-          <h1 class="page-title m-0">Clinical Quality Matrics - {{metricName}} </h1>
+          <h1 class="page-title m-0">
+            Clinical Quality Matrics - {{ metricName }}
+          </h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="javascript:void(0);">Home</a>
+              <a href="javascript:void(0);"
+                routerLink="/">Home</a>
             </li>
-            <li class="breadcrumb-item" aria-current="page">Reports</li>
-            <li class="breadcrumb-item" aria-current="page">Clinical Quality Matrics</li>
-            <li class="breadcrumb-item" aria-current="page">{{metricName}}</li>
+            <li class="breadcrumb-item" aria-current="page"
+              routerLink="/reports">Reports</li>
+            <li class="breadcrumb-item" aria-current="page">
+              Clinical Quality Matrics
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+              {{ metricName }}
+            </li>
             <li class="breadcrumb-item active" aria-current="page">Patients</li>
-
-
           </ol>
         </div>
         <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
@@ -26,17 +32,21 @@
               (change)="onNumeratorSelected()"
             >
               <option selected value="0">Select Numerator</option>
-              <option  *ngFor="let item of numeratorList" value="{{item.Id}}">{{item.Name}}</option>
+              <option *ngFor="let item of numeratorList" value="{{ item.Id }}">
+                {{ item.Name }}
+              </option>
             </select>
           </div>
           <div class="d-inline-block ms-3">
-            <select  
+            <select
               class="form-select form-select-sm"
               aria-label="Default select example"
               (change)="onMetricSelected($event.target)"
               [(ngModel)]="filterModel.filter.metricId"
             >
-            <option  *ngFor="let item of metricList"  value="{{item.id}}">{{item.name}}</option>
+              <option *ngFor="let item of metricList" value="{{ item.id }}">
+                {{ item.name }}
+              </option>
             </select>
           </div>
           <div class="d-inline-block ms-3">
@@ -44,28 +54,29 @@
               <!-- value="13 Sep 22 - 20 Sep 22" -->
               <!-- [(ngModel)]="filter.patientFilter.discharge" -->
               <div class="input-group">
-                <mbsc-datepicker 
+                <mbsc-datepicker
                   class="form-control fs-12"
                   #rangeDatepicker
-                  [options]="dateRangeOptions" 
+                  [options]="dateRangeOptions"
                   [(ngModel)]="filterModel.filter.dateRange"
-                  placeholder="Select date range" ></mbsc-datepicker>
-                <button class="input-group-text bg-white"
+                  placeholder="Select date range"
+                ></mbsc-datepicker>
+                <button
+                  class="input-group-text bg-white"
                   type="button"
-                  (click)="rangeDatepicker.open()">
+                  (click)="rangeDatepicker.open()"
+                >
                   <i class="fa fa-calendar"></i>
                 </button>
               </div>
-          </div>
+            </div>
           </div>
           <a href="#" class="btn btn-outline-secondary ms-3"
             ><i class="icon icon-share-alt me-1"></i> Export</a
           >
-          <a href="#/reports/qualityMatrix" class="btn btn-danger  ms-3"
-            ><i class="fe fe-x"></i> </a
-          >
-        
-       
+          <a href="#/reports/qualityMatrix" class="btn btn-danger ms-3"
+            ><i class="fe fe-x"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -75,8 +86,10 @@
   </div>
 
   <div class="main-container container">
-    <div class="card my-4 p-2">
-      <app-reports-grid [metricId]="filterModel.filter.metricId"></app-reports-grid>
+    <div class="card mt-1 mb-5 p-2">
+      <app-reports-grid
+        [metricId]="filterModel.filter.metricId"
+      ></app-reports-grid>
     </div>
   </div>
 </div>

@@ -1,0 +1,42 @@
+<div class="drop-heading border-bottom">
+    <div class="d-flex">
+      <h6 class="mt-1 mb-0 fs-15 text-dark">Notifications</h6>
+      <div class="ms-auto">
+        <span
+          class="xm-title badge bg-secondary text-white fw-normal fs-11 badge-pill"
+        >
+          <a
+            href="javascript:void(0);"
+            class="showall-text text-white"
+            >Clear</a
+          >
+        </span>
+      </div>
+    </div>
+</div>
+<div class="notifications-menu ps3 overflow-hidden ps">
+    <a class="dropdown-item border-top" href="#"
+        *ngFor="let notification of notifications">
+        <div class="d-flex">
+          <div class="notifyimg notifyimg--sm me-3">
+            <i *ngIf="notification.type === 'email'" class="icon icon-envelope text-secondary"></i>
+            <i *ngIf="notification.type === 'info'" class="icon icon-info text-secondary"></i>
+            <i *ngIf="notification.type === 'success'" class="fa fa-check-circle-o text-success"></i>
+            <i *ngIf="notification.type === 'alert'" class="fa fa-warning text-danger"></i>
+          </div>
+          <div>
+            <div class="fs-14 mb-1"
+                [ngClass]="{
+                    'text-success': notification.type === 'success',
+                    'text-danger': notification.type === 'alert',
+                    'text-dark': notification.type === 'email' || notification.type === 'info'
+                }">
+                {{notification.message}}
+            </div>
+            <div class="fs-12 opacity-75">
+                {{notification.notificationTime}}
+            </div>
+          </div>
+        </div>
+    </a>
+</div>

@@ -57,7 +57,6 @@
                 Cleveland Kidney & Hypertension Consultants Inc
               </a> -->
             </ng-container>
-            
           </div>
         </div>
       </div>
@@ -141,7 +140,7 @@
               </div>
               <!-- SEARCH -->
               <div class="d-none d-lg-flex">
-                <a routerLink="/summary" summary class="nav-link icon pe-2">
+                <a routerLink="/summary" summary class="nav-link icon">
                   <div class="text-center py-1 d-flex d-lg-none-max">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -154,12 +153,24 @@
                     </svg>
                   </div>
                 </a>
-                <a routerLink="/patient" class="nav-link pe-2">
+                <a
+                  routerLink="/patient"
+                  class="nav-link pe-2"
+                  [ngClass]="{
+                    'is-active': this.currentRoute.indexOf('patient') !== -1
+                  }"
+                >
                   <div class="text-center py-1 d-flex d-lg-none-max">
                     Patient
                   </div>
                 </a>
-                <a routerLink="/admission" class="nav-link pe-2">
+                <a
+                  routerLink="/admission"
+                  class="nav-link pe-2"
+                  [ngClass]="{
+                    'is-active': this.currentRoute.indexOf('admission') !== -1
+                  }"
+                >
                   <div class="text-center py-1 d-flex d-lg-none-max">
                     Admissions
                   </div>
@@ -169,6 +180,9 @@
                     href="#"
                     data-bs-toggle="dropdown"
                     class="nav-link pe-0 leading-none d-flex animate"
+                    [ngClass]="{
+                      'is-active': this.currentRoute.indexOf('reports') !== -1
+                    }"
                   >
                     Reports <i class="user-angle ms-1 fa fa-angle-down"></i>
                   </a>
@@ -214,80 +228,7 @@
                 <div
                   class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
                 >
-                  <div class="drop-heading border-bottom">
-                    <div class="d-flex">
-                      <h6 class="mt-1 mb-0 fs-15 text-dark">Notifications</h6>
-                      <div class="ms-auto">
-                        <span
-                          class="xm-title badge bg-secondary text-white fw-normal fs-11 badge-pill"
-                        >
-                          <a
-                            href="javascript:void(0);"
-                            class="showall-text text-white"
-                            >Clear</a
-                          >
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="notifications-menu ps3 overflow-hidden ps">
-                    <a class="dropdown-item border-top" href="#">
-                      <div class="d-flex">
-                        <div class="notifyimg notifyimg--sm me-3">
-                          <i class="icon icon-envelope text-secondary"></i>
-                        </div>
-                        <div>
-                          <div class="text-dark fs-14 mb-1">
-                            New Message Received
-                          </div>
-                          <div class="fs-12 opacity-75">2 hours ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item border-top" href="#">
-                      <div class="d-flex">
-                        <div class="notifyimg notifyimg--sm me-3">
-                          <i class="icon icon-info text-secondary"></i>
-                        </div>
-                        <div>
-                          <div class="text-dark fs-14 mb-1">
-                            New Message Received
-                          </div>
-                          <div class="fs-12 opacity-75">2 hours ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item border-top" href="#">
-                      <div class="d-flex">
-                        <div
-                          class="p-2 notifyimg--sm me-3 alert alert-success text-center mb-0"
-                        >
-                          <i class="fa fa-check-circle-o text-success"></i>
-                        </div>
-                        <div>
-                          <div class="text-success fs-14 mb-1">
-                            New Message Received
-                          </div>
-                          <div class="fs-12 opacity-75">2 hours ago</div>
-                        </div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item border-top" href="#">
-                      <div class="d-flex">
-                        <div
-                          class="p-2 notifyimg--sm me-3 alert alert-danger text-center mb-0"
-                        >
-                          <i class="fa fa-warning text-danger"></i>
-                        </div>
-                        <div>
-                          <div class="text-danger fs-14 mb-1">
-                            New Message Received
-                          </div>
-                          <div class="fs-12 opacity-75">2 hours ago</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+                  <app-notifications></app-notifications>
                   <!--div class="dropdown-divider m-0"></div>
                   <div class="text-center p-3">
                     <a class="btn btn-primary">View All Notifications</a>
@@ -302,6 +243,7 @@
                   class="nav-link pe-0 leading-none d-flex animate"
                 >
                   <span class="avatar__wrap">
+                    SK
                     <!-- <img
                       src="../../assets/images/faces/6.jpg"
                       alt="profile-user"
@@ -310,8 +252,12 @@
                   </span>
                   <div class="p-1 d-flex d-lg-none-max">
                     <div>
-                      <h6 class="mb-0" id="profile-heading">{{userInfo.fullName}}</h6>
-                      <div class="fs-12 opacity-75">{{userInfo.roleName}}</div>
+                      <h6 class="mb-0" id="profile-heading">
+                        {{ userInfo.fullName }}
+                      </h6>
+                      <div class="fs-12 opacity-75">
+                        {{ userInfo.roleName }}
+                      </div>
                     </div>
                     <i class="user-angle ms-1 fa fa-angle-down"></i>
                   </div>
