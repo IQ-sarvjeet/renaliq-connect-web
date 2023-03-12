@@ -10,9 +10,15 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
+export interface RegisterModel { 
     email?: string;
+    firstName?: string;
+    middleName?: string;
+    lastName?: string;
+    userName?: string;
     password: string;
-    confirmPassword: string;
-    oldPassword: string;
+    confirmPassword?: string;
+    token?: string;
+    returnUrl?: string;
+    phoneNumber: string;
 }

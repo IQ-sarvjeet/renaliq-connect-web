@@ -9,10 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { ClinicalPatientMatrixFilter } from './clinicalPatientMatrixFilter';
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+export interface ClinicalPatientMatrixFilterModel { 
+    filter?: ClinicalPatientMatrixFilter;
+    currentPage?: number;
+    pageSize?: number;
 }

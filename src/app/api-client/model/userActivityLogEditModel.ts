@@ -10,9 +10,16 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+export interface UserActivityLogEditModel { 
+    sessionId?: string;
+    userId?: string;
+    userName?: string;
+    browser?: string;
+    clientIp?: string;
+    loginAttemptCount?: number;
+    loggedInAt?: Date;
+    loggedOutAt?: Date;
+    singalRConnectionId?: string;
+    deviceToken?: string;
+    isNew?: boolean;
 }

@@ -25,3 +25,29 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Swagger Generator
+./generate.bat
+
+# Update src/app/api-client/api.module.ts:90:71
+ After Code Generated :  public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders 
+ Update:    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> 
+
+# Update encoder.ts
+import { HttpUrlEncodingCodec } from '@angular/common/http'; /**
+* CustomHttpUrlEncodingCodec
+* Fix plus sign (+) not encoding, so sent as blank space
+* See: https://github.com/angular/angular/issues/11058#issuecomment-247367318
+*/
+export class CustomHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
+  override encodeKey(k: string): string {
+        k = super.encodeKey(k);
+        return k.replace(/\+/gi, '%2B');
+    }
+  override encodeValue(v: string): string {
+        v = super.encodeValue(v);
+        return v.replace(/\+/gi, '%2B');
+    }
+} 
+

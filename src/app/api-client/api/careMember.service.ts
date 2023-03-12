@@ -23,7 +23,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class UserService {
+export class CareMemberService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -60,10 +60,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUserPreferenceGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUserPreferenceGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUserPreferenceGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUserPreferenceGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiCareMemberListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiCareMemberListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiCareMemberListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiCareMemberListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -79,42 +79,7 @@ export class UserService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/User/preference`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiUserPreferenceListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUserPreferenceListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUserPreferenceListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUserPreferenceListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get',`${this.basePath}/api/User/preference/List`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/CareMember/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

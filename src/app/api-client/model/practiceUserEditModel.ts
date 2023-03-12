@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+export interface PracticeUserEditModel { 
+    practiceId?: number;
+    userId?: number;
+    isSelected?: boolean;
 }

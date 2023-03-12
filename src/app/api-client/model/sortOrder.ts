@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
-}
+export type SortOrder = 0 | 1;
+
+export const SortOrder = {
+    NUMBER_0: 0 as SortOrder,
+    NUMBER_1: 1 as SortOrder
+};

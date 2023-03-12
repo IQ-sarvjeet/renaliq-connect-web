@@ -10,9 +10,13 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
+export interface UserInfoModel { 
+    userLoginId?: number;
+    roleId?: number;
+    firstName?: string;
+    lastName?: string;
+    fullName?: string;
     email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+    roleName?: string;
+    imageUrl?: string;
 }

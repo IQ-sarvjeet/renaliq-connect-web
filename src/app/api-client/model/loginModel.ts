@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
-    email?: string;
+export interface LoginModel { 
+    username: string;
     password: string;
-    confirmPassword: string;
-    oldPassword: string;
+    rememberMe?: boolean;
 }
