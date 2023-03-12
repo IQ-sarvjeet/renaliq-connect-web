@@ -10,6 +10,7 @@ import { UserInfo } from 'src/app/interfaces/user';
 import { StoreService } from 'src/app/services/store.service';
 import { filter } from 'rxjs/operators';
 
+
 type Practice = {
   isSelected: boolean;
   name: string;

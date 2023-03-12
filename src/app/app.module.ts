@@ -22,6 +22,8 @@ import { environment } from '../environments/environment';
 import { SummaryModule } from './views/summary/summary.module';
 import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { InitialsPipe } from './pipes/initials.pipe'; // Pipe
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
     ResetPasswordComponent,
     ErrorsComponent,
     TwoFectorAuthComponent,
-    SampleUiComponent
+    SampleUiComponent,
+    InitialsPipe 
   ],
   imports: [ 
     MbscModule,
