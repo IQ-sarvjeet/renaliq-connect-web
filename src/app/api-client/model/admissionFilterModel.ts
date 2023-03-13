@@ -9,10 +9,13 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { SortOrder } from './sortOrder';
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+export interface AdmissionFilterModel { 
+    formDateTime?: Date;
+    endDateTime?: Date;
+    currentPage?: number;
+    pageSize?: number;
+    sortBy?: string;
+    sortOrderBy?: SortOrder;
 }

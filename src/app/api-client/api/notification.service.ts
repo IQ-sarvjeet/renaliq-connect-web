@@ -23,7 +23,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class UserService {
+export class NotificationService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -60,10 +60,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUserPreferenceGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUserPreferenceGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUserPreferenceGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUserPreferenceGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiNotificationGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -79,7 +79,7 @@ export class UserService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/User/preference`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -95,10 +95,10 @@ export class UserService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiUserPreferenceListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiUserPreferenceListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiUserPreferenceListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiUserPreferenceListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiNotificationLatestGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationLatestGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationLatestGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationLatestGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -114,7 +114,42 @@ export class UserService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/User/preference/List`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/latest`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiNotificationReadGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationReadGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationReadGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationReadGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/read  `,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

@@ -10,9 +10,12 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
-    email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+export interface PatientFilter { 
+    searchKey?: string;
+    stage?: string;
+    riskCategory?: string;
+    careMember?: string;
+    status?: string;
+    assignment?: Array<Date>;
+    discharge?: Array<Date>;
 }

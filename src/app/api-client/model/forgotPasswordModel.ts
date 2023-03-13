@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface ChangePasswordModel { 
+export interface ForgotPasswordModel { 
     email?: string;
-    password: string;
-    confirmPassword: string;
-    oldPassword: string;
+    phoneNumber?: string;
+    isEmail?: boolean;
 }
