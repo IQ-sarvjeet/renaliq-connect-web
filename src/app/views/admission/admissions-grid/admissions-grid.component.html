@@ -297,10 +297,10 @@
         <td>{{ gridRow.diagnosis }}</td>
         <td>{{ gridRow.facilityName }}</td>
         <td class="text-center">
-          {{ moment(gridRow.admissionDate).format("DD/MM/YYYY") }}
+          {{ gridRow.admissionDate ? moment(gridRow.admissionDate).format("DD/MM/YYYY"): '' }}
         </td>
         <td class="text-center">
-          {{ moment(gridRow.dischargeDate).format("DD/MM/YYYY") }}
+          {{ gridRow.dischargeDate? moment(gridRow.dischargeDate).format("DD/MM/YYYY"): '' }}
         </td>
         <td class="text-center">
           <a
