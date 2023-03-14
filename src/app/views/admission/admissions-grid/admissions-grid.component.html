@@ -16,7 +16,7 @@
         <th class="bg-transparent border-bottom-0 fs-12">FACITLITY NAME</th>
         <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
         <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
-        <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
+        <!-- <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th> -->
       </tr>
     </thead>
     <tbody class="table-body" *ngIf="showLoading">
@@ -302,7 +302,7 @@
         <td class="text-center">
           {{ gridRow.dischargeDate? moment(gridRow.dischargeDate).format("DD/MM/YYYY"): '' }}
         </td>
-        <td class="text-center">
+        <!-- <td class="text-center">
           <a
             href="#"
             class="br-5 px-2 py-1"
@@ -319,7 +319,7 @@
               ><i class="fe fe-info me-2"></i> Info</a
             >
           </div>
-        </td>
+        </td> -->
       </tr>
       <!-- <tr *ngIf="admissionList.items == 0">
         <td colspan="10">

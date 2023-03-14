@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PatientService } from 'src/app/api-client';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
@@ -42,6 +42,7 @@ export class GridComponent implements OnInit {
       discharge: []
     }
   };
+  @Output() openDialog: EventEmitter<boolean> = new EventEmitter();
   constructor(private _patientService: PatientService,private _interactionService: InteractionService) { }
 
   ngOnInit(): void {
@@ -92,6 +93,9 @@ export class GridComponent implements OnInit {
   }
   getAge(dob:any){
     return moment().diff(dob, 'years');
+  }
+  openCarePlan() {
+    this.openDialog.emit(true);
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
