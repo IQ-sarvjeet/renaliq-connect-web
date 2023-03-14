@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var $:any;
 
 @Component({
   selector: 'app-patient-list',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./patient-list.component.scss']
 })
 export class PatientListComponent {
-
+  openDialog($event: any) {
+    $('#carePlanFilter').modal('show');
+  }
 }
