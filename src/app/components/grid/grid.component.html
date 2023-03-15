@@ -196,12 +196,13 @@
             <!-- <a class="dropdown-item" href="#/patient-profile"
               ><i class="fe fe-edit-2 me-2"></i> Edit</a
             > -->
-            <a class="dropdown-item" href="#/patient-profile"
+            <a class="dropdown-item" href="Javascript: void(0);"
+              (click)="patientHandler(item, 'detail')"
               ><i class="fe fe-info me-2"></i> Detail</a
             >
             <a class="dropdown-item" href="Javascript: void(0);"
-              (click)="openCarePlan()"
-              ><i class="fe fe-info me-2"></i> Care Plan</a
+              (click)="patientHandler(item, 'viewCarePlan')"
+              ><i class="fe fe-info me-2"></i> View Care Plan</a
             >
           </div>
         </td>
