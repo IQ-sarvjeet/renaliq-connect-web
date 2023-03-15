@@ -10,7 +10,7 @@ import { ClinicalQualityMatrixService } from '../../../api-client';
   styleUrls: ['./quality-matrix.component.scss']
 })
 export class QualityMatrixComponent {
-  @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
+  // @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   dateRangeFilter: any = "02/06/2023 - 02/14/2023";
   dateRangeOptions: MbscDatepickerOptions = {
       theme: 'ios',

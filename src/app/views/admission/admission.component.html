@@ -7,7 +7,7 @@
       <div *ngIf="showLoading">
         <div class="row mt-0 mb-3">
           <div class="col-12 col-md-4">
-            <div class="border rounded-2 p-4 bg-light">
+            <div class="border rounded-2 p-4 bg-light mh-62">
               <div class="row">
                 <div class="col-12 col-md-5">
                   <div class="d-flex align-items-center">
@@ -34,7 +34,9 @@
             </div>
           </div>
           <div class="col-12 col-md-8">
-            <div class="border rounded-2 p-2 pt-3 position-relative bg-light">
+            <div
+              class="border rounded-2 p-2 pt-3 position-relative bg-light mh-62"
+            >
               <div class="fieldset-title px-1 bg-label fs-12">
                 ADMISSION BY STAGES
               </div>
@@ -63,291 +65,6 @@
             </div>
           </div>
         </div>
-        <div class="table-responsive">
-          <table
-            id="admissionTable"
-            class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
-          >
-            <thead class="table-head">
-              <tr class="text-secondary bg-gray-200">
-                <th
-                  class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
-                ></th>
-                <th class="bg-transparent border-bottom-0 wp-20 fs-12">
-                  PATIENT
-                </th>
-                <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
-                <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
-                <th class="bg-transparent border-bottom-0 fs-12">
-                  CASE CATEGORY
-                </th>
-                <th class="bg-transparent border-bottom-0 fs-12 wp-20">
-                  DIAGNOSIS
-                </th>
-                <th class="bg-transparent border-bottom-0 fs-12">
-                  FACITLITY NAME
-                </th>
-                <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
-                <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
-                <th
-                  class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"
-                ></th>
-              </tr>
-            </thead>
-            <tbody class="table-body">
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="skeleton-loader__media-rounded">
-                    <span class="skeleton-loader"></span>
-                  </div>
-                </td>
-                <td>
-                  <div class="d-flex align-items-center">
-                    <div class="skeleton-loader__media-xs me-4">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                    <div class="flex-fill">
-                      <span class="skeleton-loader"></span>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-                <td><span class="skeleton-loader"></span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
       <app-admissions-admission-by
         *ngIf="!showLoading"
@@ -359,12 +76,24 @@
         [dateRange]="dateRange"
       ></app-admissions-grid>
     </div>
-    <div role="alert" class="alert alert-danger d-flex fade show"
-      *ngIf="showNoData">
-      <div>
-        <i aria-hidden="true" class="fa fa-warning me-2"></i>
+
+    <div class="card mb-5 p-5 text-center" *ngIf="showNoData">
+      <div class="mb-4">
+        <img
+          class="wrap-figure__img"
+          src="../../../assets/images/no-data.png"
+          alt="No data found"
+        />
       </div>
-      <div class="flex-fill">No data found!</div>
+      <h2 class="fw-bold">No data found</h2>
+      <div class="text-gray mb-6">
+        Man day data is empty or Try adjusting your filter.
+      </div>
+      <div>
+        <a routerLink="/" class="btn btn-outline-danger mx-1 px-5"
+          ><i class="icon icon-action-undo me-1"></i> Retry</a
+        >
+      </div>
     </div>
   </div>
   <router-outlet></router-outlet>
