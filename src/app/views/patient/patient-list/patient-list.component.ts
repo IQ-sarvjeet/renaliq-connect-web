@@ -12,8 +12,8 @@ export class PatientListComponent {
   patientDetail: any = {};
   constructor(private route: Router, private patientService: PatientService) {}
   actionHandler($event: any) {
+    this.patientDetail = $event.detail;
     if($event.actionType === 'viewCarePlan') {
-      this.patientDetail = $event.detail;
       $('#carePlanFilter').modal('show');
       this.patientService.apiPatientCareplansEnrollmentNumberGet($event.detail.patient.enrollmentNo).subscribe({
         next: (response: any) => {
@@ -22,8 +22,11 @@ export class PatientListComponent {
       })
     } else {
       // this.route.navigate([`patient-profile/${this.patientDetail.patient.patientId}`]);
-      this.route.navigate([`patient-profile`], );
-      this.route.navigateByUrl('/patient-profile', {state: this.patientDetail})
+      // this.route.navigate([`patient-profile`], );
+      this.route.navigateByUrl(`/patient-profile/${this.patientDetail.patient.patientId}`, {state: {
+        patientId: this.patientDetail.patient.patientId,
+        enrollmentNo: this.patientDetail.patient.enrollmentNo
+      }})
     }
   }
 }

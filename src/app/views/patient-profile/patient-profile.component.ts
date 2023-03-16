@@ -40,13 +40,14 @@ export class PatientProfileComponent {
     phoneNumber: 584672294439,
     npEligibilityStatus: ""
   }
+  routeState: any = {
+    patientId: null,
+    enrollmentNo: null
+  }
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    // console.log(this.activatedRoute.getCurrentNavigation().extras.state);
-    console.log(this.router.getCurrentNavigation()?.extras.state);
+    this.routeState = this.router.getCurrentNavigation()?.extras.state;
+    console.log('this.routeState11:', this.routeState);
   }
   ngOnInit() {
-    this.activatedRoute.data.subscribe((response: any) => {
-      console.log('route response:', response);
-    })
   }
 }

@@ -74,12 +74,15 @@ const routes: Routes = [
     canActivate: [AuthguardGuard]
   },
   {
-    path: 'patient-profile',
+    path: 'patient-profile/:id',
     loadChildren: () =>
       import('./views/patient-profile/patient-profile.module').then(
         (m) => m.PatientProfileModule
       ),
-    data: {},
+    data: {
+      patientId: null,
+      enrollmentNo: null
+    },
     canActivate: [AuthguardGuard]
   },
   {

@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import * as moment from 'moment';
+import { PatientService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-patient-profile-section',
   templateUrl: './patient-profile-section.component.html',
   styleUrls: ['./patient-profile-section.component.scss']
 })
-export class PatientProfileSectionComponent {
+export class PatientProfileSectionComponent implements OnInit  {
+  moment = moment;
   profile: any = {
     id: 961,
     name: "Lixxxxxx ne",
@@ -38,5 +42,39 @@ export class PatientProfileSectionComponent {
     isCentralTeamOutReachMode: false,
     phoneNumber: 584672294439,
     npEligibilityStatus: ""
+  }
+  carePlans: any = [];
+  routeState: any = {
+    patientId: null,
+    enrollmentNo: null
+  }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private patientService: PatientService) {
+    this.routeState = this.router.getCurrentNavigation()?.extras.state;
+    console.log('this.routeState11:', this.routeState);
+    this.patientDetails(this.routeState);
+  }
+  ngOnInit() {
+    const {id} = this.activatedRoute.snapshot.params;
+    console.log('params:', id);
+  }
+  patientDetails(routeState: any) {
+    if(!routeState || !routeState.enrollmentNo) return;
+    this.patientService.apiPatientDetailEnrollmentNumberGet('ZXDY06257796').subscribe({
+      next: (details: any) => {
+        this.profile = details;
+      }
+    })
+    this.patientService.apiPatientCareplansEnrollmentNumberGet('ZXDY06257796').subscribe({
+      next: (response: any) => {
+        this.carePlans = response
+      }
+    })
+  }
+  downloadPlan(plan: any) {
+    this.patientService.apiPatientCareplanDownloadPatientActivityIdGet(plan.patientActivityId).subscribe({
+      next: (response: any) => {
+        
+      }
+    })
   }
 }
