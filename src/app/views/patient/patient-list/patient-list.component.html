@@ -5,7 +5,7 @@
 
   <div class="main-container container">
     <div class="card mt-1 mb-5 p-2">
-      <app-grid (openDialog)="openDialog($event)"></app-grid>
+      <app-grid (actionHandler)="actionHandler($event)"></app-grid>
     </div>
   </div>
 </div>
@@ -23,15 +23,15 @@
         <div class="row">
           <div class="col-4">
             <div class="fs-12 op-0-75">Enrollement No</div>
-            <div class="fw-semibold">QX5550123</div>
+            <div class="fw-semibold">{{patientDetail.patient?.enrollmentNo}}</div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">Patient Name</div>
-            <div class="fw-semibold text-truncate">Danya Garcia</div>
+            <div class="fw-semibold text-truncate">{{patientDetail.patient?.name}}</div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">State</div>
-            <div class="fw-semibold">-</div>
+            <div class="fw-semibold">{{patientDetail.stage}}</div>
           </div>
         </div>
         <hr />

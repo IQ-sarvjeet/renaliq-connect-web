@@ -42,7 +42,7 @@ export class GridComponent implements OnInit {
       discharge: []
     }
   };
-  @Output() openDialog: EventEmitter<boolean> = new EventEmitter();
+  @Output() actionHandler: EventEmitter<any> = new EventEmitter();
   constructor(private _patientService: PatientService,private _interactionService: InteractionService) { }
 
   ngOnInit(): void {
@@ -94,8 +94,11 @@ export class GridComponent implements OnInit {
   getAge(dob:any){
     return moment().diff(dob, 'years');
   }
-  openCarePlan() {
-    this.openDialog.emit(true);
+  patientHandler(detail: any, type: string) {
+    this.actionHandler.emit({
+      detail: detail,
+      actionType: type
+    });
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();

@@ -25,27 +25,27 @@
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Date Of Birth (Age)</div>
-        <div>{{profile.dateofBirth}}</div>
+        <div>{{profile.dateofBirth ? moment(profile.dateofBirth).format("DD/MM/YYYY"): ''}}</div>
       </div>
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
         <div class="fs-12 op-0-75">Health Plan</div>
-        <div>Anthem</div>
+        <div>-</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Engaged Date</div>
-        <div>2022/9/10</div>
+        <div>-</div>
       </div>
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
         <div class="fs-12 op-0-75">Program</div>
-        <div>Transitional Care</div>
+        <div>-</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Days since last assessed</div>
-        <div>8 days ago</div>
+        <div>-</div>
       </div>
     </div>
   </div>
@@ -74,11 +74,11 @@
         <div class="row">
           <div class="col-4">
             <div class="fs-12 op-0-75">Enrollement No</div>
-            <div class="fw-semibold">QX5550123</div>
+            <div class="fw-semibold">{{profile.enrollmentNumber}}</div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">Patient Name</div>
-            <div class="fw-semibold text-truncate">Danya Garcia</div>
+            <div class="fw-semibold text-truncate">{{profile.name}}</div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">State</div>
@@ -88,10 +88,11 @@
         <hr />
         <div class="d-flex mt-4">
           <div class="flex-fill pt-1">
-            Latest Care Plan generated on on 22/08/11
+            Latest Care Plan generated on on {{carePlans[0].createdOn ? moment(carePlans[0].createdOn).format("DD/MM/YYYY"): '-'}}
           </div>
           <div>
             <a href="javascript:void(0)" class="btn btn-secondary ms-3"
+              (click)="downloadPlan(carePlans[0])"
               ><i class="fa fa-download me-1"></i> Download</a
             >
           </div>
@@ -99,9 +100,11 @@
         <hr />
         <div class="mt-3 mb-4"><strong>Previous Care Plans</strong></div>
         <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
-          ><i class="fa fa-download me-1"></i> 10/02/11</a
+          (click)="downloadPlan(plan)"
+          *ngFor="let plan of carePlans"><i class="fa fa-download me-1"></i> 
+          {{plan.createdOn ? moment(plan.createdOn).format("DD/MM/YYYY"): '-'}}</a
         >
-        <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
+        <!-- <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
           ><i class="fa fa-download me-1"></i> 12/02/11</a
         >
         <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
@@ -109,7 +112,7 @@
         >
         <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
           ><i class="fa fa-download me-1"></i> 22/02/11</a
-        >
+        > -->
       </div>
     </div>
   </div>
