@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-profile',
@@ -38,5 +39,14 @@ export class PatientProfileComponent {
     isCentralTeamOutReachMode: false,
     phoneNumber: 584672294439,
     npEligibilityStatus: ""
+  }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    // console.log(this.activatedRoute.getCurrentNavigation().extras.state);
+    console.log(this.router.getCurrentNavigation()?.extras.state);
+  }
+  ngOnInit() {
+    this.activatedRoute.data.subscribe((response: any) => {
+      console.log('route response:', response);
+    })
   }
 }
