@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import * as moment from 'moment';
 import { PatientService } from 'src/app/api-client';
 declare var $:any;
 
@@ -9,6 +10,8 @@ declare var $:any;
   styleUrls: ['./patient-list.component.scss']
 })
 export class PatientListComponent {
+  moment = moment;
+  carePlans: any = [];
   patientDetail: any = {};
   constructor(private route: Router, private patientService: PatientService) {}
   actionHandler($event: any) {
@@ -17,16 +20,21 @@ export class PatientListComponent {
       $('#carePlanFilter').modal('show');
       this.patientService.apiPatientCareplansEnrollmentNumberGet($event.detail.patient.enrollmentNo).subscribe({
         next: (response: any) => {
-          console.log('response:', response);
+          this.carePlans = response;
         }
       })
     } else {
-      // this.route.navigate([`patient-profile/${this.patientDetail.patient.patientId}`]);
-      // this.route.navigate([`patient-profile`], );
       this.route.navigateByUrl(`/patient-profile/${this.patientDetail.patient.patientId}`, {state: {
         patientId: this.patientDetail.patient.patientId,
         enrollmentNo: this.patientDetail.patient.enrollmentNo
       }})
     }
+  }
+  downloadPlan(plan: any) {
+    this.patientService.apiPatientCareplanDownloadPatientActivityIdGet(plan.patientActivityId).subscribe({
+      next: (response: any) => {
+        
+      }
+    })
   }
 }

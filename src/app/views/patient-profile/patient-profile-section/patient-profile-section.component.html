@@ -86,7 +86,7 @@
           </div>
         </div>
         <hr />
-        <div class="d-flex mt-4">
+        <div class="d-flex mt-4" *ngIf="carePlans.length > 0">
           <div class="flex-fill pt-1">
             Latest Care Plan generated on on {{carePlans[0].createdOn ? moment(carePlans[0].createdOn).format("DD/MM/YYYY"): '-'}}
           </div>
