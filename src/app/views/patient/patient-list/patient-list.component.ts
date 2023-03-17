@@ -18,15 +18,9 @@ export class PatientListComponent {
     this.patientDetail = $event.detail;
     if($event.actionType === 'viewCarePlan') {
       $('#carePlanFilter').modal('show');
-      // this.patientService.apiPatientCareplansEnrollmentNumberGet($event.detail.patient.enrollmentNo).subscribe({
-      //   next: (response: any) => {
-      //     console.log('response:', response);
-      //   }
-      // })
-      this.patientService.apiPatientCareplansEnrollmentNumberGet('ZXDY06257796').subscribe({
+      this.patientService.apiPatientCareplansEnrollmentNumberGet($event.detail.patient.enrollmentNo).subscribe({
         next: (response: any) => {
           this.carePlans = response;
-          console.log('response:', response);
         }
       })
     } else {

@@ -50,21 +50,19 @@ export class PatientProfileSectionComponent implements OnInit  {
   }
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private patientService: PatientService) {
     this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    console.log('this.routeState11:', this.routeState);
     this.patientDetails(this.routeState);
   }
   ngOnInit() {
     const {id} = this.activatedRoute.snapshot.params;
-    console.log('params:', id);
   }
   patientDetails(routeState: any) {
     if(!routeState || !routeState.enrollmentNo) return;
-    this.patientService.apiPatientDetailEnrollmentNumberGet('ZXDY06257796').subscribe({
+    this.patientService.apiPatientDetailEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
       next: (details: any) => {
         this.profile = details;
       }
     })
-    this.patientService.apiPatientCareplansEnrollmentNumberGet('ZXDY06257796').subscribe({
+    this.patientService.apiPatientCareplansEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
       next: (response: any) => {
         this.carePlans = response
       }
