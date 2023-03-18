@@ -10,6 +10,7 @@ import { MedicationComponent } from './medication/medication.component';
 import { EngagementTimelineComponent } from './engagement-timeline/engagement-timeline.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PatientProfileComponent } from './patient-profile.component';
+import { SharedModule } from 'src/app/components/shared.module';
 
 const routes: Routes = [
   {
@@ -33,6 +34,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    SharedModule
   ]
 })
 export class PatientProfileModule { }

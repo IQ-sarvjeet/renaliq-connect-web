@@ -4,7 +4,10 @@
       <div class="col-12 col-sm-4 col-md-5">
         <h1 class="page-title m-0">
           Patient
-          <span class="fw-normal">- Danya Garcia | Female | 42 Years</span>
+          <span class="fw-normal">- {{profileDetail.name}} | 
+            <span *ngIf="profileDetail.gender === 'F'">Female</span>
+            <span *ngIf="profileDetail.gender === 'M'">Male</span>
+            <span *ngIf="profileDetail.gender !== 'M' && profileDetail.gender !== 'F'">-</span> | {{profileDetail.age}} Years</span>
         </h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
