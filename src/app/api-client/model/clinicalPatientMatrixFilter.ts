@@ -12,7 +12,7 @@
 
 export interface ClinicalPatientMatrixFilter { 
     metricId?: number;
+    periodId?: number;
     patientName?: string;
     numerator?: number;
-    dateRange?: Array<Date>;
 }
