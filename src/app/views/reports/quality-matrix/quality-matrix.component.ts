@@ -4,6 +4,7 @@ import { BarChartConfig } from 'src/app/interfaces/bar-chart-config';
 import { Router } from '@angular/router';
 import { ClinicalQualityMatrixService } from '../../../api-client';
 import { HttpClient } from '@angular/common/http';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-quality-matrix',
@@ -11,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./quality-matrix.component.scss']
 })
 export class QualityMatrixComponent {
+  moment = moment;
   // @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   dateRangeFilter: any = "02/06/2023 - 02/14/2023";
   dateRangeOptions: MbscDatepickerOptions = {
@@ -30,7 +32,8 @@ export class QualityMatrixComponent {
   };
 
   qualityMatircList: any = [];
-  selectedDate: any = 'New';
+  dateList: any = [];
+  selectedDate: any = '';
   constructor(private _qualityService: ClinicalQualityMatrixService,
     private httpClient: HttpClient,
     private route: Router,) { }
@@ -38,9 +41,9 @@ export class QualityMatrixComponent {
   ngOnInit() {
     this.getQualityMatricList();
     this.httpClient.get('https://renaliq-comm-api-dev-connect.azurewebsites.net/api/ClinicalQualityMatrix/available-period').subscribe((response: any) => {
-      console.log('Date list:', response);
+      this.dateList = response;
+      this.selectedDate = `${moment(this.dateList[0].periodStart).format("DD/MM/YYYY")} - ${moment(this.dateList[0].periodEnd).format("DD/MM/YYYY")}`;
     })
-    
   }
 
 

@@ -3,7 +3,7 @@
   <div class="sub-header">
     <div class="main-container container">
       <div class="row">
-        <div class="col-6 col-sm-9 col-md-10">
+        <div class="col-6 col-sm-9 col-md-9">
           <h1 class="page-title m-0">Clinical Quality Matrics</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -17,7 +17,7 @@
             </li>
           </ol>
         </div>
-        <div class="col-6 col-sm-3 col-md-2">
+        <div class="col-6 col-sm-3 col-md-3">
           <!-- <div class="input-group">
             <mbsc-datepicker 
               class="form-control fs-12"
@@ -30,15 +30,17 @@
               <i class="fa fa-calendar"></i>
             </button>
           </div> -->
-          <label for="status" class="text-gray mb-1">Status</label>
           <select
             class="form-select"
             (change)="dateSelectionHandler($event)"
             id="status"
           >
-            <option value="Engaged" [selected]="selectedDate === 'Engaged' ">Engaged</option>
-            <option value="New" [selected]="selectedDate === 'New' ">New</option>
-            <option value="On-hold" [selected]="selectedDate === 'On-hold' ">On-hold</option>
+            <option 
+              value="Engaged" 
+              [selected]="selectedDate === (moment(dateItem.periodStart).format('DD/MM/YYYY') + ' - ' + moment(dateItem.periodEnd).format('DD/MM/YYYY'))"
+              [ngValue]="moment(dateItem.periodStart).format('DD/MM/YYYY') + ' - ' + moment(dateItem.periodEnd).format('DD/MM/YYYY')"
+              *ngFor="let dateItem of dateList"
+              >{{moment(dateItem.periodStart).format("DD/MM/YYYY")}} - {{moment(dateItem.periodEnd).format("DD/MM/YYYY")}}</option>
           </select>
         </div>
       </div>
