@@ -125,7 +125,7 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}api/Patient/careplans/${encodeURIComponent(String(enrollmentNumber))}`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/careplans/${encodeURIComponent(String(enrollmentNumber))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
