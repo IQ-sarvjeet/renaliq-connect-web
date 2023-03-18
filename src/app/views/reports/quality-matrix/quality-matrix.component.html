@@ -18,8 +18,8 @@
           </ol>
         </div>
         <div class="col-6 col-sm-3 col-md-2">
-          <div class="input-group">
-            <!-- <mbsc-datepicker 
+          <!-- <div class="input-group">
+            <mbsc-datepicker 
               class="form-control fs-12"
               #rangeDatepicker
               [options]="dateRangeOptions" 
@@ -28,8 +28,18 @@
               type="button"
               (click)="rangeDatepicker.open()">
               <i class="fa fa-calendar"></i>
-            </button> -->
-          </div>
+            </button>
+          </div> -->
+          <label for="status" class="text-gray mb-1">Status</label>
+          <select
+            class="form-select"
+            (change)="dateSelectionHandler($event)"
+            id="status"
+          >
+            <option value="Engaged" [selected]="selectedDate === 'Engaged' ">Engaged</option>
+            <option value="New" [selected]="selectedDate === 'New' ">New</option>
+            <option value="On-hold" [selected]="selectedDate === 'On-hold' ">On-hold</option>
+          </select>
         </div>
       </div>
     </div>

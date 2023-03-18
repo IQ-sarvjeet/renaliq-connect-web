@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PatientService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-patient-profile',
@@ -7,47 +8,55 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./patient-profile.component.scss']
 })
 export class PatientProfileComponent {
-  profile: any = {
-    id: 961,
-    name: "Lixxxxxx ne",
-    dateofBirth: "1957-10-22T00:00:00",
-    age: 65,
-    gender: "F",
+  profileDetail: any = {
+    id: null,
+    name: '',
+    dateofBirth: "",
+    age: null,
+    gender: "",
     preferredTime: "",
     language: "-",
-    status: "Written Consent (8/22/2019)",
+    status: "",
     requiredTimeSlot: 0,
-    appointmentType: "Dual",
-    enrollmentNumber: "ZXDY06257796",
-    address: " 10***** **** ***** Rd ***** **** *****, Brownsville, Tennessee 38012",
+    appointmentType: "",
+    enrollmentNumber: "",
+    address: "",
     payerName: null,
-    memberId: "ZXDY06257796",
-    email: "*****@*******",
+    memberId: "",
+    email: "",
     state: [
-      "1240"
+      ""
     ],
-    zipcode: "38012",
-    timeZone: "US/Central",
-    lat: 35.6074339,
-    lng: -89.2847251,
-    eligibilityEndDate: "2021-12-31T00:00:00",
-    addressType: "Home",
-    clientName: "BCBSTN",
-    clientId: 4584,
-    lineOfBusinessId: 2,
+    zipcode: "",
+    timeZone: "",
+    lat: null,
+    lng: null,
+    eligibilityEndDate: "",
+    addressType: "",
+    clientName: "",
+    clientId: null,
+    lineOfBusinessId: null,
     enableCareTeamMapping: false,
     isCentralTeamOutReachMode: false,
-    phoneNumber: 584672294439,
+    phoneNumber: null,
     npEligibilityStatus: ""
   }
   routeState: any = {
     patientId: null,
     enrollmentNo: null
   }
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private patientService: PatientService, private activatedRoute: ActivatedRoute) {
     this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    console.log('this.routeState11:', this.routeState);
+    this.patientDetails(this.routeState);
   }
   ngOnInit() {
+  }
+  patientDetails(routeState: any) {
+    if(!routeState || !routeState.enrollmentNo) return;
+    this.patientService.apiPatientDetailEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
+      next: (details: any) => {
+        this.profileDetail = details;
+      }
+    })
   }
 }
