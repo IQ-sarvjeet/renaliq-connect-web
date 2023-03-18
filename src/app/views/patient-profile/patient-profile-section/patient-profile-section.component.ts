@@ -48,12 +48,6 @@ export class PatientProfileSectionComponent implements OnInit  {
     })
   }
   downloadPlan(plan: any) {
-    // this.patientService.apiPatientCareplanDownloadPatientActivityIdGet(plan.patientActivityId).subscribe({
-    // this.patientService.apiPatientCareplanDownloadPatientActivityIdGet('10002').subscribe({
-    //   next: (response: any) => {
-    //     console.log('response:', response);
-    //   }
-    // })
     const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     let headerOptions = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -62,7 +56,7 @@ export class PatientProfileSectionComponent implements OnInit  {
     });
 
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-    this.httpClient.get(environment.baseApiUrl + 'api/Patient/careplan/download/10002', requestOptions).subscribe({
+    this.httpClient.get(`${environment.baseApiUrl}api/Patient/careplan/download/${plan.patientActivityId}`, requestOptions).subscribe({
       next: (response: any) => {
         console.log('response:', response);
         const blob = new Blob([response], {
