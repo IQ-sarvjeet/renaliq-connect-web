@@ -200,7 +200,7 @@
               (click)="patientHandler(item, 'detail')"
               ><i class="fe fe-info me-2"></i> Detail</a
             >
-            <a class="dropdown-item" href="Javascript: void(0);"
+            <a *ngIf="item.carePlanStatus === '1'" class="dropdown-item" href="Javascript: void(0);"
               (click)="patientHandler(item, 'viewCarePlan')"
               ><i class="fe fe-info me-2"></i> View Care Plan</a
             >
