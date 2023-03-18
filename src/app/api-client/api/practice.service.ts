@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { CareTeamMember } from '../model/careTeamMember';
 import { PracticeUserEditModel } from '../model/practiceUserEditModel';
 import { PracticeViewModel } from '../model/practiceViewModel';
 
@@ -82,6 +83,44 @@ export class PracticeService {
         ];
 
         return this.httpClient.request<any>('post',`${this.basePath}/api/Practice/add`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPracticeCareTeamMembersListGet(observe?: 'body', reportProgress?: boolean): Observable<Array<CareTeamMember>>;
+    public apiPracticeCareTeamMembersListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<CareTeamMember>>>;
+    public apiPracticeCareTeamMembersListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<CareTeamMember>>>;
+    public apiPracticeCareTeamMembersListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<Array<CareTeamMember>>('get',`${this.basePath}/api/Practice/careTeamMembers/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
