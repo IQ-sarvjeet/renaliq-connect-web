@@ -65,7 +65,8 @@ export class ReportsGridComponent implements OnInit  {
   public async bindClinicalPatientMetricList() {
     try {
       this.showLoading = true;
-      var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixListPost(this.filterModel).toPromise();
+      var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientListPost(this.filterModel).toPromise();
+      console.log('result:::', result);
       this.list = result?.data;
       this.gridData.items = result?.data;
       this.gridData.pagingModel = result?.pagingModel;

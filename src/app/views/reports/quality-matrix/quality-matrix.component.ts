@@ -30,50 +30,57 @@ export class QualityMatrixComponent {
         console.log('onClose:', event);
       }
   };
-
+  chartConfig: BarChartConfig = {
+    apiUrl: 'assets/mockData/chartQualityMatrix.json',
+    title: '',
+    colors: ['#c4c4c4', '#448c00', '#ff6708', '#ff3700']
+  }
+  showLoading: boolean = false;
+  openChartModal: boolean = false;
   qualityMatircList: any = [];
   dateList: any = [];
-  selectedDate: any = '';
-  constructor(private _qualityService: ClinicalQualityMatrixService,
-    private httpClient: HttpClient,
-    private route: Router,) { }
+  selectedDate: number = 0;
+  constructor(private _qualityService: ClinicalQualityMatrixService) { }
 
   ngOnInit() {
-    this.getQualityMatricList();
-    this.httpClient.get('https://renaliq-comm-api-dev-connect.azurewebsites.net/api/ClinicalQualityMatrix/available-period').subscribe((response: any) => {
-      this.dateList = response;
-      this.selectedDate = `${moment(this.dateList[0].periodStart).format("DD/MM/YYYY")} - ${moment(this.dateList[0].periodEnd).format("DD/MM/YYYY")}`;
+    this.showLoading = true;
+    this._qualityService.apiClinicalQualityMatrixAvailablePeriodGet().subscribe({
+      next: (response: any) => {
+        if(response.length > 0) {
+          this.dateList = response;
+          this.selectedDate = this.dateList[0].id;
+          this.getQualityMatricList(this.selectedDate);
+        }
+      }
     })
   }
-
-
-  getQualityMatricList() {
-
-    this._qualityService.apiClinicalQualityMatrixGetGet().subscribe((result: any) => {
-      this.qualityMatircList = result.clinicalQualityMatrics;
-      console.log(result);
-    },
-      (error) => {
-
-      });
-    };
-
-    chartConfig: BarChartConfig = {
-        apiUrl: 'assets/mockData/chartQualityMatrix.json',
-        title: '',
-        colors: ['#c4c4c4', '#448c00', '#ff6708', '#ff3700']
-    }
-    openChartModal: boolean = false;
-    openChart() {
-        this.openChartModal = true;
-        setTimeout(() => {
-            this.openChartModal = false;
-        }, 2000);
-    }
-    modalClosed() {
-        this.openChartModal = false;
-    }
-    dateSelectionHandler($event: any) {
-      this.selectedDate = $event.target.value;
-    }
+  getQualityMatricList(periodId: number) {
+    this.showLoading = true;
+    this._qualityService.apiClinicalQualityMatrixGetPracticePeriodIdGet(periodId).subscribe({
+      next: (result: any) => {
+        this.showLoading = false;
+        const matrixArr: any = [];
+        Object.keys(result).forEach((item) => {
+          matrixArr.push(result[item]);
+        })
+        this.qualityMatircList = matrixArr;
+      },
+      error: () => {
+        this.showLoading = false;
+      }
+    })
+  }
+  openChart() {
+      this.openChartModal = true;
+      setTimeout(() => {
+          this.openChartModal = false;
+      }, 2000);
+  }
+  modalClosed() {
+      this.openChartModal = false;
+  }
+  dateSelectionHandler($event: any) {
+    this.selectedDate = Number($event.target.value);
+    this.getQualityMatricList(this.selectedDate);
+  }
 }
