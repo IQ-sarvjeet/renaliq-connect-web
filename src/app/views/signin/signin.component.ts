@@ -65,6 +65,11 @@ export class SigninComponent {
     if (form.invalid) {
       return;
     }
+    this.errorMessage = '';
+    this.eventService.reachedNoOfAttemptsUpdate({
+      showError: false,
+      message: ''
+    });
     this.showLoading = true;
     await this.twoFALogin(form);
   };

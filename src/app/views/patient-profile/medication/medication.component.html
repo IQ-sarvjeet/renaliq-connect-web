@@ -14,23 +14,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="border-top">
-      <td>
-        Metformin
-        <div class="fs-12 op-0-75">500 mg</div>
+    <tr class="border-top" *ngFor="let medication of medications">
+      <td>{{medication.drugName}}<div class="fs-12 op-0-75">{{medication.strength}} {{medication.unit}}</div>
       </td>
-      <td class="col-3">Tablet</td>
-      <td class="col-3">Oral</td>
-      <td class="col-3">Daily</td>
-    </tr>
-    <tr class="border-top">
-      <td class="col-3">
-        Ipratropium Bromide- Albuterol Sulfate
-        <div class="fs-12 op-0-75">3mg/3mL-0.5mg/3mL</div>
-      </td>
-      <td class="col-3">Tablet</td>
-      <td class="col-3">Oral</td>
-      <td class="col-3">Mon, Web, Fri</td>
+      <td class="col-3">{{medication.pill}}</td>
+      <td class="col-3">{{medication.delivery}}</td>
+      <td class="col-3">{{medication.frequency}}</td>
     </tr>
   </tbody>
 </table>
