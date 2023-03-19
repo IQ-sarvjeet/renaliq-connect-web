@@ -63,8 +63,8 @@ export class ReportsGridComponent implements OnInit  {
    return new Date(date.getTime() +  Math.abs(date.getTimezoneOffset()*60000) );
   }
   public async bindClinicalPatientMetricList() {
+    this.showLoading = true;
     try {
-      this.showLoading = true;
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientListPost(this.filterModel).toPromise();
       console.log('result:::', result);
       this.list = result?.data;
@@ -86,6 +86,9 @@ export class ReportsGridComponent implements OnInit  {
   public gotoPage(page: number): void {
     this.filterModel.currentPage = page;
     this.bindClinicalPatientMetricList();
+  }
+  reloadPage() {
+    window.location.reload();
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();

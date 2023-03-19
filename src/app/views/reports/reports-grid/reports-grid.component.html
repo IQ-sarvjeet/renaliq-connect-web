@@ -1,5 +1,4 @@
-<div class="table-responsive">
-  <app-spinner *ngIf="showLoading" ></app-spinner>
+<div class="table-responsive" *ngIf="list.length > 0">  
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     Error! {{ errorMsg }}
   </div>
@@ -91,13 +90,29 @@
           </div>
         </td>
       </tr>
-      <tr *ngIf="list.length ==0 && !showLoading">
-        <td class="text-center">No Record Found.</td>
-      </tr>
     </tbody>
   </table>
   <app-pagination 
     [pagingModel]="gridData.pagingModel"
     (gotoPageHandler)="gotoPage($event)">
   </app-pagination>
+</div>
+<app-spinner *ngIf="showLoading" ></app-spinner>
+<div class="card mb-5 p-5 text-center" *ngIf="list.length === 0 && !showLoading">
+  <div class="mb-4">
+    <img
+      class="wrap-figure__img"
+      src="../../../assets/images/no-data.png"
+      alt="No data found"
+    />
+  </div>
+  <h2 class="fw-bold">No data found</h2>
+  <div class="text-gray mb-6">
+    Man day data is empty or Try adjusting your filter.
+  </div>
+  <div>
+    <a href="javascript: void(0);" (click)="reloadPage();" class="btn btn-outline-danger mx-1 px-5"
+      ><i class="icon icon-action-undo me-1"></i> Retry</a
+    >
+  </div>
 </div>
