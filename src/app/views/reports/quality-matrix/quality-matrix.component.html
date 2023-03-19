@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="card p-2">
+    <div class="card">
       <div class="table-responsive mb-0">
         <table class="table text-nowrap text-md-nowrap mb-0">
           <thead>
@@ -103,7 +103,7 @@
               <ng-container *ngFor="let matirc of qualityMatircList; let i = index"
               >
                 <tr class="bg-light">
-                  <td colspan="6">
+                  <td colspan="7">
                     <div class="px-2">{{ matirc.category }}</div>
                   </td>
                 </tr>
@@ -120,7 +120,7 @@
                       >
                       <div class="progress progress-sm">
                         <div
-                          class="progress-bar wp-50"
+                          class="progress-bar wp-51"
                           [ngClass]="{
                             'bg-success': item.isTargetAchive === true,
                             'bg-danger': item.isTargetAchive === false

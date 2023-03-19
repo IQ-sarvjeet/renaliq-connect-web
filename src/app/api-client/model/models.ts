@@ -1,5 +1,5 @@
 export * from './admissionFilterModel';
-export * from './careTeamMember';
+export * from './careTeamModel';
 export * from './changePasswordModel';
 export * from './clinicalPatientMatrixFilter';
 export * from './clinicalPatientMatrixFilterModel';
