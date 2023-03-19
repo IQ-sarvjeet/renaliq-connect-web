@@ -111,7 +111,7 @@
     </span> -->
           <span
             class="text-danger"
-            *ngIf="twoFAForm.touched && twoFAForm.invalid"
+            *ngIf="requiredFieldError"
           >
             {{messages.verificationCodeRequired}}
           </span>

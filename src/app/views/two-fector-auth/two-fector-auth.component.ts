@@ -20,6 +20,7 @@ declare const $: any;
 
 
 export class TwoFectorAuthComponent {
+  requiredFieldError: boolean = false;
   messages: any = Messages;
   username: any = '';
   twoFACode: any = '';
@@ -84,6 +85,11 @@ export class TwoFectorAuthComponent {
   };
 
   public async onSubmit() {
+    if (this.hasRequiredError()) {
+      this.requiredFieldError = true;
+      return;
+    }
+    this.requiredFieldError = false;
     this.showLoading = true;
     this.successMsg = "";
     this.errorMessage = "";
@@ -230,7 +236,9 @@ export class TwoFectorAuthComponent {
       element.focus();
     }
   }
-
+  hasRequiredError() {
+    return this.twoFAForm.touched && this.twoFAForm.invalid
+  }
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
