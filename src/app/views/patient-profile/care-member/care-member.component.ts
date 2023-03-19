@@ -12,6 +12,17 @@ export class CareMemberComponent {
       this.loadMedication(value.enrollmentNo);
     }
   }
+  careMembers: any = [
+    {
+      id: 43,
+      name: "Maxxxxxx ry Brxxxxxx ks",
+      type: "LMSW- Social Worker",
+      mobileNo: "1111111111",
+      emailId: "43*****@cca.com",
+      photoUrl: "",
+      address: null
+    }
+  ]
   constructor(private patientService: PatientService) {
     
   }
