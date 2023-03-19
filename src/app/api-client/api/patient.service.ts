@@ -58,6 +58,46 @@ export class PatientService {
     /**
      * 
      * 
+     * @param enrollmentNumber 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientCaremembersEnrollmentNumberGet(enrollmentNumber: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientCaremembersEnrollmentNumberGet(enrollmentNumber: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientCaremembersEnrollmentNumberGet(enrollmentNumber: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientCaremembersEnrollmentNumberGet(enrollmentNumber: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (enrollmentNumber === null || enrollmentNumber === undefined) {
+            throw new Error('Required parameter enrollmentNumber was null or undefined when calling apiPatientCaremembersEnrollmentNumberGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/caremembers/${encodeURIComponent(String(enrollmentNumber))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param patientActivityId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -333,6 +373,46 @@ export class PatientService {
     /**
      * 
      * 
+     * @param enrollmentNumber 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientMedicationEnrollmentNumberGet(enrollmentNumber: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientMedicationEnrollmentNumberGet(enrollmentNumber: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientMedicationEnrollmentNumberGet(enrollmentNumber: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientMedicationEnrollmentNumberGet(enrollmentNumber: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (enrollmentNumber === null || enrollmentNumber === undefined) {
+            throw new Error('Required parameter enrollmentNumber was null or undefined when calling apiPatientMedicationEnrollmentNumberGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/medication/${encodeURIComponent(String(enrollmentNumber))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param searchString 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -361,6 +441,46 @@ export class PatientService {
         ];
 
         return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/search/${encodeURIComponent(String(searchString))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param enrollmentNumber 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientStatusEnrollmentNumberGet(enrollmentNumber: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientStatusEnrollmentNumberGet(enrollmentNumber: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientStatusEnrollmentNumberGet(enrollmentNumber: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientStatusEnrollmentNumberGet(enrollmentNumber: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (enrollmentNumber === null || enrollmentNumber === undefined) {
+            throw new Error('Required parameter enrollmentNumber was null or undefined when calling apiPatientStatusEnrollmentNumberGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/status/${encodeURIComponent(String(enrollmentNumber))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -631,10 +751,10 @@ export class PatientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryPayerGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryPayerGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryPayerGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryPayerGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryLobGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryLobGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryLobGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryLobGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -650,7 +770,7 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/payer`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/lob`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

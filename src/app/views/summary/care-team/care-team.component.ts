@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PatientService } from 'src/app/api-client';
+import { CareTeamModel, PatientService, PracticeService } from 'src/app/api-client';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { CareTeam } from '../summary-interfaces/care-team';
 
@@ -11,8 +11,8 @@ import { CareTeam } from '../summary-interfaces/care-team';
 export class CareTeamComponent {
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  careTeamList: CareTeam[] = [];
-  constructor(private _patientService: PatientService) {
+  careTeamList: CareTeamModel[] = [];
+  constructor(private _practiceService: PracticeService) {
 
   }
   ngOnInit() {
@@ -20,7 +20,7 @@ export class CareTeamComponent {
   }
   private getCareTeamList() {
     this.showLoading = true;
-    this._patientService.apiPatientSummaryCareteammemberGet().subscribe((careTeamMemberList: CareTeam[]) => {
+    this._practiceService.apiPracticeCareTeamMembersListGet().subscribe((careTeamMemberList: CareTeamModel[]) => {
       if (!careTeamMemberList) {
         this.errorMessage = Messages.noData;
       } else {
