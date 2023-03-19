@@ -94,8 +94,8 @@
               <th class="text-center">NUMERATOR</th>
               <th class="text-center">DENOMINATOR</th>
               <th class="text-center">PERFORMANCE</th>
-              <th class="text-center" width="120"></th>
-              <th></th>
+              <th class="text-center" width="40"></th>
+              <th width="40"></th>
             </tr>
           </thead>
           <tbody>
@@ -110,7 +110,7 @@
                 <ng-container *ngFor="let item of matirc.metrices; let m = index">
                   <tr class="border-top">
                     <td>{{ item.martricName }}</td>
-                    <td class="text-center">{{ item.type }}</td>
+                    <td class="text-center">{{ item.population }}</td>
                     <td class="text-center">{{ item.numerator }}</td>
                     <td class="text-center">{{ item.denominator }}</td>
                     <td>
@@ -120,12 +120,8 @@
                       >
                       <div class="progress progress-sm">
                         <div
-                          class="progress-bar wp-51"
-                          [ngClass]="{
-                            'bg-success': item.isTargetAchive === true,
-                            'bg-danger': item.isTargetAchive === false
-                          }"
-                        ></div>
+                          class="progress-bar"
+                          [ngClass]="['wp-' + item.target, item.isTargetAchive === true ? 'bg-success': 'bg-danger']"></div>
                       </div>
                       <span class="fs-11" *ngIf="item.targetTypeSign == '='"
                         >Traget {{ item.targetFormula }}{{ item.targetTypeSign }}
@@ -138,6 +134,7 @@
                     </td>
                     <td class="text-center">
                       <a
+                        *ngIf="item.pecentage !== '0'"
                         data-bs-target="#modalChart"
                         data-bs-toggle="modal"
                         href="javascript:void(0)"
@@ -148,6 +145,8 @@
                           class="icon icon-chart fs-16 mt-1 d-inline-block"
                         ></span>
                       </a>
+                    </td>
+                    <td class="text-center">
                       <a
                         routerLink="/reports/{{ item.matricId }}"
                         class="btn btn-outline-primary border-0 ms-2"
