@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PatientService } from 'src/app/api-client';
@@ -45,11 +46,25 @@ export class PatientProfileComponent {
     patientId: null,
     enrollmentNo: null
   }
-  constructor(private router: Router, private patientService: PatientService, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router,
+    private patientService: PatientService,
+    private httpClient: HttpClient) {
     this.routeState = this.router.getCurrentNavigation()?.extras.state;
     this.patientDetails(this.routeState);
   }
   ngOnInit() {
+    // this.httpClient.get(`https://renaliq-comm-api-dev-connect.azurewebsites.net/api/patient/medication/ZXDY10007729`).subscribe({
+    //   next: (response: any) => {
+    //     console.log('medication response:', response);
+    //   },
+    //   error: () => {}
+    // })
+    // this.httpClient.get(`https://renaliq-comm-api-dev-connect.azurewebsites.net/api/patient/caremembers/ZXDY10007729`).subscribe({
+    //   next: (response: any) => {
+    //     console.log('caremembers response:', response);
+    //   },
+    //   error: () => {}
+    // })
   }
   patientDetails(routeState: any) {
     if(!routeState || !routeState.enrollmentNo) return;

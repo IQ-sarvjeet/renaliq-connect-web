@@ -61,10 +61,10 @@ export class PatientHeaderComponent {
     pageSize: environment.pageSize,
     patientFilter :{
       searchKey:'',
-      stage:'CKD Stage1',
-      riskCategory:'Low',
+      stage:'',
+      riskCategory:'',
       careMember:'',
-      status:'Engaged',
+      status:'',
       assignment:[],
       discharge:[]
     }

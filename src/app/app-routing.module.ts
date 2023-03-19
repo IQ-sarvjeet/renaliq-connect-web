@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthguardGuard]
   },
   {
-    path: 'patient',
+    path: 'patients',
     loadChildren: () =>
       import('./views/patient/patient.module').then((m) => m.PatientModule),
     canActivate: [AuthguardGuard]
