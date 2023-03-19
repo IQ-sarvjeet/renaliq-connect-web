@@ -10,17 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface CareTeamMember { 
-    id?: number;
-    isNew?: boolean;
-    isDeleted?: boolean;
-    createdBy?: number;
-    createdOn?: Date;
-    updatedBy?: number;
-    updatedOn?: Date;
-    firstName?: string;
-    lastName?: string;
-    gender?: number;
-    educationLevel?: number;
-    profileText?: number;
+export interface CareTeamModel { 
+    name?: string;
+    designation?: string;
+    imageSrc?: string;
 }
