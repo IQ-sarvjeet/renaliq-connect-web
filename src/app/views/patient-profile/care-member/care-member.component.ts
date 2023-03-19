@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PatientService } from 'src/app/api-client';
+import { ClinicalQualityMatrixService, PatientService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-care-member',
@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/api-client';
 export class CareMemberComponent {
   @Input() set profileState(value: any) {
     if (value && value.enrollmentNo) {
+      this.loadCareGap(value.patientId);
       this.loadMedication(value.enrollmentNo);
     }
   }
@@ -23,8 +24,15 @@ export class CareMemberComponent {
       address: null
     }
   ]
-  constructor(private patientService: PatientService) {
+  constructor(private patientService: PatientService, private qualityMatrixService: ClinicalQualityMatrixService) {
     
+  }
+  private loadCareGap(value: string) {
+    this.qualityMatrixService.apiClinicalQualityMatrixCaregapPatientPatientIdGet(value).subscribe({
+      next: (response: any) => {
+        console.log('care gap data:', response);
+      }
+    })
   }
   loadMedication(value: string) {
     this.patientService.apiPatientCaremembersEnrollmentNumberGet(value).subscribe({
