@@ -10,34 +10,29 @@ export class CareMemberComponent {
   @Input() set profileState(value: any) {
     if (value && value.enrollmentNo) {
       this.loadCareGap(value.patientId);
-      this.loadMedication(value.enrollmentNo);
+      this.loadCareMembers(value.enrollmentNo);
     }
   }
-  careMembers: any = [
-    {
-      id: 43,
-      name: "Maxxxxxx ry Brxxxxxx ks",
-      type: "LMSW- Social Worker",
-      mobileNo: "1111111111",
-      emailId: "43*****@cca.com",
-      photoUrl: "",
-      address: null
-    }
-  ]
+  careMembers: any = []
   constructor(private patientService: PatientService, private qualityMatrixService: ClinicalQualityMatrixService) {
     
   }
-  private loadCareGap(value: string) {
+  private loadCareGap(value: any) {
     this.qualityMatrixService.apiClinicalQualityMatrixCaregapPatientPatientIdGet(value).subscribe({
       next: (response: any) => {
         console.log('care gap data:', response);
       }
     })
+    // this.qualityMatrixService.apiClinicalQualityMatrixGetPatientPatientIdGet(value).subscribe({
+    //   next: (response: any) => {
+    //     console.log('Patient data:', response);
+    //   }
+    // })
   }
-  loadMedication(value: string) {
+  loadCareMembers(value: string) {
     this.patientService.apiPatientCaremembersEnrollmentNumberGet(value).subscribe({
       next: (response: any) => {
-
+        this.careMembers = response;
       }
     })
   }
