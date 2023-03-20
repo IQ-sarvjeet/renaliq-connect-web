@@ -133,8 +133,8 @@
                       >
                     </td>
                     <td class="text-center">
-                      <a
-                        *ngIf="item.pecentage !== '0'"
+                      <!--a
+                        *ngIf="item.population !== '0'"
                         data-bs-target="#modalChart"
                         data-bs-toggle="modal"
                         href="javascript:void(0)"
@@ -144,10 +144,10 @@
                         <span
                           class="icon icon-chart fs-16 mt-1 d-inline-block"
                         ></span>
-                      </a>
+                      </a-->
                     </td>
                     <td class="text-center">
-                      <a
+                      <a *ngIf="item.population !== '0' "
                         routerLink="/reports/{{ item.matricId }}"
                         class="btn btn-outline-primary border-0 ms-2"
                       >
