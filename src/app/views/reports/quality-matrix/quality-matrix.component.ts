@@ -40,6 +40,7 @@ export class QualityMatrixComponent {
   qualityMatircList: any = [];
   dateList: any = [];
   selectedDate: number = 0;
+  selectedDateLebel : string = "";
   constructor(private _qualityService: ClinicalQualityMatrixService) { }
 
   ngOnInit() {
@@ -81,6 +82,7 @@ export class QualityMatrixComponent {
   }
   dateSelectionHandler($event: any) {
     this.selectedDate = Number($event.target.value);
+    this.selectedDateLebel = $event.target.options[$event.target.options.selectedIndex].text;
     this.getQualityMatricList(this.selectedDate);
   }
 }

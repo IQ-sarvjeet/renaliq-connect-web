@@ -51,6 +51,7 @@ export class ReportsComponent implements OnInit {
       patientName: '',
       metricId: 0,
       numerator: 0,
+      periodId: 0,
       dateRange: []
     }
   };
