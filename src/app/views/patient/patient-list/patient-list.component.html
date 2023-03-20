@@ -23,24 +23,35 @@
         <div class="row">
           <div class="col-4">
             <div class="fs-12 op-0-75">Enrollement No</div>
-            <div class="fw-semibold">{{patientDetail.patient?.enrollmentNo}}</div>
+            <div class="fw-semibold">
+              {{ patientDetail.patient?.enrollmentNo }}
+            </div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">Patient Name</div>
-            <div class="fw-semibold text-truncate">{{patientDetail.patient?.name}}</div>
+            <div class="fw-semibold text-truncate">
+              {{ patientDetail.patient?.name }}
+            </div>
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">State</div>
-            <div class="fw-semibold">{{patientDetail.stage}}</div>
+            <div class="fw-semibold">{{ patientDetail.stage }}</div>
           </div>
         </div>
         <hr />
         <div class="d-flex mt-4" *ngIf="carePlans.length > 0">
           <div class="flex-fill pt-1">
-            Latest Care Plan generated on on {{carePlans[0].createdOn ? moment(carePlans[0].createdOn).format("DD/MM/YYYY"): '-'}}
+            Latest Care Plan generated on on
+            {{
+              carePlans[0].createdOn
+                ? moment(carePlans[0].createdOn).format("DD/MM/YYYY")
+                : "-"
+            }}
           </div>
           <div>
-            <a href="javascript:void(0)" class="btn btn-secondary ms-3"
+            <a
+              href="javascript:void(0)"
+              class="btn btn-secondary ms-3"
               (click)="downloadPlan(carePlans[0])"
               ><i class="fa fa-download me-1"></i> Download</a
             >
@@ -49,12 +60,20 @@
         <hr />
         <div class="mt-3 mb-4"><strong>Previous Care Plans</strong></div>
         <app-spinner *ngIf="loadingCarePlan"></app-spinner>
-        <div *ngIf="!loadingCarePlan">
-          <a href="javascript:void(0)" class="btn btn-outline-secondary me-3"
-            (click)="downloadPlan(plan)"
-            *ngFor="let plan of carePlans"><i class="fa fa-download me-1"></i> 
-            {{plan.createdOn ? moment(plan.createdOn).format("DD/MM/YYYY"): '-'}}</a
-          >
+        <div class="row g-2" *ngIf="!loadingCarePlan">
+          <div class="col-4" *ngFor="let plan of carePlans">
+            <a
+              href="javascript:void(0)"
+              class="btn btn-outline-secondary btn-block"
+              (click)="downloadPlan(plan)"
+              ><i class="fa fa-download me-1"></i>
+              {{
+                plan.createdOn
+                  ? moment(plan.createdOn).format("DD/MM/YYYY")
+                  : "-"
+              }}</a
+            >
+          </div>
         </div>
       </div>
     </div>

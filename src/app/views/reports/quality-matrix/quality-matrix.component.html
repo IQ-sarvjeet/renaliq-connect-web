@@ -3,7 +3,7 @@
   <div class="sub-header">
     <div class="main-container container">
       <div class="row">
-        <div class="col-6 col-sm-9 col-md-9">
+        <div class="col-12 col-sm-7 col-md-8 col-lg-9">
           <h1 class="page-title m-0">Clinical Quality Matrics</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
@@ -17,7 +17,7 @@
             </li>
           </ol>
         </div>
-        <div class="col-6 col-sm-3 col-md-3">
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-2 mb-sm-0">
           <!-- <div class="input-group">
             <mbsc-datepicker 
               class="form-control fs-12"
@@ -30,17 +30,24 @@
               <i class="fa fa-calendar"></i>
             </button>
           </div> -->
-          <select
-            class="form-select"
-            (change)="dateSelectionHandler($event)"
-            id="status"
-          >
-            <option 
-              [selected]="selectedDate === dateItem.id"
-              [value]="dateItem.id"
-              *ngFor="let dateItem of dateList"
-              >{{moment(dateItem.periodStart).format("DD/MM/YYYY")}} - {{moment(dateItem.periodEnd).format("DD/MM/YYYY")}}</option>
-          </select>
+          <div class="form-floating">
+            <select
+              class="form-select fs-14"
+              id="status"
+              aria-label="Performance Period"
+              (change)="dateSelectionHandler($event)"
+            >
+              <option
+                [selected]="selectedDate === dateItem.id"
+                [value]="dateItem.id"
+                *ngFor="let dateItem of dateList"
+              >
+                {{ moment(dateItem.periodStart).format("DD/MM/YYYY") }} -
+                {{ moment(dateItem.periodEnd).format("DD/MM/YYYY") }}
+              </option>
+            </select>
+            <label for="floatingSelect">Performance Period</label>
+          </div>
         </div>
       </div>
     </div>
@@ -75,11 +82,11 @@
             close gaps.
           </div>
         </div>
-        <div class="col-12 col-md-2 p-0 text-end">
+        <div class="col-12 col-md-2 p-0 text-center">
           <img
             src="../../../../assets/images/risk-analysis.png"
             alt="Patient Risk Stratification Analysis"
-            class="w-100 h-100"
+            class="mt-md-3"
           />
         </div>
       </div>
@@ -100,14 +107,17 @@
           </thead>
           <tbody>
             <ng-container *ngIf="!showLoading && qualityMatircList.length > 0">
-              <ng-container *ngFor="let matirc of qualityMatircList; let i = index"
+              <ng-container
+                *ngFor="let matirc of qualityMatircList; let i = index"
               >
                 <tr class="bg-light">
                   <td colspan="7">
                     <div class="px-2">{{ matirc.category }}</div>
                   </td>
                 </tr>
-                <ng-container *ngFor="let item of matirc.metrices; let m = index">
+                <ng-container
+                  *ngFor="let item of matirc.metrices; let m = index"
+                >
                   <tr class="border-top">
                     <td>{{ item.martricName }}</td>
                     <td class="text-center">{{ item.population }}</td>
@@ -121,11 +131,17 @@
                       <div class="progress progress-sm">
                         <div
                           class="progress-bar"
-                          [ngClass]="['wp-' + item.target, item.isTargetAchive === true ? 'bg-success': 'bg-danger']"></div>
+                          [ngClass]="[
+                            'wp-' + item.target,
+                            item.isTargetAchive === true
+                              ? 'bg-success'
+                              : 'bg-danger'
+                          ]"
+                        ></div>
                       </div>
                       <span class="fs-11" *ngIf="item.targetTypeSign == '='"
-                        >Traget {{ item.targetFormula }}{{ item.targetTypeSign }}
-                        {{ item.target }}</span
+                        >Traget {{ item.targetFormula
+                        }}{{ item.targetTypeSign }} {{ item.target }}</span
                       >
                       <span class="fs-11" *ngIf="item.targetTypeSign == '%'"
                         >Traget {{ item.targetFormula }} {{ item.target
@@ -160,7 +176,6 @@
                 </ng-container>
               </ng-container>
             </ng-container>
-            
 
             <!--<tr class="border-top">
               <td>ACEI/ARB Adherence – Proportion of Days Covered</td>
@@ -593,9 +608,12 @@
                 <td><span class="skeleton-loader"></span></td>
                 <td><span class="skeleton-loader"></span></td>
                 <td><span class="skeleton-loader"></span></td>
-              </tr>              
+              </tr>
             </ng-container>
-            <tr class="border-top" *ngIf="!showLoading && qualityMatircList.length === 0">
+            <tr
+              class="border-top"
+              *ngIf="!showLoading && qualityMatircList.length === 0"
+            >
               <td colspan="7">
                 <div class="alert alert-danger d-flex fade show" role="alert">
                   <div>
