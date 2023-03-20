@@ -4,8 +4,10 @@ import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from '../interfaces/admission';
 
-const startOfWeek = moment().startOf('week').toDate();
-const endOfWeek   = moment().endOf('week').toDate();
+//const startOfWeek = moment().startOf('week').toDate();
+//const endOfWeek   = moment().endOf('week').toDate();
+const todayDate = new Date();
+const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
 @Component({
   selector: 'app-admission-header',
@@ -14,7 +16,7 @@ const endOfWeek   = moment().endOf('week').toDate();
 })
 export class AdmissionHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
-  dateRangeFilter: any = `${moment(startOfWeek).format('DD/MM/YYYY')} - ${moment(endOfWeek).format('DD/MM/YYYY')}`;
+  dateRangeFilter: any = `${moment(datePrior90).format('DD/MM/YYYY')} - ${moment(todayDate).format('DD/MM/YYYY')}`;
 
   dateRangeOptions: MbscDatepickerOptions = {
       theme: 'ios',
@@ -40,8 +42,6 @@ export class AdmissionHeaderComponent {
     this.renderSummary();
   }
   private renderSummary() {
-    const todayDate = new Date();
-    const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
     const dateRange: any = {
       fromDate: moment(datePrior90).format('YYYY-MM-DD'),
       toDate: moment(todayDate).format('YYYY-MM-DD')
