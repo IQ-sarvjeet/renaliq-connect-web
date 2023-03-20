@@ -164,7 +164,7 @@
                     </td>
                     <td class="text-center">
                       <a *ngIf="item.population !== '0' "
-                        routerLink="/reports/{{ item.matricId }}"
+                        routerLink="/reports/{{ item.matricId }}/{{this.selectedDate}}"
                         class="btn btn-outline-primary border-0 ms-2"
                       >
                         <span

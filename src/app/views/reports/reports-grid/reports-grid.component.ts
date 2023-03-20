@@ -15,6 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ReportsGridComponent implements OnInit  {
   @Input() metricId : any;
+  @Input() periodId : any;
   _subscriptions = new Subscription();
   errorMsg: any = "";
   showLoading: boolean = false;
@@ -35,6 +36,7 @@ export class ReportsGridComponent implements OnInit  {
       patientName: '',
       metricId: 0,
       numerator: 0,
+      periodId: 0,
       dateRange: []
     }
   };
@@ -44,6 +46,7 @@ export class ReportsGridComponent implements OnInit  {
 
   ngOnInit(): void {
     this.filterModel.filter.metricId=this.metricId;
+    this.filterModel.filter.periodId=this.periodId;
     this.bindClinicalPatientMetricList();
     let sub = this._interactionService.getClinicalPatientMatrixFilter$.subscribe((model) => 
     {
