@@ -3,7 +3,7 @@ export const Messages = {
     admissions7Days: 'Admission Last 7 Days',
     attributed: 'Attributed Patients',
     checkSpamMessage : "If you don't see it, check your spam.",
-    clinicalText1: 'Clinical Quality Matrics',
+    clinicalText1: 'Clinical Quality Metrics',
     confirmPasswordRequired: 'Confirm Password is required',
     confirmPasswordValid: 'Confirm Password is not valid',
     continue: 'to Continue',    
