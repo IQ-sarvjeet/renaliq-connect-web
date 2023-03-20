@@ -119,9 +119,6 @@ body.fixed-header .header {
   .header .form-inline {
     margin-right: -2px;
   }
-  .header .main-header-center {
-    margin-left: 220px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -1376,14 +1373,9 @@ body.fixed-header .header {
   }
 }
 
-@media (min-width: 992px) {
-  .main-header-center .form-control {
-    height: 32px;
-  }
-}
-
 .main-header-center {
   .form-control {
+    height: 32px;
     padding: 1rem 0 1rem 2.25rem;
     border: 1px solid transparent;
     transition: all ease 0.2s;
@@ -1428,18 +1420,16 @@ body.fixed-header .header {
   }
 }
 
-@media (min-width: 992px) {
-  .main-header-center .btn {
-    position: absolute;
-    top: -4px;
-    left: 0;
-    background-color: transparent;
-    height: 40px;
-    color: #707787;
-    transition: none;
-    font-size: 16px;
-    padding-right: 2px;
-  }
+.main-header-center .btn {
+  position: absolute;
+  top: -4px;
+  left: 0;
+  background-color: transparent;
+  height: 40px;
+  color: #707787;
+  transition: none;
+  font-size: 16px;
+  padding-right: 2px;
 }
 
 .header .main-header-center {
@@ -1452,16 +1442,6 @@ body.fixed-header .header {
   color: $primary;
 }
 
-@media (max-width: 991px) {
-  .main-header-center {
-    .form-control {
-      display: none !important;
-    }
-    .btn {
-      display: none !important;
-    }
-  }
-}
 .responsive-navbar {
   display: initial;
   flex-basis: inherit;
