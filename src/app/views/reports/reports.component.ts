@@ -39,6 +39,7 @@ export class ReportsComponent implements OnInit {
   }
   ngOnInit(): void {
     this.filterModel.filter.metricId =this.route.snapshot.params['id'];
+    this.filterModel.filter.periodId =this.route.snapshot.params['periodId'];
     this.bindMetricList();
     this.bindNumeratorList();
     this.getMetric();

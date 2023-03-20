@@ -46,6 +46,7 @@ export class ReportsGridComponent implements OnInit  {
 
   ngOnInit(): void {
     this.filterModel.filter.metricId=this.metricId;
+    this.filterModel.filter.periodId=this.periodId;
     this.bindClinicalPatientMetricList();
     let sub = this._interactionService.getClinicalPatientMatrixFilter$.subscribe((model) => 
     {
