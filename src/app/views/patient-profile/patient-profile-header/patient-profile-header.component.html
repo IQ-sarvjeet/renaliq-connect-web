@@ -1,13 +1,21 @@
 <div class="sub-header">
   <div class="main-container container">
     <div class="row">
-      <div class="col-12 col-sm-4 col-md-5">
+      <div class="col-12 col-sm-9">
         <h1 class="page-title m-0">
           Patient
-          <span class="fw-normal">- {{profileDetail.name}} | 
+          <span class="fw-normal"
+            >- {{ profileDetail.name }} |
             <span *ngIf="profileDetail.gender === 'F'">Female</span>
             <span *ngIf="profileDetail.gender === 'M'">Male</span>
-            <span *ngIf="profileDetail.gender !== 'M' && profileDetail.gender !== 'F'">-</span> | {{profileDetail.age}} Years</span>
+            <span
+              *ngIf="
+                profileDetail.gender !== 'M' && profileDetail.gender !== 'F'
+              "
+              >-</span
+            >
+            | {{ profileDetail.age }} Years</span
+          >
         </h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -18,11 +26,11 @@
           </li>
         </ol>
       </div>
-      <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+      <div class="col-12 col-sm-3 pb-2 pb-sm-0 pt-0 pt-sm-1 text-sm-end">
         <!-- <a href="#" class="btn btn-outline-secondary ms-3"
           ><i class="icon icon-printer me-1"></i> Print</a
         > -->
-        <a routerLink="/" class="btn btn-danger ms-3">Close</a>
+        <a routerLink="/" class="btn btn-danger">Close</a>
         <!-- <a
           href="#"
           class="p-1 text-secondary fs-16 ms-3 align-middle"
