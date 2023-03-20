@@ -94,7 +94,7 @@ export class MapComponent {
             exposeAsGroupOnly: true
         },
         borderColor: '#A0A0A0',
-        nullColor: 'rgba(177, 244, 177, 0.5)',
+        nullColor: 'rgba(0 133 255, 0.7)',
         showInLegend: false
     }, {
         type: 'mappoint',
