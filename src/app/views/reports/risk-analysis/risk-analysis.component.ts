@@ -12,7 +12,7 @@ export class RiskAnalysisComponent {
     apiUrl: 'Patient/summary/stage',
   };
   patientByPayerLOB: ProgressBarChartWidgetInput = {
-    title: 'Patient By Payer & LOB',
+    title: 'Patient By Payer',
     apiUrl: 'Patient/summary/lob',
   };
   patientByRiskCategory: ProgressBarChartWidgetInput = {
