@@ -40,6 +40,8 @@ export class SearchComponent {
     this.renderer.listen('window', 'click',(e: Event)=>{
       if(!this.patientSearchList || e.target !== this.patientSearchList.nativeElement) {
         this.visibleDropdown = false;
+        this.patientNotFound = false;
+        this.searchInput.nativeElement.value = '';
       }
     });
   }
