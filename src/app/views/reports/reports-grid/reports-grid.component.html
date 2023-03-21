@@ -8,7 +8,7 @@
   >
     <thead class="table-head">
       <tr class="text-secondary bg-gray-200">
-        <th class="bg-transparent border-bottom-0 wp-3 fs-12">
+        <!-- <th class="bg-transparent border-bottom-0 wp-3 fs-12">
           <div class="checkbox">
             <div class="custom-checkbox custom-control">
               <input
@@ -20,11 +20,11 @@
               <label for="checkbox-all" class="custom-control-label"></label>
             </div>
           </div>
-        </th>
+        </th> -->
         <th class="bg-transparent border-bottom-0 wp-15 fs-12">PATIENT</th>
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
         <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
-        <th class="bg-transparent border-bottom-0 fs-12">MATRIC</th>
+        <th class="bg-transparent border-bottom-0 fs-12">METRIC</th>
         <th class="bg-transparent border-bottom-0 fs-12 text-center">
           NUMERATOR
         </th>
@@ -36,7 +36,7 @@
     </thead>
     <tbody class="table-body">
       <tr *ngFor="let item of list">
-        <td class="text-center">
+        <!-- <td class="text-center">
           <div class="checkbox m-auto">
             <div class="custom-checkbox custom-control">
               <input
@@ -48,7 +48,7 @@
               <label for="checkbox-1" class="custom-control-label"></label>
             </div>
           </div>
-        </td>
+        </td> -->
         <td>
           <div class="d-flex align-items-center">
             <!-- <span
@@ -59,10 +59,10 @@
               <a class="text-secondary" href="#"
                 ><h6 class="mb-0">{{item.patientName}}</h6></a
               >
-              <span *ngIf="item.status==='New'" class="badge badge-xs bg-light">{{item.status}}</span>
+              <!--<span *ngIf="item.status==='New'" class="badge badge-xs bg-light">{{item.status}}</span>
               <span *ngIf="item.status==='Approved'" class="badge badge-xs bg-success">{{item.status}}</span>
               <span *ngIf="item.status==='Rejected'" class="badge badge-xs bg-danger">{{item.status}}</span>
-              <span *ngIf="item.status==='Pending'" class="badge badge-xs bg-warning">{{item.status}}</span>
+              <span *ngIf="item.status==='Pending'" class="badge badge-xs bg-warning">{{item.status}}</span>-->
             </div>
           </div>
         </td>

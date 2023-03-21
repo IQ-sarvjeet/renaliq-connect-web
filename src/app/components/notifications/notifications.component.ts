@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NotificationsComponent {
   notifications: any = [
-    {
+    /*{
       type: 'email',
       message: ' New Message Received',
       notificationTime: '2 hours ago'
@@ -26,6 +26,6 @@ export class NotificationsComponent {
       type: 'alert',
       message: ' New Message Received',
       notificationTime: '2 hours ago'
-    }
+    }*/
   ]
 }

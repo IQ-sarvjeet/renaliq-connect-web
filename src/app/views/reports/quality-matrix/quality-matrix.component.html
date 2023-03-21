@@ -4,7 +4,7 @@
     <div class="main-container container">
       <div class="row">
         <div class="col-12 col-sm-7 col-md-8 col-lg-9">
-          <h1 class="page-title m-0">Clinical Quality Matrics</h1>
+          <h1 class="page-title m-0">Clinical Quality Metrics</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a routerLink="/">Home</a>
@@ -13,7 +13,7 @@
               <a routerLink="#">Reports</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-              Clinical Quality Matrics
+              Clinical Quality Metrics
             </li>
           </ol>
         </div>
@@ -100,7 +100,7 @@
               <th class="text-center">POPULATION</th>
               <th class="text-center">NUMERATOR</th>
               <th class="text-center">DENOMINATOR</th>
-              <th class="text-center">PERFORMANCE</th>
+              <th>PERFORMANCE</th>
               <th class="text-center" width="40"></th>
               <th width="40"></th>
             </tr>
@@ -125,7 +125,7 @@
                     <td class="text-center">{{ item.denominator }}</td>
                     <td>
                       <span class="fs-11 text-primary"
-                        >{{ item.percentage
+                        >{{ item.pecentage
                         }}{{ item.targetTypeSign == "%" ? "%" : "" }}</span
                       >
                       <div class="progress progress-sm">
@@ -149,8 +149,8 @@
                       >
                     </td>
                     <td class="text-center">
-                      <a
-                        *ngIf="item.pecentage !== '0'"
+                      <!--a
+                        *ngIf="item.population !== '0'"
                         data-bs-target="#modalChart"
                         data-bs-toggle="modal"
                         href="javascript:void(0)"
@@ -160,11 +160,11 @@
                         <span
                           class="icon icon-chart fs-16 mt-1 d-inline-block"
                         ></span>
-                      </a>
+                      </a-->
                     </td>
                     <td class="text-center">
-                      <a
-                        routerLink="/reports/{{ item.matricId }}"
+                      <a *ngIf="item.population !== '0' "
+                        routerLink="/reports/{{ item.matricId }}/{{this.selectedDate}}"
                         class="btn btn-outline-primary border-0 ms-2"
                       >
                         <span
