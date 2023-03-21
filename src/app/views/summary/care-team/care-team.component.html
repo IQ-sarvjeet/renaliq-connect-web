@@ -67,7 +67,7 @@
         class="list-group-item border-top py-2"
         *ngFor="let member of careTeamList"
       >
-        <a href="#" class="text-dark">
+        <div class="text-dark">
           <div class="media mt-0 d-sm-flex d-block">
             <img
               *ngIf="member.imageSrc"
@@ -86,7 +86,7 @@
               </div>
             </div>
           </div>
-        </a>
+        </div>
       </li>
     </ul>
   </div>

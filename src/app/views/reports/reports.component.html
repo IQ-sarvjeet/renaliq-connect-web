@@ -23,7 +23,7 @@
           </ol>
         </div>
         <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
-          <div class="d-inline-block ms-3">
+          <!--<div class="d-inline-block ms-3">
             <select
               class="form-select form-select-sm"
               aria-label="Default select example"
@@ -35,11 +35,11 @@
                 {{ item.Name }}
               </option>
             </select>
-          </div>
-          <div class="d-inline-block ms-3">
+          </div>-->
+          <div class="d-inline-block ms-3 form-floating">
             <select
-              class="form-select form-select-sm"
-              aria-label="Default select example"
+              class="form-select fs-14"
+              aria-label="Clinical Quality Metrics"
               (change)="onMetricSelected($event.target)"
               [(ngModel)]="filterModel.filter.metricId"
             >
@@ -47,6 +47,7 @@
                 {{ item.name }}
               </option>
             </select>
+            <label for="floatingSelect">Clinical Quality Metrics</label>
           </div>
           <div class="d-inline-block ms-3">
             <div class="input-group input-group-lg">
