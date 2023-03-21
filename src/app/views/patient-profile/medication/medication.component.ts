@@ -7,6 +7,7 @@ import { PatientService } from 'src/app/api-client';
   styleUrls: ['./medication.component.scss']
 })
 export class MedicationComponent {
+  showLoading: boolean = false;
   @Input() set profileState(value: any) {
     if (value && value.enrollmentNo) {
       this.loadMedication(value.enrollmentNo);
@@ -17,9 +18,11 @@ export class MedicationComponent {
     
   }
   loadMedication(value: string) {
+    this.showLoading = true;
     this.patientService.apiPatientMedicationEnrollmentNumberGet(value).subscribe({
       next: (response: any) => {
         this.medications = response;
+        this.showLoading = false;
       }
     })
   }
