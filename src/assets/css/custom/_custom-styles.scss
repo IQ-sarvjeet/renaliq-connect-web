@@ -4441,17 +4441,16 @@ a.custom-blog-content:hover {
     border: 0px;
     margin-bottom: 0px;
     align-items: center;
-    cursor: pointer;
     transition: all ease 0.2s;
     border: 1px solid transparent;
 
     &:hover {
-      background: $white;
+      /*background: $white;
       border-color: $border;
       transform: scaleX(1.03);
       box-shadow: rgba(169, 184, 200, 0.15) 0px 3px 9px 0px;
       border: 1px solid $border;
-      border-radius: 5px;
+      border-radius: 5px;*/
     }
     a {
       display: flex;
@@ -5553,7 +5552,19 @@ div.dataTables_wrapper div.dataTables_length label {
     }
   }
 }
-
+.admissions-period {
+  position: relative;
+  &__label {
+    position: absolute;
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    left: 0;
+    top: 0.75rem;
+  }
+  .form-control {
+    padding: 1.3rem 0.5rem 0.3rem 0.5rem !important;
+  }
+}
 .toast {
   max-width: 350px;
   font-size: 0.875rem;

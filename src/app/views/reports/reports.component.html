@@ -3,16 +3,19 @@
   <div class="sub-header">
     <div class="main-container container">
       <div class="row">
-        <div class="col-12 col-sm-4 col-md-5">
-          <h1 class="page-title m-0">
-            {{ metricName }} Metric
-          </h1>
+        <div class="col-12 col-xl-6">
+          <h1 class="page-title m-0">{{ metricName }} Metric</h1>
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
               <a routerLink="/">Home</a>
             </li>
-            <li class="breadcrumb-item" aria-current="page"
-              routerLink="/reports">Reports</li>
+            <li
+              class="breadcrumb-item"
+              aria-current="page"
+              routerLink="/reports"
+            >
+              Reports
+            </li>
             <li class="breadcrumb-item" aria-current="page">
               Clinical Quality Metrics
             </li>
@@ -22,7 +25,7 @@
             <li class="breadcrumb-item active" aria-current="page">Patients</li>
           </ol>
         </div>
-        <div class="col-12 col-sm-8 col-md-7 pt-1 text-sm-end">
+        <div class="col-12 col-xl-6 d-md-flex pb-2 pb-xl-0">
           <!--<div class="d-inline-block ms-3">
             <select
               class="form-select form-select-sm"
@@ -36,7 +39,9 @@
               </option>
             </select>
           </div>-->
-          <div class="d-inline-block ms-3 form-floating">
+          <div
+            class="d-md-inline-block ms-xl-3 form-floating align-top d-flex flex-fill"
+          >
             <select
               class="form-select fs-14"
               aria-label="Clinical Quality Metrics"
@@ -49,34 +54,43 @@
             </select>
             <label for="floatingSelect">Clinical Quality Metrics</label>
           </div>
-          <div class="d-inline-block ms-3">
-            <div class="input-group input-group-lg">
-              <!-- value="13 Sep 22 - 20 Sep 22" -->
-              <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-              <div class="input-group">
-                <mbsc-datepicker
-                  class="form-control fs-12"
-                  #rangeDatepicker
-                  [options]="dateRangeOptions"
-                  [(ngModel)]="filterModel.filter.dateRange"
-                  placeholder="Select date range"
-                ></mbsc-datepicker>
-                <button
-                  class="input-group-text bg-white"
-                  type="button"
-                  (click)="rangeDatepicker.open()"
-                >
-                  <i class="fa fa-calendar"></i>
-                </button>
+          <div class="d-flex mt-3 mt-md-0">
+            <div class="d-inline-block ms-md-3 align-top flex-fill">
+              <div class="input-group input-group-lg">
+                <!-- value="13 Sep 22 - 20 Sep 22" -->
+                <!-- [(ngModel)]="filter.patientFilter.discharge" -->
+                <div class="input-group admissions-period">
+                  <mbsc-datepicker
+                    class="form-control fs-12"
+                    #rangeDatepicker
+                    [options]="dateRangeOptions"
+                    [(ngModel)]="filterModel.filter.dateRange"
+                    placeholder="Select date range"
+                  ></mbsc-datepicker>
+                  <label for="admissionsPeriod" class="admissions-period__label"
+                    >Admissions Period</label
+                  >
+                  <button
+                    class="input-group-text bg-white"
+                    type="button"
+                    (click)="rangeDatepicker.open()"
+                  >
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-          <!--a href="#" class="btn btn-outline-secondary ms-3"
+            <!--a href="#" class="btn btn-outline-secondary ms-3"
             ><i class="icon icon-share-alt me-1"></i> Export</a
           -->
-          <a href="#/reports/qualityMatrix" class="btn btn-danger ms-3  pt-2"
-            ><i class="fe fe-x "></i>
-          </a>
+            <div class="d-inline-block align-top">
+              <a
+                href="#/reports/qualityMatrix"
+                class="btn btn-danger ms-3 pt-3 pb-2 align-top"
+                ><i class="fe fe-x"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
