@@ -19,7 +19,8 @@ export class ResetPasswordComponent implements OnInit{
 
   constructor(private _accountService: AccountService, private route: ActivatedRoute, private router: Router,
                private fb: FormBuilder, private _localStorage: LocalStorageService){
-    this.token = this.route.snapshot.queryParams['token'];
+    //this.token = this.route.snapshot.queryParams['token'];
+    this.token = this.route.snapshot.params['token'];
   }
   ngOnInit(): void {
     $('.header').addClass('d-none');

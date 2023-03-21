@@ -92,7 +92,7 @@ const routes: Routes = [
     canActivate: [AuthguardGuard]
   },
   {
-    path: 'resetPassword',
+    path: 'resetPassword/:token',
     component: ResetPasswordComponent,
   },
   {
