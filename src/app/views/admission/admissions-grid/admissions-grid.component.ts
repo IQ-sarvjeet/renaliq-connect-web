@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AdmissionFilterModel, AdmissionService } from 'src/app/api-client';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admissions-grid',
@@ -32,7 +33,7 @@ export class AdmissionsGridComponent {
     this.filters.endDateTime = new Date(value.toDate);
     this.getAdmissionList();
   }
-  constructor(private admissionService: AdmissionService) {}
+  constructor(private admissionService: AdmissionService, private route: Router) {}
   ngOnInit() {}
   private getAdmissionList() {
     this.showLoading = true;
@@ -49,5 +50,11 @@ export class AdmissionsGridComponent {
       pageSize: this.admissionList.pagingModel.pageSize,
     };
     this.getAdmissionList();
+  }
+  redirectOnPatientProfileHandler(patient: any) {
+    this.route.navigateByUrl(`/patient-profile/${patient.patientId}`, {state: {
+      patientId: patient.patientId,
+      enrollmentNo: patient.admissionId
+    }})
   }
 }

@@ -21,5 +21,15 @@
       <td class="col-3">{{medication.delivery}}</td>
       <td class="col-3">{{medication.frequency}}</td>
     </tr>
+    <tr *ngIf="medications.length === 0 && !showLoading">
+      <td colspan="10">
+        <div role="alert" class="alert alert-danger d-flex fade show">
+          <div>
+            <i aria-hidden="true" class="fa fa-warning me-2"></i>
+          </div>
+          <div class="flex-fill">No data found!</div>
+        </div>
+      </td>
+    </tr>
   </tbody>
 </table>
