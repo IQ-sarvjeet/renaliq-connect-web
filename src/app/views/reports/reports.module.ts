@@ -12,6 +12,7 @@ import { SharedModule } from 'src/app/components/shared.module';
 import { RiskStratificationAnalysisComponent } from './risk-stratification-analysis/risk-stratification-analysis.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MapComponent } from './map/map.component';
+import { HeatmapsComponent } from './heatmaps/heatmaps.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
     ReportsGridComponent,
     RiskStratificationAnalysisComponent,
     MapComponent,
+    HeatmapsComponent,
   ],
   imports: [
     MbscModule,
