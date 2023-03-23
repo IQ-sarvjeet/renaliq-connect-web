@@ -6,6 +6,7 @@
     <thead class="table-head">
       <tr class="text-secondary bg-gray-200">
         <th class="bg-transparent border-bottom-0 wp-25 fs-12">PATIENT</th>
+        <th class="bg-transparent border-bottom-0 wp-25 fs-12">MEMBER ID</th>
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
         <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
         <th class="bg-transparent border-bottom-0 fs-12">RISK CATEGORY</th>
@@ -141,6 +142,22 @@
                 href="javascript: void(0)"
                 (click)="patientHandler(item, 'detail')"
                 ><h6 class="mb-0">{{ item.patient?.name }}</h6></a
+              >
+              <!--span class="badge badge-xs bg-success">Approved</span-->
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- <span
+              class="data-image avatar avatar-sm rounded-circle"
+              style="background-image: url(../assets/images/users/11.jpg)"
+            ></span> -->
+            <div class="user-details ms-2">
+              <a class="text-secondary"
+                href="javascript: void(0)"
+                (click)="patientHandler(item, 'detail')"
+                ><h6 class="mb-0">{{ item.patient?.enrollmentNo }}</h6></a
               >
               <!--span class="badge badge-xs bg-success">Approved</span-->
             </div>
