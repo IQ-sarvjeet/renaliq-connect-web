@@ -1,5 +1,5 @@
 export const Messages = {
-    admissions: 'Admissions',
+    admissions: 'Admissions Last 90 Days',
     admissions7Days: 'Admission Last 7 Days',
     attributed: 'Attributed Patients',
     checkSpamMessage : "If you don't see it, check your spam.",
@@ -34,7 +34,7 @@ export const Messages = {
     patientInsightText2: 'Insight of Patient Risk Stratification for the patient associated with Somatus',
     patientPopullation: 'Insight of your patient popullation, including trend & performance comparision.',
     practiceCurrentPerformance: 'Practice current performance on clinical quality matics',
-    patientText1: 'Patient By Chronic Conditions',
+    patientText1: 'Patient By Primary Chronic Conditions',
     patientText2: 'Patient By Age Group',
     resetViaEmail: 'Reset via Email',
     resetPasswordLink: 'We will send a link to reset your password',
