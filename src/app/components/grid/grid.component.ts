@@ -89,7 +89,9 @@ export class GridComponent implements OnInit {
     this.bindPatientList();
   }
   getFormatDate(dob:Date){
-    return moment(dob).format('YY/MM/DD');
+   // return moment(dob).format('MM/DD/YYYY');
+   const date = moment(dob);
+   return date.isValid() ? date.format('MM/DD/YYYY') : '';
   }
   getAge(dob:any){
     return moment().diff(dob, 'years');
