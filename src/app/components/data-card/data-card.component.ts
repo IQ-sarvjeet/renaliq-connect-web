@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DataCardInput } from '../../../interfaces/data-card';
+import { DataCardInput } from '../../interfaces/data-card';
 
 @Component({
   selector: 'app-data-card',
