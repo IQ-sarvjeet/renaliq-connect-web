@@ -29,12 +29,12 @@ export class ReportsComponent implements OnInit {
     onActiveDateChange: (event, inst) => {
     },
     onClose: (event) => {
-      let dateRange = event.value.filter((x:any)=>x==null);
-      if(dateRange.length  != 0) 
-      {
-        this.filterModel.filter.dateRange = [];
-      }
-      this.setFilter();
+      // let dateRange = event.value.filter((x:any)=>x==null);
+      // if(dateRange.length  != 0) 
+      // {
+      //   this.filterModel.filter.dateRange = [];
+      // }
+      // this.setFilter();
     }
   };
   constructor(private _interactionService: InteractionService,
