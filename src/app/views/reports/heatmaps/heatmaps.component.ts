@@ -36,7 +36,8 @@ export class HeatmapsComponent {
     map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
       zoom: 13,
       center: { lat: 37.775, lng: -122.434 },
-      mapTypeId: "satellite",
+      mapTypeControl: false,
+      streetViewControl: false
     });
   
     heatmap = new google.maps.visualization.HeatmapLayer({

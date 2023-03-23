@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { PatientFilterModel } from '../model/patientFilterModel';
+import { PatientLatLongRequestModel } from '../model/patientLatLongRequestModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -317,6 +318,51 @@ export class PatientService {
 
         return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/detail/${encodeURIComponent(String(enrollmentNumber))}`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientListLatlongPost(body?: PatientLatLongRequestModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientListLatlongPost(body?: PatientLatLongRequestModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientListLatlongPost(body?: PatientLatLongRequestModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientListLatlongPost(body?: PatientLatLongRequestModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Patient/list/latlong`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -771,6 +817,41 @@ export class PatientService {
         ];
 
         return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/lob`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientSummaryPayerGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryPayerGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryPayerGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryPayerGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/payer`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
