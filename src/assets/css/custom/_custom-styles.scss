@@ -5549,6 +5549,7 @@ div.dataTables_wrapper div.dataTables_length label {
   .col-12 {
     &:first-child {
       border: none !important;
+      padding-left: 0 !important;
     }
   }
 }
@@ -5564,6 +5565,24 @@ div.dataTables_wrapper div.dataTables_length label {
   .form-control {
     padding: 1.3rem 0.5rem 0.3rem 0.5rem !important;
   }
+}
+.overflow-x {
+  overflow-x: auto;
+  &::-webkit-scrollbar {
+    height: 0.25rem;
+  }
+  ::-webkit-scrollbar-track {
+    opacity: 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    opacity: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    opacity: 1;
+  }
+}
+.flex-wrap-inherit {
+  flex-wrap: inherit;
 }
 .toast {
   max-width: 350px;
