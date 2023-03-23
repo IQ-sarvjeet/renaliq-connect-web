@@ -15,6 +15,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { DataCardComponent } from './data-card/data-card.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -28,7 +29,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     PaginationComponent,
     SpinnerComponent,
     ToasterComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    DataCardComponent
   ],
 
   providers: [
@@ -48,7 +50,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     SpinnerComponent,
     ToasterComponent,
     RouterModule,
-    NotificationsComponent
+    NotificationsComponent,
+    DataCardComponent
   ],
  
 })
