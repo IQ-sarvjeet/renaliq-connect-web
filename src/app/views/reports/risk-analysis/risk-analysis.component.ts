@@ -9,11 +9,15 @@ import { ProgressBarChartWidgetInput } from '../../../../../src/app/interfaces/p
 export class RiskAnalysisComponent {
   patientByStage: ProgressBarChartWidgetInput = {
     title: 'Patient by Stage',
-    apiUrl: 'Patient/summary/stage',
+    apiUrl: 'Patient/summary/stage/BAR',
   };
-  patientByPayerLOB: ProgressBarChartWidgetInput = {
+  patientByLOB: ProgressBarChartWidgetInput = {
     title: 'Patient By Lob',
     apiUrl: 'Patient/summary/lob',
+  };
+  patientByPayer: ProgressBarChartWidgetInput = {
+    title: 'Patient By Payer',
+    apiUrl: 'Patient/summary/payer',
   };
   patientByRiskCategory: ProgressBarChartWidgetInput = {
     title: 'Patient By Risk Category',
