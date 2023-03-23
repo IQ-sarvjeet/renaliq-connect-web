@@ -14,6 +14,7 @@ export class EventService {
     showError: false,
     message: ''
   });
+  private dateRangeEvent$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -38,5 +39,11 @@ export class EventService {
   }
   reachedNoOfAttemptsSubscription(): Observable<ErrorReachedAttempt> {
     return this.reachedNoOfAttempts$.asObservable();
+  }
+  dateRangeEventUpdate(value: any) {
+    this.dateRangeEvent$.next(value);
+  }
+  dateRangeEventSubscription(): Observable<any> {
+    return this.dateRangeEvent$.asObservable();
   }
 }

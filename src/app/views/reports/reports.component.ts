@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import * as moment from 'moment';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
+import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
@@ -27,17 +29,26 @@ export class ReportsComponent implements OnInit {
     onActiveDateChange: (event, inst) => {
     },
     onClose: (event) => {
-      let dateRange = event.value.filter((x:any)=>x==null);
-      if(dateRange.length  != 0) 
-      {
-        this.filterModel.filter.dateRange = [];
-      }
-      this.setFilter();
+      // let dateRange = event.value.filter((x:any)=>x==null);
+      // if(dateRange.length  != 0) 
+      // {
+      //   this.filterModel.filter.dateRange = [];
+      // }
+      // this.setFilter();
     }
   };
-  constructor(private _interactionService: InteractionService,public route: ActivatedRoute,private _clinicalQualityMatrixService: ClinicalQualityMatrixService,){
+  constructor(private _interactionService: InteractionService,
+    public route: ActivatedRoute,
+    private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
+    private eventService: EventService){
   }
   ngOnInit(): void {
+    this.eventService.dateRangeEventSubscription().subscribe((response: any) => {
+      if (response && response.periodStart) {
+        this.dateRangeOptions.defaultSelection = `${moment(response.periodStart).format('DD/MM/YYYY')} - ${moment(response.periodEnd).format('DD/MM/YYYY')}`;
+        this.filterModel.filter.dateRange = this.dateRangeOptions.defaultSelection;
+      }
+    })
     this.filterModel.filter.metricId =this.route.snapshot.params['id'];
     this.filterModel.filter.periodId =this.route.snapshot.params['periodId'];
     this.bindMetricList();
