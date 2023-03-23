@@ -943,13 +943,13 @@ export class PatientService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryStageCharttypeGet(chartType: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryStageCharttypeGet(chartType: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryStageCharttypeGet(chartType: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryStageCharttypeGet(chartType: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryStageChartTypeGet(chartType: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryStageChartTypeGet(chartType: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryStageChartTypeGet(chartType: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryStageChartTypeGet(chartType: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         if (chartType === null || chartType === undefined) {
-            throw new Error('Required parameter chartType was null or undefined when calling apiPatientSummaryStageCharttypeGet.');
+            throw new Error('Required parameter chartType was null or undefined when calling apiPatientSummaryStageChartTypeGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -966,7 +966,7 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/stage/${encodeURIComponent(String(charttype))}`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/stage/${encodeURIComponent(String(chartType))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
