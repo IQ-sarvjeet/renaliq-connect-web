@@ -283,7 +283,9 @@
               style="background-image: url(../assets/images/users/1.jpg)"
             ></span> -->
             <div class="user-details ms-2">
-              <a class="text-secondary" href="#/patient-profile"
+              <a class="text-secondary" 
+                href="javascript: void(0)"
+                (click)="redirectOnPatientProfileHandler(gridRow)"
                 ><h6 class="mb-0">{{ gridRow.fullName }}</h6></a
               >
             </div>

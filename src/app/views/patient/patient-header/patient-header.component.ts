@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import { PatientService } from 'src/app/api-client';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
@@ -53,7 +54,7 @@ export class PatientHeaderComponent {
       console.log('onClose:', event);
     }
   };
-  constructor(  private _interactionService: InteractionService,){
+  constructor(  private _interactionService: InteractionService, private patientService: PatientService){
 
   }
   filter: FilterModel = {
@@ -72,5 +73,12 @@ export class PatientHeaderComponent {
 
   submit(){
   this._interactionService.setPatientFilter(this.filter);
+  }
+  exportSummary() {
+    this.patientService.apiPatientSummaryExportGet().subscribe({
+      next: (response: any) => {
+        console.log('response:', response);
+      }
+    });
   }
 }
