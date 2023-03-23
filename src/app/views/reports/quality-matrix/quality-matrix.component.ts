@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ClinicalQualityMatrixService } from '../../../api-client';
 import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-quality-matrix',
@@ -41,7 +42,9 @@ export class QualityMatrixComponent {
   dateList: any = [];
   selectedDate: number = 0;
   selectedDateLebel : string = "";
-  constructor(private _qualityService: ClinicalQualityMatrixService) { }
+  constructor(private _qualityService: ClinicalQualityMatrixService,
+    private route: Router,
+    private eventService: EventService) { }
 
   ngOnInit() {
     this.showLoading = true;
@@ -84,5 +87,13 @@ export class QualityMatrixComponent {
     this.selectedDate = Number($event.target.value);
     this.selectedDateLebel = $event.target.options[$event.target.options.selectedIndex].text;
     this.getQualityMatricList(this.selectedDate);
+  }
+  openReport(selectedRow: any) {
+    const dateRange = this.dateList.filter((dateItem: any) => dateItem.id === this.selectedDate);
+    this.eventService.dateRangeEventUpdate({
+      periodStart: dateRange[0].periodStart,
+      periodEnd: dateRange[0].periodEnd,
+    });
+    this.route.navigate([`/reports/${ selectedRow.matricId }/${this.selectedDate}`]);
   }
 }

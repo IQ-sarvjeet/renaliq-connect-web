@@ -174,7 +174,8 @@
                     </td>
                     <td class="text-center">
                       <a *ngIf="item.population !== '0' "
-                        routerLink="/reports/{{ item.matricId }}/{{this.selectedDate}}"
+                        href="javascript: void(0);"
+                        (click)="openReport(item)"
                         class="btn btn-outline-primary border-0 ms-2"
                       >
                         <span
