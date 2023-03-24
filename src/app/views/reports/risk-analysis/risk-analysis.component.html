@@ -17,7 +17,6 @@
             </li>
           </ol>
         </div>
-       
       </div>
     </div>
   </div>
@@ -114,17 +113,21 @@
             <div class="card p-4">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
-                  <i class="fa fa-bed"></i>
+                  <i class="icon icon-user"></i>
                 </div>
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
                     <div class="flex-fill border-sm-end px-4 w-50">
-                      <app-data-card [cardData]="tempdata1"></app-data-card>
+                      <div>
+                        Male
+                        <div class="text-dark fw-bold fs-22 lh-sm">32</div>
+                      </div>
                     </div>
                     <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
-                      <app-data-card
-                        [cardData]="tempdata2"
-                      ></app-data-card>
+                      <div>
+                        Female
+                        <div class="text-dark fw-bold fs-22 lh-sm">26</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -134,12 +137,11 @@
         </div>
       </div>
       <div class="row mt-3">
-     
         <div class="col-12 col-md-3">
           <app-progress-bar-chart-widget
-          [config]="patientByStage"></app-progress-bar-chart-widget>
-
-      </div>
+            [config]="patientByStage"
+          ></app-progress-bar-chart-widget>
+        </div>
         <div class="col-12 col-md-3">
           <app-progress-bar-chart-widget
             [config]="patientByPayer"
