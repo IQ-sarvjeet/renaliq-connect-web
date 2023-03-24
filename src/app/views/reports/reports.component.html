@@ -55,41 +55,34 @@
             <label for="floatingSelect">Clinical Quality Metrics</label>
           </div>
           <div class="d-flex mt-3 mt-md-0">
-            <div class="d-inline-block ms-md-3 align-top flex-fill">
-              <div class="input-group input-group-lg">
-                <!-- value="13 Sep 22 - 20 Sep 22" -->
-                <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-                <div class="input-group performance-period">
-                  <mbsc-datepicker
-                    class="form-control fs-12"
-                    #rangeDatepicker
-                    [options]="dateRangeOptions"
-                    [(ngModel)]="filterModel.filter.dateRange"
-                    placeholder="Select date range"
-                  ></mbsc-datepicker>
-                  <label for="performancePeriod" class="performance-period__label"
-                    >Performance Period</label
-                  >
-                  <!-- <button
-                    class="input-group-text bg-white"
-                    type="button"
-                    (click)="rangeDatepicker.open()"
-                  >
-                    <i class="fa fa-calendar"></i>
-                  </button> -->
-                </div>
-              </div>
+            <div class="form-floating">
+              <select
+                class="form-select fs-14"
+                id="status"
+                aria-label="Performance Period"
+                (change)="dateSelectionHandler($event)"
+              >
+                <option
+                  [selected]="filterModel.filter.dateRange === dateItem.id"
+                  [value]="dateItem.id"
+                  *ngFor="let dateItem of dateList"
+                >
+                  {{ moment(dateItem.periodStart).format("DD/MM/YYYY") }} -
+                  {{ moment(dateItem.periodEnd).format("DD/MM/YYYY") }}
+                </option>
+              </select>
+              <label for="floatingSelect">Performance Period</label>
             </div>
+          </div>
             <!--a href="#" class="btn btn-outline-secondary ms-3"
             ><i class="icon icon-share-alt me-1"></i> Export</a
           -->
-            <div class="d-inline-block align-top">
-              <a
-                href="#/reports/qualityMatrix"
-                class="btn btn-danger ms-3 pt-3 pb-2 align-top"
-                ><i class="fe fe-x"></i>
-              </a>
-            </div>
+          <div class="d-inline-block align-top">
+            <a
+              href="#/reports/qualityMatrix"
+              class="btn btn-danger ms-3 pt-3 pb-2 align-top"
+              ><i class="fe fe-x"></i>
+            </a>
           </div>
         </div>
       </div>
