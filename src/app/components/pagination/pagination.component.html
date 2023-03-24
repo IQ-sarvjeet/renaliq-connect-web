@@ -8,7 +8,7 @@
           <i class="fa fa-angle-left"></i>
       </button>
       </li>
-      <ng-container *ngFor="let page of [].constructor(pagingModel.totalPages); let currentIndex = index;">
+      <ng-container *ngFor="let page of getNavigablePages(); let currentIndex = index;">
         <li *ngIf="currentIndex >= 0" class="page-item d-none d-sm-block" 
             [ngClass]="{'active': pagingModel.currentPage === currentIndex + 1}">
             <button class="page-link"
