@@ -113,20 +113,20 @@
           <div class="col-12 col-md-4">
             <div class="card p-4">
               <div class="d-flex">
-                <div class="notifyimg bg-info">
-                  <i class="fa fa-bed"></i>
-                </div>
-                <div class="flex-fill d-flex align-items-center text-nowrap">
-                  <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-50">
-                      <app-data-card [cardData]="tempdata1"></app-data-card>
-                    </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
-                      <app-data-card
-                        [cardData]="tempdata2"
-                      ></app-data-card>
-                    </div>
+                <div class="progress overflow-visible">
+                  <div
+                    class="progress-bar bg-primary wp-bg-dark wp-55 position-relative text-start ps-3 overflow-visible"
+                  >
+                    <span class="progress-info text-nowrap text-dark ps-3"
+                      >Male : 1530</span
+                    >
+                    55%
                   </div>
+                  <span class="ps-3 position-relative"
+                    ><span class="progress-info text-nowrap ps-3"
+                      >Female: 1235</span
+                    >45%</span
+                  >
                 </div>
               </div>
             </div>
