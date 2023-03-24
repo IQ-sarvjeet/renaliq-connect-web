@@ -68,6 +68,7 @@ export class RiskAnalysisComponent {
     percentile: null,
     performance: 'up',
   };
+  patientByStageKeys: any = [];
   constructor(private patientService: PatientService) {}
   ngOnInit() {
     this.patientService.apiPatientCountGet().subscribe((response: any) => {
@@ -88,5 +89,10 @@ export class RiskAnalysisComponent {
         ...response.totalRecentAdmission,
       };
     });
+    this.patientService.apiPatientSummaryStageGet().subscribe({
+      next: (stageData: any) => {
+        this.patientByStageKeys = Object.keys(stageData);
+      }
+    })
   }
 }

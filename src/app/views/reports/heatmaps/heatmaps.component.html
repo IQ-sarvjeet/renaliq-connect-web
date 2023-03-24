@@ -16,19 +16,23 @@
                   class="form-select fs-14"
                   (change)="onAgeChanged($event)"
                 >
-                  <option value="">Select Age</option>
+                  <option value="">Select</option>
                   <option value="LessThan65">{{ "<" }} 65</option>
                   <option value="Between65_74">65-74</option>
                   <option value="Between75_84">75-84</option>
                   <option value="GreaterThan85">>85</option>
                 </select>
-                <label for="selectAge">Select Age</label>
+                <label for="selectAge">Select</label>
               </div>
             </div>
             <div class="col-12 col-sm-6 col-md-3 pt-2 pt-sm-0">
               <div class="form-floating">
-                <select class="form-select fs-14" id="diseaseState">
-                  <option value="">Select Disease State</option>
+                <select class="form-select fs-14" id="diseaseState"
+                    (change)="onStageChanged($event)">
+                    <option value="">Select</option>
+                    <option value="stage" *ngFor="let stage of patientByStageKeys">
+                        {{stage}}
+                    </option>
                 </select>
                 <label for="diseaseState">Disease State</label>
               </div>
@@ -36,7 +40,7 @@
             <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
               <div class="form-floating">
                 <select class="form-select fs-14" id="educationLevel">
-                  <option value="">Select Education Level</option>
+                  <option value="">Select</option>
                 </select>
                 <label for="educationLevel">Education Level</label>
               </div>
@@ -44,7 +48,7 @@
             <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
               <div class="form-floating">
                 <select class="form-select fs-14" id="incomeLevel">
-                  <option value="">Select Income Level</option>
+                  <option value="">Select</option>
                 </select>
                 <label for="incomeLevel">Income Level</label>
               </div>
