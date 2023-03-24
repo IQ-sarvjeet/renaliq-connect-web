@@ -2,55 +2,51 @@
   <div class="col-12 col-md-12">
     <div class="card mb-2">
       <div class="card-header border-bottom title-submenu row">
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-6">
           <h3 class="card-title flex-fill">
             Patient - Demographics population’s
           </h3>
         </div>
-        <div class="col-12 col-lg-8 mt-3 mt-lg-0">
+        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
           <div class="row form-row">
-            <div class="col-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-4">
               <div class="form-floating">
                 <select
                   id="selectAge"
                   class="form-select fs-14"
                   (change)="onAgeChanged($event)"
                 >
-                  <option value="">Select</option>
+                  <option value="">-- Select Age --</option>
                   <option value="LessThan65">{{ "<" }} 65</option>
                   <option value="Between65_74">65-74</option>
                   <option value="Between75_84">75-84</option>
                   <option value="GreaterThan85">>85</option>
                 </select>
-                <label for="selectAge">Select</label>
+                <label for="selectAge">Age</label>
               </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-sm-0">
+            <div class="col-12 col-sm-6 col-md-4 pt-2 pt-sm-0">
               <div class="form-floating">
                 <select class="form-select fs-14" id="diseaseState"
                     (change)="onStageChanged($event)">
-                    <option value="">Select</option>
-                    <option value="stage" *ngFor="let stage of patientByStageKeys">
+                    <option value="">-- Select Disease Stage --</option>
+                    <option [value]="stage" *ngFor="let stage of patientByStageKeys">
                         {{stage}}
                     </option>
                 </select>
-                <label for="diseaseState">Disease State</label>
+                <label for="diseaseState">Disease Stage</label>
               </div>
             </div>
-            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
+            <div class="col-12 col-sm-6 col-md-4 pt-2 pt-md-0">
               <div class="form-floating">
-                <select class="form-select fs-14" id="educationLevel">
-                  <option value="">Select</option>
+                <select class="form-select fs-14" id="riskCategory"
+                    (change)="onRiskCategoryChanged($event)">
+                    <option value="">-- Select Risk Category --</option>
+                    <option [value]="risk" *ngFor="let risk of patientByRiskCategoryKeys">
+                        {{risk}}
+                    </option>
                 </select>
-                <label for="educationLevel">Education Level</label>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
-              <div class="form-floating">
-                <select class="form-select fs-14" id="incomeLevel">
-                  <option value="">Select</option>
-                </select>
-                <label for="incomeLevel">Income Level</label>
+                <label for="riskCategory">Risk Category</label>
               </div>
             </div>
             <!-- <div class="dropdown">
@@ -76,54 +72,6 @@
         </div>
       </div>
       <div class="card-body p-0">
-        <!-- <div class="d-flex p-4">
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="Age"
-                />
-                <label for="Age" class="custom-control-label">Age</label>
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="DiseaseState"
-                />
-                <label for="DiseaseState" class="custom-control-label"
-                  >Disease State</label
-                >
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="EducationLevel"
-                />
-                <label for="EducationLevel" class="custom-control-label"
-                  >Education Level</label
-                >
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="IncomeLevel"
-                />
-                <label for="IncomeLevel" class="custom-control-label"
-                  >Income Level</label
-                >
-              </div>
-            </div>
-          </div> -->
         <div class="px-1 pb-1">
           <div id="map"></div>
         </div>

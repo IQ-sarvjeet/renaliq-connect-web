@@ -69,6 +69,7 @@ export class RiskAnalysisComponent {
     performance: 'up',
   };
   patientByStageKeys: any = [];
+  patientByRiskCategoryKeys: any = [];
   constructor(private patientService: PatientService) {}
   ngOnInit() {
     this.patientService.apiPatientCountGet().subscribe((response: any) => {
@@ -92,6 +93,14 @@ export class RiskAnalysisComponent {
     this.patientService.apiPatientSummaryStageGet().subscribe({
       next: (stageData: any) => {
         this.patientByStageKeys = Object.keys(stageData);
+      }
+    })
+    this.patientService.apiPatientSummaryRiskcategoryGet().subscribe({
+      next: (stageData: any) => {
+        stageData.forEach((item: any) => {
+          this.patientByRiskCategoryKeys.push(item.key);
+        })
+        console.log('this.patientByRiskCategoryKeys::::', this.patientByRiskCategoryKeys);
       }
     })
   }
