@@ -90,10 +90,7 @@ export class QualityMatrixComponent {
   }
   openReport(selectedRow: any) {
     const dateRange = this.dateList.filter((dateItem: any) => dateItem.id === this.selectedDate);
-    this.eventService.dateRangeEventUpdate({
-      periodStart: dateRange[0].periodStart,
-      periodEnd: dateRange[0].periodEnd,
-    });
+    this.eventService.dateRangeEventUpdate(dateRange[0]);
     this.route.navigate([`/reports/${ selectedRow.matricId }/${this.selectedDate}`]);
   }
 }
