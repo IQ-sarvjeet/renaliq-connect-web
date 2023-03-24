@@ -1,67 +1,78 @@
 <div class="row">
-    <div class="col-12 col-md-12">
-      <div class="card mb-2">
-        <div class="card-header border-bottom title-submenu d-flex">
+  <div class="col-12 col-md-12">
+    <div class="card mb-2">
+      <div class="card-header border-bottom title-submenu row">
+        <div class="col-12 col-lg-4">
           <h3 class="card-title flex-fill">
             Patient - Demographics population’s
           </h3>
-          <nav class="nav">
-            <div class="me-1">
+        </div>
+        <div class="col-12 col-lg-8 mt-3 mt-lg-0">
+          <div class="row form-row">
+            <div class="col-12 col-sm-6 col-md-3">
+              <div class="form-floating">
                 <select
-                  class="form-select"
+                  id="selectAge"
+                  class="form-select fs-14"
                   (change)="onAgeChanged($event)"
                 >
-                    <option value="">Select Age&nbsp;&nbsp;&nbsp;&nbsp;</option>
-                    <option value="LessThan65">{{'<'}} 65</option>
-                    <option value="Between65_74">65-74</option>
-                    <option value="Between75_84">75-84</option>
-                    <option value="GreaterThan85">>85</option>
+                  <option value="">Select Age</option>
+                  <option value="LessThan65">{{ "<" }} 65</option>
+                  <option value="Between65_74">65-74</option>
+                  <option value="Between75_84">75-84</option>
+                  <option value="GreaterThan85">>85</option>
                 </select>
+                <label for="selectAge">Select Age</label>
+              </div>
             </div>
-            <div class="me-1">
-                <select
-                  class="form-select"
-                >
-                    <option value="">Select Disease State&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-sm-0">
+              <div class="form-floating">
+                <select class="form-select fs-14" id="diseaseState">
+                  <option value="">Select Disease State</option>
                 </select>
+                <label for="diseaseState">Disease State</label>
+              </div>
             </div>
-            <div class="me-1">
-                <select
-                  class="form-select"
-                >
-                    <option value="">Select Education Level&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
+              <div class="form-floating">
+                <select class="form-select fs-14" id="educationLevel">
+                  <option value="">Select Education Level</option>
                 </select>
+                <label for="educationLevel">Education Level</label>
+              </div>
             </div>
-            <div class="me-1">
-                <select
-                  class="form-select"
-                >
-                    <option value="">Select Income Level&nbsp;&nbsp;&nbsp;&nbsp;</option>
+            <div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
+              <div class="form-floating">
+                <select class="form-select fs-14" id="incomeLevel">
+                  <option value="">Select Income Level</option>
                 </select>
+                <label for="incomeLevel">Income Level</label>
+              </div>
             </div>
             <!-- <div class="dropdown">
-              <a
-                class="nav-link text-muted fs-16 p-0 ps-4"
-                href="javascript:;"
-                data-bs-toggle="dropdown"
-                role="button"
-                aria-haspopup="true"
-                aria-expanded="false"
-                ><i class="fe fe-more-vertical"></i
-              ></a>
-              <div class="dropdown-menu dropdown-menu-start">
-                <a class="dropdown-item" href="#"
-                  ><i class="fe fe-edit me-1"></i> Edit</a
-                >
-                <a class="dropdown-item" href="#"
-                  ><i class="fe fe-trash-2 me-1"></i> Delete</a
-                >
-              </div>
-            </div> -->
-          </nav>
+                <a
+                  class="nav-link text-muted fs-16 p-0 ps-4"
+                  href="javascript:;"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit me-1"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-trash-2 me-1"></i> Delete</a
+                  >
+                </div>
+              </div> -->
+          </div>
         </div>
-        <div class="card-body p-0">
-          <!-- <div class="d-flex p-4">
+      </div>
+      <div class="card-body p-0">
+        <!-- <div class="d-flex p-4">
             <div class="checkbox me-4">
               <div class="custom-checkbox custom-control">
                 <input
@@ -109,16 +120,13 @@
               </div>
             </div>
           </div> -->
-          <div class="px-1 pb-1">
-            <div id="map"></div>
-          </div>
+        <div class="px-1 pb-1">
+          <div id="map"></div>
         </div>
       </div>
-      <div class="fs-11 op-0-7 mb-4">
-        <i>Data Updated on : 10 Sep 2022 11:30 AM</i>
-      </div>
+    </div>
+    <div class="fs-11 op-0-7 mb-4">
+      <i>Data Updated on : 10 Sep 2022 11:30 AM</i>
     </div>
   </div>
-
-
-
+</div>
