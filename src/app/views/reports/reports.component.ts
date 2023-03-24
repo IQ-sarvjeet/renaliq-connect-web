@@ -15,28 +15,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./reports.component.scss']
 })
 export class ReportsComponent implements OnInit {
+  moment = moment;
   numeratorList :any=[];
   metricList :any=[];
   metricName:string='';
   dateRange:any=[];
   errorMsg: any = "";
-  dateRangeOptions: MbscDatepickerOptions = {
-    theme: 'ios',
-    controls: ['calendar'],
-    select: 'range',
-    onChange: (value: any) => {
-    },
-    onActiveDateChange: (event, inst) => {
-    },
-    onClose: (event) => {
-      // let dateRange = event.value.filter((x:any)=>x==null);
-      // if(dateRange.length  != 0) 
-      // {
-      //   this.filterModel.filter.dateRange = [];
-      // }
-      // this.setFilter();
-    }
-  };
+  dateList: any = [];
   constructor(private _interactionService: InteractionService,
     public route: ActivatedRoute,
     private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
@@ -45,8 +30,14 @@ export class ReportsComponent implements OnInit {
   ngOnInit(): void {
     this.eventService.dateRangeEventSubscription().subscribe((response: any) => {
       if (response && response.periodStart) {
-        this.dateRangeOptions.defaultSelection = `${moment(response.periodStart).format('DD/MM/YYYY')} - ${moment(response.periodEnd).format('DD/MM/YYYY')}`;
-        this.filterModel.filter.dateRange = this.dateRangeOptions.defaultSelection;
+        this.filterModel.filter.dateRange = response.id;
+      }
+    })
+    this._clinicalQualityMatrixService.apiClinicalQualityMatrixAvailablePeriodGet().subscribe({
+      next: (response: any) => {
+        if(response.length > 0) {
+          this.dateList = response;
+        }
       }
     })
     this.filterModel.filter.metricId =this.route.snapshot.params['id'];
@@ -123,4 +114,8 @@ export class ReportsComponent implements OnInit {
    setFilter(){
      this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
    }
+  dateSelectionHandler($event: any) {
+    this.filterModel.filter.dateRange = $event.target.value;
+    this.setFilter();
+  }
 }
