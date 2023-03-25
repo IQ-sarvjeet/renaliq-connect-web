@@ -291,18 +291,18 @@
             </div>
           </div>
         </td>
-        <td class="text-center">
-          {{ gridRow.dob }} <strong class="fw-semibold">(43)</strong>
-        </td>
+      
+        <td  class="text-center">{{getFormatDate(gridRow.dob)}} <strong class="fw-semibold"> ({{getAge(gridRow.dob)}})</strong></td>
+       
         <td class="text-center">{{ gridRow.stage }}</td>
         <td>{{ gridRow.caseCategory }}</td>
         <td>{{ gridRow.diagnosis }}</td>
         <td>{{ gridRow.facilityName }}</td>
         <td class="text-center">
-          {{ gridRow.admissionDate ? moment(gridRow.admissionDate).format("DD/MM/YYYY"): '' }}
+          {{ gridRow.admissionDate ? moment(gridRow.admissionDate).format("MM/DD/YYYY"): '' }}
         </td>
         <td class="text-center">
-          {{ gridRow.dischargeDate? moment(gridRow.dischargeDate).format("DD/MM/YYYY"): '' }}
+          {{ gridRow.dischargeDate? moment(gridRow.dischargeDate).format("MM/DD/YYYY"): '' }}
         </td>
         <!-- <td class="text-center">
           <a

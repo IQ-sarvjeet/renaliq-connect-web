@@ -39,10 +39,11 @@ export class PatientListComponent {
         }
       })
     } else {
-      this.route.navigateByUrl(`/patient-profile/${this.patientDetail.patient.patientId}`, {state: {
-        patientId: this.patientDetail.patient.patientId,
-        enrollmentNo: this.patientDetail.patient.enrollmentNo
-      }})
+      this.route.navigate([`/patient-profile/${this.patientDetail.patient.patientId}`, {
+          patientId: this.patientDetail.patient.patientId ? this.patientDetail.patient.patientId: '',
+          enrollmentNo: this.patientDetail.patient.enrollmentNo ? this.patientDetail.patient.enrollmentNo: ''
+        }
+      ])
     }
   }
   downloadPlan(plan: any) {

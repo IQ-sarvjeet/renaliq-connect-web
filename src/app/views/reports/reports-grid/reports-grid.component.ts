@@ -81,7 +81,7 @@ export class ReportsGridComponent implements OnInit  {
     }
   }
   getFormatDate(dob:Date){
-    return moment(dob).format('YY/MM/DD');
+    return moment(dob).format('YYYY/MM/DD');
   }
   getAge(dob:any){
     return moment().diff(dob, 'years');

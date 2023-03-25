@@ -24,15 +24,14 @@ export class ReportsComponent implements OnInit {
   dateList: any = [];
   constructor(private _interactionService: InteractionService,
     public route: ActivatedRoute,
-    private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
-    private eventService: EventService){
+    private _clinicalQualityMatrixService: ClinicalQualityMatrixService){
   }
   ngOnInit(): void {
-    this.eventService.dateRangeEventSubscription().subscribe((response: any) => {
-      if (response && response.periodStart) {
-        this.filterModel.filter.dateRange = response.id;
-      }
-    })
+    this.filterModel.filter.metricId = this.route.snapshot.params['id'];
+    this.filterModel.filter.periodId = Number(this.route.snapshot.params['periodId']);
+    this.bindMetricList();
+    this.bindNumeratorList();
+    this.getMetric();
     this._clinicalQualityMatrixService.apiClinicalQualityMatrixAvailablePeriodGet().subscribe({
       next: (response: any) => {
         if(response.length > 0) {
@@ -40,11 +39,6 @@ export class ReportsComponent implements OnInit {
         }
       }
     })
-    this.filterModel.filter.metricId =this.route.snapshot.params['id'];
-    this.filterModel.filter.periodId =this.route.snapshot.params['periodId'];
-    this.bindMetricList();
-    this.bindNumeratorList();
-    this.getMetric();
   }
   
   filterModel: ClinicalPatientMetricFilterModel = {
@@ -115,7 +109,7 @@ export class ReportsComponent implements OnInit {
      this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
    }
   dateSelectionHandler($event: any) {
-    this.filterModel.filter.dateRange = $event.target.value;
+    this.filterModel.filter.periodId = $event.target.value;
     this.setFilter();
   }
 }

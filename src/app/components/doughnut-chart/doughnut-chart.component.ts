@@ -44,8 +44,8 @@ export class DoughnutChartComponent {
             color: 'black'
           }
         },
-        center: ['30%', '50%'],
-        size: '145%'
+        center: ['35%', '55%'],
+        size: '130%'
       }
     },
     tooltip: {

@@ -6,42 +6,48 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   styleUrls: ['./pagination.component.scss']
 })
 export class PaginationComponent {
-  // paginationRange: number[] = [];
+  paginationRange: number[] = [];
   displaySize: any = 2;
-  // paginationDetail = {
-  //   pageSize: 2,
-  //   totalRecords: 19,
-  //   currentPage: 1,
-  //   totalPages: 9
-  // }
-  // @Input() set pagingModel(value: any) {
-  //   if (value) {
-  //     this.paginationDetail = value;
-  //     this.paginationRange = this.getNavigablePages();
-  //   }
-  // }
-  @Input() pagingModel: any = {
+  private rangeStart: number = 0;
+  paginationDetail = {
     pageSize: 2,
     totalRecords: 19,
     currentPage: 1,
     totalPages: 9
   }
+  @Input() set pagingModel(value: any) {
+    if (value) {
+      this.paginationDetail = value;
+      this.getNavigablePages();
+    }
+  }
+  // @Input() pagingModel: any = {
+  //   pageSize: 2,
+  //   totalRecords: 19,
+  //   currentPage: 1,
+  //   totalPages: 9
+  // }
   @Output() gotoPageHandler = new EventEmitter<number>();
   public gotoPage(page: number): void {
     this.gotoPageHandler.emit(page);
   }
-  getNavigablePages(): number[] {
+  getNavigablePages() {
     const pages = [];
-    let left = 0;
     let right = 4;
-    if (this.pagingModel.currentPage > 2) {
-      left = Math.max(1, this.pagingModel.currentPage - this.displaySize)
-      right = Math.min(this.pagingModel.totalPages, this.pagingModel.currentPage + this.displaySize)
+    if(this.paginationDetail.currentPage === this.paginationDetail.totalPages) {
+      this.rangeStart = this.paginationDetail.totalPages - this.displaySize * 2 - 1;
     }
-    console.log(left,':::left:::', right);
-    for (let i = left; i <= right; i++) {
+    if (this.paginationDetail.currentPage > 3) {
+      if (this.paginationDetail.currentPage <= (this.paginationDetail.totalPages - this.displaySize)) {
+        this.rangeStart = Math.max(1, this.paginationDetail.currentPage - this.displaySize) - 1;
+      }
+      right = Math.min(this.paginationDetail.totalPages, this.paginationDetail.currentPage + this.displaySize) - 1
+    } else {
+      this.rangeStart = 0;
+    }
+    for (let i = this.rangeStart; i <= right; i++) {
         pages.push(i)
     }
-    return this.pagingModel.totalPages
+    this.paginationRange = [...pages];
   }
 }
