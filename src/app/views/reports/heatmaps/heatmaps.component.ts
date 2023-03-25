@@ -1,20 +1,167 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
 
-// const latLngArr = [
-//   [37.782551, -122.445368],
-//   [37.782745, -122.444586],
-//   [37.782842, -122.443688],
-//   [37.782919, -122.442815],
-
-//   [37.782992, -122.442112],
-//   [37.7831, -122.441461],
-//   [37.783206, -122.440829],
-//   [37.783273, -122.440324],
-//   [37.783316, -122.440023]
-// ]
-
 declare const google: any;
+const styles = [
+  {
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.icon",
+    "stylers": [
+      {
+        "visibility": "off"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "elementType": "labels.text.stroke",
+    "stylers": [
+      {
+        "color": "#f5f5f5"
+      }
+    ]
+  },
+  {
+    "featureType": "administrative.land_parcel",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#bdbdbd"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "poi",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "poi.park",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "road",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#ffffff"
+      }
+    ]
+  },
+  {
+    "featureType": "road.arterial",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#757575"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#dadada"
+      }
+    ]
+  },
+  {
+    "featureType": "road.highway",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#616161"
+      }
+    ]
+  },
+  {
+    "featureType": "road.local",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.line",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#e5e5e5"
+      }
+    ]
+  },
+  {
+    "featureType": "transit.station",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#eeeeee"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "geometry",
+    "stylers": [
+      {
+        "color": "#c9c9c9"
+      }
+    ]
+  },
+  {
+    "featureType": "water",
+    "elementType": "labels.text.fill",
+    "stylers": [
+      {
+        "color": "#9e9e9e"
+      }
+    ]
+  }
+]
 
 @Component({
   selector: 'app-heatmaps',
@@ -22,7 +169,11 @@ declare const google: any;
   styleUrls: ['./heatmaps.component.scss']
 })
 export class HeatmapsComponent {
+  @Input() patientByStageKeys: any = [];
+  @Input() patientByRiskCategoryKeys: any = [];
   age: any = '';
+  stage: any = '';
+  riskCategory: any = '';
   constructor(private patientService: PatientService) {}
   ngOnInit() {
     this.fetchData();
@@ -31,8 +182,8 @@ export class HeatmapsComponent {
     this.patientService.apiPatientLatlongPost({
       age: this.age,
       educationLevel: '',
-      incomeLevel: '',
-      diseaseState: '',
+      incomeLevel: this.riskCategory,
+      diseaseState: this.stage,
     }).subscribe({
       next: (response: any) => {
         this.initMap(this.generatePoints(response.patientLocation), response.practiceLatitude, response.practiceLongitude);
@@ -53,166 +204,7 @@ export class HeatmapsComponent {
       center: { lat: centerLat, lng: centerLng },
       mapTypeControl: false,
       streetViewControl: false,
-      styles:[
-        {
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.icon",
-          "stylers": [
-            {
-              "visibility": "off"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "elementType": "labels.text.stroke",
-          "stylers": [
-            {
-              "color": "#f5f5f5"
-            }
-          ]
-        },
-        {
-          "featureType": "administrative.land_parcel",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#bdbdbd"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "poi",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "poi.park",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "road",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#ffffff"
-            }
-          ]
-        },
-        {
-          "featureType": "road.arterial",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#757575"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#dadada"
-            }
-          ]
-        },
-        {
-          "featureType": "road.highway",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#616161"
-            }
-          ]
-        },
-        {
-          "featureType": "road.local",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.line",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#e5e5e5"
-            }
-          ]
-        },
-        {
-          "featureType": "transit.station",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#eeeeee"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "geometry",
-          "stylers": [
-            {
-              "color": "#c9c9c9"
-            }
-          ]
-        },
-        {
-          "featureType": "water",
-          "elementType": "labels.text.fill",
-          "stylers": [
-            {
-              "color": "#9e9e9e"
-            }
-          ]
-        }
-      ]
+      styles: styles
     });
   
     heatmap = new google.maps.visualization.HeatmapLayer({
@@ -222,6 +214,14 @@ export class HeatmapsComponent {
   }
   onAgeChanged($event: any) {
     this.age = $event.target.value;
+    this.fetchData();
+  }
+  onStageChanged($event: any) {
+    this.stage = $event.target.value;
+    this.fetchData();
+  }
+  onRiskCategoryChanged($event: any) {
+    this.riskCategory = $event.target.value;
     this.fetchData();
   }
 }

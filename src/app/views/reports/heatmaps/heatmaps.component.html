@@ -27,38 +27,28 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 pt-2 pt-sm-0">
               <div class="form-floating">
-                <select class="form-select fs-14" id="diseaseState">
-                  <option value="">-- Select Disease Stage --</option>
-                  
-                  <option value="CKD Stage 3a">CKD Stage 3a</option>
-                  <option value="CKD Stage 3b">CKD Stage 3b</option>
-                  <option value="CKD Stage 4">CKD Stage 4</option>
-                  <option value="CKD Stage 5">CKD Stage 5</option>
-                  <option value="ESKD">ESKD</option>
-
+                <select class="form-select fs-14" id="diseaseState"
+                    (change)="onStageChanged($event)">
+                    <option value="">-- Select Disease Stage --</option>
+                    <option [value]="stage" *ngFor="let stage of patientByStageKeys">
+                        {{stage}}
+                    </option>
                 </select>
                 <label for="diseaseState">Disease Stage</label>
               </div>
             </div>
             <div class="col-12 col-sm-6 col-md-4 pt-2 pt-md-0">
               <div class="form-floating">
-                <select class="form-select fs-14" id="riskCategory">
-                  <option value="">-- Select Risk Category --</option>
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
+                <select class="form-select fs-14" id="riskCategory"
+                    (change)="onRiskCategoryChanged($event)">
+                    <option value="">-- Select Risk Category --</option>
+                    <option [value]="risk" *ngFor="let risk of patientByRiskCategoryKeys">
+                        {{risk}}
+                    </option>
                 </select>
                 <label for="riskCategory">Risk Category</label>
               </div>
             </div>
-            <!--  div class="col-12 col-sm-6 col-md-3 pt-2 pt-md-0">
-              <div class="form-floating">
-                <select class="form-select fs-14" id="incomeLevel">
-                  <option value="">Select Income Level</option>
-                </select>
-                <label for="incomeLevel">Income Level</label>
-              </div>
-            </div>-->
             <!-- <div class="dropdown">
                 <a
                   class="nav-link text-muted fs-16 p-0 ps-4"
@@ -82,54 +72,6 @@
         </div>
       </div>
       <div class="card-body p-0">
-        <!-- <div class="d-flex p-4">
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="Age"
-                />
-                <label for="Age" class="custom-control-label">Age</label>
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="DiseaseState"
-                />
-                <label for="DiseaseState" class="custom-control-label"
-                  >Disease State</label
-                >
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="EducationLevel"
-                />
-                <label for="EducationLevel" class="custom-control-label"
-                  >Education Level</label
-                >
-              </div>
-            </div>
-            <div class="checkbox me-4">
-              <div class="custom-checkbox custom-control">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="IncomeLevel"
-                />
-                <label for="IncomeLevel" class="custom-control-label"
-                  >Income Level</label
-                >
-              </div>
-            </div>
-          </div> -->
         <div class="px-1 pb-1">
           <div id="map"></div>
         </div>
