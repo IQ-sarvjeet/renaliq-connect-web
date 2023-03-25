@@ -14,20 +14,20 @@ export class CareMemberComponent {
     }
   }
   careMembers: any = []
+  careGapList: any = [];
   constructor(private patientService: PatientService, private qualityMatrixService: ClinicalQualityMatrixService) {
     
   }
   private loadCareGap(value: any) {
-    this.qualityMatrixService.apiClinicalQualityMatrixCaregapPatientPatientIdGet(value).subscribe({
+    this.qualityMatrixService.apiClinicalQualityMatrixGetPatientPatientIdGet(value).subscribe({
       next: (response: any) => {
-        console.log('care gap data:', response);
+        let list: any = [];
+        Object.keys(response).forEach((matrix: any) => {
+          list = [...list, ...response[matrix].metrices]
+        })
+        this.careGapList = list;
       }
     })
-    // this.qualityMatrixService.apiClinicalQualityMatrixGetPatientPatientIdGet(value).subscribe({
-    //   next: (response: any) => {
-    //     console.log('Patient data:', response);
-    //   }
-    // })
   }
   loadCareMembers(value: string) {
     this.patientService.apiPatientCaremembersEnrollmentNumberGet(value).subscribe({

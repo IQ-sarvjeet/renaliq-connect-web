@@ -9,6 +9,7 @@ import { PatientService } from 'src/app/api-client';
   styleUrls: ['./patient-profile.component.scss']
 })
 export class PatientProfileComponent {
+  profileNotFound: boolean = false;
   profileDetail: any = {
     id: null,
     name: '',
@@ -62,12 +63,26 @@ export class PatientProfileComponent {
   ngOnInit() {
   }
   patientDetails(routeState: any) {
-    if(!routeState || !routeState.enrollmentNo) return;
+    if(!routeState || !routeState.enrollmentNo) {
+      this.profileNotFound = true;
+      return;
+    };
     this.patientService.apiPatientDetailEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
       next: (details: any) => {
+        if(!details) {
+          this.profileNotFound = true;
+        } else {
+          this.profileNotFound = false;
+        }
         this.profileDetail = details;
+      },
+      error: (error: any) => {
+        this.profileNotFound = true;
       }
     })
+  }
+  reloadPage() {
+    window.location.reload();
   }
   ngOnDestroy() {
     this.routerEventSubscription.unsubscribe();

@@ -5,17 +5,43 @@
       <div class="fs-12 op-0-75">Care Gaps - Based on claims data</div>
     </h3>
   </div>
-  <div class="card-body pt-3">
-    <!--<div>Diuretics Adherance - Proportion of Days Covered</div>
-    <div class="mt-1">
-      <span class="fs-11 text-danger">10%</span>
-      <div class="progress progress-sm">
-        <div class="progress-bar bg-danger wp-10"></div>
+  <ng-container *ngFor="let careGap of careGapList">
+    <div class="card-body pt-3" *ngIf="careGap.isTargetAchive">
+      <div>{{careGap.martricName}}</div>
+      <div class="mt-1">
+        <span class="fs-11 text-danger" *ngIf="careGap.denominator !=='-'">
+          {{ careGap.pecentage}}{{ careGap.targetTypeSign == "%" ? "%" : "" }}
+        </span>
+        <div class="progress progress-sm" *ngIf="careGap.denominator !=='-'">
+          <div class="progress-bar"
+              *ngIf="careGap.pecentage <= 100"
+              [ngClass]="[
+                'wp-' + careGap.pecentage,
+                careGap.isTargetAchive === true
+                  ? 'bg-success'
+                  : 'bg-danger'
+              ]"></div>
+            <div class="progress-bar" *ngIf="careGap.pecentage > 100"
+            [ngClass]="[
+              'wp-100',
+              careGap.isTargetAchive === true
+                ? 'bg-success'
+                : 'bg-danger'
+            ]"></div>
+        </div>
+        <span class="fs-11 " *ngIf="careGap.targetTypeSign == '='"
+            ><b>Target {{ careGap.targetFormula
+            }}{{ careGap.targetTypeSign }} {{ careGap.target }}</b>
+        </span>
+        <span class="fs-11" *ngIf="careGap.targetTypeSign == '%'"
+          ><b>Target {{ careGap.targetFormula }} {{ careGap.target
+          }}{{ careGap.targetTypeSign }}</b>
+        </span>
       </div>
-      <span class="fs-11">Target > 80%</span>
     </div>
-  </div>-->
-  <div>Information Not Avaiable</div>
+  </ng-container>
+  
+  <!-- <div>Information Not Avaiable</div> -->
 </div>
 <div class="card">
   <div class="card-header border-bottom title-submenu d-flex">
