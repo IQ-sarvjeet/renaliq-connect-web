@@ -43,6 +43,10 @@ export class PatientProfileComponent {
     npEligibilityStatus: ""
   }
   private routerEventSubscription: any;
+  routeState: any = {
+    patientId: null,
+    enrollmentNo: null,
+  }
   constructor(private router: Router,
     private patientService: PatientService,
     private activatedRoute: ActivatedRoute) {
@@ -50,6 +54,7 @@ export class PatientProfileComponent {
       (event: any) => {
         if (event instanceof NavigationEnd && event.url.indexOf('/patient-profile') !== -1) {
           const {params} = this.activatedRoute.snapshot;
+          this.routeState = params;
           this.patientDetails(params);
         }
     })
