@@ -41,7 +41,7 @@
         <div>
           {{
             profileDetail.dateofBirth
-              ? moment(profileDetail.dateofBirth).format("DD/MM/YYYY")
+              ? moment(profileDetail.dateofBirth).format("MM/DD/YYYY")
               : ""
           }}
         </div>
@@ -112,7 +112,7 @@
             Latest Care Plan generated on on
             {{
               carePlans[0].createdOn
-                ? moment(carePlans[0].createdOn).format("DD/MM/YYYY")
+                ? moment(carePlans[0].createdOn).format("MM/DD/YYYY")
                 : "-"
             }}
           </div>
@@ -137,7 +137,7 @@
               ><i class="fa fa-download me-1"></i>
               {{
                 plan.createdOn
-                  ? moment(plan.createdOn).format("DD/MM/YYYY")
+                  ? moment(plan.createdOn).format("MM/DD/YYYY")
                   : "-"
               }}</a
             >

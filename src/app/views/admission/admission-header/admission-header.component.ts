@@ -16,11 +16,11 @@ const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 })
 export class AdmissionHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
-  dateRangeFilter: any = `${moment(datePrior90).format('DD/MM/YYYY')} - ${moment(todayDate).format('DD/MM/YYYY')}`;
+  dateRangeFilter: any = `${moment(datePrior90).format('MM/DD/YYYY')} - ${moment(todayDate).format('MM/DD/YYYY')}`;
 
   dateRangeOptions: MbscDatepickerOptions = {
       theme: 'ios',
-      dateFormat: 'DD/MM/YYYY',
+      dateFormat: 'MM/DD/YYYY',
       controls: ['calendar'],
       select: 'range',
       defaultValue: this.dateRangeFilter,
