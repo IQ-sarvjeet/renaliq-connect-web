@@ -63,7 +63,7 @@
                 (change)="dateSelectionHandler($event)"
               >
                 <option
-                  [selected]="filterModel.filter.dateRange === dateItem.id"
+                  [selected]="filterModel.filter.periodId === dateItem.id"
                   [value]="dateItem.id"
                   *ngFor="let dateItem of dateList"
                 >
