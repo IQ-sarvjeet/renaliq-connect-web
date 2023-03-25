@@ -56,13 +56,13 @@ export class SearchComponent {
     })
   }
   patientSelectHandler(patient: any) {
-    console.log('patient:', patient);
     this.patientNotFound = false;
     this.searchInput.nativeElement.value = '';
     this.patientSearchedList = [];
-    this.route.navigateByUrl(`/patient-profile/${patient.id}`, {state: {
-      patientId: patient.patientId,
-      enrollmentNo: patient.enrollmentNo
-    }})
+    this.route.navigate([`/patient-profile/${patient.id}`, {
+        patientId: patient.id ? patient.id: '',
+        enrollmentNo: patient.enrollmentNo ? patient.enrollmentNo: ''
+      }
+    ])
   }
 }

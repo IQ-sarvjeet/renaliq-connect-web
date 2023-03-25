@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PatientService } from 'src/app/api-client';
 
 @Component({
@@ -42,29 +42,19 @@ export class PatientProfileComponent {
     phoneNumber: null,
     npEligibilityStatus: ""
   }
-  routeState: any = {
-    patientId: null,
-    enrollmentNo: null
-  }
+  private routerEventSubscription: any;
   constructor(private router: Router,
     private patientService: PatientService,
-    private httpClient: HttpClient) {
-    this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    this.patientDetails(this.routeState);
+    private activatedRoute: ActivatedRoute) {
+    this.routerEventSubscription = this.router.events.subscribe(
+      (event: any) => {
+        if (event instanceof NavigationEnd && event.url.indexOf('/patient-profile') !== -1) {
+          const {params} = this.activatedRoute.snapshot;
+          this.patientDetails(params);
+        }
+    })
   }
   ngOnInit() {
-    // this.httpClient.get(`https://renaliq-comm-api-dev-connect.azurewebsites.net/api/patient/medication/ZXDY10007729`).subscribe({
-    //   next: (response: any) => {
-    //     console.log('medication response:', response);
-    //   },
-    //   error: () => {}
-    // })
-    // this.httpClient.get(`https://renaliq-comm-api-dev-connect.azurewebsites.net/api/patient/caremembers/ZXDY10007729`).subscribe({
-    //   next: (response: any) => {
-    //     console.log('caremembers response:', response);
-    //   },
-    //   error: () => {}
-    // })
   }
   patientDetails(routeState: any) {
     if(!routeState || !routeState.enrollmentNo) return;
@@ -73,5 +63,8 @@ export class PatientProfileComponent {
         this.profileDetail = details;
       }
     })
+  }
+  ngOnDestroy() {
+    this.routerEventSubscription.unsubscribe();
   }
 }

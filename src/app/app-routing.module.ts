@@ -85,10 +85,6 @@ const routes: Routes = [
       import('./views/patient-profile/patient-profile.module').then(
         (m) => m.PatientProfileModule
       ),
-    data: {
-      patientId: null,
-      enrollmentNo: null
-    },
     canActivate: [AuthguardGuard]
   },
   {
