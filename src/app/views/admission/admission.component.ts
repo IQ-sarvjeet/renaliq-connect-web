@@ -45,8 +45,8 @@ export class AdmissionComponent {
     const fromDate = dates[0].replaceAll('/', '-').split('-');
     const toDate = dates[1].replaceAll('/', '-').split('-');
     this.dateRange = {
-      fromDate: `${fromDate[2]}-${fromDate[1]}-${fromDate[0]}`,
-      toDate: `${toDate[2]}-${toDate[1]}-${toDate[0]}`
+      fromDate: `${fromDate[2]}-${fromDate[0]}-${fromDate[1]}`,
+      toDate: `${toDate[2]}-${toDate[0]}-${toDate[1]}`
     }
     this.getAdmissionSummary();
   }

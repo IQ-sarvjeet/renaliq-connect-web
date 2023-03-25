@@ -67,8 +67,8 @@
                   [value]="dateItem.id"
                   *ngFor="let dateItem of dateList"
                 >
-                  {{ moment(dateItem.periodStart).format("DD/MM/YYYY") }} -
-                  {{ moment(dateItem.periodEnd).format("DD/MM/YYYY") }}
+                  {{ moment(dateItem.periodStart).format("MM/DD/YYYY") }} -
+                  {{ moment(dateItem.periodEnd).format("MM/DD/YYYY") }}
                 </option>
               </select>
               <label for="floatingSelect">Performance Period</label>
