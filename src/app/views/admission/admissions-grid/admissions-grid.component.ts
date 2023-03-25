@@ -52,9 +52,10 @@ export class AdmissionsGridComponent {
     this.getAdmissionList();
   }
   redirectOnPatientProfileHandler(patient: any) {
-    this.route.navigateByUrl(`/patient-profile/${patient.patientId}`, {state: {
-      patientId: patient.patientId,
-      enrollmentNo: patient.admissionId
-    }})
+    this.route.navigate([`/patient-profile/${patient.patientId}`, {
+        patientId: patient.patientId ? patient.patientId: '',
+        enrollmentNo: patient.enrollmentNo ? patient.enrollmentNo: ''
+      }
+    ])
   }
 }
