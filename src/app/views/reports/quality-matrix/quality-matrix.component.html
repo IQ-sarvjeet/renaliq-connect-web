@@ -83,11 +83,20 @@
           </div>
         </div>
         <div class="col-12 col-md-2 p-0 text-center">
-          <img
-            src="../../../../assets/images/risk-analysis.png"
-            alt="Patient Risk Stratification Analysis"
-            class="mt-md-3"
-          />
+          <span class="light-theme-img">
+            <img
+              src="../../../../assets/images/risk-analysis.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 h-100"
+            />
+          </span>
+          <span class="dark-theme-img">
+            <img
+              src="../../../../assets/images/risk-analysis-dark.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 h-100"
+            />
+          </span>
         </div>
       </div>
     </div>
@@ -112,25 +121,38 @@
               >
                 <tr class="bg-light mb-2">
                   <td colspan="7">
-                    <div class="px-2"><b>{{ matirc.category }}</b></div>
+                    <div class="px-2">
+                      <b>{{ matirc.category }}</b>
+                    </div>
                   </td>
                 </tr>
                 <ng-container
                   *ngFor="let item of matirc.metrices; let m = index"
                 >
                   <tr class="border-top">
-                    <td class='px-3'>{{ item.martricName }}</td>
-                    <td class="text-center">{{item.type}} <span class='text-muted'><small>[{{ item.population }}]</small></span></td>
+                    <td class="px-3">{{ item.martricName }}</td>
+                    <td class="text-center">
+                      {{ item.type }}
+                      <span class="text-muted"
+                        ><small>[{{ item.population }}]</small></span
+                      >
+                    </td>
                     <td class="text-center">{{ item.numerator }}</td>
                     <td class="text-center">{{ item.denominator }}</td>
                     <td>
-                      <span class="fs-13 text-primary" *ngIf="item.denominator !=='-'"
+                      <span
+                        class="fs-13 text-primary"
+                        *ngIf="item.denominator !== '-'"
                         >{{ item.pecentage
                         }}{{ item.targetTypeSign == "%" ? "%" : "" }}</span
                       >
-                      <div class="progress progress-sm" *ngIf="item.denominator !=='-'">
+                      <div
+                        class="progress progress-sm"
+                        *ngIf="item.denominator !== '-'"
+                      >
                         <div
-                          class="progress-bar"   *ngIf="item.pecentage <= 100"
+                          class="progress-bar"
+                          *ngIf="item.pecentage <= 100"
                           [ngClass]="[
                             'wp-' + item.pecentage,
                             item.isTargetAchive === true
@@ -139,23 +161,27 @@
                           ]"
                         ></div>
                         <div
-                        class="progress-bar"   *ngIf="item.pecentage > 100"
-                        [ngClass]="[
-                          'wp-100',
-                          item.isTargetAchive === true
-                            ? 'bg-success'
-                            : 'bg-danger'
-                        ]"
-                      ></div>
-                       
+                          class="progress-bar"
+                          *ngIf="item.pecentage > 100"
+                          [ngClass]="[
+                            'wp-100',
+                            item.isTargetAchive === true
+                              ? 'bg-success'
+                              : 'bg-danger'
+                          ]"
+                        ></div>
                       </div>
-                      <span class="fs-11 " *ngIf="item.targetTypeSign == '='"
-                        ><b>TARGET {{ item.targetFormula
-                        }}{{ item.targetTypeSign }} {{ item.target }}</b></span
+                      <span class="fs-11" *ngIf="item.targetTypeSign == '='"
+                        ><b
+                          >TARGET {{ item.targetFormula
+                          }}{{ item.targetTypeSign }} {{ item.target }}</b
+                        ></span
                       >
                       <span class="fs-11" *ngIf="item.targetTypeSign == '%'"
-                        ><b>TARGET {{ item.targetFormula }} {{ item.target
-                        }}{{ item.targetTypeSign }}</b></span
+                        ><b
+                          >TARGET {{ item.targetFormula }} {{ item.target
+                          }}{{ item.targetTypeSign }}</b
+                        ></span
                       >
                     </td>
                     <td class="text-center">
@@ -173,7 +199,8 @@
                       </a-->
                     </td>
                     <td class="text-center">
-                      <a *ngIf="item.population !== '0' "
+                      <a
+                        *ngIf="item.population !== '0'"
                         href="javascript: void(0);"
                         (click)="openReport(item)"
                         class="btn btn-outline-primary border-0 ms-2"

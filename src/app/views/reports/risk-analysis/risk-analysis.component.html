@@ -56,11 +56,20 @@
             </div>
           </div>
           <div class="col-12 col-md-2 p-0 text-center">
-            <img
-              src="../../../../assets/images/risk-analysis.png"
-              alt="Patient Risk Stratification Analysis"
-              class="mt-md-3"
-            />
+            <span class="light-theme-img">
+              <img
+                src="../../../../assets/images/risk-analysis.png"
+                alt="Patient Risk Stratification Analysis"
+                class="w-100 h-100"
+              />
+            </span>
+            <span class="dark-theme-img">
+              <img
+                src="../../../../assets/images/risk-analysis-dark.png"
+                alt="Patient Risk Stratification Analysis"
+                class="w-100 h-100"
+              />
+            </span>
           </div>
         </div>
       </div>
@@ -112,9 +121,8 @@
           <div class="col-12 col-md-4">
             <div class="card p-4">
               <div class="d-flex">
-
                 <div class="notifyimg bg-info">
-                 <i class="fa fa-circle"></i>
+                  <i class="fa fa-circle"></i>
                 </div>
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
@@ -130,9 +138,7 @@
                         <div class="text-dark fw-bold fs-22 lh-sm">26</div>
                       </div>
                     </div>
-
                   </div>
-                  
                 </div>
               </div>
             </div>
@@ -161,8 +167,10 @@
           ></app-progress-bar-chart-widget>
         </div>
       </div>
-      <app-heatmaps [patientByStageKeys]="patientByStageKeys"
-        [patientByRiskCategoryKeys]="patientByRiskCategoryKeys"></app-heatmaps>
+      <app-heatmaps
+        [patientByStageKeys]="patientByStageKeys"
+        [patientByRiskCategoryKeys]="patientByRiskCategoryKeys"
+      ></app-heatmaps>
     </div>
   </div>
 </div>
