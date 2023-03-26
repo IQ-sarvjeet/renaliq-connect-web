@@ -214,6 +214,7 @@
               placeholder="Enter File Name"
               id="searchPatient"
               class="form-control w-50"
+              [(ngModel)]="fileNameExport"
             />
             <input
               type="text"
@@ -222,14 +223,15 @@
               class="form-control"
               readonly
             />
-            <button class="btn btn-secondary" type="button">Export</button>
+            <button class="btn btn-secondary" type="button"
+              (click)="submitExport()">Export</button>
           </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4" *ngIf="exportStatus">
           <h4 class="mb-2">Report Already Submitted</h4>
 
-          <div class="progress h-6 mb-2 fs-16">
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'submitted'">
             <div
               class="progress-bar progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -241,7 +243,7 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16">
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'inprogress'">
             <div
               class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -253,7 +255,7 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16">
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'approved'">
             <div
               class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -265,7 +267,7 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16">
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'rejected'">
             <div
               class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"
               role="progressbar"

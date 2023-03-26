@@ -54,6 +54,8 @@ export class PatientHeaderComponent {
       console.log('onClose:', event);
     }
   };
+  fileNameExport: string = '';
+  exportStatus: string = ''
   constructor(  private _interactionService: InteractionService, private patientService: PatientService){
 
   }
@@ -74,11 +76,11 @@ export class PatientHeaderComponent {
   submit(){
   this._interactionService.setPatientFilter(this.filter);
   }
-  exportSummary() {
-    this.patientService.apiPatientSummaryExportGet().subscribe({
-      next: (response: any) => {
-        console.log('response:', response);
-      }
-    });
+  submitExport() {
+    // this.patientService.apiPatientSummaryExportGet().subscribe({
+    //   next: (response: any) => {
+    //     console.log('submit export:', response);
+    //   }
+    // })
   }
 }
