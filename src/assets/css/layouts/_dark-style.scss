@@ -2671,6 +2671,7 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
   .modal-backdrop {
     background-color: #000;
+    opacity: 0.75;
   }
   .modal-header {
     border-bottom: 1px solid $border-dark;
@@ -4824,8 +4825,15 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
 }
 .dark-mode {
-  .btn-secondary {
+  .btn-secondary,
+  .btn-dark {
+    background: #2684ff !important;
     color: #fff !important;
+
+    &:hover,
+    &:focus {
+      background: #1c7da7 !important;
+    }
   }
   #line-chart {
     text {
@@ -6830,6 +6838,22 @@ body.dark-mode::-webkit-scrollbar-thumb {
   }
 }
 .dark-mode {
+  .text-primary {
+    color: #2684ff !important;
+    fill: #2684ff !important;
+  }
+  .dark-theme-img {
+    display: inline;
+  }
+  .light-theme-img {
+    display: none;
+  }
+  .highcharts-background {
+    fill: transparent !important;
+  }
+  .highcharts-root text {
+    fill: #fff !important;
+  }
   .mbsc-ios.mbsc-textfield-wrapper-underline {
     background: transparent;
   }
