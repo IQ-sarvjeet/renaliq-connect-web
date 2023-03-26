@@ -17,8 +17,10 @@
         class="p-1 text-secondary fs-16 align-middle"
         ><i class="fa fa-filter"></i
       ></a>
-      <a href="javascript: void(0)" 
-        (click)="exportSummary()" 
+      <a
+        href="javascript: void(0)"
+        data-bs-target="#exportFilter"
+        data-bs-toggle="modal"
         class="btn btn-outline-secondary ms-3"
         ><i class="icon icon-share-alt me-1"></i> Export</a
       >
@@ -184,6 +186,50 @@
         >
           Update
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal fade" id="exportFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Export Patient Report</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row mb-4">
+          <div class="col-6">
+            <label for="stage" class="text-gray mb-1">File Name</label>
+            <input
+              type="text"
+              name="text"
+              placeholder="Enter File Name"
+              id="searchPatient"
+              class="form-control"
+            />
+          </div>
+          <div class="col-3">
+            <label for="riskCategory" class="text-gray mb-1">File Type</label>
+            <input
+              type="text"
+              name="text"
+              value=".xls"
+              class="form-control"
+              readonly
+            />
+          </div>
+          <div class="col-3">
+            <label for="riskCategory" class="text-gray mb-1">&nbsp;</label>
+            <button class="btn btn-secondary btn-block py-2 lh-15">
+              Export
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
