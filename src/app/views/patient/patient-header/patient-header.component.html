@@ -59,7 +59,7 @@
       </div>
       <div class="modal-body">
         <div>
-          <label for="searchPatient" class="text-gray mb-1">Patient</label>
+          <label for="searchPatient" class="mb-1">Patient</label>
           <input
             type="text"
             name="text"
@@ -71,7 +71,7 @@
         </div>
         <div class="form-row mt-4">
           <div class="col-6">
-            <label for="stage" class="text-gray mb-1">Stage</label>
+            <label for="stage" class="mb-1">Stage</label>
             <select
               class="form-select"
               [(ngModel)]="filter.patientFilter.stage"
@@ -87,9 +87,7 @@
             </select>
           </div>
           <div class="col-6">
-            <label for="riskCategory" class="text-gray mb-1"
-              >Risk Category</label
-            >
+            <label for="riskCategory" class="mb-1">Risk Category</label>
             <select
               class="form-select"
               [(ngModel)]="filter.patientFilter.riskCategory"
@@ -104,7 +102,7 @@
         </div>
         <div class="form-row mt-4">
           <div class="col-6">
-            <label for="careMember" class="text-gray mb-1">Care Member</label>
+            <label for="careMember" class="mb-1">Care Member</label>
             <input
               type="text"
               name="text"
@@ -115,7 +113,7 @@
             />
           </div>
           <div class="col-6">
-            <label for="status" class="text-gray mb-1">Status</label>
+            <label for="status" class="mb-1">Status</label>
             <select
               class="form-select"
               [(ngModel)]="filter.patientFilter.status"
@@ -131,7 +129,7 @@
 
         <div class="form-row mt-4">
           <div class="col-6">
-            <label for="Assignment" class="text-gray mb-1">Assignment</label>
+            <label for="Assignment" class="mb-1">Assignment</label>
             <div class="input-group">
               <mbsc-datepicker
                 class="form-control fs-12"
@@ -151,7 +149,7 @@
             </div>
           </div>
           <div class="col-6">
-            <label for="Discharge" class="text-gray mb-1">Discharge</label>
+            <label for="Discharge" class="mb-1">Discharge</label>
             <div class="input-group input-group-lg">
               <!-- value="13 Sep 22 - 20 Sep 22" -->
               <!-- [(ngModel)]="filter.patientFilter.discharge" -->
@@ -202,19 +200,21 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="form-row mb-4">
-          <div class="col-6">
-            <label for="stage" class="text-gray mb-1">File Name</label>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla varius
+          quis tortor eu ultricies. Mauris laoreet eleifend leo ed efficitur
+          velit vitae velit iaculis fringilla consectetur adipiscing.
+        </p>
+        <div class="mb-4">
+          <label for="stage" class="mb-1">File Name</label>
+          <div class="input-group mb-4">
             <input
               type="text"
               name="text"
               placeholder="Enter File Name"
               id="searchPatient"
-              class="form-control"
+              class="form-control w-50"
             />
-          </div>
-          <div class="col-3">
-            <label for="riskCategory" class="text-gray mb-1">File Type</label>
             <input
               type="text"
               name="text"
@@ -222,12 +222,59 @@
               class="form-control"
               readonly
             />
+            <button class="btn btn-secondary" type="button">Export</button>
           </div>
-          <div class="col-3">
-            <label for="riskCategory" class="text-gray mb-1">&nbsp;</label>
-            <button class="btn btn-secondary btn-block py-2 lh-15">
-              Export
-            </button>
+        </div>
+
+        <div class="mb-4">
+          <h4 class="mb-2">Report Already Submitted</h4>
+
+          <div class="progress h-6 mb-2 fs-16">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Submitted for Review
+            </div>
+          </div>
+
+          <div class="progress h-6 mb-2 fs-16">
+            <div
+              class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              In Process
+            </div>
+          </div>
+
+          <div class="progress h-6 mb-2 fs-16">
+            <div
+              class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Approved
+            </div>
+          </div>
+
+          <div class="progress h-6 mb-2 fs-16">
+            <div
+              class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Rejected
+            </div>
           </div>
         </div>
       </div>
