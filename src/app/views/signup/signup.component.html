@@ -3,29 +3,49 @@
     class="d-none d-md-flex wrap-figure100 col-md-6 col-lg-7 col-xl-8 px-0 bg-gray-300"
   >
     <div>
-      <img
-        class="wrap-figure100__img"
-        src="../../../assets/images/login.jpg"
-        alt="More Lives, Better Lived."
-      />
-      <div class="px-4 py-2">{{messages.COPYRIGHT_MESSAGE}}</div>
+      <span class="light-theme-img">
+        <img
+          class="wrap-figure100__img"
+          src="../../../assets/images/login.jpg"
+          alt="More Lives, Better Lived."
+        />
+      </span>
+      <span class="dark-theme-img">
+        <img
+          class="wrap-figure100__img"
+          src="../../../assets/images/login-dark.jpg"
+          alt="More Lives, Better Lived."
+        />
+      </span>
+      <div class="px-4 py-2">{{ messages.COPYRIGHT_MESSAGE }}</div>
     </div>
   </div>
   <div class="col-md-6 col-lg-5 col-xl-4 px-xl-7 px-6 bg-white">
     <div>
       <div class="pt-7 pb-3">
-        <img
-          class="img-fluid"
-          src="../../../assets/images/brand/renalliqconnect.png"
-          alt="renallIQconnect"
-        />
+        <span class="light-theme-img">
+          <img
+            class="img-fluid"
+            src="../../../assets/images/brand/renalliqconnect.png"
+            alt="renallIQconnect"
+          />
+        </span>
+        <span class="dark-theme-img">
+          <img
+            class="img-fluid"
+            src="../../../assets/images/brand/renalliqconnect-dark.png"
+            alt="renallIQconnect"
+          />
+        </span>
       </div>
       <hr class="mb-0" />
     </div>
     <form class="aside-section validate-form">
       <div class="flex-fill pt-4 pb-6">
         <div class="pb-3">
-          <h2 class="fw-bold">{{messages.WELCOME_TEXT}}<br />{{messages.PRODUCTNAME}}</h2>
+          <h2 class="fw-bold">
+            {{ messages.WELCOME_TEXT }}<br />{{ messages.PRODUCTNAME }}
+          </h2>
         </div>
         <div class="form-row">
           <div class="col-6">
