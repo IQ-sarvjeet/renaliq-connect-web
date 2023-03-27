@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 export class ReportsGridComponent implements OnInit  {
   @Input() metricId : any;
   @Input() periodId : any;
+  moment = moment;
   _subscriptions = new Subscription();
   errorMsg: any = "";
   showLoading: boolean = false;
