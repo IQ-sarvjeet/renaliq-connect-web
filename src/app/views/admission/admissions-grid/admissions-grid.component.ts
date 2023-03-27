@@ -53,7 +53,7 @@ export class AdmissionsGridComponent {
   }
 
   getFormatDate(dob:Date){
-    return moment(dob).format('YYYY/MM/DD');
+    return moment(dob).format('MM/DD/YYYY');
   }
   getAge(dob:any){
     return moment().diff(dob, 'years');
