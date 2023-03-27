@@ -70,6 +70,8 @@ export class RiskAnalysisComponent {
   };
   patientByStageKeys: any = [];
   patientByRiskCategoryKeys: any = [];
+  genderData: any = [];
+  loadingGenders: boolean = false;
   constructor(private patientService: PatientService) {}
   ngOnInit() {
     this.patientService.apiPatientCountGet().subscribe((response: any) => {
@@ -101,6 +103,13 @@ export class RiskAnalysisComponent {
           this.patientByRiskCategoryKeys.push(item.key);
         })
         console.log('this.patientByRiskCategoryKeys::::', this.patientByRiskCategoryKeys);
+      }
+    })
+    this.loadingGenders = true;
+    this.patientService.apiPatientSummaryGenderGet().subscribe({
+      next: (genderData: any) => {
+        this.genderData = genderData;
+        this.loadingGenders = false;
       }
     })
   }
