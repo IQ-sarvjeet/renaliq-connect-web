@@ -25,7 +25,7 @@ export class CareMemberComponent {
         Object.keys(response).forEach((matrix: any) => {
           list = [...list, ...response[matrix].metrices]
         })
-        const data = list.filter((item: any) => item.isTargetAchive);
+        const data = list.filter((item: any) => item.isTargetAchive === false);
         this.careGapList = data;
       }
     })

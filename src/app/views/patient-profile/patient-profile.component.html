@@ -15,30 +15,30 @@
             <app-patient-profile-nav></app-patient-profile-nav>
             <div class="tab-content">
               <div class="border-top tab-pane show active" id="Summary">
-                <!-- <div class="card-body px-0">
+                <div class="card-body px-0">
                   <div class="d-flex">
                     <div class="px-5">
                       <div class="fs-12 op-0-75">Kidney State</div>
-                      <div class="fw-semibold">-</div>
+                      <div class="fw-semibold">{{patientStatus.stage}}</div>
                     </div>
                     <div class="px-5 border-start">
-                      <div class="fs-12 op-0-75">Modality Type</div>
-                      <div class="fw-semibold">-</div>
+                      <div class="fs-12 op-0-75">Primary Chronic Condition</div>
+                      <div class="fw-semibold">{{patientStatus.primaryChronicCondition}}</div>
                     </div>
                     <div class="px-5 border-start">
-                      <div class="fs-12 op-0-75">EGFR State</div>
-                      <div class="fw-semibold">-</div>
+                      <div class="fs-12 op-0-75">Payer</div>
+                      <div class="fw-semibold">{{patientStatus.payer}}</div>
                     </div>
                     <div class="px-5 border-start">
-                      <div class="fs-12 op-0-75">Transplant</div>
-                      <div class="fw-semibold">-</div>
+                      <div class="fs-12 op-0-75">LOB</div>
+                      <div class="fw-semibold">{{patientStatus.lob}}</div>
                     </div>
-                    <div class="px-5 border-start">
+                    <!-- <div class="px-5 border-start">
                       <div class="fs-12 op-0-75">Access Type</div>
                       <div class="fw-semibold">-</div>
-                    </div>
+                    </div> -->
                   </div>
-                </div> -->
+                </div>
                 <!-- <div class="card-body">
                   <app-transtion-care></app-transtion-care>
                 </div> -->

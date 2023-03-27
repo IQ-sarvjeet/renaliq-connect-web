@@ -3,8 +3,11 @@ import { Component, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import { PatientService } from 'src/app/api-client';
 import { FilterModel } from 'src/app/interfaces/filter.model';
+import { EventService } from 'src/app/services/event.service';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
+
+declare let $: any;
 
 @Component({
   selector: 'app-patient-header',
@@ -59,7 +62,7 @@ export class PatientHeaderComponent {
   exportStatus: string = ''
   constructor(  private _interactionService: InteractionService,
     private patientService: PatientService,
-    private httpClient: HttpClient){
+    private eventService: EventService){
 
   }
   filter: FilterModel = {
@@ -90,8 +93,12 @@ export class PatientHeaderComponent {
   submitExport() {
     this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
       next: (response: any) => {
-        console.log('submit export:', response);
-        this.exportStatus = 'reportsumitted';
+        $('#exportFilter').modal('hide');
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Report submitted successfully.`,
+          type: 'success',
+        });
       }
     })
   }
