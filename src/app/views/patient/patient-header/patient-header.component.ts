@@ -96,7 +96,7 @@ export class PatientHeaderComponent {
         $('#exportFilter').modal('hide');
         this.eventService.openToaster({
           showToster: true,
-          message: `Report submitted successfully.`,
+          message: `Patient - Export requested submitted successfully.`,
           type: 'success',
         });
       }
