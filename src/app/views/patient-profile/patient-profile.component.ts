@@ -43,6 +43,19 @@ export class PatientProfileComponent {
     phoneNumber: null,
     npEligibilityStatus: ""
   }
+  patientStatus: any = {
+    carePlanStatus: "",
+    dischargeDate: null,
+    isEngaged: true,
+    lastAssessmentDate: null,
+    lob: "",
+    payer: "",
+    primaryChronicCondition: "",
+    riskCagtegory: "",
+    riskCategory: "",
+    stage: "",
+    status:null
+  }
   private routerEventSubscription: any;
   routeState: any = {
     patientId: null,
@@ -67,6 +80,19 @@ export class PatientProfileComponent {
       this.profileNotFound = true;
       return;
     };
+    this.patientService.apiPatientStatusEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
+      next: (details: any) => {
+        if(!details) {
+          this.profileNotFound = true;
+        } else {
+          this.profileNotFound = false;
+        }
+        this.patientStatus = details;
+      },
+      error: (error: any) => {
+        this.profileNotFound = true;
+      }
+    })
     this.patientService.apiPatientDetailEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
       next: (details: any) => {
         if(!details) {

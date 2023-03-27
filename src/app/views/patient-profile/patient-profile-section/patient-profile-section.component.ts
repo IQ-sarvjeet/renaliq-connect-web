@@ -14,7 +14,8 @@ import { environment } from 'src/environments/environment';
 })
 export class PatientProfileSectionComponent implements OnInit  {
   moment = moment;
-  @Input() profileDetail: any = {}
+  @Input() profileDetail: any = {};
+  @Input() patientStatus: any = {};
   carePlans: any = [];
   routeState: any = {
     patientId: null,
@@ -41,6 +42,7 @@ export class PatientProfileSectionComponent implements OnInit  {
       next: (response: any) => {
         this.loadingCarePlan = false;
         this.carePlans = response;
+        console.log('patientDetails:', response);
       },
       error: () => {
         this.loadingCarePlan = false;
@@ -87,5 +89,10 @@ export class PatientProfileSectionComponent implements OnInit  {
     setTimeout(() => {
       window.URL.revokeObjectURL(url);
     }, 1000);
+  }
+  getDays(assessmentDate: any) {
+    const diff = new Date().getTime() - new Date(assessmentDate).getTime();
+    const daydiff = (diff / (1000*60*60*24)).toFixed(0);
+    return `${daydiff} ${Number(daydiff) > 1 ? 'Days': 'Day'}`;
   }
 }
