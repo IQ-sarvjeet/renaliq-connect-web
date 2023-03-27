@@ -9,7 +9,7 @@
     No Care Gaps found!
   </div>
   <ng-container *ngFor="let careGap of careGapList">
-    <div class="card-body pt-3" *ngIf="careGap.isTargetAchive">
+    <div class="card-body pt-3">
       <div>{{careGap.martricName}}</div>
       <div class="mt-1">
         <span class="fs-11 text-danger" *ngIf="careGap.denominator !=='-'">

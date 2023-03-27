@@ -229,17 +229,6 @@
         </div>
 
         <div class="mb-4" *ngIf="exportStatus">
-          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'reportsumitted'">
-            <div
-              class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-            >
-              Report submitted successfully.
-            </div>
-          </div>
           <!-- <h4 class="mb-2">Report Already Submitted</h4> -->
 
           <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'submitted'">

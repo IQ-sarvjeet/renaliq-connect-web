@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { Subscription } from 'rxjs';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
@@ -42,7 +42,8 @@ export class ReportsGridComponent implements OnInit  {
   };
 
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
-    private _interactionService: InteractionService) { }
+    private _interactionService: InteractionService,
+    private route: Router) { }
 
   ngOnInit(): void {
     this.filterModel.filter.metricId=this.metricId;
@@ -69,7 +70,6 @@ export class ReportsGridComponent implements OnInit  {
     this.showLoading = true;
     try {
       var result =await this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientListPost(this.filterModel).toPromise();
-      console.log('result:::', result);
       this.list = result?.data;
       this.gridData.items = result?.data;
       this.gridData.pagingModel = result?.pagingModel;
@@ -92,6 +92,13 @@ export class ReportsGridComponent implements OnInit  {
   }
   reloadPage() {
     window.location.reload();
+  }
+  openProfile(patient: any) {
+    this.route.navigate([`/patient-profile/${patient.patientId}`, {
+        patientId: patient.patientId ? patient.patientId: '',
+        enrollmentNo: patient.enrollmentNo ? patient.enrollmentNo: ''
+      }
+    ])
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
