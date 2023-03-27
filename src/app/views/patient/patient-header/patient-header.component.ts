@@ -80,9 +80,10 @@ export class PatientHeaderComponent {
   this._interactionService.setPatientFilter(this.filter);
   }
   exportClickHandler() {
-    this.httpClient.get(`${environment.baseApiUrl}api/Patient/summary/exportpendingstatus`).subscribe({
+    this.patientService.apiPatientSummaryExportstatusGet().subscribe({
       next: (response: any) => {
-        console.log('export response:', response);
+        // console.log('submit export:', response);
+        console.log('exportClickHandler', response);
       }
     })
   }
