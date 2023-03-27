@@ -724,13 +724,18 @@ export class PatientService {
     /**
      * 
      * 
+     * @param filename 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPatientSummaryExportGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiPatientSummaryExportGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiPatientSummaryExportGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiPatientSummaryExportGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiPatientSummaryExportFilenameGet(filename: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryExportFilenameGet(filename: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryExportFilenameGet(filename: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryExportFilenameGet(filename: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (filename === null || filename === undefined) {
+            throw new Error('Required parameter filename was null or undefined when calling apiPatientSummaryExportFilenameGet.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -746,7 +751,42 @@ export class PatientService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/export`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/export/${encodeURIComponent(String(filename))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientSummaryExportstatusGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientSummaryExportstatusGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientSummaryExportstatusGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientSummaryExportstatusGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/summary/exportstatus`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

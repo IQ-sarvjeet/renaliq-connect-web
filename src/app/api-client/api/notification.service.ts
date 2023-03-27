@@ -127,6 +127,46 @@ export class NotificationService {
     /**
      * 
      * 
+     * @param messagefromdate 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiNotificationListMessagefromdateGet(messagefromdate: Date, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationListMessagefromdateGet(messagefromdate: Date, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationListMessagefromdateGet(messagefromdate: Date, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationListMessagefromdateGet(messagefromdate: Date, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (messagefromdate === null || messagefromdate === undefined) {
+            throw new Error('Required parameter messagefromdate was null or undefined when calling apiNotificationListMessagefromdateGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/list/${encodeURIComponent(String(messagefromdate))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -150,6 +190,46 @@ export class NotificationService {
         ];
 
         return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/read  `,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param notificationId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (notificationId === null || notificationId === undefined) {
+            throw new Error('Required parameter notificationId was null or undefined when calling apiNotificationUpdateReadstatusNotificationIdGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/update/readstatus/${encodeURIComponent(String(notificationId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
