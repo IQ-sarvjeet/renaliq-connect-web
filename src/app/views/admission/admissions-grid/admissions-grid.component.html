@@ -294,7 +294,7 @@
           </div>
         </td>
       
-        <td  class="text-center">{{getFormatDate(gridRow.dob)}} <strong class="fw-semibold"> ({{getAge(gridRow.dob)}})</strong></td>
+        <td  class="text-center">{{moment(getFormatDate(gridRow.dob)).format("MM/DD/YYYY")}} <strong class="fw-semibold"> ({{getAge(gridRow.dob)}})</strong></td>
        
         <td class="text-center">{{ gridRow.stage }}</td>
         <td>{{ gridRow.caseCategory }}</td>
