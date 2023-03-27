@@ -80,17 +80,19 @@ export class PatientHeaderComponent {
   this._interactionService.setPatientFilter(this.filter);
   }
   exportClickHandler() {
-    this.httpClient.get(`${environment.baseApiUrl}api/Patient/summary/exportpendingstatus`).subscribe({
-      next: (response: any) => {
-        console.log('export response:', response);
-      }
-    })
-  }
-  submitExport() {
-    // this.patientService.apiPatientSummaryExportGet().subscribe({
+    // this.patientService.apiPatientSummaryExportstatusGet().subscribe({
     //   next: (response: any) => {
-    //     console.log('submit export:', response);
+    //     // console.log('submit export:', response);
+    //     console.log('exportClickHandler', response);
     //   }
     // })
+  }
+  submitExport() {
+    this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
+      next: (response: any) => {
+        console.log('submit export:', response);
+        this.exportStatus = 'reportsumitted';
+      }
+    })
   }
 }
