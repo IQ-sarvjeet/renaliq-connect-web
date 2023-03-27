@@ -109,26 +109,28 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
-            <div class="card p-4">
+          <div class="col-12 col-md-4" style="position: relative;">
+            <app-spinner *ngIf="loadingGenders"></app-spinner>
+            <div class="card p-4" *ngIf="!loadingGenders">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
                   <i class="fa fa-circle"></i>
                 </div>
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-50">
+                    <div class="flex-fill border-sm-end px-4 w-50" 
+                      *ngFor="let gender of genderData">
                       <div>
-                        Male
-                        <div class="text-dark fw-bold fs-22 lh-sm">32</div>
+                        {{gender.key === '1' ? 'Male': gender.key === '2'? 'Female': 'Other'}}
+                        <div class="text-dark fw-bold fs-22 lh-sm">{{gender.value}}</div>
                       </div>
                     </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                    <!-- <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
                       <div>
                         Female
                         <div class="text-dark fw-bold fs-22 lh-sm">26</div>
                       </div>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
               </div>

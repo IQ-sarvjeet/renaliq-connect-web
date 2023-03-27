@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import { PatientService } from 'src/app/api-client';
@@ -56,7 +57,9 @@ export class PatientHeaderComponent {
   };
   fileNameExport: string = '';
   exportStatus: string = ''
-  constructor(  private _interactionService: InteractionService, private patientService: PatientService){
+  constructor(  private _interactionService: InteractionService,
+    private patientService: PatientService,
+    private httpClient: HttpClient){
 
   }
   filter: FilterModel = {
@@ -75,6 +78,13 @@ export class PatientHeaderComponent {
 
   submit(){
   this._interactionService.setPatientFilter(this.filter);
+  }
+  exportClickHandler() {
+    this.httpClient.get(`${environment.baseApiUrl}api/Patient/summary/exportpendingstatus`).subscribe({
+      next: (response: any) => {
+        console.log('export response:', response);
+      }
+    })
   }
   submitExport() {
     // this.patientService.apiPatientSummaryExportGet().subscribe({
