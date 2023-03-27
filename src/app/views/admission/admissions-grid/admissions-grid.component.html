@@ -285,7 +285,8 @@
               style="background-image: url(../assets/images/users/1.jpg)"
             ></span> -->
             <div class="user-details ms-2">
-              <a class="text-secondary" 
+              <a
+                class="text-secondary"
                 href="javascript: void(0)"
                 (click)="redirectOnPatientProfileHandler(gridRow)"
                 ><h6 class="mb-0">{{ gridRow.fullName }}</h6></a
@@ -293,18 +294,29 @@
             </div>
           </div>
         </td>
-      
-        <td  class="text-center">{{moment(getFormatDate(gridRow.dob)).format("MM/DD/YYYY")}} <strong class="fw-semibold"> ({{getAge(gridRow.dob)}})</strong></td>
-       
+
+        <td class="text-center">
+          {{ moment(getFormatDate(gridRow.dob)).format("MM/DD/YYYY") }}
+          <strong class="fw-semibold"> ({{ getAge(gridRow.dob) }})</strong>
+        </td>
+
         <td class="text-center">{{ gridRow.stage }}</td>
         <td>{{ gridRow.caseCategory }}</td>
-        <td>{{ gridRow.diagnosis }}</td>
-        <td>{{ gridRow.facilityName }}</td>
+        <td class="text-wrap">{{ gridRow.diagnosis }}</td>
+        <td class="text-wrap">{{ gridRow.facilityName }}</td>
         <td class="text-center">
-          {{ gridRow.admissionDate ? moment(gridRow.admissionDate).format("MM/DD/YYYY"): '' }}
+          {{
+            gridRow.admissionDate
+              ? moment(gridRow.admissionDate).format("MM/DD/YYYY")
+              : ""
+          }}
         </td>
         <td class="text-center">
-          {{ gridRow.dischargeDate? moment(gridRow.dischargeDate).format("MM/DD/YYYY"): '' }}
+          {{
+            gridRow.dischargeDate
+              ? moment(gridRow.dischargeDate).format("MM/DD/YYYY")
+              : ""
+          }}
         </td>
         <!-- <td class="text-center">
           <a
