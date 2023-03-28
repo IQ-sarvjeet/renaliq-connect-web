@@ -50,7 +50,11 @@
             </div>
           </div>
         </td> -->
-        <td >{{item.enrollmentNo}}</td>
+        <td>
+          <a class="text-secondary" href="javascript: void(0);"
+            (click)="openProfile(item)"
+            >{{item.enrollmentNo}}</a>
+        </td>
         <td>
           <div class="d-flex align-items-center">
             <!-- <span

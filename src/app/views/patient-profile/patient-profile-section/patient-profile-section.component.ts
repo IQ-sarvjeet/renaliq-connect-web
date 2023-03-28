@@ -17,7 +17,7 @@ export class PatientProfileSectionComponent implements OnInit  {
   @Input() profileDetail: any = {};
   @Input() patientStatus: any = {};
   carePlans: any = [];
-  routeState: any = {
+  @Input() routeState: any = {
     patientId: null,
     enrollmentNo: null
   }
@@ -29,20 +29,19 @@ export class PatientProfileSectionComponent implements OnInit  {
     private _localStorage: LocalStorageService,
     private elementRef: ElementRef,
     private renderer: Renderer2) {
-    this.routeState = this.router.getCurrentNavigation()?.extras.state;
-    this.patientDetails(this.routeState);
+    // this.routeState = this.router.getCurrentNavigation()?.extras.state;
+    // this.patientDetails(this.routeState);
   }
   ngOnInit() {
     const {id} = this.activatedRoute.snapshot.params;
   }
-  patientDetails(routeState: any) {
-    if(!routeState || !routeState.enrollmentNo) return;
+  patientDetails() {
+    if(!this.routeState || !this.routeState.enrollmentNo) return;
     this.loadingCarePlan = true;
-    this.patientService.apiPatientCareplansEnrollmentNumberGet(routeState.enrollmentNo).subscribe({
+    this.patientService.apiPatientCareplansEnrollmentNumberGet(this.routeState.enrollmentNo).subscribe({
       next: (response: any) => {
         this.loadingCarePlan = false;
         this.carePlans = response;
-        console.log('patientDetails:', response);
       },
       error: () => {
         this.loadingCarePlan = false;
