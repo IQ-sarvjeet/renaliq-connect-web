@@ -3,6 +3,7 @@ import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
 import { PatientService } from 'src/app/api-client';
+import { EventService } from 'src/app/services/event.service';
 import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
@@ -28,7 +29,8 @@ export class PatientProfileSectionComponent implements OnInit  {
     private httpClient: HttpClient,
     private _localStorage: LocalStorageService,
     private elementRef: ElementRef,
-    private renderer: Renderer2) {
+    private renderer: Renderer2,
+    private eventService: EventService) {
     // this.routeState = this.router.getCurrentNavigation()?.extras.state;
     // this.patientDetails(this.routeState);
   }
@@ -60,6 +62,14 @@ export class PatientProfileSectionComponent implements OnInit  {
     this.httpClient.get(`${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`, requestOptions).subscribe({
       next: (response: any) => {
         console.log('response:', response);
+        if (response.size === 0) {
+          this.eventService.openToaster({
+            showToster: true,
+            message: `Error in downloading file.`,
+            type: 'warning',
+          });
+          return;
+        }
         const blob = new Blob([response], {
           type: 'data:application/pdf;base64',
         });
