@@ -23,8 +23,8 @@
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
-        <div class="fs-12 op-0-75">Status</div>
-        <div>{{ profileDetail.status }}</div>
+        <div class="fs-12 op-0-75">Enrollement No</div>
+        <div>{{ profileDetail.enrollmentNumber }}</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Risk Category</div>
@@ -33,11 +33,11 @@
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
-        <div class="fs-12 op-0-75">Enrollement No</div>
-        <div>{{ profileDetail.enrollmentNumber }}</div>
+        <div class="fs-12 op-0-75">Status</div>
+        <div>{{ profileDetail.status }}</div>
       </div>
       <div class="col-6">
-        <div class="fs-12 op-0-75">Date Of Birth (Age)</div>
+        <div class="fs-12 op-0-75">Date Of Birth</div>
         <div>
           {{
             profileDetail.dateofBirth
@@ -54,7 +54,8 @@
       </div> -->
       <div class="col-6">
         <div class="fs-12 op-0-75">Engaged Status</div>
-        <div>{{patientStatus.isEngaged}}</div>
+        <div *ngIf="patientStatus.isEngaged == true">Yes</div>
+        <div *ngIf="patientStatus.isEngaged == false">-</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Days since last assessed</div>
@@ -73,7 +74,7 @@
     </div> -->
   </div>
 </div>
-<div class="text-center mb-4">
+<div class="text-center mb-4" *ngIf="patientStatus.carePlanStatus == '1'">
   <a
     data-bs-target="#carePlanFilter"
     data-bs-toggle="modal"

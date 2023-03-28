@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net/',
-  //baseApiUrl: 'http://localhost:5294',
+  //baseApiUrl: 'https://localhost:5001',
   appUrl: 'https://localhost:4200',
   pageSize: 10,
   clientId: 'WebUI.Admin',
