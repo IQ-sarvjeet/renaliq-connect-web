@@ -64,7 +64,7 @@ export class PatientListComponent {
           this.eventService.openToaster({
             showToster: true,
             message: `Error in downloading file.`,
-            type: 'warning',
+            type: 'danger',
           });
           return;
         }
