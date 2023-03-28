@@ -200,7 +200,7 @@ export class HeatmapsComponent {
   private initMap(points: any, centerLat: any, centerLng: any): void {
     let map: any, heatmap: any;
     map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-      zoom: 13,
+      zoom: 8,
       center: { lat: centerLat, lng: centerLng },
       mapTypeControl: false,
       streetViewControl: false,

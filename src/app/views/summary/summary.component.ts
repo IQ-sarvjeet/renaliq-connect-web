@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
+import { DataCardInput } from 'src/app/interfaces/data-card';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { Messages } from 'src/app/shared/common-constants/messages';
-import { DataCardInput } from '../../interfaces/data-card';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
 
 declare const $: any;

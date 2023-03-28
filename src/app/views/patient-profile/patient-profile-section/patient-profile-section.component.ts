@@ -66,7 +66,7 @@ export class PatientProfileSectionComponent implements OnInit  {
           this.eventService.openToaster({
             showToster: true,
             message: `Error in downloading file.`,
-            type: 'warning',
+            type: 'danger',
           });
           return;
         }

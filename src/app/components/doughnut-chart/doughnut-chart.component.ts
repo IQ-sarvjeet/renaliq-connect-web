@@ -38,7 +38,7 @@ export class DoughnutChartComponent {
     plotOptions: {
       pie: {
         dataLabels: {
-          enabled: true,
+          enabled: false,
           style: {
             fontWeight: 'bold',
             color: 'black'
