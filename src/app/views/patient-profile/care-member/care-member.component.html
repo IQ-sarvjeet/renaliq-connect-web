@@ -8,9 +8,18 @@
   <div class="card-body pt-3" *ngIf="careGapList.length === 0">
     No Care Gaps found!
   </div>
+  <table class="table text-nowrap m-0 table-bordered table-striped">
+    <tbody class="table-body">
   <ng-container *ngFor="let careGap of careGapList">
-    <div class="card-body pt-3">
-      <div>{{careGap.martricName}}</div>
+    
+      <tr>
+        <td>{{careGap.martricName}}
+          <small class="text-muted">[{{careGap.numerator}}/{{careGap.denominator}}]</small>
+
+        </td>
+      </tr>
+    
+     <!-- <div>{{careGap.martricName}}</div>-->
       <!-- <div class="mt-1">
         <span class="fs-11 text-danger" *ngIf="careGap.denominator !=='-'">
           {{ careGap.pecentage}}{{ careGap.targetTypeSign == "%" ? "%" : "" }}
@@ -41,8 +50,10 @@
           }}{{ careGap.targetTypeSign }}</b>
         </span>
       </div> -->
-    </div>
+   <!-- </div>-->
   </ng-container>
+</tbody>
+</table>
   
   <!-- <div>Information Not Avaiable</div> -->
 </div>
