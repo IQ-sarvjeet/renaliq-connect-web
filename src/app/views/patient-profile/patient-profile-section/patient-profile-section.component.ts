@@ -65,8 +65,8 @@ export class PatientProfileSectionComponent implements OnInit  {
         if (response.size === 0) {
           this.eventService.openToaster({
             showToster: true,
-            message: `Error in downloading file.`,
-            type: 'danger',
+            message: `Error in downloading Care plan.`,
+            type: 'warning',
           });
           return;
         }
@@ -75,7 +75,7 @@ export class PatientProfileSectionComponent implements OnInit  {
         });
         // const url = window.URL.createObjectURL(blob);
         // window.open(url);
-        this.downloadFile(blob, `Somatus Care Plan ${plan.patientActivityId}.pdf`);
+        this.downloadFile(blob, `Somatus-Care-Plan-${plan.patientActivityId}.pdf`);
       }
     })
   }

@@ -13,10 +13,11 @@
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
         <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
         <th class="bg-transparent border-bottom-0 fs-12">CASE CATEGORY</th>
-        <th class="bg-transparent border-bottom-0 fs-12 wp-20">DIAGNOSIS</th>
-        <th class="bg-transparent border-bottom-0 fs-12">FACITLITY NAME</th>
+        
         <th class="bg-transparent border-bottom-0 fs-12">ADMISSION</th>
         <th class="bg-transparent border-bottom-0 fs-12">DISCHARGE</th>
+        <th class="bg-transparent border-bottom-0 fs-12 wp-20">DIAGNOSIS</th>
+        <th class="bg-transparent border-bottom-0 fs-12">FACITLITY NAME</th>
         <!-- <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th> -->
       </tr>
     </thead>
@@ -303,8 +304,7 @@
 
         <td class="text-center">{{ gridRow.stage }}</td>
         <td>{{ gridRow.caseCategory }}</td>
-        <td class="text-wrap1">{{ gridRow.diagnosis }}</td>
-        <td class="text-wrap1">{{ gridRow.facilityName }}</td>
+       
         <td class="text-center">
           {{
             gridRow.admissionDate
@@ -319,6 +319,8 @@
               : ""
           }}
         </td>
+        <td class="text-wrap1">{{ gridRow.diagnosis }}</td>
+        <td class="text-wrap1">{{ gridRow.facilityName }}</td>
         <!-- <td class="text-center">
           <a
             href="#"
