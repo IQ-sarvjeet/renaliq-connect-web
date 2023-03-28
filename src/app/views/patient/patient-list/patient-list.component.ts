@@ -55,7 +55,7 @@ export class PatientListComponent {
     });
 
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-    this.httpClient.get(`${environment.baseApiUrl}api/Patient/careplan/download/${plan.patientActivityId}`, requestOptions).subscribe({
+    this.httpClient.get(`${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`, requestOptions).subscribe({
       next: (response: any) => {
         console.log('response:', response);
         const blob = new Blob([response], {

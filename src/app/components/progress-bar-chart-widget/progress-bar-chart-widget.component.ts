@@ -25,7 +25,7 @@ export class ProgressBarChartWidgetComponent {
   }
   private loadChartData(url: string): void {
     this.showLoading = true;
-    this.httpClient.get(`${environment.baseApiUrl}api/${url}`).subscribe((data: any) => {
+    this.httpClient.get(`${environment.baseApiUrl}/api/${url}`).subscribe((data: any) => {
       if (data) {
         this.chartData = data;
         this.showLoading = false;
