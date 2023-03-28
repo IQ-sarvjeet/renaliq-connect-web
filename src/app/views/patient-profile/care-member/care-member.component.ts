@@ -25,7 +25,7 @@ export class CareMemberComponent {
         Object.keys(response).forEach((matrix: any) => {
           list = [...list, ...response[matrix].metrices]
         })
-        const data = list.filter((item: any) => item.numerator === '0' && item.denominator === '1');
+        const data = list.filter((item: any) => Number(item.numerator) === 0 && Number(item.denominator) === 1);
         this.careGapList = data;
       }
     })
