@@ -5699,6 +5699,10 @@ div.dataTables_wrapper div.dataTables_length label {
   height: 2rem;
 }
 
+.mw-truncate {
+  max-width: 13.75rem;
+}
+
 @media (min-width: 768px) {
   .card-lg {
     .card-body {
