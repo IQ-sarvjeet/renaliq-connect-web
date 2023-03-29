@@ -1,55 +1,68 @@
 <div class="row">
   <div class="col-12 col-md-12">
     <div class="card mb-2">
-      <div class="card-header border-bottom title-submenu  p-2 p-r-0">
-        <div class="col-12 col-lg-6">
-          <h3 class="card-title flex-fill">
-            Patient - Demographics population’s
-          </h3>
-        </div>
-        <div class="col-12 col-lg-6 mt-3 mt-lg-0">
-          <div class="row form-row">
-            <div class="col-12 col-sm-6 col-md-4">
-              <div class="form-floating">
-                <select
-                  id="selectAge"
-                  class="form-select fs-14"
-                  (change)="onAgeChanged($event)"
-                >
-                  <option value="">-- Select Age --</option>
-                  <option value="LessThan65">{{ "<" }} 65</option>
-                  <option value="Between65_74">65-74</option>
-                  <option value="Between75_84">75-84</option>
-                  <option value="GreaterThan85">>85</option>
-                </select>
-                <label for="selectAge">Age</label>
+      <div class="card-header border-bottom title-submenu p-2 d-block">
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <h3 class="card-title pt-3 ms-2 ms-lg-0">
+              Patient - Demographics population’s
+            </h3>
+          </div>
+          <div class="col-12 col-lg-8 mt-3 mt-lg-0">
+            <div class="row form-row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-floating">
+                  <select
+                    id="selectAge"
+                    class="form-select fs-14"
+                    (change)="onAgeChanged($event)"
+                  >
+                    <option value="">-- Select Age --</option>
+                    <option value="LessThan65">{{ "<" }} 65</option>
+                    <option value="Between65_74">65-74</option>
+                    <option value="Between75_84">75-84</option>
+                    <option value="GreaterThan85">>85</option>
+                  </select>
+                  <label for="selectAge">Age</label>
+                </div>
               </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 pt-2 pt-sm-0">
-              <div class="form-floating">
-                <select class="form-select fs-14" id="diseaseState"
-                    (change)="onStageChanged($event)">
+              <div class="col-12 col-sm-6 col-md-4 pt-2 pt-sm-0">
+                <div class="form-floating">
+                  <select
+                    class="form-select fs-14"
+                    id="diseaseState"
+                    (change)="onStageChanged($event)"
+                  >
                     <option value="">-- Select Disease Stage --</option>
-                    <option [value]="stage" *ngFor="let stage of patientByStageKeys">
-                        {{stage}}
+                    <option
+                      [value]="stage"
+                      *ngFor="let stage of patientByStageKeys"
+                    >
+                      {{ stage }}
                     </option>
-                </select>
-                <label for="diseaseState">Disease Stage</label>
+                  </select>
+                  <label for="diseaseState">Disease Stage</label>
+                </div>
               </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 pt-2 pt-md-0">
-              <div class="form-floating">
-                <select class="form-select fs-14" id="riskCategory"
-                    (change)="onRiskCategoryChanged($event)">
+              <div class="col-12 col-sm-6 col-md-4 pt-2 pt-md-0">
+                <div class="form-floating">
+                  <select
+                    class="form-select fs-14"
+                    id="riskCategory"
+                    (change)="onRiskCategoryChanged($event)"
+                  >
                     <option value="">-- Select Risk Category --</option>
-                    <option [value]="risk" *ngFor="let risk of patientByRiskCategoryKeys">
-                        {{risk}}
+                    <option
+                      [value]="risk"
+                      *ngFor="let risk of patientByRiskCategoryKeys"
+                    >
+                      {{ risk }}
                     </option>
-                </select>
-                <label for="riskCategory">Risk Category</label>
+                  </select>
+                  <label for="riskCategory">Risk Category</label>
+                </div>
               </div>
-            </div>
-            <!-- <div class="dropdown">
+              <!-- <div class="dropdown">
                 <a
                   class="nav-link text-muted fs-16 p-0 ps-4"
                   href="javascript:;"
@@ -68,6 +81,7 @@
                   >
                 </div>
               </div> -->
+            </div>
           </div>
         </div>
       </div>

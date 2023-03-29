@@ -1,4 +1,4 @@
-<div class="table-responsive" *ngIf="list.length > 0">  
+<div class="table-responsive" *ngIf="list.length > 0">
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     Error! {{ errorMsg }}
   </div>
@@ -32,10 +32,91 @@
         <th class="bg-transparent border-bottom-0 fs-12 text-center">
           DENOMINATOR
         </th>
-        
       </tr>
     </thead>
     <tbody class="table-body">
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+    </tbody>
+    <tbody class="table-body" *ngIf="!showLoading">
       <tr *ngFor="let item of list">
         <!-- <td class="text-center">
           <div class="checkbox m-auto">
@@ -51,9 +132,12 @@
           </div>
         </td> -->
         <td>
-          <a class="text-secondary" href="javascript: void(0);"
+          <a
+            class="text-secondary"
+            href="javascript: void(0);"
             (click)="openProfile(item)"
-            >{{item.enrollmentNo}}</a>
+            >{{ item.enrollmentNo }}</a
+          >
         </td>
         <td>
           <div class="d-flex align-items-center">
@@ -62,9 +146,11 @@
               style="background-image: url(../assets/images/users/11.jpg)"
             ></span> -->
             <div class="user-details ms-2">
-              <a class="text-secondary" href="javascript: void(0);"
+              <a
+                class="text-secondary"
+                href="javascript: void(0);"
                 (click)="openProfile(item)"
-                ><h6 class="mb-0">{{item.patientName}}</h6></a
+                ><h6 class="mb-0">{{ item.patientName }}</h6></a
               >
               <!--<span *ngIf="item.status==='New'" class="badge badge-xs bg-light">{{item.status}}</span>
               <span *ngIf="item.status==='Approved'" class="badge badge-xs bg-success">{{item.status}}</span>
@@ -73,22 +159,28 @@
             </div>
           </div>
         </td>
-        <td> {{ moment(getFormatDate(item.dob)).format("MM/DD/YYYY") }} <strong class="fw-semibold"> ({{getAge(item.dob)}})</strong></td>
-        <td>{{item.stage}}</td>
+        <td>
+          {{ moment(getFormatDate(item.dob)).format("MM/DD/YYYY") }}
+          <strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
+        </td>
+        <td>{{ item.stage }}</td>
         <!--<td>{{item.metricName}}</td>-->
-        <td class="text-center">{{item.numerator}}</td>
-        <td class="text-center">{{item.denominator}}</td>
-        
+        <td class="text-center">{{ item.numerator }}</td>
+        <td class="text-center">{{ item.denominator }}</td>
       </tr>
     </tbody>
   </table>
-  <app-pagination 
+  <app-pagination
     [pagingModel]="gridData.pagingModel"
-    (gotoPageHandler)="gotoPage($event)">
+    (gotoPageHandler)="gotoPage($event)"
+  >
   </app-pagination>
 </div>
-<app-spinner *ngIf="showLoading" ></app-spinner>
-<div class="card mb-5 p-5 text-center" *ngIf="list.length === 0 && !showLoading">
+<app-spinner *ngIf="showLoading"></app-spinner>
+<div
+  class="card mb-5 p-5 text-center"
+  *ngIf="list.length === 0 && !showLoading"
+>
   <div class="mb-4">
     <img
       class="wrap-figure__img"
@@ -98,10 +190,14 @@
   </div>
   <h2 class="fw-bold">No data found</h2>
   <div class="text-gray mb-6">
-    We couldn't find any data matching your search criteria. Please consider adjusting your filters or try again at a later time.
+    We couldn't find any data matching your search criteria. Please consider
+    adjusting your filters or try again at a later time.
   </div>
   <div>
-    <a href="javascript: void(0);" (click)="reloadPage();" class="btn btn-outline-danger mx-1 px-5"
+    <a
+      href="javascript: void(0);"
+      (click)="reloadPage()"
+      class="btn btn-outline-danger mx-1 px-5"
       ><i class="icon icon-action-undo me-1"></i> Retry</a
     >
   </div>

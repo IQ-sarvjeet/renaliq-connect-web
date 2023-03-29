@@ -39,7 +39,7 @@
   fill: $secondary;
   float: left;
   padding: 8px;
-  height: 4.25rem;
+  height: 4rem;
   width: 4rem;
   font-size: 2rem;
 
@@ -343,7 +343,6 @@ a.icon {
   }
   .breadcrumb {
     flex-wrap: wrap;
-    margin-bottom: 0;
     list-style: none;
     border-radius: 3px;
     position: relative;
@@ -762,7 +761,7 @@ a.chip:hover {
   background-color: $secondary;
   color: $white;
   position: fixed;
-  bottom: 10px;
+  bottom: 40px;
   right: 30px;
   z-index: 99;
   display: none;
@@ -5252,6 +5251,9 @@ input[type="checkbox"] {
     top: 20px !important;
     right: 20px !important;
   }
+  #back-to-top {
+    bottom: 10px;
+  }
 }
 .login-img .demo-icon {
   position: absolute;
@@ -5365,6 +5367,9 @@ input[type="checkbox"] {
 @media (max-width: 992px) {
   .richText-toolbar li {
     border-bottom: 1px solid $border !important;
+  }
+  #back-to-top {
+    right: 10px;
   }
 }
 .options-inv .dropdown-menu {
@@ -5501,7 +5506,7 @@ div.dataTables_wrapper div.dataTables_length label {
   }
 }
 /* ----------------------------------------------------------------------*/
-.min-height-250{
+.min-height-250 {
   min-height: 250px;
 }
 .rounded-5 {
@@ -5540,6 +5545,7 @@ div.dataTables_wrapper div.dataTables_length label {
 .mh-11 {
   min-height: 10.5rem;
 }
+
 .bg-label {
   background: rgb(248, 251, 253);
   background: linear-gradient(
@@ -5688,6 +5694,19 @@ div.dataTables_wrapper div.dataTables_length label {
 .lh-15 {
   line-height: 1.5;
 }
-.h-2 { 
+.h-2 {
   height: 2rem;
+}
+
+.mw-truncate {
+  max-width: 13.75rem;
+}
+
+@media (min-width: 768px) {
+  .card-lg {
+    .card-body {
+      height: 14.75rem;
+      overflow-y: auto;
+    }
+  }
 }

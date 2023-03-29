@@ -66,7 +66,7 @@
       </div>
       <div>
         <div class="row">
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-6 col-xl-4">
             <div class="card p-4">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-6 col-xl-4">
             <div class="card p-4">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
@@ -109,7 +109,7 @@
             </div>
           </div>
 
-          <div class="col-12 col-md-4" style="position: relative;">
+          <div class="col-12 col-md-6 col-xl-4" style="position: relative">
             <app-spinner *ngIf="loadingGenders"></app-spinner>
             <div class="card p-4" *ngIf="!loadingGenders">
               <div class="d-flex">
@@ -118,11 +118,21 @@
                 </div>
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-50" 
-                      *ngFor="let gender of genderData">
+                    <div
+                      class="flex-fill border-sm-end px-4 w-50"
+                      *ngFor="let gender of genderData"
+                    >
                       <div>
-                        {{gender.key === 'M' ? 'Male': gender.key === 'F'? 'Female': 'Other'}}
-                        <div class="text-dark fw-bold fs-22 lh-sm">{{gender.value}}</div>
+                        {{
+                          gender.key === "M"
+                            ? "Male"
+                            : gender.key === "F"
+                            ? "Female"
+                            : "Other"
+                        }}
+                        <div class="text-dark fw-bold fs-22 lh-sm">
+                          {{ gender.value }}
+                        </div>
                       </div>
                     </div>
                     <!-- <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
@@ -138,23 +148,23 @@
           </div>
         </div>
       </div>
-      <div class="row mt-3">
-        <div class="col-12 col-md-3">
+      <div class="row mt-3 card-lg">
+        <div class="col-12 col-md-6 col-xl-3">
           <app-progress-bar-chart-widget
             [config]="patientByStage"
           ></app-progress-bar-chart-widget>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-6 col-xl-3">
           <app-progress-bar-chart-widget
             [config]="patientByPayer"
           ></app-progress-bar-chart-widget>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-6 col-xl-3">
           <app-progress-bar-chart-widget
             [config]="patientByLOB"
           ></app-progress-bar-chart-widget>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-6 col-xl-3">
           <app-progress-bar-chart-widget
             [config]="patientByRiskCategory"
           ></app-progress-bar-chart-widget>

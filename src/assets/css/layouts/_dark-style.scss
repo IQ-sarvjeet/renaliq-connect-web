@@ -6857,6 +6857,9 @@ body.dark-mode::-webkit-scrollbar-thumb {
   .highcharts-root text {
     fill: #fff !important;
   }
+  .highcharts-tooltip text {
+    fill: rgb(51, 51, 51) !important;
+  }
   .mbsc-ios.mbsc-textfield-wrapper-underline {
     background: transparent;
   }
