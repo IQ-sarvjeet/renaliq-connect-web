@@ -79,12 +79,7 @@
               id="stage"
             >
               <option value="">Select</option>
-              <option value="CKD Stage1">CKD Stage1</option>
-              <option value="CKD Stage2">CKD Stage2</option>
-              <option value="CKD Stage3">CKD Stage3</option>
-              <option value="CKD Stage4">CKD Stage4</option>
-              <option value="CKD Stage3B">CKD Stage3B</option>
-              <option value="ESKD">ESKD</option>
+              <option *ngFor="let stage of stages" [value]="stage">{{stage}}</option>
             </select>
           </div>
           <div class="col-6">
@@ -95,6 +90,7 @@
               id="riskCategory"
             >
               <option value="">Select</option>
+              <option value="N/A">N/A</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
               <option value="High">High</option>
@@ -121,16 +117,14 @@
               id="status"
             >
               <option value="">Select</option>
-              <option value="Engaged">Engaged</option>
-              <option value="New">New</option>
-              <option value="On-hold">On-hold</option>
+              <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
             </select>
           </div>
         </div>
 
         <div class="form-row mt-4">
           <div class="col-6">
-            <label for="Assignment" class="mb-1">Assignment</label>
+            <label for="Assignment" class="mb-1">Assessment</label>
             <div class="input-group">
               <mbsc-datepicker
                 class="form-control fs-12"
@@ -175,6 +169,9 @@
         </div>
       </div>
       <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="clearFilterHandler()">
+          Clear Filters
+        </button>
         <button class="btn btn-outline-light" data-bs-dismiss="modal">
           Cancel
         </button>
