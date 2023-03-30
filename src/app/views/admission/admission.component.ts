@@ -29,12 +29,18 @@ export class AdmissionComponent {
   }
   getAdmissionSummary() {
     this.showLoading = true;
-    this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe((data: any) => {
-      this.admissionHeaders = data;
-      this.showLoading = false;
-      if(data && data.admissionBy && data.dischargeBy) {
+    this.admissionService.apiAdmissionSummaryFromdateTodateGet(this.dateRange.fromDate, this.dateRange.toDate).subscribe({
+      next: (data: any) => {
+        this.admissionHeaders = data;
+        this.showLoading = false;
+        if(data && data.admissionBy && data.dischargeBy) {
+          this.showNoData = false;
+        } else {
+          this.showNoData = true;
+        }
+      },
+      error: (error) => {
         this.showNoData = false;
-      } else {
         this.showNoData = true;
       }
     })

@@ -103,7 +103,7 @@
     <div class="card">
       <div class="table-responsive mb-0">
         <table class="table table-sm text-nowrap text-md-nowrap mb-0">
-          <thead>
+          <thead *ngIf="!showLoading && qualityMatircList.length > 0">
             <tr>
               <th>QUALITY BONUS TIER</th>
               <th class="text-center">POPULATION</th>
@@ -306,7 +306,7 @@
                 <td><span class="skeleton-loader"></span></td>
               </tr>
             </ng-container>
-            <tr
+            <!-- <tr
               class="border-top"
               *ngIf="!showLoading && qualityMatircList.length === 0"
             >
@@ -318,9 +318,10 @@
                   <div class="flex-fill">No data found!</div>
                 </div>
               </td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
+        <app-no-records-found *ngIf="!showLoading && qualityMatircList.length === 0"></app-no-records-found>
       </div>
     </div>
   </div>

@@ -76,21 +76,24 @@ export class DoughnutChartComponent {
   ngOnInit() {}
   private fetchChartData(url: string): void {
     this.showLoading = true;
-    this.httpClient.get(`${environment.baseApiUrl}/api/${url}`).subscribe((response: any) => {
-      if (response) {
-        const gridData: any = [];
-        Object.keys(response).forEach((key: string) => {
-          gridData.push([key, response[key]]);
-        })
-        this.renderChart(gridData);
+    this.httpClient.get(`${environment.baseApiUrl}/api/${url}`).subscribe({
+      next: (response: any) => {
+        if (response) {
+          const gridData: any = [];
+          Object.keys(response).forEach((key: string) => {
+            gridData.push([key, response[key]]);
+          })
+          this.renderChart(gridData);
+          this.showLoading = false;
+          this.errorMessage = null;
+          return;
+        }
+        this.errorMessage = Messages.noData;
+      },
+      error: (error) => {
         this.showLoading = false;
-        this.errorMessage = null;
-        return;
+        this.errorMessage = Messages.errorFetchingData;
       }
-      this.errorMessage = Messages.noData;
-    },
-    (error) => {
-      this.errorMessage = Messages.errorFetchingData;
     })
   }
   private renderChart(chartData: any): void {
