@@ -48,7 +48,7 @@ export class NotificationsComponent {
     })
   }
   private getNotifications() {
-    this.notificationService.apiNotificationListMessagefromdateGet(this.notificationFromDate).subscribe({
+    this.notificationService.apiNotificationListPost(new Date()).subscribe({
       next: (messages: any) => {
         console.log('Notifications::::::', messages);
         this.notifications.push(...messages);

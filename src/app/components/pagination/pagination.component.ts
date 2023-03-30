@@ -33,7 +33,7 @@ export class PaginationComponent {
   }
   getNavigablePages() {
     const pages = [];
-    let right = this.paginationDetail.totalPages > 4 ? 4 : this.paginationDetail.totalPages ;
+    let right = this.paginationDetail.totalPages > 4 ? 4 : this.paginationDetail.totalPages - 1 ;
     if(this.paginationDetail.currentPage === this.paginationDetail.totalPages) {
       this.rangeStart = this.paginationDetail.totalPages - this.displaySize * 2 - 1;
     }
