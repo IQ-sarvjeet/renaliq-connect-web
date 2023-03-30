@@ -99,6 +99,9 @@ export class PatientHeaderComponent {
           message: `Patient - Export requested submitted successfully.`,
           type: 'success',
         });
+      },
+      error: (error) => {
+        this.exportStatus = 'error';
       }
     })
   }

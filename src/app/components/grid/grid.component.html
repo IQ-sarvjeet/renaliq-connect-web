@@ -3,7 +3,7 @@
     id="data-table"
     class="table text-nowrap m-0 table-bordered table-striped"
   >
-    <thead class="table-head">
+    <thead class="table-head" *ngIf="list.length > 0 && !showLoading">
       <tr class="text-secondary bg-gray-200">
         <th class="bg-transparent border-bottom-0fs-12">MEMBER ID</th>
         <th class="bg-transparent border-bottom-0 wp-25 fs-12">PATIENT</th>
@@ -228,12 +228,14 @@
           </div>
         </td>
       </tr>
-      <tr *ngIf="list.length == 0 && !showLoading">
+      <!-- <tr *ngIf="list.length == 0 && !showLoading">
         <td>{{ message.noRecords }}</td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
+  <app-no-records-found *ngIf="list.length == 0 && !showLoading"></app-no-records-found>
   <app-pagination
+    *ngIf="list.length > 0 && !showLoading"
     [pagingModel]="gridData.pagingModel"
     (gotoPageHandler)="gotoPage($event)"
   >

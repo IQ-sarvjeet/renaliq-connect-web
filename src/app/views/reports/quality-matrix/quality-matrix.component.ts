@@ -54,7 +54,12 @@ export class QualityMatrixComponent {
           this.dateList = response;
           this.selectedDate = this.dateList[0].id;
           this.getQualityMatricList(this.selectedDate);
+        } else {
+          this.showLoading = false;
         }
+      },
+      error: (error: any) => {
+        this.showLoading = false;
       }
     })
   }

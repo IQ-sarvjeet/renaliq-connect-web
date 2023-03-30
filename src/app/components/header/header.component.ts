@@ -99,12 +99,13 @@ export class HeaderComponent {
     })
   }
   public async logOut() {
+    this._localStorage.clearAll();
     try {
       var result = await this._accountService.apiAccountLogoutPost().toPromise();
-      this._localStorage.clearAll();
-      this.route.navigate(['/login']);    
+      this.route.navigate(['/login']);
     } catch (ex: any) {
       console.log(ex);
+      this.route.navigate(['/login']);
     }
   }
   selectPracticeHandlar(practice: Practice) {

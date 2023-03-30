@@ -7,6 +7,7 @@ import { AccountService } from './api/account.service';
 import { AdmissionService } from './api/admission.service';
 import { CareMemberService } from './api/careMember.service';
 import { ClinicalQualityMatrixService } from './api/clinicalQualityMatrix.service';
+import { ExportService } from './api/export.service';
 import { NotificationService } from './api/notification.service';
 import { PatientService } from './api/patient.service';
 import { PracticeService } from './api/practice.service';
@@ -21,6 +22,7 @@ import { UserService } from './api/user.service';
     AdmissionService,
     CareMemberService,
     ClinicalQualityMatrixService,
+    ExportService,
     NotificationService,
     PatientService,
     PracticeService,

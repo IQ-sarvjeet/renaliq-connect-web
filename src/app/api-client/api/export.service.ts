@@ -23,7 +23,7 @@ import { Configuration }                                     from '../configurat
 
 
 @Injectable()
-export class NotificationService {
+export class ExportService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -60,10 +60,10 @@ export class NotificationService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiNotificationGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiNotificationGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiNotificationGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiNotificationGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiExportInitGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiExportInitGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiExportInitGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiExportInitGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -79,7 +79,7 @@ export class NotificationService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/init`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -92,19 +92,17 @@ export class NotificationService {
     /**
      * 
      * 
-     * @param messagefromdate 
+     * @param fileName 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiNotificationListPost(messagefromdate?: Date, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiExportReportFileNameGet(fileName: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiExportReportFileNameGet(fileName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiExportReportFileNameGet(fileName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiExportReportFileNameGet(fileName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (messagefromdate !== undefined && messagefromdate !== null) {
-            queryParameters = queryParameters.set('messagefromdate', <any>messagefromdate.toISOString());
+        if (fileName === null || fileName === undefined) {
+            throw new Error('Required parameter fileName was null or undefined when calling apiExportReportFileNameGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -121,48 +119,7 @@ export class NotificationService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Notification/list`,
-            {
-                params: queryParameters,
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param notificationId 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiNotificationUpdateReadstatusNotificationIdGet(notificationId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        if (notificationId === null || notificationId === undefined) {
-            throw new Error('Required parameter notificationId was null or undefined when calling apiNotificationUpdateReadstatusNotificationIdGet.');
-        }
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Notification/update/readstatus/${encodeURIComponent(String(notificationId))}`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/report/${encodeURIComponent(String(fileName))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

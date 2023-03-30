@@ -16,6 +16,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { ToasterComponent } from './toaster/toaster.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { DataCardComponent } from './data-card/data-card.component';
+import { NoRecordsFoundComponent } from './no-records-found/no-records-found.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -30,7 +31,8 @@ import { DataCardComponent } from './data-card/data-card.component';
     SpinnerComponent,
     ToasterComponent,
     NotificationsComponent,
-    DataCardComponent
+    DataCardComponent,
+    NoRecordsFoundComponent
   ],
 
   providers: [
@@ -51,7 +53,8 @@ import { DataCardComponent } from './data-card/data-card.component';
     ToasterComponent,
     RouterModule,
     NotificationsComponent,
-    DataCardComponent
+    DataCardComponent,
+    NoRecordsFoundComponent
   ],
  
 })

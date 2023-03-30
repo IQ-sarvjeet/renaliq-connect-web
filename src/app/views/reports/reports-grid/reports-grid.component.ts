@@ -91,9 +91,6 @@ export class ReportsGridComponent implements OnInit  {
     this.filterModel.currentPage = page;
     this.bindClinicalPatientMetricList();
   }
-  reloadPage() {
-    window.location.reload();
-  }
   openProfile(patient: any) {
     this.route.navigate([`/patient-profile/${patient.patientId}`, {
         patientId: patient.patientId ? patient.patientId: '',
