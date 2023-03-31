@@ -78,7 +78,10 @@ export class NotificationsComponent {
       return;
     }
     this.notificationService.apiNotificationUpdateReadstatusNotificationIdGet(this.notifications[index].id).subscribe({
-      next: () => {
+      next: (res: any) => {
+        if (res.isCompleted) {
+          this.notifications[index].readOn = true;
+        }
         this.updateReadStatus(index + 1)
       },
       error: () => {
