@@ -17,6 +17,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { NotificationListRequestModel } from '../model/notificationListRequestModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -92,20 +93,15 @@ export class NotificationService {
     /**
      * 
      * 
-     * @param messagefromdate 
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiNotificationListPost(messagefromdate?: Date, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiNotificationListPost(messagefromdate?: Date, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiNotificationListPost(body?: NotificationListRequestModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiNotificationListPost(body?: NotificationListRequestModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiNotificationListPost(body?: NotificationListRequestModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiNotificationListPost(body?: NotificationListRequestModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (messagefromdate !== undefined && messagefromdate !== null) {
-            queryParameters = queryParameters.set('messagefromdate', <any>messagefromdate.toISOString());
-        }
 
         let headers = this.defaultHeaders;
 
@@ -119,11 +115,18 @@ export class NotificationService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
         return this.httpClient.request<any>('post',`${this.basePath}/api/Notification/list`,
             {
-                params: queryParameters,
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
