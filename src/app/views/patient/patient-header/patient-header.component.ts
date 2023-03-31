@@ -17,6 +17,22 @@ declare let $: any;
 export class PatientHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
+  stages: any = [
+    'CKD Stage 5',
+    'CKD Stage 3a',
+    'CKD Stage 4',
+    'ESKD',
+    'CKD Stage 3b'
+  ]
+  statusList: any = [
+    'Deceased',
+    'New',
+    'On Hold',
+    'Outreach in Progress',
+    'Reached',
+    'Verbal Consent',
+    'Written Consent'
+  ]
   dateRangeFilter: any = "02/06/2023 - 02/14/2023";
   dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
@@ -104,5 +120,16 @@ export class PatientHeaderComponent {
         this.exportStatus = 'error';
       }
     })
+  }
+  clearFilterHandler() {
+    this.filter.patientFilter = {
+      searchKey:'',
+      stage:'',
+      riskCategory:'',
+      careMember:'',
+      status:'',
+      assignment:[],
+      discharge:[]
+    };
   }
 }
