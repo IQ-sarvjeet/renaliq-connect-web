@@ -1,42 +1,74 @@
-<div class="drop-heading border-bottom">
-    <div class="d-flex">
-      <h6 class="mt-1 mb-0 fs-15 text-dark">Notifications</h6>
-      <div class="ms-auto">
-        <span
-          class="xm-title badge bg-secondary text-white fw-normal fs-11 badge-pill"
-        >
-          <a
-            href="javascript:void(0);"
-            class="showall-text text-white"
-            >Clear</a
+<div class="dropdown d-md-flex notifications">
+  <a class="nav-link icon" data-bs-toggle="dropdown"
+    (click)="openNotificationsDialog()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      enable-background="new 0 0 24 24"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M18,14.1V10c0-3.1-2.4-5.7-5.5-6V2.5C12.5,2.2,12.3,2,12,2s-0.5,0.2-0.5,0.5V4C8.4,4.3,6,6.9,6,10v4.1c-1.1,0.2-2,1.2-2,2.4v2C4,18.8,4.2,19,4.5,19h3.7c0.5,1.7,2,3,3.8,3c1.8,0,3.4-1.3,3.8-3h3.7c0.3,0,0.5-0.2,0.5-0.5v-2C20,15.3,19.1,14.3,18,14.1z M7,10c0-2.8,2.2-5,5-5s5,2.2,5,5v4H7V10z M13,20.8c-1.6,0.5-3.3-0.3-3.8-1.8h5.6C14.5,19.9,13.8,20.5,13,20.8z M19,18H5v-1.5C5,15.7,5.7,15,6.5,15h11c0.8,0,1.5,0.7,1.5,1.5V18z"
+      ></path>
+    </svg>
+    <span class="pulse" *ngIf="unreadCounts()"></span>
+  </a>
+  <div
+    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+  >
+    <div class="drop-heading border-bottom">
+      <div class="d-flex">
+        <h6 class="mt-1 mb-0 fs-15 text-dark">Notifications</h6>
+        <div class="ms-auto">
+          <!-- <span
+            class="xm-title badge bg-secondary text-white fw-normal fs-11 badge-pill"
           >
-        </span>
+            <a
+              href="javascript:void(0);"
+              class="showall-text text-white"
+              (click)="clearNotifications()"
+              >Clear</a
+            >
+          </span> -->
+        </div>
       </div>
     </div>
-</div>
-<div class="notifications-menu ps3 overflow-hidden ps">
-    <a class="dropdown-item border-top" href="#"
-        *ngFor="let notification of notifications">
-        <div class="d-flex">
-          <div class="notifyimg notifyimg--sm me-3">
-            <i *ngIf="notification.type === 'email'" class="icon icon-envelope text-secondary"></i>
-            <i *ngIf="notification.type === 'info'" class="icon icon-info text-secondary"></i>
-            <i *ngIf="notification.type === 'success'" class="fa fa-check-circle-o text-success"></i>
-            <i *ngIf="notification.type === 'alert'" class="fa fa-warning text-danger"></i>
-          </div>
-          <div>
-            <div class="fs-14 mb-1"
-                [ngClass]="{
-                    'text-success': notification.type === 'success',
-                    'text-danger': notification.type === 'alert',
-                    'text-dark': notification.type === 'email' || notification.type === 'info'
-                }">
-                {{notification.message}}
+    <div class="notifications-menu ps3 overflow-hidden ps">
+        <a class="dropdown-item border-top" href="#"
+            *ngFor="let notification of notifications">
+          <div class="d-flex">
+            <div class="notifyimg notifyimg--sm me-3">
+              <i *ngIf="notification.actionType === 'email'" class="icon icon-envelope text-secondary"></i>
+              <i *ngIf="notification.actionType === 'info'" class="icon icon-info text-secondary"></i>
+              <i *ngIf="notification.actionType === 'success'" class="fa fa-check-circle-o text-success"></i>
+              <i *ngIf="notification.actionType === 'alert'" class="fa fa-warning text-danger"></i>
+              <i *ngIf="notification.actionType === 'Export'" class="fa fa-download text-secondary"></i>
             </div>
-            <div class="fs-12 opacity-75">
-                {{notification.notificationTime}}
+            <div style="width: 80%;" [ngClass]="{'fw-500': !notification.readOn}">
+              <div class="fs-14 mb-1"
+                  [ngClass]="{
+                      'text-success': notification.type === 'success',
+                      'text-danger': notification.type === 'alert',
+                      'text-dark': notification.type === 'email' || notification.type === 'info'
+                  }">
+                  {{notification.message}}
+              </div>
+              <div class="fs-12 opacity-75">
+                  {{moment(notification.sentOn).format('MM/DD/YYYY, h:mm a')}}
+              </div>
+            </div>
+            <div class="me-3"
+              *ngIf="notification.actionType === 'Export'">
+              <a href="#" class="btn btn-outline-secondary ms-3">
+                <i class="fa fa-download text-secondary"></i>
+              </a>
             </div>
           </div>
-        </div>
-    </a>
+        </a>
+    </div>
+    <!--div class="dropdown-divider m-0"></div>
+    <div class="text-center p-3">
+      <a class="btn btn-primary">View All Notifications</a>
+    </div-->
+  </div>
 </div>
+
