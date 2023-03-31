@@ -7,6 +7,7 @@ export * from './email2FAModel';
 export * from './forgotPasswordModel';
 export * from './loginModel';
 export * from './loginResponse';
+export * from './notificationListRequestModel';
 export * from './patientFilter';
 export * from './patientFilterModel';
 export * from './patientLatLongRequestModel';

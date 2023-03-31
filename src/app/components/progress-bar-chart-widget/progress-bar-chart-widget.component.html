@@ -62,27 +62,27 @@
         </div>
       </div>
     </div>
-
-    <div class="row my-3" *ngFor="let data of chartData">
+    <ng-container *ngFor="let data of chartData">
+      <div class="row my-3" *ngIf="data.value>=1">
       
-      <div class="col-4 text-truncate" *ngIf="data.value>=1">{{ data.key }}</div>
-      <div class="col-6" *ngIf="data.value>=1">
-        <div class="progress progress-sm my-1">
-          <div
-            class="progress-bar progress-bar-bg-color"
-            [class]="
-              data.value > 50
-                ? 'progress-bar-striped progress-bar-animated wp-' + data.value
-                : 'wp-' + data.value
-            "
-          ></div>
+        <div class="col-4 text-truncate">{{ data.key }}</div>
+        <div class="col-6">
+          <div class="progress progress-sm my-1">
+            <div
+              class="progress-bar progress-bar-bg-color"
+              [class]="
+                data.value > 50
+                  ? 'progress-bar-striped progress-bar-animated wp-' + data.value
+                  : 'wp-' + data.value
+              "
+            ></div>
+          </div>
+       
         </div>
-     
+        <div class="col-2 text-right text-nowrap">{{ data.value }}%</div>
       </div>
-      <div class="col-2 text-right text-nowrap" *ngIf="data.value>=1">{{ data.value }}%</div>
+    </ng-container>
     
-      
-    </div>
 
     <div *ngIf="errorMessage">
       <div class="alert alert-danger d-flex fade show" role="alert">
