@@ -79,7 +79,9 @@
               id="stage"
             >
               <option value="">Select</option>
-              <option *ngFor="let stage of stages" [value]="stage">{{stage}}</option>
+              <option *ngFor="let stage of stages" [value]="stage">
+                {{ stage }}
+              </option>
             </select>
           </div>
           <div class="col-6">
@@ -117,7 +119,9 @@
               id="status"
             >
               <option value="">Select</option>
-              <option *ngFor="let status of statusList" [value]="status">{{status}}</option>
+              <option *ngFor="let status of statusList" [value]="status">
+                {{ status }}
+              </option>
             </select>
           </div>
         </div>
@@ -169,11 +173,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-secondary" (click)="clearFilterHandler()">
+        <button class="btn btn-outline-light" (click)="clearFilterHandler()">
           Clear Filters
-        </button>
-        <button class="btn btn-outline-light" data-bs-dismiss="modal">
-          Cancel
         </button>
         <button
           class="btn btn-secondary"
@@ -198,10 +199,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <p *ngIf="!exportStatus">
-          Export Patient report.
-          
-        </p>
+        <p *ngIf="!exportStatus">Export Patient report.</p>
         <div class="mb-4" *ngIf="!exportStatus">
           <label for="stage" class="mb-1">File Name</label>
           <div class="input-group mb-4">
@@ -220,15 +218,23 @@
               class="form-control"
               readonly
             />
-            <button class="btn btn-secondary" type="button"
-              (click)="submitExport()">Export</button>
+            <button
+              class="btn btn-secondary"
+              type="button"
+              (click)="submitExport()"
+            >
+              Export
+            </button>
           </div>
         </div>
 
         <div class="mb-4" *ngIf="exportStatus">
           <!-- <h4 class="mb-2">Report Already Submitted</h4> -->
 
-          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'submitted'">
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'submitted'"
+          >
             <div
               class="progress-bar progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -240,7 +246,10 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'inprogress'">
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'inprogress'"
+          >
             <div
               class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -252,7 +261,10 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'approved'">
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'approved'"
+          >
             <div
               class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
@@ -264,7 +276,10 @@
             </div>
           </div>
 
-          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'rejected'">
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'rejected'"
+          >
             <div
               class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"
               role="progressbar"
