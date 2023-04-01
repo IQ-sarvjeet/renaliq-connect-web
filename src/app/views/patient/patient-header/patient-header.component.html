@@ -1,50 +1,58 @@
 <div class="main-container container">
-  <div class="row">
-    <div class="col-6 col-sm-4 col-md-5">
+  <div class="d-flex">
+    <div class="text-nowrap">
       <h1 class="page-title m-0">Patient</h1>
-      <ol class="breadcrumb">
+      <ol class="breadcrumb flex-nowrap">
         <li class="breadcrumb-item">
           <a routerLink="/">Home</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">Patient</li>
       </ol>
     </div>
-    <div class="col-6 col-sm-8 col-md-7 pt-1 text-end">
-      <a
-        data-bs-target="#modalFilter"
-        data-bs-toggle="modal"
-        href="javascript:void(0)"
-        class="p-1 text-secondary fs-16 align-middle"
-        ><i class="fa fa-filter"></i
-      ></a>
-      <a
-        href="javascript: void(0)"
-        data-bs-target="#exportFilter"
-        data-bs-toggle="modal"
-        (click)="exportClickHandler()"
-        class="btn btn-outline-secondary ms-3"
-        ><i class="icon icon-share-alt me-1"></i> Export</a
-      >
-      <!--
-        <a href="#" class="btn btn-dark ms-3">Add Patient</a>
-        <a
-          href="#"
-          class="p-1 text-secondary fs-16 ms-3 align-middle"
-          data-bs-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          ><i class="icon icon-options-vertical"></i
-        ></a>
-        <div class="dropdown-menu dropdown-menu-start">
-          <a class="dropdown-item" href="#"
-            ><i class="fe fe-edit-2 me-2"></i> Edit</a
-          >
-          <a class="dropdown-item" href="#"
-            ><i class="fe fe-trash-2 me-2"></i> Delete</a
-          >
-        
+    <div class="flex-fill">
+      <div class="d-md-flex">
+        <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
+          <div>
+            <div class="tags mt-1 me-2">
+              Name: <b>Surendra Kajla</b>
+              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            </div>
+            <div class="tags mt-1 me-2">
+              Stage: <b>CKD Stage 5</b>
+              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            </div>
+            <div class="tags mt-1 me-2">
+              Risk Category: <b>Low</b>
+              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            </div>
+            <div class="tags mt-1 me-2">
+              Care Member: <b>Surendra Kajla</b>
+              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            </div>
+            <div class="tags mt-1 me-2">
+              Assessment: <b>04/04/2023 - 04/20/2023</b>
+              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            </div>
+          </div>
         </div>
-        -->
+        <div class="pt-2 text-nowrap text-end">
+          <a
+            data-bs-target="#modalFilter"
+            data-bs-toggle="modal"
+            href="javascript:void(0)"
+            class="p-1 text-secondary fs-16 align-middle"
+            ><i class="fa fa-filter"></i
+          ></a>
+          <a
+            href="javascript: void(0)"
+            data-bs-target="#exportFilter"
+            data-bs-toggle="modal"
+            (click)="exportClickHandler()"
+            class="btn btn-outline-secondary ms-3"
+            ><i class="icon icon-share-alt me-1"></i> Export</a
+          >
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -100,7 +108,7 @@
           </div>
         </div>
         <div class="form-row mt-4">
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="careMember" class="mb-1">Care Member</label>
             <input
               type="text"
@@ -111,7 +119,7 @@
               class="form-control"
             />
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
             <label for="status" class="mb-1">Status</label>
             <select
               class="form-select"
@@ -127,7 +135,7 @@
         </div>
 
         <div class="form-row mt-4">
-          <div class="col-6">
+          <div class="col-12 col-sm-6">
             <label for="Assignment" class="mb-1">Assessment</label>
             <div class="input-group">
               <mbsc-datepicker
@@ -147,7 +155,7 @@
               </button>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
             <label for="Discharge" class="mb-1">Discharge</label>
             <div class="input-group input-group-lg">
               <!-- value="13 Sep 22 - 20 Sep 22" -->
