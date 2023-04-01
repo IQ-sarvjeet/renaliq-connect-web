@@ -58,7 +58,9 @@
             </div>
             <div class="me-3"
               *ngIf="notification.actionType === 'Export'">
-              <a href="#" class="btn btn-outline-secondary ms-3">
+              <a href="javascript: void(0);"
+                (click)="downloadFile(notification)"
+                class="btn btn-outline-secondary ms-3">
                 <i class="fa fa-download text-secondary"></i>
               </a>
             </div>
