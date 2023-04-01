@@ -5701,6 +5701,37 @@ div.dataTables_wrapper div.dataTables_length label {
 .mw-truncate {
   max-width: 13.75rem;
 }
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.tags {
+  display: inline-block;
+  position: relative;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  font-size: 0.75rem;
+  padding: 0.125rem 2rem 0.125rem 1rem;
+  overflow: hidden;
+
+  &__icon {
+    border-left: 0.0625rem solid var(--border);
+    color: var(--primary);
+    display: inline-block;
+    height: 1.5rem;
+    line-height: 1rem;
+    font-size: 1rem;
+    position: absolute;
+    top: 0;
+    padding: 0.125rem 0.5rem 0 0.25rem;
+    right: 0;
+
+    &:hover {
+      background-color: $primary;
+      color: $white;
+    }
+  }
+}
 
 @media (min-width: 768px) {
   .card-lg {
