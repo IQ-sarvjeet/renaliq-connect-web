@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import * as moment from 'moment';
 import { NotificationService } from 'src/app/api-client';
 import { AuthService } from 'src/app/services/auth.service';
+import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-notifications',
@@ -13,31 +15,13 @@ export class NotificationsComponent {
   moment: any = moment;
   private notificationFromDate: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   private pullMessageIntervalRef: any;
-  notifications: any = [
-    /*{
-      type: 'email',
-      message: ' New Message Received',
-      notificationTime: '2 hours ago'
-    },
-    {
-      type: 'info',
-      message: ' New Message Received',
-      notificationTime: '2 hours ago'
-    },
-    {
-      type: 'success',
-      message: ' New Message Received',
-      notificationTime: '2 hours ago'
-    },
-    {
-      type: 'alert',
-      message: ' New Message Received',
-      notificationTime: '2 hours ago'
-    }*/
-  ]
+  notifications: any = [];
   constructor(private notificationService: NotificationService,
     private eventService: EventService,
-    private authService: AuthService) {
+    private authService: AuthService,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private downloadService: DownloadService) {
 
   }
   ngOnInit() {
@@ -78,7 +62,10 @@ export class NotificationsComponent {
       return;
     }
     this.notificationService.apiNotificationUpdateReadstatusNotificationIdGet(this.notifications[index].id).subscribe({
-      next: () => {
+      next: (res: any) => {
+        if (res.isCompleted) {
+          this.notifications[index].readOn = true;
+        }
         this.updateReadStatus(index + 1)
       },
       error: () => {
@@ -89,6 +76,11 @@ export class NotificationsComponent {
   unreadCounts() {
     const counts = this.notifications.filter((item: any) => !item.readOn);
     return counts.length > 0;
+  }
+  downloadFile(notification: any) {
+    console.log('notification:', notification);
+    // const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${notification.userId}`;
+    // this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.userId);
   }
   ngOnDestroy(){
     if(this.pullMessageIntervalRef) {
