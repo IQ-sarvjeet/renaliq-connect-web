@@ -44,10 +44,10 @@
               <i *ngIf="notification.actionType === 'Export'" class="fa fa-download text-secondary"></i>
             </div> -->
             <div class="notifyimg notifyimg--sm me-3">
-              <span *ngIf="notification.status.status < 3"><i class="fa fa-solid fa-circle-o-notch fa-spin"></i></span>
-              <span *ngIf="notification.status.status === 3"><i class="fa fa-solid fa-circle-o-notch fa-spin"></i></span>
-              <span *ngIf="notification.status.status === 4"><i class="fa fa-check-circle-o text-success"></i></span>
-              <span *ngIf="notification.status.status === 5"><i class="fa fa-warning text-danger"></i></span>
+              <span *ngIf="notification.status.status < 3"><i class="fa fa-solid fa-circle-o-notch fa-spin fa-2x"></i></span>
+              <span *ngIf="notification.status.status === 3"><i class="fa fa-solid fa-circle-o-notch fa-spin fa-2x"></i></span>
+              <span *ngIf="notification.status.status === 4"><i class="fa fa-check-circle-o text-success fa-2x"></i></span>
+              <span *ngIf="notification.status.status === 5"><i class="fa fa-warning text-danger fa-2x"></i></span>
             </div>
             <div style="width: 80%;" [ngClass]="{'fw-500': !notification.readOn}">
               <div class="fs-14 mb-1"
