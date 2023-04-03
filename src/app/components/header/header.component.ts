@@ -112,7 +112,12 @@ export class HeaderComponent {
     this.selectedPractice = practice;
     this.practiceService.apiPracticeUpdatePracticeIdPost(this.selectedPractice.practiceId)
     .subscribe((response: any) => {
+    if (window.location.href.includes('patient-profile')) {
+      this.route.navigate(['/patients']);
+      this.loadPracticeList();
+    } else{
       window.location.reload();
-    })
+    }
+    });
   }
 }
