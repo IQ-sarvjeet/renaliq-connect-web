@@ -37,7 +37,20 @@ export class NotificationsComponent {
   private getNotifications() {
     this.notificationService.apiNotificationListPost({messageFromDate: this.notificationFromDate}).subscribe({
       next: (messages: any) => {
-        this.notifications.push(...messages);
+        const remainsMsg: any = [];
+        messages.forEach((item: any) => {
+          let found = false;
+          for(let i = 0; i < this.notifications.length; i++) {
+            if (item.id === this.notifications[i]) {
+              this.notifications[i] = item;
+              found = true;
+            }
+          }
+          if(!found) {
+            remainsMsg.push(item);
+          }
+        })
+        this.notifications.push(...remainsMsg);
       },
       error: (error) => {
       }
