@@ -13,29 +13,43 @@
       <div class="d-md-flex">
         <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
           <div>
-            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.searchKey">
-              Name: <b>{{filter.patientFilter.searchKey}}</b>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
+              Name: <b>{{displayFilter.searchKey}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.stage">
-              Stage: <b>{{filter.patientFilter.stage}}</b>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+              Stage: <b>{{displayFilter.stage}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.riskCategory">
-              Risk Category: <b>{{filter.patientFilter.riskCategory}}</b>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.riskCategory">
+              Risk Category: <b>{{displayFilter.riskCategory}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.careMember">
-              Care Member: <b>{{filter.patientFilter.careMember}}</b>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.careMember">
+              Care Member: <b>{{displayFilter.careMember}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.assignment && filter.patientFilter.assignment.length > 1">
-              Assessment: <b>{{moment(filter.patientFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(filter.patientFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+              Status: <b>{{displayFilter.status}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.assignment && displayFilter.assignment.length > 1">
+              Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.discharge && displayFilter.discharge.length > 1">
+              Discharge: <b>{{moment(displayFilter.discharge[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.discharge[0]).format("MM/DD/YYYY")}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('discharge')">x</a>
             </div>
           </div>
         </div>
         <div class="pt-2 text-nowrap text-end">
+          <div class="tags mt-1 me-2" 
+            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage || displayFilter.searchKey || displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
+            Clear Filters<a href="Javascript:void(0)"
+            class="tags__icon"
+            (click)="clearFilterHandler()">x</a>
+          </div>
           <a
             data-bs-target="#modalFilter"
             data-bs-toggle="modal"
@@ -181,9 +195,6 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-outline-light" (click)="clearFilterHandler()">
-          Clear Filters
-        </button>
         <button
           class="btn btn-secondary"
           data-bs-dismiss="modal"
@@ -229,6 +240,7 @@
             <button
               class="btn btn-secondary"
               type="button"
+              [disabled]="!fileNameExport || disabledExport"
               (click)="submitExport()"
             >
               Export
