@@ -78,11 +78,7 @@ export class PatientHeaderComponent {
   };
   fileNameExport: string = '';
   exportStatus: string = ''
-  constructor(  private _interactionService: InteractionService,
-    private patientService: PatientService,
-    private eventService: EventService){
-
-  }
+  
   filter: FilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
@@ -96,9 +92,24 @@ export class PatientHeaderComponent {
       discharge:[]
     }
   };
+  displayFilter: any = {
+    searchKey:'',
+    stage:'',
+    riskCategory:'',
+    careMember:'',
+    status:'',
+    assignment:[],
+    discharge:[]
+  }
+  disabledExport: boolean = false;
+  constructor(  private _interactionService: InteractionService,
+    private patientService: PatientService,
+    private eventService: EventService){
 
+  }
   submit(){
-  this._interactionService.setPatientFilter(this.filter);
+    this.displayFilter = { ...this.filter.patientFilter }
+    this._interactionService.setPatientFilter(this.filter);
   }
   exportClickHandler() {
     // this.patientService.apiPatientSummaryExportstatusGet().subscribe({
@@ -109,17 +120,23 @@ export class PatientHeaderComponent {
     // })
   }
   submitExport() {
+    this.disabledExport = true;
     this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
       next: (response: any) => {
+        this.fileNameExport = '';
         $('#exportFilter').modal('hide');
         this.eventService.openToaster({
           showToster: true,
           message: `Patient - Export requested submitted successfully.`,
           type: 'success',
         });
+        this.disabledExport = false;
+        this.eventService.notificationEventUpdate(true);
       },
       error: (error) => {
         this.exportStatus = 'error';
+        this.disabledExport = false;
+        this.fileNameExport = '';
       }
     })
   }
@@ -133,22 +150,37 @@ export class PatientHeaderComponent {
       assignment:[],
       discharge:[]
     };
+    this.displayFilter = {...this.filter.patientFilter};
+    this.submit();
   }
   clearFilter(key: string) {
     if(key === 'searchKey') {
+      this.displayFilter.searchKey = '';
       this.filter.patientFilter.searchKey = '';
     }
     if(key === 'stage') {
+      this.displayFilter.stage = '';
       this.filter.patientFilter.stage = '';
     }
     if(key === 'riskCategory') {
+      this.displayFilter.riskCategory = '';
       this.filter.patientFilter.riskCategory = '';
     }
     if(key === 'careMember') {
+      this.displayFilter.careMember = '';
       this.filter.patientFilter.careMember = '';
     }
     if(key === 'assignment') {
+      this.displayFilter.assignment = [];
       this.filter.patientFilter.assignment = [];
+    }
+    if(key === 'status') {
+      this.displayFilter.status = '';
+      this.filter.patientFilter.status = '';
+    }
+    if(key === 'discharge') {
+      this.displayFilter.discharge = [];
+      this.filter.patientFilter.discharge = [];
     }
     this.submit();
   }

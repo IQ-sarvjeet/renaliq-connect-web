@@ -33,6 +33,13 @@ export class NotificationsComponent {
         this.notificationFromDate = new Date();
       }
     })
+    this.eventService.notificationEventSubscription().subscribe({
+      next: (response: boolean) => {
+        if (response) {
+          this.getNotifications();
+        }
+      }
+    })
   }
   private getNotifications() {
     this.notificationService.apiNotificationListPost({messageFromDate: this.notificationFromDate}).subscribe({
