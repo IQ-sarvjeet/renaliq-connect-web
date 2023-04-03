@@ -36,12 +36,18 @@
         <div class="dropdown-item border-top"
             *ngFor="let notification of notifications">
           <div class="d-flex">
-            <div class="notifyimg notifyimg--sm me-3">
+            <!-- <div class="notifyimg notifyimg--sm me-3">
               <i *ngIf="notification.actionType === 'email'" class="icon icon-envelope text-secondary"></i>
               <i *ngIf="notification.actionType === 'info'" class="icon icon-info text-secondary"></i>
               <i *ngIf="notification.actionType === 'success'" class="fa fa-check-circle-o text-success"></i>
               <i *ngIf="notification.actionType === 'alert'" class="fa fa-warning text-danger"></i>
               <i *ngIf="notification.actionType === 'Export'" class="fa fa-download text-secondary"></i>
+            </div> -->
+            <div class="notifyimg notifyimg--sm me-3">
+              <span *ngIf="notification.status.progress < 3"><i class="fa fa-solid fa-spinner fa-spin"></i></span>
+              <span *ngIf="notification.status.progress === 3"><i class="fa fa-solid fa-spinner"></i></span>
+              <span *ngIf="notification.status.progress === 4"><i class="fa fa-check-circle-o text-success"></i></span>
+              <span *ngIf="notification.status.progress === 5"><i class="fa fa-warning text-danger"></i></span>
             </div>
             <div style="width: 80%;" [ngClass]="{'fw-500': !notification.readOn}">
               <div class="fs-14 mb-1"
@@ -51,7 +57,6 @@
                       'text-dark': notification.type === 'email' || notification.type === 'info'
                   }">
                   {{notification.message}}
-                  <span *ngIf="notification.status.progress === 3"><i class="fa fa-solid fa-spinner fa-2x"></i></span>
               </div>
               <div class="fs-12 opacity-75">
                   {{moment(notification.sentOn).format('MM/DD/YYYY, h:mm a')}}
@@ -60,7 +65,7 @@
             <div class="me-3"
               *ngIf="notification.actionType === 'Export'">
               <a href="javascript: void(0);"
-                *ngIf="notification.status.progress === 3"
+                *ngIf="notification.status.progress === 4"
                 (click)="downloadFile(notification)"
                 class="btn btn-outline-secondary ms-3">
                 <i class="fa fa-download text-secondary"></i>
