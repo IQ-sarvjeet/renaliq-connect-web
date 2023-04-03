@@ -121,6 +121,7 @@ export class PatientHeaderComponent {
   }
   submitExport() {
     this.disabledExport = true;
+    this.exportStatus = 'inprogress';
     this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
       next: (response: any) => {
         this.fileNameExport = '';

@@ -99,8 +99,8 @@ export class NotificationsComponent {
   }
   downloadFile(notification: any) {
     console.log('notification:', notification);
-    const url: string = `${environment.baseApiUrl}/api/Export/download/${notification.status.id}`;
-    this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.status.id);
+    const url: string = `${environment.baseApiUrl}/api/Export/download/${notification.referenceId}`;
+    this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.status.reportName);
   }
   ngOnDestroy(){
     if(this.pullMessageIntervalRef) {

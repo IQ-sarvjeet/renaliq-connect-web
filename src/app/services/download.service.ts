@@ -11,10 +11,10 @@ export class DownloadService {
   constructor(private httpClient: HttpClient,
     private _localStorage: LocalStorageService,
     private eventService: EventService) { }
-  startDownloading(elementRef: ElementRef, renderer: Renderer2, url: string, id: any) {
-    this.downloadPlan(elementRef, renderer, url, id);
+  startDownloading(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any) {
+    this.downloadPlan(elementRef, renderer, url, fileName);
   }
-  downloadPlan(elementRef: ElementRef, renderer: Renderer2, url: string, id: any) {
+  downloadPlan(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any) {
     const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     let headerOptions = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export class DownloadService {
         const blob = new Blob([response], {
           type: 'data:application/pdf;base64',
         });
-        this.downloadFile(blob, `Somatus Care Plan ${id}.pdf`, elementRef, renderer);
+        this.downloadFile(blob, `${fileName}.pdf`, elementRef, renderer);
       }
     })
   }
