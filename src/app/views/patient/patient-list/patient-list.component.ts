@@ -45,6 +45,6 @@ export class PatientListComponent {
   }
   downloadPlan(plan: any) {
     const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`
-    this.downloadService.startDownloading(this.elementRef, this.renderer, url, plan.patientActivityId);
+    this.downloadService.startDownloading(this.elementRef, this.renderer, url, `Somatus Care Plan ${plan.patientActivityId}`);
   }
 }

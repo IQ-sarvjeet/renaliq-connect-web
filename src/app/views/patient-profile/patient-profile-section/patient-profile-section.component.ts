@@ -46,7 +46,7 @@ export class PatientProfileSectionComponent implements OnInit  {
   }
   downloadPlan(plan: any) {
     const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`;
-    this.downloadService.startDownloading(this.elementRef, this.renderer, url, plan.patientActivityId);
+    this.downloadService.startDownloading(this.elementRef, this.renderer, url, `Somatus Care Plan ${plan.patientActivityId}`);
   }
   getDays(assessmentDate: any) {
     const diff = new Date().getTime() - new Date(assessmentDate).getTime();

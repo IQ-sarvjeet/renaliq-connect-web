@@ -218,7 +218,6 @@
         </button>
       </div>
       <div class="modal-body">
-        <p *ngIf="!exportStatus">Export Patient report.</p>
         <div class="mb-4" *ngIf="!exportStatus">
           <label for="stage" class="mb-1">File Name</label>
           <div class="input-group mb-4">
@@ -277,7 +276,7 @@
               aria-valuemin="0"
               aria-valuemax="100"
             >
-              In Process
+              Sending patient export request, please wait...
             </div>
           </div>
 
