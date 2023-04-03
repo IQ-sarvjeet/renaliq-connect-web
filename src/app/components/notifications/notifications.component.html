@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="notifications-menu ps3 overflow-hidden ps">
-        <a class="dropdown-item border-top" href="#"
+        <div class="dropdown-item border-top"
             *ngFor="let notification of notifications">
           <div class="d-flex">
             <div class="notifyimg notifyimg--sm me-3">
@@ -51,6 +51,7 @@
                       'text-dark': notification.type === 'email' || notification.type === 'info'
                   }">
                   {{notification.message}}
+                  <span *ngIf="notification.status.progress === 3"><i class="fa fa-solid fa-spinner fa-2x"></i></span>
               </div>
               <div class="fs-12 opacity-75">
                   {{moment(notification.sentOn).format('MM/DD/YYYY, h:mm a')}}
@@ -59,13 +60,14 @@
             <div class="me-3"
               *ngIf="notification.actionType === 'Export'">
               <a href="javascript: void(0);"
+                *ngIf="notification.status.progress === 3"
                 (click)="downloadFile(notification)"
                 class="btn btn-outline-secondary ms-3">
                 <i class="fa fa-download text-secondary"></i>
               </a>
             </div>
           </div>
-        </a>
+        </div>
     </div>
     <!--div class="dropdown-divider m-0"></div>
     <div class="text-center p-3">

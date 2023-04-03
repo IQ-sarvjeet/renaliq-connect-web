@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import * as moment from 'moment';
 import { PatientService } from 'src/app/api-client';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { EventService } from 'src/app/services/event.service';
@@ -15,6 +16,7 @@ declare let $: any;
   styleUrls: ['./patient-header.component.scss']
 })
 export class PatientHeaderComponent {
+  moment: any = moment;
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
   stages: any = [
@@ -131,5 +133,23 @@ export class PatientHeaderComponent {
       assignment:[],
       discharge:[]
     };
+  }
+  clearFilter(key: string) {
+    if(key === 'searchKey') {
+      this.filter.patientFilter.searchKey = '';
+    }
+    if(key === 'stage') {
+      this.filter.patientFilter.stage = '';
+    }
+    if(key === 'riskCategory') {
+      this.filter.patientFilter.riskCategory = '';
+    }
+    if(key === 'careMember') {
+      this.filter.patientFilter.careMember = '';
+    }
+    if(key === 'assignment') {
+      this.filter.patientFilter.assignment = [];
+    }
+    this.submit();
   }
 }

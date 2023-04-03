@@ -79,8 +79,8 @@ export class NotificationsComponent {
   }
   downloadFile(notification: any) {
     console.log('notification:', notification);
-    // const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${notification.userId}`;
-    // this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.userId);
+    const url: string = `${environment.baseApiUrl}/api/Export/download/${notification.status.id}`;
+    this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.status.id);
   }
   ngOnDestroy(){
     if(this.pullMessageIntervalRef) {
