@@ -37,7 +37,20 @@ export class NotificationsComponent {
   private getNotifications() {
     this.notificationService.apiNotificationListPost({messageFromDate: this.notificationFromDate}).subscribe({
       next: (messages: any) => {
-        this.notifications.push(...messages);
+        const remainsMsg: any = [];
+        messages.forEach((item: any) => {
+          let found = false;
+          for(let i = 0; i < this.notifications.length; i++) {
+            if (item.id === this.notifications[i]) {
+              this.notifications[i] = item;
+              found = true;
+            }
+          }
+          if(!found) {
+            remainsMsg.push(item);
+          }
+        })
+        this.notifications.push(...remainsMsg);
       },
       error: (error) => {
       }
@@ -79,8 +92,8 @@ export class NotificationsComponent {
   }
   downloadFile(notification: any) {
     console.log('notification:', notification);
-    // const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${notification.userId}`;
-    // this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.userId);
+    const url: string = `${environment.baseApiUrl}/api/Export/download/${notification.status.id}`;
+    this.downloadService.startDownloading(this.elementRef, this.renderer, url, notification.status.id);
   }
   ngOnDestroy(){
     if(this.pullMessageIntervalRef) {

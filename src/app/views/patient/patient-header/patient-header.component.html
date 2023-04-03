@@ -13,25 +13,25 @@
       <div class="d-md-flex">
         <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
           <div>
-            <div class="tags mt-1 me-2">
-              Name: <b>Surendra Kajla</b>
-              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.searchKey">
+              Name: <b>{{filter.patientFilter.searchKey}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
             </div>
-            <div class="tags mt-1 me-2">
-              Stage: <b>CKD Stage 5</b>
-              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.stage">
+              Stage: <b>{{filter.patientFilter.stage}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
             </div>
-            <div class="tags mt-1 me-2">
-              Risk Category: <b>Low</b>
-              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.riskCategory">
+              Risk Category: <b>{{filter.patientFilter.riskCategory}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
             </div>
-            <div class="tags mt-1 me-2">
-              Care Member: <b>Surendra Kajla</b>
-              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.careMember">
+              Care Member: <b>{{filter.patientFilter.careMember}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
             </div>
-            <div class="tags mt-1 me-2">
-              Assessment: <b>04/04/2023 - 04/20/2023</b>
-              <a href="Javascript:void(0)" class="tags__icon">x</a>
+            <div class="tags mt-1 me-2" *ngIf="filter.patientFilter.assignment && filter.patientFilter.assignment.length > 1">
+              Assessment: <b>{{moment(filter.patientFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(filter.patientFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
             </div>
           </div>
         </div>
