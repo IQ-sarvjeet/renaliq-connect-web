@@ -48,7 +48,7 @@ export class NotificationsComponent {
         messages.forEach((item: any) => {
           let found = false;
           for(let i = 0; i < this.notifications.length; i++) {
-            if (item.id === this.notifications[i]) {
+            if (item.id === this.notifications[i].id) {
               this.notifications[i] = item;
               found = true;
             }
@@ -57,7 +57,7 @@ export class NotificationsComponent {
             remainsMsg.push(item);
           }
         })
-        this.notifications.push(...remainsMsg);
+        this.notifications = [...remainsMsg, ...this.notifications]
       },
       error: (error) => {
       }

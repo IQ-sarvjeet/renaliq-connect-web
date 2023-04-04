@@ -109,6 +109,10 @@ export class TwoFectorAuthComponent {
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponse) => {
       if (result && result.accessToken) {
+        if (result.expiresIn) {
+          const  date = this.addMinutes(new Date(), (result.expiresIn / 60));
+          this._localStorage.setItem(CommonConstants.EXPIRATION_TIME, date.toString());
+        }
         this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
         setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
@@ -128,6 +132,10 @@ export class TwoFectorAuthComponent {
         }
       });
   };
+  addMinutes(date: Date, minutes: number) {
+    date.setMinutes(date.getMinutes() + minutes);
+    return date;
+  }
   private redirectOnLogin() {
     this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
     this.eventService.reachedNoOfAttemptsUpdate({
@@ -169,6 +177,7 @@ export class TwoFectorAuthComponent {
             message: this.errorMessage
           });
           this._localStorage.removeItem(CommonConstants.CONNECT_TOKEN_KEY);
+          this._localStorage.removeItem(CommonConstants.EXPIRATION_TIME);
           this.route.navigate(['/login']);
         }
       });
