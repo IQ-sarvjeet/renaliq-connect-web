@@ -15,6 +15,18 @@ export class AuthService {
     if(!userInfo || !userInfo.fullName) {
       return false;
     }
+    if (this.isUserSessionExpired()) {
+      return false;
+    }
     return !!this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+  }
+  isUserSessionExpired() {
+    const expirationTime = this._localStorage.getItem(CommonConstants.EXPIRATION_TIME);
+    if (expirationTime) {
+      if(new Date().getTime() > new Date(expirationTime).getTime()) {
+        return true;
+      }
+    }
+    return false;
   }
 }
