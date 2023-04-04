@@ -20,20 +20,20 @@ export class PatientHeaderComponent {
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
   stages: any = [
-    'CKD Stage 5',
     'CKD Stage 3a',
+    'CKD Stage 3b',
     'CKD Stage 4',
-    'ESKD',
-    'CKD Stage 3b'
+    'CKD Stage 5',
+    'ESKD'
   ]
   statusList: any = [
-    'Deceased',
     'New',
-    'On Hold',
     'Outreach in Progress',
     'Reached',
     'Verbal Consent',
-    'Written Consent'
+    'Written Consent',
+    'Deceased',
+    'On Hold'
   ]
   dateRangeFilter: any = "02/06/2023 - 02/14/2023";
   dateRangeOptions: MbscDatepickerOptions = {
