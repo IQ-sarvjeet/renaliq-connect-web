@@ -8,11 +8,11 @@ import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-cha
 })
 export class RiskStratificationAnalysisComponent {
   patientByPayer: ProgressBarChartWidgetInput = {
-    title: 'Patient By Lob',
+    title: 'Patients by LOB',
     apiUrl: 'Patient/summary/payer'
   }
   patientByRiskCategor: ProgressBarChartWidgetInput = {
-    title: 'Patient By Risk Category',
+    title: 'Patients by Risk Category',
     apiUrl: 'Patient/summary/riskcategory'
   }
 }
