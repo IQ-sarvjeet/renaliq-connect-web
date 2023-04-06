@@ -1,6 +1,6 @@
 export const Messages = {
     admissions: 'Admissions Last 90 Days',
-    admissions7Days: 'Admission Last 7 Days',
+    admissions7Days: 'Admissions Last 7 Days',
     attributed: 'Attributed Patients',
     checkSpamMessage : "If you don't see it, check your spam.",
     clinicalText1: 'Clinical Quality Metrics',
@@ -39,7 +39,7 @@ export const Messages = {
     resetViaEmail: 'Reset via Email',
     resetPasswordLink: 'We will send a link to reset your password',
     riskText1: 'Risk Stratification',
-    riskText2: 'Patient by Risk Category',
+    riskText2: 'Patients by Risk Category',
     sendTo: 'Code was sent to',
     textMessage: "We've sent a text message containing a link to Reset your password.",
     viaSms: 'Reset via SMS',
