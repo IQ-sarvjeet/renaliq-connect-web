@@ -22,10 +22,7 @@ export class ErrorsComponent {
   };
   constructor(
     private eventService: EventService,
-    private authService: AuthService,
-    private _accountService: AccountService,
-    private _localStorage: LocalStorageService,
-    private route: Router,) {}
+    private authService: AuthService) {}
   ngOnInit(): void {
     this.eventService
       .errorMessageSubscription()

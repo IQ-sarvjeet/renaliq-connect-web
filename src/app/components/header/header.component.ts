@@ -34,7 +34,6 @@ export class HeaderComponent {
   currentRoute: string = '/';
   constructor(
     private _accountService: AccountService,
-    private _localStorage: LocalStorageService,
     private practiceService: PracticeService,
     private route: Router,
     private eventService: EventService,
