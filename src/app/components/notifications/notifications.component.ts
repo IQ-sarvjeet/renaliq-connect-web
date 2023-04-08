@@ -64,7 +64,11 @@ export class NotificationsComponent {
     })
   }
   private pullNotificationTimer() {
-    this.pullMessageIntervalRef = setInterval(() => {      
+    this.pullMessageIntervalRef = setInterval(() => {
+      if (!this.authService.isLoggedIn()) {
+        clearInterval(this.pullMessageIntervalRef);
+        return;
+      }  
       this.getNotifications();
       this.notificationFromDate = new Date();
     }, 60000);

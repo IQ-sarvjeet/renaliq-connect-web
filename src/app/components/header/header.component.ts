@@ -34,7 +34,6 @@ export class HeaderComponent {
   currentRoute: string = '/';
   constructor(
     private _accountService: AccountService,
-    private _localStorage: LocalStorageService,
     private practiceService: PracticeService,
     private route: Router,
     private eventService: EventService,
@@ -98,15 +97,8 @@ export class HeaderComponent {
       
     })
   }
-  public async logOut() {
-    this._localStorage.clearAll();
-    try {
-      var result = await this._accountService.apiAccountLogoutPost().toPromise();
-      this.route.navigate(['/login']);
-    } catch (ex: any) {
-      console.log(ex);
-      this.route.navigate(['/login']);
-    }
+  public logOut() {
+   this.authService.logOut(); 
   }
   selectPracticeHandlar(practice: Practice) {
     this.selectedPractice = practice;
