@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import * as Highcharts from 'highcharts';
+// import * as Highcharts from 'highcharts';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 import { ElementRef, ViewChild } from '@angular/core';
@@ -12,7 +12,6 @@ type BarChartConfig = {
   apiUrl: string;
   title: string;
 }
-
 @Component({
   selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
@@ -22,7 +21,7 @@ export class DoughnutChartComponent {
   @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  Highcharts = Highcharts;
+  // Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -84,8 +83,11 @@ export class DoughnutChartComponent {
       next: (response: any) => {
         if (response) {
           const gridData: any = [];
+          // Object.keys(response).forEach((key: string) => {
+          //   gridData.push([key, response[key]]);
+          // })
           Object.keys(response).forEach((key: string) => {
-            gridData.push([key, response[key]]);
+            gridData.push({name: key, value: response[key]});
           })
           this.renderChart(gridData);
           this.showLoading = false;
@@ -119,18 +121,20 @@ export class DoughnutChartComponent {
 
     const chartEle = this.doughnutChart.nativeElement;
     if (chartEle) {
-      console.log('chartEle:::', chartEle);
       const chartRef = echarts.init(chartEle);
       let option: EChartsOption;
       option = {
-        color: ["#083050", "#46647c", "#8397a7", "#ced6dc", "#2684ff"],
+        color: ["#76ADDB", "#C8DB70", "#0B314F", "#999999", "#d96716"],
+        title: {
+          text: this.chartConfig.title,
+        },
         tooltip: {
           trigger: 'item'
         },
         legend: {
           top: '5%',
           right: '5%',
-          width: '30%'
+          width: '30%',
         },
         series: [
           {
@@ -139,7 +143,6 @@ export class DoughnutChartComponent {
             radius: ['50%', '90%'],
             avoidLabelOverlap: false,
             left: '-50%',
-            data: chartData,
             label: {
               show: false,
               position: 'center'
@@ -151,10 +154,13 @@ export class DoughnutChartComponent {
                 fontWeight: 'bold'
               }
             },
+            labelLine: {
+              show: false
+            },
+            data: chartData
           }
         ]
-      };
-
+      }
       option && chartRef.setOption(option);
     }
   }
