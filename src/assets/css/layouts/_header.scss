@@ -1064,6 +1064,7 @@ body.fixed-header .header {
   .notifications {
     .dropdown-menu {
       min-width: 16rem;
+      right: -0.75rem;
     }
     .dropdown-menu-arrow.show {
       animation: dropmenu 0.3s linear;
@@ -1153,6 +1154,15 @@ body.fixed-header .header {
     .dropdown-item {
       &:last-child {
         border-bottom: 0;
+      }
+    }
+  }
+  .notifications-menu {
+    max-height: 24rem;
+    overflow-y: auto !important;
+    .dropdown-item {
+      &:first-child {
+        border-top: none !important;
       }
     }
   }
@@ -1416,6 +1426,21 @@ body.fixed-header .header {
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.025);
+    }
+  }
+}
+
+.dark-mode {
+  .search-results {
+    background-color: var(--dark-body);
+    border: 1px solid var(--dark-border);
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.3);
+
+    &__item {
+      border-bottom: 0.0625rem solid var(--dark-border);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
     }
   }
 }
