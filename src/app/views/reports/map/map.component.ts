@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 // import * as Highcharts from 'highcharts';
-import * as Highcharts from "highcharts/highmaps";
-import * as MarkerClusters from "highcharts/modules/marker-clusters";
-import * as ModulesData from "highcharts/modules/data";
-import * as Coloraxis from "highcharts/modules/coloraxis";
+// import * as Highcharts from "highcharts/highmaps";
+// import * as MarkerClusters from "highcharts/modules/marker-clusters";
+// import * as ModulesData from "highcharts/modules/data";
+// import * as Coloraxis from "highcharts/modules/coloraxis";
 
-MarkerClusters.default(Highcharts);
-// ModulesData.default(Highcharts);
-// Coloraxis.default(Highcharts);
+// MarkerClusters.default(Highcharts);
 
 @Component({
   selector: 'app-map',
@@ -15,8 +13,8 @@ MarkerClusters.default(Highcharts);
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent {
-  Highcharts: any = Highcharts;
-  MarkerClusters: any = MarkerClusters;
+//   Highcharts: any = Highcharts;
+//   MarkerClusters: any = MarkerClusters;
   chartConstructor = "mapChart";
   option: any = {
     chart: {
@@ -112,7 +110,7 @@ export class MapComponent {
         colorKey: 'clusterPointsAmount',
         name: 'Cities',
         data: [],
-        color: this.Highcharts.getOptions().colors[5],
+        // color: this.Highcharts.getOptions().colors[5],
         marker: {
             lineWidth: 1,
             lineColor: '#fff',
@@ -125,7 +123,7 @@ export class MapComponent {
     }]
   }
   ngOnInit() {
-    this.renderChart();
+    // this.renderChart();
   }
   async renderChart() {
     const topology = await fetch(

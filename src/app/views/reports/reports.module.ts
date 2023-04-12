@@ -10,7 +10,6 @@ import { RiskAnalysisComponent } from './risk-analysis/risk-analysis.component';
 import { ReportsGridComponent } from './reports-grid/reports-grid.component';
 import { SharedModule } from 'src/app/components/shared.module';
 import { RiskStratificationAnalysisComponent } from './risk-stratification-analysis/risk-stratification-analysis.component';
-import { HighchartsChartModule } from 'highcharts-angular';
 import { MapComponent } from './map/map.component';
 import { HeatmapsComponent } from './heatmaps/heatmaps.component';
 
@@ -58,7 +57,6 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     FormsModule,
-    HighchartsChartModule,
     SharedModule],
 })
 export class ReportsModule {}
