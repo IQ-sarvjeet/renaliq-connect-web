@@ -21,21 +21,21 @@ export class SummaryComponent {
     performance: 'up',
   };
   admissions: DataCardInput = {
-    iconClass: 'icon-target',
+    iconClass: 'fa-target',
     cardTitle: Messages.admissions,
     count: '-',
     percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
-    iconClass: 'icon-people',
+    iconClass: 'fa-people',
     cardTitle: Messages.engagedPatients,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
-    iconClass: 'icon-people',
+    iconClass: 'fa-people',
     cardTitle: Messages.admissions7Days,
     count: '-',
     percentile: null,
@@ -43,19 +43,19 @@ export class SummaryComponent {
   };
   patientInsight: DescriptionCardInput = {
     redirectTo: '/reports/insight',
-    iconClass: 'icon-eye',
+    iconClass: 'fa-eye',
     cardTitle: Messages.patientInsight,
     description: Messages.patientPopullation,
   };
   qualityMatrics: DescriptionCardInput = {
     redirectTo: '/reports/qualityMatrix',
-    iconClass: 'icon-briefcase',
+    iconClass: 'fa-briefcase',
     cardTitle: Messages.clinicalText1,
     description: Messages.practiceCurrentPerformance,
   };
   riskStratification: DescriptionCardInput = {
     redirectTo: '/reports/riskAnalysis',
-    iconClass: 'icon-people',
+    iconClass: 'fa-people',
     cardTitle: Messages.riskText1,
     description: Messages.patientInsightText2,
   };
