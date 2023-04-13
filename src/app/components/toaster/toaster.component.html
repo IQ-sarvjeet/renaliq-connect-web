@@ -6,17 +6,17 @@
     'toast-warning': toasterData.type === 'warning',
     'toast-success': toasterData.type === 'success'
   }"
-  style="z-index: 9999;"
+  style="z-index: 9999"
 >
   <div class="d-flex text-center">
     <div class="py-3 ps-4 fs-18">
       <i
-        class="icon"
+        class="fa"
         [ngClass]="{
           show: toasterData.showToster == true,
-          'icon-shield': toasterData.type === 'error',
-          'icon-exclamation': toasterData.type === 'warning',
-          'icon-check': toasterData.type === 'success'
+          'fa-shield': toasterData.type === 'error',
+          'fa-info-circle': toasterData.type === 'warning',
+          'fa-check-circle-o': toasterData.type === 'success'
         }"
       ></i>
     </div>

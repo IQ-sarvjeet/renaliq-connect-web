@@ -173,8 +173,7 @@
                       </div>
                       <span class="fs-11" *ngIf="item.targetTypeSign == '='"
                         ><b
-                          >TARGET {{ item.targetFormula
-                          }} {{ item.target }}</b
+                          >TARGET {{ item.targetFormula }} {{ item.target }}</b
                         ></span
                       >
                       <span class="fs-11" *ngIf="item.targetTypeSign == '%'"
@@ -206,7 +205,7 @@
                         class="btn btn-outline-primary border-0 ms-2"
                       >
                         <span
-                          class="icon icon-list fs-16 mt-1 d-inline-block"
+                          class="fa fa-th-list fs-16 mt-1 d-inline-block"
                         ></span>
                       </a>
                     </td>
@@ -321,7 +320,9 @@
             </tr> -->
           </tbody>
         </table>
-        <app-no-records-found *ngIf="!showLoading && qualityMatircList.length === 0"></app-no-records-found>
+        <app-no-records-found
+          *ngIf="!showLoading && qualityMatircList.length === 0"
+        ></app-no-records-found>
       </div>
     </div>
   </div>
