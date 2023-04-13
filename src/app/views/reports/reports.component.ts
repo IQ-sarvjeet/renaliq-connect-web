@@ -37,9 +37,6 @@ export class ReportsComponent implements OnInit {
         if(response.length > 0) {
           this.dateList = response;
         }
-      },
-      error: (error: any) => {
-
       }
     })
   }
