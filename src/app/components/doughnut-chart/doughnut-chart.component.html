@@ -30,14 +30,13 @@
   </div>
 </div>
 
-<!-- <highcharts-chart
+<highcharts-chart
     *ngIf="!errorMessage"
     style="width: 100%; height: 100%; display: block"
     [Highcharts]="Highcharts"
     [options]="options"
 >
-</highcharts-chart> -->
-<div #doughnutChart style="width: '100%'; height: '100%';"></div>
+</highcharts-chart>
 <div *ngIf="errorMessage">
     <div class="alert alert-danger d-flex fade show"
       role="alert">
