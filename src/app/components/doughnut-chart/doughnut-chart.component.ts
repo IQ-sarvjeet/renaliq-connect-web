@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-// import * as Highcharts from 'highcharts';
+import * as Highcharts from 'highcharts';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 
@@ -8,6 +8,7 @@ type BarChartConfig = {
   apiUrl: string;
   title: string;
 }
+
 @Component({
   selector: 'app-doughnut-chart',
   templateUrl: './doughnut-chart.component.html',
@@ -17,7 +18,7 @@ export class DoughnutChartComponent {
   // @ViewChild('doughnutChart', { static: false }) doughnutChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  // Highcharts = Highcharts;
+  Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -79,11 +80,8 @@ export class DoughnutChartComponent {
       next: (response: any) => {
         if (response) {
           const gridData: any = [];
-          // Object.keys(response).forEach((key: string) => {
-          //   gridData.push([key, response[key]]);
-          // })
           Object.keys(response).forEach((key: string) => {
-            gridData.push({name: key, value: response[key]});
+            gridData.push([key, response[key]]);
           })
           this.renderChart(gridData);
           this.showLoading = false;

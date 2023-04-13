@@ -1,11 +1,10 @@
 <app-spinner *ngIf="showLoading"></app-spinner>
-<!-- <highcharts-chart
+<highcharts-chart
     *ngIf="!errorMessage"
     style="width: 100%; height: 100%; display: block;"
     [Highcharts]="Highcharts"
     [options]="option">
-</highcharts-chart> -->
-<div #barChart style="width: 100%; height: '200px'; display: block;"></div>
+</highcharts-chart>
 <div *ngIf="errorMessage">
     <div class="alert alert-danger d-flex fade show"
       role="alert">

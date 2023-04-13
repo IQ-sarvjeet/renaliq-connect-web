@@ -9,7 +9,7 @@ import { GridComponent } from './grid/grid.component';
 import { LocalStorageService } from '../shared/services/localstorage.service';
 import { LoggerService } from '../shared/services/logger.service';
 import { HttpClientWapperService } from '../shared/services/httpclient.wapper.service';
-// import { HighchartsChartModule } from 'highcharts-angular';
+import { HighchartsChartModule } from 'highcharts-angular';
 import { SearchComponent } from './search/search.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -19,7 +19,7 @@ import { DataCardComponent } from './data-card/data-card.component';
 import { NoRecordsFoundComponent } from './no-records-found/no-records-found.component';
 
 @NgModule({
- imports:      [ CommonModule, ],
+ imports:      [ CommonModule, HighchartsChartModule, ],
  declarations: [
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
