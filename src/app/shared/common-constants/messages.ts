@@ -27,7 +27,7 @@ export const Messages = {
   mobileValid: 'Enter the valid Mobile Number',
   numberOfAttempts: 'Exhausted the number of account verification attempts',
   noData: 'No data found!',
-  noPatientFound: 'No Patient found!',
+  noPatientFound: 'No patient found!',
   noRecords: 'No Record Found.',
   PRODUCTNAME: 'RenalIQ Connect',
   passwordValid: 'Password is not valid',
