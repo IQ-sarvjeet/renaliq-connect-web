@@ -14,7 +14,7 @@ declare const $: any;
 })
 export class SummaryComponent {
   patients: DataCardInput = {
-    iconClass: 'icon-user',
+    iconClass: 'fa fa-user-circle',
     cardTitle: Messages.attributed,
     count: '-',
     percentile: null,
@@ -55,7 +55,7 @@ export class SummaryComponent {
   };
   riskStratification: DescriptionCardInput = {
     redirectTo: '/reports/riskAnalysis',
-    iconClass: 'fas fa-users',
+    iconClass: 'fa fa-user-circle',
     cardTitle: Messages.riskText1,
     description: Messages.patientInsightText2,
   };

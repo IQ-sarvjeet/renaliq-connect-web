@@ -27,42 +27,42 @@ export class RiskAnalysisComponent {
     apiUrl: 'Patient/summary/riskcategory',
   };
   patients: DataCardInput = {
-    iconClass: 'icon-user',
+    iconClass: 'fa fa-user-circle',
     cardTitle: Messages.attributed,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   admissions: DataCardInput = {
-    iconClass: 'icon-target',
+    iconClass: 'fa fa-trophy',
     cardTitle: Messages.admissions,
     count: '-',
     percentile: null,
     performance: 'down',
   };
   engagedPatients: DataCardInput = {
-    iconClass: 'icon-people',
+    iconClass: 'fa fa-users',
     cardTitle: Messages.engagedPatients,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   admissionRecent: DataCardInput = {
-    iconClass: 'icon-people',
+    iconClass: 'fa fa-users',
     cardTitle: Messages.admissions7Days,
     count: '-',
     percentile: null,
     performance: 'up',
   };
   tempdata1: DataCardInput = {
-    iconClass: 'icon-target',
+    iconClass: 'fa fa-trophy',
     cardTitle: '',
     count: '-',
     percentile: null,
     performance: 'down',
   };
   tempdata2: DataCardInput = {
-    iconClass: 'icon-people',
+    iconClass: 'fa fa-users',
     cardTitle: '',
     count: '-',
     percentile: null,
@@ -73,12 +73,12 @@ export class RiskAnalysisComponent {
   genderData: any = [
     {
       key: 'M',
-      value: '-'
+      value: '-',
     },
     {
       key: 'F',
-      value: '-'
-    }
+      value: '-',
+    },
   ];
   loadingGenders: boolean = false;
   constructor(private patientService: PatientService) {}
@@ -105,20 +105,16 @@ export class RiskAnalysisComponent {
       next: (stageData: any) => {
         this.patientByStageKeys = Object.keys(stageData);
       },
-      error: (error: any) => {
-
-      }
-    })
+      error: (error: any) => {},
+    });
     this.patientService.apiPatientSummaryRiskcategoryGet().subscribe({
       next: (stageData: any) => {
         stageData.forEach((item: any) => {
           this.patientByRiskCategoryKeys.push(item.key);
-        })
+        });
       },
-      error: (error: any) => {
-
-      }
-    })
+      error: (error: any) => {},
+    });
     this.loadingGenders = true;
     this.patientService.apiPatientSummaryGenderGet().subscribe({
       next: (genderData: any) => {
@@ -127,7 +123,7 @@ export class RiskAnalysisComponent {
       },
       error: (error: any) => {
         this.loadingGenders = false;
-      }
-    })
+      },
+    });
   }
 }

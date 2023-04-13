@@ -28,7 +28,7 @@
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Risk Category</div>
-        <div>{{patientStatus.riskCategory}}</div>
+        <div>{{ patientStatus.riskCategory }}</div>
       </div>
     </div>
     <div class="form-row mt-4">
@@ -59,7 +59,9 @@
       </div>
       <div class="col-6" *ngIf="!patientStatus.lastAssessmentDate">
         <div class="fs-12 op-0-75">Assessment Date</div>
-        <div >{{moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY")}}</div>
+        <div>
+          {{ moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY") }}
+        </div>
       </div>
     </div>
     <!-- <div class="form-row mt-4">
@@ -81,7 +83,7 @@
     href="javascript:void(0)"
     (click)="patientDetails()"
     class="btn btn-secondary ms-3"
-    ><i class="icon icon-eye me-1"></i> VIEW CARE PLAN</a
+    ><i class="fa fa-eye me-1"></i> VIEW CARE PLAN</a
   >
 </div>
 
@@ -109,7 +111,7 @@
           </div>
           <div class="col-4 border-start">
             <div class="fs-12 op-0-75">State</div>
-            <div class="fw-semibold">{{patientStatus.stage}}</div>
+            <div class="fw-semibold">{{ patientStatus.stage }}</div>
           </div>
         </div>
         <hr />
