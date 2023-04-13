@@ -55,7 +55,7 @@ export class SummaryComponent {
   };
   riskStratification: DescriptionCardInput = {
     redirectTo: '/reports/riskAnalysis',
-    iconClass: 'fa-people',
+    iconClass: 'fas fa-users',
     cardTitle: Messages.riskText1,
     description: Messages.patientInsightText2,
   };
