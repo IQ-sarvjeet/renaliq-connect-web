@@ -16,7 +16,6 @@ export class NotificationsComponent {
   private notificationFromDate: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   private pullMessageIntervalRef: any;
   notifications: any = [];
-  displayPluse: boolean = true;
   constructor(private notificationService: NotificationService,
     private eventService: EventService,
     private authService: AuthService,
@@ -58,9 +57,6 @@ export class NotificationsComponent {
             remainsMsg.push(item);
           }
         })
-        if (remainsMsg.length > 0) {
-          this.displayPluse = true;
-        }
         this.notifications = [...remainsMsg, ...this.notifications]
       },
       error: (error) => {
@@ -87,19 +83,18 @@ export class NotificationsComponent {
     this.notifications = [];
   }
   openNotificationsDialog(){
-    this.displayPluse = false;
     this.updateReadStatus(0);
   }
   updateReadStatus(index: number) {
     if(index >= this.notifications.length) return;
-    if (this.notifications[index].readOn) {
+    if (this.notifications[index].readStatus) {
       this.updateReadStatus(index + 1);
       return;
     }
     this.notificationService.apiNotificationUpdateReadstatusNotificationIdGet(this.notifications[index].id).subscribe({
       next: (res: any) => {
         if (res.isCompleted) {
-          this.notifications[index].readOn = true;
+          this.notifications[index].readStatus = true;
         }
         this.updateReadStatus(index + 1)
       },
@@ -109,7 +104,7 @@ export class NotificationsComponent {
     })
   }
   unreadCounts() {
-    const counts = this.notifications.filter((item: any) => !item.readOn);
+    const counts = this.notifications.filter((item: any) => !item.readStatus);
     return counts.length > 0;
   }
   downloadFile(notification: any) {
