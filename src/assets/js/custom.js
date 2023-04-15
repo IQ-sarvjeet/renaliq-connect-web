@@ -6,6 +6,36 @@
     $("#global-loader").fadeOut("slow");
   });
 
+  //Slide SHOW HIDE
+  $(document).on("click", "[data-bs-toggle='slide']", function (e) {
+    var $this = $(this);
+    var checkElement = $this.next();
+    var animationSpeed = 300,
+      slideMenuSelector = ".slide-menu";
+    if (checkElement.is(slideMenuSelector) && checkElement.is(":visible")) {
+      checkElement.slideUp(animationSpeed, function () {
+        checkElement.removeClass("open");
+      });
+      checkElement.parent("li").removeClass("is-expanded");
+    } else if (
+      checkElement.is(slideMenuSelector) &&
+      !checkElement.is(":visible")
+    ) {
+      var parent = $this.parents("ul").first();
+      var ul = parent.find("ul:visible").slideUp(animationSpeed);
+      ul.removeClass("open");
+      var parent_li = $this.parent("li");
+      checkElement.slideDown(animationSpeed, function () {
+        checkElement.addClass("open");
+        parent.find("li.is-expanded").removeClass("is-expanded");
+        parent_li.addClass("is-expanded");
+      });
+    }
+    if (checkElement.is(slideMenuSelector)) {
+      e.preventDefault();
+    }
+  });
+
   //PAWWORD SHOW HIDE
   $(document).on("click", ".input-password__icon", function () {
     if ($(this).parent().hasClass("is-show")) {
@@ -23,11 +53,6 @@
   //COLOR THEME
   $(document).on("click", "a[data-theme]", function () {
     $("head link#theme").attr("href", $(this).data("theme"));
-    $(this).toggleClass("active").siblings().removeClass("active");
-  });
-
-  // FAQ ACCORDION
-  $(document).on("click", '[data-bs-toggle="collapse"]', function () {
     $(this).toggleClass("active").siblings().removeClass("active");
   });
 
@@ -314,10 +339,14 @@
   // ACCORDION STYLE
   $(document).on("click", '[data-bs-toggle="collapse"]', function () {
     $(this).toggleClass("active").siblings().removeClass("active");
+    $("body").toggleClass("navbar-toggled");
+    $("body").removeClass("sidenav-toggled");
   });
 
   $(document).on("click", '[data-bs-toggle="sidebar"]', function () {
+    $('[data-bs-toggle="collapse"]').addClass("active");
     $("body").toggleClass("sidenav-toggled");
+    $("body").removeClass("navbar-toggled");
   });
 
   // EMAIL INBOX

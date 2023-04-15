@@ -403,7 +403,7 @@
   }
   .header.hor-header {
     position: fixed;
-    border-bottom: 1px solid #e9edf4;
+    border-bottom: 1px solid var(--border);
     width: 100%;
     z-index: 999;
     top: 0;

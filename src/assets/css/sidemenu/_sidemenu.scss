@@ -440,19 +440,6 @@
   }
 }
 .slide-menu li {
-  .slide-item {
-    &:before {
-      content: "\e0e7";
-      font-family: "typicons";
-      font-style: normal;
-      font-weight: normal;
-      text-decoration: inherit;
-      top: 1px;
-      font-size: 13px;
-      margin-right: 8px;
-      color: #68798b;
-    }
-  }
   position: relative;
 }
 .slide.is-expanded a {
@@ -491,10 +478,8 @@
 }
 .slide-menu {
   display: none;
-  padding: 0px 30px;
+  padding: 0px 20px;
   font-size: 0.8rem !important;
-  padding-left: 20px;
-  margin-left: 20px;
 }
 .slide-item {
   display: -webkit-box;
@@ -907,15 +892,6 @@
     flex: 1 1 auto;
   }
 }
-.slide-menu a:before {
-  content: "\e0e7";
-  margin-right: 10px;
-  font-size: 11px;
-  position: relative;
-  font-family: typicons !important;
-  opacity: 0.6;
-  top: 1px;
-}
 .sub-slide.is-expanded .sub-angle {
   -webkit-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -1073,11 +1049,16 @@
     }
     .app-sidebar {
       left: 0;
-      padding-top: 16px;
     }
     .app-sidebar__overlay {
       visibility: visible;
-      background: rgba(0, 0, 0, 0.25);
+      background: rgba(0, 0, 0, 0.5);
+    }
+  }
+  .app.navbar-toggled {
+    .app-sidebar__overlay {
+      visibility: visible;
+      background: rgba(0, 0, 0, 0.5);
     }
   }
   .sidebar-mini.sidebar-gone.sidenav-toggled .app-sidebar {
