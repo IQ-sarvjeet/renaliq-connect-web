@@ -249,7 +249,12 @@
 
         <div class="mb-4" *ngIf="exportStatus">
           <!-- <h4 class="mb-2">Report Already Submitted</h4> -->
-
+          <div
+            class="h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'waitingForStatus'"
+          >
+            Your export request is being processed now. Please check notification bell icon to download.
+          </div>
           <div
             class="progress h-6 mb-2 fs-16"
             *ngIf="exportStatus === 'submitted'"

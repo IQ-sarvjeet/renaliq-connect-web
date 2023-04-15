@@ -112,12 +112,16 @@ export class PatientHeaderComponent {
     this._interactionService.setPatientFilter(this.filter);
   }
   exportClickHandler() {
-    // this.patientService.apiPatientSummaryExportstatusGet().subscribe({
-    //   next: (response: any) => {
-    //     // console.log('submit export:', response);
-    //     console.log('exportClickHandler', response);
-    //   }
-    // })
+    if (this.exportStatus === 'inprogress') {
+      this.exportStatus = 'waitingForStatus';
+    }
+    this.patientService.apiPatientSummaryExportstatusGet().subscribe({
+      next: (response: any) => {
+        if (response.exportStatus === 4) {
+          this.exportStatus = '';
+        }
+      }
+    })
   }
   submitExport() {
     this.disabledExport = true;

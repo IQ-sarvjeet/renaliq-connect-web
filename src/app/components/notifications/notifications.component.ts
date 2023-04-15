@@ -68,9 +68,15 @@ export class NotificationsComponent {
       if (!this.authService.isLoggedIn()) {
         clearInterval(this.pullMessageIntervalRef);
         return;
-      }  
+      }
+      if (this.notifications.length > 4) {
+        this.notificationFromDate = this.notifications[4].sentOn;
+      } else if(this.notifications.length > 0) {
+        const len = this.notifications.length;
+        this.notificationFromDate = this.notifications[len - 1].sentOn;
+      }
       this.getNotifications();
-      this.notificationFromDate = new Date();
+      // this.notificationFromDate = new Date();
     }, 60000);
   }
   clearNotifications() {
@@ -81,14 +87,14 @@ export class NotificationsComponent {
   }
   updateReadStatus(index: number) {
     if(index >= this.notifications.length) return;
-    if (this.notifications[index].readOn) {
+    if (this.notifications[index].readStatus) {
       this.updateReadStatus(index + 1);
       return;
     }
     this.notificationService.apiNotificationUpdateReadstatusNotificationIdGet(this.notifications[index].id).subscribe({
       next: (res: any) => {
         if (res.isCompleted) {
-          this.notifications[index].readOn = true;
+          this.notifications[index].readStatus = true;
         }
         this.updateReadStatus(index + 1)
       },
@@ -98,7 +104,7 @@ export class NotificationsComponent {
     })
   }
   unreadCounts() {
-    const counts = this.notifications.filter((item: any) => !item.readOn);
+    const counts = this.notifications.filter((item: any) => !item.readStatus);
     return counts.length > 0;
   }
   downloadFile(notification: any) {
