@@ -343,9 +343,17 @@
     $("body").removeClass("sidenav-toggled");
   });
 
-  $(document).on("click", '[data-bs-toggle="sidebar"]', function () {
-    $('[data-bs-toggle="collapse"]').addClass("active");
+  $(document).on("click", ".app-sidebar__toggle", function () {
+    $(".navbar-toggler.d-md-none").removeClass("active");
+    $("#navbarSupportedContent-4").removeClass("show");
     $("body").toggleClass("sidenav-toggled");
+    $("body").removeClass("navbar-toggled");
+  });
+
+  $(document).on("click", ".app-sidebar__overlay", function () {
+    $(".navbar-toggler.d-md-none").removeClass("active");
+    $("#navbarSupportedContent-4").removeClass("show");
+    $("body").removeClass("sidenav-toggled");
     $("body").removeClass("navbar-toggled");
   });
 
