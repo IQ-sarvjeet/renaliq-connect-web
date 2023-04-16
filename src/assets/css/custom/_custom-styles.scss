@@ -2011,7 +2011,8 @@ small,
     display: none;
   }
   .dropdown-menu.header-search:before {
-    left: 15px !important;
+    left: auto !important;
+    right: 16px;
   }
   .header .dropdown-menu {
     border-radius: 0px 0px 5px 5px !important;

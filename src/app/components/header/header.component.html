@@ -83,25 +83,10 @@
               />
             </svg>
           </a>
-          <div class="dropdown-menu header-search dropdown-menu-start">
-            <div class="input-group w-100 p-2">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Search...."
-              />
-              <div class="input-group-text btn btn-primary">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  enable-background="new 0 0 24 24"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M21.2529297,17.6464844l-2.8994141-2.8994141c-0.0021973-0.0021973-0.0043945-0.0043945-0.0065918-0.0065918c-0.8752441-0.8721313-2.2249146-0.9760132-3.2143555-0.3148804l-0.8467407-0.8467407c1.0981445-1.2668457,1.7143555-2.887146,1.715332-4.5747681c0.0021973-3.8643799-3.1286621-6.9989014-6.993042-7.0011597S2.0092773,5.1315308,2.007019,8.9959106S5.1356201,15.994812,9,15.9970703c1.6889038,0.0029907,3.3114014-0.6120605,4.5789185-1.7111206l0.84729,0.84729c-0.6630859,0.9924316-0.5566406,2.3459473,0.3208618,3.2202759l2.8994141,2.8994141c0.4780884,0.4786987,1.1271973,0.7471313,1.8037109,0.7460938c0.6766357,0.0001831,1.3256226-0.2686768,1.803894-0.7472534C22.2493286,20.2558594,22.2488403,18.6417236,21.2529297,17.6464844z M9.0084229,14.9970703c-3.3120728,0.0023193-5.9989624-2.6807861-6.0012817-5.9928589S5.6879272,3.005249,9,3.0029297c1.5910034-0.0026855,3.1175537,0.628479,4.2421875,1.7539062c1.1252441,1.1238403,1.7579956,2.6486206,1.7590942,4.2389526C15.0036011,12.3078613,12.3204956,14.994751,9.0084229,14.9970703z M20.5458984,20.5413818c-0.604126,0.6066284-1.5856934,0.6087036-2.1923828,0.0045166l-2.8994141-2.8994141c-0.2913818-0.2910156-0.4549561-0.6861572-0.4544678-1.0979614C15.0006714,15.6928101,15.6951294,15,16.5507812,15.0009766c0.4109497-0.0005493,0.8051758,0.1624756,1.0957031,0.453125l2.8994141,2.8994141C21.1482544,18.9584351,21.1482544,19.9364624,20.5458984,20.5413818z"
-                  />
-                </svg>
-              </div>
-            </div>
+          <div
+            class="dropdown-menu header-search dropdown-menu-start search-tablet"
+          >
+            <app-search></app-search>
           </div>
         </div>
         <!-- SEARCH -->
@@ -121,7 +106,15 @@
             <div class="d-flex order-lg-2 justify-content-center">
               <div class="dropdown d-md-none d-flex">
                 <a href="#" class="nav-link icon" data-bs-toggle="dropdown">
-                  <i class="fa fa-search text-primary"></i>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    enable-background="new 0 0 24 24"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M21.2529297,17.6464844l-2.8994141-2.8994141c-0.0021973-0.0021973-0.0043945-0.0043945-0.0065918-0.0065918c-0.8752441-0.8721313-2.2249146-0.9760132-3.2143555-0.3148804l-0.8467407-0.8467407c1.0981445-1.2668457,1.7143555-2.887146,1.715332-4.5747681c0.0021973-3.8643799-3.1286621-6.9989014-6.993042-7.0011597S2.0092773,5.1315308,2.007019,8.9959106S5.1356201,15.994812,9,15.9970703c1.6889038,0.0029907,3.3114014-0.6120605,4.5789185-1.7111206l0.84729,0.84729c-0.6630859,0.9924316-0.5566406,2.3459473,0.3208618,3.2202759l2.8994141,2.8994141c0.4780884,0.4786987,1.1271973,0.7471313,1.8037109,0.7460938c0.6766357,0.0001831,1.3256226-0.2686768,1.803894-0.7472534C22.2493286,20.2558594,22.2488403,18.6417236,21.2529297,17.6464844z M9.0084229,14.9970703c-3.3120728,0.0023193-5.9989624-2.6807861-6.0012817-5.9928589S5.6879272,3.005249,9,3.0029297c1.5910034-0.0026855,3.1175537,0.628479,4.2421875,1.7539062c1.1252441,1.1238403,1.7579956,2.6486206,1.7590942,4.2389526C15.0036011,12.3078613,12.3204956,14.994751,9.0084229,14.9970703z M20.5458984,20.5413818c-0.604126,0.6066284-1.5856934,0.6087036-2.1923828,0.0045166l-2.8994141-2.8994141c-0.2913818-0.2910156-0.4549561-0.6861572-0.4544678-1.0979614C15.0006714,15.6928101,15.6951294,15,16.5507812,15.0009766c0.4109497-0.0005493,0.8051758,0.1624756,1.0957031,0.453125l2.8994141,2.8994141C21.1482544,18.9584351,21.1482544,19.9364624,20.5458984,20.5413818z"
+                    />
+                  </svg>
                 </a>
                 <div class="dropdown-menu header-search dropdown-menu-start">
                   <div class="main-header-center p-1">
@@ -247,42 +240,26 @@
                     </svg>
                     Profile
                   </a>-->
-                  <div
-                    class="dropdown-item border-top-1"
-                    href="javascript:void(0)"
+                  <a
+                    class="dropdown-item layout-setting border-top"
+                    href="javascript:void(0);"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="w-inner-icn"
-                      enable-background="new 0 0 24 24"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M2.25,8.4521484l9.5,5.4804688C11.8259277,13.9767456,11.9121704,14,12,14s0.1740723-0.0232544,0.25-0.0673828l9.5-5.4804688c0.0759888-0.0438843,0.1390381-0.1069946,0.1829224-0.1829224C22.071106,8.0300293,21.9891968,7.7241211,21.75,7.5859375l-9.5-5.4755859c-0.1550903-0.0878906-0.3449097-0.0878906-0.5,0l-9.5,5.4755859C2.1740112,7.6298218,2.1109619,7.6929321,2.0670776,7.7688599C1.928894,8.0080566,2.0108032,8.3139648,2.25,8.4521484z M12,3.1210938l8.4990234,4.8984375L12,12.9228516L3.5009766,8.0195312L12,3.1210938z M21.2479858,15.5263672L12,20.9208984l-9.2481079-5.3945312c-0.2384033-0.1391602-0.5444336-0.0587158-0.6835938,0.1796875s-0.0587158,0.5444336,0.1796875,0.6835938l9.5,5.5419922C11.8244019,21.9765015,11.911377,22.0001221,12,22c0.088562,0.0001221,0.1755371-0.0234985,0.2518921-0.0683594l9.5-5.5419922c0.2384033-0.1391602,0.3188477-0.4451904,0.1796875-0.6835938S21.4863892,15.387207,21.2479858,15.5263672z M21.2479858,11.5263672L12,16.9208984l-9.2481079-5.3945312c-0.2384033-0.1391602-0.5444336-0.0587158-0.6835938,0.1796875s-0.0587158,0.5444336,0.1796875,0.6835938l9.5,5.5419922C11.8244019,17.9765015,11.911377,18.0001221,12,18c0.088562,0.0001221,0.1755371-0.0234985,0.2518921-0.0683594l9.5-5.5419922c0.2384033-0.1391602,0.3188477-0.4451904,0.1796875-0.6835938S21.4863892,11.387207,21.2479858,11.5263672z"
-                      ></path>
-                    </svg>
-                    Prefrences
-                    <a
-                      class="dropdown-item layout-setting border-top ms-3 mt-2"
-                      href="javascript:void(0);"
-                    >
-                      <span class="dark-layout fs-12">
-                        <i class="fe fe-star me-2"></i>
-                        Dark Theme
-                      </span>
-                      <span class="light-layout fs-12">
-                        <i class="fe fe-sun me-2"></i>
-                        Light Theme
-                      </span>
-                    </a>
-                    <a
-                      class="dropdown-item full-screen-link fs-12 border-top ms-3"
-                      href="javascript:void(0);"
-                    >
-                      <i class="fa fa-expand me-2"></i>
-                      Full Screen
-                    </a>
-                  </div>
+                    <span class="dark-layout fs-12">
+                      <i class="fe fe-star me-2"></i>
+                      Dark Theme
+                    </span>
+                    <span class="light-layout fs-12">
+                      <i class="fe fe-sun me-2"></i>
+                      Light Theme
+                    </span>
+                  </a>
+                  <a
+                    class="dropdown-item full-screen-link fs-12 border-top"
+                    href="javascript:void(0);"
+                  >
+                    <i class="fa fa-expand me-2"></i>
+                    Full Screen
+                  </a>
                   <a
                     class="dropdown-item border-top"
                     href="javascript: void(0);"
@@ -331,74 +308,66 @@
     </div>
     <div class="main-sidemenu is-expanded">
       <ul class="side-menu open">
-        <li class="slide is-expanded d-md-none">
-          <div class="dropdown d-md-flex profile-1 text-nowrap">
-            <a
-              href="#"
-              data-bs-toggle="dropdown"
-              class="nav-link leading-none d-flex animate fs-14 py-0 pe-0 ms-1 ps-4"
-            >
-              <div class="p-1 d-flex">
-                <div>
-                  <h6 class="mb-0">{{ selectedPractice.name }}</h6>
-                  <div class="fs-12 opacity-75 pt-1 text-muted">
-                    {{ selectedPractice.npi }}
-                  </div>
+        <li class="slide">
+          <a class="side-menu__item has-link" data-bs-toggle="slide" href="#">
+            <div class="d-flex w-100 align-items-center">
+              <div class="flex-fill">
+                <h6 class="mb-0">{{ selectedPractice.name }}</h6>
+                <div class="fs-12 opacity-75 pt-1 text-muted">
+                  {{ selectedPractice.npi }}
                 </div>
-                <i
-                  *ngIf="practiceList.length > 1"
-                  class="user-angle ms-1 fa fa-angle-down"
-                ></i>
               </div>
-            </a>
-            <div
-              class="dropdown-menu dropdown-menu-arrow ms-3"
-              *ngIf="practiceList.length > 1"
-            >
+              <i class="angle fa fa-angle-right"></i>
+            </div>
+          </a>
+          <ul class="slide-menu ms-0">
+            <li class="border-top" *ngIf="practiceList.length > 1">
               <ng-container *ngFor="let practice of practiceList">
                 <a
-                  class="dropdown-item border-top"
+                  class="slide-item d-block"
                   *ngIf="!practice.isSelected"
                   href="javascript: void(0)"
                   (click)="selectPracticeHandlar(practice)"
                 >
-                  {{ practice.name }}
-                  <span class="d-block opacity-75">{{ practice.npi }}</span>
+                  <div>{{ practice.name }}</div>
+                  <div class="d-block opacity-75">{{ practice.npi }}</div>
                 </a>
-                <!-- <a class="dropdown-item border-top" href="#">
-                  Fort Worth Renal Group
-                </a>
-                <a class="dropdown-item border-top" href="#">
-                  Cleveland Kidney & Hypertension Consultants Inc
-                </a> -->
               </ng-container>
-            </div>
-          </div>
-          <hr class="mb-0" />
+            </li>
+          </ul>
         </li>
-        <li class="slide is-expanded">
-          <a
-            class="side-menu__item has-link"
-            data-bs-toggle="slide"
-            href="index.html"
-          >
+        <li class="slide border-top">
+          <a class="side-menu__item has-link" routerLink="/summary">
             <span class="side-menu__label">Dashboard</span>
           </a>
         </li>
-        <li class="slide is-expanded">
-          <a class="side-menu__item has-link" data-bs-toggle="slide" href="#">
+        <li class="slide border-top">
+          <a class="side-menu__item has-link" routerLink="/patients">
             <span class="side-menu__label">Patients</span>
           </a>
         </li>
-        <li class="slide is-expanded">
-          <a class="side-menu__item has-link" data-bs-toggle="slide" href="#">
+        <li class="slide border-top">
+          <a class="side-menu__item has-link" routerLink="/admission">
             <span class="side-menu__label">Admissions</span>
           </a>
         </li>
-        <li class="slide is-expanded">
+        <li class="slide border-top">
           <a class="side-menu__item has-link" data-bs-toggle="slide" href="#">
             <span class="side-menu__label">Reports</span>
+            <i class="angle fa fa-angle-right"></i>
           </a>
+          <ul class="slide-menu ms-0">
+            <li class="border-top">
+              <a routerLink="/reports/qualityMatrix" class="slide-item"
+                >Clinical Quality Metrics</a
+              >
+            </li>
+            <li class="border-top">
+              <a routerLink="/reports/riskAnalysis" class="slide-item"
+                >Patient Risk Stratification</a
+              >
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
