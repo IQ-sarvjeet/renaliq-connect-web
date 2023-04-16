@@ -16,6 +16,7 @@ export class NotificationsComponent {
   private notificationFromDate: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   private pullMessageIntervalRef: any;
   notifications: any = [];
+  displayPlus: boolean = true;
   constructor(private notificationService: NotificationService,
     private eventService: EventService,
     private authService: AuthService,
@@ -57,6 +58,9 @@ export class NotificationsComponent {
             remainsMsg.push(item);
           }
         })
+        if(remainsMsg.length > 0) {
+          this.displayPlus = true;
+        }
         this.notifications = [...remainsMsg, ...this.notifications]
       },
       error: (error) => {
@@ -83,6 +87,7 @@ export class NotificationsComponent {
     this.notifications = [];
   }
   openNotificationsDialog(){
+    this.displayPlus = false;
     this.updateReadStatus(0);
   }
   updateReadStatus(index: number) {
