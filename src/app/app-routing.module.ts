@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthguardGuard } from './auth/authguard.guard';
+import { DownloadComponent } from './views/download/download.component';
 
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
@@ -85,6 +86,11 @@ const routes: Routes = [
       import('./views/patient-profile/patient-profile.module').then(
         (m) => m.PatientProfileModule
       ),
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'publish/:name/:refId',
+    component: DownloadComponent,
     canActivate: [AuthguardGuard]
   },
   {
