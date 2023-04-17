@@ -70,7 +70,12 @@ export class TwoFectorAuthComponent {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
       this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
-      this.route.navigate(['/summary']);
+      const path = this.storeService.getCurrentRoute();
+      if (path) {
+        this.route.navigate([path]);
+      } else {
+        this.route.navigate(['/summary']);
+      }
     }
   };
 
