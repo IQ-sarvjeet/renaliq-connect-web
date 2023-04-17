@@ -23,7 +23,7 @@ export class StoreService {
   userInfoSubscription(): Observable<UserInfo> {
     return this.userInfo$.asObservable();
   }
-  setCurrentRoute(value: string) {
+  setCurrentRoute(value: string | null) {
     this.currentRoute = value;
   }
   getCurrentRoute() {
