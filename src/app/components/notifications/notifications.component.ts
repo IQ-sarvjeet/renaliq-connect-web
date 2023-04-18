@@ -6,6 +6,7 @@ import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
 import { environment } from 'src/environments/environment';
 
+declare const $: any;
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
@@ -118,7 +119,9 @@ export class NotificationsComponent {
   }
   downloadFile(notification: any) {
     const url: string = `${environment.baseApiUrl}/api/Export/download/file/${notification.referenceId}`;
-    this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, notification.status.reportName);
+    this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, notification.status.reportName).then(() => {
+      $('#notificationDownloadStatus').modal('hide');
+    });
   }
   ngOnDestroy(){
     if(this.pullMessageIntervalRef) {

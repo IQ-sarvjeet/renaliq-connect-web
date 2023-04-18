@@ -67,6 +67,8 @@
               <a href="javascript: void(0);"
                 *ngIf="notification.status.status === 4"
                 (click)="downloadFile(notification)"
+                data-bs-target="#notificationDownloadStatus"
+                data-bs-toggle="modal"
                 class="btn btn-outline-secondary ms-3">
                 <i class="fa fa-download text-secondary"></i>
               </a>
@@ -78,6 +80,26 @@
     <div class="text-center p-3">
       <a class="btn btn-primary">View All Notifications</a>
     </div-->
+  </div>
+</div>
+<!-- EXPORT MODAL -->
+<div class="modal fade" id="notificationDownloadStatus">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-body">
+        <div class="progress h-6 mb-2 fs-16">
+          <div
+            class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"
+            role="progressbar"
+            aria-valuenow="75"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            Downloading in progress...
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
