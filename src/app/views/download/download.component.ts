@@ -18,13 +18,17 @@ export class DownloadComponent {
     private storeService: StoreService) {}
   ngOnInit() {
     const refId: string | null = this.activatedRoute.snapshot.paramMap.get('refId');
-    refId && this.downloadFile(refId);
+    let fileName: string | null = this.activatedRoute.snapshot.paramMap.get('fileName');
+    if(!fileName) {
+      fileName = 'download';
+    }
+    refId && this.downloadFile(refId, fileName);
   }
-  private downloadFile(refId: string) {
+  private downloadFile(refId: string, fileName: string) {
     this.storeService.setCurrentRoute(null);
     try {
       const url: string = `${environment.baseApiUrl}/api/Export/download/${refId}`;
-      this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, 'download');
+      this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, fileName);
     } catch(error) {
 
     } finally {

@@ -16,7 +16,7 @@ export class NotificationsComponent {
   private notificationFromDate: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
   private pullMessageIntervalRef: any;
   notifications: any = [];
-  displayPlus: boolean = true;
+  displayPlus: boolean = false;
   constructor(private notificationService: NotificationService,
     private eventService: EventService,
     private authService: AuthService,
@@ -46,8 +46,12 @@ export class NotificationsComponent {
     this.notificationService.apiNotificationListPost({messageFromDate: this.notificationFromDate}).subscribe({
       next: (messages: any) => {
         const remainsMsg: any = [];
+        let unreadNotifications = false;
         messages.forEach((item: any) => {
           let found = false;
+          if (!item.readStatus) {
+            unreadNotifications = true;
+          }
           for(let i = 0; i < this.notifications.length; i++) {
             if (item.id === this.notifications[i].id) {
               this.notifications[i] = item;
@@ -58,7 +62,7 @@ export class NotificationsComponent {
             remainsMsg.push(item);
           }
         })
-        if(remainsMsg.length > 0) {
+        if(unreadNotifications) {
           this.displayPlus = true;
         }
         this.notifications = [...remainsMsg, ...this.notifications]
