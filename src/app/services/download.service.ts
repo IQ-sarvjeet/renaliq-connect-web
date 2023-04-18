@@ -42,34 +42,42 @@ export class DownloadService {
   }
 
   startDownloadingXSLX(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any) {
-    this.downloadXSLX(elementRef, renderer, url, fileName);
+    return this.downloadXSLX(elementRef, renderer, url, fileName);
   }
 
   downloadXSLX(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any) {
-    const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
-    let headerOptions = new HttpHeaders({
-      'Content-Type': 'application/json',
-     // 'Accept': 'application/xslx',
-      'Authorization': 'JWT ' + token
-    });
+    const promiseReq = new Promise((resolve: any, reject: any) => {
+      const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+      let headerOptions = new HttpHeaders({
+        'Content-Type': 'application/json',
+      // 'Accept': 'application/xslx',
+        'Authorization': 'JWT ' + token
+      });
 
-    let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-    this.httpClient.get(url, requestOptions).subscribe({
-      next: (response: any) => {
-        if (response.size === 0) {
-          this.eventService.openToaster({
-            showToster: true,
-            message: `Error in downloading file.`,
-            type: 'danger',
+      let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
+      this.httpClient.get(url, requestOptions).subscribe({
+        next: (response: any) => {
+          if (response.size === 0) {
+            this.eventService.openToaster({
+              showToster: true,
+              message: `Error in downloading file.`,
+              type: 'danger',
+            });
+            return;
+          }
+          const blob = new Blob([response], {
+            type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          return;
+          this.downloadFile(blob, `${fileName}.xlsx`, elementRef, renderer);
+          resolve();
+        },
+        error: () => {
+          reject();
         }
-        const blob = new Blob([response], {
-          type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        });
-        this.downloadFile(blob, `${fileName}.xlsx`, elementRef, renderer);
-      }
-    })
+      })
+    });
+    
+    return promiseReq;
   }
 
 
