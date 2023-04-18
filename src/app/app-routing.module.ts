@@ -94,6 +94,11 @@ const routes: Routes = [
     canActivate: [AuthguardGuard]
   },
   {
+    path: 'publish/:name/:refId/:fileName',
+    component: DownloadComponent,
+    canActivate: [AuthguardGuard]
+  },
+  {
     path: 'resetPassword/:token',
     component: ResetPasswordComponent,
   },

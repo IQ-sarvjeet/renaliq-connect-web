@@ -35,6 +35,10 @@ export class AuthService {
     return false;
   }
   public async logOut() {
+    const path: string = window.location.hash;
+    if (path.indexOf('/publish') !== -1) {
+      this.storeService.setCurrentRoute(path.replace('#', ''));
+    }
     try {
       await this._accountService.apiAccountLogoutPost().toPromise();
     } catch (ex: any) {

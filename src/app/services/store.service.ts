@@ -10,6 +10,7 @@ export class StoreService {
     fullName: ' ',
     roleName: ''
   };
+  private currentRoute: string | null = null;
   private userInfo$: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>({} as UserInfo);
   constructor() { }
   getUserInfo(): UserInfo {
@@ -21,5 +22,11 @@ export class StoreService {
   }
   userInfoSubscription(): Observable<UserInfo> {
     return this.userInfo$.asObservable();
+  }
+  setCurrentRoute(value: string | null) {
+    this.currentRoute = value;
+  }
+  getCurrentRoute() {
+    return this.currentRoute;
   }
 }
