@@ -23,7 +23,8 @@ import { SummaryModule } from './views/summary/summary.module';
 import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { InitialsPipe } from './pipes/initials.pipe';
-import { DownloadComponent } from './views/download/download.component'; // Pipe
+import { DownloadComponent } from './views/download/download.component';
+import { KnowledgeCenterComponent } from './views/knowledge-center/knowledge-center.component'; // Pipe
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { DownloadComponent } from './views/download/download.component'; // Pipe
     TwoFectorAuthComponent,
     SampleUiComponent,
     InitialsPipe,
-    DownloadComponent 
+    DownloadComponent,
+    KnowledgeCenterComponent 
   ],
   imports: [ 
     MbscModule,

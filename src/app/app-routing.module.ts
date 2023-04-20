@@ -5,6 +5,7 @@ import { DownloadComponent } from './views/download/download.component';
 
 import { ErrorsComponent } from './views/errors/errors.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { KnowledgeCenterComponent } from './views/knowledge-center/knowledge-center.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { SigninComponent } from './views/signin/signin.component';
@@ -101,6 +102,10 @@ const routes: Routes = [
   {
     path: 'resetPassword/:token',
     component: ResetPasswordComponent,
+  },
+  {
+    path: 'knowledge-center',
+    component: KnowledgeCenterComponent,
   },
   {
     path: 'twofectorauth',
