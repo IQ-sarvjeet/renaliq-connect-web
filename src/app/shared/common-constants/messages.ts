@@ -26,6 +26,7 @@ export const Messages = {
   mobileRequired: 'Mobile Number is required',
   mobileValid: 'Enter the valid Mobile Number',
   numberOfAttempts: 'Exhausted the number of account verification attempts',
+  invalidUserNameOrPassWord: 'invalid_username_or_password',
   noData: 'No data found!',
   noPatientFound: 'No patient found!',
   noRecords: 'No Record Found.',

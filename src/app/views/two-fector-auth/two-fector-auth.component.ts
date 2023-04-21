@@ -62,7 +62,7 @@ export class TwoFectorAuthComponent {
     })
     let elementReference = document.querySelector('#verificationCode1');
     if (elementReference instanceof HTMLElement) {
-        elementReference.focus();
+      elementReference.focus();
     }
   }
 
@@ -104,17 +104,21 @@ export class TwoFectorAuthComponent {
       username: this.username,
       password: this.password,
       twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
-      rememberMe: false
+      rememberMe: false,
+      client_id: environment.identity.clientId,
+      client_secret: environment.identity.clientSecret,
+      grant_type: environment.identity.grantType,
+      scope: environment.identity.scopes
     };
 
     let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponse) => {
-      if (result && result.accessToken) {
-        if (result.expiresIn) {
-          const  date = this.addMinutes(new Date(), (result.expiresIn / 60));
+      if (result && result.access_token) {
+        if (result.expires_in) {
+          const date = this.addMinutes(new Date(), (result.expires_in / 60));
           this._localStorage.setItem(CommonConstants.EXPIRATION_TIME, date.toString());
         }
-        this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken);
-        setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.accessToken, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
+        this._localStorage.setItem(CommonConstants.CONNECT_TOKEN_KEY, result.access_token);
+        setCookie(CommonConstants.CONNECT_TOKEN_KEY, result.access_token, CommonConstants.CONNECT_REFRESH_TOKEN_EXPIRY);
         this._localStorage.removeItem(CommonConstants.TWO_FA_KEY);
         await this.getUserInfo();
         this.eventService.userLoggedInUpdate(true);
@@ -125,9 +129,15 @@ export class TwoFectorAuthComponent {
     },
       (error: any) => {
         this.showToster = true;
-        this.errorMessage = error?.error?.message?.message;
+        this.errorMessage = error?.error?.error_description;
+        if (this.errorMessage == null || this.errorMessage == '') {
+          this.errorMessage = error?.error?.error;
+        }
         this.showLoading = false;
-        if (this.errorMessage === this.messages.numberOfAttempts) {
+        if (this.errorMessage === this.messages.numberOfAttempts || this.errorMessage === this.messages.invalidUserNameOrPassWord) {
+          if (this.errorMessage === this.messages.invalidUserNameOrPassWord) {
+            this.errorMessage = this.messages.numberOfAttempts;
+          }
           this.redirectOnLogin();
         }
       });
