@@ -10,12 +10,14 @@
  * Do not edit the class manually.
  *//* tslint:disable:no-unused-variable member-ordering */
 
-import { Inject, Injectable, Optional }                      from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams,
-         HttpResponse, HttpEvent }                           from '@angular/common/http';
-import { CustomHttpUrlEncodingCodec }                        from '../encoder';
+import { Inject, Injectable, Optional } from '@angular/core';
+import {
+    HttpClient, HttpHeaders, HttpParams,
+    HttpResponse, HttpEvent
+} from '@angular/common/http';
+import { CustomHttpUrlEncodingCodec } from '../encoder';
 
-import { Observable }                                        from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { ChangePasswordModel } from '../model/changePasswordModel';
 import { Email2FAModel } from '../model/email2FAModel';
@@ -27,8 +29,8 @@ import { ResetPasswordModel } from '../model/resetPasswordModel';
 import { UserActivityLogEditModel } from '../model/userActivityLogEditModel';
 import { UserInfoModel } from '../model/userInfoModel';
 
-import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
-import { Configuration }                                     from '../configuration';
+import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
+import { Configuration } from '../configuration';
 
 
 @Injectable()
@@ -38,7 +40,7 @@ export class AccountService {
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
-    constructor(protected httpClient: HttpClient, @Optional()@Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
+    constructor(protected httpClient: HttpClient, @Optional() @Inject(BASE_PATH) basePath: string, @Optional() configuration: Configuration) {
         if (basePath) {
             this.basePath = basePath;
         }
@@ -73,7 +75,7 @@ export class AccountService {
     public apiAccountAuthtokenResendPost(body?: LoginModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountAuthtokenResendPost(body?: LoginModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountAuthtokenResendPost(body?: LoginModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountAuthtokenResendPost(body?: LoginModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountAuthtokenResendPost(body?: LoginModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -97,7 +99,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/authtoken/resend`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/authtoken/resend`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -118,7 +120,7 @@ export class AccountService {
     public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'body', reportProgress?: boolean): Observable<LoginResponse>;
     public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<LoginResponse>>;
     public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<LoginResponse>>;
-    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountAuthtokenValidatePost(body?: Email2FAModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -140,14 +142,15 @@ export class AccountService {
             'text/json',
             'application/_*+json'
         ];
-        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-        if (httpContentTypeSelected != undefined) {
-            headers = headers.set('Content-Type', httpContentTypeSelected);
-        }
 
-        return this.httpClient.request<LoginResponse>('post',`${this.basePath}/api/Account/authtoken/validate`,
+        headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
+        const to_encoded = (obj: any) => Object.keys(obj).map(k =>
+            `${encodeURIComponent(k)}=${encodeURIComponent(obj[k])}`).join('&');
+
+        return this.httpClient.request<LoginResponse>('post', `${this.basePath}/connect/token`,
             {
-                body: body,
+                body: to_encoded(body),
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -166,7 +169,7 @@ export class AccountService {
     public apiAccountForgotPasswordPost(body?: ForgotPasswordModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountForgotPasswordPost(body?: ForgotPasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountForgotPasswordPost(body?: ForgotPasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountForgotPasswordPost(body?: ForgotPasswordModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountForgotPasswordPost(body?: ForgotPasswordModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -190,7 +193,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/ForgotPassword`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/ForgotPassword`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -211,7 +214,7 @@ export class AccountService {
     public apiAccountLoginPost(body?: LoginModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountLoginPost(body?: LoginModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountLoginPost(body?: LoginModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountLoginPost(body?: LoginModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountLoginPost(body?: LoginModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -235,7 +238,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/login`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/login`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -255,7 +258,7 @@ export class AccountService {
     public apiAccountLogoutPost(observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountLogoutPost(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountLogoutPost(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountLogoutPost(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountLogoutPost(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -271,7 +274,7 @@ export class AccountService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/Logout`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/Logout`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -291,7 +294,7 @@ export class AccountService {
     public apiAccountPost(body?: ChangePasswordModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountPost(body?: ChangePasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountPost(body?: ChangePasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountPost(body?: ChangePasswordModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountPost(body?: ChangePasswordModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -315,7 +318,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -336,7 +339,7 @@ export class AccountService {
     public apiAccountRegisterPost(body?: RegisterModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountRegisterPost(body?: RegisterModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountRegisterPost(body?: RegisterModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountRegisterPost(body?: RegisterModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountRegisterPost(body?: RegisterModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -360,7 +363,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/Register`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/Register`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -381,7 +384,7 @@ export class AccountService {
     public apiAccountResetPasswordPost(body?: ResetPasswordModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountResetPasswordPost(body?: ResetPasswordModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountResetPasswordPost(body?: ResetPasswordModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountResetPasswordPost(body?: ResetPasswordModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountResetPasswordPost(body?: ResetPasswordModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -405,7 +408,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/ResetPassword`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/ResetPassword`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -426,7 +429,7 @@ export class AccountService {
     public apiAccountUserActivityLogPost(body?: UserActivityLogEditModel, observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAccountUserActivityLogPost(body?: UserActivityLogEditModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAccountUserActivityLogPost(body?: UserActivityLogEditModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiAccountUserActivityLogPost(body?: UserActivityLogEditModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountUserActivityLogPost(body?: UserActivityLogEditModel, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
 
         let headers = this.defaultHeaders;
@@ -450,7 +453,7 @@ export class AccountService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Account/user/activity/log`,
+        return this.httpClient.request<any>('post', `${this.basePath}/api/Account/user/activity/log`,
             {
                 body: body,
                 withCredentials: this.configuration.withCredentials,
@@ -470,7 +473,7 @@ export class AccountService {
     public apiAccountUserInfoGet(observe?: 'body', reportProgress?: boolean): Observable<UserInfoModel>;
     public apiAccountUserInfoGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<UserInfoModel>>;
     public apiAccountUserInfoGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<UserInfoModel>>;
-    public apiAccountUserInfoGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiAccountUserInfoGet(observe: any = 'body', reportProgress: boolean = false): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -489,7 +492,7 @@ export class AccountService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<UserInfoModel>('get',`${this.basePath}/api/Account/user-info`,
+        return this.httpClient.request<UserInfoModel>('get', `${this.basePath}/api/Account/user-info`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
