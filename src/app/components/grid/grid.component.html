@@ -5,16 +5,54 @@
   >
     <thead class="table-head" *ngIf="list.length > 0 && !showLoading">
       <tr class="text-secondary bg-gray-200">
-        <th class="bg-transparent border-bottom-0fs-12">MEMBER ID</th>
-        <th class="bg-transparent border-bottom-0 wp-25 fs-12">PATIENT</th>
-       
-        <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
-        <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
-        <th class="bg-transparent border-bottom-0 fs-12">RISK CATEGORY</th>
-        <th class="bg-transparent border-bottom-0 fs-12">CARE MEMBER</th>
-        <th class="bg-transparent border-bottom-0 fs-12">STATUS</th>
-        <th class="bg-transparent border-bottom-0 fs-12">LAST ASSESSMENT</th>
-        <th class="bg-transparent border-bottom-0 fs-12">LAST DISCHARGE</th>
+        <th class="bg-transparent border-bottom-0fs-12">
+          MEMBER ID<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-desc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 wp-25 fs-12">
+          PATIENT
+          <a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-asc"></i
+          ></a>
+        </th>
+
+        <th class="bg-transparent border-bottom-0 fs-12">
+          DOB (AGE)
+          <a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-desc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          STAGE<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-asc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          RISK CATEGORY<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-desc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          CARE MEMBER<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-asc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          STATUS<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-asc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          LAST ASSESSMENT<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-desc"></i
+          ></a>
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12">
+          LAST DISCHARGE<a href="#" class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa-sort-amount-asc"></i
+          ></a>
+        </th>
         <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
       </tr>
     </thead>
@@ -139,7 +177,8 @@
               style="background-image: url(../assets/images/users/11.jpg)"
             ></span> -->
             <div class="user-details ms-2">
-              <a class="text-secondary"
+              <a
+                class="text-secondary"
                 href="javascript: void(0)"
                 (click)="patientHandler(item, 'detail')"
                 ><h6 class="mb-0">{{ item.patient?.enrollmentNo }}</h6></a
@@ -148,14 +187,15 @@
             </div>
           </div>
         </td>
-         <td>
+        <td>
           <div class="d-flex align-items-center">
             <!-- <span
               class="data-image avatar avatar-sm rounded-circle"
               style="background-image: url(../assets/images/users/11.jpg)"
             ></span> -->
             <div class="user-details ms-2">
-              <a class="text-secondary"
+              <a
+                class="text-secondary"
                 href="javascript: void(0)"
                 (click)="patientHandler(item, 'detail')"
                 ><h6 class="mb-0">{{ item.patient?.name }}</h6></a
@@ -164,7 +204,7 @@
             </div>
           </div>
         </td>
-        
+
         <td class="text-center">
           {{ getFormatDate(item.dob)
           }}<strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
@@ -217,11 +257,16 @@
             <!-- <a class="dropdown-item" href="#/patient-profile"
               ><i class="fe fe-edit-2 me-2"></i> Edit</a
             > -->
-            <a class="dropdown-item" href="Javascript: void(0);"
+            <a
+              class="dropdown-item"
+              href="Javascript: void(0);"
               (click)="patientHandler(item, 'detail')"
               ><i class="fe fe-info me-2"></i> Detail</a
             >
-            <a *ngIf="item.carePlanStatus === '1'" class="dropdown-item" href="Javascript: void(0);"
+            <a
+              *ngIf="item.carePlanStatus === '1'"
+              class="dropdown-item"
+              href="Javascript: void(0);"
               (click)="patientHandler(item, 'viewCarePlan')"
               ><i class="fe fe-info me-2"></i> View Care Plan</a
             >
@@ -233,7 +278,9 @@
       </tr> -->
     </tbody>
   </table>
-  <app-no-records-found *ngIf="list.length == 0 && !showLoading"></app-no-records-found>
+  <app-no-records-found
+    *ngIf="list.length == 0 && !showLoading"
+  ></app-no-records-found>
   <app-pagination
     *ngIf="list.length > 0 && !showLoading"
     [pagingModel]="gridData.pagingModel"

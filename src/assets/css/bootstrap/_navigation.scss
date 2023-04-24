@@ -131,6 +131,9 @@
       &.active {
         color: $white !important;
         background-color: $primary;
+        .option-dots {
+          color: $white !important;
+        }
         svg {
           fill: $white !important;
         }
@@ -382,11 +385,7 @@
     display: block;
   }
 }
-.nav-link:hover .dropdown-menu,
-.nav-item:hover .dropdown-menu,
-.nav-link:hover .dropdown-menu.show {
-  display: block;
-}
+
 @media (max-width: 1279px) and (min-width: 992px) {
   .nav-tabs .nav-link {
     padding: 1rem 1.8rem;
