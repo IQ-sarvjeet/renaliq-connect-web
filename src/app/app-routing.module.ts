@@ -29,11 +29,11 @@ const routes: Routes = [
     path: 'forgotPassword',
     component: ForgotPasswordComponent,
   },
-  //{
-  //  path: '',
-  //  loadChildren: () =>
-  //    import('./views/summary/summary.module').then((m) => m.SummaryModule),
-  //},
+  {
+   path: 'documents',
+   loadChildren: () =>
+     import('./views/documents/documents.module').then((m) => m.DocumentsModule),
+  },
 
   {
     path: 'summary',
