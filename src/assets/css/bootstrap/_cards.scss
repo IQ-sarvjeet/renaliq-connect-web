@@ -1607,6 +1607,186 @@ a.card-tabs-item {
     }
   }
 }
+.card-style2 {
+  border: 0.0625rem solid transparent;
+  background: $white;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  display: block;
+  transition: all 0.2s linear;
+
+  &:hover {
+    border: 0.0625rem solid #083050;
+    cursor: pointer;
+  }
+
+  &__figure {
+    border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.1);
+    display: block;
+    padding: 1rem 1rem 0 1rem;
+    align-items: center;
+    text-align: center;
+    height: 10rem;
+    overflow: hidden;
+  }
+
+  &__figure img {
+    height: 100%;
+    max-height: 10rem;
+  }
+
+  &__img {
+    background-color: #f7f7f7;
+    display: block;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    height: 9rem;
+    position: relative;
+  }
+
+  &__img i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -1rem 0 0 -1rem;
+  }
+
+  &__info {
+    display: block;
+    padding: 1rem;
+    position: relative;
+  }
+  &__title {
+    color: #083050;
+    display: block;
+    font-size: 0.875rem;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  &__title label {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &__date {
+    color: #89879f;
+    display: block;
+    margin-top: 0.25rem;
+    padding-left: 1.25rem;
+    padding-right: 2rem;
+    position: relative;
+    font-size: 0.75rem;
+  }
+
+  &__action {
+    border: none;
+    background: none;
+    position: absolute;
+    right: -0.75rem;
+    top: -0.125rem;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    cursor: pointer;
+  }
+
+  &__action-item {
+    border-top: 0.0625rem solid #eee;
+    display: block;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    font-size: 0.875rem;
+    position: relative;
+    cursor: pointer;
+  }
+
+  &__action-item:first-child {
+    border-top: none;
+  }
+
+  &__action-item i {
+    color: #083050;
+    position: absolute;
+    left: 0;
+    top: 0.375rem;
+  }
+
+  &__icon {
+    position: absolute;
+    font-size: 1rem;
+    left: 0;
+    top: 0;
+  }
+
+  &__img .fa-file-image-o,
+  &__date .fa-file-image-o,
+  &__title .fa-file-image-o,
+  .file-icon .fa-file-image-o {
+    color: #d93025;
+  }
+  &__img .fa-file-pdf-o,
+  &__date .fa-file-pdf-o,
+  &__title .fa-file-pdf-o,
+  .file-icon .fa-file-pdf-o {
+    color: #f40f02;
+  }
+  &__img .fa-file-excel-o,
+  &__date .fa-file-excel-o,
+  &__title .fa-file-excel-o,
+  .file-icon .fa-file-excel-o {
+    color: #0f9d58;
+  }
+  &__img .fa-file-word-o,
+  &__date .fa-file-word-o,
+  &__title .fa-file-word-o,
+  .file-icon .fa-file-word-o {
+    color: #1a73e8;
+  }
+  &__img .fa-file-text-o,
+  &__date .fa-file-text-o,
+  &__title .fa-file-text-o,
+  .file-icon .fa-file-text-o {
+    color: #5ccecd;
+  }
+  &__img .fa-file-video-o,
+  &__date .fa-file-video-o,
+  &__img .fa-file-audio-o,
+  &__date .fa-file-audio-o,
+  &__title .fa-file-video-o,
+  &__title .fa-file-audio-o,
+  .file-icon .fa-file-audio-o,
+  .file-icon .fa-file-audio-o {
+    color: #f40f02;
+  }
+  &__img .fa-file-archive-o,
+  &__date .fa-file-archive-o,
+  &__title .fa-file-archive-o,
+  &__img .fa-folder-open,
+  &__date .fa-folder-open,
+  &__title .fa-folder-open,
+  .file-icon .fa-file-archive-o,
+  .file-icon .fa-folder-open {
+    color: #ff9100;
+  }
+  &__img .fa-file-code-o,
+  &__date .fa-file-code-o,
+  &__title .fa-file-code-o,
+  .file-icon .fa-file-code-o {
+    color: #ab75e9;
+  }
+  &__img .fa-file-o,
+  &__date .fa-file-o,
+  &__title .fa-file-o,
+  .file-icon .fa-file-o {
+    color: #666666;
+  }
+}
 .card-btn {
   cursor: pointer;
   opacity: 0.75;

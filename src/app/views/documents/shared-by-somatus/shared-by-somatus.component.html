@@ -181,13 +181,18 @@
           <div class="d-flex">
             <div class="flex-fill"><h3 class="card-title mb-3">Folder</h3></div>
             <div>
-              <a href="#" class="btn btn-danger ms-3 align-top"
+              <a
+                routerLink="/documents"
+                class="btn btn-danger ms-3 d-flex align-items-center text-center"
                 ><i class="fe fe-x"></i
               ></a>
             </div>
           </div>
           <div>
-            <a href="javascript: void(0)" class="btn btn-outline-primary me-3">
+            <a
+              href="javascript: void(0)"
+              class="btn btn-outline-primary my-1 me-2 my-md-0 me-md-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-inner-icn me-1"
@@ -200,7 +205,10 @@
               </svg>
               Contracts</a
             >
-            <a href="javascript: void(0)" class="btn btn-outline-primary me-3">
+            <a
+              href="javascript: void(0)"
+              class="btn btn-outline-primary my-1 me-2 my-md-0 me-md-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-inner-icn me-1"
@@ -213,7 +221,10 @@
               </svg>
               Reports</a
             >
-            <a href="javascript: void(0)" class="btn btn-outline-primary me-3">
+            <a
+              href="javascript: void(0)"
+              class="btn btn-outline-primary my-1 me-2 my-md-0 me-md-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-inner-icn me-1"
@@ -226,7 +237,10 @@
               </svg>
               Videos</a
             >
-            <a href="javascript: void(0)" class="btn btn-outline-primary me-3">
+            <a
+              href="javascript: void(0)"
+              class="btn btn-outline-primary my-1 me-2 my-md-0 me-md-3"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 class="w-inner-icn me-1"
@@ -241,83 +255,413 @@
             >
           </div>
           <hr />
-          <h3 class="card-title mb-3">Recent</h3>
-          <div class="table-responsive">
-            <table id="data-table" class="table text-nowrap m-0 table-striped">
-              <thead class="table-head">
-                <tr class="text-secondary bg-gray-200">
-                  <th class="bg-transparent border-bottom-0">File Name</th>
-                  <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
-                  <th class="bg-transparent border-bottom-0">Uploaded By</th>
-                  <th class="bg-transparent border-bottom-0">Viewd On</th>
-                  <th class="bg-transparent border-bottom-0"></th>
-                </tr>
-              </thead>
-              <tbody class="table-body">
-                <tr class="border-bottom">
-                  <td>Contract V1</td>
-                  <td>
-                    <div class="tags px-4 me-2">Contract</div>
-                    <div class="tags px-4 me-2">Anthem</div>
-                  </td>
-                  <td>Brian</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Provider Insight - Aug 22</td>
-                  <td>
-                    <div class="tags px-4 me-2">Report</div>
-                    <div class="d-inline-block my-2">+2 more</div>
-                  </td>
-                  <td>Sean Tiptop</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Care Plan Status</td>
-                  <td class="">
-                    <div class="tags px-4 me-2">Report</div>
-                    <div class="tags px-4 me-2">Care Plan</div>
-                  </td>
-                  <td>Emlin D</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="5" class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary px-4"
-                    >
-                      View All Documents</a
-                    >
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="d-sm-flex">
+            <div class="d-flex align-items-center pe-3">
+              <h3 class="card-title mb-0">Recent</h3>
+            </div>
+            <div class="flex-fill">
+              <a
+                href="javascript: void(0)"
+                class="btn btn-dark my-1 me-2 my-md-0 me-md-3"
+                >All</a
+              >
+              <a
+                href="javascript: void(0)"
+                class="btn btn-dark-light my-1 me-2 my-md-0 me-md-3"
+                >Contract</a
+              >
+              <a
+                href="javascript: void(0)"
+                class="btn btn-dark-light my-1 me-2 my-md-0 me-md-3"
+                >Anthem</a
+              >
+              <a
+                href="javascript: void(0)"
+                class="btn btn-dark-light my-1 me-2 my-md-0 me-md-3"
+                >Reports</a
+              >
+            </div>
           </div>
+          <div class="row g-4 mt-0">
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-pdf-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">document.pdf</h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-video-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        Tes Manual Vid.mp4
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-word-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        Word Documents.doc
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-excel-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        MyExcel report 2023.xsl
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-image-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        Image file type.jpg
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-text-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        Text document file.txt
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <img
+                      class="img-fluid"
+                      src="https://stoccaprod.blob.core.windows.net/knowledge-center/Clinic Report Card.png?sv=2019-07-07&amp;sr=b&amp;sig=BkDWkKWug2KvVr7kyqcjzbH5BGtp%2BNAbuz%2BSW835YUE%3D&amp;se=2023-04-24T04%3A15%3A32Z&amp;sp=r"
+                      alt="Document_report2022"
+                    />
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        image document demo.png
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-xl-3">
+              <div class="card-style2">
+                <div class="card-body p-2">
+                  <a class="card-style2__img">
+                    <i class="fa fa-file-video-o"></i>
+                  </a>
+                  <div class="d-flex mt-3">
+                    <div class="flex-fill text-truncate">
+                      <h6 class="mb-0 font-weight-semibold">
+                        Tes Manual Vid.mp4
+                      </h6>
+                    </div>
+                    <div>
+                      <a
+                        href="#"
+                        class="option-dots"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        ><i class="fe fe-more-vertical"></i
+                      ></a>
+                      <div
+                        class="dropdown-menu dropdown-menu-start folder-options"
+                      >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-info me-3"></i> Detail</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-edit me-2"></i> Update</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-trash me-2"></i> Delete</a
+                        >
+                        <a class="dropdown-item" href="#"
+                          ><i class="fe fe-eye me-2"></i> Preview</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <nav>
+            <ul
+              class="pagination justify-content-center justify-content-md-end"
+            >
+              <li class="page-item disabled">
+                <button tabindex="-1" aria-disabled="true" class="page-link">
+                  First
+                </button>
+              </li>
+              <li class="page-item disabled">
+                <button tabindex="-1" aria-disabled="true" class="page-link">
+                  <i class="fa fa-angle-left"></i>
+                </button>
+              </li>
+              <li class="page-item d-none d-sm-block active">
+                <button class="page-link">1</button>
+              </li>
+              <li class="page-item d-none d-sm-block">
+                <button class="page-link">2</button>
+              </li>
+              <li class="page-item d-none d-sm-block">
+                <button class="page-link">3</button>
+              </li>
+              <li class="page-item d-none d-sm-block">
+                <button class="page-link">4</button>
+              </li>
+              <li class="page-item d-none d-sm-block">
+                <button class="page-link">5</button>
+              </li>
+              <li class="page-item">
+                <button class="page-link">
+                  <i class="fa fa-angle-right"></i>
+                </button>
+              </li>
+              <li class="page-item">
+                <button class="page-link">Last</button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
