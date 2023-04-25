@@ -159,6 +159,18 @@
                     Admissions
                   </div>
                 </a>
+                <a
+                  routerLink="/documents"
+                  class="nav-link pe-2"
+                  [ngClass]="{
+                    'is-active': this.currentRoute.indexOf('documents') !== -1
+                  }"
+                >
+                  <div class="text-center py-1 d-flex d-lg-none-max">
+                    Documents
+                  </div>
+                </a>
+
                 <div class="dropdown d-md-flex profile-1 text-nowrap">
                   <a
                     href="#"
@@ -349,6 +361,11 @@
         <li class="slide border-top">
           <a class="side-menu__item has-link" routerLink="/admission">
             <span class="side-menu__label">Admissions</span>
+          </a>
+        </li>
+        <li class="slide border-top">
+          <a class="side-menu__item has-link" routerLink="/documents">
+            <span class="side-menu__label">Documents</span>
           </a>
         </li>
         <li class="slide border-top">

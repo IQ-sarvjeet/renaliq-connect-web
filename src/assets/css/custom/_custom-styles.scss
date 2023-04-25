@@ -5734,6 +5734,10 @@ div.dataTables_wrapper div.dataTables_length label {
   }
 }
 
+.minh-content {
+  min-height: calc(100vh - 15rem);
+}
+
 @media (min-width: 768px) {
   .card-lg {
     .card-body {
