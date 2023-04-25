@@ -8,8 +8,12 @@ export const environment = {
   //baseApiUrl: 'https://localhost:5001',
   appUrl: 'https://localhost:4200',
   pageSize: 10,
-  clientId: 'WebUI.Admin',
-  clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
+  identity: {
+    clientId: 'WebUI.Admin',
+    clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
+    grantType: 'password',
+    scopes: 'ConnectApi offline_access'
+  }
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };
