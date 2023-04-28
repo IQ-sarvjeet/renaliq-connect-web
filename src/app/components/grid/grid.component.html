@@ -19,7 +19,7 @@
             class="ms-1 text-secondary op-0-5"
             (click)="applySortPatient('patientname')"
             ><i class="fa fa"
-              [ngClass]="this.filterModel.patientFilter.SortBy === 'patientname' && this.filterModel.patientFilter.SortDirection === 'patientname_desc' ? 'fa-caret-down': 'fa-caret-up'"></i
+              [ngClass]="this.filterModel.patientFilter.SortBy === 'patientname' && this.filterModel.patientFilter.SortDirection === '' ? 'fa-caret-down': 'fa-caret-up'"></i
           ></a>
         </th>
 

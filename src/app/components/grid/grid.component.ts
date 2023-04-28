@@ -120,10 +120,10 @@ export class GridComponent implements OnInit {
   }
   applySortPatient(columnName: string) {
     const prevSortBy = this.filterModel.patientFilter.SortBy;
-    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === 'patientname_desc') {
-      this.filterModel.patientFilter.SortDirection = 'patientname_asc';
+    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === '') {
+      this.filterModel.patientFilter.SortDirection = 'asc';
     } else {
-      this.filterModel.patientFilter.SortDirection = 'patientname_desc';
+      this.filterModel.patientFilter.SortDirection = '';
     }
     this.filterModel.patientFilter.SortBy = columnName;
     this.bindPatientList();
