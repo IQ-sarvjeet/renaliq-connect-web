@@ -89,7 +89,9 @@ export class PatientHeaderComponent {
       careMember:'',
       status:'',
       assignment:[],
-      discharge:[]
+      discharge:[],
+      SortBy: '',
+      SortDirection: ''
     }
   };
   displayFilter: any = {
@@ -153,7 +155,9 @@ export class PatientHeaderComponent {
       careMember:'',
       status:'',
       assignment:[],
-      discharge:[]
+      discharge:[],
+      SortBy: '',
+      SortDirection: ''
     };
     this.displayFilter = {...this.filter.patientFilter};
     this.submit();

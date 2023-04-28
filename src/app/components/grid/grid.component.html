@@ -6,52 +6,79 @@
     <thead class="table-head" *ngIf="list.length > 0 && !showLoading">
       <tr class="text-secondary bg-gray-200">
         <th class="bg-transparent border-bottom-0fs-12">
-          MEMBER ID<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-up"></i
+          MEMBER ID<a href="javascript: void(0);"
+            (click)="applySort('EnrollmentNo')"
+            class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa"
+              [ngClass]="renderArrowIcon('EnrollmentNo')"></i
           ></a>
         </th>
         <th class="bg-transparent border-bottom-0 wp-25 fs-12">
           PATIENT
-          <a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-down"></i
+          <a href="javascript: void(0);"
+            class="ms-1 text-secondary op-0-5"
+            (click)="applySortPatient('patientname')"
+            ><i class="fa fa"
+              [ngClass]="this.filterModel.patientFilter.SortBy === 'patientname' && this.filterModel.patientFilter.SortDirection === 'patientname_desc' ? 'fa-caret-down': 'fa-caret-up'"></i
           ></a>
         </th>
 
         <th class="bg-transparent border-bottom-0 fs-12">
           DOB (AGE)
-          <a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-up"></i
+          <a href="javascript: void(0);"
+            (click)="applySort('BirthDate')"
+            class="ms-1 text-secondary op-0-5"
+            ><i class="fa fa"
+              [ngClass]="renderArrowIcon('BirthDate')"></i
           ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          STAGE<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-down"></i
-          ></a>
+          STAGE<a href="javascript: void(0);"
+          (click)="applySort('Stage')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('Stage')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          RISK CATEGORY<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-up"></i
-          ></a>
+          RISK CATEGORY<a href="javascript: void(0);"
+          (click)="applySort('RiskCategory')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('RiskCategory')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          CARE MEMBER<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-down"></i
-          ></a>
+          CARE MEMBER<a href="javascript: void(0);"
+          (click)="applySort('PrimaryCareMember')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('PrimaryCareMember')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          STATUS<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-up"></i
-          ></a>
+          STATUS<a href="javascript: void(0);"
+          (click)="applySort('Status')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('Status')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          LAST ASSESSMENT<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-down"></i
-          ></a>
+          LAST ASSESSMENT<a href="javascript: void(0);"
+          (click)="applySort('AssessmentDate')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('AssessmentDate')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 fs-12">
-          LAST DISCHARGE<a href="#" class="ms-1 text-secondary op-0-5"
-            ><i class="fa fa fa-caret-up"></i
-          ></a>
+          LAST DISCHARGE<a href="javascript: void(0);"
+          (click)="applySort('DischargeDate')"
+          class="ms-1 text-secondary op-0-5"
+          ><i class="fa fa"
+            [ngClass]="renderArrowIcon('DischargeDate')"></i
+        ></a>
         </th>
         <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
       </tr>
@@ -283,6 +310,7 @@
   ></app-no-records-found>
   <app-pagination
     *ngIf="list.length > 0 && !showLoading"
+    [attributePatients]="attributePatients"
     [pagingModel]="gridData.pagingModel"
     (gotoPageHandler)="gotoPage($event)"
   >
