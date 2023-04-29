@@ -130,21 +130,21 @@ export class GridComponent implements OnInit {
   }
   applySort(columnName: string) {
     const prevSortBy = this.filterModel.patientFilter.SortBy;
-    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === 'desc') {
+    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === '') {
       this.filterModel.patientFilter.SortDirection = 'asc';
     } else {
-      this.filterModel.patientFilter.SortDirection = 'desc';
+      this.filterModel.patientFilter.SortDirection = '';
     }
     this.filterModel.patientFilter.SortBy = columnName;
     this.bindPatientList();
   }
   renderArrowIcon(columnName: string) {
-    if(columnName === this.filterModel.patientFilter.SortBy && this.filterModel.patientFilter.SortDirection === 'desc') {
-      return 'fa-caret-down';
-    } else {
-      return 'fa-caret-up';
+    if(columnName === this.filterModel.patientFilter.SortBy && this.filterModel.patientFilter.SortDirection === 'asc') {
+      return 'table-header-asc';
+    } else if(columnName === this.filterModel.patientFilter.SortBy) {
+      return 'table-header-desc';
     }
-
+    return '';
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
