@@ -367,6 +367,8 @@
     $(".card-btn").removeClass("is-active");
     $(this).addClass("is-active");
   });
+
+ 
 })(jQuery);
 
 // OFF-CANVAS STYLE
@@ -375,30 +377,30 @@ $(".off-canvas").on("click", function () {
   $("body").addClass("pe-0");
 });
 
+
 // UPLOAD FILES STYLE
-$('#customFile').change(function () {
-  alert('asdfas');
-	var fileUpload = $("#customFile").get(0);
-	var filename = fileUpload?.files[0]?.name;
-	$('#filePath').hide();
-	if (filename != '') {
-		/*['gif', 'png', 'jpg', 'jpeg', 'svg', 'tiff', 'xls', 'xlsx', 'pdf', 'doc', 'ppt', 'pptx', 'mp3', 'mp4']*/
-		var ext = filename.split('.').pop().toLowerCase();
-		if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'svg', 'tiff', 'pdf', 'webm','mp4', 'xls', 'xlsx']) == -1) {
-			$("#file-dummy").removeClass("file-dummy").addClass("file-failed");
-			$("#fileAlert").html("<b>Failed</b>, Invalid file type");
-			$("#customFile").val("")
-			return false;
-		}
-		if (fileUpload.files[0].size > 25000000) {
-			$("#file-dummy").removeClass("file-dummy").addClass("file-failed");
-			$("#fileAlert").html("<b>Failed</b>, File size should not be larger than 20MB.");
-			$("#customFile").val("")
-			return false;
-		}
-		$("#file-dummy").removeClass("file-failed").addClass("file-dummy");
-		$("#fileAlert").html("<b>Great</b>, your file is selected");
-		$('#filePath').show();
-		$('#filePath').html(filename);
-	}
+$("#customFile").change(function(){
+  var fileUpload = $("#customFile").get(0);
+  var filename = fileUpload?.files[0]?.name;
+  $('#filePath').hide();
+  if (filename != '') {
+    /*['gif', 'png', 'jpg', 'jpeg', 'svg', 'tiff', 'xls', 'xlsx', 'pdf', 'doc', 'ppt', 'pptx', 'mp3', 'mp4']*/
+    var ext = filename.split('.').pop().toLowerCase();
+    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg', 'svg', 'tiff', 'pdf', 'webm','mp4', 'xls', 'xlsx']) == -1) {
+      $("#file-dummy").removeClass("file-dummy").addClass("file-failed");
+      $("#fileAlert").html("<b>Failed</b>, Invalid file type");
+      $("#customFile").val("")
+      return false;
+    }
+    if (fileUpload.files[0].size > 25000000) {
+      $("#file-dummy").removeClass("file-dummy").addClass("file-failed");
+      $("#fileAlert").html("<b>Failed</b>, File size should not be larger than 20MB.");
+      $("#customFile").val("")
+      return false;
+    }
+    $("#file-dummy").removeClass("file-failed").addClass("file-dummy");
+    $("#fileAlert").html("<b>Great</b>, your file is selected");
+    $('#filePath').show();
+    $('#filePath').html(filename);
+  }
 });
