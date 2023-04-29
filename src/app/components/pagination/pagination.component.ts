@@ -21,12 +21,10 @@ export class PaginationComponent {
       this.getNavigablePages();
     }
   }
-  // @Input() pagingModel: any = {
-  //   pageSize: 2,
-  //   totalRecords: 19,
-  //   currentPage: 1,
-  //   totalPages: 9
-  // }
+  @Input() attributePatients: any = {
+    totalPatients: 0,
+    display: false
+  }
   @Output() gotoPageHandler = new EventEmitter<number>();
   public gotoPage(page: number): void {
     this.gotoPageHandler.emit(page);
