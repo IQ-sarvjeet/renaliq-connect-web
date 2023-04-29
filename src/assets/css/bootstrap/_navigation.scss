@@ -123,14 +123,14 @@
       &:hover,
       &:focus,
       &:active {
-        color: $primary !important;
+        color: $secondary !important;
         svg {
-          fill: $primary !important;
+          fill: $secondary !important;
         }
       }
       &.active {
         color: $white !important;
-        background-color: $primary;
+        background-color: $secondary;
         .option-dots {
           color: $white !important;
         }
