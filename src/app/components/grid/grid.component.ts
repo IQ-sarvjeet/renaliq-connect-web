@@ -39,9 +39,16 @@ export class GridComponent implements OnInit {
       careMember: '',
       status: '',
       assignment: [],
-      discharge: []
+      discharge: [],
+      SortDirection: '',
+      SortBy: ''
     }
   };
+  attributePatients: any = {
+    totalPatients: 0,
+    display: true
+  }
+  totalPatients: number = 0;
   @Output() actionHandler: EventEmitter<any> = new EventEmitter();
   constructor(private _patientService: PatientService,private _interactionService: InteractionService) { }
 
@@ -65,6 +72,15 @@ export class GridComponent implements OnInit {
       this.bindPatientList();
      });
     this._subscriptions.add(sub);
+    this.getPatientCount();
+  }
+  private getPatientCount() {
+    this._patientService.apiPatientCountGet().subscribe((response: any) => {
+      this.attributePatients = {
+        ...this.attributePatients,
+        totalPatients: response.totalPatient.count
+      }
+    });
   }
  public GetDateWithOutTimeZone(date :Date)
  {
@@ -101,6 +117,34 @@ export class GridComponent implements OnInit {
       detail: detail,
       actionType: type
     });
+  }
+  applySortPatient(columnName: string) {
+    const prevSortBy = this.filterModel.patientFilter.SortBy;
+    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === '') {
+      this.filterModel.patientFilter.SortDirection = 'asc';
+    } else {
+      this.filterModel.patientFilter.SortDirection = '';
+    }
+    this.filterModel.patientFilter.SortBy = columnName;
+    this.bindPatientList();
+  }
+  applySort(columnName: string) {
+    const prevSortBy = this.filterModel.patientFilter.SortBy;
+    if(prevSortBy === columnName && this.filterModel.patientFilter.SortDirection === '') {
+      this.filterModel.patientFilter.SortDirection = 'asc';
+    } else {
+      this.filterModel.patientFilter.SortDirection = '';
+    }
+    this.filterModel.patientFilter.SortBy = columnName;
+    this.bindPatientList();
+  }
+  renderArrowIcon(columnName: string) {
+    if(columnName === this.filterModel.patientFilter.SortBy && this.filterModel.patientFilter.SortDirection === 'asc') {
+      return 'table-header-asc';
+    } else if(columnName === this.filterModel.patientFilter.SortBy) {
+      return 'table-header-desc';
+    }
+    return '';
   }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
