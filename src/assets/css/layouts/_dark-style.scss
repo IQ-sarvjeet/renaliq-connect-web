@@ -2067,6 +2067,10 @@ body.dark-mode .overflow-x::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.03);
     border-top: 1px solid $border-dark;
   }
+  .card-style2 {
+    border: 0.0625rem solid $border-dark;
+    background: #fff;
+  }
   .page-link {
     background-color: $dark-bg;
     border: 1px solid $border-dark;
