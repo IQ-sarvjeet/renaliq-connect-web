@@ -1614,6 +1614,7 @@ a.card-tabs-item {
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   display: block;
   transition: all 0.2s linear;
+  overflow: hidden;
 
   &:hover {
     border: 0.0625rem solid #083050;
@@ -1643,6 +1644,7 @@ a.card-tabs-item {
     font-size: 2rem;
     height: 9rem;
     position: relative;
+    overflow: hidden;
   }
 
   &__img i {
