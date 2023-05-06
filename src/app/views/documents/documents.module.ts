@@ -9,6 +9,8 @@ import { ReportsComponent } from './shared-by-somatus/reports/reports.component'
 import { VideosComponent } from './shared-by-somatus/videos/videos.component';
 import { IntegrationProcessesComponent } from './shared-by-somatus/integration-processes/integration-processes.component';
 import { ExportsComponent } from './exports/exports.component';
+import { AddFileComponent } from './add-file/add-file.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -61,11 +63,13 @@ const routes: Routes = [
     ReportsComponent,
     VideosComponent,
     IntegrationProcessesComponent,
-    ExportsComponent
+    ExportsComponent,
+    AddFileComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class DocumentsModule { }
