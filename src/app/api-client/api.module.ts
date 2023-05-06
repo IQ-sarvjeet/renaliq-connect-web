@@ -5,8 +5,10 @@ import { HttpClient } from '@angular/common/http';
 
 import { AccountService } from './api/account.service';
 import { AdmissionService } from './api/admission.service';
+import { CacheService } from './api/cache.service';
 import { CareMemberService } from './api/careMember.service';
 import { ClinicalQualityMatrixService } from './api/clinicalQualityMatrix.service';
+import { DocumentService } from './api/document.service';
 import { ExportService } from './api/export.service';
 import { NotificationService } from './api/notification.service';
 import { PatientService } from './api/patient.service';
@@ -20,8 +22,10 @@ import { UserService } from './api/user.service';
   providers: [
     AccountService,
     AdmissionService,
+    CacheService,
     CareMemberService,
     ClinicalQualityMatrixService,
+    DocumentService,
     ExportService,
     NotificationService,
     PatientService,
@@ -29,7 +33,7 @@ import { UserService } from './api/user.service';
     UserService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]

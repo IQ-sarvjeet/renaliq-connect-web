@@ -10,14 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface PatientFilter { 
-    searchKey?: string;
-    stage?: string;
-    riskCategory?: string;
-    careMember?: string;
-    status?: string;
-    assignment?: Array<Date>;
-    discharge?: Array<Date>;
-    sortBy?: string;
-    sortDirection?: string;
+export interface TagModel { 
+    tagName?: string;
+    readonly documentCount?: number;
 }

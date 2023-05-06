@@ -17,13 +17,18 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { DocumentDetail } from '../model/documentDetail';
+import { DocumentFilterModel } from '../model/documentFilterModel';
+import { DocumentListViewModel } from '../model/documentListViewModel';
+import { RecentDocumentViewModel } from '../model/recentDocumentViewModel';
+import { TagListViewModel } from '../model/tagListViewModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
 
 
 @Injectable()
-export class ExportService {
+export class DocumentService {
 
     protected basePath = '/';
     public defaultHeaders = new HttpHeaders();
@@ -57,18 +62,15 @@ export class ExportService {
     /**
      * 
      * 
-     * @param refId 
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExportDownloadFileRefIdGet(refId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiDocumentDocumentPost(body?: DocumentDetail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (refId === null || refId === undefined) {
-            throw new Error('Required parameter refId was null or undefined when calling apiExportDownloadFileRefIdGet.');
-        }
 
         let headers = this.defaultHeaders;
 
@@ -82,10 +84,18 @@ export class ExportService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/download/file/${encodeURIComponent(String(refId))}`,
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Document/document`,
             {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -97,17 +107,17 @@ export class ExportService {
     /**
      * 
      * 
-     * @param publishedUrl 
+     * @param id 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentDocumentsIdGet(id: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiDocumentDocumentsIdGet(id: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiDocumentDocumentsIdGet(id: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiDocumentDocumentsIdGet(id: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (publishedUrl === null || publishedUrl === undefined) {
-            throw new Error('Required parameter publishedUrl was null or undefined when calling apiExportDownloadPublishedUrlGet.');
+        if (id === null || id === undefined) {
+            throw new Error('Required parameter id was null or undefined when calling apiDocumentDocumentsIdGet.');
         }
 
         let headers = this.defaultHeaders;
@@ -124,42 +134,7 @@ export class ExportService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/download/${encodeURIComponent(String(publishedUrl))}`,
-            {
-                withCredentials: this.configuration.withCredentials,
-                headers: headers,
-                observe: observe,
-                reportProgress: reportProgress
-            }
-        );
-    }
-
-    /**
-     * 
-     * 
-     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-     * @param reportProgress flag to report request and response progress.
-     */
-    public apiExportInitGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExportInitGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExportInitGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExportInitGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-
-        let headers = this.defaultHeaders;
-
-        // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
-        ];
-        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set('Accept', httpHeaderAcceptSelected);
-        }
-
-        // to determine the Content-Type header
-        const consumes: string[] = [
-        ];
-
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/init`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Document/documents/${encodeURIComponent(String(id))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -175,10 +150,10 @@ export class ExportService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiExportLaststatusGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExportLaststatusGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExportLaststatusGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExportLaststatusGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentListFoldersGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiDocumentListFoldersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiDocumentListFoldersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiDocumentListFoldersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -194,7 +169,7 @@ export class ExportService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/laststatus`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Document/list/folders`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -207,23 +182,69 @@ export class ExportService {
     /**
      * 
      * 
-     * @param fileName 
+     * @param body 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiExportReportFileNameGet(fileName: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiExportReportFileNameGet(fileName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiExportReportFileNameGet(fileName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiExportReportFileNameGet(fileName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentListPost(body?: DocumentFilterModel, observe?: 'body', reportProgress?: boolean): Observable<DocumentListViewModel>;
+    public apiDocumentListPost(body?: DocumentFilterModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<DocumentListViewModel>>;
+    public apiDocumentListPost(body?: DocumentFilterModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<DocumentListViewModel>>;
+    public apiDocumentListPost(body?: DocumentFilterModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (fileName === null || fileName === undefined) {
-            throw new Error('Required parameter fileName was null or undefined when calling apiExportReportFileNameGet.');
-        }
 
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<DocumentListViewModel>('post',`${this.basePath}/api/Document/list`,
+            {
+                body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiDocumentListTagsGet(observe?: 'body', reportProgress?: boolean): Observable<TagListViewModel>;
+    public apiDocumentListTagsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TagListViewModel>>;
+    public apiDocumentListTagsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TagListViewModel>>;
+    public apiDocumentListTagsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -234,8 +255,54 @@ export class ExportService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/report/${encodeURIComponent(String(fileName))}`,
+        return this.httpClient.request<TagListViewModel>('get',`${this.basePath}/api/Document/list/tags`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param count 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiDocumentRecentdocumentsGet(count?: number, observe?: 'body', reportProgress?: boolean): Observable<RecentDocumentViewModel>;
+    public apiDocumentRecentdocumentsGet(count?: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RecentDocumentViewModel>>;
+    public apiDocumentRecentdocumentsGet(count?: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RecentDocumentViewModel>>;
+    public apiDocumentRecentdocumentsGet(count?: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (count !== undefined && count !== null) {
+            queryParameters = queryParameters.set('count', <any>count);
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<RecentDocumentViewModel>('get',`${this.basePath}/api/Document/recentdocuments`,
+            {
+                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

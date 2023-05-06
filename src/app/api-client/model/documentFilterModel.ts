@@ -9,15 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { DocumentFilter } from './documentFilter';
 
-export interface PatientFilter { 
-    searchKey?: string;
-    stage?: string;
-    riskCategory?: string;
-    careMember?: string;
-    status?: string;
-    assignment?: Array<Date>;
-    discharge?: Array<Date>;
-    sortBy?: string;
-    sortDirection?: string;
+export interface DocumentFilterModel { 
+    documentFilter?: DocumentFilter;
+    currentPage?: number;
+    pageSize?: number;
 }

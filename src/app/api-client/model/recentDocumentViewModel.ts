@@ -9,15 +9,8 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { RecentDocumentModel } from './recentDocumentModel';
 
-export interface PatientFilter { 
-    searchKey?: string;
-    stage?: string;
-    riskCategory?: string;
-    careMember?: string;
-    status?: string;
-    assignment?: Array<Date>;
-    discharge?: Array<Date>;
-    sortBy?: string;
-    sortDirection?: string;
+export interface RecentDocumentViewModel { 
+    data?: Array<RecentDocumentModel>;
 }
