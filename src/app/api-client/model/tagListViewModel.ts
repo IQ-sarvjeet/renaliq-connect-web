@@ -9,14 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { PagingModel } from './pagingModel';
+import { TagModel } from './tagModel';
 
-export interface Email2FAModel {
-    twoFactorCode: string;
-    username: string;
-    password?: string;
-    rememberMe?: boolean;
-    client_id?: string;
-    client_secret?: string;
-    scope?: string;
-    grant_type?: string
+export interface TagListViewModel { 
+    data?: Array<TagModel>;
+    pagingModel?: PagingModel;
 }
