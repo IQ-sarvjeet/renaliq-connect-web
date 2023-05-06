@@ -9,11 +9,10 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { DocumentDetail } from './documentDetail';
+import { PagingModel } from './pagingModel';
 
-export interface LoginResponse {
-    access_token?: string;
-    expires_in?: number;
-    token_type?: string;
-    scope?: string;
-    refresh_token?: string;
+export interface DocumentListViewModel { 
+    data?: Array<DocumentDetail>;
+    pagingModel?: PagingModel;
 }

@@ -6,7 +6,7 @@ import { EventService } from 'src/app/services/event.service';
 import { StoreService } from 'src/app/services/store.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from '../../../environments/environment';
-import { AccountService, Email2FAModel, LoginModel, LoginResponse } from '../../api-client';
+import { AccountService, LoginModel } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';

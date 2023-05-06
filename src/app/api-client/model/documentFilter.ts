@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-export interface PatientFilter { 
+export interface DocumentFilter { 
     searchKey?: string;
-    stage?: string;
-    riskCategory?: string;
-    careMember?: string;
-    status?: string;
-    assignment?: Array<Date>;
-    discharge?: Array<Date>;
+    fileType?: number;
+    folder?: string;
+    tag?: string;
     sortBy?: string;
     sortDirection?: string;
 }
