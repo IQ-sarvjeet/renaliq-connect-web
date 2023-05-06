@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-documents',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class DocumentsComponent {
 
+  constructor(){
+
+  }
+  ngOnInit() {
+  }
 }

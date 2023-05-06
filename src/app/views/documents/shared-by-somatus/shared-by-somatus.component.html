@@ -1,546 +1,432 @@
-<div>
-  <div class="sub-header">
-    <div class="main-container container">
-      <div class="d-flex">
-        <div class="text-nowrap">
-          <h1 class="page-title m-0">Documents</h1>
-          <ol class="breadcrumb flex-nowrap">
-            <li class="breadcrumb-item">
-              <a routerLink="/">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-              <a routerLink="/documents">Documents</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">
-              Shared by Somatus
-            </li>
-          </ol>
-        </div>
-        <div class="flex-fill ps-3 text-end">
-          <a href="javascript: void(0)" class="btn btn-secondary mt-1" data-bs-target="#modalAddFiles" data-bs-toggle="modal">
-            <i class="fa fa-plus me-1"></i>Add Files</a
-          >
-        </div>
+<div class="card mb-4 p-4 minh-content">
+  <div class="d-flex">
+    <div class="flex-fill d-flex align-items-center">
+      <h3 class="card-title">Shared by Somatus</h3>
+    </div>
+    <div class="main-header-center">
+      <div class="position-relative">
+        <input placeholder="Search Documents..."
+          type="search"
+          class="form-control"
+          (change)="searchHandler($event)" />
+        <button class="btn ps-0">
+          <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path _ngcontent-alf-c162="" d="M21.2529297,17.6464844l-2.8994141-2.8994141c-0.0021973-0.0021973-0.0043945-0.0043945-0.0065918-0.0065918c-0.8752441-0.8721313-2.2249146-0.9760132-3.2143555-0.3148804l-0.8467407-0.8467407c1.0981445-1.2668457,1.7143555-2.887146,1.715332-4.5747681c0.0021973-3.8643799-3.1286621-6.9989014-6.993042-7.0011597S2.0092773,5.1315308,2.007019,8.9959106S5.1356201,15.994812,9,15.9970703c1.6889038,0.0029907,3.3114014-0.6120605,4.5789185-1.7111206l0.84729,0.84729c-0.6630859,0.9924316-0.5566406,2.3459473,0.3208618,3.2202759l2.8994141,2.8994141c0.4780884,0.4786987,1.1271973,0.7471313,1.8037109,0.7460938c0.6766357,0.0001831,1.3256226-0.2686768,1.803894-0.7472534C22.2493286,20.2558594,22.2488403,18.6417236,21.2529297,17.6464844z M9.0084229,14.9970703c-3.3120728,0.0023193-5.9989624-2.6807861-6.0012817-5.9928589S5.6879272,3.005249,9,3.0029297c1.5910034-0.0026855,3.1175537,0.628479,4.2421875,1.7539062c1.1252441,1.1238403,1.7579956,2.6486206,1.7590942,4.2389526C15.0036011,12.3078613,12.3204956,14.994751,9.0084229,14.9970703z M20.5458984,20.5413818c-0.604126,0.6066284-1.5856934,0.6087036-2.1923828,0.0045166l-2.8994141-2.8994141c-0.2913818-0.2910156-0.4549561-0.6861572-0.4544678-1.0979614C15.0006714,15.6928101,15.6951294,15,16.5507812,15.0009766c0.4109497-0.0005493,0.8051758,0.1624756,1.0957031,0.453125l2.8994141,2.8994141C21.1482544,18.9584351,21.1482544,19.9364624,20.5458984,20.5413818z"></path></svg>
+        </button>
       </div>
     </div>
   </div>
-  <div class="main-container container">
-    <div class="row">
-      <div class="col-md-3">
-        <ul class="nav1 nav-column card mb-4">
-          <li class="nav-item1">
-            <a class="d-flex nav-link thumb" routerLink="/documents">
-              <div class="ps-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-inner-icn me-2"
-                  enable-background="new 0 0 1024 1024"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-                  />
-                </svg>
-              </div>
-              <div class="flex-fill">My Files</div>
-            </a>
-          </li>
-          <li class="nav-item1">
-            <a
-              class="d-flex nav-link thumb active"
-              routerLink="/documents/sharedBySomatus"
-            >
-              <div class="ps-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-inner-icn me-2"
-                  enable-background="new 0 0 1024 1024"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-                  />
-                </svg>
-              </div>
-              <div class="flex-fill">Shared by Somatus</div>
-            </a>
-          </li>
-          <li class="nav-item1">
-            <div class="d-flex nav-link thumb">
-              <div class="ps-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-inner-icn me-2"
-                  enable-background="new 0 0 1024 1024"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-                  />
-                </svg>
-              </div>
-              <div class="flex-fill">Exports</div>
-            </div>
-          </li>
-        </ul>
+  <hr />
+  <div class="d-sm-flex">
+    <div class="d-flex align-items-center pe-3">
+      <h3 class="card-title mb-0">Tags:</h3>
+    </div>
+    <div class="flex-fill">
+      <a
+        href="javascript: void(0)"
+        class="btn my-1 me-2 my-md-0 me-md-3"
+        [ngClass]="filters.documentFilter?.tag === 'All'? 'btn-primary': 'btn-primary-light'"
+        (click)="tagSelectHandlar('All')"
+        >All</a
+      >
+      <a
+        href="javascript: void(0)"
+        class="btn my-1 me-2 my-md-0 me-md-3"
+        [ngClass]="filters.documentFilter?.tag === tag.tagName ? 'btn-primary': 'btn-primary-light'"
+        *ngFor="let tag of tags"
+        (click)="tagSelectHandlar(tag.tagName)"
+        >{{tag.tagName}}</a
+      >
+    </div>
+  </div>
+  <hr class="mb-0" />
+  <!-- No Result Found Html Start-->
+  <div class="mt-3 text-center" *ngIf="!documents.data.length && filesLoaded">
+    <div class="mb-4">
+      <img src="../../../assets/images/no-data.png" alt="No data found" class="wrap-figure__img"/>
+    </div>
+    <h4 class="text-danger"> <i class="fe fe-alert-triangle"></i> No Document found</h4>
+  </div>
+  <!-- No Result Found Html Ends-->
 
-        <div class="card custom-card mb-4">
-          <div class="card-header font-weight-bold px-3 pb-2 border-bottom-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-inner-icn me-2"
-              enable-background="new 0 0 24 24"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M17.5,16c-0.8284302,0-1.5,0.6715698-1.5,1.5s0.6715698,1.5,1.5,1.5c0.828064-0.0009155,1.4990845-0.671936,1.5-1.5C19,16.6715698,18.3284302,16,17.5,16z M17.5,18c-0.276123,0-0.5-0.223877-0.5-0.5s0.223877-0.5,0.5-0.5c0.2759399,0.0005493,0.4994507,0.2240601,0.5,0.5C18,17.776123,17.776123,18,17.5,18z M21.9910889,15.4124756c-0.0004272-0.0222778,0.0065308-0.0431519,0.0030518-0.0657959l-0.0283203-0.1831055c-0.0103149-0.0753784-0.0178223-0.151001-0.034729-0.2241211L20.2558594,4.1181641C20.0731201,2.8966064,19.0212402,1.9945068,17.7861328,2H6.2138672C4.9787598,1.9945068,3.9268799,2.8966064,3.7441406,4.1181641L2.0689087,14.9394531c-0.0169067,0.0731201-0.0244141,0.1487427-0.034729,0.2241211l-0.0283203,0.1831055c-0.0031128,0.0215454,0.0036621,0.0413818,0.0033569,0.0626221C2.0080566,15.4400635,2,15.4689331,2,15.5v4c0.0012817,1.380188,1.119812,2.4987183,2.5,2.5h15c1.380188-0.0012817,2.4987183-1.119812,2.5-2.5v-4C22,15.4700317,21.9921875,15.4421997,21.9910889,15.4124756z M4.7324219,4.2705078C4.8417358,3.5376587,5.4729004,2.9963989,6.2138672,3h11.5722656c0.7409668-0.0036011,1.3721313,0.5376587,1.4814453,1.2705078l1.3981323,9.0314331C20.3162231,13.1159058,19.9234619,13.0003662,19.5,13h-15c-0.4234619,0.0003662-0.8162231,0.1159058-1.1657104,0.3019409L4.7324219,4.2705078z M21,19.5c-0.0009155,0.828064-0.671936,1.4990845-1.5,1.5h-15c-0.828064-0.0009155-1.4990845-0.671936-1.5-1.5v-4c0.000061-0.0388184,0.008606-0.0753174,0.0115356-0.1134033l0.0391235-0.2528076C3.215332,14.4837646,3.7990112,14.0007935,4.5,14h15c0.7009888,0.0007935,1.284668,0.4837646,1.4493408,1.1337891l0.0391235,0.2528076C20.991394,15.4246826,20.999939,15.4611816,21,15.5V19.5z"
-              />
-            </svg>
-            Storage
-          </div>
-          <div class="card-body pt-0 pb-0 px-3">
-            <div class="storage-percent">
-              <div class="progress fileprogress h-auto ps-0 mb-2">
+  <!-- Default Result Html Start-->
+  <div>
+    <div class="row g-4 mt-0">
+      <div class="col-sm-6 col-md-4 col-xl-3" *ngFor="let file of documents.data">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-pdf-o" *ngIf="file.fileExt === 'pdf'"></i>
+              <i class="fa fa-file-video-o" *ngIf="file.fileExt === 'video'"></i>
+              <i class="fa fa-file-word-o" *ngIf="file.fileExt === 'docx'"></i>
+              <i class="fa fa-file-excel-o" *ngIf="file.fileExt === 'xsls' || file.fileExt === 'xls'"></i>
+              <i class="fa fa-file-image-o" *ngIf="file.fileExt === 'jpg' || file.fileExt === 'jpeg'"></i>
+              <i class="fa fa-file-text-o" *ngIf="file.fileExt === 'txt'"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold"
+                  data-bs-target="#modalViewDetails"
+                  data-bs-toggle="modal">{{file.fileName}}</h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
                 <div
-                  class="progress-bar progress-bar-xs wd-15p"
-                  role="progressbar"
-                  aria-valuenow="25"
-                  aria-valuemin="0"
-                  aria-valuemax="100"
-                ></div>
-              </div>
-              <div class="text-muted font-weight-semibold tx-13 mb-1">
-                26.24 GB Used of 128GB
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#"
+                    data-bs-target="#modalViewDetails"
+                    data-bs-toggle="modal"
+                    (click)="openDocumentDetails(file)"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    data-bs-target="#modalUpdate"
+                    data-bs-toggle="modal"
+                    (click)="openUpdateDialog(file)"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    data-bs-target="#modalDelete"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    data-bs-target="#modalPreview"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-9">
-        <div class="card mb-4 p-4 minh-content">
-          <div class="d-flex">
-            <div class="flex-fill d-flex align-items-center">
-              <h3 class="card-title">Shared by Somatus</h3>
-            </div>
-            <div class="main-header-center">
-              <div class="position-relative">
-                <input placeholder="Search Documents..." type="search" class="form-control">
-                <button class="btn ps-0">
-                  <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path _ngcontent-alf-c162="" d="M21.2529297,17.6464844l-2.8994141-2.8994141c-0.0021973-0.0021973-0.0043945-0.0043945-0.0065918-0.0065918c-0.8752441-0.8721313-2.2249146-0.9760132-3.2143555-0.3148804l-0.8467407-0.8467407c1.0981445-1.2668457,1.7143555-2.887146,1.715332-4.5747681c0.0021973-3.8643799-3.1286621-6.9989014-6.993042-7.0011597S2.0092773,5.1315308,2.007019,8.9959106S5.1356201,15.994812,9,15.9970703c1.6889038,0.0029907,3.3114014-0.6120605,4.5789185-1.7111206l0.84729,0.84729c-0.6630859,0.9924316-0.5566406,2.3459473,0.3208618,3.2202759l2.8994141,2.8994141c0.4780884,0.4786987,1.1271973,0.7471313,1.8037109,0.7460938c0.6766357,0.0001831,1.3256226-0.2686768,1.803894-0.7472534C22.2493286,20.2558594,22.2488403,18.6417236,21.2529297,17.6464844z M9.0084229,14.9970703c-3.3120728,0.0023193-5.9989624-2.6807861-6.0012817-5.9928589S5.6879272,3.005249,9,3.0029297c1.5910034-0.0026855,3.1175537,0.628479,4.2421875,1.7539062c1.1252441,1.1238403,1.7579956,2.6486206,1.7590942,4.2389526C15.0036011,12.3078613,12.3204956,14.994751,9.0084229,14.9970703z M20.5458984,20.5413818c-0.604126,0.6066284-1.5856934,0.6087036-2.1923828,0.0045166l-2.8994141-2.8994141c-0.2913818-0.2910156-0.4549561-0.6861572-0.4544678-1.0979614C15.0006714,15.6928101,15.6951294,15,16.5507812,15.0009766c0.4109497-0.0005493,0.8051758,0.1624756,1.0957031,0.453125l2.8994141,2.8994141C21.1482544,18.9584351,21.1482544,19.9364624,20.5458984,20.5413818z"></path></svg>
-                </button>
+      <!-- <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-video-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  Tes Manual Vid.mp4
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
               </div>
             </div>
           </div>
-          <hr />
-          <div class="d-sm-flex">
-            <div class="d-flex align-items-center pe-3">
-              <h3 class="card-title mb-0">Tags:</h3>
-            </div>
-            <div class="flex-fill">
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary my-1 me-2 my-md-0 me-md-3"
-                >All</a
-              >
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Contract</a
-              >
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Anthem</a
-              >
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Reports</a
-              >
-            </div>
-          </div>
-          <hr class="mb-0" />
-          <!-- No Result Found Html Start-->
-          <div class="mt-3 text-center">
-            <div class="mb-4">
-              <img src="../../../assets/images/no-data.png" alt="No data found" class="wrap-figure__img"/>
-            </div>
-            <h4 class="text-danger"> <i class="fe fe-alert-triangle"></i> No Document found</h4>
-          </div>
-          <!-- No Result Found Html Ends-->
-
-          <!-- Default Result Html Start-->
-          <div>
-            <div class="row g-4 mt-0">
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-pdf-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">document.pdf</h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-video-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          Tes Manual Vid.mp4
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-word-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          Word Documents.doc
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-excel-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          MyExcel report 2023.xsl
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-image-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          Image file type.jpg
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-text-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          Text document file.txt
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <img
-                        class="img-fluid"
-                        src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png"
-                        alt="Document_report2022"
-                      />
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          image document demo.png
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6 col-md-4 col-xl-3">
-                <div class="card-style2">
-                  <div class="card-body p-2">
-                    <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                      <i class="fa fa-file-video-o"></i>
-                    </a>
-                    <div class="d-flex mt-3">
-                      <div class="flex-fill text-truncate">
-                        <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-                          Tes Manual Vid.mp4
-                        </h6>
-                      </div>
-                      <div>
-                        <a
-                          href="#"
-                          class="option-dots"
-                          data-bs-toggle="dropdown"
-                          aria-haspopup="true"
-                          aria-expanded="false"
-                          ><i class="fe fe-more-vertical"></i
-                        ></a>
-                        <div
-                          class="dropdown-menu dropdown-menu-start folder-options"
-                        >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
-                            ><i class="fe fe-info me-3"></i> Detail</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
-                            ><i class="fe fe-edit me-2"></i> Update</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
-                            ><i class="fe fe-trash me-2"></i> Delete</a
-                          >
-                          <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
-                            ><i class="fe fe-eye me-2"></i> Preview</a
-                          >
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <nav aria-label="Page navigation example">
-              <div class="d-md-flex">
-                <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-                  <div>Total Files Count : <strong>149</strong></div>
-                </div>
-                <div class="mt-3 mt-md-0">
-                  <ul class="pagination justify-content-center justify-content-md-end mt-2 mb-0">
-                    <li class="page-item disabled"><button tabindex="-1" aria-disabled="true" class="page-link"> First </button></li>
-                    <li class="page-item disabled"><button tabindex="-1" aria-disabled="true" class="page-link"><i class="fa fa-angle-left"></i></button></li>
-                    <li class="page-item d-none d-sm-block active"><button class="page-link"> 1 </button></li>
-                    <li class="page-item d-none d-sm-block"><button class="page-link"> 2 </button></li>
-                    <li class="page-item d-none d-sm-block"><button class="page-link"> 3 </button></li>
-                    <li class="page-item d-none d-sm-block"><button class="page-link"> 4 </button></li>
-                    <li class="page-item d-none d-sm-block"><button class="page-link"> 5 </button></li>
-                    <li class="page-item"><button class="page-link"><i class="fa fa-angle-right"></i></button></li>
-                    <li class="page-item"><button class="page-link"> Last </button></li>
-                  </ul>
-                </div>
-              </div> 
-            </nav>
-          </div>
-          <!-- Default Result Html End-->
         </div>
       </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-word-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  Word Documents.doc
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-excel-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  MyExcel report 2023.xsl
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-image-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  Image file type.jpg
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-text-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  Text document file.txt
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <img
+                class="img-fluid"
+                src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png"
+                alt="Document_report2022"
+              />
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  image document demo.png
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-xl-3">
+        <div class="card-style2">
+          <div class="card-body p-2">
+            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+              <i class="fa fa-file-video-o"></i>
+            </a>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <h6 class="mb-0 font-weight-semibold" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+                  Tes Manual Vid.mp4
+                </h6>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  class="option-dots"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div
+                  class="dropdown-menu dropdown-menu-start folder-options"
+                >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalViewDetails" data-bs-toggle="modal"
+                    ><i class="fe fe-info me-3"></i> Detail</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalUpdate" data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Update</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalDelete" data-bs-toggle="modal"
+                    ><i class="fe fe-trash me-2"></i> Delete</a
+                  >
+                  <a class="dropdown-item" href="#" data-bs-target="#modalPreview" data-bs-toggle="modal"
+                    ><i class="fe fe-eye me-2"></i> Preview</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
+    <hr />
+    <nav aria-label="Page navigation example">
+      <div class="d-md-flex">
+        <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
+          <div>Total Files Count : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
+        </div>
+        <div class="mt-3 mt-md-0">
+          <app-pagination
+            [pagingModel]="documents.pagingModel"
+            (gotoPageHandler)="gotoPage($event)"
+          >
+          </app-pagination>
+        </div>
+      </div> 
+    </nav>
   </div>
+  <!-- Default Result Html End-->
 </div>
 
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
 
 <!-- View Details MODAL -->
 <div class="modal fade" id="modalViewDetails">
@@ -556,16 +442,16 @@
         <div class="row">
           <div class="col-12 col-md-6">
             <h4>Description</h4>
-            Test RIQC Overview PDF
+            {{documentDetails.description}}
             <hr/>
             <h4>Tags</h4>
-            Overview PDF, Test RIQC
+            {{documentDetails.tags.toString()}}
             <hr/>
             <h4>Added On</h4>
-            28/09/2022
+            <!-- {{documentDetails.description}} -->
             <hr/>
             <h4>Size</h4>
-            1.6MB
+            {{documentDetails.fileSize/1000}}MB
 
         </div>
           <div class="col-12 col-md-6 position-relative">
@@ -583,6 +469,7 @@
         <button
           class="btn btn-secondary"
           data-bs-dismiss="modal"
+          (click)="viewFile(documentDetails)"
         >
           View
         </button>
@@ -606,11 +493,19 @@
           <div class="col-12 col-md-6">
             <form method="post" action="javascript:void(0);" novalidate="novalidate">
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="fileName" placeholder="File Name" value="File Name Here">
+                <input type="text" class="form-control"
+                  id="fileName" 
+                  placeholder="File Name" 
+                  [value]="documentDetails.fileName"
+                  (change)="changeFileName($event)" />
                 <label class="lh-sm" for="fileName">File Name</label>
               </div>
               <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="folder" placeholder="Folder" value="Folder Name">
+                <input type="text" class="form-control"
+                  id="folder" placeholder="Folder" 
+                  [value]="documentDetails.folder"
+                  (change)="changeFolderName($event)"
+                   />
                 <label class="lh-sm" for="folder">Folder</label>
               </div>
               <div class="d-flex mb-3">
@@ -619,32 +514,50 @@
                 </div>
                 <div class="flex-fill">
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                    <input class="form-check-input" type="radio"
+                      name="inlineRadioOptions" 
+                      id="inlineRadio1" 
+                      [value]="true"
+                      [checked]="!documentDetails.isGlobal"
+                      (change)="changeDocScope($event)" />
                     <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" checked>
+                    <input class="form-check-input" 
+                      type="radio" 
+                      name="inlineRadioOptions" 
+                      id="inlineRadio2" 
+                      [value]="!documentDetails.isGlobal"
+                      [checked]="!documentDetails.isGlobal"
+                      (change)="changeDocScope($event)" />
                     <label class="form-check-label" for="inlineRadio2">Practice</label>
                   </div>
-                  <select class="form-select form-select-sm my-1" multiple>
-                    <option value="1" selected>Practice One</option>
-                    <option value="2">Practice Two</option>
-                    <option value="3" selected>Practice Three</option>
-                    <option value="4">Practice Four</option>
-                    <option value="5">Practice Five</option>
-                    <option value="6">Practice Six</option>
-                    <option value="7">Practice Seven</option>
-                    <option value="8">Practice Eight</option>
+                  <select class="form-select form-select-sm my-1" 
+                    *ngIf="!documentDetails.isGlobal"
+                    (change)="practiceIdSelection($event)"
+                    multiple>
+                    <option value="{{practiceId.id}}"
+                      [selected]="documentDetails.practiceIds.indexOf(practiceId.id) !== -1"
+                      *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
                   </select>
                 </div>
               </div>
               <div class="form-floating">
-                <input type="text" class="form-control" id="Tags" placeholder="Tags" value="Tag01, Tag02, Tag03">
+                <input type="text" class="form-control"
+                  id="Tags"
+                  placeholder="Tags"
+                  [value]="documentDetails.tags.toString()"
+                  (change)="changeTags($event)" />
                 <label class="lh-sm" for="Tags">Tags</label>
               </div>
               <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>
               <div class="form-floating">
-                <textarea class="form-control minh-6" rows="4" placeholder="Leave a comment here" id="description">Description Here</textarea>
+                <textarea class="form-control minh-6"
+                  rows="4"
+                  placeholder="Leave a comment here"
+                  id="description"
+                  [value]="documentDetails.description"
+                  (change)="changeDescription($event)">Description Here</textarea>
                 <label class="lh-sm" for="description">Description</label>
               </div>
             </form>
@@ -664,6 +577,7 @@
         <button
           class="btn btn-secondary"
           data-bs-dismiss="modal"
+          (click)="updateDocument()"
         >
           Update
         </button>

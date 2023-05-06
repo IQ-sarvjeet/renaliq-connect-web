@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { DocumentService } from 'src/app/api-client';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,27 +9,34 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./my-files.component.scss']
 })
 export class MyFilesComponent {
-  recentDocuments: any = []
-  tags: any = [];
-  constructor(private httpClient: HttpClient){}
+  recentDocuments: any = [];
+  folders: string[] = [];
+  constructor(private documentService: DocumentService){}
   ngOnInit() {
+    this.loadFolders();
     this.loadRecentDocuments();
   }
+  private loadFolders() {
+    this.documentService.apiDocumentListFoldersGet().subscribe({
+      next: (folders: any) => {
+        if(folders.data) {
+          this.folders = folders.data;
+        }
+      },
+      error: (error: any) => {
+
+      }
+    })
+  }
   loadRecentDocuments() {
-    this.httpClient.get(`${environment.baseApiUrl}/api/document/recentdocuments`).subscribe({
+    this.documentService.apiDocumentRecentdocumentsGet().subscribe({
       next: (response: any) => {
-        console.log('response:', response);
         if (response.data) {
           this.recentDocuments = response.data;
         }
-      }
-    })
-    this.httpClient.get(`${environment.baseApiUrl}/api/document/list/tags`).subscribe({
-      next: (tagsList: any) => {
-        console.log('tagsList:', tagsList);
-        if (tagsList.data) {
-          this.tags = tagsList.data;
-        }
+      },
+      error: (error: any) => {
+
       }
     })
   }
