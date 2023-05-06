@@ -121,6 +121,7 @@ export class TwoFectorAuthComponent {
     };
 
     let data = await this.authService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponseModel) => {
+      console.log('apiAccountAuthtokenValidatePost results:', result)
       if (result && result.access_token) {
         if (result.expires_in) {
           const date = this.addMinutes(new Date(), (result.expires_in / 60));
@@ -137,6 +138,7 @@ export class TwoFectorAuthComponent {
       }
     },
       (error: any) => {
+        console.log('apiAccountAuthtokenValidatePost error:', error)
         this.showToster = true;
         this.errorMessage = error?.error?.error_description;
         if (this.errorMessage == null || this.errorMessage == '') {

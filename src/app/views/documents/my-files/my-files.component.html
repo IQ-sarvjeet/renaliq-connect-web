@@ -142,17 +142,8 @@
               <a
                 href="javascript: void(0)"
                 class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Contract</a
-              >
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Anthem</a
-              >
-              <a
-                href="javascript: void(0)"
-                class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
-                >Reports</a
+                *ngFor="let tag of tags"
+                >{{tag.tagName}}</a
               >
             </div>
           </div>
@@ -170,82 +161,14 @@
                 </tr>
               </thead>
               <tbody class="table-body">
-                <tr class="border-bottom">
-                  <td>Contract V1</td>
+                <tr class="border-bottom" *ngFor="let document of recentDocuments">
+                  <td>{{document.fileName}}</td>
                   <td>
-                    <div class="tags px-4 me-2">Contract</div>
-                    <div class="tags px-4 me-2">Anthem</div>
+                    <div class="tags px-4 me-2" *ngFor="let tag of document.tags">{{tag}}</div>
+                    <!-- <div class="tags px-4 me-2">Anthem</div> -->
                   </td>
-                  <td>Brian</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Provider Insight - Aug 22</td>
-                  <td>
-                    <div class="tags px-4 me-2">Report</div>
-                    <div class="d-inline-block my-2">+2 more</div>
-                  </td>
-                  <td>Sean Tiptop</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Care Plan Status</td>
-                  <td class="">
-                    <div class="tags px-4 me-2">Report</div>
-                    <div class="tags px-4 me-2">Care Plan</div>
-                  </td>
-                  <td>Emlin D</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Contract V1</td>
-                  <td>
-                    <div class="tags px-4 me-2">Contract</div>
-                    <div class="tags px-4 me-2">Anthem</div>
-                  </td>
-                  <td>Brian</td>
-                  <td>2022/09/22</td>
-                  <td class="text-end">
-                    <a
-                      href="javascript: void(0)"
-                      class="btn btn-outline-primary py-0"
-                    >
-                      View</a
-                    >
-                  </td>
-                </tr>
-                <tr class="border-bottom">
-                  <td>Provider Insight - Aug 22</td>
-                  <td>
-                    <div class="tags px-4 me-2">Report</div>
-                    <div class="d-inline-block my-2">+2 more</div>
-                  </td>
-                  <td>Sean Tiptop</td>
-                  <td>2022/09/22</td>
+                  <td>{{document.uploadedBy}}</td>
+                  <td>{{document.viewedOn}}</td>
                   <td class="text-end">
                     <a
                       href="javascript: void(0)"
