@@ -27,6 +27,7 @@
         href="javascript: void(0)"
         class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
         *ngFor="let folder of folders"
+        (click)="selectFolderHandler(folder)"
         >
         <div class="ps-2">
           <svg
@@ -42,6 +43,21 @@
           {{folder}}
         </div>
       </a
+      >
+    </div>
+  </div>
+  <hr />
+  <div class="d-sm-flex">
+    <div class="d-flex align-items-center pe-3">
+      <h3 class="card-title mb-0">Tags:</h3>
+    </div>
+    <div class="flex-fill">
+      <a
+        href="javascript: void(0)"
+        class="btn btn-primary-light my-1 me-2 my-md-0 me-md-3"
+        *ngFor="let tag of tags"
+        (click)="tagSelectHandlar(tag)"
+        >{{tag.tagName}}</a
       >
     </div>
   </div>
@@ -88,3 +104,4 @@
     </div>
   </div>
 </div>
+<app-view-details [viewDocument]="documentDetails"></app-view-details>

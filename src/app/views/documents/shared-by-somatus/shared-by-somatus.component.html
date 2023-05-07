@@ -18,6 +18,41 @@
   <hr />
   <div class="d-sm-flex">
     <div class="d-flex align-items-center pe-3">
+      <h3 class="card-title mb-0">Folders:</h3>
+    </div>
+    <div class="flex-fill">
+      <!-- <a
+        href="javascript: void(0)"
+        class="btn btn-primary my-1 me-2 my-md-0 me-md-3"
+        >All</a
+      > -->
+      <a
+        href="javascript: void(0)"
+        class="btn my-1 me-2 my-md-0 me-md-3"
+        [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'btn-primary': 'btn-primary-light'"
+        *ngFor="let folder of folders"
+        (click)="selectFolderHandler(folder)"
+        >
+        <div class="ps-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-inner-icn me-2"
+            enable-background="new 0 0 1024 1024"
+            viewBox="0 0 1024 1024"
+          >
+            <path
+              d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
+            />
+          </svg>
+          {{folder}}
+        </div>
+      </a
+      >
+    </div>
+  </div>
+  <hr />
+  <div class="d-sm-flex">
+    <div class="d-flex align-items-center pe-3">
       <h3 class="card-title mb-0">Tags:</h3>
     </div>
     <div class="flex-fill">
@@ -427,57 +462,7 @@
 </div>
 
 <!-- <router-outlet></router-outlet> -->
-
-<!-- View Details MODAL -->
-<div class="modal fade" id="modalViewDetails">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content modal-content-demo">
-      <div class="modal-header bg-gray-200">
-        <h4 class="modal-title fw-semibold">File Details Here</h4>
-        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <h4>Description</h4>
-            {{documentDetails.description}}
-            <hr/>
-            <h4>Tags</h4>
-            {{documentDetails.tags.toString()}}
-            <hr/>
-            <h4>Added On</h4>
-            <!-- {{documentDetails.description}} -->
-            <hr/>
-            <h4>Size</h4>
-            {{documentDetails.fileSize/1000}}MB
-
-        </div>
-          <div class="col-12 col-md-6 position-relative">
-            <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
-          </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button
-          class="btn btn-outline-light"
-          data-bs-dismiss="modal"
-        >
-          Cancel
-        </button>
-        <button
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          (click)="viewFile(documentDetails)"
-        >
-          View
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-
+<app-view-details [viewDocument]="documentDetails"></app-view-details>
 <!-- Update MODAL -->
 <div class="modal fade" id="modalUpdate">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">

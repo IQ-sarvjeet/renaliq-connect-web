@@ -1,0 +1,49 @@
+<!-- View Details MODAL -->
+<div class="modal fade" id="modalViewDetails">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content modal-content-demo">
+        <div class="modal-header bg-gray-200">
+          <h4 class="modal-title fw-semibold">File Details Here</h4>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <h4>Description</h4>
+              {{documentDetails.description}}
+              <hr/>
+              <h4>Tags</h4>
+              {{documentDetails.tags.toString()}}
+              <hr/>
+              <h4>Added On</h4>
+              <!-- {{documentDetails.description}} -->
+              <hr/>
+              <h4>Size</h4>
+              {{documentDetails.fileSize/1000}}MB
+  
+          </div>
+            <div class="col-12 col-md-6 position-relative">
+              <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-outline-light"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="viewFile(documentDetails)"
+          >
+            View
+          </button>
+        </div>
+      </div>
+    </div>
+</div>

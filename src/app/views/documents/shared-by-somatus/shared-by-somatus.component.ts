@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/api-client';
 
 @Component({
@@ -45,12 +46,14 @@ export class SharedBySomatusComponent {
     title: null
   }
   practiceList: any = [];
+  folders: any = [];
   constructor(private documentService: DocumentService,
-    private practiceService: PracticeService){}
+    private practiceService: PracticeService, private route: ActivatedRoute){}
 
   ngOnInit() {
+    this.loadTags();
     this.loadFolders();
-    this.loadList();
+    // this.loadList();
     this.practiceService.apiPracticeListGet().subscribe({
       next: (response: any) => {
         this.practiceList = response;
@@ -58,8 +61,37 @@ export class SharedBySomatusComponent {
       error: (error: any) => {
       }
     })
+    this.route.queryParams.subscribe({
+      next: (params: any) => {
+        if(params.folder) {
+          this.filters.documentFilter = {
+            ...this.filters.documentFilter,
+            folder: params.folder
+          }
+        }
+        if(params.tag) {
+          this.filters.documentFilter = {
+            ...this.filters.documentFilter,
+            tag: params.tag
+          }
+        }
+        this.loadList();
+      }
+    })
   }
   private loadFolders() {
+    this.documentService.apiDocumentListFoldersGet().subscribe({
+      next: (folders: any) => {
+        if(folders.data) {
+          this.folders = folders.data;
+        }
+      },
+      error: (error: any) => {
+
+      }
+    })
+  }
+  private loadTags() {
     this.documentService.apiDocumentListTagsGet().subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
@@ -101,17 +133,9 @@ export class SharedBySomatusComponent {
     this.loadList();
   }
   public openDocumentDetails(details: any) {
-    this.documentService.apiDocumentDocumentsIdGet(details.id).subscribe({
-      next: (response: any) => {
-        this.documentDetails = response;
-      },
-      error: (error: any) => {
-      }
-    })
+    this.documentDetails = details;
   }
-  public viewFile(viewDoc: any) {
-    window.open(viewDoc.downloadURL, "_blank");
-  }
+  
   public openUpdateDialog(details: any) {
     this.documentDetails = details;
   }
@@ -147,6 +171,13 @@ export class SharedBySomatusComponent {
   }
   public changeDescription($event: any) {
     this.documentDetails.description = $event.target.value;
+  }
+  public selectFolderHandler(folder: any) {
+    this.filters.documentFilter = {
+      ...this.filters.documentFilter,
+      folder: folder
+    }
+    this.loadList();
   }
   
 }

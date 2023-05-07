@@ -12,6 +12,7 @@ import { ExportsComponent } from './exports/exports.component';
 import { AddFileComponent } from './add-file/add-file.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/components/shared.module';
+import { ViewDetailsComponent } from './view-details/view-details.component';
 
 const routes: Routes = [
   {
@@ -62,7 +63,8 @@ const routes: Routes = [
     VideosComponent,
     IntegrationProcessesComponent,
     ExportsComponent,
-    AddFileComponent
+    AddFileComponent,
+    ViewDetailsComponent
   ],
   imports: [
     RouterModule.forChild(routes),
