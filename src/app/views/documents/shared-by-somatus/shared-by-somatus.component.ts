@@ -20,9 +20,8 @@ export class SharedBySomatusComponent {
   filters: DocumentFilterModel = {
     documentFilter: { 
       searchKey: '',
-      fileType: 1,
       folder: '',
-      tag: 'All',
+      tag: '',
       sortBy: '',
       sortDirection: ''
     },

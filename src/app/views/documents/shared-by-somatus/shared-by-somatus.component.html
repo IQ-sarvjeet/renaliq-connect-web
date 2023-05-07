@@ -24,8 +24,8 @@
       <a
         href="javascript: void(0)"
         class="btn my-1 me-2 my-md-0 me-md-3"
-        [ngClass]="filters.documentFilter?.tag === 'All'? 'btn-primary': 'btn-primary-light'"
-        (click)="tagSelectHandlar('All')"
+        [ngClass]="filters.documentFilter?.tag === ''? 'btn-primary': 'btn-primary-light'"
+        (click)="tagSelectHandlar('')"
         >All</a
       >
       <a

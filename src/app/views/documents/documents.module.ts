@@ -19,11 +19,11 @@ const routes: Routes = [
     component: DocumentsComponent,
     children: [
       {
-        path: 'myFiles',
+        path: 'myfiles',
         component: MyFilesComponent,
       },
       {
-        path: 'sharedBySomatus',
+        path: 'sharedbysomatus',
         component: SharedBySomatusComponent,
         children: [
           {
