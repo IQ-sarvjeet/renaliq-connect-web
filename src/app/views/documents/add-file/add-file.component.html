@@ -22,12 +22,18 @@
                            formControlName="fileSource"
                            (change)="onFileChange($event)"
                            />
-                          <div id="file-dummy" class="file-icon file-dummy text-center file-failed">
+                          <div id="file-dummy"
+                            class="file-icon text-center file-dummy"
+                            [ngClass]="exceedFileSize ? 'file-failed': ''">
                               <i class="fa fa-cloud-upload text-secondary"></i>
                               <div class="btn btn-secondary w-100 mt-4 mb-2 py-1">Browse</div>
                               <div id="filePath" class="filePath mb-2"></div>
-                              <div id="fileAlert" class="success" *ngIf="addFileForm.controls['fileName'].value">{{addFileForm.controls['fileName'].value}}</div>
-                              <div class="default" *ngIf="!addFileForm.controls['fileName'].value">Select file to upload</div>
+                              <div id="fileAlert" class="success"
+                                *ngIf="addFileForm.controls['fileName'].value">
+                                {{addFileForm.controls['fileName'].value}}
+                              </div>
+                              <div class="default" 
+                                *ngIf="!addFileForm.controls['fileName'].value">Select file to upload</div>
                           </div>
                       </div>
                   </div>
@@ -46,7 +52,7 @@
                       <input type="text" class="form-control" 
                           id="folder" 
                           placeholder="Folder"
-                          formControlName="folderName" />
+                          formControlName="folder" />
                       <label class="lh-sm" for="folder">Folder</label>
                     </div>
                     <div class="d-flex mb-3">
@@ -113,6 +119,7 @@
             <button
               class="btn btn-secondary"
               data-bs-dismiss="modal"
+              [disabled]="addFileForm.invalid"
             >
               Upload
             </button>

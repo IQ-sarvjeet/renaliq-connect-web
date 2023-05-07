@@ -5773,7 +5773,7 @@ div.dataTables_wrapper div.dataTables_length label {
   }
     
   .file-area input[type=file] + .file-failed {
-    background-color: #e91e63;
+    background-color: #e91e63 !important;
     color: white;
   }
   .file-area input[type=file] + .file-failed .default {

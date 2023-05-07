@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FormControl } from '@mobiscroll/angular/dist/js/angular/form-control';
-import { PracticeService } from 'src/app/api-client';
+import { DocumentService, PracticeService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-add-file',
@@ -12,20 +11,21 @@ export class AddFileComponent {
   addFileForm: FormGroup = this.fb.group({
     fileName: ['', Validators.required],
     title: ['', Validators.required],
-    // fileSize: ['', Validators.required],
+    // fileSize: [0, Validators.required],
     // fileExt: ['', Validators.required],
     // fileType: ['', Validators.required],
-    folderName: ['', Validators.required],
+    folder: [''],
     isGlobal: [false, Validators.required],
     practiceIds: [''],
-    tags: ['', Validators.required],
+    tags: [''],
     description: [''],
     file: [null, Validators.required],
     fileSource: [null, Validators.required],
   })
   selectedFile: File | null = null;
   practiceList: any = [];
-  constructor(private fb: FormBuilder, private practiceService: PracticeService) {}
+  exceedFileSize: boolean = false;
+  constructor(private fb: FormBuilder, private practiceService: PracticeService, private documentService: DocumentService) {}
   ngOnInit(){
     this.practiceService.apiPracticeListGet().subscribe({
       next: (response: any) => {
@@ -39,6 +39,16 @@ export class AddFileComponent {
     console.log('addFileForm:', this.addFileForm.value);
     const formData = new FormData();
     formData.append('file', this.addFileForm.get('file')?.value);
+    let data = this.addFileForm.value;
+    data = {
+      ...data,
+      file: formData
+    }
+    console.log('data:', data);
+    delete data.fileSource;
+    this.documentService.apiDocumentDocumentPostForm(data).subscribe({
+
+    });
   }
   onFileChange(event: Event) {
     const selectedFile = event.target as HTMLInputElement;
@@ -47,24 +57,23 @@ export class AddFileComponent {
       const fileName = file.name;
       // const fileExt = fileName.split('.')[0];
       const fileSize = file.size;
-      // const fileType = file.type.split('/')[1];
+      this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true: false;
+      if(this.exceedFileSize) {
+        this.addFileForm.patchValue({
+          fileName,
+        });
+        return;
+      } else {
+        this.addFileForm.patchValue({
+          file: file,
+          fileName,
+          // fileSize,
+          // fileType,
+          // fileExt
+        });
+      }
       console.log('file:::', file);
-      this.addFileForm.patchValue({
-        file: file,
-        fileName,
-        // fileSize,
-        // fileType,
-        // fileExt
-      });
     }
-    // const selectedFile: any = event.target as HTMLInputElement;
-    // if (!selectedFile) return;
-    // this.selectedFile = selectedFile.files[0];
-    // const reader: any = new FileReader();
-    // reader.onload = () => {
-    //   const fileValue: any = reader.result.toString();
-    // };
-    // reader.readAsDataURL(file);
   }
   
 }
