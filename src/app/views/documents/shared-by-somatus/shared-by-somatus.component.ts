@@ -117,7 +117,7 @@ export class SharedBySomatusComponent {
     this.documentDetails = details;
   }
   public updateDocument() {
-    this.documentService.apiDocumentDocumentPost(this.documentDetails).subscribe({
+    this.documentService.apiDocumentDocumentPostForm(this.documentDetails).subscribe({
       next: (response: any) => {
       },
       error: (error: any) => {

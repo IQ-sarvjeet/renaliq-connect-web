@@ -17,9 +17,10 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { DocumentDetail } from '../model/documentDetail';
+import { AddRecentDocumentRequestModel } from '../model/addRecentDocumentRequestModel';
 import { DocumentFilterModel } from '../model/documentFilterModel';
 import { DocumentListViewModel } from '../model/documentListViewModel';
+import { RecentDocumentModel } from '../model/recentDocumentModel';
 import { RecentDocumentViewModel } from '../model/recentDocumentViewModel';
 import { TagListViewModel } from '../model/tagListViewModel';
 
@@ -66,16 +67,26 @@ export class DocumentService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiDocumentDocumentPost(body?: DocumentDetail, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiDocumentDocumentPost(body?: DocumentDetail, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentAddRecentdocumentPost(body?: AddRecentDocumentRequestModel, observe?: 'body', reportProgress?: boolean): Observable<RecentDocumentModel>;
+    public apiDocumentAddRecentdocumentPost(body?: AddRecentDocumentRequestModel, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<RecentDocumentModel>>;
+    public apiDocumentAddRecentdocumentPost(body?: AddRecentDocumentRequestModel, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<RecentDocumentModel>>;
+    public apiDocumentAddRecentdocumentPost(body?: AddRecentDocumentRequestModel, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected != undefined) {
@@ -93,9 +104,127 @@ export class DocumentService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.request<any>('post',`${this.basePath}/api/Document/document`,
+        return this.httpClient.request<RecentDocumentModel>('post',`${this.basePath}/api/Document/add/recentdocument`,
             {
                 body: body,
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param id 
+     * @param file 
+     * @param fileName 
+     * @param downloadURL 
+     * @param description 
+     * @param title 
+     * @param folder 
+     * @param isGlobal 
+     * @param isDeleted 
+     * @param practiceIds 
+     * @param tags 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiDocumentDocumentPostForm(id?: number, file?: Blob, fileName?: string, downloadURL?: string, description?: string, title?: string, folder?: string, isGlobal?: boolean, isDeleted?: boolean, practiceIds?: Array<number>, tags?: Array<string>, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiDocumentDocumentPostForm(id?: number, file?: Blob, fileName?: string, downloadURL?: string, description?: string, title?: string, folder?: string, isGlobal?: boolean, isDeleted?: boolean, practiceIds?: Array<number>, tags?: Array<string>, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiDocumentDocumentPostForm(id?: number, file?: Blob, fileName?: string, downloadURL?: string, description?: string, title?: string, folder?: string, isGlobal?: boolean, isDeleted?: boolean, practiceIds?: Array<number>, tags?: Array<string>, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiDocumentDocumentPostForm(id?: number, file?: Blob, fileName?: string, downloadURL?: string, description?: string, title?: string, folder?: string, isGlobal?: boolean, isDeleted?: boolean, practiceIds?: Array<number>, tags?: Array<string>, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+
+
+
+
+
+
+
+
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'multipart/form-data'
+        ];
+
+        const canConsumeForm = this.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): void; };
+        let useForm = false;
+        let convertFormParamsToString = false;
+        // use FormData to transmit files using content-type "multipart/form-data"
+        // see https://stackoverflow.com/questions/4007969/application-x-www-form-urlencoded-or-multipart-form-data
+        useForm = canConsumeForm;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        }
+
+        if (id !== undefined) {
+            formParams = formParams.append('Id', <any>id) as any || formParams;
+        }
+        if (file !== undefined) {
+            formParams = formParams.append('File', <any>file) as any || formParams;
+        }
+        if (fileName !== undefined) {
+            formParams = formParams.append('FileName', <any>fileName) as any || formParams;
+        }
+        if (downloadURL !== undefined) {
+            formParams = formParams.append('DownloadURL', <any>downloadURL) as any || formParams;
+        }
+        if (description !== undefined) {
+            formParams = formParams.append('Description', <any>description) as any || formParams;
+        }
+        if (title !== undefined) {
+            formParams = formParams.append('Title', <any>title) as any || formParams;
+        }
+        if (folder !== undefined) {
+            formParams = formParams.append('Folder', <any>folder) as any || formParams;
+        }
+        if (isGlobal !== undefined) {
+            formParams = formParams.append('IsGlobal', <any>isGlobal) as any || formParams;
+        }
+        if (isDeleted !== undefined) {
+            formParams = formParams.append('IsDeleted', <any>isDeleted) as any || formParams;
+        }
+        if (practiceIds) {
+            practiceIds.forEach((element) => {
+                formParams = formParams.append('PracticeIds', <any>element) as any || formParams;
+            })
+        }
+        if (tags) {
+            tags.forEach((element) => {
+                formParams = formParams.append('Tags', <any>element) as any || formParams;
+            })
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Document/document`,
+            {
+                body: convertFormParamsToString ? formParams.toString() : formParams,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -122,6 +251,13 @@ export class DocumentService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
         ];
@@ -157,6 +293,13 @@ export class DocumentService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
         ];
@@ -194,6 +337,13 @@ export class DocumentService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'text/plain',
@@ -240,6 +390,13 @@ export class DocumentService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'text/plain',
@@ -285,6 +442,13 @@ export class DocumentService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
             'text/plain',

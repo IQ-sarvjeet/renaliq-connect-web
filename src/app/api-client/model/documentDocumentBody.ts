@@ -10,14 +10,11 @@
  * Do not edit the class manually.
  */
 
-export interface DocumentDetail { 
+export interface DocumentDocumentBody { 
     id?: number;
-    file?: Blob;
+    file: Blob;
     fileName?: string;
-    fileSize?: string;
-    fileExt?: string;
     downloadURL?: string;
-    fileType?: number;
     description?: string;
     title?: string;
     folder?: string;
