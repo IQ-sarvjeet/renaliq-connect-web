@@ -5771,6 +5771,45 @@ div.dataTables_wrapper div.dataTables_length label {
     text-align: center;
     transition: all 0.3s ease-in-out;
   }
+    
+  .file-area input[type=file] + .file-failed {
+    background-color: #e91e63;
+    color: white;
+  }
+  .file-area input[type=file] + .file-failed .default {
+        display: none;
+  }
+  .file-area {
+    width: 100%;
+    position: relative;
+    
+  }
+  .file-area input[type=file]:valid + .file-dummy {
+    background-color: rgba(16, 202, 147, 0.25);
+  }
+  .file-area .success,
+  .file-area .default {
+    font-size: 0.75rem;
+    line-height: normal;
+  }
+  .file-area input[type=file]:valid + .file-dummy .filePath {
+    font-size: 12px;
+    line-height: normal;
+    word-break: break-word;
+  }
+  .file-area input[type=file]:valid + .file-dummy .success {
+    display: block;
+  }
+  .file-area input[type=file]:valid + .file-dummy .default {
+    display: none;
+  }
+  
+  .file-area .file-dummy .success {
+    display: none;
+  }
+  .file-area:hover .file-dummy {
+    outline: 2px dashed #083050;
+  }
 }
 
 
