@@ -70,11 +70,11 @@ export class AddFileComponent {
     // formData1.append('PracticeIds', '28');
     // formData1.append('Tags', 'aaa');
     // formData1.append('Tags', 'bbb');
-    // this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1).subscribe({
-    //   next: (response: any) => {
+    this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, data).subscribe({
+      next: (response: any) => {
 
-    //   }
-    // })
+      }
+    })
     // this.documentService.apiDocumentDocumentPostForm(34, data.file, data.fileName).subscribe({
 
     // });
