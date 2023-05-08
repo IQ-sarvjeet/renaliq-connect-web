@@ -37,11 +37,20 @@
             Cancel
           </button>
           <button
+            *ngIf="documentDetails.fileExt !== '.xls' && documentDetails.fileExt !== '.xsls' && documentDetails.fileExt !== '.csv'"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
             (click)="viewFile(documentDetails)"
           >
             View
+          </button>
+          <button
+            *ngIf="documentDetails.fileExt === '.xls' || documentDetails.fileExt === '.xsls' || documentDetails.fileExt === '.csv'"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            (click)="downloadFile(documentDetails)"
+          >
+            Download
           </button>
         </div>
       </div>

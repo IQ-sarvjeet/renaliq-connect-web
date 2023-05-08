@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, Renderer2 } from '@angular/core';
 import { DocumentService } from 'src/app/api-client';
+import { DownloadService } from 'src/app/services/download.service';
 
 @Component({
   selector: 'app-view-details',
@@ -28,7 +29,10 @@ export class ViewDetailsComponent {
       this.openDocumentDetails(value);
     }
   }
-  constructor(private documentService: DocumentService){}
+  constructor(private documentService: DocumentService,
+    private downloadService: DownloadService,
+    private elementRef: ElementRef,
+    private renderer: Renderer2){}
   public openDocumentDetails(details: any) {
     this.documentService.apiDocumentDocumentsIdGet(details.id).subscribe({
       next: (response: any) => {
@@ -40,6 +44,12 @@ export class ViewDetailsComponent {
   }
   public viewFile(viewDoc: any) {
     window.open(viewDoc.downloadURL, "_blank");
+  }
+  public downloadFile(viewDoc: any) {
+    const url: string = `${viewDoc.downloadURL}`;
+    this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName).then(() => {
+      
+    });
   }
 }
 

@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService, PracticeService } from 'src/app/api-client';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-add-file',
@@ -25,7 +27,10 @@ export class AddFileComponent {
   selectedFile: File | null = null;
   practiceList: any = [];
   exceedFileSize: boolean = false;
-  constructor(private fb: FormBuilder, private practiceService: PracticeService, private documentService: DocumentService) {}
+  constructor(private fb: FormBuilder,
+    private practiceService: PracticeService,
+    private documentService: DocumentService,
+    private httpClient: HttpClient) {}
   ngOnInit(){
     this.practiceService.apiPracticeListGet().subscribe({
       next: (response: any) => {
@@ -38,7 +43,9 @@ export class AddFileComponent {
   submit() {
     console.log('addFileForm:', this.addFileForm.value);
     const formData = new FormData();
-    formData.append('file', this.addFileForm.get('file')?.value);
+    console.log('file value:', this.addFileForm.value.file)
+    formData.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
+    console.log('formData:', formData)
     let data = this.addFileForm.value;
     data = {
       ...data,
@@ -46,11 +53,34 @@ export class AddFileComponent {
     }
     console.log('data:', data);
     delete data.fileSource;
-    this.documentService.apiDocumentDocumentPostForm(data).subscribe({
+    // const data1 = {
+    //   File: formData
+    // }
+    // const formData1 = new FormData();
+    // formData1.append('Id', '45');
+    // formData1.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
+    // formData1.append('FileName', this.addFileForm.value.fileName);
+    // formData1.append('DownloadURL', 'jjj/jk');
+    // formData1.append('Description', this.addFileForm.value.description);
+    // formData1.append('Title', this.addFileForm.value.title);
+    // formData1.append('Folder', this.addFileForm.value.folder);
+    // formData1.append('IsGlobal', this.addFileForm.value.ssGlobal);
+    // formData1.append('IsDeleted', 'false');
+    // formData1.append('PracticeIds', '23');
+    // formData1.append('PracticeIds', '28');
+    // formData1.append('Tags', 'aaa');
+    // formData1.append('Tags', 'bbb');
+    // this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1).subscribe({
+    //   next: (response: any) => {
 
-    });
+    //   }
+    // })
+    // this.documentService.apiDocumentDocumentPostForm(34, data.file, data.fileName).subscribe({
+
+    // });
   }
-  onFileChange(event: Event) {
+  onFileChange(event: any) {
+    console.log('event.target', event.target.files[0]);
     const selectedFile = event.target as HTMLInputElement;
     if (selectedFile && selectedFile.files && selectedFile.files.length > 0) {
       const file = selectedFile.files[0];
