@@ -30,8 +30,8 @@ export class AddFileComponent {
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
-    private httpClient: HttpClient) {}
-  ngOnInit(){
+    private httpClient: HttpClient) { }
+  ngOnInit() {
     this.practiceService.apiPracticeListGet().subscribe({
       next: (response: any) => {
         this.practiceList = response;
@@ -44,7 +44,7 @@ export class AddFileComponent {
     console.log('addFileForm:', this.addFileForm.value);
     const formData = new FormData();
     console.log('file value:', this.addFileForm.value.file)
-    formData.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
+    formData.append('File', this.addFileForm.value.file);
     console.log('formData:', formData)
     let data = this.addFileForm.value;
     data = {
@@ -55,7 +55,7 @@ export class AddFileComponent {
     delete data.fileSource;
     const formData1 = new FormData();
     formData1.append('Id', '45');
-    formData1.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
+    formData1.append('File', this.addFileForm.value.file);
     formData1.append('FileName', this.addFileForm.value.fileName);
     formData1.append('DownloadURL', '');
     formData1.append('Description', this.addFileForm.value.description);
@@ -73,7 +73,8 @@ export class AddFileComponent {
     // formData1.append('PracticeIds', '28');
     // formData1.append('Tags', 'aaa');
     // formData1.append('Tags', 'bbb');
-    this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1).subscribe({
+
+    this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
 
       }
@@ -90,8 +91,8 @@ export class AddFileComponent {
       const fileName = file.name;
       // const fileExt = fileName.split('.')[0];
       const fileSize = file.size;
-      this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true: false;
-      if(this.exceedFileSize) {
+      this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
+      if (this.exceedFileSize) {
         this.addFileForm.patchValue({
           fileName,
         });
@@ -108,5 +109,5 @@ export class AddFileComponent {
       console.log('file:::', file);
     }
   }
-  
+
 }
