@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
 import { LocalStorageService } from './localstorage.service';
 import { Router } from '@angular/router';
 import { CommonConstants } from '../common-constants/common-constants';
-import { HttpHeaders } from '@angular/common/http';
 
 
 @Injectable()
@@ -37,7 +36,6 @@ export class RequestHeadersInterceptor implements HttpInterceptor {
     if (request.headers.get('Content-Type') == 'multipart/form-data') {
       headers = headers.delete('Content-Type')
     }
-    console.log('headers', headers.get('Content-Type'));
 
     return request.clone({
       headers: headers
