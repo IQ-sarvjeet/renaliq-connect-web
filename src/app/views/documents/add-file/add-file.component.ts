@@ -18,7 +18,7 @@ export class AddFileComponent {
     // fileType: ['', Validators.required],
     folder: [''],
     isGlobal: [false, Validators.required],
-    practiceIds: [''],
+    practiceIds: [[]],
     tags: [''],
     description: [''],
     file: [null, Validators.required],
@@ -53,24 +53,27 @@ export class AddFileComponent {
     }
     console.log('data:', data);
     delete data.fileSource;
-    // const data1 = {
-    //   File: formData
-    // }
-    // const formData1 = new FormData();
-    // formData1.append('Id', '45');
-    // formData1.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
-    // formData1.append('FileName', this.addFileForm.value.fileName);
-    // formData1.append('DownloadURL', 'jjj/jk');
-    // formData1.append('Description', this.addFileForm.value.description);
-    // formData1.append('Title', this.addFileForm.value.title);
-    // formData1.append('Folder', this.addFileForm.value.folder);
-    // formData1.append('IsGlobal', this.addFileForm.value.ssGlobal);
-    // formData1.append('IsDeleted', 'false');
+    const formData1 = new FormData();
+    formData1.append('Id', '45');
+    formData1.append('File', this.addFileForm.value.file, this.addFileForm.value.fileName);
+    formData1.append('FileName', this.addFileForm.value.fileName);
+    formData1.append('DownloadURL', '');
+    formData1.append('Description', this.addFileForm.value.description);
+    formData1.append('Title', this.addFileForm.value.title);
+    formData1.append('Folder', this.addFileForm.value.folder);
+    formData1.append('IsGlobal', this.addFileForm.value.isGlobal);
+    formData1.append('IsDeleted', 'false');
+    this.addFileForm.value.practiceIds.forEach((item: any) => {
+      formData1.append('PracticeIds', item);
+    })
+    this.addFileForm.value.tags.split(',').forEach((item: any) => {
+      formData1.append('Tags', item);
+    })
     // formData1.append('PracticeIds', '23');
     // formData1.append('PracticeIds', '28');
     // formData1.append('Tags', 'aaa');
     // formData1.append('Tags', 'bbb');
-    this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, data).subscribe({
+    this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1).subscribe({
       next: (response: any) => {
 
       }
