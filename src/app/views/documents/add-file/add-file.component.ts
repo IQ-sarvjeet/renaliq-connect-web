@@ -41,20 +41,8 @@ export class AddFileComponent {
     })
   }
   submit() {
-    console.log('addFileForm:', this.addFileForm.value);
-    const formData = new FormData();
-    console.log('file value:', this.addFileForm.value.file)
-    formData.append('File', this.addFileForm.value.file);
-    console.log('formData:', formData)
-    let data = this.addFileForm.value;
-    data = {
-      ...data,
-      file: formData
-    }
-    console.log('data:', data);
-    delete data.fileSource;
     const formData1 = new FormData();
-    formData1.append('Id', '45');
+    formData1.append('Id', '0');
     formData1.append('File', this.addFileForm.value.file);
     formData1.append('FileName', this.addFileForm.value.fileName);
     formData1.append('DownloadURL', '');
@@ -69,19 +57,11 @@ export class AddFileComponent {
     this.addFileForm.value.tags.split(',').forEach((item: any) => {
       formData1.append('Tags', item);
     })
-    // formData1.append('PracticeIds', '23');
-    // formData1.append('PracticeIds', '28');
-    // formData1.append('Tags', 'aaa');
-    // formData1.append('Tags', 'bbb');
-
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
 
       }
     })
-    // this.documentService.apiDocumentDocumentPostForm(34, data.file, data.fileName).subscribe({
-
-    // });
   }
   onFileChange(event: any) {
     console.log('event.target', event.target.files[0]);
