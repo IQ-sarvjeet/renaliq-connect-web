@@ -19,6 +19,7 @@ export class SummaryComponent {
     count: '-',
     percentile: null,
     performance: 'up',
+    routeName: 'patients'
   };
   admissions: DataCardInput = {
     iconClass: 'fa-target',
@@ -26,6 +27,7 @@ export class SummaryComponent {
     count: '-',
     percentile: null,
     performance: 'down',
+    routeName: 'admission'
   };
   engagedPatients: DataCardInput = {
     iconClass: 'fa-people',
@@ -33,6 +35,7 @@ export class SummaryComponent {
     count: '-',
     percentile: null,
     performance: 'up',
+    routeName: 'patients'
   };
   admissionRecent: DataCardInput = {
     iconClass: 'fa-people',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/api-client';
+import { FileTypes } from 'src/app/enums/fileTypes';
 
 @Component({
   selector: 'app-shared-by-somatus',
@@ -8,6 +9,7 @@ import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/a
   styleUrls: ['./shared-by-somatus.component.scss']
 })
 export class SharedBySomatusComponent {
+  fileTypes = FileTypes
   tags: any = [];
   documents: any = {
     data: [],

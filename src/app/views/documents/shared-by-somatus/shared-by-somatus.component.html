@@ -90,18 +90,25 @@
         <div class="card-style2">
           <div class="card-body p-2">
             <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
-              <i class="fa fa-file-pdf-o" *ngIf="file.fileExt === 'pdf'"></i>
-              <i class="fa fa-file-video-o" *ngIf="file.fileExt === 'video'"></i>
-              <i class="fa fa-file-word-o" *ngIf="file.fileExt === 'docx'"></i>
-              <i class="fa fa-file-excel-o" *ngIf="file.fileExt === 'xsls' || file.fileExt === 'xls'"></i>
-              <i class="fa fa-file-image-o" *ngIf="file.fileExt === 'jpg' || file.fileExt === 'jpeg'"></i>
-              <i class="fa fa-file-text-o" *ngIf="file.fileExt === 'txt'"></i>
+              <i class="fa fa-file-pdf-o" *ngIf="file.fileType === fileTypes.Pdf"></i>
+              <i class="fa fa-file-video-o" *ngIf="file.fileType === fileTypes.Video"></i>
+              <i class="fa fa-file-word-o" *ngIf="file.fileType === fileTypes.Doc"></i>
+              <i class="fa fa-file-excel-o" *ngIf="file.fileType === fileTypes.Excel"></i>
+              <i class="fa fa-file-image-o" *ngIf="file.fileType === fileTypes.Image"></i>
+              <i class="fa fa-file-text-o" *ngIf="file.fileType === fileTypes.Txt"></i>
             </a>
             <div class="d-flex mt-3">
               <div class="flex-fill text-truncate">
-                <h6 class="mb-0 font-weight-semibold"
+                
+                <h6 class="mb-0 font-weight-semibold "
                   data-bs-target="#modalViewDetails"
-                  data-bs-toggle="modal">{{file.fileName}}</h6>
+                  data-bs-toggle="modal">
+                  <!-- <i class="fa fa-file-pdf-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Pdf"></i>
+                  <i class="fa fa-file-image-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Image"></i>
+                  <i class="fa fa-file-excel-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Excel"></i>
+                  <i class="fa fa-file-video-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Video"></i> -->
+                  {{file.fileName}}
+                </h6>
               </div>
               <div>
                 <a
