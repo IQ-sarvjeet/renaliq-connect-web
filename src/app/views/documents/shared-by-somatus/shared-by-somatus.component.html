@@ -72,10 +72,11 @@
   <!-- Default Result Html Start-->
   <div>
     <div class="row g-3 pt-3">
-      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25" *ngFor="let file of documents.data">
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25"
+        *ngFor="let file of documents.data">
         <div class="card-style2">
           <div class="card-body p-2">
-            <a class="card-style2__img" data-bs-target="#modalViewDetails" data-bs-toggle="modal">
+            <a class="card-style2__img" (click)="viewFile(file)">
               <i class="fa fa-file-pdf-o" *ngIf="file.fileType === fileTypes.Pdf"></i>
               <i class="fa fa-file-video-o" *ngIf="file.fileType === fileTypes.Video"></i>
               <i class="fa fa-file-word-o" *ngIf="file.fileType === fileTypes.Doc"></i>
@@ -84,11 +85,9 @@
               <i class="fa fa-file-text-o" *ngIf="file.fileType === fileTypes.Txt"></i>
             </a>
             <div class="d-flex mt-3">
-              <div class="flex-fill text-truncate">
+              <div class="flex-fill text-truncate" (click)="viewFile(file)">
                 
-                <h6 class="mb-0 font-weight-semibold text-truncate"
-                  data-bs-target="#modalViewDetails"
-                  data-bs-toggle="modal">
+                <h6 class="mb-0 font-weight-semibold text-truncate">
                   <!-- <i class="fa fa-file-pdf-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Pdf"></i>
                   <i class="fa fa-file-image-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Image"></i>
                   <i class="fa fa-file-excel-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Excel"></i>
@@ -454,106 +453,107 @@
 <div class="modal fade" id="modalUpdate">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content modal-content-demo">
-      <div class="modal-header bg-gray-200">
-        <h4 class="modal-title fw-semibold">Update Details Modal</h4>
-        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <form method="post" action="javascript:void(0);" novalidate="novalidate">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control"
-                  id="fileName" 
-                  placeholder="File Name" 
-                  [value]="documentDetails.fileName"
-                  (change)="changeFileName($event)" />
-                <label class="lh-sm" for="fileName">File Name</label>
-              </div>
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control"
-                  id="folder" placeholder="Folder" 
-                  [value]="documentDetails.folder"
-                  (change)="changeFolderName($event)"
-                   />
-                <label class="lh-sm" for="folder">Folder</label>
-              </div>
-              <div class="d-flex mb-3">
-                <div>
-                  <strong class="me-3 text-nowrap">Doc Scope</strong>
-                </div>
-                <div class="flex-fill">
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio"
-                      name="inlineRadioOptions" 
-                      id="inlineRadio1" 
-                      [value]="true"
-                      [checked]="!documentDetails.isGlobal"
-                      (change)="changeDocScope($event)" />
-                    <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" 
-                      type="radio" 
-                      name="inlineRadioOptions" 
-                      id="inlineRadio2" 
-                      [value]="!documentDetails.isGlobal"
-                      [checked]="!documentDetails.isGlobal"
-                      (change)="changeDocScope($event)" />
-                    <label class="form-check-label" for="inlineRadio2">Practice</label>
-                  </div>
-                  <select class="form-select form-select-sm my-1" 
-                    *ngIf="!documentDetails.isGlobal"
-                    (change)="practiceIdSelection($event)"
-                    multiple>
-                    <option value="{{practiceId.id}}"
-                      [selected]="documentDetails.practiceIds.indexOf(practiceId.id) !== -1"
-                      *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-floating">
-                <input type="text" class="form-control"
-                  id="Tags"
-                  placeholder="Tags"
-                  [value]="documentDetails.tags.toString()"
-                  (change)="changeTags($event)" />
-                <label class="lh-sm" for="Tags">Tags</label>
-              </div>
-              <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>
-              <div class="form-floating">
-                <textarea class="form-control minh-6"
-                  rows="4"
-                  placeholder="Leave a comment here"
-                  id="description"
-                  [value]="documentDetails.description"
-                  (change)="changeDescription($event)">Description Here</textarea>
-                <label class="lh-sm" for="description">Description</label>
-              </div>
-            </form>
+      <form [formGroup]="updateFileForm" (ngSubmit)="submitUpdateDocument()" novalidate="novalidate">
+        <div class="modal-header bg-gray-200">
+          <h4 class="modal-title fw-semibold">Update Details Modal</h4>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-          <div class="col-12 col-md-6 position-relative">
-            <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control"
+                    id="fileTitle" 
+                    placeholder="Title" 
+                    formControlName="title"/>
+                  <label class="lh-sm" for="fileTitle">Title</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control"
+                    id="folder" placeholder="Folder" 
+                    formControlName="folder"
+                    />
+                  <label class="lh-sm" for="folder">Folder</label>
+                </div>
+                <div class="d-flex mb-3">
+                  <div>
+                    <strong class="me-3 text-nowrap">Doc Scope</strong>
+                  </div>
+                  <div class="flex-fill">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" 
+                        type="radio" 
+                        id="inlineRadio2" 
+                        [value]="false"
+                        [disabled]="true"
+                        formControlName="isGlobal" />
+                      <label class="form-check-label" for="inlineRadio2">Practice</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio"
+                        id="inlineRadio1" 
+                        [value]="true"
+                        [disabled]="true"
+                        formControlName="isGlobal" />
+                      <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
+                    </div>
+                    <select class="form-select form-select-sm my-1" 
+                      *ngIf="updateFileForm.controls['isGlobal'].value === false"
+                      [disabled]="true"
+                      formControlName="practiceIds"
+                      multiple>
+                      <option [value]="practiceId.id"
+                        [disabled]="true"
+                        [selected]="updateFileForm.controls['practiceIds'].value.indexOf(practiceId.id) !== -1"
+                        *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
+                    </select>
+                    <div *ngIf="updateFileForm.controls['isGlobal'].value === true"
+                      style="font-size: 12px;">
+                      Document will be public and visible to everyone.
+                    </div>
+                  </div>
+                </div>
+                <div class="form-floating">
+                  <input type="text" class="form-control"
+                    id="Tags"
+                    placeholder="Tags"
+                    formControlName="tags" />
+                  <label class="lh-sm" for="Tags">Tags</label>
+                </div>
+                <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>
+                <div class="form-floating">
+                  <textarea class="form-control minh-6"
+                    rows="4"
+                    placeholder="Leave a comment here"
+                    id="description"
+                    formControlName="description">Description Here</textarea>
+                  <label class="lh-sm" for="description">Description</label>
+                </div>
           </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button
-          class="btn btn-outline-light"
-          data-bs-dismiss="modal"
-        >
-          Cancel
-        </button>
-        <button
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-          (click)="updateDocument()"
-        >
-          Update
-        </button>
-      </div>
+            <!-- <div class="col-12 col-md-6 position-relative">
+              <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
+            </div> -->
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-outline-light"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            [disabled]="updateFileForm.invalid"
+          >
+            Update
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
