@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { DocumentService } from 'src/app/api-client';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-my-files',
@@ -26,11 +27,21 @@ export class MyFilesComponent {
     tags: [],
     title: null
   }
-  constructor(private documentService: DocumentService, private router: Router){}
+  constructor(private documentService: DocumentService,
+    private router: Router,
+    private eventService: EventService){}
   ngOnInit() {
     this.loadFolders();
     this.loadRecentDocuments();
     this.loadTags();
+    // this.eventService.documentsFilterSubscription().subscribe({
+    //   next: (value: any) => {
+    //     console.log('router::', this.router.url);
+    //     if (this.router.url.indexOf('/documents/myfiles') !== -1) {
+    //       this.router.navigate(['/documents/sharedbysomatus']);
+    //     }
+    //   }
+    // })
   }
   private loadTags() {
     this.documentService.apiDocumentListTagsGet().subscribe({

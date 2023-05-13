@@ -116,6 +116,7 @@
                   <a class="dropdown-item" href="#"
                     data-bs-target="#modalDelete"
                     data-bs-toggle="modal"
+                    (click)="openDeleteDialog(file)"
                     ><i class="fe fe-trash me-2"></i> Delete</a
                   >
                   <!-- <a class="dropdown-item" href="#"
@@ -455,7 +456,7 @@
     <div class="modal-content modal-content-demo">
       <form [formGroup]="updateFileForm" (ngSubmit)="submitUpdateDocument()" novalidate="novalidate">
         <div class="modal-header bg-gray-200">
-          <h4 class="modal-title fw-semibold">Update Details Modal</h4>
+          <h4 class="modal-title fw-semibold">Update Document</h4>
           <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -487,16 +488,17 @@
                         type="radio" 
                         id="inlineRadio2" 
                         [value]="false"
-                        [disabled]="true"
-                        formControlName="isGlobal" />
+                        [checked]="updateFileForm.controls['isGlobal'].value === false"
+                        [disabled]="true" />
                       <label class="form-check-label" for="inlineRadio2">Practice</label>
                     </div>
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="radio"
                         id="inlineRadio1" 
                         [value]="true"
+                        [checked]="updateFileForm.controls['isGlobal'].value === true"
                         [disabled]="true"
-                        formControlName="isGlobal" />
+                         />
                       <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
                     </div>
                     <select class="form-select form-select-sm my-1" 
@@ -563,9 +565,12 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-body p-5">
-        <div class="text-center">
+        <div class="text-center" *ngIf="!deletingDocument">
           <h2><i class="fa fa-warning text-danger me-2"></i> Are you sure?</h2>
           <p class="fs-16">You want to delete!</p>
+        </div>
+        <div class="text-center" *ngIf="deletingDocument">
+          <h2> Delete in progress...</h2>
         </div>
         <div class="text-center mt-4">
           <button
@@ -576,7 +581,8 @@
         </button>
         <button
           class="btn btn-lg btn-danger mx-1"
-          data-bs-dismiss="modal"
+          [disabled]="deletingDocument"
+          (click)="deleteDocumentRequest()"
         >
         Delete
         </button>

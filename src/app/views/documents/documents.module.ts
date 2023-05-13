@@ -13,6 +13,8 @@ import { AddFileComponent } from './add-file/add-file.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/components/shared.module';
 import { ViewDetailsComponent } from './view-details/view-details.component';
+import { DocumentsHeaderComponent } from './documents-header/documents-header.component';
+import { MbscModule } from '@mobiscroll/angular';
 
 const routes: Routes = [
   {
@@ -64,10 +66,12 @@ const routes: Routes = [
     IntegrationProcessesComponent,
     ExportsComponent,
     AddFileComponent,
-    ViewDetailsComponent
+    ViewDetailsComponent,
+    DocumentsHeaderComponent
   ],
   imports: [
     RouterModule.forChild(routes),
+    MbscModule,
     CommonModule,
     ReactiveFormsModule,
     SharedModule

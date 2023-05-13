@@ -4,7 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/api-client';
 import { FileTypes } from 'src/app/enums/fileTypes';
+import { EventService } from 'src/app/services/event.service';
 import { environment } from 'src/environments/environment';
+
+declare var $: any;
 
 @Component({
   selector: 'app-shared-by-somatus',
@@ -14,10 +17,10 @@ import { environment } from 'src/environments/environment';
 export class SharedBySomatusComponent {
   updateFileForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
-    folder: ['', Validators.required],
-    isGlobal: [false, Validators.required],
+    folder: [''],
+    isGlobal: [false],
     practiceIds: [[]],
-    tags: ['', Validators.required],
+    tags: [''],
     description: ['', Validators.required]
   })
   fileTypes = FileTypes
@@ -37,7 +40,9 @@ export class SharedBySomatusComponent {
       folder: '',
       tag: '',
       sortBy: '',
-      sortDirection: ''
+      sortDirection: '',
+      fromDate: null,
+      toDate: null
     },
     currentPage: 1,
     pageSize: 10
@@ -58,13 +63,16 @@ export class SharedBySomatusComponent {
     tags: [],
     title: null
   }
+  deleteDocument: any = {};
+  deletingDocument: boolean = false;
   practiceList: any = [];
   folders: any = [];
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private httpClient: HttpClient){}
+    private httpClient: HttpClient,
+    private eventService: EventService){}
 
   ngOnInit() {
     this.loadTags();
@@ -90,6 +98,17 @@ export class SharedBySomatusComponent {
             ...this.filters.documentFilter,
             tag: params.tag
           }
+        }
+        this.loadList();
+      }
+    })
+    this.eventService.documentsFilterSubscription().subscribe({
+      next: (value: any) => {
+        console.log('filter value:', value);
+        if(!value.fromDate) return;
+        this.filters.documentFilter = {
+          ...this.filters.documentFilter,
+          ...value
         }
         this.loadList();
       }
@@ -163,31 +182,22 @@ export class SharedBySomatusComponent {
       title: details.title
     })
   }
-  // public changeFileName($event: any) {
-  //   this.documentDetails.fileName = $event.target.value;
-  // }
-  // public changeFolderName($event: any) {
-  //   this.documentDetails.folder = $event.target.value;
-  // }
-  // public changeDocScope($event: any) {
-  //   this.documentDetails.isGlobal = $event.target.value === 'true' ? true: false;
-  // }
-  // public practiceIdSelection($event: any) {
-  //   const storeId = [];
-  //   this.documentDetails.practiceIds = [];
-  //   for(let i = 0; i < $event.target.options.length; i++) {
-  //     if($event.target.options[i].selected) {
-  //       storeId.push(Number($event.target.options[i].value));
-  //     }
-  //   }
-  //   this.documentDetails.practiceIds = storeId;
-  // }
-  // public changeTags($event: any) {
-  //   this.documentDetails.tags = $event.target.value.split(',');
-  // }
-  // public changeDescription($event: any) {
-  //   this.documentDetails.description = $event.target.value;
-  // }
+  public openDeleteDialog(details: any) {
+    this.deleteDocument = details;
+  }
+  public deleteDocumentRequest(): void {
+    if (!this.deleteDocument.id) return;
+    this.deletingDocument = true;
+    this.httpClient.post(`${environment.baseApiUrl}/api/Document/delete/${this.deleteDocument.id}`, {}).subscribe({
+      next: (response: any) => {
+        console.log('response:', response);
+        this.deletingDocument = false;
+        $('#modalDelete').modal('hide');
+        this.loadList();
+      }
+    })
+
+  }
   public selectFolderHandler(folder: any) {
     this.filters.documentFilter = {
       ...this.filters.documentFilter,
@@ -199,30 +209,20 @@ export class SharedBySomatusComponent {
     console.log('Form value:', this.updateFileForm.value);
     // const updatedData = {
     //   // ...this.documentDetails,
-    //   title: this.updateFileForm.value.title,
-    //   folder: this.updateFileForm.value.folder,
-    //   isGlobal: this.updateFileForm.value.isGlobal,
-    //   practiceIds: this.updateFileForm.value.practiceIds,
-    //   tags: this.updateFileForm.value.tags ? this.updateFileForm.value.tags.split(','): [],
-    //   description: this.updateFileForm.value.description
     // }
-    // console.log('updatedData:', updatedData);
-    // this.documentService.apiDocumentDocumentPostForm().subscribe({
-    //   next: (response: any) => {
-    //   },
-    //   error: (error: any) => {
-    //   }
-    // })
     const formData1 = new FormData();
     formData1.append('Id', this.documentDetails.id);
     formData1.append('Description', this.updateFileForm.value.description);
     formData1.append('Title', this.updateFileForm.value.title);
     formData1.append('Folder', this.updateFileForm.value.folder);
     formData1.append('IsGlobal', this.updateFileForm.value.isGlobal);
-    this.updateFileForm.value.practiceIds.forEach((item: any) => {
+    formData1.append('FileName', this.documentDetails.fileName);
+    formData1.append('DownloadURL', this.documentDetails.DownloadURL);
+    formData1.append('IsDeleted', this.documentDetails.IsDeleted);
+    this.documentDetails.practiceIds.forEach((item: any) => {
       formData1.append('PracticeIds', item);
     })
-    this.updateFileForm.value.tags.split(',').forEach((item: any) => {
+    this.documentDetails.tags.split(',').forEach((item: any) => {
       formData1.append('Tags', item);
     })
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
