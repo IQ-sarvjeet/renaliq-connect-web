@@ -473,8 +473,9 @@
                 </div>
                 <div class="form-floating mb-3">
                   <input type="text" class="form-control"
-                    id="folder" placeholder="Folder" 
-                    formControlName="folder"
+                    id="folder" placeholder="Folder"
+                    [value]="updateFileForm.controls['folder'].value"
+                    [disabled]="true"
                     />
                   <label class="lh-sm" for="folder">Folder</label>
                 </div>
@@ -521,7 +522,8 @@
                   <input type="text" class="form-control"
                     id="Tags"
                     placeholder="Tags"
-                    formControlName="tags" />
+                    [value]="updateFileForm.controls['tags'].value"
+                    [disabled]="true" />
                   <label class="lh-sm" for="Tags">Tags</label>
                 </div>
                 <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>

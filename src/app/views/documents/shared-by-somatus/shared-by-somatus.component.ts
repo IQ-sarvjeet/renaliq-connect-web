@@ -217,12 +217,12 @@ export class SharedBySomatusComponent {
     formData1.append('Folder', this.updateFileForm.value.folder);
     formData1.append('IsGlobal', this.updateFileForm.value.isGlobal);
     formData1.append('FileName', this.documentDetails.fileName);
-    formData1.append('DownloadURL', this.documentDetails.DownloadURL);
-    formData1.append('IsDeleted', this.documentDetails.IsDeleted);
+    formData1.append('DownloadURL', this.documentDetails.downloadURL);
+    formData1.append('IsDeleted', this.documentDetails.isDeleted);
     this.documentDetails.practiceIds.forEach((item: any) => {
       formData1.append('PracticeIds', item);
     })
-    this.documentDetails.tags.split(',').forEach((item: any) => {
+    this.documentDetails.tags.forEach((item: any) => {
       formData1.append('Tags', item);
     })
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
