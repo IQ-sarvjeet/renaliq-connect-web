@@ -2038,6 +2038,10 @@ body.dark-mode .overflow-x::-webkit-scrollbar-thumb {
     border: 1px solid $border-dark !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     color: rgba(255, 255, 255, 0.8);
+
+    &.border-0 {
+      border: 0px !important;
+    }
   }
   .card-header {
     background-color: transparent;
@@ -2070,6 +2074,19 @@ body.dark-mode .overflow-x::-webkit-scrollbar-thumb {
   .card-style2 {
     border: 0.0625rem solid $border-dark;
     background: transparent;
+
+    &__img {
+      background-color: var(--dark-bg);
+  
+      &:before {
+        background-color: $primary-1;
+      }
+    }
+
+    &:hover {
+  
+    
+    }
   }
   .page-link {
     background-color: $dark-bg;

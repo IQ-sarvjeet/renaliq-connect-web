@@ -1401,6 +1401,19 @@ body.fixed-header .header {
     }
   }
 }
+.sub-header {
+  .main-header-center {
+    .form-control {
+      border: 1px solid var(--border);
+      height: 50px;
+      padding: 1rem 0 1rem 3rem;
+    }
+   .btn {
+      left: 10px;
+      top: 4px;
+    }
+  }
+}
 .search-tablet {
   .position-relative {
     padding: 0.5rem;
@@ -1466,6 +1479,7 @@ body.fixed-header .header {
   transition: none;
   font-size: 16px;
   padding-right: 2px;
+  pointer-events: none;
 }
 
 .header .main-header-center {
