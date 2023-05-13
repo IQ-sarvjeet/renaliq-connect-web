@@ -1608,10 +1608,9 @@ a.card-tabs-item {
   }
 }
 .card-style2 {
-  border: 0.0625rem solid transparent;
+  border: 0.0625rem solid $border;
   background: $white;
   border-radius: 0.25rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   display: block;
   transition: all 0.2s linear;
   overflow: hidden;

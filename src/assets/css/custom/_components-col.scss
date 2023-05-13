@@ -4,8 +4,8 @@
 	position: relative;
 	width: 100%;
 	min-height: 1px;
-	padding-right: 0.75rem;
-	padding-left: 0.75rem;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
 }
 .col {
 	-ms-flex-preferred-size: 0;

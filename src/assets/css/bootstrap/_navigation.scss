@@ -106,8 +106,9 @@
 
   &.nav-column {
     .nav-item1 {
-      padding: 0px;
-      margin-top: 5px;
+      padding: 4px 0px;
+      margin-top: 0;
+      border-bottom: 1px solid $border;
     }
     .nav-link {
       border-right: none !important;
@@ -123,14 +124,14 @@
       &:hover,
       &:focus,
       &:active {
-        color: $primary !important;
+        color: $secondary !important;
         svg {
-          fill: $primary !important;
+          fill: $secondary !important;
         }
       }
       &.active {
         color: $white !important;
-        background-color: $primary;
+        background-color: $secondary;
         .option-dots {
           color: $white !important;
         }

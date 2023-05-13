@@ -1466,6 +1466,7 @@ body.fixed-header .header {
   transition: none;
   font-size: 16px;
   padding-right: 2px;
+  pointer-events: none;
 }
 
 .header .main-header-center {

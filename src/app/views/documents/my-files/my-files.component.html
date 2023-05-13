@@ -1,4 +1,4 @@
-<div class="card mb-4 p-4 minh-content">
+<div class="mb-4 p-4 minh-content">
   <div class="d-flex">
     <div class="flex-fill d-flex align-items-center">
       <h3 class="card-title">Documents</h3>
@@ -14,7 +14,7 @@
   </div>
   <hr />
   <div class="d-sm-flex">
-    <div class="d-flex align-items-center pe-3">
+    <div class="d-flex pt-2 pe-1">
       <h3 class="card-title mb-0">Folders:</h3>
     </div>
     <div class="flex-fill">
@@ -25,23 +25,20 @@
       > -->
       <a
         href="javascript: void(0)"
-        class="btn btn-primary-light  my-1 me-2 my-md-0 me-md-3"
+        class="btn btn-outline-secondary m-1"
         *ngFor="let folder of folders"
         (click)="selectFolderHandler(folder)"
         >
-        <div class="ps-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-inner-icn me-2"
+            class="w-inner-icn"
             enable-background="new 0 0 1024 1024"
             viewBox="0 0 1024 1024"
           >
             <path
               d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
             />
-          </svg>
-          {{folder}}
-        </div>
+          </svg> {{folder}}
       </a
       >
     </div>
@@ -97,7 +94,7 @@
     <div class="text-center mt-3">
         <a
           href="javascript: void(0)"
-          class="btn btn-outline-primary px-4"
+          class="btn btn-outline-secondary px-4"
           routerLink="/documents/sharedbysomatus"
         >
           View All Documents</a

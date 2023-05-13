@@ -1,4 +1,4 @@
-<div class="card mb-4 p-4 minh-content">
+<div class="mb-4 p-4 minh-content">
   <div class="d-flex">
     <div class="flex-fill d-flex align-items-center">
       <h3 class="card-title">Shared by Somatus</h3>
@@ -17,7 +17,7 @@
   </div>
   <hr />
   <div class="d-sm-flex">
-    <div class="d-flex align-items-center pe-3">
+    <div class="d-flex pt-2 pe-1">
       <h3 class="card-title mb-0">Folders:</h3>
     </div>
     <div class="flex-fill">
@@ -28,24 +28,21 @@
       > -->
       <a
         href="javascript: void(0)"
-        class="btn my-1 me-2 my-md-0 me-md-3"
-        [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'btn-primary': 'btn-primary-light'"
+        class="btn m-1 btn-outline-secondary"
+        [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'active': ''"
         *ngFor="let folder of folders"
         (click)="selectFolderHandler(folder)"
         >
-        <div class="ps-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-inner-icn me-2"
+            class="w-inner-icn"
             enable-background="new 0 0 1024 1024"
             viewBox="0 0 1024 1024"
           >
             <path
               d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
             />
-          </svg>
-          {{folder}}
-        </div>
+          </svg> {{folder}}
       </a
       >
     </div>
@@ -58,15 +55,15 @@
     <div class="flex-fill">
       <a
         href="javascript: void(0)"
-        class="btn my-1 me-2 my-md-0 me-md-3"
-        [ngClass]="filters.documentFilter?.tag === ''? 'btn-primary': 'btn-primary-light'"
+        class="btn m-1"
+        [ngClass]="filters.documentFilter?.tag === ''? 'btn-secondary': 'btn-light text-dark'"
         (click)="tagSelectHandlar('')"
         >All</a
       >
       <a
         href="javascript: void(0)"
-        class="btn my-1 me-2 my-md-0 me-md-3"
-        [ngClass]="filters.documentFilter?.tag === tag.tagName ? 'btn-primary': 'btn-primary-light'"
+        class="btn m-1"
+        [ngClass]="filters.documentFilter?.tag === tag.tagName ? 'btn-secondary': 'btn-light text-dark'"
         *ngFor="let tag of tags"
         (click)="tagSelectHandlar(tag.tagName)"
         >{{tag.tagName}}</a
@@ -85,7 +82,7 @@
 
   <!-- Default Result Html Start-->
   <div>
-    <div class="row g-4 mt-0">
+    <div class="row g-3 pt-3">
       <div class="col-sm-6 col-md-4 col-xl-3" *ngFor="let file of documents.data">
         <div class="card-style2">
           <div class="card-body p-2">
@@ -100,7 +97,7 @@
             <div class="d-flex mt-3">
               <div class="flex-fill text-truncate">
                 
-                <h6 class="mb-0 font-weight-semibold "
+                <h6 class="mb-0 font-weight-semibold text-truncate"
                   data-bs-target="#modalViewDetails"
                   data-bs-toggle="modal">
                   <!-- <i class="fa fa-file-pdf-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Pdf"></i>
@@ -122,12 +119,6 @@
                 <div
                   class="dropdown-menu dropdown-menu-start folder-options"
                 >
-                  <a class="dropdown-item" href="#"
-                    data-bs-target="#modalViewDetails"
-                    data-bs-toggle="modal"
-                    (click)="openDocumentDetails(file)"
-                    ><i class="fe fe-info me-3"></i> Detail</a
-                  >
                   <a class="dropdown-item" href="#"
                     data-bs-target="#modalUpdate"
                     data-bs-toggle="modal"
