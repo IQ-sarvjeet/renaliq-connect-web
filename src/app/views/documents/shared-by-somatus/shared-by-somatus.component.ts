@@ -1,10 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/api-client';
 import { FileTypes } from 'src/app/enums/fileTypes';
+import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
+import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
+import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
 
 declare var $: any;
@@ -64,7 +67,7 @@ export class SharedBySomatusComponent {
     title: null
   }
   deleteDocument: any = {};
-  deletingDocument: boolean = false;
+  documentRequestInProgress: boolean = false;
   practiceList: any = [];
   folders: any = [];
   constructor(private documentService: DocumentService,
@@ -72,7 +75,11 @@ export class SharedBySomatusComponent {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private httpClient: HttpClient,
-    private eventService: EventService){}
+    private eventService: EventService,
+    private downloadService: DownloadService,
+    private elementRef: ElementRef,
+    private renderer: Renderer2,
+    private _localStorage: LocalStorageService){}
 
   ngOnInit() {
     this.loadTags();
@@ -187,11 +194,11 @@ export class SharedBySomatusComponent {
   }
   public deleteDocumentRequest(): void {
     if (!this.deleteDocument.id) return;
-    this.deletingDocument = true;
+    this.documentRequestInProgress = true;
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/delete/${this.deleteDocument.id}`, {}).subscribe({
       next: (response: any) => {
         console.log('response:', response);
-        this.deletingDocument = false;
+        this.documentRequestInProgress = false;
         $('#modalDelete').modal('hide');
         this.loadList();
       }
@@ -206,6 +213,7 @@ export class SharedBySomatusComponent {
     this.loadList();
   }
   submitUpdateDocument(){
+    this.documentRequestInProgress = true;
     console.log('Form value:', this.updateFileForm.value);
     // const updatedData = {
     //   // ...this.documentDetails,
@@ -227,12 +235,40 @@ export class SharedBySomatusComponent {
     })
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
-
+        this.documentRequestInProgress = false;
+        $('#documentUpdate').modal('hide');
+      },
+      error: (error: any) => {
+        this.documentRequestInProgress = false;
       }
     })
   }
   public viewFile(viewDoc: any) {
-    window.open(`${environment.baseApiUrl}/${viewDoc.downloadURL}`, "_blank");
+    const url: string = `${environment.baseApiUrl}api/Document/download/${viewDoc.id}`;
+    if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
+      this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
+    } else {
+      // window.open(`${environment.baseApiUrl}/${viewDoc.downloadURL}`, "_blank");
+      // this.httpClient.get(`${environment.baseApiUrl}api/Document/download/${viewDoc.id}`).subscribe({
+      //   next: (response: any) => {
+      //     console.log('download response:', response);
+      //     window.open(response, "_blank");
+      //   }
+      // })
+      const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+      let headerOptions = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Accept': 'application/pdf',
+        'Authorization': 'JWT ' + token
+      });
+
+      let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
+      this.httpClient.get(url, requestOptions).subscribe({
+        next: (response: any) => {
+          window.open(response, "_blank");
+        }
+      })
+    }    
   }
   
 }

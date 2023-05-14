@@ -108,7 +108,7 @@
                   class="dropdown-menu dropdown-menu-start folder-options"
                 >
                   <a class="dropdown-item" href="#"
-                    data-bs-target="#modalUpdate"
+                    data-bs-target="#documentUpdate"
                     data-bs-toggle="modal"
                     (click)="openUpdateDialog(file)"
                     ><i class="fe fe-edit me-2"></i> Update</a
@@ -451,7 +451,7 @@
 <!-- <router-outlet></router-outlet> -->
 <app-view-details [viewDocument]="documentDetails"></app-view-details>
 <!-- Update MODAL -->
-<div class="modal fade" id="modalUpdate">
+<div class="modal fade" id="documentUpdate">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content modal-content-demo">
       <form [formGroup]="updateFileForm" (ngSubmit)="submitUpdateDocument()" novalidate="novalidate">
@@ -551,8 +551,7 @@
           <button
             type="submit"
             class="btn btn-secondary"
-            data-bs-dismiss="modal"
-            [disabled]="updateFileForm.invalid"
+            [disabled]="updateFileForm.invalid || documentRequestInProgress"
           >
             Update
           </button>
@@ -567,11 +566,11 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-body p-5">
-        <div class="text-center" *ngIf="!deletingDocument">
+        <div class="text-center" *ngIf="!documentRequestInProgress">
           <h2><i class="fa fa-warning text-danger me-2"></i> Are you sure?</h2>
           <p class="fs-16">You want to delete!</p>
         </div>
-        <div class="text-center" *ngIf="deletingDocument">
+        <div class="text-center" *ngIf="documentRequestInProgress">
           <h2> Delete in progress...</h2>
         </div>
         <div class="text-center mt-4">
@@ -583,7 +582,7 @@
         </button>
         <button
           class="btn btn-lg btn-danger mx-1"
-          [disabled]="deletingDocument"
+          [disabled]="documentRequestInProgress"
           (click)="deleteDocumentRequest()"
         >
         Delete

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DocumentService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-documents',
@@ -8,9 +9,33 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DocumentsComponent {
 
-  constructor(){
+  constructor(private documentService: DocumentService){
 
   }
   ngOnInit() {
+    // this.loadFolders();
+    // this.loadTags();
+  }
+  private loadFolders() {
+    this.documentService.apiDocumentListFoldersGet().subscribe({
+      next: (folders: any) => {
+        if(folders.data) {
+        }
+      },
+      error: (error: any) => {
+
+      }
+    })
+  }
+  private loadTags() {
+    this.documentService.apiDocumentListTagsGet().subscribe({
+      next: (tagsResponse: any) => {
+        if(tagsResponse.data) {
+        }
+      },
+      error: (error: any) => {
+
+      }
+    })
   }
 }
