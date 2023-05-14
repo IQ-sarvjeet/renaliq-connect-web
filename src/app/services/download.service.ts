@@ -19,7 +19,7 @@ export class DownloadService {
     let headerOptions = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/pdf',
-      'Authorization': 'JWT ' + token
+      // 'Authorization': 'JWT ' + token
     });
 
     let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
@@ -51,7 +51,7 @@ export class DownloadService {
       let headerOptions = new HttpHeaders({
         'Content-Type': 'application/json',
       // 'Accept': 'application/xslx',
-        'Authorization': 'JWT ' + token
+        // 'Authorization': 'JWT ' + token
       });
 
       let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };

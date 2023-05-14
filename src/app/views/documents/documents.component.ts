@@ -8,7 +8,8 @@ import { DocumentService } from 'src/app/api-client';
   styleUrls: ['./documents.component.scss']
 })
 export class DocumentsComponent {
-
+  // private folders: any = [];
+  // private tags: any = [];
   constructor(private documentService: DocumentService){
 
   }
@@ -16,26 +17,26 @@ export class DocumentsComponent {
     // this.loadFolders();
     // this.loadTags();
   }
-  private loadFolders() {
-    this.documentService.apiDocumentListFoldersGet().subscribe({
-      next: (folders: any) => {
-        if(folders.data) {
-        }
-      },
-      error: (error: any) => {
+  // private loadFolders() {
+  //   this.documentService.apiDocumentListFoldersGet().subscribe({
+  //     next: (folders: any) => {
+  //       if(folders.data) {
+  //       }
+  //     },
+  //     error: (error: any) => {
 
-      }
-    })
-  }
-  private loadTags() {
-    this.documentService.apiDocumentListTagsGet().subscribe({
-      next: (tagsResponse: any) => {
-        if(tagsResponse.data) {
-        }
-      },
-      error: (error: any) => {
+  //     }
+  //   })
+  // }
+  // private loadTags() {
+  //   this.documentService.apiDocumentListTagsGet().subscribe({
+  //     next: (tagsResponse: any) => {
+  //       if(tagsResponse.data) {
+  //       }
+  //     },
+  //     error: (error: any) => {
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 }

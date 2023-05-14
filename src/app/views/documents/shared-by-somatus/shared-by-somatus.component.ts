@@ -237,6 +237,7 @@ export class SharedBySomatusComponent {
       next: (response: any) => {
         this.documentRequestInProgress = false;
         $('#documentUpdate').modal('hide');
+        this.loadList();
       },
       error: (error: any) => {
         this.documentRequestInProgress = false;
@@ -248,27 +249,38 @@ export class SharedBySomatusComponent {
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {
-      // window.open(`${environment.baseApiUrl}/${viewDoc.downloadURL}`, "_blank");
-      // this.httpClient.get(`${environment.baseApiUrl}api/Document/download/${viewDoc.id}`).subscribe({
-      //   next: (response: any) => {
-      //     console.log('download response:', response);
-      //     window.open(response, "_blank");
-      //   }
-      // })
-      const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
-      let headerOptions = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Accept': 'application/pdf',
-        'Authorization': 'JWT ' + token
-      });
+      this.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
+    }
+  }
+  private downloadMedia(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any, ext: string ) {
+    const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    let headerOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/pdf',
+    });
 
-      let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-      this.httpClient.get(url, requestOptions).subscribe({
-        next: (response: any) => {
-          window.open(response, "_blank");
-        }
-      })
-    }    
+    let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
+    this.httpClient.get(url, requestOptions).subscribe({
+      next: (response: any) => {
+        const blob = new Blob([response], {
+          type: 'data:application/pdf;base64',
+        });
+        this.downloadFile(blob, `${fileName}${ext}`, elementRef, renderer);
+      }
+    })
+  }
+  private downloadFile(blob: any, fileName: string, elementRef: ElementRef, renderer: Renderer2): void {
+    const url = (window.URL || window.webkitURL).createObjectURL(blob);
+    const link = renderer.createElement('a');
+    renderer.setAttribute(link, 'download', fileName);
+    renderer.setAttribute(link, 'href', url);
+    renderer.setAttribute(link, 'target', '_blank');
+    renderer.appendChild(elementRef.nativeElement, link);
+    link.click();
+    renderer.removeChild(elementRef.nativeElement, link);
+    setTimeout(() => {
+      window.URL.revokeObjectURL(url);
+    }, 1000);
   }
   
 }
