@@ -50,7 +50,7 @@ export class SharedBySomatusComponent {
       sortDirection: '',
       fromDate: datePrior90,
       toDate: todayDate,
-      isGLobal: true
+      isGLobal: false
     },
     currentPage: 1,
     pageSize: 10
