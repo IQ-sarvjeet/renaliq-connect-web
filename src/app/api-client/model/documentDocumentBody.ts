@@ -12,11 +12,11 @@
 
 export interface DocumentDocumentBody { 
     id?: number;
-    file: Blob;
+    file?: Blob;
     fileName?: string;
     downloadURL?: string;
-    description?: string;
-    title?: string;
+    description: string;
+    title: string;
     folder?: string;
     isGlobal?: boolean;
     isDeleted?: boolean;

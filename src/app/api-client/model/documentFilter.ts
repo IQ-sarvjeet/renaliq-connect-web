@@ -17,6 +17,7 @@ export interface DocumentFilter {
     tag?: string;
     sortBy?: string;
     sortDirection?: string;
-    fromDate?: any;
-    toDate?: any;
+    fromDate?: Date;
+    toDate?: Date;
+    isGLobal?: boolean;
 }
