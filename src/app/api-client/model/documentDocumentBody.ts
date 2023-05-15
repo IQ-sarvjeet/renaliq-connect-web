@@ -10,13 +10,16 @@
  * Do not edit the class manually.
  */
 
-export interface Email2FAModel {
-    twoFactorCode: string;
-    username: string;
-    password?: string;
-    rememberMe?: boolean;
-    client_id?: string;
-    client_secret?: string;
-    scope?: string;
-    grant_type?: string
+export interface DocumentDocumentBody { 
+    id?: number;
+    file: Blob;
+    fileName?: string;
+    downloadURL?: string;
+    description?: string;
+    title?: string;
+    folder?: string;
+    isGlobal?: boolean;
+    isDeleted?: boolean;
+    practiceIds?: Array<number>;
+    tags?: Array<string>;
 }

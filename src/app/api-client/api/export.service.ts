@@ -57,6 +57,100 @@ export class ExportService {
     /**
      * 
      * 
+     * @param refId 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiExportDownloadFileRefIdGet(refId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiExportDownloadFileRefIdGet(refId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (refId === null || refId === undefined) {
+            throw new Error('Required parameter refId was null or undefined when calling apiExportDownloadFileRefIdGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/download/file/${encodeURIComponent(String(refId))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param publishedUrl 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiExportDownloadPublishedUrlGet(publishedUrl: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (publishedUrl === null || publishedUrl === undefined) {
+            throw new Error('Required parameter publishedUrl was null or undefined when calling apiExportDownloadPublishedUrlGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/download/${encodeURIComponent(String(publishedUrl))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -67,6 +161,13 @@ export class ExportService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
         ];
@@ -80,6 +181,48 @@ export class ExportService {
         ];
 
         return this.httpClient.request<any>('get',`${this.basePath}/api/Export/init`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiExportLaststatusGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiExportLaststatusGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiExportLaststatusGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiExportLaststatusGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Export/laststatus`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -107,6 +250,13 @@ export class ExportService {
 
         let headers = this.defaultHeaders;
 
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
         // to determine the Accept header
         let httpHeaderAccepts: string[] = [
         ];

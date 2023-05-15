@@ -16,6 +16,7 @@ export class EventService {
   });
   private dateRangeEvent$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private notificationEvent$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private documentsFilter$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -52,5 +53,11 @@ export class EventService {
   }
   notificationEventSubscription(): Observable<any> {
     return this.notificationEvent$.asObservable();
+  }
+  documentsFilterEvent(value: any) {
+    this.documentsFilter$.next(value);
+  }
+  documentsFilterSubscription(): Observable<any> {
+    return this.documentsFilter$.asObservable();
   }
 }

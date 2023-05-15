@@ -18,4 +18,6 @@ export interface PatientFilter {
     status?: string;
     assignment?: Array<Date>;
     discharge?: Array<Date>;
+    sortBy?: string;
+    sortDirection?: string;
 }

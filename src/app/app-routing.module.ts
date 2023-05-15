@@ -33,6 +33,7 @@ const routes: Routes = [
    path: 'documents',
    loadChildren: () =>
      import('./views/documents/documents.module').then((m) => m.DocumentsModule),
+    canActivate: [AuthguardGuard]
   },
 
   {

@@ -106,8 +106,9 @@
 
   &.nav-column {
     .nav-item1 {
-      padding: 0px;
-      margin-top: 5px;
+      padding: 4px 0px;
+      margin-top: 0;
+      border-bottom: 1px solid $border;
     }
     .nav-link {
       border-right: none !important;
@@ -123,14 +124,14 @@
       &:hover,
       &:focus,
       &:active {
-        color: $primary !important;
+        color: $secondary !important;
         svg {
-          fill: $primary !important;
+          fill: $secondary !important;
         }
       }
       &.active {
         color: $white !important;
-        background-color: $primary;
+        background-color: $secondary;
         .option-dots {
           color: $white !important;
         }
@@ -161,7 +162,38 @@
     }
   }
 }
+.dark-mode {
+  .nav1 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin-bottom: 0;
+    list-style: none;
+    background: transparent;
+    border: 1px solid $border;
+    border-radius: 5px;
+  
+    &.nav-column {
 
+      .nav-link {
+
+        &:hover,
+        &:focus,
+        &:active {
+          color: $white !important;
+          svg {
+            fill: $white !important;
+          }
+        }
+        &.active {
+          background-color: $primary-1;
+        }
+      }
+    }
+  }
+}
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;

@@ -1817,6 +1817,48 @@ fieldset:disabled a.btn {
     }
   }
 }
+.dark-mode {
+  .btn-outline-secondary {
+    color: rgba(255, 255, 255, 0.8)  !important;
+    fill: rgba(255, 255, 255, 0.8);
+    background: var(--dark-bg);
+    border-color: var(--dark-border);
+    
+    svg,
+    i {
+      fill: rgba(255, 255, 255, 0.8) !important;
+      color: rgba(255, 255, 255, 0.8) !important;
+    }
+    &:hover {
+      color: $white !important;
+      fill: $white;
+      background: $primary-1;
+      border-color: $primary-1;
+      svg,
+      i {
+        fill: $white !important;
+        color: $white !important;
+      }
+    }
+    &:focus,
+    &.focus {
+      box-shadow: 0 0 0 2px rgba($secondary, 0.9);
+    }
+    &.disabled,
+    &:disabled {
+      color: $secondary;
+    }
+    &:not(:disabled):not(.disabled) {
+      &:active,
+      &.active {
+        color: rgba(255, 255, 255, 0.8)  !important;
+    fill: rgba(255, 255, 255, 0.8);
+    background: var(--dark-bg);
+    border-color: $primary-1;
+      }
+    }
+  }
+}
 .show > .btn-outline-secondary.dropdown-toggle {
   color: $white;
   background-color: $secondary;

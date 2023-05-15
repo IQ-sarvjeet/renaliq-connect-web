@@ -4,8 +4,8 @@
 	position: relative;
 	width: 100%;
 	min-height: 1px;
-	padding-right: 0.75rem;
-	padding-left: 0.75rem;
+	padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
 }
 .col {
 	-ms-flex-preferred-size: 0;
@@ -709,6 +709,11 @@
 		-ms-flex: 0 0 16.66666667%;
 		flex: 0 0 16.66666667%;
 		max-width: 16.66666667%;
+	}
+	.col-xl-25 {
+		-ms-flex: 0 0 20%;
+		flex: 0 0 20%;
+		max-width: 20%;
 	}
 	.col-xl-3 {
 		-ms-flex: 0 0 25%;

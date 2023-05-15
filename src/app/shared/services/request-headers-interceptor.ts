@@ -28,12 +28,21 @@ export class RequestHeadersInterceptor implements HttpInterceptor {
 
   addAuthToken(request: HttpRequest<any>) {
     const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    let headers = request.headers;
+    headers = headers.append('Authorization', `Bearer ${token}`);
+    if (!request.headers.has('Content-Type')) {
+      headers = headers.append('Content-Type', 'application/json');
+    }
+    if (request.headers.get('Content-Type') == 'multipart/form-data') {
+      headers = headers.delete('Content-Type')
+    }
 
     return request.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      }
+      headers: headers
+      // setHeaders: {
+      //   Authorization: `Bearer ${token}`,
+      //   'Content-Type': request.headers.get('Content-Type') == 'multipart/form-data' ? '' : 'application/json',
+      // }
     })
   }
 }

@@ -4,4 +4,5 @@ export type DataCardInput = {
     count: string;
     percentile: number | null;
     performance: string;
+    routeName?: string;
 }

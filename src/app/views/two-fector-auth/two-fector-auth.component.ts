@@ -6,11 +6,14 @@ import { EventService } from 'src/app/services/event.service';
 import { StoreService } from 'src/app/services/store.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from '../../../environments/environment';
-import { AccountService, Email2FAModel, LoginModel, LoginResponse } from '../../api-client';
+import { AccountService, LoginModel } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
 import { LocalStorageService } from '../../shared/services/localstorage.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserTokenRequestModel } from 'src/app/interfaces/user-token-request-model';
+import { LoginResponseModel } from 'src/app/interfaces/login-response-model';
 declare const $: any;
 @Component({
   selector: 'app-two-fector-auth',
@@ -46,7 +49,8 @@ export class TwoFectorAuthComponent {
     private route: Router,
     private fb: FormBuilder,
     private eventService: EventService,
-    private storeService: StoreService) {
+    private storeService: StoreService,
+    private authService: AuthService) {
   }
   ngOnInit(): void {
 
@@ -105,7 +109,7 @@ export class TwoFectorAuthComponent {
     this.successMsg = "";
     this.errorMessage = "";
     const formValues = this.twoFAForm.value;
-    let model: Email2FAModel = {
+    let model: UserTokenRequestModel = {
       username: this.username,
       password: this.password,
       twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
@@ -116,7 +120,8 @@ export class TwoFectorAuthComponent {
       scope: environment.identity.scopes
     };
 
-    let data = await this._accountService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponse) => {
+    let data = await this.authService.apiAccountAuthtokenValidatePost(model).subscribe(async (result: LoginResponseModel) => {
+      console.log('apiAccountAuthtokenValidatePost results:', result)
       if (result && result.access_token) {
         if (result.expires_in) {
           const date = this.addMinutes(new Date(), (result.expires_in / 60));
@@ -133,6 +138,7 @@ export class TwoFectorAuthComponent {
       }
     },
       (error: any) => {
+        console.log('apiAccountAuthtokenValidatePost error:', error)
         this.showToster = true;
         this.errorMessage = error?.error?.error_description;
         if (this.errorMessage == null || this.errorMessage == '') {

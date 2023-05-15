@@ -9,21 +9,24 @@ import { ReportsComponent } from './shared-by-somatus/reports/reports.component'
 import { VideosComponent } from './shared-by-somatus/videos/videos.component';
 import { IntegrationProcessesComponent } from './shared-by-somatus/integration-processes/integration-processes.component';
 import { ExportsComponent } from './exports/exports.component';
+import { AddFileComponent } from './add-file/add-file.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/components/shared.module';
+import { ViewDetailsComponent } from './view-details/view-details.component';
+import { DocumentsHeaderComponent } from './documents-header/documents-header.component';
+import { MbscModule } from '@mobiscroll/angular';
 
 const routes: Routes = [
   {
     path: '',
+    component: DocumentsComponent,
     children: [
       {
-        path: '',
-        component: DocumentsComponent,
-      },
-      {
-        path: 'myFiles',
+        path: 'myfiles',
         component: MyFilesComponent,
       },
       {
-        path: 'sharedBySomatus',
+        path: 'sharedbysomatus',
         component: SharedBySomatusComponent,
         children: [
           {
@@ -61,11 +64,17 @@ const routes: Routes = [
     ReportsComponent,
     VideosComponent,
     IntegrationProcessesComponent,
-    ExportsComponent
+    ExportsComponent,
+    AddFileComponent,
+    ViewDetailsComponent,
+    DocumentsHeaderComponent
   ],
   imports: [
     RouterModule.forChild(routes),
-    CommonModule
+    MbscModule,
+    CommonModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class DocumentsModule { }

@@ -1608,18 +1608,12 @@ a.card-tabs-item {
   }
 }
 .card-style2 {
-  border: 0.0625rem solid transparent;
+  border: 0.0625rem solid $border;
   background: $white;
   border-radius: 0.25rem;
-  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   display: block;
   transition: all 0.2s linear;
   overflow: hidden;
-
-  &:hover {
-    border: 0.0625rem solid #083050;
-    cursor: pointer;
-  }
 
   &__figure {
     border-bottom: 0.0625rem solid rgba(0, 0, 0, 0.1);
@@ -1645,6 +1639,37 @@ a.card-tabs-item {
     height: 9rem;
     position: relative;
     overflow: hidden;
+    border-radius: 0.25rem;
+
+    &:before {
+      background-color: $secondary;
+      bottom: 50%;
+      content: '';
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      right: 50%;
+      top: 50%;
+      z-index: 2;
+      transition: all 0.2s linear;
+    }
+
+    &:after {
+      display: inline-block;
+      font: normal normal normal 16px/1 FontAwesome;
+      content: "\f06e";
+      color: #fff;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin: -1.5rem 0 0 -1.5rem;
+      opacity: 0;
+      z-index: 2;
+      background: $secondary;
+      border-radius: 50%;
+      padding: 1rem;
+      transition: all 0.2s linear;
+    }
   }
 
   &__img i {
@@ -1787,6 +1812,26 @@ a.card-tabs-item {
   &__title .fa-file-o,
   .file-icon .fa-file-o {
     color: #666666;
+  }
+
+  
+  &:hover {
+    border: 0.0625rem solid #083050;
+    cursor: pointer;
+
+    .card-style2__img {
+  
+      &:before {
+        bottom: 0;
+        left: 0;
+        opacity: 0.1;
+        right: 0;
+        top: 0;
+      }
+      &:after {
+        opacity: 1;
+      }
+    }
   }
 }
 .card-btn {
