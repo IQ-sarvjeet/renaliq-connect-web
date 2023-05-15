@@ -1631,7 +1631,6 @@ a.card-tabs-item {
   }
 
   &__img {
-    background-color: #f7f7f7;
     display: block;
     align-items: center;
     text-align: center;
@@ -1642,7 +1641,8 @@ a.card-tabs-item {
     border-radius: 0.25rem;
 
     &:before {
-      background-color: $secondary;
+      background: rgb(255,255,255);
+      background: radial-gradient(circle, rgba(255,255,255,1) 50%, rgba(8,48,80,1) 100%);
       bottom: 50%;
       content: '';
       left: 50%;
@@ -1650,24 +1650,7 @@ a.card-tabs-item {
       position: absolute;
       right: 50%;
       top: 50%;
-      z-index: 2;
-      transition: all 0.2s linear;
-    }
-
-    &:after {
-      display: inline-block;
-      font: normal normal normal 16px/1 FontAwesome;
-      content: "\f06e";
-      color: #fff;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      margin: -1.5rem 0 0 -1.5rem;
-      opacity: 0;
-      z-index: 2;
-      background: $secondary;
-      border-radius: 50%;
-      padding: 1rem;
+      z-index: 1;
       transition: all 0.2s linear;
     }
   }
@@ -1745,40 +1728,59 @@ a.card-tabs-item {
   }
 
   &__icon {
+    fill: #e4e7ec;
+    stroke: #e4e7ec;
     position: absolute;
     font-size: 1rem;
-    left: 0;
-    top: 0;
+    height: 6rem;
+    width: 6rem;
+    left: calc(50% - 3rem);
+    top: calc(50% - 3rem);
+    z-index: 2;
+    transition: all 0.2s linear;
+
+    &-info {
+      font-size: 0.75rem;
+      display: inline-block;
+      background-color: #e4e7ec;
+      padding: 0.25rem 1rem;
+      position: absolute;
+      left: calc(50% - 3rem);
+      top: 50%;
+      border-radius: 0.25rem;
+      z-index: 3;
+      transition: all 0.2s linear;
+    }
   }
 
   &__img .fa-file-image-o,
   &__date .fa-file-image-o,
   &__title .fa-file-image-o,
-  .file-icon .fa-file-image-o {
+  .info-image {
     color: #d93025;
   }
   &__img .fa-file-pdf-o,
   &__date .fa-file-pdf-o,
   &__title .fa-file-pdf-o,
-  .file-icon .fa-file-pdf-o {
+  .info-pdf {
     color: #f40f02;
   }
   &__img .fa-file-excel-o,
   &__date .fa-file-excel-o,
   &__title .fa-file-excel-o,
-  .file-icon .fa-file-excel-o {
+  .info-excel {
     color: #0f9d58;
   }
   &__img .fa-file-word-o,
   &__date .fa-file-word-o,
   &__title .fa-file-word-o,
-  .file-icon .fa-file-word-o {
+  .info-word {
     color: #1a73e8;
   }
   &__img .fa-file-text-o,
   &__date .fa-file-text-o,
   &__title .fa-file-text-o,
-  .file-icon .fa-file-text-o {
+  .info-text {
     color: #5ccecd;
   }
   &__img .fa-file-video-o,
@@ -1788,7 +1790,7 @@ a.card-tabs-item {
   &__title .fa-file-video-o,
   &__title .fa-file-audio-o,
   .file-icon .fa-file-audio-o,
-  .file-icon .fa-file-audio-o {
+  .info-audio {
     color: #f40f02;
   }
   &__img .fa-file-archive-o,
@@ -1798,19 +1800,19 @@ a.card-tabs-item {
   &__date .fa-folder-open,
   &__title .fa-folder-open,
   .file-icon .fa-file-archive-o,
-  .file-icon .fa-folder-open {
+  .info-folder {
     color: #ff9100;
   }
   &__img .fa-file-code-o,
   &__date .fa-file-code-o,
   &__title .fa-file-code-o,
-  .file-icon .fa-file-code-o {
+  .info-code {
     color: #ab75e9;
   }
   &__img .fa-file-o,
   &__date .fa-file-o,
   &__title .fa-file-o,
-  .file-icon .fa-file-o {
+  .info-file {
     color: #666666;
   }
 
@@ -1827,9 +1829,7 @@ a.card-tabs-item {
         opacity: 0.1;
         right: 0;
         top: 0;
-      }
-      &:after {
-        opacity: 1;
+        border-radius: 0.5rem;
       }
     }
   }

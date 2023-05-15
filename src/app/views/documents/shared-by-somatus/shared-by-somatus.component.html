@@ -77,12 +77,15 @@
         <div class="card-style2">
           <div class="card-body p-2">
             <a class="card-style2__img" (click)="viewFile(file)">
-              <i class="fa fa-file-pdf-o" *ngIf="file.fileType === fileTypes.Pdf"></i>
-              <i class="fa fa-file-video-o" *ngIf="file.fileType === fileTypes.Video"></i>
-              <i class="fa fa-file-word-o" *ngIf="file.fileType === fileTypes.Doc"></i>
-              <i class="fa fa-file-excel-o" *ngIf="file.fileType === fileTypes.Excel"></i>
-              <i class="fa fa-file-image-o" *ngIf="file.fileType === fileTypes.Image"></i>
-              <i class="fa fa-file-text-o" *ngIf="file.fileType === fileTypes.Txt"></i>
+              <svg viewBox="0 0 96 96" class="card-style2__icon" role="img">
+                <use class="sv-icon" xlink:href="#svg_file"></use>
+              </svg>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Pdf) ? 'info-pdf': ''" *ngIf="file.fileType === fileTypes.Pdf">Pdf</span>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Video) ? 'info-audio': ''" *ngIf="file.fileType === fileTypes.Video">Video</span>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Doc) ? 'info-word': ''" *ngIf="file.fileType === fileTypes.Doc">Doc</span>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Excel) ? 'info-excel': ''" *ngIf="file.fileType === fileTypes.Excel">Excel</span>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Image) ? 'info-image': ''" *ngIf="file.fileType === fileTypes.Image">Image</span>
+              <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Txt) ? 'info-text': ''" *ngIf="file.fileType === fileTypes.Txt">Txt</span>
             </a>
             <div class="d-flex mt-3">
               <div class="flex-fill text-truncate" (click)="viewFile(file)">

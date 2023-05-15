@@ -1814,6 +1814,12 @@ fieldset:disabled a.btn {
       color: $white !important;
       background-color: $secondary;
       border-color: $secondary;
+
+      i,
+      svg {
+        color: $white !important;
+        fill: $white !important;
+      }
     }
   }
 }
