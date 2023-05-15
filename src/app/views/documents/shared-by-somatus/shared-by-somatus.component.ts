@@ -10,7 +10,11 @@ import { CommonConstants } from 'src/app/shared/common-constants/common-constant
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
 
+import * as moment from 'moment';
+
 declare var $: any;
+const todayDate = new Date();
+const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
 @Component({
   selector: 'app-shared-by-somatus',
@@ -44,8 +48,8 @@ export class SharedBySomatusComponent {
       tag: '',
       sortBy: '',
       sortDirection: '',
-      fromDate: null,
-      toDate: null
+      fromDate: datePrior90,
+      toDate: todayDate
     },
     currentPage: 1,
     pageSize: 10

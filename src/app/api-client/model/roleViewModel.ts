@@ -10,21 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface DocumentDetail { 
+export interface RoleViewModel { 
     id?: number;
-    file?: Blob;
-    fileName?: string;
-    fileSize?: string;
-    fileExt?: string;
-    downloadURL?: string;
-    fileType?: number;
+    name?: string;
     description?: string;
-    title?: string;
-    folder?: string;
-    isGlobal?: boolean;
-    isDeleted?: boolean;
-    createdOn?: Date;
-    updatedOn?: Date;
-    practiceIds?: Array<number>;
-    tags?: Array<string>;
 }

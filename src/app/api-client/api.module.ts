@@ -13,7 +13,9 @@ import { ExportService } from './api/export.service';
 import { NotificationService } from './api/notification.service';
 import { PatientService } from './api/patient.service';
 import { PracticeService } from './api/practice.service';
+import { RoleService } from './api/role.service';
 import { UserService } from './api/user.service';
+import { UserRoleService } from './api/userRole.service';
 
 @NgModule({
   imports:      [],
@@ -30,7 +32,9 @@ import { UserService } from './api/user.service';
     NotificationService,
     PatientService,
     PracticeService,
-    UserService ]
+    RoleService,
+    UserService,
+    UserRoleService ]
 })
 export class ApiModule {
     public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
