@@ -2076,10 +2076,19 @@ body.dark-mode .overflow-x::-webkit-scrollbar-thumb {
     background: transparent;
 
     &__img {
-      background-color: var(--dark-bg);
+
+      .card-style2__icon {
+        fill: #3d5973;
+        stroke: #3d5973;
+    
+        &-info {
+          background-color: #3d5973;
+        }
+      }
   
       &:before {
-        background-color: $primary-1;
+        background: rgb(8,48,80);
+        background: radial-gradient(circle, rgba(8,48,80,1) 0%, rgba(255,255,255,1) 50%);
       }
     }
 
