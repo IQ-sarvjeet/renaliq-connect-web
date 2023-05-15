@@ -245,7 +245,8 @@ export class SharedBySomatusComponent {
     })
   }
   public viewFile(viewDoc: any) {
-    const url: string = `${environment.baseApiUrl}api/Document/download/${viewDoc.id}`;
+    const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
+    console.log(url);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {
