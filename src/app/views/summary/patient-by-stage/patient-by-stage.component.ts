@@ -12,7 +12,7 @@ export class PatientByStageComponent {
   patientByStage: any = [];
   constructor(private httpClient: HttpClient) {}
   ngOnInit(){
-    this.httpClient.get(`${environment.baseApiUrl}api/Patient/summary/stage`).subscribe({
+    this.httpClient.get(`${environment.baseApiUrl}/api/Patient/summary/stage`).subscribe({
       next: (response: any) => {
         const gridData: any = [];
         Object.keys(response).forEach((key: string) => {
