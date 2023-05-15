@@ -49,7 +49,8 @@ export class SharedBySomatusComponent {
       sortBy: '',
       sortDirection: '',
       fromDate: datePrior90,
-      toDate: todayDate
+      toDate: todayDate,
+      isGLobal: false
     },
     currentPage: 1,
     pageSize: 10
