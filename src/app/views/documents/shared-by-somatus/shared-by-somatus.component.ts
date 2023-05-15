@@ -50,7 +50,7 @@ export class SharedBySomatusComponent {
       sortDirection: '',
       fromDate: datePrior90,
       toDate: todayDate,
-      isGLobal: false
+      isGLobal: true
     },
     currentPage: 1,
     pageSize: 10
@@ -75,6 +75,7 @@ export class SharedBySomatusComponent {
   documentRequestInProgress: boolean = false;
   practiceList: any = [];
   folders: any = [];
+  updateErrorMessage: string = '';
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
@@ -184,6 +185,8 @@ export class SharedBySomatusComponent {
   }
   
   public openUpdateDialog(details: any) {
+    this.documentRequestInProgress = false;
+    this.updateErrorMessage = '';
     this.documentDetails = details;
     this.updateFileForm.patchValue({
       description: details.description,
@@ -192,6 +195,21 @@ export class SharedBySomatusComponent {
       practiceIds: details.practiceIds,
       tags: details.tags,
       title: details.title
+    })
+    this.documentService.apiDocumentDocumentsIdGet(details.id).subscribe({
+      next: (response: any) => {
+        this.documentDetails = response;
+        this.updateFileForm.patchValue({
+          description: response.description,
+          folder: response.folder,
+          isGlobal: response.isGlobal,
+          practiceIds: response.practiceIds,
+          tags: response.tags,
+          title: response.title
+        })
+      },
+      error: (error: any) => {
+      }
     })
   }
   public openDeleteDialog(details: any) {
@@ -245,7 +263,7 @@ export class SharedBySomatusComponent {
         this.loadList();
       },
       error: (error: any) => {
-        this.documentRequestInProgress = false;
+        this.updateErrorMessage = 'Error in update document.'
       }
     })
   }
