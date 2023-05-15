@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/components/shared.module';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { DocumentsHeaderComponent } from './documents-header/documents-header.component';
 import { MbscModule } from '@mobiscroll/angular';
+import { KnowledgeCenterComponent } from './knowledge-center/knowledge-center.component';
 
 const routes: Routes = [
   {
@@ -48,6 +49,10 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'knowledge-center',
+        component: KnowledgeCenterComponent,
+      },
+      {
         path: 'exports',
         component: ExportsComponent,
       }
@@ -67,7 +72,8 @@ const routes: Routes = [
     ExportsComponent,
     AddFileComponent,
     ViewDetailsComponent,
-    DocumentsHeaderComponent
+    DocumentsHeaderComponent,
+    KnowledgeCenterComponent
   ],
   imports: [
     RouterModule.forChild(routes),

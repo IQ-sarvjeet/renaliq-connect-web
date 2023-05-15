@@ -1,0 +1,324 @@
+<div class="mb-4 p-4 minh-content">
+    <div class="d-flex mt-2">
+      <div class="flex-fill d-flex align-items-center">
+        <h3 class="card-title">Shared by Somatus</h3>
+      </div>
+    </div>
+    <hr />
+    <div class="d-sm-flex">
+      <div class="d-flex pt-2 pe-1">
+        <h3 class="card-title mb-0">Folders:</h3>
+      </div>
+      <div class="flex-fill">
+        <a
+          href="javascript: void(0)"
+          class="btn m-1 btn-outline-secondary"
+          [ngClass]="(filters.documentFilter && filters.documentFilter.folder === '') ? 'active': ''"
+          (click)="selectFolderHandler('')"
+          >All</a
+        >
+          <ng-container *ngFor="let folder of folders">
+            <a
+              href="javascript: void(0)"
+              class="btn m-1 btn-outline-secondary"
+              [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'active': ''"
+              (click)="selectFolderHandler(folder)"
+              *ngIf="folder">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-inner-icn"
+                  enable-background="new 0 0 1024 1024"
+                  viewBox="0 0 1024 1024"
+                >
+                  <path
+                    d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
+                  />
+                </svg> {{folder}}
+            </a
+            >
+        </ng-container>
+        
+      </div>
+    </div>
+    <hr />
+    <div class="d-sm-flex">
+      <div class="d-flex align-items-center pe-3">
+        <h3 class="card-title mb-0">Tags:</h3>
+      </div>
+      <div class="flex-fill">
+        <a
+          href="javascript: void(0)"
+          class="btn m-1"
+          [ngClass]="filters.documentFilter?.tag === ''? 'btn-secondary': 'btn-light text-dark'"
+          (click)="tagSelectHandlar('')"
+          >All</a
+        >
+        <a
+          href="javascript: void(0)"
+          class="btn m-1"
+          [ngClass]="filters.documentFilter?.tag === tag.tagName ? 'btn-secondary': 'btn-light text-dark'"
+          *ngFor="let tag of tags"
+          (click)="tagSelectHandlar(tag.tagName)"
+          >{{tag.tagName}}</a
+        >
+      </div>
+    </div>
+    <hr class="mb-0" />
+    <!-- No Result Found Html Start-->
+    <div class="mt-3 text-center" *ngIf="!documents.data.length && filesLoaded">
+      <div class="mb-4">
+        <img src="../../../assets/images/no-data.png" alt="No data found" class="wrap-figure__img"/>
+      </div>
+      <h4 class="text-danger"> <i class="fe fe-alert-triangle"></i> No Document found</h4>
+    </div>
+    <!-- No Result Found Html Ends-->
+  
+    <!-- Default Result Html Start-->
+    <div>
+      <div class="row g-3 pt-3">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25"
+          *ngFor="let file of documents.data">
+          <div class="card-style2">
+            <div class="card-body p-2">
+              <a class="card-style2__img" (click)="viewFile(file)">
+                <svg viewBox="0 0 96 96" class="card-style2__icon" role="img">
+                  <use class="sv-icon" xlink:href="#svg_file"></use>
+                </svg>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Pdf) ? 'info-pdf': ''" *ngIf="file.fileType === fileTypes.Pdf">Pdf</span>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Video) ? 'info-audio': ''" *ngIf="file.fileType === fileTypes.Video">Video</span>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Doc) ? 'info-word': ''" *ngIf="file.fileType === fileTypes.Doc">Doc</span>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Excel) ? 'info-excel': ''" *ngIf="file.fileType === fileTypes.Excel">Excel</span>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Image) ? 'info-image': ''" *ngIf="file.fileType === fileTypes.Image">Image</span>
+                <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Txt) ? 'info-text': ''" *ngIf="file.fileType === fileTypes.Txt">Txt</span>
+              </a>
+              <div class="d-flex mt-3">
+                <div class="flex-fill text-truncate" (click)="viewFile(file)">
+                  
+                  <h6 class="mb-0 font-weight-semibold text-truncate">
+                    <!-- <i class="fa fa-file-pdf-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Pdf"></i>
+                    <i class="fa fa-file-image-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Image"></i>
+                    <i class="fa fa-file-excel-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Excel"></i>
+                    <i class="fa fa-file-video-o mr-1 card-style__icon" *ngIf="file.fileType === fileTypes.Video"></i> -->
+                    {{file.fileName}}
+                  </h6>
+                </div>
+                <div>
+                  <a
+                    href="#"
+                    class="option-dots"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    ><i class="fe fe-more-vertical"></i
+                  ></a>
+                  <div
+                    class="dropdown-menu dropdown-menu-start folder-options"
+                  >
+                    <a class="dropdown-item" href="#"
+                      data-bs-target="#documentUpdate"
+                      data-bs-toggle="modal"
+                      (click)="openUpdateDialog(file)"
+                      ><i class="fe fe-edit me-2"></i> Update</a
+                    >
+                    <a class="dropdown-item" href="#"
+                      data-bs-target="#modalDelete"
+                      data-bs-toggle="modal"
+                      (click)="openDeleteDialog(file)"
+                      ><i class="fe fe-trash me-2"></i> Delete</a
+                    >
+                    <!-- <a class="dropdown-item" href="#"
+                      data-bs-target="#modalPreview"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-eye me-2"></i> Preview</a
+                    > -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <hr />
+      <nav aria-label="Page navigation example">
+        <div class="d-md-flex">
+          <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
+            <div>Total Files Count : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
+          </div>
+          <div class="mt-3 mt-md-0">
+            <app-pagination
+              [pagingModel]="documents.pagingModel"
+              (gotoPageHandler)="gotoPage($event)"
+            >
+            </app-pagination>
+          </div>
+        </div> 
+      </nav>
+    </div>
+    <!-- Default Result Html End-->
+  </div>
+  
+  <!-- <router-outlet></router-outlet> -->
+  <app-view-details [viewDocument]="documentDetails"></app-view-details>
+  <!-- Update MODAL -->
+  <div class="modal fade" id="documentUpdate">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content modal-content-demo">
+        <form [formGroup]="updateFileForm" (ngSubmit)="submitUpdateDocument()" novalidate="novalidate">
+          <div class="modal-header bg-gray-200">
+            <h4 class="modal-title fw-semibold">Update Document</h4>
+            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                      id="fileTitle" 
+                      placeholder="Title" 
+                      formControlName="title"/>
+                    <label class="lh-sm" for="fileTitle">Title</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                    <input type="text" class="form-control"
+                      id="folder" placeholder="Folder"
+                      [value]="updateFileForm.controls['folder'].value"
+                      [disabled]="true"
+                      />
+                    <label class="lh-sm" for="folder">Folder</label>
+                  </div>
+                  <div class="d-flex mb-3">
+                    <div>
+                      <strong class="me-3 text-nowrap">Doc Scope</strong>
+                    </div>
+                    <div class="flex-fill">
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" 
+                          type="radio" 
+                          id="inlineRadio2" 
+                          [value]="false"
+                          [checked]="updateFileForm.controls['isGlobal'].value === false"
+                          [disabled]="true" />
+                        <label class="form-check-label" for="inlineRadio2">Practice</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio"
+                          id="inlineRadio1" 
+                          [value]="true"
+                          [checked]="updateFileForm.controls['isGlobal'].value === true"
+                          [disabled]="true"
+                           />
+                        <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
+                      </div>
+                      <select class="form-select form-select-sm my-1" 
+                        *ngIf="updateFileForm.controls['isGlobal'].value === false"
+                        [disabled]="true"
+                        formControlName="practiceIds"
+                        multiple>
+                        <option [value]="practiceId.id"
+                          [disabled]="true"
+                          [selected]="updateFileForm.controls['practiceIds'].value.indexOf(practiceId.id) !== -1"
+                          *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
+                      </select>
+                      <div *ngIf="updateFileForm.controls['isGlobal'].value === true"
+                        style="font-size: 12px;">
+                        Document will be public and visible to everyone.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-floating">
+                    <input type="text" class="form-control"
+                      id="Tags"
+                      placeholder="Tags"
+                      [value]="updateFileForm.controls['tags'].value"
+                      [disabled]="true" />
+                    <label class="lh-sm" for="Tags">Tags</label>
+                  </div>
+                  <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>
+                  <div class="form-floating">
+                    <textarea class="form-control minh-6"
+                      rows="4"
+                      placeholder="Leave a comment here"
+                      id="description"
+                      formControlName="description">Description Here</textarea>
+                    <label class="lh-sm" for="description">Description</label>
+                  </div>
+            </div>
+              <!-- <div class="col-12 col-md-6 position-relative">
+                <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
+              </div> -->
+            <div class="col-12 col-md-6">{{updateErrorMessage}}</div>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline-light"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary"
+              [disabled]="updateFileForm.invalid || documentRequestInProgress"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete MODAL -->
+  <div class="modal fade" id="modalDelete">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modal-content-demo">
+        <div class="modal-body p-5">
+          <div class="text-center" *ngIf="!documentRequestInProgress">
+            <h2><i class="fa fa-warning text-danger me-2"></i> Are you sure?</h2>
+            <p class="fs-16">You want to delete!</p>
+          </div>
+          <div class="text-center" *ngIf="documentRequestInProgress">
+            <h2> Delete in progress...</h2>
+          </div>
+          <div class="text-center mt-4">
+            <button
+            class="btn btn-lg btn-outline-light mx-1"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-lg btn-danger mx-1"
+            [disabled]="documentRequestInProgress"
+            (click)="deleteDocumentRequest()"
+          >
+          Delete
+          </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Preview MODAL -->
+  <div class="modal fade" id="modalPreview">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content modal-content-demo">
+        <div class="modal-header bg-gray-200">
+          <h4 class="modal-title fw-semibold">Preview Documents</h4>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="https://somatus.com/wp-content/uploads/2022/06/Homepage-Hero-898x766-B.png" alt="Test Logo" title="Test Logo" class="w-100 inline-block">
+        </div>
+      </div>
+    </div>
+  </div>
+  
