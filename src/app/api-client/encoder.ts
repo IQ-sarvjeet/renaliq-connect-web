@@ -1,4 +1,3 @@
-
 import { HttpUrlEncodingCodec } from '@angular/common/http'; /**
 * CustomHttpUrlEncodingCodec
 * Fix plus sign (+) not encoding, so sent as blank space
