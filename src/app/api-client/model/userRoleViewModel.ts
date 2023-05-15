@@ -10,13 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface UserInfoModel { 
-    userLoginId?: number;
-    firstName?: string;
-    lastName?: string;
-    fullName?: string;
-    email?: string;
+export interface UserRoleViewModel { 
+    roleId?: number;
+    userRoleId?: number;
     roleName?: string;
-    imageUrl?: string;
-    roles?: Array<number>;
 }

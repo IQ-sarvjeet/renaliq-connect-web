@@ -51,3 +51,9 @@ export class CustomHttpUrlEncodingCodec extends HttpUrlEncodingCodec {
     }
 } 
 
+#UserRoleService
+
+Remove import { ProblemDetails } from '../model/problemDetails';
+Delete file problemDetails.ts
+Remove  in model.ts
+export * from './problemDetails';

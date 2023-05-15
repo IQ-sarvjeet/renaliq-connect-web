@@ -10,7 +10,11 @@ import { CommonConstants } from 'src/app/shared/common-constants/common-constant
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
 
+import * as moment from 'moment';
+
 declare var $: any;
+const todayDate = new Date();
+const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
 @Component({
   selector: 'app-shared-by-somatus',
@@ -44,8 +48,8 @@ export class SharedBySomatusComponent {
       tag: '',
       sortBy: '',
       sortDirection: '',
-      fromDate: null,
-      toDate: null
+      fromDate: datePrior90,
+      toDate: todayDate
     },
     currentPage: 1,
     pageSize: 10
@@ -245,7 +249,8 @@ export class SharedBySomatusComponent {
     })
   }
   public viewFile(viewDoc: any) {
-    const url: string = `${environment.baseApiUrl}api/Document/download/${viewDoc.id}`;
+    const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
+    console.log(url);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {
