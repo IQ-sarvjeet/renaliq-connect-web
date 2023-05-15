@@ -35,7 +35,7 @@ export class SummaryComponent {
     count: '-',
     percentile: null,
     performance: 'up',
-    routeName: 'patients'
+ //   routeName: 'patients'
   };
   admissionRecent: DataCardInput = {
     iconClass: 'fa-people',
