@@ -35,7 +35,7 @@
           </td>
         </tr>
       </tbody>
-      <tbody class="table-body" *ngIf="!recentDocuments.length">
+      <tbody class="table-body" *ngIf="!recentDocuments.length && !documentsLoading">
         <tr class="border-bottom" >
           <td>
             <div class="text-center mt-3">

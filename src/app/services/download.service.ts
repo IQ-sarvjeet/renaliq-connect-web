@@ -101,4 +101,21 @@ export class DownloadService {
       window.URL.revokeObjectURL(url);
     }, 1000);
   }
+  public downloadMedia(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any, ext: string ) {
+    const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
+    let headerOptions = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/pdf',
+    });
+
+    let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
+    this.httpClient.get(url, requestOptions).subscribe({
+      next: (response: any) => {
+        const blob = new Blob([response], {
+          type: 'data:application/pdf;base64',
+        });
+        this.downloadFile(blob, `${fileName}${ext}`, elementRef, renderer);
+      }
+    })
+  }
 }
