@@ -1,76 +1,29 @@
 <div class="mb-4 p-4 minh-content">
   <div class="d-flex mt-2">
     <div class="flex-fill d-flex align-items-center">
-      <h3 class="card-title">My Files</h3>
+      <h3 class="card-title">Recent Documents</h3>
     </div>
   </div>
   <hr />
-  <div class="d-sm-flex " >
-    <div class="d-flex pt-2 pe-1">
-      <h3 class="card-title mb-0">Folders:</h3>
-    </div>
-    <div class="flex-fill">
-      <!-- <a
-        href="javascript: void(0)"
-        class="btn btn-primary my-1 me-2 my-md-0 me-md-3"
-        >All</a
-      > -->
-      <a
-        href="javascript: void(0)"
-        class="btn btn-outline-secondary m-1"
-        *ngFor="let folder of folders"
-        (click)="selectFolderHandler(folder)"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-inner-icn"
-            enable-background="new 0 0 1024 1024"
-            viewBox="0 0 1024 1024"
-          >
-            <path
-              d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-            />
-          </svg> {{folder}}
-      </a
-      >
-    </div>
-  </div>
-  <hr />
-  <div class="d-sm-flex">
-    <div class="d-flex align-items-center pe-3">
-      <h3 class="card-title mb-0">Tags:</h3>
-    </div>
-    <div class="flex-fill">
-      <a
-        href="javascript: void(0)"
-        class="btn m-1 btn-light text-dark"
-        *ngFor="let tag of tags"
-        (click)="tagSelectHandlar(tag)"
-        >{{tag.tagName}}</a
-      >
-    </div>
-  </div>
-  <hr />
-  <h3 class="card-title mb-3">Recent Documents</h3>
   <div class="table-responsive">
     <table id="data-table" class="table text-nowrap m-0 table-striped">
       <thead class="table-head">
         <tr class="text-secondary bg-gray-200">
-          <th class="bg-transparent border-bottom-0">File Name1</th>
+          <th class="bg-transparent border-bottom-0">File Name</th>
           <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
-          <th class="bg-transparent border-bottom-0">Uploaded By</th>
+          <!-- <th class="bg-transparent border-bottom-0">Uploaded By</th> -->
           <th class="bg-transparent border-bottom-0">Viewd On</th>
           <th class="bg-transparent border-bottom-0"></th>
         </tr>
       </thead>
-      <tbody class="table-body">
+      <tbody class="table-body" *ngIf="recentDocuments.length">
         <tr class="border-bottom" *ngFor="let document of recentDocuments">
           <td>{{document.title}}</td>
           <td>
             <div class="tags px-4 me-2" *ngFor="let tag of document.tags">{{tag}}</div>
             <!-- <div class="tags px-4 me-2">Anthem</div> -->
           </td>
-          <td>{{document.uploadedBy}}</td>
+          <!-- <td>{{document.uploadedBy}}</td> -->
           <td>{{document.viewedOn}}</td>
           <td class="text-end">
             <div
@@ -82,8 +35,37 @@
           </td>
         </tr>
       </tbody>
+      <tbody class="table-body" *ngIf="!recentDocuments.length">
+        <tr class="border-bottom" >
+          <td>
+            <div class="text-center mt-3">
+              <a
+                href="javascript: void(0)"
+                class="btn btn-outline-secondary px-4"
+                routerLink="/documents/sharedbysomatus"
+              >
+                Shared By Somatus</a
+              >
+              <a
+                href="javascript: void(0)"
+                class="btn btn-outline-secondary px-4"
+                style="margin-left: 15px;"
+                routerLink="/documents/knowledge-center"
+              >
+                Knowledge Center</a
+              >
+            </div>
+            <div class="mt-3 text-center" *ngIf="!recentDocuments.length">
+              <div class="mb-4">
+                <img src="../../../assets/images/no-data.png" alt="No data found" class="wrap-figure__img"/>
+              </div>
+              <h4 class="text-danger"> <i class="fe fe-alert-triangle"></i> No Document found</h4>
+            </div>
+          </td>
+        </tr>
+      <tbody>
     </table>
-    <div class="text-center mt-3">
+    <!-- <div class="text-center mt-3">
         <a
           href="javascript: void(0)"
           class="btn btn-outline-secondary px-4"
@@ -91,7 +73,7 @@
         >
           View All Documents</a
         >
-    </div>
+    </div> -->
   </div>
 </div>
 <app-view-details [viewDocument]="documentDetails"></app-view-details>

@@ -23,7 +23,7 @@ const routes: Routes = [
     component: DocumentsComponent,
     children: [
       {
-        path: 'myfiles',
+        path: 'recentdocuments',
         component: MyFilesComponent,
       },
       {

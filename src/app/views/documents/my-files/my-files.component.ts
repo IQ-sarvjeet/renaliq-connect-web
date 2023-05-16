@@ -39,47 +39,47 @@ export class MyFilesComponent {
     private renderer: Renderer2,
     private eventService: EventService){}
   ngOnInit() {
-    this.loadFolders();
+    // this.loadFolders();
     this.loadRecentDocuments();
-    this.loadTags();
+    // this.loadTags();
     // this.eventService.documentsFilterSubscription().subscribe({
     //   next: (value: any) => {
     //     console.log('router::', this.router.url);
-    //     if (this.router.url.indexOf('/documents/myfiles') !== -1) {
+    //     if (this.router.url.indexOf('/documents/recentdocuments') !== -1) {
     //       this.router.navigate(['/documents/sharedbysomatus']);
     //     }
     //   }
     // })
   }
-  private loadTags() {
-    this.documentService.apiDocumentListTagsIsGlobalGet(false).subscribe({
-      next: (tagsResponse: any) => {
-        if(tagsResponse.data) {
-          this.tags = tagsResponse.data;
-        }
-      },
-      error: (error: any) => {
+  // private loadTags() {
+  //   this.documentService.apiDocumentListTagsIsGlobalGet(false).subscribe({
+  //     next: (tagsResponse: any) => {
+  //       if(tagsResponse.data) {
+  //         this.tags = tagsResponse.data;
+  //       }
+  //     },
+  //     error: (error: any) => {
 
-      }
-    })
-  }
-  private loadFolders() {
-    this.documentService.apiDocumentListFoldersIsGlobalGet(false).subscribe({
-      next: (folders: any) => {
-        if(folders.data) {
-          this.folders = folders.data;
-        }
-      },
-      error: (error: any) => {
+  //     }
+  //   })
+  // }
+  // private loadFolders() {
+  //   this.documentService.apiDocumentListFoldersIsGlobalGet(false).subscribe({
+  //     next: (folders: any) => {
+  //       if(folders.data) {
+  //         this.folders = folders.data;
+  //       }
+  //     },
+  //     error: (error: any) => {
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
   loadRecentDocuments() {
     this.documentService.apiDocumentRecentdocumentsGet().subscribe({
       next: (response: any) => {
         if (response.data) {
-          this.recentDocuments = response.data;
+          // this.recentDocuments = response.data;
         }
       },
       error: (error: any) => {

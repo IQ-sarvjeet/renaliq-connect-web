@@ -62,7 +62,7 @@ export class DocumentsHeaderComponent {
     this.filterChanged();
   }
   public filterChanged(): void {
-    if (this.router.url.indexOf('/documents/myfiles') !== -1) {
+    if (this.router.url.indexOf('/documents/recentdocuments') !== -1) {
       this.router.navigate(['/documents/sharedbysomatus']);
     }
     this.eventService.documentsFilterEvent(this.documentFilter);
