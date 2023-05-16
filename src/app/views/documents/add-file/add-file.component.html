@@ -79,8 +79,8 @@
                           *ngIf="addFileForm.controls['isGlobal'].value === false"
                           formControlName="practiceIds"
                           multiple>
-                          <option [value]="practiceId.id"
-                            [selected]="addFileForm.controls['practiceIds'].value.indexOf(practiceId.id) !== -1"
+                          <option [value]="practiceId.practiceId"
+                            [selected]="addFileForm.controls['practiceIds'].value.indexOf(practiceId.practiceId) !== -1"
                             *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
                         </select>
                         <div *ngIf="addFileForm.controls['isGlobal'].value === true"

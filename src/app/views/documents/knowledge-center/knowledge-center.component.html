@@ -217,9 +217,9 @@
                         [disabled]="true"
                         formControlName="practiceIds"
                         multiple>
-                        <option [value]="practiceId.id"
+                        <option [value]="practiceId.practiceId"
                           [disabled]="true"
-                          [selected]="updateFileForm.controls['practiceIds'].value.indexOf(practiceId.id) !== -1"
+                          [selected]="updateFileForm.controls['practiceIds'].value.indexOf(practiceId.practiceId) !== -1"
                           *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
                       </select>
                       <div *ngIf="updateFileForm.controls['isGlobal'].value === true"
