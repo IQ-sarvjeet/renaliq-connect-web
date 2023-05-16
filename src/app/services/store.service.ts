@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Roles } from '../enums/roles';
 import { UserInfo } from '../interfaces/user';
 
 @Injectable({
@@ -8,7 +9,8 @@ import { UserInfo } from '../interfaces/user';
 export class StoreService {
   private userInformation: UserInfo = {
     fullName: ' ',
-    roleName: ''
+    roleName: '',
+    role: Roles.VIEW
   };
   private currentRoute: string | null = null;
   private userInfo$: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>({} as UserInfo);

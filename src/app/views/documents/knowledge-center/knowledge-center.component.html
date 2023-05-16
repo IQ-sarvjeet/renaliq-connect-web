@@ -102,7 +102,7 @@
                     {{file.title}}
                   </h6>
                 </div>
-                <div>
+                <div *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
                   <a
                     href="#"
                     class="option-dots"

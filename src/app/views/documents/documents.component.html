@@ -85,7 +85,7 @@
               </div>
             </li> -->
           </ul>
-          <div class="px-3">
+          <div class="px-3" *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
             <a href="javascript: void(0)" data-bs-target="#modalAddFiles" data-bs-toggle="modal" class="btn btn-block btn-outline-primary py-1">
               <i class="fa fa-plus me-1"></i>Add Document
             </a>

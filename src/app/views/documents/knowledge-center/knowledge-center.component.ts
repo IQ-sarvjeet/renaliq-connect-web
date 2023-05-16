@@ -4,8 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/api-client';
 import { FileTypes } from 'src/app/enums/fileTypes';
+import { Roles } from 'src/app/enums/roles';
+import { UserInfo } from 'src/app/interfaces/user';
 import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
+import { StoreService } from 'src/app/services/store.service';
 import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
@@ -74,6 +77,8 @@ export class KnowledgeCenterComponent {
   practiceList: any = [];
   folders: any = [];
   updateErrorMessage: string = '';
+  userInfo: UserInfo | null = null;
+  userRoleTypes = Roles;
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
@@ -83,9 +88,12 @@ export class KnowledgeCenterComponent {
     private downloadService: DownloadService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private _localStorage: LocalStorageService){}
+    private storeService: StoreService){}
 
   ngOnInit() {
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;      
+    })
     this.loadTags();
     this.loadFolders();
     // this.loadList();

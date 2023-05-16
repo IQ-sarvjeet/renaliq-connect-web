@@ -29,6 +29,7 @@
             <div
               (click)="viewFile(document)"
               class="btn btn-outline-primary py-0"
+              *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW"
             >
             <i class='fa fa-download'></i></div
             >

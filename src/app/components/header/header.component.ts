@@ -1,14 +1,14 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
-import { AccountService, PracticeService } from '../../api-client';
+import { AccountService, PracticeService, UserRoleService, UserService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { AuthService } from 'src/app/services/auth.service';
-import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { UserInfo } from 'src/app/interfaces/user';
 import { StoreService } from 'src/app/services/store.service';
 import { filter } from 'rxjs/operators';
+import { Roles } from 'src/app/enums/roles';
 
 
 type Practice = {
@@ -29,7 +29,8 @@ export class HeaderComponent {
   practiceList: Practice[] = [];
   userInfo: UserInfo = {
     fullName: '',
-    roleName: ''
+    roleName: '',
+    role: Roles.VIEW
   };
   currentRoute: string = '/';
   constructor(
@@ -39,6 +40,7 @@ export class HeaderComponent {
     private eventService: EventService,
     private authService: AuthService,
     private storeService: StoreService,
+    private userRolesService: UserRoleService
   ) {
     route.events.pipe(
       filter((event: any) => event instanceof NavigationEnd)
@@ -51,16 +53,37 @@ export class HeaderComponent {
       next: (response: boolean) => {
         if (!this.authService.isLoggedIn()) return;
         this.loadPracticeList();
+        this.loadUserRoles();
       }
     })
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
       this.userInfo = info;
       if (!this.authService.isLoggedIn()) return;
-      if(this.userInfo && this.userInfo.fullName) return;
+      if(this.userInfo && this.userInfo.fullName) {
+        return;
+      }
       try {
         const info = await this._accountService.apiAccountUserInfoGet().toPromise();
         this.storeService.userInfo(info as UserInfo);
+        this.loadUserRoles();
       } catch(error: any) {
+
+      }
+    })
+  }
+  private loadUserRoles() {
+    if (!this.userInfo.userLoginId) return;
+    const id = this.userInfo.userLoginId;
+    this.userRolesService.apiUserRolesUserLoginIdGet(id).subscribe({
+      next: (response: any) => {
+        const roleHasAdmin = response.some((role: any) => role.roleId === 1)
+        const roleHasEditRole = response.some((role: any) => role.roleId === 2)
+        this.storeService.userInfo({
+          ...this.userInfo,
+          role: roleHasAdmin ? Roles.ADMIN: roleHasEditRole ? Roles.EDITVIEW: Roles.VIEW
+        });
+      },
+      error: (error: any) => {
 
       }
     })
