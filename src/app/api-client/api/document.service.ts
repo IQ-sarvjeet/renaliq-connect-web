@@ -377,13 +377,18 @@ export class DocumentService {
     /**
      * 
      * 
+     * @param isGlobal 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiDocumentListFoldersGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public apiDocumentListFoldersGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public apiDocumentListFoldersGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public apiDocumentListFoldersGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentListFoldersIsGlobalGet(isGlobal: boolean, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiDocumentListFoldersIsGlobalGet(isGlobal: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiDocumentListFoldersIsGlobalGet(isGlobal: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiDocumentListFoldersIsGlobalGet(isGlobal: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (isGlobal === null || isGlobal === undefined) {
+            throw new Error('Required parameter isGlobal was null or undefined when calling apiDocumentListFoldersIsGlobalGet.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -406,7 +411,7 @@ export class DocumentService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<any>('get',`${this.basePath}/api/Document/list/folders`,
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Document/list/folders/${encodeURIComponent(String(isGlobal))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -474,13 +479,18 @@ export class DocumentService {
     /**
      * 
      * 
+     * @param isGlobal 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiDocumentListTagsGet(observe?: 'body', reportProgress?: boolean): Observable<TagListViewModel>;
-    public apiDocumentListTagsGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TagListViewModel>>;
-    public apiDocumentListTagsGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TagListViewModel>>;
-    public apiDocumentListTagsGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public apiDocumentListTagsIsGlobalGet(isGlobal: boolean, observe?: 'body', reportProgress?: boolean): Observable<TagListViewModel>;
+    public apiDocumentListTagsIsGlobalGet(isGlobal: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TagListViewModel>>;
+    public apiDocumentListTagsIsGlobalGet(isGlobal: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TagListViewModel>>;
+    public apiDocumentListTagsIsGlobalGet(isGlobal: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (isGlobal === null || isGlobal === undefined) {
+            throw new Error('Required parameter isGlobal was null or undefined when calling apiDocumentListTagsIsGlobalGet.');
+        }
 
         let headers = this.defaultHeaders;
 
@@ -506,7 +516,7 @@ export class DocumentService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<TagListViewModel>('get',`${this.basePath}/api/Document/list/tags`,
+        return this.httpClient.request<TagListViewModel>('get',`${this.basePath}/api/Document/list/tags/${encodeURIComponent(String(isGlobal))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

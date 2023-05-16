@@ -23,7 +23,7 @@ export class KnowledgeCenterComponent {
   updateFileForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     folder: [''],
-    isGlobal: [false],
+    isGlobal: [true],
     practiceIds: [[]],
     tags: [''],
     description: ['', Validators.required]
@@ -64,7 +64,7 @@ export class KnowledgeCenterComponent {
     folder: "",
     id: 5,
     isDeleted: false,
-    isGlobal: false,
+    isGlobal: true,
     practiceIds: [],
     tags: [],
     title: null
@@ -126,7 +126,7 @@ export class KnowledgeCenterComponent {
     })
   }
   private loadFolders() {
-    this.documentService.apiDocumentListFoldersGet().subscribe({
+    this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
@@ -138,7 +138,7 @@ export class KnowledgeCenterComponent {
     })
   }
   private loadTags() {
-    this.documentService.apiDocumentListTagsGet().subscribe({
+    this.documentService.apiDocumentListTagsIsGlobalGet(true).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;
