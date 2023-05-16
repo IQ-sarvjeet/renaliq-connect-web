@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService, PracticeService } from 'src/app/api-client';
 import { environment } from 'src/environments/environment';
 
+declare var $: any;
 @Component({
   selector: 'app-add-file',
   templateUrl: './add-file.component.html',
@@ -27,11 +28,14 @@ export class AddFileComponent {
   selectedFile: File | null = null;
   practiceList: any = [];
   exceedFileSize: boolean = false;
+  uploadMessage: string = '';
+  uploading: boolean = false;
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
     private httpClient: HttpClient) { }
   ngOnInit() {
+    this.uploadMessage = '';
     this.practiceService.apiPracticeListGet().subscribe({
       next: (response: any) => {
         this.practiceList = response;
@@ -41,6 +45,7 @@ export class AddFileComponent {
     })
   }
   submit() {
+    this.uploading = true;
     const formData1 = new FormData();
     formData1.append('Id', '0');
     formData1.append('File', this.addFileForm.value.file);
@@ -59,7 +64,14 @@ export class AddFileComponent {
     })
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
-
+        this.uploading = false;
+        this.uploadMessage = '';
+        $('#uploading').modal('hide');
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.uploading = false;
+        this.uploadMessage = 'Error in upload';
       }
     })
   }

@@ -10,18 +10,16 @@ import { CommonConstants } from 'src/app/shared/common-constants/common-constant
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
 
-import * as moment from 'moment';
-
 declare var $: any;
 const todayDate = new Date();
 const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
 @Component({
-  selector: 'app-shared-by-somatus',
-  templateUrl: './shared-by-somatus.component.html',
-  styleUrls: ['./shared-by-somatus.component.scss']
+  selector: 'app-knowledge-center',
+  templateUrl: './knowledge-center.component.html',
+  styleUrls: ['./knowledge-center.component.scss']
 })
-export class SharedBySomatusComponent {
+export class KnowledgeCenterComponent {
   updateFileForm: FormGroup = this.fb.group({
     title: ['', Validators.required],
     folder: [''],
@@ -50,7 +48,7 @@ export class SharedBySomatusComponent {
       sortDirection: '',
       fromDate: datePrior90,
       toDate: todayDate,
-      isGLobal: false
+      isGLobal: true
     },
     currentPage: 1,
     pageSize: 10
@@ -306,5 +304,4 @@ export class SharedBySomatusComponent {
       window.URL.revokeObjectURL(url);
     }, 1000);
   }
-  
 }

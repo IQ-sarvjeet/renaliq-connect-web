@@ -79,8 +79,8 @@
                           *ngIf="addFileForm.controls['isGlobal'].value === false"
                           formControlName="practiceIds"
                           multiple>
-                          <option [value]="practiceId.id"
-                            [selected]="addFileForm.controls['practiceIds'].value.indexOf(practiceId.id) !== -1"
+                          <option [value]="practiceId.practiceId"
+                            [selected]="addFileForm.controls['practiceIds'].value.indexOf(practiceId.practiceId) !== -1"
                             *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
                         </select>
                         <div *ngIf="addFileForm.controls['isGlobal'].value === true"
@@ -112,6 +112,12 @@
                     </div>
                   
               </div>
+              <div *ngIf="uploadMessage">
+                {{uploadMessage}}
+              </div>
+              <div *ngIf="uploading">
+                Uploading in progress...
+              </div>
           </div>
           </div>
           <div class="modal-footer">
@@ -123,8 +129,7 @@
             </button>
             <button
               class="btn btn-secondary"
-              data-bs-dismiss="modal"
-              [disabled]="addFileForm.invalid"
+              [disabled]="addFileForm.invalid || uploading"
             >
               Upload
             </button>
