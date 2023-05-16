@@ -128,7 +128,7 @@ export class SharedBySomatusComponent {
     })
   }
   private loadFolders() {
-    this.documentService.apiDocumentListFoldersGet().subscribe({
+    this.documentService.apiDocumentListFoldersIsGlobalGet(false).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
@@ -140,7 +140,7 @@ export class SharedBySomatusComponent {
     })
   }
   private loadTags() {
-    this.documentService.apiDocumentListTagsGet().subscribe({
+    this.documentService.apiDocumentListTagsIsGlobalGet(false).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;

@@ -1,11 +1,11 @@
 <div class="mb-4 p-4 minh-content">
   <div class="d-flex mt-2">
     <div class="flex-fill d-flex align-items-center">
-      <h3 class="card-title">Documents</h3>
+      <h3 class="card-title">My Files</h3>
     </div>
   </div>
   <hr />
-  <div class="d-sm-flex">
+  <div class="d-sm-flex " >
     <div class="d-flex pt-2 pe-1">
       <h3 class="card-title mb-0">Folders:</h3>
     </div>
@@ -56,7 +56,7 @@
     <table id="data-table" class="table text-nowrap m-0 table-striped">
       <thead class="table-head">
         <tr class="text-secondary bg-gray-200">
-          <th class="bg-transparent border-bottom-0">File Name</th>
+          <th class="bg-transparent border-bottom-0">File Name1</th>
           <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
           <th class="bg-transparent border-bottom-0">Uploaded By</th>
           <th class="bg-transparent border-bottom-0">Viewd On</th>
@@ -65,7 +65,7 @@
       </thead>
       <tbody class="table-body">
         <tr class="border-bottom" *ngFor="let document of recentDocuments">
-          <td>{{document.fileName}}</td>
+          <td>{{document.title}}</td>
           <td>
             <div class="tags px-4 me-2" *ngFor="let tag of document.tags">{{tag}}</div>
             <!-- <div class="tags px-4 me-2">Anthem</div> -->
@@ -73,11 +73,11 @@
           <td>{{document.uploadedBy}}</td>
           <td>{{document.viewedOn}}</td>
           <td class="text-end">
-            <a
-              href="javascript: void(0)"
+            <div
+              (click)="viewFile(document)"
               class="btn btn-outline-primary py-0"
             >
-              View</a
+            <i class='fa fa-download'></i></div
             >
           </td>
         </tr>
