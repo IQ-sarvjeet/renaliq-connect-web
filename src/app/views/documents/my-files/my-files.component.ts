@@ -79,7 +79,7 @@ export class MyFilesComponent {
     this.documentService.apiDocumentRecentdocumentsGet().subscribe({
       next: (response: any) => {
         if (response.data) {
-          // this.recentDocuments = response.data;
+          this.recentDocuments = response.data;
         }
       },
       error: (error: any) => {
