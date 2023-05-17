@@ -21,7 +21,7 @@
         [ngClass]="(filters.documentFilter && filters.documentFilter.folder === '') ? 'active': ''"
         (click)="selectFolderHandler('')"
         >
-        <svg viewBox="0 0 1024 1024" class="" role="img">
+        <svg viewBox="0 -70 1024 1024" class="" role="img">
           <use class="sv-icon" xlink:href="#svg_folder"></use>
         </svg> <span class="d-block">All</span></a
       >
@@ -32,7 +32,7 @@
             [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'active': ''"
             (click)="selectFolderHandler(folder)"
             *ngIf="folder">
-            <svg viewBox="0 0 1024 1024" class="" role="img">
+            <svg viewBox="0 -70 1024 1024" class="" role="img">
               <use class="sv-icon" xlink:href="#svg_folder"></use>
             </svg> <span class="d-block">{{folder}}</span>
           </a
@@ -43,16 +43,34 @@
 
 
   <div class="d-sm-flex" *ngIf="loadingFolders">
-    <div class="d-flex pt-2 pe-1">
-      <h3 class="card-title mb-0">Folders:</h3>
+    <div class="d-flex">
+      <h3 class="card-title mb-0 mt-4">Folders:</h3>
     </div>
     <div class="flex-fill">
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
     </div>
   </div>
   <hr />

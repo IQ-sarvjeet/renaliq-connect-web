@@ -5704,6 +5704,9 @@ div.dataTables_wrapper div.dataTables_length label {
 .lh-15 {
   line-height: 1.5;
 }
+.h-05 {
+  height: 0.5rem;
+}
 .h-2 {
   height: 2rem;
 }
@@ -5851,7 +5854,7 @@ div.dataTables_wrapper div.dataTables_length label {
 .folders-item {
   color: $secondary;
   display: inline-block; 
-  font-size: 0.75rem;
+  font-size: 0.675rem;
   line-height: normal;
   text-align: center;
   margin: 0 0.75rem;
@@ -5859,6 +5862,25 @@ div.dataTables_wrapper div.dataTables_length label {
   svg {
     height: 3rem;
     width: 3rem;
+    opacity: 0.5;
+  }
+  &:hover,
+  &:focus {
+    color: $secondary;
+  }
+
+  &.active {
+    svg {
+      opacity: 1;
+    }
+  }
+}
+
+.dark-mode .folders-item {
+  color: rgba(255,255,255,0.8);
+  &:hover,
+  &:focus {
+    color: rgba(255,255,255,0.8);
   }
 }
 
