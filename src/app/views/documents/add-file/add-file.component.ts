@@ -84,9 +84,13 @@ export class AddFileComponent {
       // const fileExt = fileName.split('.')[0];
       const fileSize = file.size;
       this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
+      if(['mp4', 'mp3', 'jpeg', 'png', 'pdf', 'doc', 'vnd.ms-excel'].indexOf(file.type.split('/')[1]) === -1) {
+        this.exceedFileSize = true;
+      }
       if (this.exceedFileSize) {
         this.addFileForm.patchValue({
           fileName,
+          file: null
         });
         return;
       } else {

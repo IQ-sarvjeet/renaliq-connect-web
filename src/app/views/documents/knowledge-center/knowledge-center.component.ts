@@ -268,10 +268,15 @@ export class KnowledgeCenterComponent {
     this.documentDetails.tags.forEach((item: any) => {
       formData1.append('Tags', item);
     })
+    this.eventService.openToaster({
+      showToster: true,
+      message: `Updating document.`,
+      type: 'success',
+    });
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
         this.documentRequestInProgress = false;
-        $('#documentUpdate').modal('hide');
+        $('#documentUpdateKC').modal('hide');
         this.loadList();
       },
       error: (error: any) => {

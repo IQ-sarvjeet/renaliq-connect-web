@@ -1,13 +1,13 @@
 <div class="modal fade" id="modalAddFiles">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
       <div class="modal-content modal-content-demo">
+        <div class="modal-header bg-gray-200">
+          <h4 class="modal-title fw-semibold">Add Files</h4>
+          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
         <form [formGroup]="addFileForm" (ngSubmit)="submit()" novalidate="novalidate">
-          <div class="modal-header bg-gray-200">
-            <h4 class="modal-title fw-semibold">Add Files</h4>
-            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div class="modal-body">
             <div class="row">
               <div class="col-12 col-md-6 position-relative">
@@ -121,12 +121,12 @@
           </div>
           </div>
           <div class="modal-footer">
-            <button
+            <a href="javascript: void(0);"
               class="btn btn-outline-light"
               data-bs-dismiss="modal"
             >
               Cancel
-            </button>
+            </a>
             <button
               class="btn btn-secondary"
               [disabled]="addFileForm.invalid || uploading"
