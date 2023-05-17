@@ -5863,10 +5863,14 @@ div.dataTables_wrapper div.dataTables_length label {
     height: 3rem;
     width: 3rem;
     opacity: 0.5;
+    transition: all .2s linear;
   }
   &:hover,
   &:focus {
     color: $secondary;
+    svg {
+      opacity: 1;
+    }
   }
 
   &.active {
@@ -5881,6 +5885,10 @@ div.dataTables_wrapper div.dataTables_length label {
   &:hover,
   &:focus {
     color: rgba(255,255,255,0.8);
+
+    svg {
+      opacity: 1;
+    }
   }
 }
 
