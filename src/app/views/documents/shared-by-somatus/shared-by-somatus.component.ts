@@ -59,6 +59,8 @@ export class SharedBySomatusComponent {
     pageSize: 10
   }
   filesLoaded: boolean = false;
+  loadingFolders: boolean = false;
+  loadingTags: boolean = false;
   documentDetails: any = {
     description: "",
     downloadURL: "",
@@ -137,30 +139,35 @@ export class SharedBySomatusComponent {
     })
   }
   private loadFolders() {
+    this.loadingFolders = true;
     this.documentService.apiDocumentListFoldersIsGlobalGet(false).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
         }
+        this.loadingFolders = false;
       },
       error: (error: any) => {
-
+        this.loadingFolders = false;
       }
     })
   }
   private loadTags() {
+    this.loadingTags = true;
     this.documentService.apiDocumentListTagsIsGlobalGet(false).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;
         }
+        this.loadingTags = false;
       },
       error: (error: any) => {
-
+        this.loadingTags = false;
       }
     })
   }
   private loadList() {
+    this.filesLoaded = false;
     this.documentService.apiDocumentListPost(this.filters).subscribe({
       next: (response: any) => {
         this.documents = response;

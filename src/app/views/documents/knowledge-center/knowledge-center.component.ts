@@ -57,6 +57,8 @@ export class KnowledgeCenterComponent {
     pageSize: 10
   }
   filesLoaded: boolean = false;
+  loadingTags: boolean = false;
+  loadingFolders: boolean = false;
   documentDetails: any = {
     description: "",
     downloadURL: "",
@@ -134,26 +136,30 @@ export class KnowledgeCenterComponent {
     })
   }
   private loadFolders() {
+    this.loadingFolders = true;
     this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
         }
+        this.loadingFolders = false;
       },
       error: (error: any) => {
-
+        this.loadingFolders = false;
       }
     })
   }
   private loadTags() {
+    this.loadingTags = true;
     this.documentService.apiDocumentListTagsIsGlobalGet(true).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;
         }
+        this.loadingTags = false;
       },
       error: (error: any) => {
-
+        this.loadingTags = false;
       }
     })
   }

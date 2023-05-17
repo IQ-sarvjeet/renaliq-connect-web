@@ -10,7 +10,7 @@
     </div>
   </div>
   <hr />
-  <div class="d-sm-flex">
+  <div class="d-sm-flex" *ngIf="!loadingFolders">
     <div class="d-flex pt-2 pe-1">
       <h3 class="card-title mb-0">Folders:</h3>
     </div>
@@ -46,7 +46,7 @@
   </div>
 
 
-  <div class="d-sm-flex">
+  <div class="d-sm-flex" *ngIf="loadingFolders">
     <div class="d-flex pt-2 pe-1">
       <h3 class="card-title mb-0">Folders:</h3>
     </div>
@@ -60,7 +60,7 @@
     </div>
   </div>
   <hr />
-  <div class="d-sm-flex">
+  <div class="d-sm-flex" *ngIf="!loadingTags">
     <div class="d-flex align-items-center pe-3">
       <h3 class="card-title mb-0">Tags:</h3>
     </div>
@@ -82,7 +82,7 @@
       >
     </div>
   </div>
-  <div class="d-sm-flex">
+  <div class="d-sm-flex" *ngIf="loadingTags">
     <div class="d-flex align-items-center pe-3">
       <h3 class="card-title mb-0">Tags:</h3>
     </div>
@@ -104,7 +104,7 @@
 
   <!-- Default Result Html Start-->
   <div>
-    <div class="row g-3 pt-3">
+    <div class="row g-3 pt-3" *ngIf="filesLoaded">
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25"
         *ngFor="let file of documents.data">
         <div class="card-style2">
@@ -169,7 +169,7 @@
       </div>
     </div>
 
-    <div class="row g-3 pt-3">
+    <div class="row g-3 pt-3" *ngIf="!filesLoaded">
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25">
         <div class="border rounded-2">
           <div class="p-2">
@@ -228,7 +228,7 @@
       </div>
     </div>
     <hr />
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" *ngIf="filesLoaded">
       <div class="d-md-flex">
         <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
           <div>Total Files Count : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
@@ -242,7 +242,7 @@
         </div>
       </div> 
     </nav>
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" *ngIf="!filesLoaded">
       <div class="d-md-flex">
         <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
           <div>Total Files Count : <span class="d-inline-block skeleton-loader mw-5 py-1 align-middle"></span></div>
