@@ -5,7 +5,7 @@
       <div class="card mt-1 mb-5 px-2">
       <div class="row">
         <div class="col-md-3">
-          <ul class="nav1 nav-column card mb-4 border-0">
+          <ul class="nav1 nav-column card border-0">
             <li class="nav-item1">
               <a class="d-flex nav-link thumb"
                 routerLink="recentdocuments"
@@ -85,11 +85,24 @@
               </div>
             </li> -->
           </ul>
-          <div class="px-3" *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
+
+
+          <ul class="m-2">
+            <li class="nav-item1">
+              <span class="skeleton-loader w-100 my-1"></span>
+            </li>
+            <li class="nav-item1">
+              <span class="skeleton-loader w-100 my-1"></span>
+            </li>
+            <li class="nav-item1">
+              <span class="skeleton-loader w-100 my-1"></span>
+            </li>
+          </ul>
+          <!--div class="px-3" *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
             <a href="javascript: void(0)" data-bs-target="#modalAddFiles" data-bs-toggle="modal" class="btn btn-block btn-outline-primary py-1">
               <i class="fa fa-plus me-1"></i>Add Document
             </a>
-          </div>
+          </div-->
           
           <!-- <div class="card custom-card mb-4">
             <div class="card-header font-weight-bold px-3 pb-2 border-bottom-0">
