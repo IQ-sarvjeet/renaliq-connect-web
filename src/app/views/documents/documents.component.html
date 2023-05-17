@@ -8,7 +8,7 @@
           <ul class="nav1 nav-column card mb-4 border-0">
             <li class="nav-item1">
               <a class="d-flex nav-link thumb"
-                routerLink="myfiles"
+                routerLink="recentdocuments"
                 routerLinkActive="active">
                 <div class="ps-2">
                   <svg
@@ -22,7 +22,7 @@
                     />
                   </svg>
                 </div>
-                <div class="flex-fill">My Files</div>
+                <div class="flex-fill">Recent Documents</div>
               </a>
             </li>
             <li class="nav-item1">
@@ -85,7 +85,7 @@
               </div>
             </li> -->
           </ul>
-          <div class="px-3">
+          <div class="px-3" *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
             <a href="javascript: void(0)" data-bs-target="#modalAddFiles" data-bs-toggle="modal" class="btn btn-block btn-outline-primary py-1">
               <i class="fa fa-plus me-1"></i>Add Document
             </a>

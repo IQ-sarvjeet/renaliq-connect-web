@@ -11,6 +11,9 @@ import { LocalStorageService } from 'src/app/shared/services/localstorage.servic
 import { environment } from 'src/environments/environment';
 
 import * as moment from 'moment';
+import { StoreService } from 'src/app/services/store.service';
+import { UserInfo } from 'src/app/interfaces/user';
+import { Roles } from 'src/app/enums/roles';
 
 declare var $: any;
 const todayDate = new Date();
@@ -76,6 +79,9 @@ export class SharedBySomatusComponent {
   practiceList: any = [];
   folders: any = [];
   updateErrorMessage: string = '';
+  userInfo: UserInfo | null = null;
+  userRoleTypes = Roles;
+
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
@@ -85,9 +91,12 @@ export class SharedBySomatusComponent {
     private downloadService: DownloadService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private _localStorage: LocalStorageService){}
+    private storeService: StoreService){}
 
   ngOnInit() {
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;      
+    })
     this.loadTags();
     this.loadFolders();
     // this.loadList();
@@ -268,43 +277,17 @@ export class SharedBySomatusComponent {
     })
   }
   public viewFile(viewDoc: any) {
+    this.eventService.openToaster({
+      showToster: true,
+      message: `Downloading document.`,
+      type: 'success',
+    });
     const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
-    console.log(url);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {
-      this.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
+      this.downloadService.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
     }
-  }
-  private downloadMedia(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any, ext: string ) {
-    const token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
-    let headerOptions = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/pdf',
-    });
-
-    let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-    this.httpClient.get(url, requestOptions).subscribe({
-      next: (response: any) => {
-        const blob = new Blob([response], {
-          type: 'data:application/pdf;base64',
-        });
-        this.downloadFile(blob, `${fileName}${ext}`, elementRef, renderer);
-      }
-    })
-  }
-  private downloadFile(blob: any, fileName: string, elementRef: ElementRef, renderer: Renderer2): void {
-    const url = (window.URL || window.webkitURL).createObjectURL(blob);
-    const link = renderer.createElement('a');
-    renderer.setAttribute(link, 'download', fileName);
-    renderer.setAttribute(link, 'href', url);
-    renderer.setAttribute(link, 'target', '_blank');
-    renderer.appendChild(elementRef.nativeElement, link);
-    link.click();
-    renderer.removeChild(elementRef.nativeElement, link);
-    setTimeout(() => {
-      window.URL.revokeObjectURL(url);
-    }, 1000);
   }
   
 }
