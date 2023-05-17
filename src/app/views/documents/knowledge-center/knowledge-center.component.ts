@@ -39,7 +39,7 @@ export class KnowledgeCenterComponent {
       currentPage: 1,
       pageSize: 10,
       totalPages: 1,
-      totalRecords: 3
+      totalRecords: 0
     }
   };
   filters: DocumentFilterModel = {
