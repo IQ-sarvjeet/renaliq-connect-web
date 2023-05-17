@@ -5848,7 +5848,19 @@ div.dataTables_wrapper div.dataTables_length label {
     }
   }
 }
+.folders-item {
+  color: $secondary;
+  display: inline-block; 
+  font-size: 0.75rem;
+  line-height: normal;
+  text-align: center;
+  margin: 0 0.75rem;
 
+  svg {
+    height: 3rem;
+    width: 3rem;
+  }
+}
 
 @media (min-width: 768px) {
   .card-lg {
