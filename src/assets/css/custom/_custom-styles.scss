@@ -5540,6 +5540,15 @@ div.dataTables_wrapper div.dataTables_length label {
 .mw-5 {
   min-width: 5rem;
 }
+.mw-6 {
+  min-width: 6rem;
+}
+.mw-10 {
+  min-width: 10rem;
+}
+.mw-12 {
+  min-width: 12rem;
+}
 .mw-200 {
   max-width: 200px;
 }
@@ -5737,7 +5746,7 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 .minh-content {
-  min-height: calc(100vh - 15rem);
+  min-height: calc(100vh - 16rem);
 }
 
 .upload-block {
@@ -5811,7 +5820,34 @@ div.dataTables_wrapper div.dataTables_length label {
     outline: 2px dashed #083050;
   }
 }
+.a-link {
+  display: inline-block;
+  position: relative;
 
+  &:before {
+    bottom: 0;
+    content: "";
+    height: 0.125rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    transition: all .2s linear;
+  }
+
+  &.text-secondary {
+    &:before {
+      background-color: $secondary;
+    }
+  }
+
+  &:hover {
+    &:before {
+      left: 50%;
+      right: 50%;
+      opacity: 0;
+    }
+  }
+}
 
 
 @media (min-width: 768px) {
