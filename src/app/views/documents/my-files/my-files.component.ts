@@ -6,6 +6,9 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FileTypes } from 'src/app/enums/fileTypes';
 import { DownloadService } from 'src/app/services/download.service';
+import { UserInfo } from 'src/app/interfaces/user';
+import { Roles } from 'src/app/enums/roles';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-my-files',
@@ -32,14 +35,19 @@ export class MyFilesComponent {
     title: null
   }
   documentsLoading: boolean = false;
+  userInfo: UserInfo | null = null;
+  userRoleTypes = Roles;
   constructor(private documentService: DocumentService,
     private router: Router,
     private downloadService: DownloadService,
     private elementRef: ElementRef,
-    private httpClient: HttpClient,
     private renderer: Renderer2,
-    private eventService: EventService){}
+    private eventService: EventService,
+    private storeService: StoreService){}
   ngOnInit() {
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;      
+    })
     // this.loadFolders();
     this.loadRecentDocuments();
     // this.loadTags();

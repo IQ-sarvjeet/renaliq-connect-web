@@ -11,6 +11,9 @@ import { LocalStorageService } from 'src/app/shared/services/localstorage.servic
 import { environment } from 'src/environments/environment';
 
 import * as moment from 'moment';
+import { StoreService } from 'src/app/services/store.service';
+import { UserInfo } from 'src/app/interfaces/user';
+import { Roles } from 'src/app/enums/roles';
 
 declare var $: any;
 const todayDate = new Date();
@@ -76,6 +79,9 @@ export class SharedBySomatusComponent {
   practiceList: any = [];
   folders: any = [];
   updateErrorMessage: string = '';
+  userInfo: UserInfo | null = null;
+  userRoleTypes = Roles;
+
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
@@ -85,9 +91,12 @@ export class SharedBySomatusComponent {
     private downloadService: DownloadService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private _localStorage: LocalStorageService){}
+    private storeService: StoreService){}
 
   ngOnInit() {
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;      
+    })
     this.loadTags();
     this.loadFolders();
     // this.loadList();
