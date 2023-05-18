@@ -130,13 +130,13 @@
         }
       }
       &.active {
-        color: $white !important;
-        background-color: $secondary;
+        color: $secondary !important;
+        background-color: $info;
         .option-dots {
-          color: $white !important;
+          color: $secondary !important;
         }
         svg {
-          fill: $white !important;
+          fill: $secondary !important;
         }
       }
     }
@@ -189,6 +189,10 @@
         }
         &.active {
           background-color: $primary-1;
+          color: $white !important;
+          svg {
+            fill: $white !important;
+          }
         }
       }
     }

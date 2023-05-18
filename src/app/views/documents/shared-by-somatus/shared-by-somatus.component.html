@@ -1,47 +1,76 @@
 <div class="mb-4 p-4 minh-content">
-  <div class="d-flex mt-2">
+  <div class="d-sm-flex">
     <div class="flex-fill d-flex align-items-center">
       <h3 class="card-title">Shared by Somatus</h3>
     </div>
+    <div class="mt-3 mt-sm-0">
+      <a href="javascript: void(0)" data-bs-target="#modalAddFiles" data-bs-toggle="modal" class="btn btn-block btn-outline-secondary py-1 px-4">
+        <i class="fa fa-plus me-1"></i>Add Document
+      </a>
+    </div>
   </div>
   <hr />
-  <div class="d-sm-flex">
-    <div class="d-flex pt-2 pe-1">
-      <h3 class="card-title mb-0">Folders:</h3>
-    </div>
+  <div class="d-sm-flex" *ngIf="!loadingFolders">
+    
     <div class="flex-fill">
       <a
         href="javascript: void(0)"
-        class="btn m-1 btn-outline-secondary"
+        class="folders-item"
         [ngClass]="(filters.documentFilter && filters.documentFilter.folder === '') ? 'active': ''"
         (click)="selectFolderHandler('')"
-        >All</a
+        >
+        <svg viewBox="0 -70 1024 1024" class="" role="img">
+          <use class="sv-icon" xlink:href="#svg_folder"></use>
+        </svg> <span class="d-block">All</span></a
       >
         <ng-container *ngFor="let folder of folders">
           <a
             href="javascript: void(0)"
-            class="btn m-1 btn-outline-secondary"
+            class="folders-item"
             [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'active': ''"
             (click)="selectFolderHandler(folder)"
             *ngIf="folder">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="w-inner-icn"
-                enable-background="new 0 0 1024 1024"
-                viewBox="0 0 1024 1024"
-              >
-                <path
-                  d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-                />
-              </svg> {{folder}}
+            <svg viewBox="0 -70 1024 1024" class="" role="img">
+              <use class="sv-icon" xlink:href="#svg_folder"></use>
+            </svg> <span class="d-block">{{folder}}</span>
           </a
           >
       </ng-container>
-      
     </div>
   </div>
-  <hr />
-  <div class="d-sm-flex">
+
+
+  <div class="d-sm-flex" *ngIf="loadingFolders">
+   
+    <div class="flex-fill">
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+    </div>
+  </div>
+  <hr *ngIf="tags.length"/>
+  <div class="d-sm-flex" *ngIf="!loadingTags && tags.length">
     <div class="d-flex align-items-center pe-3">
       <h3 class="card-title mb-0">Tags:</h3>
     </div>
@@ -63,6 +92,14 @@
       >
     </div>
   </div>
+  <div class="d-sm-flex" *ngIf="loadingTags">
+    
+    <div class="flex-fill">
+      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
+      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
+      <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
+    </div>
+  </div>
   <hr class="mb-0" />
   <!-- No Result Found Html Start-->
   <div class="mt-3 text-center" *ngIf="!documents.data.length && filesLoaded">
@@ -75,7 +112,7 @@
 
   <!-- Default Result Html Start-->
   <div>
-    <div class="row g-3 pt-3">
+    <div class="row g-3 pt-3" *ngIf="filesLoaded">
       <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25"
         *ngFor="let file of documents.data">
         <div class="card-style2">
@@ -84,6 +121,7 @@
               <svg viewBox="0 0 96 96" class="card-style2__icon" role="img">
                 <use class="sv-icon" xlink:href="#svg_file"></use>
               </svg>
+              <i class="fa fa-download"></i>
               <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Pdf) ? 'info-pdf': ''" *ngIf="file.fileType === fileTypes.Pdf">Pdf</span>
               <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Video) ? 'info-audio': ''" *ngIf="file.fileType === fileTypes.Video">Video</span>
               <span class="card-style2__icon-info" [ngClass]="(file.fileType === fileTypes.Doc) ? 'info-word': ''" *ngIf="file.fileType === fileTypes.Doc">Doc</span>
@@ -114,9 +152,7 @@
                 <div
                   class="dropdown-menu dropdown-menu-start folder-options"
                 >
-                  <a class="dropdown-item" href="#"
-                    data-bs-target="#documentUpdate"
-                    data-bs-toggle="modal"
+                  <a class="dropdown-item" href="javascript: void(0);"
                     (click)="openUpdateDialog(file)"
                     ><i class="fe fe-edit me-2"></i> Update</a
                   >
@@ -137,13 +173,71 @@
           </div>
         </div>
       </div>
-      
+    </div>
+
+    <div class="row g-3 pt-3" *ngIf="!filesLoaded">
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25">
+        <div class="border rounded-2">
+          <div class="p-2">
+            <div class="skeleton-loader__media">
+              <span class="skeleton-loader w-100 rounded-2"></span>
+            </div>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <span class="skeleton-loader w-50 py-1"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25">
+        <div class="border rounded-2">
+          <div class="p-2">
+            <div class="skeleton-loader__media">
+              <span class="skeleton-loader w-100 rounded-2"></span>
+            </div>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <span class="skeleton-loader w-50 py-1"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25">
+        <div class="border rounded-2">
+          <div class="p-2">
+            <div class="skeleton-loader__media">
+              <span class="skeleton-loader w-100 rounded-2"></span>
+            </div>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <span class="skeleton-loader w-50 py-1"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3 col-xl-25">
+        <div class="border rounded-2">
+          <div class="p-2">
+            <div class="skeleton-loader__media">
+              <span class="skeleton-loader w-100 rounded-2"></span>
+            </div>
+            <div class="d-flex mt-3">
+              <div class="flex-fill text-truncate">
+                <span class="skeleton-loader w-50 py-1"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <hr />
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation example" *ngIf="filesLoaded">
       <div class="d-md-flex">
         <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-          <div>Total Files Count : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
+          <div>No of Files : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
         </div>
         <div class="mt-3 mt-md-0">
           <app-pagination
@@ -151,6 +245,14 @@
             (gotoPageHandler)="gotoPage($event)"
           >
           </app-pagination>
+        </div>
+      </div> 
+    </nav>
+    <nav aria-label="Page navigation example" *ngIf="!filesLoaded">
+      <div class="d-md-flex">
+       
+        <div class="mt-3 mt-md-0 text-center text-md-end">
+          <span class="d-inline-block skeleton-loader mw-12 py-4 align-middle"></span>
         </div>
       </div> 
     </nav>
@@ -164,13 +266,13 @@
 <div class="modal fade" id="documentUpdate">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Update Document</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
       <form [formGroup]="updateFileForm" (ngSubmit)="submitUpdateDocument()" novalidate="novalidate">
-        <div class="modal-header bg-gray-200">
-          <h4 class="modal-title fw-semibold">Update Document</h4>
-          <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-12">
@@ -253,12 +355,12 @@
         </div>
         </div>
         <div class="modal-footer">
-          <button
+          <a href="javascript: void(0);"
             class="btn btn-outline-light"
             data-bs-dismiss="modal"
           >
             Cancel
-          </button>
+        </a>
           <button
             type="submit"
             class="btn btn-secondary"

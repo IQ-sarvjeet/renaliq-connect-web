@@ -1657,9 +1657,12 @@ a.card-tabs-item {
 
   &__img i {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    margin: -1rem 0 0 -1rem;
+    right: 0.75rem;
+    top: 0.75rem;
+    font-size: 1rem;
+    opacity: 0;
+    transition: all 0.2s linear;
+    z-index: 2;
   }
 
   &__info {
@@ -1831,9 +1834,46 @@ a.card-tabs-item {
         top: 0;
         border-radius: 0.5rem;
       }
+
+      i {
+        opacity: 0.5;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
     }
   }
 }
+
+  .info-image {
+    color: #d93025;
+  }
+  .info-pdf {
+    color: #f40f02;
+  }
+  .info-excel {
+    color: #0f9d58;
+  }
+  .info-word {
+    color: #1a73e8;
+  }
+  .info-text {
+    color: #5ccecd;
+  }
+  .info-audio {
+    color: #f40f02;
+  }
+  .info-folder {
+    color: #ff9100;
+  }
+  .info-code {
+    color: #ab75e9;
+  }
+  .info-file {
+    color: #666666;
+  }
+
 .card-btn {
   cursor: pointer;
   opacity: 0.75;

@@ -6,11 +6,8 @@ import { DocumentFilterModel, DocumentService, PracticeService } from 'src/app/a
 import { FileTypes } from 'src/app/enums/fileTypes';
 import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
-import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
-import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
 
-import * as moment from 'moment';
 import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
@@ -41,7 +38,7 @@ export class SharedBySomatusComponent {
       currentPage: 1,
       pageSize: 10,
       totalPages: 1,
-      totalRecords: 3
+      totalRecords: 0
     }
   };
   filters: DocumentFilterModel = {
@@ -52,13 +49,14 @@ export class SharedBySomatusComponent {
       sortBy: '',
       sortDirection: '',
       fromDate: datePrior90,
-      toDate: todayDate,
       isGLobal: false
     },
     currentPage: 1,
     pageSize: 10
   }
   filesLoaded: boolean = false;
+  loadingFolders: boolean = false;
+  loadingTags: boolean = false;
   documentDetails: any = {
     description: "",
     downloadURL: "",
@@ -137,30 +135,35 @@ export class SharedBySomatusComponent {
     })
   }
   private loadFolders() {
+    this.loadingFolders = true;
     this.documentService.apiDocumentListFoldersIsGlobalGet(false).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
         }
+        this.loadingFolders = false;
       },
       error: (error: any) => {
-
+        this.loadingFolders = false;
       }
     })
   }
   private loadTags() {
+    this.loadingTags = true;
     this.documentService.apiDocumentListTagsIsGlobalGet(false).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;
         }
+        this.loadingTags = false;
       },
       error: (error: any) => {
-
+        this.loadingTags = false;
       }
     })
   }
   private loadList() {
+    this.filesLoaded = false;
     this.documentService.apiDocumentListPost(this.filters).subscribe({
       next: (response: any) => {
         this.documents = response;
@@ -194,6 +197,7 @@ export class SharedBySomatusComponent {
   }
   
   public openUpdateDialog(details: any) {
+    $('#documentUpdate').modal('show');
     this.documentRequestInProgress = false;
     this.updateErrorMessage = '';
     this.documentDetails = details;
@@ -265,6 +269,11 @@ export class SharedBySomatusComponent {
     this.documentDetails.tags.forEach((item: any) => {
       formData1.append('Tags', item);
     })
+    this.eventService.openToaster({
+      showToster: true,
+      message: `Updating document.`,
+      type: 'success',
+    });
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
         this.documentRequestInProgress = false;

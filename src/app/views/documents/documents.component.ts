@@ -12,39 +12,15 @@ import { StoreService } from 'src/app/services/store.service';
 export class DocumentsComponent {
   userInfo: UserInfo | null = null;
   userRoleTypes = Roles;
-  // private folders: any = [];
-  // private tags: any = [];
+  loading: boolean = true;
   constructor(private storeService: StoreService, private documentService: DocumentService){
 
   }
   ngOnInit() {
     this.userInfo = this.storeService.getUserInfo();
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
-      this.userInfo = info;      
+      this.userInfo = info;  
     })
-    // this.loadFolders();
-    // this.loadTags();
+    this.loading = false;
   }
-  // private loadFolders() {
-  //   this.documentService.apiDocumentListFoldersGet().subscribe({
-  //     next: (folders: any) => {
-  //       if(folders.data) {
-  //       }
-  //     },
-  //     error: (error: any) => {
-
-  //     }
-  //   })
-  // }
-  // private loadTags() {
-  //   this.documentService.apiDocumentListTagsGet().subscribe({
-  //     next: (tagsResponse: any) => {
-  //       if(tagsResponse.data) {
-  //       }
-  //     },
-  //     error: (error: any) => {
-
-  //     }
-  //   })
-  // }
 }

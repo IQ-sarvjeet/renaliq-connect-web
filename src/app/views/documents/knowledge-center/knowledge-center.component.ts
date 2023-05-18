@@ -39,7 +39,7 @@ export class KnowledgeCenterComponent {
       currentPage: 1,
       pageSize: 10,
       totalPages: 1,
-      totalRecords: 3
+      totalRecords: 0
     }
   };
   filters: DocumentFilterModel = {
@@ -57,6 +57,8 @@ export class KnowledgeCenterComponent {
     pageSize: 10
   }
   filesLoaded: boolean = false;
+  loadingTags: boolean = false;
+  loadingFolders: boolean = false;
   documentDetails: any = {
     description: "",
     downloadURL: "",
@@ -134,26 +136,30 @@ export class KnowledgeCenterComponent {
     })
   }
   private loadFolders() {
+    this.loadingFolders = true;
     this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
         }
+        this.loadingFolders = false;
       },
       error: (error: any) => {
-
+        this.loadingFolders = false;
       }
     })
   }
   private loadTags() {
+    this.loadingTags = true;
     this.documentService.apiDocumentListTagsIsGlobalGet(true).subscribe({
       next: (tagsResponse: any) => {
         if(tagsResponse.data) {
           this.tags = tagsResponse.data;
         }
+        this.loadingTags = false;
       },
       error: (error: any) => {
-
+        this.loadingTags = false;
       }
     })
   }
@@ -262,10 +268,15 @@ export class KnowledgeCenterComponent {
     this.documentDetails.tags.forEach((item: any) => {
       formData1.append('Tags', item);
     })
+    this.eventService.openToaster({
+      showToster: true,
+      message: `Updating document.`,
+      type: 'success',
+    });
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
         this.documentRequestInProgress = false;
-        $('#documentUpdate').modal('hide');
+        $('#documentUpdateKC').modal('hide');
         this.loadList();
       },
       error: (error: any) => {
