@@ -11,34 +11,29 @@
     </div>
     <hr />
     <div class="d-sm-flex" *ngIf="!loadingFolders">
-      <div class="d-flex pt-2 pe-1">
-        <h3 class="card-title mb-0">Folders:</h3>
+      <div class="d-flex">
+        <h3 class="card-title mb-0 mt-4">Folders:</h3>
       </div>
       <div class="flex-fill">
         <a
           href="javascript: void(0)"
-          class="btn m-1 btn-outline-secondary"
+          class="folders-item"
           [ngClass]="(filters.documentFilter && filters.documentFilter.folder === '') ? 'active': ''"
           (click)="selectFolderHandler('')"
-          >All</a
+          ><svg viewBox="0 -70 1024 1024" class="" role="img">
+            <use class="sv-icon" xlink:href="#svg_folder"></use>
+          </svg> <span class="d-block">All</span></a
         >
           <ng-container *ngFor="let folder of folders">
             <a
               href="javascript: void(0)"
-              class="btn m-1 btn-outline-secondary"
+              class="folders-item"
               [ngClass]="(filters.documentFilter && filters.documentFilter.folder === folder) ? 'active': ''"
               (click)="selectFolderHandler(folder)"
               *ngIf="folder">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="w-inner-icn"
-                  enable-background="new 0 0 1024 1024"
-                  viewBox="0 0 1024 1024"
-                >
-                  <path
-                    d="M878.08 448H241.92l-96 384h636.16l96-384zM832 384v-64H485.76L357.504 192H128v448l57.92-231.744A32 32 0 0 1 216.96 384H832zm-24.96 512H96a32 32 0 0 1-32-32V160a32 32 0 0 1 32-32h287.872l128.384 128H864a32 32 0 0 1 32 32v96h23.04a32 32 0 0 1 31.04 39.744l-112 448A32 32 0 0 1 807.04 896z"
-                  />
-                </svg> {{folder}}
+              <svg viewBox="0 -70 1024 1024" class="" role="img">
+                <use class="sv-icon" xlink:href="#svg_folder"></use>
+              </svg> <span class="d-block">{{folder}}</span> 
             </a
             >
         </ng-container>
@@ -46,16 +41,34 @@
       </div>
     </div>
     <div class="d-sm-flex" *ngIf="loadingFolders">
-      <div class="d-flex pt-2 pe-1">
-        <h3 class="card-title mb-0">Folders:</h3>
+      <div class="d-flex">
+        <h3 class="card-title mb-0 mt-4">Folders:</h3>
       </div>
       <div class="flex-fill">
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
-        <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
+        <span class="d-inline-block mx-3 mt-1 mw-3">
+          <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+          <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+        </span>
       </div>
     </div>
     <hr />
