@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService, PracticeService } from 'src/app/api-client';
 import { environment } from 'src/environments/environment';
+import { DocEventService } from '../services/doc-event.service';
 
 declare var $: any;
 @Component({
@@ -33,7 +34,8 @@ export class AddFileComponent {
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient,
+    private docEventService: DocEventService) { }
   ngOnInit() {
     this.uploadMessage = '';
     this.practiceService.apiPracticeListGet().subscribe({
@@ -41,6 +43,22 @@ export class AddFileComponent {
         this.practiceList = response;
       },
       error: (error: any) => {
+      }
+    })
+    this.docEventService.openAddDocModalSubscription().subscribe((response: boolean) => {
+      if(response) {
+        $('#modalAddFiles').modal('show');
+        this.addFileForm.patchValue({
+          fileName: '',
+          title: '',
+          folder: '',
+          isGlobal: '',
+          practiceIds: [],
+          tags: '',
+          description: '',
+          file: null,
+          fileSource: null,
+        })
       }
     })
   }
@@ -66,7 +84,7 @@ export class AddFileComponent {
       next: (response: any) => {
         this.uploading = false;
         this.uploadMessage = '';
-        $('#uploading').modal('hide');
+        $('#modalAddFiles').modal('hide');
       },
       error: (error: any) => {
         console.error(error);
@@ -83,8 +101,11 @@ export class AddFileComponent {
       const fileName = file.name;
       // const fileExt = fileName.split('.')[0];
       const fileSize = file.size;
+      console.log('file', file.type);
       this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
-      if(['mp4', 'mp3', 'jpeg', 'png', 'pdf', 'doc', 'vnd.ms-excel'].indexOf(file.type.split('/')[1]) === -1) {
+      const typeArr = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webp']
+      const ext = file.name.split('.');
+      if(typeArr.indexOf(ext[ext.length -1]) === -1) {
         this.exceedFileSize = true;
       }
       if (this.exceedFileSize) {

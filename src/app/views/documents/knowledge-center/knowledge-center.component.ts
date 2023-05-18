@@ -9,9 +9,8 @@ import { UserInfo } from 'src/app/interfaces/user';
 import { DownloadService } from 'src/app/services/download.service';
 import { EventService } from 'src/app/services/event.service';
 import { StoreService } from 'src/app/services/store.service';
-import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
-import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 import { environment } from 'src/environments/environment';
+import { DocEventService } from '../services/doc-event.service';
 
 declare var $: any;
 const todayDate = new Date();
@@ -90,7 +89,8 @@ export class KnowledgeCenterComponent {
     private downloadService: DownloadService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private storeService: StoreService){}
+    private storeService: StoreService,
+    private docEventService: DocEventService){}
 
   ngOnInit() {
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
@@ -134,6 +134,9 @@ export class KnowledgeCenterComponent {
         this.loadList();
       }
     })
+  }
+  public openAddDocumentModal(){
+    this.docEventService.openAddDocModalEvent(true);
   }
   private loadFolders() {
     this.loadingFolders = true;
