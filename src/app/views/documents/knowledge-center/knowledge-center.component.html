@@ -39,9 +39,6 @@
       </div>
     </div>
     <div class="d-sm-flex" *ngIf="loadingFolders">
-      <div class="d-flex">
-        <h3 class="card-title mb-0 mt-4">Folders:</h3>
-      </div>
       <div class="flex-fill">
         <span class="d-inline-block mx-3 mt-1 mw-3">
           <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
@@ -69,8 +66,8 @@
         </span>
       </div>
     </div>
-    <hr />
-    <div class="d-sm-flex" *ngIf="!loadingTags">
+    <hr *ngIf="tags.length"/>
+    <div class="d-sm-flex" *ngIf="!loadingTags && tags.length">
       <div class="d-flex align-items-center pe-3">
         <h3 class="card-title mb-0">Tags:</h3>
       </div>
@@ -93,9 +90,7 @@
       </div>
     </div>
     <div class="d-sm-flex" *ngIf="loadingTags">
-      <div class="d-flex align-items-center pe-3">
-        <h3 class="card-title mb-0">Tags:</h3>
-      </div>
+     
       <div class="flex-fill">
         <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
         <span class="d-inline-block rounded-1 skeleton-loader mw-6 py-4 m-1"></span>
@@ -242,7 +237,7 @@
       <nav aria-label="Page navigation example" *ngIf="filesLoaded">
         <div class="d-md-flex">
           <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-            <div>Total Files Count : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
+            <div>No of Files : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
           </div>
           <div class="mt-3 mt-md-0">
             <app-pagination
@@ -255,9 +250,7 @@
       </nav>
       <nav aria-label="Page navigation example" *ngIf="!filesLoaded">
         <div class="d-md-flex">
-          <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-            <div>Total Files Count : <span class="d-inline-block skeleton-loader mw-5 py-1 align-middle"></span></div>
-          </div>
+          
           <div class="mt-3 mt-md-0 text-center text-md-end">
             <span class="d-inline-block skeleton-loader mw-12 py-4 align-middle"></span>
           </div>
