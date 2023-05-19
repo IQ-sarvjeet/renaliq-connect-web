@@ -5,9 +5,14 @@ export interface ClinicalPatientMetricFilterModel {
 }
 
 export interface ClinicalPatientMatrixFilter {
-      metricId?: number;
-      periodId?:number;
-      patientName?: string;
-      numerator?: number;
-      dateRange?: Array<Date>;
+    metricId?: number;
+    periodId?: number;
+    patientName?: string;
+    numerator?: number;
+    denominator?: number;
+    status?: string;
+    stage?: string;
+    sortBy?: string;
+    sortDirection?: string;
+    dateRange?: Array<Date>;
 }

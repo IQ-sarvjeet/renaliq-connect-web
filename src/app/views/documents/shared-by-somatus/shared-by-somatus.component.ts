@@ -135,6 +135,12 @@ export class SharedBySomatusComponent {
         this.loadList();
       }
     })
+     // Subscribe to the refreshList event
+    this.docEventService.refreshListSubscription().subscribe((response: boolean) => {
+      if (response) {
+        this.loadList(); // Call the loadList method when the event is triggered
+      }
+    });
   }
   public openAddDocumentModal(){
     this.docEventService.openAddDocModalEvent(true);

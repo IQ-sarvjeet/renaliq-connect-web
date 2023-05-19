@@ -377,6 +377,56 @@ export class DocumentService {
     /**
      * 
      * 
+     * @param folderName 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiDocumentListFolderNameTagsGet(folderName: string, observe?: 'body', reportProgress?: boolean): Observable<TagListViewModel>;
+    public apiDocumentListFolderNameTagsGet(folderName: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<TagListViewModel>>;
+    public apiDocumentListFolderNameTagsGet(folderName: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<TagListViewModel>>;
+    public apiDocumentListFolderNameTagsGet(folderName: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (folderName === null || folderName === undefined) {
+            throw new Error('Required parameter folderName was null or undefined when calling apiDocumentListFolderNameTagsGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            'text/plain',
+            'application/json',
+            'text/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<TagListViewModel>('get',`${this.basePath}/api/Document/list/${encodeURIComponent(String(folderName))}/tags`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param isGlobal 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

@@ -22,7 +22,7 @@ export class AddFileComponent {
     isGlobal: [false, Validators.required],
     practiceIds: [[]],
     tags: [''],
-    description: [''],
+    description: ['', Validators.required],
     file: [null, Validators.required],
     fileSource: [null, Validators.required],
   })
@@ -61,7 +61,17 @@ export class AddFileComponent {
         })
       }
     })
+
+     // Register event listener for modal hidden event
+     $("#modalAddFiles").on('hidden.bs.modal', () => {
+      this.onCancel();
+    });
   }
+
+  onCancel() {
+    this.docEventService.closeAddDocModalEvent();
+  }
+  
   submit() {
     this.uploading = true;
     const formData1 = new FormData();
@@ -85,6 +95,8 @@ export class AddFileComponent {
         this.uploading = false;
         this.uploadMessage = '';
         $('#modalAddFiles').modal('hide');
+         // Trigger the refreshList event
+        this.docEventService.refreshListEvent(true);
       },
       error: (error: any) => {
         console.error(error);
@@ -103,7 +115,7 @@ export class AddFileComponent {
       const fileSize = file.size;
       console.log('file', file.type);
       this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
-      const typeArr = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webp']
+      const typeArr = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webm']
       const ext = file.name.split('.');
       if(typeArr.indexOf(ext[ext.length -1]) === -1) {
         this.exceedFileSize = true;

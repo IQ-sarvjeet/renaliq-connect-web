@@ -134,6 +134,13 @@ export class KnowledgeCenterComponent {
         this.loadList();
       }
     })
+     // Subscribe to the refreshList event
+     this.docEventService.refreshListSubscription().subscribe((response: boolean) => {
+      console.log("Triggering refresh..");
+      if (response) {
+        this.loadList(); // Call the loadList method when the event is triggered
+      }
+    });
   }
   public openAddDocumentModal(){
     this.docEventService.openAddDocModalEvent(true);

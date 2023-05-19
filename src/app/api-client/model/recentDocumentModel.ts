@@ -11,9 +11,14 @@
  */
 
 export interface RecentDocumentModel { 
+    id?: number;
     fileName?: string;
     tags?: Array<string>;
     uploadedBy?: string;
     viewedOn?: string;
     folder?: string;
+    title?: string;
+    description?: string;
+    fileTypes?: number;
+    fileExt?: string;
 }
