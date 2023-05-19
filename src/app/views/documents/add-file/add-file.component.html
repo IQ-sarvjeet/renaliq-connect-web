@@ -18,7 +18,7 @@
                           </div>
                           <input type="file" name="images" id="customFile"
                            required="required" 
-                           accept="application/pdf,image/*,video/webm,video/mp4, application/vnd.ms-excel"
+                           accept=".pdf, .doc, .docx, .xlsx, image/*, video/webm, video/mp4, application/vnd.ms-excel"
                            formControlName="fileSource"
                            (change)="onFileChange($event)"
                            />
@@ -115,7 +115,7 @@
               <div *ngIf="uploadMessage">
                 {{uploadMessage}}
               </div>
-              <div *ngIf="uploading">
+              <div *ngIf="uploading" class="text-end">
                 Uploading in progress...
               </div>
           </div>
@@ -124,6 +124,7 @@
             <a href="javascript: void(0);"
               class="btn btn-outline-light"
               data-bs-dismiss="modal"
+              (click)="onCancel()"
             >
               Cancel
             </a>

@@ -98,6 +98,25 @@ export class ReportsGridComponent implements OnInit  {
       }
     ])
   }
+  
+  applySort(columnName: string) {
+    const prevSortBy = this.filterModel.filter.sortBy;
+    if(prevSortBy === columnName && this.filterModel.filter.sortDirection === '') {
+      this.filterModel.filter.sortDirection = 'asc';
+    } else {
+      this.filterModel.filter.sortDirection= '';
+    }
+    this.filterModel.filter.sortBy = columnName;
+    this.bindClinicalPatientMetricList();
+  }
+  renderArrowIcon(columnName: string) {
+    if(columnName === this.filterModel.filter.sortBy && this.filterModel.filter.sortDirection  === 'asc') {
+      return 'table-header-asc';
+    } else if(columnName === this.filterModel.filter.sortBy) {
+      return 'table-header-desc';
+    }
+    return '';
+  }
   ngOnDestroy() {
     this._subscriptions.unsubscribe();
   }

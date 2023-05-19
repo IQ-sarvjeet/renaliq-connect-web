@@ -15,4 +15,9 @@ export interface ClinicalPatientMatrixFilter {
     periodId?: number;
     patientName?: string;
     numerator?: number;
+    denominator?: number;
+    status?: string;
+    stage?: string;
+    sortBy?: string;
+    sortDirection?: string;
 }

@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
+import { DocEventService } from '../services/doc-event.service';
 
 declare var $: any;
 const todayDate = new Date();
@@ -89,7 +90,8 @@ export class SharedBySomatusComponent {
     private downloadService: DownloadService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private storeService: StoreService){}
+    private storeService: StoreService,
+    private docEventService: DocEventService){}
 
   ngOnInit() {
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
@@ -133,6 +135,15 @@ export class SharedBySomatusComponent {
         this.loadList();
       }
     })
+     // Subscribe to the refreshList event
+    this.docEventService.refreshListSubscription().subscribe((response: boolean) => {
+      if (response) {
+        this.loadList(); // Call the loadList method when the event is triggered
+      }
+    });
+  }
+  public openAddDocumentModal(){
+    this.docEventService.openAddDocModalEvent(true);
   }
   private loadFolders() {
     this.loadingFolders = true;

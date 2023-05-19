@@ -26,11 +26,20 @@
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
         <th class="bg-transparent border-bottom-0 fs-12">STAGE</th>
         <!--th class="bg-transparent border-bottom-0 fs-12">METRIC</th-->
-        <th class="bg-transparent border-bottom-0 fs-12 text-center">
+       
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Stage')"
+          [ngClass]="renderArrowIcon('Stage')">
           NUMERATOR
         </th>
-        <th class="bg-transparent border-bottom-0 fs-12 text-center">
+        
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Stage')"
+          [ngClass]="renderArrowIcon('Stage')">
           DENOMINATOR
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 text-center">
+          STATUS
         </th>
       </tr>
     </thead>
@@ -42,24 +51,10 @@
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
-      </tr>
-      <tr>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
       </tr>
       <tr>
         <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-      </tr>
-      <tr>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
@@ -74,13 +69,6 @@
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
-      </tr>
-      <tr>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
-        <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
       </tr>
       <tr>
@@ -90,6 +78,8 @@
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      
       </tr>
       <tr>
         <td><span class="skeleton-loader my-1"></span></td>
@@ -98,6 +88,8 @@
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      
       </tr>
       <tr>
         <td><span class="skeleton-loader my-1"></span></td>
@@ -106,8 +98,37 @@
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
       </tr>
       <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
         <td><span class="skeleton-loader my-1"></span></td>
@@ -167,6 +188,7 @@
         <!--<td>{{item.metricName}}</td>-->
         <td class="text-center">{{ item.numerator }}</td>
         <td class="text-center">{{ item.denominator }}</td>
+        <td class="text-center">{{ item.status }}</td>
       </tr>
     </tbody>
   </table>
