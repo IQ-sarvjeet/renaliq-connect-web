@@ -374,31 +374,96 @@
   </div>
 </div>
 
+<!-- Upload Toast -->
+<div class="card custom-card upload-toast"> 
+  <div class="card-header border-bottom py-4 ps-4 pe-3 d-flex"> 
+    <h3 class="card-title flex-fill">Uploading Document</h3> 
+    <button aria-label="Close" data-bs-dismiss="modal" class="btn-close">
+      <span>×</span>
+    </button>
+  </div> 
+  <div class="card-body p-0"> 
+    <div class="upload-toast__item">
+      <div><i class="fa fa-file-photo-o fs-16 align-text-top text-danger"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">documentNameHere.jpg</div>
+      <div>
+        <div class="spinner-border spinner-border-sm text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    </div>
+    <hr class="m-0"/>
+    <a class="upload-toast__item" href="javascript:void(0)">
+      <div><i class="fa fa-file-pdf-o fs-16 align-text-top text-danger"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">fileNameSample.pdf</div>
+      <div>
+        <i class="fe fe-check-circle text-success fs-18 align-text-top"></i>
+      </div>
+    </a>
+    <hr class="m-0"/>
+    <a class="upload-toast__item" href="javascript:void(0)">
+      <div><i class="fa fa-file-word-o fs-16 align-text-top text-primary"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">fileNameSample.Doc</div>
+      <div>
+        <i class="fe fe-check-circle text-success fs-18 align-text-top"></i>
+      </div>
+    </a>
+    <hr class="m-0"/>
+    <a class="upload-toast__item" href="javascript:void(0)">
+      <div><i class="fa fa-file-excel-o fs-16 align-text-top text-success"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">fileNameSample.xls</div>
+      <div>
+        <i class="fe fe-check-circle text-success fs-18 align-text-top"></i>
+      </div>
+    </a>
+    <hr class="m-0"/>
+    <a class="upload-toast__item" href="javascript:void(0)">
+      <div><i class="fa fa-file-video-o fs-16 align-text-top text-danger"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">fileNameSample.mp4</div>
+      <div>
+        <i class="fe fe-check-circle text-success fs-18 align-text-top"></i>
+      </div>
+    </a>
+    <hr class="m-0"/>
+    <a class="upload-toast__item" href="javascript:void(0)">
+      <div><i class="fa fa-file-o fs-16 align-text-top"></i></div>
+      <div class="flex-fill ps-2 pe-5 text-truncate">fileNameSample.ext</div>
+      <div>
+        <i class="fe fe-check-circle text-success fs-18 align-text-top"></i>
+      </div>
+    </a>
+  </div> 
+</div>
+
 <!-- Delete MODAL -->
 <div class="modal fade" id="modalDelete">
   <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content modal-content-demo">
+    <div class="modal-content modal-content-demo rounded-4">
       <div class="modal-body p-5">
         <div class="text-center" *ngIf="!documentRequestInProgress">
-          <h2><i class="fa fa-warning text-danger me-2"></i> Are you sure?</h2>
-          <p class="fs-16">You want to delete!</p>
+          <div class="fs-16">Are you sure you want to  delete <span class="text-nowrap"><strong>DOCUMENT_NAME</strong>?</span></div>
+          <h4 class="fw-bold text-primary mt-1">you can't undo this action</h4>
+          <div class="d-flex alert alert-danger my-4 rounded-3 border-0 badge-danger-lighter">
+            <span class="alert-inner--icon me-3"><i class="fe fe-info fs-32"></i></span>
+            <div class="flex-fill text-start alert-inner--text lh-normal text-dark">By deleting other users will not be able to access this document.</div>
+          </div>
         </div>
-        <div class="text-center" *ngIf="documentRequestInProgress">
+        <div class="text-center mb-5 mt-2" *ngIf="documentRequestInProgress">
           <h2> Delete in progress...</h2>
         </div>
         <div class="text-center mt-4">
           <button
-          class="btn btn-lg btn-outline-light mx-1"
+          class="btn btn-outline-light mx-1 py-2 px-5 fw-bold"
           data-bs-dismiss="modal"
         >
           Cancel
         </button>
         <button
-          class="btn btn-lg btn-danger mx-1"
+          class="btn btn-danger mx-1 py-2 px-5 fw-bold"
           [disabled]="documentRequestInProgress"
           (click)="deleteDocumentRequest()"
         >
-        Delete
+        Confirm
         </button>
         </div>
         

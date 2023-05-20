@@ -766,7 +766,7 @@ a.chip:hover {
   z-index: 99;
   display: none;
   text-align: center;
-  z-index: 10000;
+  z-index: 9;
   height: 40px;
   width: 40px;
   background-repeat: no-repeat;
@@ -1707,6 +1707,11 @@ html.fullscreenie {
 .badge-danger-light {
   color: #f33819;
   background-color: rgba(243, 56, 25, 0.15);
+}
+
+.badge-danger-lighter {
+  color: #f33819;
+  background-color: rgba(243, 56, 25, 0.1);
 }
 
 .fa-user-plus:before {
@@ -5888,6 +5893,56 @@ div.dataTables_wrapper div.dataTables_length label {
 
     svg {
       opacity: 1;
+    }
+  }
+}
+.lh-normal {
+  line-height: normal;
+}
+.rounded-4 {
+  border-radius: 0.5rem;
+}
+
+.upload-toast {
+  position: fixed;
+  z-index: 10;
+  right: 1rem;
+  bottom: 1rem;
+  width: auto;
+  margin: 0;
+  box-shadow: 0 -0.25rem 1rem rgba(0,0,0,.25);
+  min-width: 20rem;
+
+  &__item {
+    display: flex;
+    color: $default-color;
+    padding: 0.75rem 1rem;
+  }
+
+  a.upload-toast__item {
+    color: $default-color;
+    transition: all .2s linear;
+    text-decoration: none;
+
+    &:hover {
+      background-color: $primary-transparent;
+    }
+  }
+}
+
+.dark-mode .upload-toast {
+  background: #264562 !important;
+  color: $dark-text;
+
+  &__item {
+    color: $dark-text;
+  }
+
+  a.upload-toast__item {
+    color: $dark-text;
+
+    &:hover {
+      background-color: rgba(255,255,255,0.1);
     }
   }
 }
