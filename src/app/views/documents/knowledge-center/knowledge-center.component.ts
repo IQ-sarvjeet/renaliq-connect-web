@@ -80,6 +80,7 @@ export class KnowledgeCenterComponent {
   updateErrorMessage: string = '';
   userInfo: UserInfo | null = null;
   userRoleTypes = Roles;
+  userInfoSubscriptionRef: any;
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
     private route: ActivatedRoute,
@@ -93,7 +94,7 @@ export class KnowledgeCenterComponent {
     private docEventService: DocEventService){}
 
   ngOnInit() {
-    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+    this.userInfoSubscriptionRef = this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
       this.userInfo = info;      
     })
     this.loadTags();
@@ -307,5 +308,8 @@ export class KnowledgeCenterComponent {
     } else {
       this.downloadService.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
     }
+  }
+  ngOnDestroy() {
+    this.userInfoSubscriptionRef.unsubscribe();
   }
 }
