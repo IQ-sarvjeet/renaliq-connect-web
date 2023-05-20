@@ -16,7 +16,6 @@ import { HttpClient, HttpHeaders, HttpParams,
 import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
-
 import { UserRoleEditModel } from '../model/userRoleEditModel';
 import { UserRoleViewModel } from '../model/userRoleViewModel';
 
