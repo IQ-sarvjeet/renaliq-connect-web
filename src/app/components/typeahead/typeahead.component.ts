@@ -42,7 +42,7 @@ export class TypeaheadComponent {
             })
         )
 
-    this.searchInput.nativeElement.addEventListener('focusout', () => {
+    this.searchInput.nativeElement.addEventListener('focusout', ($event: any) => {
       this.selectedItem = this.searchInput.nativeElement.value;
       this.itemSelected.next(this.selectedItem);
       this.displayList = false;
@@ -59,7 +59,7 @@ export class TypeaheadComponent {
   }
   selectListItem(value: any) {
     this.selectedItem = this.optionList.find((item: any) => {
-      return item.toLowerCase() === value.toLowerCase();
+      return item?.toLowerCase() === value.toLowerCase();
     })
     this.itemSelected.next(this.selectedItem);
   }
