@@ -1709,6 +1709,11 @@ html.fullscreenie {
   background-color: rgba(243, 56, 25, 0.15);
 }
 
+.badge-danger-lighter {
+  color: #f33819;
+  background-color: rgba(243, 56, 25, 0.1);
+}
+
 .fa-user-plus:before {
   content: "\f234";
 }
@@ -5890,6 +5895,12 @@ div.dataTables_wrapper div.dataTables_length label {
       opacity: 1;
     }
   }
+}
+.lh-normal {
+  line-height: normal;
+}
+.rounded-4 {
+  border-radius: 0.5rem;
 }
 
 @media (min-width: 768px) {
