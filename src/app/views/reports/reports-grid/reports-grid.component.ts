@@ -7,7 +7,7 @@ import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPat
 import { GridModel } from 'src/app/interfaces/grid.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
-
+import { EventService } from 'src/app/services/event.service';
 @Component({
   selector: 'app-reports-grid',
   templateUrl: './reports-grid.component.html',
@@ -30,6 +30,9 @@ export class ReportsGridComponent implements OnInit  {
     }
   }
   list: any = [];
+  fileNameExport: string = '';
+  exportStatus: string = ''
+  disabledExport: boolean = false;
   filterModel: ClinicalPatientMetricFilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
@@ -44,7 +47,7 @@ export class ReportsGridComponent implements OnInit  {
 
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
     private _interactionService: InteractionService,
-    private route: Router) { }
+    private eventService: EventService,private route: Router) { }
 
   ngOnInit(): void {
     this.filterModel.filter.metricId=this.metricId;
@@ -63,6 +66,43 @@ export class ReportsGridComponent implements OnInit  {
      });
     this._subscriptions.add(sub);
   }
+exportClickHandler() {
+    if (this.exportStatus === 'inprogress') {
+      this.exportStatus = 'waitingForStatus';
+    }
+   /* this.patientService.apiPatientSummaryExportstatusGet().subscribe({
+      next: (response: any) => {
+        if (response.exportStatus === 4) {
+          this.exportStatus = '';
+        }
+      }
+    }) */
+  }
+  submitExport() {
+    console.log("Submitting Export..");
+    this.disabledExport = true;
+    this.exportStatus = 'inprogress';
+   /* this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
+      next: (response: any) => {
+        this.fileNameExport = '';
+        $('#exportFilter').modal('hide');
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Patient - Export requested submitted successfully.`,
+          type: 'success',
+        });
+        this.disabledExport = false;
+        this.eventService.notificationEventUpdate(true);
+      },
+      error: (error) => {
+        this.exportStatus = 'error';
+        this.disabledExport = false;
+        this.fileNameExport = '';
+      }
+    }) */
+  }
+
+
   public GetDateWithOutTimeZone(date :Date)
   {
    return new Date(date.getTime() +  Math.abs(date.getTimezoneOffset()*60000) );
