@@ -1,0 +1,15 @@
+<div class="form-floating mb-3">
+    <input type="text" class="form-control" 
+        placeholder="Folder"
+        [value]="selectedItem"
+        #searchInput />
+    <label class="lh-sm" for="folder">{{fieldLable}}</label>
+    <div *ngIf="(filteredData | async) as data" style="position: relative; width: 100%;">
+        <ul *ngIf="data.length && displayList" style="position: absolute; z-index: 9999; background-color: #ffffff;">
+            <li *ngFor="let item of data; let i = index;"
+                style="width: 100%; height: auto; border: solid 1px #333333;"
+                [ngClass]="{'select': item.toLowerCase() === selectedItem.toLowerCase()}"
+                (click)="selectListItem(item)">{{item}}</li>
+        </ul>
+    </div>
+</div>

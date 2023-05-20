@@ -17,6 +17,7 @@ import { ToasterComponent } from './toaster/toaster.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { DataCardComponent } from './data-card/data-card.component';
 import { NoRecordsFoundComponent } from './no-records-found/no-records-found.component';
+import { TypeaheadComponent } from './typeahead/typeahead.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, ],
@@ -32,7 +33,8 @@ import { NoRecordsFoundComponent } from './no-records-found/no-records-found.com
     ToasterComponent,
     NotificationsComponent,
     DataCardComponent,
-    NoRecordsFoundComponent
+    NoRecordsFoundComponent,
+    TypeaheadComponent
   ],
 
   providers: [
@@ -54,7 +56,8 @@ import { NoRecordsFoundComponent } from './no-records-found/no-records-found.com
     RouterModule,
     NotificationsComponent,
     DataCardComponent,
-    NoRecordsFoundComponent
+    NoRecordsFoundComponent,
+    TypeaheadComponent
   ],
  
 })

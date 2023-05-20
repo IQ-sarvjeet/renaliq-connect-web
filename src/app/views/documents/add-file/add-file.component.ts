@@ -31,6 +31,7 @@ export class AddFileComponent {
   exceedFileSize: boolean = false;
   uploadMessage: string = '';
   uploading: boolean = false;
+  folders: any = [];
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
@@ -66,6 +67,24 @@ export class AddFileComponent {
      $("#modalAddFiles").on('hidden.bs.modal', () => {
       this.onCancel();
     });
+    this.loadFolders();
+  }
+  private loadFolders() {
+    this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
+      next: (folders: any) => {
+        if(folders.data) {
+          this.folders = folders.data;
+        }
+      },
+      error: (error: any) => {
+      }
+    })
+  }
+  public itemSelected($event: any) {
+    console.log('folders selected::::', $event);
+    this.addFileForm.patchValue({
+      folder: $event,
+    })
   }
 
   onCancel() {

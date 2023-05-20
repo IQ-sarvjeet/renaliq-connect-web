@@ -10,6 +10,7 @@
         <form [formGroup]="addFileForm" (ngSubmit)="submit()" novalidate="novalidate">
           <div class="modal-body">
             <div class="row">
+              
               <div class="col-12 col-md-6 position-relative">
                   <div class="upload-block">
                       <div class="w-100 file-area">
@@ -39,7 +40,7 @@
                   </div>
               </div>
               <div class="col-12 col-md-6">
-                  
+                    
                     <div class="form-floating mb-3">
                       <input type="text" 
                           class="form-control"
@@ -48,13 +49,15 @@
                           formControlName="title" >
                       <label class="lh-sm" for="fileName">Title</label>
                     </div>
-                    <div class="form-floating mb-3">
+                    <!-- <div class="form-floating mb-3">
                       <input type="text" class="form-control" 
                           id="folder" 
                           placeholder="Folder"
                           formControlName="folder" />
                       <label class="lh-sm" for="folder">Folder</label>
-                    </div>
+                    </div> -->
+                    <app-typeahead [dataList]="{label: 'Folder', data: folders, defaultSelected: addFileForm.controls['folder'].value}"
+                      (itemSelected)="itemSelected($event)"></app-typeahead>
                     <div class="d-flex mb-3">
                       <div>
                         <strong class="me-3 text-nowrap">Doc Scope</strong>
