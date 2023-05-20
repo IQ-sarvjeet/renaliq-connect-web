@@ -1,4 +1,17 @@
 <div class="table-responsive" *ngIf="list.length > 0">
+
+  <div class="row g-0 mb-2">
+    <div class="col-12 col-md-2 order-md-2 text-end">
+      <a data-bs-target="#modalFilter" data-bs-toggle="modal" href="javascript:void(0)" class="p-1 text-secondary fs-16 align-middle"><i class="fa fa-filter"></i></a>
+      <a href="javascript: void(0)" data-bs-target="#exportFilter" data-bs-toggle="modal" class="btn btn-outline-secondary ms-3"><i class="fa fa-download me-1"></i> Export</a>
+    </div>
+    <div class="col-12 col-md-10 order-md-1">
+        <div class="tags mt-1 me-2"> Risk Category: <b>Low</b><a href="Javascript:void(0)" class="tags__icon">x</a></div>
+        <a href="Javascript:void(0)" class="a-link text-secondary m-1">Clear Filters</a>
+    </div>
+    
+  </div>
+
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
     Error! {{ errorMsg }}
   </div>
@@ -200,3 +213,112 @@
 </div>
 <app-spinner *ngIf="showLoading"></app-spinner>
 <app-no-records-found *ngIf="list.length === 0 && !showLoading"></app-no-records-found>
+
+
+
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+      
+            <div class="col-12 mb-3">
+              <label for="careMember" class="mb-1">Numerator</label>
+              <input
+                type="text"
+                name="text"
+                placeholder=""
+                id="careMember"
+                class="form-control"
+              />
+            </div>
+            <div class="col-12 mb-3">
+              <label for="careMember" class="mb-1">Denominator</label>
+              <input
+                type="text"
+                name="text"
+                placeholder=""
+                id="careMember"
+                class="form-control"
+              />
+            </div>
+  
+          <div class="col-6 mb-3">
+            <label for="stage" class="mb-1">Status</label>
+            <select
+              class="form-select"
+              id="stage"
+            >
+              <option value="">Status</option>
+            </select>
+          </div>
+          <div class="col-6 mb-3">
+            <label for="riskCategory" class="mb-1">Stage</label>
+            <select
+              class="form-select"
+              id="riskCategory"
+            >
+              <option value="">Stage</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal fade" id="exportFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Export Patient Report</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4">
+          <label for="stage" class="mb-1">File Name</label>
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              name="text"
+              placeholder="Enter File Name"
+              id="searchPatient"
+              class="form-control w-50"
+            />
+            <input
+              type="text"
+              name="text"
+              value=".xlsx"
+              class="form-control"
+              readonly
+            />
+            <button
+              class="btn btn-secondary"
+              type="button"
+            >
+              Export
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
