@@ -235,18 +235,11 @@
     </div>
     <hr />
     <nav aria-label="Page navigation example" *ngIf="filesLoaded">
-      <div class="d-md-flex">
-        <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-          <div>No of Files : <strong>{{documents.pagingModel.totalRecords}}</strong></div>
-        </div>
-        <div class="mt-3 mt-md-0">
-          <app-pagination
+      <app-pagination
             [pagingModel]="documents.pagingModel"
             (gotoPageHandler)="gotoPage($event)"
           >
-          </app-pagination>
-        </div>
-      </div> 
+       </app-pagination>
     </nav>
     <nav aria-label="Page navigation example" *ngIf="!filesLoaded">
       <div class="d-md-flex">
