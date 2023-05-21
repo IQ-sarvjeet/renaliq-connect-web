@@ -14,7 +14,8 @@ export class PaginationComponent {
     totalRecords: 19,
     currentPage: 1,
     totalPages: 9,
-    toRecords: 0
+    toRecords: 0, 
+    show: false
   }
   @Input() set pagingModel(value: any) {
     if (value) {
@@ -32,11 +33,16 @@ export class PaginationComponent {
   }
   getNavigablePages() {
     const pages = [];
+    if(this.paginationDetail.totalRecords == 0)
+      this.paginationDetail.show = false;
+    else
+      this.paginationDetail.show = true;
+
     this.paginationDetail.toRecords = this.paginationDetail.currentPage * this.paginationDetail.pageSize;
     if(this.paginationDetail.toRecords > this.paginationDetail.totalRecords )
-      this.paginationDetail.toRecords =this.paginationDetail.totalRecords;
+      this.paginationDetail.toRecords = this.paginationDetail.totalRecords;
 
-      
+
     let right = this.paginationDetail.totalPages > 4 ? 4 : this.paginationDetail.totalPages - 1 ;
     if(this.paginationDetail.currentPage === this.paginationDetail.totalPages) {
       this.rangeStart = this.paginationDetail.totalPages - this.displaySize * 2 - 1;
