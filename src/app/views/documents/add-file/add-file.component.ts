@@ -31,6 +31,9 @@ export class AddFileComponent {
   exceedFileSize: boolean = false;
   uploadMessage: string = '';
   uploading: boolean = false;
+  uploadStatus: string = '';
+  folders: any = [];
+  fileTypes: string[] = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webm'];
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
@@ -66,6 +69,23 @@ export class AddFileComponent {
      $("#modalAddFiles").on('hidden.bs.modal', () => {
       this.onCancel();
     });
+    this.loadFolders();
+  }
+  private loadFolders() {
+    this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
+      next: (folders: any) => {
+        if(folders.data) {
+          this.folders = folders.data;
+        }
+      },
+      error: (error: any) => {
+      }
+    })
+  }
+  public itemSelected($event: any) {
+    this.addFileForm.patchValue({
+      folder: $event,
+    })
   }
 
   onCancel() {
@@ -74,6 +94,7 @@ export class AddFileComponent {
   
   submit() {
     this.uploading = true;
+    this.uploadStatus = 'start';
     const formData1 = new FormData();
     formData1.append('Id', '0');
     formData1.append('File', this.addFileForm.value.file);
@@ -90,18 +111,26 @@ export class AddFileComponent {
     this.addFileForm.value.tags.split(',').forEach((item: any) => {
       formData1.append('Tags', item);
     })
+    $('#modalAddFiles').modal('hide');
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
         this.uploading = false;
         this.uploadMessage = '';
-        $('#modalAddFiles').modal('hide');
          // Trigger the refreshList event
+        this.uploadStatus = 'completed';
+        setTimeout(() => {
+          this.uploadStatus = '';
+        }, 5000);
         this.docEventService.refreshListEvent(true);
       },
       error: (error: any) => {
         console.error(error);
         this.uploading = false;
+        this.uploadStatus = 'error';
         this.uploadMessage = 'Error in upload';
+        setTimeout(() => {
+          this.uploadStatus = '';
+        }, 5000);
       }
     })
   }
@@ -115,9 +144,8 @@ export class AddFileComponent {
       const fileSize = file.size;
       console.log('file', file.type);
       this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
-      const typeArr = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webm']
       const ext = file.name.split('.');
-      if(typeArr.indexOf(ext[ext.length -1]) === -1) {
+      if(this.fileTypes.indexOf(ext[ext.length -1]) === -1) {
         this.exceedFileSize = true;
       }
       if (this.exceedFileSize) {

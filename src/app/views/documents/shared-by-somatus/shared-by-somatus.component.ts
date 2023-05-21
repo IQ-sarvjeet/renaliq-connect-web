@@ -80,6 +80,7 @@ export class SharedBySomatusComponent {
   updateErrorMessage: string = '';
   userInfo: UserInfo | null = null;
   userRoleTypes = Roles;
+  userInfoSubscriptionRef: any;
 
   constructor(private documentService: DocumentService,
     private practiceService: PracticeService,
@@ -94,8 +95,8 @@ export class SharedBySomatusComponent {
     private docEventService: DocEventService){}
 
   ngOnInit() {
-    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
-      this.userInfo = info;      
+    this.userInfoSubscriptionRef = this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;
     })
     this.loadTags();
     this.loadFolders();
@@ -309,5 +310,7 @@ export class SharedBySomatusComponent {
       this.downloadService.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
     }
   }
-  
+  ngOnDestroy() {
+    this.userInfoSubscriptionRef.unsubscribe();
+  }
 }

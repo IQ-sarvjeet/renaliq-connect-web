@@ -10,7 +10,7 @@ import { VideosComponent } from './shared-by-somatus/videos/videos.component';
 import { IntegrationProcessesComponent } from './shared-by-somatus/integration-processes/integration-processes.component';
 import { ExportsComponent } from './exports/exports.component';
 import { AddFileComponent } from './add-file/add-file.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/components/shared.module';
 import { ViewDetailsComponent } from './view-details/view-details.component';
 import { DocumentsHeaderComponent } from './documents-header/documents-header.component';
@@ -80,6 +80,7 @@ const routes: Routes = [
     MbscModule,
     CommonModule,
     ReactiveFormsModule,
+    FormsModule,
     SharedModule
   ]
 })
