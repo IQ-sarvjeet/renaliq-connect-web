@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
+import { ClinicalPatientMatrixExportFilterModel } from 'src/app/api-client';
 import { GridModel } from 'src/app/interfaces/grid.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
@@ -36,6 +37,7 @@ export class ReportsGridComponent implements OnInit  {
   fileNameExport: string = '';
   exportStatus: string = ''
   disabledExport: boolean = false;
+  
   filterModel: ClinicalPatientMetricFilterModel = {
     currentPage: 1,
     pageSize: environment.pageSize,
@@ -58,6 +60,8 @@ export class ReportsGridComponent implements OnInit  {
     numerator:0,
     periodId:0,
   }
+
+  filterExportModel: ClinicalPatientMatrixExportFilterModel ={};
   
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
     private _interactionService: InteractionService,
@@ -100,10 +104,12 @@ exportClickHandler() {
 
   submitExport() {
     console.log("Submitting export ..");
-    console.log(this.filterModel);
+    this.filterExportModel = this.filterModel;
+    this.filterExportModel.fileName = this.fileNameExport;
+    console.log(this.filterExportModel);
     this.disabledExport = true;
     this.exportStatus = 'inprogress';
-    this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientExportPost(this.filterModel).subscribe({
+    this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientExportPost(this.filterExportModel).subscribe({
       next: (response: any) => {
         this.fileNameExport = '';
         $('#exportFilter').modal('hide');
