@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as moment from 'moment';
+import { PatientService } from 'src/app/api-client';
 import { Subscription, filter } from 'rxjs';
 import { ClinicalQualityMatrixService } from 'src/app/api-client';
 import { ClinicalPatientMetricFilterModel } from 'src/app/interfaces/clinicalPatientMetricFilter.model';
@@ -65,6 +66,7 @@ export class ReportsGridComponent implements OnInit  {
   
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
     private _interactionService: InteractionService,
+    private patientService: PatientService,
     private eventService: EventService,private route: Router) { }
 
   ngOnInit(): void {
@@ -90,16 +92,17 @@ export class ReportsGridComponent implements OnInit  {
     this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
   }
 exportClickHandler() {
+  console.log("Export Click Handler");
     if (this.exportStatus === 'inprogress') {
       this.exportStatus = 'waitingForStatus';
     }
-   /* this.patientService.apiPatientSummaryExportstatusGet().subscribe({
+    this.patientService.apiPatientSummaryExportstatusGet().subscribe({
       next: (response: any) => {
         if (response.exportStatus === 4) {
           this.exportStatus = '';
         }
       }
-    }) */
+    }) 
   }
 
   submitExport() {
