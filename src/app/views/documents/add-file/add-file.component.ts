@@ -4,14 +4,28 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService, PracticeService } from 'src/app/api-client';
 import { environment } from 'src/environments/environment';
 import { DocEventService } from '../services/doc-event.service';
+import { setOptions  } from '@mobiscroll/angular';
 
 declare var $: any;
+
+setOptions({
+  theme: 'ios',
+  themeVariant: 'light'
+});
+
+
+
 @Component({
   selector: 'app-add-file',
   templateUrl: './add-file.component.html',
   styleUrls: ['./add-file.component.scss']
 })
 export class AddFileComponent {
+  
+  
+
+
+
   addFileForm: FormGroup = this.fb.group({
     fileName: ['', Validators.required],
     title: ['', Validators.required],
@@ -34,6 +48,42 @@ export class AddFileComponent {
   uploadStatus: string = '';
   folders: any = [];
   fileTypes: string[] = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webm'];
+
+  selectedTags: any = ['42976', '47883'];
+  TagsData = [{
+    text: 'Barry Lyon',
+    value: '42976',
+    avatar: 'm1'
+}, {
+    text: 'Hortense Tinker',
+    value: '45290',
+    avatar: 'f1'
+}, {
+    text: 'Carl Hambledon',
+    value: '76208',
+    avatar: 'm2'
+}, {
+    text: 'Arlene Sharman',
+    value: '47883',
+    avatar: 'f2'
+}, {
+    text: 'Keila Delores',
+    value: '33379',
+    avatar: 'f3'
+}, {
+    text: 'Paula Bush',
+    value: '16076',
+    avatar: 'f4'
+}, {
+    text: 'Gene Cortez',
+    value: '62551',
+    avatar: 'm3'
+}, {
+    text: 'Pete Nichols',
+    value: '20929',
+    avatar: 'm4'
+}];
+
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
@@ -70,6 +120,7 @@ export class AddFileComponent {
       this.onCancel();
     });
     this.loadFolders();
+    
   }
   private loadFolders() {
     this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({

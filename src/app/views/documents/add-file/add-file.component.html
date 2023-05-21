@@ -40,7 +40,7 @@
                   </div>
               </div>
               <div class="col-12 col-md-6">
-                    
+                   
                     <div class="form-floating mb-3">
                       <input type="text" 
                           class="form-control"
@@ -49,6 +49,10 @@
                           formControlName="title" >
                       <label class="lh-sm" for="fileName">Title</label>
                     </div>
+
+                   
+                    
+
                     <!-- <div class="form-floating mb-3">
                       <input type="text" class="form-control" 
                           id="folder" 
@@ -92,13 +96,18 @@
                         </div>
                       </div>
                     </div>
+                    <mbsc-select [data]="folders" display="anchored" [itemHeight]="50" [selectMultiple]="true" label="Select existing Tags" inputStyle="box" labelStyle="stacked" placeholder="Please select Tags...">
+    
+                    </mbsc-select>
+                  
                     <div class="form-floating">
+                    
                       <input type="text" 
                           class="form-control" 
                           id="Tags" 
                           placeholder="Tags"
                           formControlName="tags" />
-                      <label class="lh-sm" for="Tags">Tags</label>
+                      <label class="lh-sm" for="Tags">Add New Tags</label>
                     </div>
                     <div class="text-end fs-11 mt-1 mb-3 op-0-5">Comma-delimited I.e. Tag01, Tag02, Tag03</div>
     
