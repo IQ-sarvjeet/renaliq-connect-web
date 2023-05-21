@@ -71,6 +71,7 @@
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" type="radio" 
                               formControlName="isGlobal"
+                              (change)="changeDocScope($event)"
                               id="inlineRadio2" 
                               [value]="false" />
                           <label class="form-check-label" for="inlineRadio2">Practice</label>
@@ -78,6 +79,7 @@
                         <div class="form-check form-check-inline">
                           <input class="form-check-input" 
                               type="radio"
+                              (change)="changeDocScope($event)"
                               formControlName="isGlobal"
                               id="inlineRadio1" [value]="true" />
                           <label class="form-check-label" for="inlineRadio1">Knowledge Center</label>
@@ -96,7 +98,17 @@
                         </div>
                       </div>
                     </div>
-                    <mbsc-select [data]="folders" display="anchored" [itemHeight]="50" [selectMultiple]="true" label="Select existing Tags" class="form-control select-tags mb-3" inputStyle="box" labelStyle="stacked" placeholder="Please select Tags...">
+                    <mbsc-select [data]="tagsData" 
+                      display="anchored" 
+                      [itemHeight]="50" 
+                      [selectMultiple]="true" 
+                      label="Select existing Tags" 
+                      class="form-control select-tags mb-3" 
+                      inputStyle="box" 
+                      labelStyle="stacked" 
+                      placeholder="Please select Tags..."
+                      (onClose)="onMultiSelectClose($event)"
+                      >
     
                     </mbsc-select>
                   

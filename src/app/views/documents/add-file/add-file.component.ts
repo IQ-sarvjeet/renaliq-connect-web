@@ -21,10 +21,6 @@ setOptions({
   styleUrls: ['./add-file.component.scss']
 })
 export class AddFileComponent {
-  
-  
-
-
 
   addFileForm: FormGroup = this.fb.group({
     fileName: ['', Validators.required],
@@ -33,8 +29,9 @@ export class AddFileComponent {
     // fileExt: ['', Validators.required],
     // fileType: ['', Validators.required],
     folder: [''],
-    isGlobal: [false, Validators.required],
+    isGlobal: [true, Validators.required],
     practiceIds: [[]],
+    selectedTags: [[]],
     tags: [''],
     description: ['', Validators.required],
     file: [null, Validators.required],
@@ -49,41 +46,8 @@ export class AddFileComponent {
   folders: any = [];
   fileTypes: string[] = ['docx', 'mp4', 'mp3', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'webm'];
 
-  selectedTags: any = ['42976', '47883'];
-  TagsData = [{
-    text: 'Barry Lyon',
-    value: '42976',
-    avatar: 'm1'
-}, {
-    text: 'Hortense Tinker',
-    value: '45290',
-    avatar: 'f1'
-}, {
-    text: 'Carl Hambledon',
-    value: '76208',
-    avatar: 'm2'
-}, {
-    text: 'Arlene Sharman',
-    value: '47883',
-    avatar: 'f2'
-}, {
-    text: 'Keila Delores',
-    value: '33379',
-    avatar: 'f3'
-}, {
-    text: 'Paula Bush',
-    value: '16076',
-    avatar: 'f4'
-}, {
-    text: 'Gene Cortez',
-    value: '62551',
-    avatar: 'm3'
-}, {
-    text: 'Pete Nichols',
-    value: '20929',
-    avatar: 'm4'
-}];
-
+  // selectedTags: any = [];
+  tagsData: any = [];
   constructor(private fb: FormBuilder,
     private practiceService: PracticeService,
     private documentService: DocumentService,
@@ -105,7 +69,7 @@ export class AddFileComponent {
           fileName: '',
           title: '',
           folder: '',
-          isGlobal: '',
+          isGlobal: true,
           practiceIds: [],
           tags: '',
           description: '',
@@ -120,13 +84,30 @@ export class AddFileComponent {
       this.onCancel();
     });
     this.loadFolders();
+    this.loadTags();
     
   }
   private loadFolders() {
-    this.documentService.apiDocumentListFoldersIsGlobalGet(true).subscribe({
+    this.documentService.apiDocumentListFoldersIsGlobalGet(this.addFileForm.value.isGlobal).subscribe({
       next: (folders: any) => {
         if(folders.data) {
           this.folders = folders.data;
+        }
+      },
+      error: (error: any) => {
+      }
+    })
+  }
+  private loadTags() {
+    this.tagsData = [];
+    this.documentService.apiDocumentListTagsIsGlobalGet(this.addFileForm.value.isGlobal).subscribe({
+      next: (tagsResponse: any) => {
+        if(tagsResponse.data) {
+          const data: any = [];
+          tagsResponse.data.map((item: any, index: number ) => {
+            data.push({text: item.tagName, value: item.tagName, avatar: 'm' + index});
+          })
+          this.tagsData = [...data]
         }
       },
       error: (error: any) => {
@@ -141,6 +122,10 @@ export class AddFileComponent {
 
   onCancel() {
     this.docEventService.closeAddDocModalEvent();
+  }
+  changeDocScope($event: any) {
+    this.loadFolders();
+    this.loadTags();
   }
   
   submit() {
@@ -160,6 +145,9 @@ export class AddFileComponent {
       formData1.append('PracticeIds', item);
     })
     this.addFileForm.value.tags.split(',').forEach((item: any) => {
+      formData1.append('Tags', item);
+    })
+    this.addFileForm.value.selectedTags.forEach((item: any) => {
       formData1.append('Tags', item);
     })
     $('#modalAddFiles').modal('hide');
@@ -216,6 +204,11 @@ export class AddFileComponent {
       }
       console.log('file:::', file);
     }
+  }
+  onMultiSelectClose($event: any) {
+    this.addFileForm.patchValue({
+      selectedTags: $event.value
+    });
   }
 
 }
