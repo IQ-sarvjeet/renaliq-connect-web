@@ -8,6 +8,9 @@ import { GridModel } from 'src/app/interfaces/grid.model';
 import { InteractionService } from 'src/app/shared/services/patient.interaction.service';
 import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
+
+declare let $: any;
+
 @Component({
   selector: 'app-reports-grid',
   templateUrl: './reports-grid.component.html',
@@ -40,11 +43,22 @@ export class ReportsGridComponent implements OnInit  {
       patientName: '',
       metricId: 0,
       numerator: 0,
+      denominator :0,
+      stage : '',
+      status : '',
       periodId: 0,
       dateRange: []
     }
   };
-
+  displayFilter: any = {
+    denominator :0,
+    stage : '',
+    status : '',
+    metricId:0,
+    numerator:0,
+    periodId:0,
+  }
+  
   constructor(private _clinicalQualityMatrixService: ClinicalQualityMatrixService,
     private _interactionService: InteractionService,
     private eventService: EventService,private route: Router) { }
@@ -66,6 +80,11 @@ export class ReportsGridComponent implements OnInit  {
      });
     this._subscriptions.add(sub);
   }
+  
+  submit(){
+    this.displayFilter = { ...this.filterModel.filter }
+    this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
+  }
 exportClickHandler() {
     if (this.exportStatus === 'inprogress') {
       this.exportStatus = 'waitingForStatus';
@@ -78,11 +97,13 @@ exportClickHandler() {
       }
     }) */
   }
+
   submitExport() {
-    console.log("Submitting Export..");
+    console.log("Submitting export ..");
+    console.log(this.filterModel);
     this.disabledExport = true;
     this.exportStatus = 'inprogress';
-   /* this.patientService.apiPatientSummaryExportFilenameGet(this.fileNameExport).subscribe({
+    this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientExportPost(this.filterModel).subscribe({
       next: (response: any) => {
         this.fileNameExport = '';
         $('#exportFilter').modal('hide');
@@ -99,9 +120,55 @@ exportClickHandler() {
         this.disabledExport = false;
         this.fileNameExport = '';
       }
-    }) */
+    });
   }
+  
 
+  clearFilterHandler() {
+    this.filterModel.filter = {
+      stage:'',
+      metricId:0,
+      numerator:0,
+      periodId:0,
+      status:'',
+      sortBy: '',
+      sortDirection: '',
+      denominator :0,
+    };
+    this.displayFilter = {...this.filterModel.filter};
+    this.submit();
+  }
+  clearFilter(key: string) {
+    if(key === 'searchKey') {
+      this.displayFilter.status = '';
+      this.filterModel.filter.status = '';
+    }
+    if(key === 'stage') {
+      this.displayFilter.stage = '';
+      this.filterModel.filter.stage = '';
+    }
+    if(key === 'metricId') {
+      this.displayFilter.metricId = 0;
+      this.filterModel.filter.metricId = 0;
+    }
+    if(key === 'numerator') {
+      this.displayFilter.numerator = 0;
+      this.filterModel.filter.numerator = 0;
+    }
+    if(key === 'denominator') {
+      this.displayFilter.denominator = 0;
+      this.filterModel.filter.denominator = 0;
+    }
+    if(key === 'status') {
+      this.displayFilter.status = '';
+      this.filterModel.filter.status = '';
+    }
+    if(key === 'periodId') {
+      this.displayFilter.periodId = 0;
+      this.filterModel.filter.periodId = 0;
+    }
+    this.submit();
+  }
 
   public GetDateWithOutTimeZone(date :Date)
   {
