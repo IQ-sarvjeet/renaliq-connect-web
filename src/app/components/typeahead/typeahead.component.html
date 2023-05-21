@@ -4,12 +4,21 @@
         [value]="selectedItem"
         #searchInput />
     <label class="lh-sm" for="folder">{{fieldLable}}</label>
-    <div *ngIf="(filteredData | async) as data" style="position: relative; width: 100%;">
-        <ul *ngIf="data.length && displayList   " style="position: absolute; z-index: 9999; background-color: #ffffff;">
+    <div *ngIf="(filteredData | async) as data"
+        style="position: relative; width: 100%; height: auto;">
+        <ul *ngIf="data.length && displayList"
+            class="dropdown-menu"
+            [ngClass]="{'show': data.length && displayList }"
+            style="position: absolute; z-index: 9999; width: 100%; max-height: 300px; overflow-y: auto;">
             <li *ngFor="let item of data; let i = index;"
-                style="width: 100%; height: auto; border: solid 1px #333333;"
-                [ngClass]="{'select': item.toLowerCase() === selectedItem.toLowerCase()}"
-                (mousedown)="selectListItem(item)">{{item}}</li>
+                style="width: 100%; height: auto;">
+                <a href="javascript: void(0);" 
+                    (mousedown)="selectListItem(item)"
+                    class="dropdown-item"
+                    [ngClass]="{'active': item.toLowerCase() === selectedItem.toLowerCase()}"
+                    style="width: 100%; height: auto; border: 1px solid rgba(28, 125, 167, 0.2)"
+                >{{item}}</a>
+            </li>
         </ul>
     </div>
 </div>
