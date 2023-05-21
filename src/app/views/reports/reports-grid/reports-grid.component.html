@@ -4,12 +4,33 @@
     <div class="col-12 col-md-2 order-md-2 text-end">
       <a data-bs-target="#modalFilter" data-bs-toggle="modal" href="javascript:void(0)" class="p-1 text-secondary fs-16 align-middle"><i class="fa fa-filter"></i></a>
       <a href="javascript: void(0)" data-bs-target="#exportFilter" (click)="exportClickHandler()" data-bs-toggle="modal" class="btn btn-outline-secondary ms-3"><i class="fa fa-download me-1"></i> Export</a>
-    </div>
+      
+    <div class="tags mt-1 me-2"
+      *ngIf="displayFilter.status || displayFilter.stage || displayFilter.numerator|| displayFilter.denominator|| displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
+    <a href="Javascript:void(0)" class="tags__icon"  (click)="clearFilterHandler()">x</a>
+    <a href="Javascript:void(0)" class="a-link text-secondary m-1">Clear Filters</a> 
+ 
+    </div>  
     <div class="col-12 col-md-10 order-md-1">
-        <div class="tags mt-1 me-2"> Risk Category: <b>Low</b><a href="Javascript:void(0)" class="tags__icon">x</a></div>
-        <a href="Javascript:void(0)" class="a-link text-secondary m-1">Clear Filters</a>
-    </div>
-    
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.numerator">
+        Numerator: <b>{{displayFilter.numerator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('numerator')">x</a>
+      </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.denominator">
+        Denominator: <b>{{displayFilter.denominator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('denominator')">x</a>
+      </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+        Stage: <b>{{displayFilter.stage}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+      </div>
+      
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+        Status: <b>{{displayFilter.status}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
+      </div>
+     </div>
+  </div>
   </div>
 
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
@@ -21,19 +42,7 @@
   >
     <thead class="table-head">
       <tr class="text-secondary bg-gray-200">
-        <!-- <th class="bg-transparent border-bottom-0 wp-3 fs-12">
-          <div class="checkbox">
-            <div class="custom-checkbox custom-control">
-              <input
-                type="checkbox"
-                data-checkboxes="mygroup"
-                class="custom-control-input"
-                id="checkbox-all"
-              />
-              <label for="checkbox-all" class="custom-control-label"></label>
-            </div>
-          </div>
-        </th> -->
+       
         <th class="bg-transparent border-bottom-0 fs-12">MEMBER ID</th>
         <th class="bg-transparent border-bottom-0 wp-15 fs-12">PATIENT</th>
         <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
@@ -230,42 +239,52 @@
         <div class="form-row">
       
             <div class="col-12 mb-3">
-              <label for="careMember" class="mb-1">Numerator</label>
+              <label for="numerator" class="mb-1">Numerator</label>
               <input
                 type="text"
                 name="text"
                 placeholder=""
-                id="careMember"
+                id="numerator"
+                [(ngModel)]="filterModel.filter.numerator"
                 class="form-control"
               />
             </div>
             <div class="col-12 mb-3">
-              <label for="careMember" class="mb-1">Denominator</label>
+              <label for="denominator" class="mb-1">Denominator</label>
               <input
                 type="text"
                 name="text"
                 placeholder=""
-                id="careMember"
+                id="denominator"
+                [(ngModel)]="filterModel.filter.denominator"
                 class="form-control"
               />
             </div>
   
           <div class="col-6 mb-3">
-            <label for="stage" class="mb-1">Status</label>
+            <label for="status" class="mb-1">Status</label>
             <select
               class="form-select"
-              id="stage"
+              [(ngModel)]="filterModel.filter.status"
+              id="status"
             >
               <option value="">Status</option>
+              <option *ngFor="let status of statusList" [value]="status">
+                {{ status }}
+              </option>
             </select>
           </div>
           <div class="col-6 mb-3">
-            <label for="riskCategory" class="mb-1">Stage</label>
+            <label for="stage" class="mb-1">Stage</label>
             <select
               class="form-select"
-              id="riskCategory"
+              [(ngModel)]="filterModel.filter.stage"
+              id="stage"
             >
-              <option value="">Stage</option>
+            <option value="">Select</option>
+            <option *ngFor="let stage of stages" [value]="stage">
+              {{ stage }}
+            </option>
             </select>
           </div>
         </div>
@@ -274,6 +293,7 @@
         <button
           class="btn btn-secondary"
           data-bs-dismiss="modal"
+          (click)="submit()"
         >
           Update
         </button>

@@ -13,6 +13,8 @@ import { EventService } from 'src/app/services/event.service';
 
 declare let $: any;
 
+
+
 @Component({
   selector: 'app-reports-grid',
   templateUrl: './reports-grid.component.html',
@@ -34,6 +36,24 @@ export class ReportsGridComponent implements OnInit  {
       totalPages: 0
     }
   }
+
+  stages: any = [
+    'CKD Stage 3a',
+    'CKD Stage 3b',
+    'CKD Stage 4',
+    'CKD Stage 5',
+    'ESKD'
+  ]
+  statusList: any = [
+    'New',
+    'Outreach in Progress',
+    'Reached',
+    'Verbal Consent',
+    'Written Consent',
+    'Deceased',
+    'On Hold'
+  ]
+
   list: any = [];
   fileNameExport: string = '';
   exportStatus: string = ''
@@ -88,6 +108,7 @@ export class ReportsGridComponent implements OnInit  {
   }
   
   submit(){
+    console.log("Submitting..");
     this.displayFilter = { ...this.filterModel.filter }
     this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
   }
@@ -136,9 +157,9 @@ exportClickHandler() {
   clearFilterHandler() {
     this.filterModel.filter = {
       stage:'',
-      metricId:0,
+      metricId:this.metricId,
       numerator:0,
-      periodId:0,
+      periodId:this.periodId,
       status:'',
       sortBy: '',
       sortDirection: '',
@@ -148,19 +169,12 @@ exportClickHandler() {
     this.submit();
   }
   clearFilter(key: string) {
-    if(key === 'searchKey') {
-      this.displayFilter.status = '';
-      this.filterModel.filter.status = '';
-    }
+   
     if(key === 'stage') {
       this.displayFilter.stage = '';
       this.filterModel.filter.stage = '';
     }
-    if(key === 'metricId') {
-      this.displayFilter.metricId = 0;
-      this.filterModel.filter.metricId = 0;
-    }
-    if(key === 'numerator') {
+   if(key === 'numerator') {
       this.displayFilter.numerator = 0;
       this.filterModel.filter.numerator = 0;
     }
@@ -172,11 +186,7 @@ exportClickHandler() {
       this.displayFilter.status = '';
       this.filterModel.filter.status = '';
     }
-    if(key === 'periodId') {
-      this.displayFilter.periodId = 0;
-      this.filterModel.filter.periodId = 0;
-    }
-    this.submit();
+       this.submit();
   }
 
   public GetDateWithOutTimeZone(date :Date)
