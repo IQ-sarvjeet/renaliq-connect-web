@@ -5758,7 +5758,6 @@ div.dataTables_wrapper div.dataTables_length label {
 }
 
 .upload-block {
-  background-color: $offwhite;
   border-radius: 0.25rem;
   padding: 2rem 1rem;
   display: flex;
@@ -5945,6 +5944,37 @@ div.dataTables_wrapper div.dataTables_length label {
       background-color: rgba(255,255,255,0.1);
     }
   }
+}
+
+.select-tags {
+
+  .mbsc-ios.mbsc-textfield-wrapper-box {
+    margin: 0;
+  }
+  .mbsc-ios.mbsc-textarea-inner.mbsc-textfield-inner-stacked {
+    padding-top: 1rem;
+  }
+  .mbsc-ios.mbsc-label-stacked.mbsc-ltr {
+    left: 0;
+    top: 0;
+    opacity: 0.75;
+  }
+  .mbsc-ios.mbsc-select-icon.mbsc-ltr {
+    right: -0.25rem;
+    top: calc(50% - 0.75rem);
+  }
+  .mbsc-textfield-tags-placeholder {
+    line-height: normal;
+    opacity: 1;
+  }
+  .mbsc-ios.mbsc-textfield-tags.mbsc-textfield-stacked {
+    min-height: inherit;
+    line-height: normal;
+  }
+}
+.mbsc-select-scroller.mbsc-scroller-pointer .mbsc-scroller-wheel-item.mbsc-ltr {
+  padding: 0;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
