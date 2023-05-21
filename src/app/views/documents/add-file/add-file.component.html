@@ -11,7 +11,7 @@
           <div class="modal-body">
             <div class="row">
               
-              <div class="col-12 col-md-6 position-relative">
+              <div class="col-12 col-md-6 position-relative bg-light">
                   <div class="upload-block">
                       <div class="w-100 file-area">
                           <div class="text-center mb-3">
@@ -90,13 +90,13 @@
                             [selected]="addFileForm.controls['practiceIds'].value.indexOf(practiceId.practiceId) !== -1"
                             *ngFor="let practiceId of practiceList">{{practiceId.name}}</option>
                         </select>
-                        <div *ngIf="addFileForm.controls['isGlobal'].value === true"
-                          style="font-size: 12px;">
-                          Document will be public and visible to everyone.
+                        <div class="alert alert-primary fs-12 p-2 d-flex lh-normal" role="alert" *ngIf="addFileForm.controls['isGlobal'].value === true"> 
+                          <span class="alert-inner--icon me-2 align-text-top"><i class="fe fe-bell"></i></span> 
+                          <span class="alert-inner--text flex-fill">Document will be public and visible to everyone.</span> 
                         </div>
                       </div>
                     </div>
-                    <mbsc-select [data]="folders" display="anchored" [itemHeight]="50" [selectMultiple]="true" label="Select existing Tags" inputStyle="box" labelStyle="stacked" placeholder="Please select Tags...">
+                    <mbsc-select [data]="folders" display="anchored" [itemHeight]="50" [selectMultiple]="true" label="Select existing Tags" class="form-control select-tags mb-3" inputStyle="box" labelStyle="stacked" placeholder="Please select Tags...">
     
                     </mbsc-select>
                   
