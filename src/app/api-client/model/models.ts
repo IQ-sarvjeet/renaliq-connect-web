@@ -2,6 +2,7 @@ export * from './addRecentDocumentRequestModel';
 export * from './admissionFilterModel';
 export * from './careTeamModel';
 export * from './changePasswordModel';
+export * from './clinicalPatientMatrixExportFilterModel';
 export * from './clinicalPatientMatrixFilter';
 export * from './clinicalPatientMatrixFilterModel';
 export * from './documentDetail';
