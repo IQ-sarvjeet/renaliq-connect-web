@@ -72,6 +72,7 @@ export class AddFileComponent {
           isGlobal: true,
           practiceIds: [],
           tags: '',
+          selectedTags: [],
           description: '',
           file: null,
           fileSource: null,
