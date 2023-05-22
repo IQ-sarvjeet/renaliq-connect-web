@@ -33,6 +33,7 @@ export class HeaderComponent {
     role: Roles.VIEW
   };
   currentRoute: string = '/';
+  rolesLoaded: boolean = false;
   constructor(
     private _accountService: AccountService,
     private practiceService: PracticeService,
@@ -59,23 +60,32 @@ export class HeaderComponent {
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
       this.userInfo = info;
       if (!this.authService.isLoggedIn()) return;
+      if(!this.rolesLoaded) {
+        this.loadUserRoles();
+      }
       if(this.userInfo && this.userInfo.fullName) {
         return;
       }
       try {
         const info = await this._accountService.apiAccountUserInfoGet().toPromise();
-        this.storeService.userInfo(info as UserInfo);
-        this.loadUserRoles();
+        this.storeService.userInfo({
+          ...this.userInfo,
+          ...info as UserInfo
+        });
+        if(!this.rolesLoaded) {
+          this.loadUserRoles();
+        }
       } catch(error: any) {
-
+        console.error(error);
       }
     })
   }
   private loadUserRoles() {
-    if (!this.userInfo.userLoginId) return;
+    if (!this.userInfo.userLoginId || !this.userInfo.userLoginId) return;
     const id = this.userInfo.userLoginId;
     this.userRolesService.apiUserRolesUserLoginIdGet(id).subscribe({
       next: (response: any) => {
+        this.rolesLoaded = true;
         const roleHasAdmin = response.some((role: any) => role.roleId === 1)
         const roleHasEditRole = response.some((role: any) => role.roleId === 2)
         this.storeService.userInfo({
@@ -84,7 +94,7 @@ export class HeaderComponent {
         });
       },
       error: (error: any) => {
-
+        console.error(error);
       }
     })
   }
