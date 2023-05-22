@@ -65,8 +65,6 @@ export class ReportsGridComponent implements OnInit  {
     filter: {
       patientName: '',
       metricId: 0,
-      numerator: 0,
-      denominator :0,
       stage : '',
       status : '',
       periodId: 0,
@@ -74,6 +72,7 @@ export class ReportsGridComponent implements OnInit  {
     }
   };
   displayFilter: any = {
+    patientName: '',
     denominator :0,
     stage : '',
     status : '',
@@ -158,12 +157,10 @@ exportClickHandler() {
     this.filterModel.filter = {
       stage:'',
       metricId:this.metricId,
-      numerator:0,
       periodId:this.periodId,
       status:'',
       sortBy: '',
       sortDirection: '',
-      denominator :0,
     };
     this.displayFilter = {...this.filterModel.filter};
     this.submit();
@@ -176,17 +173,21 @@ exportClickHandler() {
     }
    if(key === 'numerator') {
       this.displayFilter.numerator = 0;
-      this.filterModel.filter.numerator = 0;
+      delete this.filterModel.filter.numerator;
     }
     if(key === 'denominator') {
       this.displayFilter.denominator = 0;
-      this.filterModel.filter.denominator = 0;
+      delete this.filterModel.filter.denominator;
     }
     if(key === 'status') {
       this.displayFilter.status = '';
       this.filterModel.filter.status = '';
     }
-       this.submit();
+    if(key === 'patientName') {
+      this.displayFilter.patientName = '';
+      this.filterModel.filter.patientName = '';
+    }
+    this.submit();
   }
 
   public GetDateWithOutTimeZone(date :Date)
