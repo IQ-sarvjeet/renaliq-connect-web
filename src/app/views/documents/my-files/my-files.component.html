@@ -16,7 +16,7 @@
     </div>
 
   </div>
-  <div *ngIf="recentDocuments.length">
+  <div *ngIf="recentDocuments.length || !recentDocumentsLoadingStatus">
     <div class="d-flex mt-2">
       <div class="flex-fill d-flex align-items-center">
         <h3 class="card-title">Recent Documents</h3>
@@ -24,7 +24,7 @@
     </div>
     <hr />
   </div>
-  <div class="table-responsive" *ngIf="recentDocuments.length">
+  <div class="table-responsive" *ngIf="!recentDocumentsLoadingStatus">
     <table id="data-table" class="table text-nowrap m-0 table-striped">
       <thead class="table-head">
         <tr class="text-secondary bg-gray-200">
@@ -36,7 +36,7 @@
           <th class="bg-transparent border-bottom-0"></th>
         </tr>
       </thead>
-      <tbody class="table-body" >
+      <tbody class="table-body">
         <tr class="border-bottom">
           <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
           <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
@@ -73,7 +73,22 @@
           <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
         </tr>
       </tbody>
-      <tbody class="table-body" >
+    </table>
+  </div>
+  <div class="table-responsive" *ngIf="recentDocuments.length">
+    <table id="data-table" class="table text-nowrap m-0 table-striped">
+      <thead class="table-head">
+        <tr class="text-secondary bg-gray-200">
+          <th class="bg-transparent border-bottom-0">File Name</th>
+          <th class="bg-transparent border-bottom-0 ">Description</th>
+          <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
+          <!-- <th class="bg-transparent border-bottom-0">Uploaded By</th> -->
+          <th class="bg-transparent border-bottom-0">Viewd On</th>
+          <th class="bg-transparent border-bottom-0"></th>
+        </tr>
+      </thead>
+     
+      <tbody class="table-body" *ngIf="recentDocumentsLoadingStatus">
         <tr class="border-bottom" *ngFor="let document of recentDocuments">
           <td>{{document.title}}</td>
           <td>{{document.description}}</td>

@@ -35,6 +35,7 @@ export class MyFilesComponent {
     title: null
   }
   documentsLoading: boolean = false;
+  recentDocumentsLoadingStatus : boolean = false;
   userInfo: UserInfo | null = null;
   userRoleTypes = Roles;
   constructor(private documentService: DocumentService,
@@ -86,11 +87,13 @@ export class MyFilesComponent {
   // }
   loadRecentDocuments() {
     this.documentsLoading = true;
+    this.recentDocumentsLoadingStatus = false;
     this.documentService.apiDocumentRecentdocumentsGet().subscribe({
       next: (response: any) => {
         this.documentsLoading = false;
         if (response.data) {
           this.recentDocuments = response.data;
+          this.recentDocumentsLoadingStatus = true;
         }
       },
       error: (error: any) => {
