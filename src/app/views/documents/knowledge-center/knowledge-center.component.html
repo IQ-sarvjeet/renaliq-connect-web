@@ -374,11 +374,11 @@
       <div class="modal-content modal-content-demo rounded-4">
         <div class="modal-body p-5">
           <div class="text-center" *ngIf="!documentRequestInProgress">
-            <div class="fs-16">Are you sure you want to  delete <span class="text-nowrap"><strong>DOCUMENT_NAME</strong>?</span></div>
+            <div class="fs-16">Are you sure you want to  delete <span class="text-nowrap"><strong> {{deleteDocument.title}}</strong>?</span></div>
           <h4 class="fw-bold text-primary mt-1">you can't undo this action</h4>
             <div class="d-flex alert alert-danger my-4 rounded-3 border-0 badge-danger-lighter">
               <span class="alert-inner--icon me-3"><i class="fe fe-info fs-32"></i></span>
-              <div class="flex-fill text-start alert-inner--text lh-normal text-dark">After a <strong>30-day</strong> grace period, this document will be gone forever.</div>
+              <div class="flex-fill text-start alert-inner--text lh-normal text-dark">By deleting other users will not be able to access this document.</div>
             </div>
           </div>
           <div class="text-center mb-5 mt-2" *ngIf="documentRequestInProgress">
