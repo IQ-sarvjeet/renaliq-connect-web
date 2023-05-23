@@ -14,8 +14,9 @@ const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
   styleUrls: ['./documents-header.component.scss']
 })
 export class DocumentsHeaderComponent {
-  dateRangeFilter: any = `${moment(datePrior90).format('MM/DD/YYYY')} - ${moment(todayDate).format('MM/DD/YYYY')}`;
-  dateRangeOptions: MbscDatepickerOptions = {
+ // dateRangeFilter: any = `${moment(datePrior90).format('MM/DD/YYYY')} - ${moment(todayDate).format('MM/DD/YYYY')}`;
+ dateRangeFilter: any ='';
+ dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
     dateFormat: 'MM/DD/YYYY',
     controls: ['calendar'],
