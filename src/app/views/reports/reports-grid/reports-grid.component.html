@@ -1,17 +1,11 @@
 <div class="table-responsive" >
-
   <div class="row g-0 mb-2">
     <div class="col-12 col-md-2 order-md-2 text-end">
       <a data-bs-target="#modalFilter" data-bs-toggle="modal" href="javascript:void(0)" class="p-1 text-secondary fs-16 align-middle"><i class="fa fa-filter"></i></a>
       <a href="javascript: void(0)" data-bs-target="#exportFilter" (click)="exportClickHandler()" data-bs-toggle="modal" class="btn btn-outline-secondary ms-3"><i class="fa fa-download me-1"></i> Export</a>
-      
-    <div class="tags mt-1 me-2"
-      *ngIf="displayFilter.status || displayFilter.stage || displayFilter.numerator|| displayFilter.denominator|| displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
-    <a href="Javascript:void(0)" class="tags__icon"  (click)="clearFilterHandler()">x</a>
-    <a href="Javascript:void(0)" class="a-link text-secondary m-1">Clear Filters</a> 
- 
-    </div>  
+    </div>
     <div class="col-12 col-md-10 order-md-1">
+      <hr class="d-md-none mt-2 mb-1"/>
       <div class="tags mt-1 me-2" *ngIf="displayFilter.patientName">
         Patient Name: <b>{{displayFilter.patientName}}</b>
         <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('patientName')">x</a>
@@ -33,8 +27,8 @@
         Status: <b>{{displayFilter.status}}</b>
         <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
       </div>
+      <a *ngIf="displayFilter.status || displayFilter.stage || displayFilter.numerator|| displayFilter.denominator|| displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)" href="Javascript:void(0)" class="a-link text-secondary m-1 text-nowrap" (click)="clearFilterHandler()">Clear Filters</a>   
      </div>
-  </div>
   </div>
 
   <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
