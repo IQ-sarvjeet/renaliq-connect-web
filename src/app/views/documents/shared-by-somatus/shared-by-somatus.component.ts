@@ -47,8 +47,8 @@ export class SharedBySomatusComponent {
       searchKey: '',
       folder: '',
       tag: '',
-      sortBy: '',
-      sortDirection: '',
+      sortBy: 'CreatedOn',
+      sortDirection: 'desc',
       fromDate: datePrior90,
       isGLobal: false
     },

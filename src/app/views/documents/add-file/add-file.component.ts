@@ -1,10 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { DocumentService, PracticeService } from 'src/app/api-client';
 import { environment } from 'src/environments/environment';
 import { DocEventService } from '../services/doc-event.service';
 import { setOptions  } from '@mobiscroll/angular';
+
 
 declare var $: any;
 
@@ -22,6 +23,8 @@ setOptions({
 })
 export class AddFileComponent {
 
+  
+
   addFileForm: FormGroup = this.fb.group({
     fileName: ['', Validators.required],
     title: ['', Validators.required],
@@ -30,13 +33,27 @@ export class AddFileComponent {
     // fileType: ['', Validators.required],
     folder: [''],
     isGlobal: [true, Validators.required],
-    practiceIds: [[]],
+   // practiceIds: [[]],
+   practiceIds: [null, [this.practiceIdsValidator]], // Apply the custom validator
     selectedTags: [[]],
     tags: [''],
     description: ['', Validators.required],
     file: [null, Validators.required],
     fileSource: [null, Validators.required],
   })
+
+  practiceIdsValidator(control: AbstractControl) {
+    //console.log("Practice Validators..");
+    const isGlobal = control.parent?.get('isGlobal')?.value;
+  
+    if (!isGlobal && (!control.value || control.value.length === 0)) {
+      return { practiceIdsRequired: true };
+    }
+  
+    return null;
+  }
+  
+
   selectedFile: File | null = null;
   practiceList: any = [];
   exceedFileSize: boolean = false;
@@ -64,6 +81,8 @@ export class AddFileComponent {
     })
     this.docEventService.openAddDocModalSubscription().subscribe(([openModal, isGlobal]: [boolean, boolean]) => {
       if(openModal) {
+          
+        
         $('#modalAddFiles').modal('show');
         this.addFileForm.patchValue({
           fileName: '',
@@ -76,7 +95,10 @@ export class AddFileComponent {
           description: '',
           file: null,
           fileSource: null,
-        })
+        });
+        this.loadFolders();
+        console.log("Loading tags..");
+        this.loadTags();
       }
     })
 
@@ -102,6 +124,7 @@ export class AddFileComponent {
   private loadTags() {
     this.tagsData = [];
     //console.log("Fetching tags data");
+    console.log("Global Value:"+this.addFileForm.value.isGlobal);
     this.documentService.apiDocumentListTagsIsGlobalGet(this.addFileForm.value.isGlobal).subscribe({
       next: (tagsResponse: any) => {
         //console.log("Tags Response");
