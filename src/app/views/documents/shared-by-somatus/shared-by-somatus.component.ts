@@ -127,7 +127,7 @@ export class SharedBySomatusComponent {
     })
     this.eventService.documentsFilterSubscription().subscribe({
       next: (value: any) => {
-        console.log('filter value:', value);
+        //console.log('filter value:', value);
         if(!value.fromDate) return;
         this.filters.documentFilter = {
           ...this.filters.documentFilter,
@@ -140,11 +140,13 @@ export class SharedBySomatusComponent {
     this.docEventService.refreshListSubscription().subscribe((response: boolean) => {
       if (response) {
         this.loadList(); // Call the loadList method when the event is triggered
+        this.loadFolders();
+        this.loadTags();
       }
     });
   }
   public openAddDocumentModal(){
-    this.docEventService.openAddDocModalEvent(true);
+    this.docEventService.openAddDocModalEvent(true,false);
   }
   private loadFolders() {
     this.loadingFolders = true;
@@ -245,7 +247,7 @@ export class SharedBySomatusComponent {
     this.documentRequestInProgress = true;
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/delete/${this.deleteDocument.id}`, {}).subscribe({
       next: (response: any) => {
-        console.log('response:', response);
+        //console.log('response:', response);
         this.documentRequestInProgress = false;
         $('#modalDelete').modal('hide');
         this.loadList();
@@ -262,7 +264,7 @@ export class SharedBySomatusComponent {
   }
   submitUpdateDocument(){
     this.documentRequestInProgress = true;
-    console.log('Form value:', this.updateFileForm.value);
+    //console.log('Form value:', this.updateFileForm.value);
     // const updatedData = {
     //   // ...this.documentDetails,
     // }

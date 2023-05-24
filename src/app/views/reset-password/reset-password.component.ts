@@ -61,7 +61,7 @@ export class ResetPasswordComponent implements OnInit{
       this._localStorage.clearAll();
       this.router.navigate(['login']);
     } catch(ex:any) {
-      console.log(ex);
+      //console.log(ex);
       this.errorMsg=ex.error?.message?.message;;
     }
   }

@@ -22,13 +22,13 @@ export class QualityMatrixComponent {
       select: 'range',
       defaultValue: this.dateRangeFilter,
       onChange: (value: any) => {
-        console.log('Date change value:', value);
+        //console.log('Date change value:', value);
       },
       onActiveDateChange: (event, inst) => {
-        console.log('onActiveDateChange:', event, ':::event::', inst);
+        //console.log('onActiveDateChange:', event, ':::event::', inst);
       },
       onClose: (event) => {
-        console.log('onClose:', event);
+        //console.log('onClose:', event);
       }
   };
   chartConfig: BarChartConfig = {

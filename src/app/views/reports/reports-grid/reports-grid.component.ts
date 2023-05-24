@@ -107,12 +107,12 @@ export class ReportsGridComponent implements OnInit  {
   }
   
   submit(){
-    console.log("Submitting..");
+    //console.log("Submitting..");
     this.displayFilter = { ...this.filterModel.filter }
     this._interactionService.setClinicalPatientMatrixFilter(this.filterModel);
   }
 exportClickHandler() {
-  console.log("Export Click Handler");
+  //console.log("Export Click Handler");
     if (this.exportStatus === 'inprogress') {
       this.exportStatus = 'waitingForStatus';
     }
@@ -126,10 +126,10 @@ exportClickHandler() {
   }
 
   submitExport() {
-    console.log("Submitting export ..");
+    //console.log("Submitting export ..");
     this.filterExportModel = this.filterModel;
     this.filterExportModel.fileName = this.fileNameExport;
-    console.log(this.filterExportModel);
+    //console.log(this.filterExportModel);
     this.disabledExport = true;
     this.exportStatus = 'inprogress';
     this._clinicalQualityMatrixService.apiClinicalQualityMatrixPatientExportPost(this.filterExportModel).subscribe({

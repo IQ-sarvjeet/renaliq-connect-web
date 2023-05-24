@@ -5,17 +5,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DocEventService {
-  private openAddDocModal$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private openAddDocModal$: BehaviorSubject<[boolean,boolean]> = new BehaviorSubject<[boolean,boolean]>([false,false]);
   private refreshList$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
-  openAddDocModalEvent(value: boolean) {
-    this.openAddDocModal$.next(value);
+  openAddDocModalEvent(openModal: boolean, isGlobal: boolean) {
+    this.openAddDocModal$.next([openModal,isGlobal]);
   }
 
   
   closeAddDocModalEvent() {
-    this.openAddDocModal$.next(false);
+    this.openAddDocModal$.next([false,false]);
   }
 
   refreshListEvent(value: boolean) {
@@ -24,13 +24,13 @@ export class DocEventService {
 
 
 
-  openAddDocModalSubscription(): Observable<boolean> {
-    console.log("Open add momdal lsubscription...");
+  openAddDocModalSubscription(): Observable<[boolean,boolean]> {
+    //console.log("Open add momdal lsubscription...");
     return this.openAddDocModal$.asObservable();
   }
 
   refreshListSubscription(): Observable<boolean> {
-    console.log("Triggering refresh..");
+    //console.log("Triggering refresh..");
     return this.refreshList$.asObservable();
   }
 }

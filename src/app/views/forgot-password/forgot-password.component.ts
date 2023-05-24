@@ -54,7 +54,7 @@ export class ForgotPasswordComponent implements OnInit{
         this.successMsg = this.messages.textMessage;
       }
     } catch (ex: any) {
-      console.log(ex);
+      //console.log(ex);
       this.errorMsg=ex.error?.message?.message;
     }
   }

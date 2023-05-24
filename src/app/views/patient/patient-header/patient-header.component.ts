@@ -42,10 +42,10 @@ export class PatientHeaderComponent {
     select: 'range',
     // defaultValue: this.dateRangeFilter,
     onChange: (value: any) => {
-      //console.log('Date change value:', value);
+      ////console.log('Date change value:', value);
     },
     onActiveDateChange: (event, inst) => {
-      //console.log('onActiveDateChange:', event, ':::event::', inst);
+      ////console.log('onActiveDateChange:', event, ':::event::', inst);
     },
     onClose: (event) => {
       let discharge = event.value.filter((x:any)=>x==null);
@@ -53,7 +53,7 @@ export class PatientHeaderComponent {
       {
         this.filter.patientFilter.discharge = [];
       }
-      console.log('onClose:', event);
+      //console.log('onClose:', event);
     }
   };
   dateRangeOptionsAssignment: MbscDatepickerOptions = {
@@ -62,10 +62,10 @@ export class PatientHeaderComponent {
     select: 'range',
     // defaultValue: this.dateRangeFilter,
     onChange: (value: any) => {
-      //console.log('Date change value:', value);
+      ////console.log('Date change value:', value);
     },
     onActiveDateChange: (event, inst) => {
-      //console.log('onActiveDateChange:', event, ':::event::', inst);
+      ////console.log('onActiveDateChange:', event, ':::event::', inst);
     },
     onClose: (event) => {
       let assignment = event.value.filter((x:any)=>x==null);
@@ -73,7 +73,7 @@ export class PatientHeaderComponent {
       {
         this.filter.patientFilter.assignment = [];
       }
-      console.log('onClose:', event);
+      //console.log('onClose:', event);
     }
   };
   fileNameExport: string = '';

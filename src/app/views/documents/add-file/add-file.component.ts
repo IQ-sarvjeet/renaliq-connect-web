@@ -62,14 +62,14 @@ export class AddFileComponent {
       error: (error: any) => {
       }
     })
-    this.docEventService.openAddDocModalSubscription().subscribe((response: boolean) => {
-      if(response) {
+    this.docEventService.openAddDocModalSubscription().subscribe(([openModal, isGlobal]: [boolean, boolean]) => {
+      if(openModal) {
         $('#modalAddFiles').modal('show');
         this.addFileForm.patchValue({
           fileName: '',
           title: '',
           folder: '',
-          isGlobal: true,
+          isGlobal: isGlobal,
           practiceIds: [],
           tags: '',
           selectedTags: [],
@@ -101,8 +101,11 @@ export class AddFileComponent {
   }
   private loadTags() {
     this.tagsData = [];
+    //console.log("Fetching tags data");
     this.documentService.apiDocumentListTagsIsGlobalGet(this.addFileForm.value.isGlobal).subscribe({
       next: (tagsResponse: any) => {
+        //console.log("Tags Response");
+        //console.log(tagsResponse);
         if(tagsResponse.data) {
           const data: any = [];
           tagsResponse.data.map((item: any, index: number ) => {
@@ -142,15 +145,28 @@ export class AddFileComponent {
     formData1.append('Folder', this.addFileForm.value.folder);
     formData1.append('IsGlobal', this.addFileForm.value.isGlobal);
     formData1.append('IsDeleted', 'false');
-    this.addFileForm.value.practiceIds.forEach((item: any) => {
-      formData1.append('PracticeIds', item);
-    })
-    this.addFileForm.value.tags.split(',').forEach((item: any) => {
-      formData1.append('Tags', item);
-    })
+
+    // Check if practiceIds exist and isGlobalTrue is false
+    if (this.addFileForm.value.practiceIds && !this.addFileForm.value.isGlobal) {
+      this.addFileForm.value.practiceIds.forEach((item: any) => {
+        formData1.append('PracticeIds', item);
+      });
+    }
+
+
+    if (this.addFileForm.value.tags) {
+      this.addFileForm.value.tags.split(',').forEach((item: any) => {
+        formData1.append('Tags', item);
+      });
+    }
+
+    
+  // Check if selectedTags exist
+  if (this.addFileForm.value.selectedTags) {
     this.addFileForm.value.selectedTags.forEach((item: any) => {
       formData1.append('Tags', item);
-    })
+    });
+  }
     $('#modalAddFiles').modal('hide');
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/document`, formData1, { headers: { 'Content-Type': 'multipart/form-data' } }).subscribe({
       next: (response: any) => {
@@ -175,14 +191,14 @@ export class AddFileComponent {
     })
   }
   onFileChange(event: any) {
-    console.log('event.target', event.target.files[0]);
+    //console.log('event.target', event.target.files[0]);
     const selectedFile = event.target as HTMLInputElement;
     if (selectedFile && selectedFile.files && selectedFile.files.length > 0) {
       const file = selectedFile.files[0];
       const fileName = file.name;
       // const fileExt = fileName.split('.')[0];
       const fileSize = file.size;
-      console.log('file', file.type);
+      //console.log('file', file.type);
       this.exceedFileSize = (fileSize / 1024 / 1024) > 10 ? true : false;
       const ext = file.name.split('.');
       if(this.fileTypes.indexOf(ext[ext.length -1]) === -1) {
@@ -203,7 +219,7 @@ export class AddFileComponent {
           // fileExt
         });
       }
-      console.log('file:::', file);
+      //console.log('file:::', file);
     }
   }
   onMultiSelectClose($event: any) {

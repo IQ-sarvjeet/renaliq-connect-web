@@ -48,8 +48,10 @@ export class KnowledgeCenterComponent {
       tag: '',
       sortBy: '',
       sortDirection: '',
-      fromDate: datePrior90,
-      toDate: todayDate,
+      fromDate: undefined,
+      toDate: undefined,
+    //  fromDate: datePrior90,
+    //  toDate: todayDate,
       isGLobal: true
     },
     currentPage: 1,
@@ -126,8 +128,8 @@ export class KnowledgeCenterComponent {
     })
     this.eventService.documentsFilterSubscription().subscribe({
       next: (value: any) => {
-        console.log('filter value:', value);
-        if(!value.fromDate) return;
+        //console.log('filter value:', value);
+      //  if(!value.fromDate) return;
         this.filters.documentFilter = {
           ...this.filters.documentFilter,
           ...value
@@ -137,14 +139,16 @@ export class KnowledgeCenterComponent {
     })
      // Subscribe to the refreshList event
      this.docEventService.refreshListSubscription().subscribe((response: boolean) => {
-      console.log("Triggering refresh..");
+      //console.log("Triggering refresh..");
       if (response) {
         this.loadList(); // Call the loadList method when the event is triggered
+        this.loadFolders();
+        this.loadTags();
       }
     });
   }
   public openAddDocumentModal(){
-    this.docEventService.openAddDocModalEvent(true);
+    this.docEventService.openAddDocModalEvent(true,true);
   }
   private loadFolders() {
     this.loadingFolders = true;
@@ -243,7 +247,7 @@ export class KnowledgeCenterComponent {
     this.documentRequestInProgress = true;
     this.httpClient.post(`${environment.baseApiUrl}/api/Document/delete/${this.deleteDocument.id}`, {}).subscribe({
       next: (response: any) => {
-        console.log('response:', response);
+        //console.log('response:', response);
         this.documentRequestInProgress = false;
         $('#modalDelete').modal('hide');
         this.loadList();
@@ -260,7 +264,7 @@ export class KnowledgeCenterComponent {
   }
   submitUpdateDocument(){
     this.documentRequestInProgress = true;
-    console.log('Form value:', this.updateFileForm.value);
+    //console.log('Form value:', this.updateFileForm.value);
     // const updatedData = {
     //   // ...this.documentDetails,
     // }
@@ -302,7 +306,7 @@ export class KnowledgeCenterComponent {
       type: 'success',
     });
     const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
-    console.log(url);
+    //console.log(url);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {

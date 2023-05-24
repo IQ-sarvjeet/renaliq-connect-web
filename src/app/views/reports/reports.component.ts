@@ -92,7 +92,7 @@ export class ReportsComponent implements OnInit {
     }
     else{
       this.errorMsg = Messages.metricId;
-      console.log(this.errorMsg);
+      //console.log(this.errorMsg);
     }
   }
   onNumeratorSelected(){

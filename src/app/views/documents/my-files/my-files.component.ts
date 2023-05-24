@@ -54,7 +54,7 @@ export class MyFilesComponent {
     // this.loadTags();
     // this.eventService.documentsFilterSubscription().subscribe({
     //   next: (value: any) => {
-    //     console.log('router::', this.router.url);
+    //     //console.log('router::', this.router.url);
     //     if (this.router.url.indexOf('/documents/recentdocuments') !== -1) {
     //       this.router.navigate(['/documents/sharedbysomatus']);
     //     }
@@ -124,7 +124,7 @@ export class MyFilesComponent {
       type: 'success',
     });
     const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
-    console.log(url);
+    //console.log(url);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
       this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
     } else {
