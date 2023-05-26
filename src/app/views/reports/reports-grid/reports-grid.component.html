@@ -9,15 +9,7 @@
       <div class="tags mt-1 me-2" *ngIf="displayFilter.patientName">
         Patient Name: <b>{{displayFilter.patientName}}</b>
         <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('patientName')">x</a>
-      </div>
-      <div class="tags mt-1 me-2" *ngIf="displayFilter.numerator">
-        Numerator: <b>{{displayFilter.numerator}}</b>
-        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('numerator')">x</a>
-      </div>
-      <div class="tags mt-1 me-2" *ngIf="displayFilter.denominator">
-        Denominator: <b>{{displayFilter.denominator}}</b>
-        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('denominator')">x</a>
-      </div>
+      </div> 
       <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
         Stage: <b>{{displayFilter.stage}}</b>
         <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
@@ -27,6 +19,15 @@
         Status: <b>{{displayFilter.status}}</b>
         <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
       </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.numerator">
+        Numerator: <b>{{displayFilter.numerator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('numerator')">x</a>
+      </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.denominator">
+        Denominator: <b>{{displayFilter.denominator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('denominator')">x</a>
+      </div>
+     
       <a *ngIf="displayFilter.status || displayFilter.stage || displayFilter.numerator|| displayFilter.denominator|| displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)" href="Javascript:void(0)" class="a-link text-secondary m-1 text-nowrap" (click)="clearFilterHandler()">Clear Filters</a>   
      </div>
   </div>
@@ -53,7 +54,11 @@
           [ngClass]="renderArrowIcon('Stage')"
           >STAGE</th>
         <!--th class="bg-transparent border-bottom-0 fs-12">METRIC</th-->
-       
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+        (click)="applySort('Status')"
+        [ngClass]="renderArrowIcon('Status')">
+          STATUS
+        </th>
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           (click)="applySort('Numerator')"
           [ngClass]="renderArrowIcon('Numerator')">
@@ -65,11 +70,7 @@
           [ngClass]="renderArrowIcon('Denominator')">
           DENOMINATOR
         </th>
-        <th class="bg-transparent border-bottom-0 fs-12 table-header"
-        (click)="applySort('Status')"
-        [ngClass]="renderArrowIcon('Status')">
-          STATUS
-        </th>
+     
       </tr>
     </thead>
     <tbody class="table-body" *ngIf="showLoading">
@@ -215,10 +216,10 @@
         </td>
         <td>{{ item.stage }}</td>
         <!--<td>{{item.metricName}}</td>-->
+        <td class="text-center">{{ item.status }}</td>
         <td class="text-center">{{ item.numerator }}</td>
         <td class="text-center">{{ item.denominator }}</td>
-        <td class="text-center">{{ item.status }}</td>
-      </tr>
+       </tr>
     </tbody>
   </table>
   <app-pagination
@@ -278,20 +279,6 @@
                 class="form-control"
               />
             </div>
-  
-            <div class="col-6 mb-3">
-              <label for="status" class="mb-1">Status</label>
-              <select
-                class="form-select"
-                [(ngModel)]="filterModel.filter.status"
-                id="status"
-              >
-                <option value="">Status</option>
-                <option *ngFor="let status of statusList" [value]="status">
-                  {{ status }}
-                </option>
-              </select>
-            </div>
             <div class="col-6 mb-3">
               <label for="stage" class="mb-1">Stage</label>
               <select
@@ -305,6 +292,20 @@
               </option>
               </select>
             </div>
+            <div class="col-6 mb-3">
+              <label for="status" class="mb-1">Status</label>
+              <select
+                class="form-select"
+                [(ngModel)]="filterModel.filter.status"
+                id="status"
+              >
+                <option value="">Status</option>
+                <option *ngFor="let status of statusList" [value]="status">
+                  {{ status }}
+                </option>
+              </select>
+            </div>
+           
         </div>
       </div>
       <div class="modal-footer">
