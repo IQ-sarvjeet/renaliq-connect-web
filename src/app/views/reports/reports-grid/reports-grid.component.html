@@ -59,6 +59,12 @@
         [ngClass]="renderArrowIcon('Status')">
           STATUS
         </th>
+        <!--th class="bg-transparent border-bottom-0 fs-12">METRIC</th-->
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+        (click)="applySort('HoldReason')"
+        [ngClass]="renderArrowIcon('HoldReason')">
+          STATUS
+        </th>
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           (click)="applySort('Numerator')"
           [ngClass]="renderArrowIcon('Numerator')">
@@ -217,6 +223,7 @@
         <td>{{ item.stage }}</td>
         <!--<td>{{item.metricName}}</td>-->
         <td class="text-center">{{ item.status }}</td>
+        <td class="text-center">{{ item.holdreason }}</td>
         <td class="text-center">{{ item.numerator }}</td>
         <td class="text-center">{{ item.denominator }}</td>
        </tr>
