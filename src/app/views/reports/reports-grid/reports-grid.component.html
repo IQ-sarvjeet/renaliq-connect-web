@@ -63,7 +63,7 @@
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
         (click)="applySort('HoldReason')"
         [ngClass]="renderArrowIcon('HoldReason')">
-          STATUS
+          ON HOLD REASON
         </th>
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           (click)="applySort('Numerator')"
@@ -223,7 +223,7 @@
         <td>{{ item.stage }}</td>
         <!--<td>{{item.metricName}}</td>-->
         <td class="text-center">{{ item.status }}</td>
-        <td class="text-center">{{ item.holdreason }}</td>
+        <td class="text-center">{{ item.holdReason }}</td>
         <td class="text-center">{{ item.numerator }}</td>
         <td class="text-center">{{ item.denominator }}</td>
        </tr>
