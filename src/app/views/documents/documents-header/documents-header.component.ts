@@ -4,9 +4,6 @@ import { EventService } from 'src/app/services/event.service';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
-import { StoreService } from 'src/app/services/store.service';
-import { UserInfo } from 'src/app/interfaces/user';
-import { Roles } from 'src/app/enums/roles';
 
 const todayDate = new Date();
 const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
@@ -45,7 +42,6 @@ export class DocumentsHeaderComponent {
     fromDate: moment(datePrior90),
     toDate: moment(todayDate)
   }
-  userInfoSubscriptionRef: any;
   constructor(private eventService: EventService,
     private router: Router,
     private fb: FormBuilder) {}
