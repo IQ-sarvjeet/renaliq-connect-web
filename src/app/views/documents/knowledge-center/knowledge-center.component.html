@@ -4,7 +4,10 @@
         <h3 class="card-title">Knowledge Center</h3>
       </div>
       <div class="mt-3 mt-sm-0">
-        <a href="javascript: void(0)" (click)="openAddDocumentModal()" class="btn btn-block btn-outline-secondary py-1 px-4">
+        <a href="javascript: void(0)"
+          (click)="openAddDocumentModal()"
+          class="btn btn-block btn-outline-secondary py-1 px-4"
+          *ngIf="userInfo?.role !== userRoleTypes.PRACTICE_USER">
           <i class="fa fa-plus me-1"></i>Add Document
         </a>
       </div>
@@ -137,7 +140,7 @@
                     {{file.title}}
                   </h6>
                 </div>
-                <div *ngIf="userInfo?.role === userRoleTypes.ADMIN || userInfo?.role === userRoleTypes.EDITVIEW">
+                <div *ngIf="userInfo?.role !== userRoleTypes.PRACTICE_USER">
                   <a
                     href="#"
                     class="option-dots"

@@ -30,7 +30,7 @@ export class HeaderComponent {
   userInfo: UserInfo = {
     fullName: '',
     roleName: '',
-    role: Roles.VIEW
+    role: Roles.PRACTICE_USER
   };
   currentRoute: string = '/';
   rolesLoaded: boolean = false;
@@ -86,11 +86,9 @@ export class HeaderComponent {
     this.userRolesService.apiUserRolesUserLoginIdGet(id).subscribe({
       next: (response: any) => {
         this.rolesLoaded = true;
-        const roleHasAdmin = response.some((role: any) => role.roleId === 1)
-        const roleHasEditRole = response.some((role: any) => role.roleId === 2)
         this.storeService.userInfo({
           ...this.userInfo,
-          role: roleHasAdmin ? Roles.ADMIN: roleHasEditRole ? Roles.EDITVIEW: Roles.VIEW
+          role: response[0].roleId
         });
       },
       error: (error: any) => {

@@ -10,7 +10,7 @@ export class StoreService {
   private userInformation: UserInfo = {
     fullName: ' ',
     roleName: '',
-    role: Roles.VIEW
+    role: Roles.PRACTICE_USER
   };
   private currentRoute: string | null = null;
   private userInfo$: BehaviorSubject<UserInfo> = new BehaviorSubject<UserInfo>({} as UserInfo);
