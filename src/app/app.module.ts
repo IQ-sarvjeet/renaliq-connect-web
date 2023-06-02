@@ -40,8 +40,8 @@ import { DownloadComponent } from './views/download/download.component';
     InitialsPipe,
     DownloadComponent
   ],
-  imports: [ 
-    MbscModule,
+  imports: [  
+    MbscModule,  
     BrowserModule,
     AppRoutingModule,
     SharedModule,
