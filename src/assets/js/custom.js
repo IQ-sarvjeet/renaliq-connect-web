@@ -343,7 +343,7 @@
     $("body").removeClass("sidenav-toggled");
   });
 
-  $(document).on("click", ".app-sidebar__toggle", function () {
+  $(document).on("click", ".app-sidebar__toggle, .slide-menu .slide-item, .side-menu__event", function () {
     $(".navbar-toggler.d-md-none").removeClass("active");
     $("#navbarSupportedContent-4").removeClass("show");
     $("body").toggleClass("sidenav-toggled");

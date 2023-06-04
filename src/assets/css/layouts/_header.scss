@@ -1348,6 +1348,7 @@ body.fixed-header .header {
   font-size: 1.5rem;
   position: relative;
   right: 7px;
+  top: -0.125rem;
 }
 .app-sidebar__toggle {
   display: flex;
@@ -1359,6 +1360,9 @@ body.fixed-header .header {
   transition: all 0.25s;
   font-size: 21px;
   font-family: "feather";
+}
+.sidenav-toggled .app-sidebar__toggle:before {
+  content: "\ea00";
 }
 .app-sidebar__toggle:after {
   content: "";

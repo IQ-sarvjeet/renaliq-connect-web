@@ -5,70 +5,55 @@
     </div>
   </div>
   <div *ngIf="!errorMessage">
-    <ul class="list-group blog-autors">
-      <span *ngIf="showLoading">
-        <li class="border-top py-2">
-          <div class="media d-flex">
-            <div class="skeleton-loader__media-sm my-1 me-3">
-              <span class="skeleton-loader"></span>
-            </div>
-            <div class="flex-fill">
-              <div class="my-3"><span class="skeleton-loader"></span></div>
-              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
-            </div>
+    <ul class="list-group fd-inherit blog-autors row">
+
+      <li *ngIf="showLoading" class="border-top py-0 col-12 col-sm-6 col-xl-12">
+        <div class="media d-flex">
+          <div class="flex-fill">
+            <div class="my-3"><span class="skeleton-loader"></span></div>
+            <div class="my-3"><span class="skeleton-loader w-75"></span></div>
           </div>
-        </li>
-        <li class="border-top py-2">
-          <div class="media d-flex">
-            <div class="skeleton-loader__media-sm my-1 me-3">
-              <span class="skeleton-loader"></span>
-            </div>
-            <div class="flex-fill">
-              <div class="my-3"><span class="skeleton-loader"></span></div>
-              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
-            </div>
+        </div>
+      </li>
+      <li *ngIf="showLoading" class="border-top py-0 col-12 col-sm-6 col-xl-12">
+        <div class="media d-flex">
+          <div class="flex-fill">
+            <div class="my-3"><span class="skeleton-loader"></span></div>
+            <div class="my-3"><span class="skeleton-loader w-75"></span></div>
           </div>
-        </li>
-        <li class="border-top py-2">
-          <div class="media d-flex">
-            <div class="skeleton-loader__media-sm my-1 me-3">
-              <span class="skeleton-loader"></span>
-            </div>
-            <div class="flex-fill">
-              <div class="my-3"><span class="skeleton-loader"></span></div>
-              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
-            </div>
+        </div>
+      </li>
+      <li *ngIf="showLoading" class="border-top py-0 col-12 col-sm-6 col-xl-12">
+        <div class="media d-flex">
+          <div class="flex-fill">
+            <div class="my-3"><span class="skeleton-loader"></span></div>
+            <div class="my-3"><span class="skeleton-loader w-75"></span></div>
           </div>
-        </li>
-        <li class="border-top py-2">
-          <div class="media d-flex">
-            <div class="skeleton-loader__media-sm my-1 me-3">
-              <span class="skeleton-loader"></span>
-            </div>
-            <div class="flex-fill">
-              <div class="my-3"><span class="skeleton-loader"></span></div>
-              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
-            </div>
+        </div>
+      </li>
+      <li *ngIf="showLoading" class="border-top py-0 col-12 col-sm-6 col-xl-12">
+        <div class="media d-flex">
+          <div class="flex-fill">
+            <div class="my-3"><span class="skeleton-loader"></span></div>
+            <div class="my-3"><span class="skeleton-loader w-75"></span></div>
           </div>
-        </li>
-        <li class="border-top py-2">
-          <div class="media d-flex">
-            <div class="skeleton-loader__media-sm my-1 me-3">
-              <span class="skeleton-loader"></span>
-            </div>
-            <div class="flex-fill">
-              <div class="my-3"><span class="skeleton-loader"></span></div>
-              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
-            </div>
+        </div>
+      </li>
+      <li *ngIf="showLoading" class="border-top py-0 col-12 col-sm-6 col-xl-12">
+        <div class="media d-flex">
+          <div class="flex-fill">
+            <div class="my-3"><span class="skeleton-loader"></span></div>
+            <div class="my-3"><span class="skeleton-loader w-75"></span></div>
           </div>
-        </li>
-      </span>
+        </div>
+      </li>
+   
       <li
-        class="list-group-item border-top py-2"
+        class="list-group-item py-0 col-12 col-sm-6 col-xl-12"
         *ngFor="let member of careTeamList"
       >
-        <div class="text-dark">
-          <div class="media mt-0 d-sm-flex d-block">
+        <div class="text-dark border-top py-2">
+          <div class="media mt-0 d-flex">
             <img
               *ngIf="member.imageSrc"
               class="avatar-md rounded-circle me-3 my-auto"
