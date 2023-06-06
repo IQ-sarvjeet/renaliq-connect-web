@@ -99,6 +99,7 @@
                       </div>
                     </div>
                     <mbsc-select [data]="tagsData" 
+                      formControlName="selectedTags"
                       display="anchored" 
                       [itemHeight]="50" 
                       [selectMultiple]="true" 
@@ -107,7 +108,6 @@
                       inputStyle="box" 
                       labelStyle="stacked" 
                       placeholder="Please select Tags..."
-                      (onClose)="onMultiSelectClose($event)"
                       >
     
                     </mbsc-select>

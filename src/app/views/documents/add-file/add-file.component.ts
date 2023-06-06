@@ -245,10 +245,4 @@ export class AddFileComponent {
       //console.log('file:::', file);
     }
   }
-  onMultiSelectClose($event: any) {
-    this.addFileForm.patchValue({
-      selectedTags: $event.value
-    });
-  }
-
 }
