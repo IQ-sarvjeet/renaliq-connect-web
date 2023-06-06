@@ -74,14 +74,14 @@ const routes: Routes = [
       ),
     canActivate: [AuthguardGuard]
   },
-  {
-    path: 'documents',
-    loadChildren: () =>
-      import('./views/documents/documents.module').then(
-        (m) => m.DocumentsModule
-      ),
-    canActivate: [AuthguardGuard]
-  },
+  // {
+  //   path: 'documents',
+  //   loadChildren: () =>
+  //     import('./views/documents/documents.module').then(
+  //       (m) => m.DocumentsModule
+  //     ),
+  //   canActivate: [AuthguardGuard]
+  // },
   {
     path: 'patient-profile/:id',
     loadChildren: () =>
