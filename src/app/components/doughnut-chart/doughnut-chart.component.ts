@@ -35,6 +35,9 @@ export class DoughnutChartComponent {
       text: '',
       align: 'left'
     },
+    credits: {
+      enabled: false
+    },
     plotOptions: {
       pie: {
         dataLabels: {
