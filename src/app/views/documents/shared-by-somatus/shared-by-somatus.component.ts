@@ -305,11 +305,11 @@ export class SharedBySomatusComponent {
       message: `Downloading document.`,
       type: 'success',
     });
-    const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
+    const url: string = this.downloadService.downloadDocumentUrl(viewDoc.id);
     if (viewDoc.fileType === FileTypes.Excel || viewDoc.fileType === FileTypes.Doc) {
-      this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.fileName);
+      this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, `${viewDoc.title}-${viewDoc.fileName}`);
     } else {
-      this.downloadService.downloadMedia(this.elementRef, this.renderer, url, viewDoc.fileName, viewDoc.fileExt);
+      this.downloadService.downloadMedia(this.elementRef, this.renderer, url, `${viewDoc.title}-${viewDoc.fileName}`, viewDoc.fileExt);
     }
   }
   ngOnDestroy() {

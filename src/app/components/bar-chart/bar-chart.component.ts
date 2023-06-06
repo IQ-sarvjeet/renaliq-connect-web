@@ -35,6 +35,9 @@ export class BarChartComponent {
     xAxis: {
         categories: []
     },
+    credits: {
+      enabled: false
+    },
     series: [{
         type: 'column',
         name: 'Unemployed',
