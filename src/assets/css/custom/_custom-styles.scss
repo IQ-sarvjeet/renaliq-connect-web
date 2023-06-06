@@ -5951,7 +5951,8 @@ div.dataTables_wrapper div.dataTables_length label {
   .mbsc-ios.mbsc-textfield-wrapper-box {
     margin: 0;
   }
-  .mbsc-ios.mbsc-textarea-inner.mbsc-textfield-inner-stacked {
+  .mbsc-ios.mbsc-textarea-inner.mbsc-textfield-inner-stacked,
+  .mbsc-ios.mbsc-textfield-inner-box {
     padding-top: 1rem;
   }
   .mbsc-ios.mbsc-label-stacked.mbsc-ltr {
@@ -5976,7 +5977,11 @@ div.dataTables_wrapper div.dataTables_length label {
   padding: 0;
   margin: 0;
 }
-
+.mbsc-ios.mbsc-scroller-wheel-cont-inline.mbsc-scroller-wheel-cont-3d, 
+.mbsc-ios.mbsc-scroller-pointer.mbsc-scroller, 
+.mbsc-ios.mbsc-scroller-pointer.mbsc-scroller-inline {
+  margin: 0 !important;
+}
 @media (min-width: 768px) {
   .card-lg {
     .card-body {
