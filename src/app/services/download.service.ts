@@ -73,7 +73,7 @@ export class DownloadService {
           const blob = new Blob([response], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          this.downloadFile(blob, `${fileName}.xlsx`, elementRef, renderer);
+          this.downloadFile(blob, `${fileName}`, elementRef, renderer);
           resolve();
         },
         error: () => {
