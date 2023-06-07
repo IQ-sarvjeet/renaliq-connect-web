@@ -119,7 +119,7 @@ export class DownloadService {
         const blob = new Blob([response], {
           type: 'data:application/pdf;base64',
         });
-        this.downloadFile(blob, `${fileName}${ext}`, elementRef, renderer);
+        this.downloadFile(blob, `${fileName}`, elementRef, renderer);
       }
     })
   }
