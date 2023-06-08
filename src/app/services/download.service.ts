@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ElementRef, Injectable, Renderer2 } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { CommonConstants } from '../shared/common-constants/common-constants';
 import { LocalStorageService } from '../shared/services/localstorage.service';
 import { EventService } from './event.service';
@@ -11,6 +12,10 @@ export class DownloadService {
   constructor(private httpClient: HttpClient,
     private _localStorage: LocalStorageService,
     private eventService: EventService) { }
+  downloadDocumentUrl(id: string | number) {
+    const url: string = `${environment.baseApiUrl}/api/Document/download/${id}`;
+    return url;
+  }
   startDownloading(elementRef: ElementRef, renderer: Renderer2, url: string, fileName: any) {
     this.downloadPlan(elementRef, renderer, url, fileName);
   }
@@ -68,7 +73,7 @@ export class DownloadService {
           const blob = new Blob([response], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
-          this.downloadFile(blob, `${fileName}.xlsx`, elementRef, renderer);
+          this.downloadFile(blob, `${fileName}`, elementRef, renderer);
           resolve();
         },
         error: () => {
@@ -114,7 +119,7 @@ export class DownloadService {
         const blob = new Blob([response], {
           type: 'data:application/pdf;base64',
         });
-        this.downloadFile(blob, `${fileName}${ext}`, elementRef, renderer);
+        this.downloadFile(blob, `${fileName}`, elementRef, renderer);
       }
     })
   }
