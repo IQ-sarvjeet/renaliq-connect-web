@@ -24,6 +24,7 @@ type Practice = {
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
+  userRoleTypes = Roles;
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
   practiceList: Practice[] = [];

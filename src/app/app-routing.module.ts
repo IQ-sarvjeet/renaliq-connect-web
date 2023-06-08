@@ -11,6 +11,7 @@ import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { SigninComponent } from './views/signin/signin.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
+import { AuthgaurdCanloadService } from './auth/authgaurd-canload.service';
 
 const routes: Routes = [
   {
@@ -29,12 +30,12 @@ const routes: Routes = [
     path: 'forgotPassword',
     component: ForgotPasswordComponent,
   },
-  {
-   path: 'documents',
-   loadChildren: () =>
-     import('./views/documents/documents.module').then((m) => m.DocumentsModule),
-    canActivate: [AuthguardGuard]
-  },
+  // {
+  //  path: 'documents',
+  //  loadChildren: () =>
+  //    import('./views/documents/documents.module').then((m) => m.DocumentsModule),
+  //   canActivate: [AuthguardGuard]
+  // },
 
   {
     path: 'summary',
@@ -74,14 +75,15 @@ const routes: Routes = [
       ),
     canActivate: [AuthguardGuard]
   },
-  // {
-  //   path: 'documents',
-  //   loadChildren: () =>
-  //     import('./views/documents/documents.module').then(
-  //       (m) => m.DocumentsModule
-  //     ),
-  //   canActivate: [AuthguardGuard]
-  // },
+  {
+    path: 'documents',
+    loadChildren: () =>
+      import('./views/documents/documents.module').then(
+        (m) => m.DocumentsModule
+      ),
+    canActivate: [AuthguardGuard],
+    canLoad: [AuthgaurdCanloadService]
+  },
   {
     path: 'patient-profile/:id',
     loadChildren: () =>

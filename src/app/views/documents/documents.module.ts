@@ -18,46 +18,46 @@ import { MbscModule } from '@mobiscroll/angular';
 import { KnowledgeCenterComponent } from './knowledge-center/knowledge-center.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: DocumentsComponent,
-  //   children: [
-  //     {
-  //       path: 'recentdocuments',
-  //       component: MyFilesComponent,
-  //     },
-  //     {
-  //       path: 'sharedbysomatus',
-  //       component: SharedBySomatusComponent,
-  //       children: [
-  //         {
-  //           path: 'contracts',
-  //           component: ContractsComponent
-  //         },
-  //         {
-  //           path: 'reports',
-  //           component: ReportsComponent
-  //         },
-  //         {
-  //           path: 'videos',
-  //           component: VideosComponent
-  //         },
-  //         {
-  //           path: 'processes',
-  //           component: IntegrationProcessesComponent
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'knowledge-center',
-  //       component: KnowledgeCenterComponent,
-  //     },
-  //     {
-  //       path: 'exports',
-  //       component: ExportsComponent,
-  //     }
-  //   ]
-  // }
+  {
+    path: '',
+    component: DocumentsComponent,
+    children: [
+      {
+        path: 'recentdocuments',
+        component: MyFilesComponent,
+      },
+      {
+        path: 'sharedbysomatus',
+        component: SharedBySomatusComponent,
+        children: [
+          {
+            path: 'contracts',
+            component: ContractsComponent
+          },
+          {
+            path: 'reports',
+            component: ReportsComponent
+          },
+          {
+            path: 'videos',
+            component: VideosComponent
+          },
+          {
+            path: 'processes',
+            component: IntegrationProcessesComponent
+          }
+        ]
+      },
+      {
+        path: 'knowledge-center',
+        component: KnowledgeCenterComponent,
+      },
+      {
+        path: 'exports',
+        component: ExportsComponent,
+      }
+    ]
+  }
 ];
 
 @NgModule({

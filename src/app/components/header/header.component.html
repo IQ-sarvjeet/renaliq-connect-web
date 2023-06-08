@@ -159,17 +159,18 @@
                     Admissions
                   </div>
                 </a>
-                <!-- <a
+                <a
                   routerLink="/documents/recentdocuments"
                   class="nav-link pe-2"
                   [ngClass]="{
                     'is-active': this.currentRoute.indexOf('documents') !== -1
                   }"
+                  *ngIf="userInfo.role === userRoleTypes.SYTEM_ADMIN"
                 >
                   <div class="text-center py-1 d-flex d-lg-none-max">
                     Documents
                   </div>
-                </a> -->
+                </a>
                 <div class="dropdown d-md-flex profile-1 text-nowrap">
                   <a
                     href="#"
