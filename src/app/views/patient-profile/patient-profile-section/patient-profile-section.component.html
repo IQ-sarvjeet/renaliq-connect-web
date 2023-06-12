@@ -57,10 +57,10 @@
         <div *ngIf="patientStatus.isEngaged == true">Yes</div>
         <div *ngIf="patientStatus.isEngaged == false">No</div>
       </div>
-      <div class="col-6" *ngIf="!patientStatus.lastAssessmentDate">
+      <div class="col-6">
         <div class="fs-12 op-0-75">Assessment Date</div>
         <div>
-          {{ moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY") }}
+          {{ patientStatus.lastAssessmentDate ? moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY") : '' }}
         </div>
       </div>
     </div>
