@@ -102,10 +102,18 @@
             <td>{{document.name}}</td>
             <td>{{document.requestedOn}}</td>
             <td class="text-end">
-              <div (click)="viewFile(document)" class="btn btn-outline-primary py-0">
-                <i *ngIf="document.status === status.NOT_STARTED || document.status === status.SUBMITTED || document.status === status.IN_PROGRESS"
-                  class="fa fa-solid fa-circle-o-notch fa-spin"></i>
-                <i *ngIf="document.status === status.COMPLETED" class="fa fa-solid fa-download"></i>
+              <div *ngIf="document.status === status.NOT_STARTED || document.status === status.SUBMITTED || document.status === status.IN_PROGRESS"
+              class="btn btn-outline-primary py-0">
+                <i class="fa fa-solid fa-circle-o-notch fa-spin"></i>
+                </div>
+                <div *ngIf="document.status === status.COMPLETED"
+                (click)="viewFile(document)" class="btn btn-outline-secondary py-0">
+                  
+                <i  class="fa fa-solid fa-download"></i>
+                  </div>
+                  <div *ngIf="document.status === status.ERROR"
+                  class="btn btn-outline-danger py-0">
+                
                 <i *ngIf="document.status === status.ERROR" class="fa fa-solid fa-warning"></i>
               </div>
             </td>
