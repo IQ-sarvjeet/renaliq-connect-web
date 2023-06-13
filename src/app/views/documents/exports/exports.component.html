@@ -1,6 +1,6 @@
 <div class="mb-4 p-4 minh-content"
-  [ngClass]="{ 'd-flex align-items-center justify-content-center': !recentExports.length && !documentsLoading }">
-  <div *ngIf="!recentExports.length && !documentsLoading" class="text-center">
+  [ngClass]="{ 'd-flex align-items-center justify-content-center': !recentExports.data.length && !documentsLoading }">
+  <div *ngIf="!recentExports.data.length && !documentsLoading" class="text-center">
     <h2>A place for all of your files</h2>
     <div class="fs-22 my-3">
       <i class="fa fa-file-pdf-o mx-2 info-pdf"></i>
@@ -18,7 +18,7 @@
     </div>
 
   </div>
-  <div *ngIf="(filesLoaded && recentExports.length) || !filesLoaded">
+  <div *ngIf="(filesLoaded && recentExports.data.length) || !filesLoaded">
     <div class="d-flex mt-2">
       <div class="flex-fill d-flex align-items-center">
         <h3 class="card-title">Exports</h3>
@@ -26,7 +26,7 @@
     </div>
     <hr />
   </div>
-  <div class="d-sm-flex" *ngIf="recentExports.length">
+  <div class="d-sm-flex" *ngIf="recentExports.data.length">
     <div class="flex-fill">
       <a href="javascript: void(0)" class="folders-item" [ngClass]="(filters.type === 1) ? 'active': ''"
         (click)="selectFolderHandler(1)">
@@ -74,13 +74,9 @@
           <tr class="border-bottom">
             <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
             <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
-            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
-            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
             <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
           </tr>
           <tr class="border-bottom">
-            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
-            <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
             <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
             <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
             <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
@@ -88,7 +84,7 @@
         </tbody>
       </table>
     </div>
-    <div class="table-responsive" *ngIf="recentExports.length && !documentsLoading">
+    <div class="table-responsive" *ngIf="recentExports.data.length && !documentsLoading">
       <table id="data-table" class="table text-nowrap m-0 table-striped">
         <thead class="table-head">
           <tr class="text-secondary bg-gray-200">
@@ -98,7 +94,7 @@
           </tr>
         </thead>
         <tbody class="table-body" *ngIf="exportsLoadingStatus">
-          <tr class="border-bottom" *ngFor="let document of recentExports">
+          <tr class="border-bottom" *ngFor="let document of recentExports.data">
             <td>{{document.name}}</td>
             <td>{{document.requestedOn}}</td>
             <td class="text-end">
@@ -121,8 +117,7 @@
         </tbody>
       </table>
     </div>
-    <hr />
-    <nav aria-label="Page navigation example" *ngIf="filesLoaded && recentExports.length">
+    <nav aria-label="Page navigation example" *ngIf="!documentsLoading && recentExports.data.length">
       <app-pagination
             [pagingModel]="recentExports.pagingModel"
             (gotoPageHandler)="gotoPage($event)"

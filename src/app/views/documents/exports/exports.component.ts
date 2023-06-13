@@ -16,7 +16,6 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./exports.component.scss']
 })
 export class ExportsComponent {
-  recentExports: any = [];
   documentsLoading: boolean = false;
   exportsLoadingStatus: boolean = false;
   userInfo: UserInfo | null = null;
@@ -24,6 +23,15 @@ export class ExportsComponent {
   status = Status;
   loadingFolders: boolean = true;
   filesLoaded: boolean = false;
+  recentExports: any = {
+    data: [],
+    pagingModel: {
+      currentPage: 1,
+      pageSize: 10,
+      totalPages: 1,
+      totalRecords: 0
+    }
+  };
   filters: ExportListFilterModel = {
     type: 1,
     currentPage: 1,
@@ -49,7 +57,7 @@ export class ExportsComponent {
       next: (response: any) => {
         this.documentsLoading = false;
         if (response.data) {
-          this.recentExports = response.data;
+          this.recentExports = response;
           this.filesLoaded = true;
           this.loadingFolders = false;
           this.exportsLoadingStatus = true;
