@@ -341,6 +341,12 @@
   border-radius: 50px !important;
 }
 
+@media (min-width: 1200px) {
+  .border-xl-none {
+    border: none !important;
+  }
+}
+
 @media (min-width: 992px) {
   .border-lg-bottom-0 {
     border-bottom: 0px !important;
@@ -352,6 +358,9 @@
 @media (min-width: 576px) {
   .border-sm-end {
     border-right: 1px solid var(--border) !important;
+  }
+  .border-sm-start {
+    border-left: 1px solid var(--border) !important;
   }
   .br-tl-sm-5 {
     border-top-left-radius: 5px;

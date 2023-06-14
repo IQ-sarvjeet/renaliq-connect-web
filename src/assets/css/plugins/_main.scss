@@ -115,12 +115,6 @@ iframe {
   bottom: 0;
   background-color: $light;
 }
-.wrap-figure100 {
-  &__img {
-    max-height: calc(100vh - 2.5rem);
-    max-width: 100%;
-  }
-}
 .wrap-figure {
   &__img {
     height: auto;
