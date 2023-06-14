@@ -4,16 +4,15 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://webapp-provider-prod-uat-v2-api.azurewebsites.net',
-  //baseApiUrl: 'https://connect-uat.renaliq.com',
-  appUrl: 'https://connect-uat.renaliq.com',
-  pageSize: 10,
+  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
+  appUrl: 'https://agreeable-forest-060cbdb10.2.azurestaticapps.net',
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
     grantType: 'password',
     scopes: 'ConnectApi offline_access'
   },
+  pageSize: 10,
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };
