@@ -3,23 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  //baseApiUrl: 'https://connect-api.renaliq.com/',
-  //appUrl: 'https://connect.renaliq.com',
-  baseApiUrl: 'https://webapp-provider-prod-uat-v2-api.azurewebsites.net',
-  appUrl: 'https://connect-uat.renaliq.com',
+  production: false,
+  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
+  appUrl: 'https://agreeable-forest-060cbdb10.2.azurestaticapps.net',
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
     grantType: 'password',
     scopes: 'ConnectApi offline_access'
   },
-
-  //grantType: 'password',
-  //scope: 'ConnectApi',
-  //clientId: 'WebUI.Admin',
-  //clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
-
   pageSize: 10,
   //Username: tom@yopmail.com
   //Password: Pass@12345
