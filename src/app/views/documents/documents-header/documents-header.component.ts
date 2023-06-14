@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { EventService } from 'src/app/services/event.service';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 const todayDate = new Date();
 const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
@@ -15,7 +15,6 @@ const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 })
 export class DocumentsHeaderComponent {
  // dateRangeFilter: any = `${moment(datePrior90).format('MM/DD/YYYY')} - ${moment(todayDate).format('MM/DD/YYYY')}`;
- showFilters: boolean = true;
  dateRangeFilter: any ='';
  dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
@@ -45,13 +44,7 @@ export class DocumentsHeaderComponent {
   }
   constructor(private eventService: EventService,
     private router: Router,
-    private fb: FormBuilder) {
-      router.events.subscribe((event) => {
-        if(event instanceof NavigationEnd) {
-          this.showFilters = event.url.split('/')[2] === 'exports' ? false : true;          
-        }
-      });
-    }
+    private fb: FormBuilder) {}
   ngOnInit() {
     this.eventService.documentsFilterEvent(this.documentFilter);
   }

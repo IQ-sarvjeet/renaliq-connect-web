@@ -129,7 +129,7 @@
 
 @media (max-width: 992px) {
   .footer {
-    padding: 1.25rem 0.75rem;
+    padding: 1.25rem 0;
   }
   .footer-social-list {
     text-align: center;
@@ -140,6 +140,11 @@
   }
 }
 
+@media only screen and (max-width: 767px) {
+  .footer {
+    padding: 1.25rem 0;
+  }
+}
 .icons-bg {
   .social .social-icon {
     transition: all ease 0.3s;

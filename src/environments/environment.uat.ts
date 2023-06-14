@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
-  appUrl: 'https://localhost:4200',
+  baseApiUrl: 'https://webapp-provider-prod-uat-v2-api.azurewebsites.net',
+  appUrl: 'https://connect-uat.renaliq.com',
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',

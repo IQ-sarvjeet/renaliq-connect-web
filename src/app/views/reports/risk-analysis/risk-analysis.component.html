@@ -59,7 +59,7 @@
             <img
               src="../../../../assets/images/risk-analysis.png"
               alt="Patient Risk Stratification Analysis"
-              class="w-100 mt-md-5"
+              class="w-100 mt-md-3"
             />
           </div>
         </div>
@@ -95,10 +95,10 @@
                 </div>
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-60">
+                    <div class="flex-fill border-sm-end px-4 w-50">
                       <app-data-card [cardData]="admissions"></app-data-card>
                     </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-40">
+                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
                       <app-data-card
                         [cardData]="admissionRecent"
                       ></app-data-card>
@@ -119,7 +119,7 @@
                 <div class="flex-fill d-flex align-items-center text-nowrap">
                   <div class="d-sm-flex w-100">
                     <div
-                      class="flex-fill border-sm-start px-4 w-50"
+                      class="flex-fill border-sm-end px-4 w-50"
                       *ngFor="let gender of genderData"
                     >
                       <div>
