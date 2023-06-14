@@ -3,11 +3,11 @@ name: Develop Branch CI/CD
 on:
   push:
     branches:
-      - uat_temp
+      - qa
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
-      - uat_temp
+      - qa
 
 jobs:
   build_and_deploy_job:
