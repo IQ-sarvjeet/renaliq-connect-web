@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://webapp-provider-prod-uat-v2-api.azurewebsites.net',
-  appUrl: 'https://connect-uat.renaliq.com',
+  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
+  appUrl: 'https://agreeable-forest-060cbdb10.2.azurestaticapps.net',
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
@@ -16,6 +16,7 @@ export const environment = {
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
