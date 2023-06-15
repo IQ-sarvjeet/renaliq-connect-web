@@ -47,10 +47,8 @@ export class DoughnutChartComponent {
             color: 'black'
           }
         },
-
         center: ['40%', '30%'],
         size: '80%'
-
       }
     },
     tooltip: {
@@ -71,9 +69,7 @@ export class DoughnutChartComponent {
       name: '',
       innerSize: '50%',
       data: [],
-
       showInLegend: false
-
     }]
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;

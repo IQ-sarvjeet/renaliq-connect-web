@@ -1,1 +1,136 @@
-<p>exports works!</p>
+<div class="mb-4 p-4 minh-content"
+  [ngClass]="{ 'd-flex align-items-center justify-content-center': !recentExports.data.length && !documentsLoading }">
+  <div *ngIf="!recentExports.data.length && !documentsLoading" class="text-center">
+    <h2>A place for all of your files</h2>
+    <div class="fs-22 my-3">
+      <i class="fa fa-file-pdf-o mx-2 info-pdf"></i>
+      <i class="fa fa-file-word-o mx-2 info-word"></i>
+      <i class="fa fa-file-excel-o mx-2 info-excel"></i>
+      <i class="fa fa-file-photo-o mx-2 info-code"></i>
+      <i class="fa fa-file-movie-o mx-2 info-image"></i>
+    </div>
+    <div>
+      View all documents by "<a href="javascript: void(0)" class="a-link text-secondary"
+        routerLink="/documents/sharedbysomatus">
+        Shared By Somatus</a>" or "<a href="javascript: void(0)" class="a-link text-secondary"
+        routerLink="/documents/knowledge-center">
+        Knowledge Center</a>"
+    </div>
+
+  </div>
+  <div *ngIf="(filesLoaded && recentExports.data.length) || !filesLoaded">
+    <div class="d-flex mt-2">
+      <div class="flex-fill d-flex align-items-center">
+        <h3 class="card-title">Exports</h3>
+      </div>
+    </div>
+    <hr />
+  </div>
+  <div class="d-sm-flex" *ngIf="recentExports.data.length">
+    <div class="flex-fill">
+      <a href="javascript: void(0)" class="folders-item" [ngClass]="(filters.type === 1) ? 'active': ''"
+        (click)="selectFolderHandler(1)">
+        <svg viewBox="0 -70 1024 1024" class="" role="img">
+          <use class="sv-icon" xlink:href="#svg_folder"></use>
+        </svg> <span class="d-block">Rounding Report</span>
+      </a>
+      <a href="javascript: void(0)" class="folders-item" [ngClass]="(filters.type === 2) ? 'active': ''"
+        (click)="selectFolderHandler(2)">
+        <svg viewBox="0 -70 1024 1024" class="" role="img">
+          <use class="sv-icon" xlink:href="#svg_folder"></use>
+        </svg> <span class="d-block">Clinical Quality Matrix</span>
+      </a>
+    </div>
+  </div>
+  <div class="d-sm-flex"  *ngIf="loadingFolders">
+    <div class="flex-fill">
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+      <span class="d-inline-block mx-3 mt-1 mw-3">
+        <span class="d-block rounded-1 skeleton-loader pt-5 pb-4"></span>
+        <span class="d-block rounded-1 skeleton-loader mt-2 h-05"></span>
+      </span>
+    </div>
+  </div>
+  <hr />
+  <div>
+    <div class="table-responsive" *ngIf="!exportsLoadingStatus && documentsLoading">
+      <table id="data-table" class="table text-nowrap m-0 table-striped">
+        <thead class="table-head">
+          <tr class="text-secondary bg-gray-200">
+            <th class="bg-transparent border-bottom-0">File Name</th>
+            <th class="bg-transparent border-bottom-0 ">Created On</th>
+            <th class="bg-transparent border-bottom-0"></th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          <tr class="border-bottom">
+            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+            <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+          </tr>
+          <tr class="border-bottom">
+            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+            <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+            <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+          </tr>
+          <tr class="border-bottom">
+            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+            <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+            <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="table-responsive" *ngIf="recentExports.data.length && !documentsLoading">
+      <table id="data-table" class="table text-nowrap m-0 table-striped">
+        <thead class="table-head">
+          <tr class="text-secondary bg-gray-200">
+            <th class="bg-transparent border-bottom-0">File Name</th>
+            <th class="bg-transparent border-bottom-0">Created On</th>
+            <th class="bg-transparent border-bottom-0"></th>
+          </tr>
+        </thead>
+        <tbody class="table-body" *ngIf="exportsLoadingStatus">
+          <tr class="border-bottom" *ngFor="let document of recentExports.data">
+            <td>{{document.name}}</td>
+            <td>{{document.requestedOn}}</td>
+            <td class="text-end">
+              <div *ngIf="document.status === status.NOT_STARTED || document.status === status.SUBMITTED || document.status === status.IN_PROGRESS"
+              class="btn btn-outline-primary py-0">
+                <i class="fa fa-solid fa-circle-o-notch fa-spin"></i>
+                </div>
+                <div *ngIf="document.status === status.COMPLETED"
+                (click)="viewFile(document)" class="btn btn-outline-secondary py-0">
+                  
+                <i  class="fa fa-solid fa-download"></i>
+                  </div>
+                  <div *ngIf="document.status === status.ERROR"
+                  class="btn btn-outline-danger py-0">
+                
+                <i *ngIf="document.status === status.ERROR" class="fa fa-solid fa-warning"></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <nav aria-label="Page navigation example" *ngIf="!documentsLoading && recentExports.data.length">
+      <app-pagination
+            [pagingModel]="recentExports.pagingModel"
+            (gotoPageHandler)="gotoPage($event)"
+          >
+       </app-pagination>
+    </nav>
+    <nav aria-label="Page navigation example" *ngIf="!filesLoaded">
+      <div class="d-md-flex">
+       
+        <div class="mt-3 mt-md-0 text-center text-md-end">
+          <span class="d-inline-block skeleton-loader mw-12 py-4 align-middle"></span>
+        </div>
+      </div> 
+    </nav>
+  </div>
+</div>

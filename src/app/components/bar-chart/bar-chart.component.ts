@@ -37,7 +37,6 @@ export class BarChartComponent {
     },
     credits: {
       enabled: false
-
     },
     series: [{
         type: 'column',
