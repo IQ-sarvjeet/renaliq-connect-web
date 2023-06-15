@@ -1,0 +1,91 @@
+<nav aria-label="Page navigation example">
+  <div class="d-md-flex">
+    <div
+      class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0"
+    >
+  <div *ngIf="paginationDetail.show">Showing  {{(paginationDetail.currentPage -1) * paginationDetail.pageSize+1}} to  {{paginationDetail.toRecords}}  of {{paginationDetail.totalRecords}} Records</div>
+  </div>
+    <div class="mt-3 mt-md-0">
+      <ul
+        class="pagination justify-content-center justify-content-md-end mt-2 mb-0"
+      >
+        <li
+          class="page-item"
+          [ngClass]="{ disabled: paginationDetail.currentPage === 1 || !paginationDetail.show }"
+        >
+          <button
+            class="page-link"
+            tabindex="-1"
+            aria-disabled="true"
+            (click)="gotoPage(1)"
+          >
+            First
+          </button>
+        </li>
+        <li
+          class="page-item"
+          [ngClass]="{ disabled: paginationDetail.currentPage === 1 ||  !paginationDetail.show}"
+        >
+          <button
+            class="page-link"
+            tabindex="-1"
+            aria-disabled="true"
+            (click)="gotoPage(paginationDetail.currentPage - 1)"
+          >
+            <i class="fa fa-angle-left"></i>
+          </button>
+        </li>
+        <ng-container
+          *ngFor="let page of paginationRange; let currentIndex = index"
+        >
+          <li
+            *ngIf="page >= 0"
+            class="page-item d-none d-sm-block"
+            [ngClass]="{ active: paginationDetail.currentPage === page + 1 }"
+          >
+            <button class="page-link" (click)="gotoPage(page + 1)">
+              {{ page + 1 }}
+            </button>
+          </li>
+          <li *ngIf="page < 0" class="page-item disabled d-none d-sm-block">
+            <a
+              class="page-link bg-white"
+              href="#"
+              tabindex="-1"
+              aria-disabled="true"
+              >...</a
+            >
+          </li>
+        </ng-container>
+        <li
+          class="page-item"
+          [ngClass]="{
+            disabled:
+              paginationDetail.currentPage >= paginationDetail.totalPages
+          }"
+        >
+          <button
+            class="page-link"
+            (click)="gotoPage(paginationDetail.currentPage + 1)"
+          >
+            <i class="fa fa-angle-right"></i>
+          </button>
+        </li>
+        <li
+          class="page-item"
+          [ngClass]="{
+            disabled:
+              paginationDetail.currentPage >= paginationDetail.totalPages
+          }"
+        >
+          <button
+            class="page-link"
+            (click)="gotoPage(paginationDetail.totalPages)"
+          >
+            Last
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

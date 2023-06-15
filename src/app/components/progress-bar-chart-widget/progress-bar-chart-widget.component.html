@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-header title-submenu d-flex">
+    <h3 class="card-title flex-fill">{{ chartConfig.title }}</h3>
+    <!-- <nav class="nav">
+        <div class="dropdown">
+          <a
+            class="nav-link text-muted fs-16 p-0 ps-4"
+            href="javascript:;"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fe fe-more-vertical"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-start">
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-edit me-1"></i> Edit</a
+            >
+            <a class="dropdown-item" href="#"
+              ><i class="fe fe-trash-2 me-1"></i> Delete</a
+            >
+          </div>
+        </div>
+      </nav> -->
+  </div>
+  <div class="card-body pt-1 mh-11">
+    <div *ngIf="showLoading && !errorMessage">
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-50"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader w-75"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-4"><span class="skeleton-loader"></span></div>
+        <div class="col-6">
+          <span class="skeleton-loader"></span>
+        </div>
+        <div class="col-2 text-right">
+          <span class="skeleton-loader"></span>
+        </div>
+      </div>
+    </div>
+    <ng-container *ngFor="let data of chartData">
+      <div class="row my-3" *ngIf="data.value>=1">
+      
+        <div class="col-4 text-truncate">{{ data.key }}</div>
+        <div class="col-6">
+          <div class="progress progress-sm my-1">
+            <div
+              class="progress-bar progress-bar-bg-color"
+              [class]="'wp-' + data.value"
+            ></div>
+          </div>
+       
+        </div>
+        <div class="col-2 text-right text-nowrap">{{ data.value }}%</div>
+      </div>
+    </ng-container>
+    
+
+    <div *ngIf="errorMessage">
+      <div class="alert alert-danger d-flex fade show" role="alert">
+        <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+        <div class="flex-fill">
+          {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

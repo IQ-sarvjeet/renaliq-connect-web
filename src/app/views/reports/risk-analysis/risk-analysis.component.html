@@ -1,0 +1,179 @@
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-9">
+          <h1 class="page-title m-0">Patient Risk Stratification Analysis</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a routerLink="#">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Risk Stratification Analysis
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-1 pt-3 border-top">
+    <div class="main-container container">
+      <div>
+        <strong class="fw-semibold fs-16"
+          >Overview of your attributed patient risk & SDoH factors</strong
+        >
+      </div>
+      <div class="alert bg-white alert-dismissible border mt-1 p-0 rounded-5">
+        <button
+          type="button"
+          class="btn-close p-2"
+          data-bs-dismiss="alert"
+          aria-hidden="true"
+        >
+          ×
+        </button>
+        <div class="d-md-flex">
+          <div class="flex-fill">
+            <div class="p-5">
+              <div class="mb-3">
+                <strong class="fw-semibold fs-16"
+                  >What is Patient Risk Stratification Analysis?</strong
+                >
+              </div>
+              Somatus has developed Risk Categories of High, Medium and Low to
+              group patients. The patients in the High Priority Category are
+              predicted to drive the majority of future medical cost and have a
+              history of unplanned admissions. Better coordination of care can
+              have the most impact for these patients. Medium Priority patients
+              also have a history of unplanned admissions, at a lower rate and
+              lower predicted cost. Improvements will help this population but
+              not have as big an impact. Low Priority patients generally have no
+              unplanned admission and low predicted future medical costs.
+            </div>
+          </div>
+          <div class="col-12 col-md-2 p-0 text-center">
+            <img
+              src="../../../../assets/images/risk-analysis.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 mt-md-3"
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col-12 col-md-6 col-xl-4">
+            <div class="card p-4">
+              <div class="d-flex">
+                <div class="notifyimg bg-info">
+                  <i class="fa fa-user-circle"></i>
+                </div>
+                <div class="flex-fill d-flex align-items-center text-nowrap">
+                  <div class="d-sm-flex w-100">
+                    <div class="flex-fill border-sm-end px-4 w-50">
+                      <app-data-card [cardData]="patients"></app-data-card>
+                    </div>
+                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                      <app-data-card
+                        [cardData]="engagedPatients"
+                      ></app-data-card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4">
+            <div class="card p-4">
+              <div class="d-flex">
+                <div class="notifyimg bg-info">
+                  <i class="fa fa-bed"></i>
+                </div>
+                <div class="flex-fill d-flex align-items-center text-nowrap">
+                  <div class="d-sm-flex w-100">
+                    <div class="flex-fill border-sm-end px-4 w-50">
+                      <app-data-card [cardData]="admissions"></app-data-card>
+                    </div>
+                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                      <app-data-card
+                        [cardData]="admissionRecent"
+                      ></app-data-card>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-6 col-xl-4" style="position: relative">
+            <app-spinner *ngIf="loadingGenders"></app-spinner>
+            <div class="card p-4" *ngIf="!loadingGenders">
+              <div class="d-flex">
+                <div class="notifyimg bg-info">
+                  <i class="fa fa-circle"></i>
+                </div>
+                <div class="flex-fill d-flex align-items-center text-nowrap">
+                  <div class="d-sm-flex w-100">
+                    <div
+                      class="flex-fill border-sm-end px-4 w-50"
+                      *ngFor="let gender of genderData"
+                    >
+                      <div>
+                        {{
+                          gender.key === "M"
+                            ? "Male"
+                            : gender.key === "F"
+                            ? "Female"
+                            : "Other"
+                        }}
+                        <div class="text-dark fw-bold fs-22 lh-sm">
+                          {{ gender.value }} %
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                      <div>
+                        Female
+                        <div class="text-dark fw-bold fs-22 lh-sm">26</div>
+                      </div>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3 card-lg">
+        <div class="col-12 col-md-6 col-xl-3">
+          <app-progress-bar-chart-widget
+            [config]="patientByStage"
+          ></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <app-progress-bar-chart-widget
+            [config]="patientByPayer"
+          ></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <app-progress-bar-chart-widget
+            [config]="patientByLOB"
+          ></app-progress-bar-chart-widget>
+        </div>
+        <div class="col-12 col-md-6 col-xl-3">
+          <app-progress-bar-chart-widget
+            [config]="patientByRiskCategory"
+          ></app-progress-bar-chart-widget>
+        </div>
+      </div>
+      <app-heatmaps
+        [patientByStageKeys]="patientByStageKeys"
+        [patientByRiskCategoryKeys]="patientByRiskCategoryKeys"
+      ></app-heatmaps>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header border-bottom title-submenu d-flex">
+    <h3 class="card-title flex-fill">Patients by Stage</h3>
+    <a routerLink="/patients" class="ms-auto">View Patients</a>
+  </div>
+  <div class="card-body pt-3">
+    
+    <div class="donut-chart__wrapper">
+      <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-sm-6 pe-xl-1">
+            <app-doughnut-chart 
+              [config]="chartConfig">
+            </app-doughnut-chart>
+          </div>
+          <div class="col-12 col-sm-6 pe-xl-1">
+            <table class="table text-nowrap m-0 table-bordered table-striped">
+              <tbody class="table-body">
+                <tr *ngFor="let stage of patientByStage">
+                  <td style="padding: 2px !important;">{{stage.key}}</td>
+                  <td style="padding: 2px !important;">{{stage.value}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,289 @@
+<div class="table-responsive">
+  <table
+    id="data-table"
+    class="table text-nowrap m-0 table-bordered table-striped"
+  >
+    <thead class="table-head" *ngIf="list.length > 0 && !showLoading">
+      <tr class="text-secondary bg-gray-200">
+        <th class="bg-transparent border-bottom-0fs-12 table-header"
+          [ngClass]="renderArrowIcon('EnrollmentNo')"
+          (click)="applySort('EnrollmentNo')">
+          MEMBER ID
+        </th>
+        <th class="bg-transparent border-bottom-0 wp-25 fs-12 table-header"
+          (click)="applySortPatient('patientname')"
+          [ngClass]="renderArrowIcon('patientname')">
+          PATIENT
+        </th>
+
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('BirthDate')"
+          [ngClass]="renderArrowIcon('BirthDate')">
+          DOB (AGE)
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Stage')"
+          [ngClass]="renderArrowIcon('Stage')">
+          STAGE
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('RiskCategory')"
+          [ngClass]="renderArrowIcon('RiskCategory')">
+          RISK CATEGORY
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('PrimaryCareMember')"
+          [ngClass]="renderArrowIcon('PrimaryCareMember')">
+          CARE MEMBER
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          [ngClass]="renderArrowIcon('Status')"
+          (click)="applySort('Status')">
+          STATUS
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          [ngClass]="renderArrowIcon('AssessmentDate')"
+          (click)="applySort('AssessmentDate')">
+          LAST ASSESSMENT
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          [ngClass]="renderArrowIcon('DischargeDate')"
+          (click)="applySort('DischargeDate')">
+          LAST DISCHARGE
+        </th>
+        <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="showLoading" class="table-body">
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="!showLoading" class="table-body">
+      <tr *ngFor="let item of list">
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- <span
+              class="data-image avatar avatar-sm rounded-circle"
+              style="background-image: url(../assets/images/users/11.jpg)"
+            ></span> -->
+            <div class="user-details ms-2">
+              <a
+                class="text-secondary"
+                href="javascript: void(0)"
+                (click)="patientHandler(item, 'detail')"
+                ><h6 class="mb-0">{{ item.patient?.enrollmentNo }}</h6></a
+              >
+              <!--span class="badge badge-xs bg-success">Approved</span-->
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- <span
+              class="data-image avatar avatar-sm rounded-circle"
+              style="background-image: url(../assets/images/users/11.jpg)"
+            ></span> -->
+            <div class="user-details ms-2">
+              <a
+                class="text-secondary"
+                href="javascript: void(0)"
+                (click)="patientHandler(item, 'detail')"
+                ><h6 class="mb-0">{{ item.patient?.name }}</h6></a
+              >
+              <!--span class="badge badge-xs bg-success">Approved</span-->
+            </div>
+          </div>
+        </td>
+
+        <td class="text-center">
+          {{ getFormatDate(item.dob)
+          }}<strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
+        </td>
+        <td class="text-center">{{ item.stage }}</td>
+        <td>
+          <div class="d-flex">
+            <div class="flex-fill">
+              <div class="progress progress-sm mt-1">
+                <div
+                  *ngIf="item.riskCategory === 'Medium'"
+                  class="progress-bar bg-warning wp-50"
+                ></div>
+                <div
+                  *ngIf="item.riskCategory === 'Low'"
+                  class="progress-bar bg-success wp-25"
+                ></div>
+                <div
+                  *ngIf="
+                    item.riskCategory === 'High' ||
+                    item.riskCategory === 'Highest'
+                  "
+                  class="progress-bar bg-danger wp-75"
+                ></div>
+              </div>
+            </div>
+            <div class="ms-2">{{ item.riskCategory }}</div>
+          </div>
+        </td>
+        <td class="text-center">{{ item.careMember }}</td>
+        <td class="text-center">{{ item.status }}</td>
+        <td class="text-center">
+          {{ getFormatDate(item.lastAssignment) }}
+          <strong class="fw-semibold"></strong>
+        </td>
+        <td class="text-center">
+          {{ getFormatDate(item.lastDischarge)
+          }}<strong class="fw-semibold"></strong>
+        </td>
+        <td class="text-center">
+          <a
+            href="#"
+            class="br-5 px-2 py-1"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            ><i class="fe fe-more-vertical"></i
+          ></a>
+          <div class="dropdown-menu dropdown-menu-start">
+            <!-- <a class="dropdown-item" href="#/patient-profile"
+              ><i class="fe fe-edit-2 me-2"></i> Edit</a
+            > -->
+            <a
+              class="dropdown-item"
+              href="Javascript: void(0);"
+              (click)="patientHandler(item, 'detail')"
+              ><i class="fe fe-info me-2"></i> Detail</a
+            >
+            <a
+              *ngIf="item.carePlanStatus === '1'"
+              class="dropdown-item"
+              href="Javascript: void(0);"
+              (click)="patientHandler(item, 'viewCarePlan')"
+              ><i class="fe fe-info me-2"></i> View Care Plan</a
+            >
+          </div>
+        </td>
+      </tr>
+      <!-- <tr *ngIf="list.length == 0 && !showLoading">
+        <td>{{ message.noRecords }}</td>
+      </tr> -->
+    </tbody>
+  </table>
+  <app-no-records-found
+    *ngIf="list.length == 0 && !showLoading"
+  ></app-no-records-found>
+  <app-pagination
+    *ngIf="list.length > 0 && !showLoading"
+    [attributePatients]="attributePatients"
+    [pagingModel]="gridData.pagingModel"
+    (gotoPageHandler)="gotoPage($event)"
+  >
+  </app-pagination>
+</div>

@@ -1,0 +1,102 @@
+<div class="mb-5">
+  <div class="pb-3">
+    <div class="d-flex">
+      <h3 class="card-title mb-0">Care Team</h3>
+    </div>
+  </div>
+  <div *ngIf="!errorMessage">
+    <ul class="list-group blog-autors">
+      <span *ngIf="showLoading">
+        <li class="border-top py-2">
+          <div class="media d-flex">
+            <div class="skeleton-loader__media-sm my-1 me-3">
+              <span class="skeleton-loader"></span>
+            </div>
+            <div class="flex-fill">
+              <div class="my-3"><span class="skeleton-loader"></span></div>
+              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
+            </div>
+          </div>
+        </li>
+        <li class="border-top py-2">
+          <div class="media d-flex">
+            <div class="skeleton-loader__media-sm my-1 me-3">
+              <span class="skeleton-loader"></span>
+            </div>
+            <div class="flex-fill">
+              <div class="my-3"><span class="skeleton-loader"></span></div>
+              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
+            </div>
+          </div>
+        </li>
+        <li class="border-top py-2">
+          <div class="media d-flex">
+            <div class="skeleton-loader__media-sm my-1 me-3">
+              <span class="skeleton-loader"></span>
+            </div>
+            <div class="flex-fill">
+              <div class="my-3"><span class="skeleton-loader"></span></div>
+              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
+            </div>
+          </div>
+        </li>
+        <li class="border-top py-2">
+          <div class="media d-flex">
+            <div class="skeleton-loader__media-sm my-1 me-3">
+              <span class="skeleton-loader"></span>
+            </div>
+            <div class="flex-fill">
+              <div class="my-3"><span class="skeleton-loader"></span></div>
+              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
+            </div>
+          </div>
+        </li>
+        <li class="border-top py-2">
+          <div class="media d-flex">
+            <div class="skeleton-loader__media-sm my-1 me-3">
+              <span class="skeleton-loader"></span>
+            </div>
+            <div class="flex-fill">
+              <div class="my-3"><span class="skeleton-loader"></span></div>
+              <div class="my-3"><span class="skeleton-loader w-75"></span></div>
+            </div>
+          </div>
+        </li>
+      </span>
+      <li
+        class="list-group-item border-top py-2"
+        *ngFor="let member of careTeamList"
+      >
+        <div class="text-dark">
+          <div class="media mt-0 d-sm-flex d-block">
+            <img
+              *ngIf="member.imageSrc"
+              class="avatar-md rounded-circle me-3 my-auto"
+              [src]="member.imageSrc"
+              alt="Image description"
+            />
+            <div class="media-body d-sm-flex d-block">
+              <div class="d-flex align-items-center">
+                <div class="mt-1">
+                  <h5 class="mb-1">{{ member.name }}</h5>
+                  <p class="mb-0 text-13 text-primary">
+                    {{ member.designation }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="errorMessage">
+    <div class="alert alert-danger d-flex fade show"
+      role="alert">
+      <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+      <div class="flex-fill">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</div>

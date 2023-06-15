@@ -1,0 +1,124 @@
+<div class="mb-4 p-4 minh-content" [ngClass]="{ 'd-flex align-items-center justify-content-center': !recentDocuments.length && !documentsLoading }">
+  
+  <div *ngIf="!recentDocuments.length && !documentsLoading" class="text-center">
+    <h2>A place for all of your files</h2>
+    <div class="fs-22 my-3">
+      <i class="fa fa-file-pdf-o mx-2 info-pdf"></i>
+      <i class="fa fa-file-word-o mx-2 info-word"></i>
+      <i class="fa fa-file-excel-o mx-2 info-excel"></i>
+      <i class="fa fa-file-photo-o mx-2 info-code"></i>
+      <i class="fa fa-file-movie-o mx-2 info-image"></i>
+    </div>
+    <div>
+      View all documents by "<a href="javascript: void(0)" class="a-link text-secondary" routerLink="/documents/sharedbysomatus" >
+        Shared By Somatus</a>" or "<a href="javascript: void(0)" class="a-link text-secondary" routerLink="/documents/knowledge-center">
+          Knowledge Center</a>"
+    </div>
+
+  </div>
+  <div *ngIf="recentDocuments.length || !recentDocumentsLoadingStatus">
+    <div class="d-flex mt-2">
+      <div class="flex-fill d-flex align-items-center">
+        <h3 class="card-title">Recent Documents</h3>
+      </div>
+    </div>
+    <hr />
+  </div>
+  <div class="table-responsive" *ngIf="!recentDocumentsLoadingStatus">
+    <table id="data-table" class="table text-nowrap m-0 table-striped">
+      <thead class="table-head">
+        <tr class="text-secondary bg-gray-200">
+          <th class="bg-transparent border-bottom-0">File Name</th>
+          <th class="bg-transparent border-bottom-0 ">Description</th>
+          <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
+          <!-- <th class="bg-transparent border-bottom-0">Uploaded By</th> -->
+          <th class="bg-transparent border-bottom-0">Viewed On</th>
+          <th class="bg-transparent border-bottom-0"></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr class="border-bottom">
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+        </tr>
+        <tr class="border-bottom">
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+        </tr>
+        <tr class="border-bottom">
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+        </tr>
+        <tr class="border-bottom">
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+        </tr>
+        <tr class="border-bottom">
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-50"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td><span class="skeleton-loader my-1 w-100 w-md-75"></span></td>
+          <td class="text-end"><span class="skeleton-loader my-1 w-100 w-md-50 ms-auto"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-responsive" *ngIf="recentDocuments.length">
+    <table id="data-table" class="table text-nowrap m-0 table-striped">
+      <thead class="table-head">
+        <tr class="text-secondary bg-gray-200">
+          <th class="bg-transparent border-bottom-0">File Name</th>
+          <th class="bg-transparent border-bottom-0 ">Description</th>
+          <th class="bg-transparent border-bottom-0 wp-15">Tags</th>
+          <!-- <th class="bg-transparent border-bottom-0">Uploaded By</th> -->
+          <th class="bg-transparent border-bottom-0">Viewed On</th>
+          <th class="bg-transparent border-bottom-0"></th>
+        </tr>
+      </thead>
+     
+      <tbody class="table-body" *ngIf="recentDocumentsLoadingStatus">
+        <tr class="border-bottom" *ngFor="let document of recentDocuments">
+          <td>{{document.title}}</td>
+          <td>{{document.description}}</td>
+          <td>
+            <div class="tags px-4 me-2" *ngFor="let tag of document.tags">{{tag}}</div>
+            <!-- <div class="tags px-4 me-2">Anthem</div> -->
+          </td>
+          <!-- <td>{{document.uploadedBy}}</td> -->
+          <td>{{document.viewedOn}}</td>
+          <td class="text-end">
+            <div
+              (click)="viewFile(document)"
+              class="btn btn-outline-primary py-0"
+            >
+            <i class='fa fa-download'></i></div
+            >
+          </td>
+        </tr>
+      </tbody>
+     
+    </table>
+    <!-- <div class="text-center mt-3">
+        <a
+          href="javascript: void(0)"
+          class="btn btn-outline-secondary px-4"
+          routerLink="/documents/sharedbysomatus"
+        >
+          View All Documents</a
+        >
+    </div> -->
+  </div>
+</div>
+<app-view-details [viewDocument]="documentDetails"></app-view-details>

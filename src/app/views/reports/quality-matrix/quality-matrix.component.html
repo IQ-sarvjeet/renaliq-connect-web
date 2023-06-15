@@ -1,0 +1,360 @@
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-7 col-md-8 col-lg-9">
+          <h1 class="page-title m-0">Clinical Quality Metrics</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a routerLink="#">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Clinical Quality Metrics
+            </li>
+          </ol>
+        </div>
+        <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-2 mb-sm-0">
+          <!-- <div class="input-group">
+            <mbsc-datepicker 
+              class="form-control fs-12"
+              #rangeDatepicker
+              [options]="dateRangeOptions" 
+              placeholder="Select date range" ></mbsc-datepicker>
+            <button class="input-group-text bg-white"
+              type="button"
+              (click)="rangeDatepicker.open()">
+              <i class="fa fa-calendar"></i>
+            </button>
+          </div> -->
+          <div class="form-floating">
+            <select
+              class="form-select fs-14"
+              id="status"
+              aria-label="Performance Period"
+              (change)="dateSelectionHandler($event)"
+            >
+              <option
+                [selected]="selectedDate === dateItem.id"
+                [value]="dateItem.id"
+                *ngFor="let dateItem of dateList"
+              >
+                {{ moment(dateItem.periodStart).format("MM/DD/YYYY") }} -
+                {{ moment(dateItem.periodEnd).format("MM/DD/YYYY") }}
+              </option>
+            </select>
+            <label for="floatingSelect">Performance Period</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="main-container container">
+    <div class="alert bg-white alert-dismissible border mt-1 p-0 rounded-5">
+      <button
+        type="button"
+        class="btn-close p-2"
+        data-bs-dismiss="alert"
+        aria-hidden="true"
+      >
+        ×
+      </button>
+      <div class="d-md-flex">
+        <div class="flex-fill">
+          <div class="p-5">
+            <div class="mb-3">
+              <strong class="fw-semibold fs-16"
+                >What is Clinical Quality Metrics ?</strong
+              >
+            </div>
+            As a part of your value-based care agreement with Somatus, we
+            collaborate to manage key metrics specific to the CKD and ESKD
+            patient population we share. These metrics relate to engagement,
+            service use and certain clinical quality metrics. They are
+            calculated based primarily on claims, and ADT or Admission,
+            Discharges and Transfer data we receive from our interoperability
+            partners. It allows you to see your patients from the lens of the
+            payer and contrast that view against what you have in your own
+            electronic medical record or other sources, helping to find and
+            close gaps.
+          </div>
+        </div>
+        <div class="col-12 col-md-2 p-0 text-center">
+          <span class="light-theme-img">
+            <img
+              src="../../../../assets/images/quality-metrics.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 mt-md-3"
+            />
+          </span>
+          <span class="dark-theme-img">
+            <img
+              src="../../../../assets/images/quality-metrics-dark.png"
+              alt="Patient Risk Stratification Analysis"
+              class="w-100 mt-md-3"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="table-responsive mb-0">
+        <table class="table table-sm text-nowrap text-md-nowrap mb-0">
+          <thead *ngIf="!showLoading && qualityMatircList.length > 0">
+            <tr>
+              <th>QUALITY BONUS TIER</th>
+              <th class="text-center">POPULATION</th>
+              <th class="text-center">NUMERATOR</th>
+              <th class="text-center">DENOMINATOR</th>
+              <th>PERFORMANCE</th>
+              <th class="text-center" width="40"></th>
+              <th width="40"></th>
+            </tr>
+          </thead>
+          <tbody class="">
+            <ng-container *ngIf="!showLoading && qualityMatircList.length > 0">
+              <ng-container
+                *ngFor="let matirc of qualityMatircList; let i = index"
+              >
+                <tr class="bg-light mb-2">
+                  <td colspan="7">
+                    <div class="px-2">
+                      <b>{{ matirc.category }}</b>
+                    </div>
+                  </td>
+                </tr>
+                <ng-container
+                  *ngFor="let item of matirc.metrices; let m = index"
+                >
+                  <tr class="border-top">
+                    <td class="px-3">{{ item.martricName }}</td>
+                    <td class="text-center">
+                      {{ item.type }}
+                      <!-- <span class="text-muted"
+                        ><small>[{{ item.population }}]</small></span
+                      > -->
+                    </td>
+                    <td class="text-center">{{ item.numerator }}</td>
+                    <td class="text-center">{{ item.denominator }}</td>
+                    <td>
+                      <span
+                        class="fs-13 text-primary"
+                        *ngIf="item.denominator !== '-'"
+                        >{{ item.pecentage
+                        }}{{ item.targetTypeSign == "%" ? "%" : "" }}</span
+                      >
+                      <div
+                        class="progress progress-sm"
+                        *ngIf="item.denominator !== '-'"
+                      >
+                        <div
+                          class="progress-bar"
+                          *ngIf="item.pecentage <= 100"
+                          [ngClass]="[
+                            'wp-' + item.pecentage,
+                            item.isTargetAchive === true
+                              ? 'bg-success'
+                              : 'bg-danger'
+                          ]"
+                        ></div>
+                        <div
+                          class="progress-bar"
+                          *ngIf="item.pecentage > 100"
+                          [ngClass]="[
+                            'wp-100',
+                            item.isTargetAchive === true
+                              ? 'bg-success'
+                              : 'bg-danger'
+                          ]"
+                        ></div>
+                      </div>
+                      <span class="fs-11" *ngIf="item.targetTypeSign == '='"
+                        ><b
+                          >TARGET {{ item.targetFormula }} {{ item.target }}</b
+                        ></span
+                      >
+                      <span class="fs-11" *ngIf="item.targetTypeSign == '%'"
+                        ><b
+                          >TARGET {{ item.targetFormula }} {{ item.target
+                          }}{{ item.targetTypeSign }}</b
+                        ></span
+                      >
+                    </td>
+                    <td class="text-center">
+                      <!--a
+                        *ngIf="item.population !== '0'"
+                        data-bs-target="#modalChart"
+                        data-bs-toggle="modal"
+                        href="javascript:void(0)"
+                        (click)="openChart()"
+                        class="btn btn-outline-primary border-0"
+                      >
+                        <span
+                          class="icon icon-chart fs-16 mt-1 d-inline-block"
+                        ></span>
+                      </a-->
+                    </td>
+                    <td class="text-center">
+                      <a
+                        *ngIf="item.population !== '0'"
+                        href="javascript: void(0);"
+                        (click)="openReport(item)"
+                        class="btn btn-outline-primary border-0 ms-2"
+                      >
+                        <span
+                          class="fa fa-th-list fs-16 mt-1 d-inline-block"
+                        ></span>
+                      </a>
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </ng-container>
+            <ng-container *ngIf="showLoading">
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+              <tr class="border-top">
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+                <td><span class="skeleton-loader"></span></td>
+              </tr>
+            </ng-container>
+            <!-- <tr
+              class="border-top"
+              *ngIf="!showLoading && qualityMatircList.length === 0"
+            >
+              <td colspan="7">
+                <div class="alert alert-danger d-flex fade show" role="alert">
+                  <div>
+                    <i class="fa fa-warning me-2" aria-hidden="true"></i>
+                  </div>
+                  <div class="flex-fill">No data found!</div>
+                </div>
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+        <app-no-records-found
+          *ngIf="!showLoading && qualityMatircList.length === 0"
+        ></app-no-records-found>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CHART MODAL -->
+<div class="modal fade" id="modalChart">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <app-spinner *ngIf="openChartModal"></app-spinner>
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Other - Engagement Rate</h4>
+        <button
+          aria-label="Close"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          (click)="modalClosed()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5 class="text-center">Quaterly performence matrix - Q4 2022</h5>
+
+        <div class="text-center">
+          <app-bar-chart [config]="chartConfig"></app-bar-chart>
+          <!--<img
+           src="../../../../assets/images/chart.png"
+           alt="Quaterly performence matrix"
+           class="img-fluid" />-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

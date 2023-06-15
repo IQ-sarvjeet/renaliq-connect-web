@@ -1,0 +1,448 @@
+<div class="table-responsive" >
+  <div class="row g-0 mb-2">
+    <div class="col-12 col-md-2 order-md-2 text-end">
+      <a data-bs-target="#modalFilter" data-bs-toggle="modal" href="javascript:void(0)" class="p-1 text-secondary fs-16 align-middle"><i class="fa fa-filter"></i></a>
+      <a href="javascript: void(0)" data-bs-target="#exportFilter" (click)="exportClickHandler()" data-bs-toggle="modal" class="btn btn-outline-secondary ms-3"><i class="fa fa-download me-1"></i> Export</a>
+    </div>
+    <div class="col-12 col-md-10 order-md-1">
+      <hr class="d-md-none mt-2 mb-1"/>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.patientName">
+        Patient Name: <b>{{displayFilter.patientName}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('patientName')">x</a>
+      </div> 
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+        Stage: <b>{{displayFilter.stage}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+      </div>
+      
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+        Status: <b>{{displayFilter.status}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
+      </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.numerator">
+        Numerator: <b>{{displayFilter.numerator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('numerator')">x</a>
+      </div>
+      <div class="tags mt-1 me-2" *ngIf="displayFilter.denominator">
+        Denominator: <b>{{displayFilter.denominator}}</b>
+        <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('denominator')">x</a>
+      </div>
+     
+      <a *ngIf="displayFilter.status || displayFilter.stage || displayFilter.numerator|| displayFilter.denominator|| displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)" href="Javascript:void(0)" class="a-link text-secondary m-1 text-nowrap" (click)="clearFilterHandler()">Clear Filters</a>   
+     </div>
+  </div>
+
+  <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+    Error! {{ errorMsg }}
+  </div>
+  <table
+    id="data-table"
+    class="table text-nowrap m-0 table-bordered table-striped"
+    *ngIf="list.length > 0"
+  >
+    <thead class="table-head">
+      <tr class="text-secondary bg-gray-200">
+       
+        <th class="bg-transparent border-bottom-0 fs-12">MEMBER ID</th>
+        <th class="bg-transparent border-bottom-0 wp-15 fs-12 table-header"
+          (click)="applySort('PatientName')"
+          [ngClass]="renderArrowIcon('PatientName')"
+          >PATIENT</th>
+        <th class="bg-transparent border-bottom-0 fs-12">DOB (AGE)</th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Stage')"
+          [ngClass]="renderArrowIcon('Stage')"
+          >STAGE</th>
+        <!--th class="bg-transparent border-bottom-0 fs-12">METRIC</th-->
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+        (click)="applySort('Status')"
+        [ngClass]="renderArrowIcon('Status')">
+          STATUS
+        </th>
+        <!--th class="bg-transparent border-bottom-0 fs-12">METRIC</th-->
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+        (click)="applySort('HoldReason')"
+        [ngClass]="renderArrowIcon('HoldReason')">
+          ON HOLD REASON
+        </th>
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Numerator')"
+          [ngClass]="renderArrowIcon('Numerator')">
+          NUMERATOR
+        </th>
+        
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySort('Denominator')"
+          [ngClass]="renderArrowIcon('Denominator')">
+          DENOMINATOR
+        </th>
+     
+      </tr>
+    </thead>
+    <tbody class="table-body" *ngIf="showLoading">
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+      <tr>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+        <td><span class="skeleton-loader my-1"></span></td>
+      </tr>
+    </tbody>
+    <tbody class="table-body" *ngIf="!showLoading">
+      <tr *ngFor="let item of list">
+        <!-- <td class="text-center">
+          <div class="checkbox m-auto">
+            <div class="custom-checkbox custom-control">
+              <input
+                type="checkbox"
+                data-checkboxes="mygroup"
+                class="custom-control-input"
+                id="checkbox-1"
+              />
+              <label for="checkbox-1" class="custom-control-label"></label>
+            </div>
+          </div>
+        </td> -->
+        <td>
+          <a
+            class="text-secondary"
+            href="javascript: void(0);"
+            (click)="openProfile(item)"
+            >{{ item.enrollmentNo }}</a
+          >
+        </td>
+        <td>
+          <div class="d-flex align-items-center">
+            <!-- <span
+              class="data-image avatar avatar-sm rounded-circle"
+              style="background-image: url(../assets/images/users/11.jpg)"
+            ></span> -->
+            <div class="user-details ms-2">
+              <a
+                class="text-secondary"
+                href="javascript: void(0);"
+                (click)="openProfile(item)"
+                ><h6 class="mb-0">{{ item.patientName }}</h6></a
+              >
+              <!--<span *ngIf="item.status==='New'" class="badge badge-xs bg-light">{{item.status}}</span>
+              <span *ngIf="item.status==='Approved'" class="badge badge-xs bg-success">{{item.status}}</span>
+              <span *ngIf="item.status==='Rejected'" class="badge badge-xs bg-danger">{{item.status}}</span>
+              <span *ngIf="item.status==='Pending'" class="badge badge-xs bg-warning">{{item.status}}</span>-->
+            </div>
+          </div>
+        </td>
+        <td>
+          {{ moment(getFormatDate(item.dob)).format("MM/DD/YYYY") }}
+          <strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
+        </td>
+        <td>{{ item.stage }}</td>
+        <!--<td>{{item.metricName}}</td>-->
+        <td class="text-center">{{ item.status }}</td>
+        <td class="text-center">{{ item.holdReason }}</td>
+        <td class="text-center">{{ item.numerator }}</td>
+        <td class="text-center">{{ item.denominator }}</td>
+       </tr>
+    </tbody>
+  </table>
+  <app-pagination
+    [pagingModel]="gridData.pagingModel"
+    (gotoPageHandler)="gotoPage($event)"
+    *ngIf="list.length > 0"
+  >
+  </app-pagination>
+</div>
+<app-spinner *ngIf="showLoading"></app-spinner>
+<app-no-records-found *ngIf="list.length === 0 && !showLoading"></app-no-records-found>
+
+
+
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+            <div class="col-12">
+              <label for="searchPatient" class="mb-1">Patient</label>
+              <input
+                type="text"
+                name="text"
+                placeholder="Search by Patient"
+                id="searchPatient"
+                [(ngModel)]="filterModel.filter.patientName"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6 mb-3">
+              <label for="numerator" class="mb-1">Numerator</label>
+              <input
+                type="number"
+                name="text"
+                placeholder=""
+                id="numerator"
+                [(ngModel)]="filterModel.filter.numerator"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6 mb-3">
+              <label for="denominator" class="mb-1">Denominator</label>
+              <input
+                type="number"
+                name="text"
+                placeholder=""
+                id="denominator"
+                [(ngModel)]="filterModel.filter.denominator"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6 mb-3">
+              <label for="stage" class="mb-1">Stage</label>
+              <select
+                class="form-select"
+                [(ngModel)]="filterModel.filter.stage"
+                id="stage"
+              >
+              <option value="">Select</option>
+              <option *ngFor="let stage of stages" [value]="stage">
+                {{ stage }}
+              </option>
+              </select>
+            </div>
+            <div class="col-6 mb-3">
+              <label for="status" class="mb-1">Status</label>
+              <select
+                class="form-select"
+                [(ngModel)]="filterModel.filter.status"
+                id="status"
+              >
+                <option value="">Status</option>
+                <option *ngFor="let status of statusList" [value]="status">
+                  {{ status }}
+                </option>
+              </select>
+            </div>
+           
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal fade" id="exportFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Export Patient Report</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4" *ngIf="!exportStatus">
+          <label for="stage" class="mb-1">File Name</label>
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              name="text"
+              placeholder="Enter File Name"
+              id="searchPatient"
+              class="form-control w-50"
+              [(ngModel)]="fileNameExport"
+            />
+            <input
+              type="text"
+              name="text"
+              value=".xlsx"
+              class="form-control"
+              readonly
+            />
+            <button
+              class="btn btn-secondary"
+              type="button"
+              [disabled]="!fileNameExport || disabledExport"	
+              (click)="submitExport()"
+            >
+              Export
+            </button>
+          </div>	
+        </div>	
+        <div class="mb-4" *ngIf="exportStatus">	
+          <!-- <h4 class="mb-2">Report Already Submitted</h4> -->	
+          <div	
+            class="h-6 mb-2 fs-16"	
+            *ngIf="exportStatus === 'waitingForStatus'"	
+          >	
+            Your export request is being processed now. Please check notification bell icon to download.	
+          </div>	
+          <div	
+            class="progress h-6 mb-2 fs-16"	
+            *ngIf="exportStatus === 'submitted'"	
+          >	
+            <div	
+              class="progress-bar progress-bar-striped progress-bar-animated w-100"	
+              role="progressbar"	
+              aria-valuenow="75"	
+              aria-valuemin="0"	
+              aria-valuemax="100"	
+            >	
+              Submitted for Review	
+            </div>	
+          </div>	
+          <div	
+            class="progress h-6 mb-2 fs-16"	
+            *ngIf="exportStatus === 'inprogress'"	
+          >	
+            <div	
+              class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"	
+              role="progressbar"	
+              aria-valuenow="75"	
+              aria-valuemin="0"	
+              aria-valuemax="100"	
+            >	
+              Sending patient export request, please wait...	
+            </div>	
+          </div>	
+          <div	
+            class="progress h-6 mb-2 fs-16"	
+            *ngIf="exportStatus === 'approved'"	
+          >	
+            <div	
+              class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"	
+              role="progressbar"	
+              aria-valuenow="75"	
+              aria-valuemin="0"	
+              aria-valuemax="100"	
+            >	
+              Approved	
+            </div>	
+          </div>	
+          <div	
+            class="progress h-6 mb-2 fs-16"	
+            *ngIf="exportStatus === 'rejected'"	
+          >	
+            <div	
+              class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"	
+              role="progressbar"	
+              aria-valuenow="75"	
+              aria-valuemin="0"	
+              aria-valuemax="100"	
+            >	
+              Rejected	
+            </div>	
+          </div>	
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'error'">	
+            <div	
+              class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"	
+              role="progressbar"	
+              aria-valuenow="75"	
+              aria-valuemin="0"	
+              aria-valuemax="100"	
+            >	
+              Error	
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,332 @@
+<div class="main-container container">
+  <div class="d-flex">
+    <div class="text-nowrap">
+      <h1 class="page-title m-0">Patient</h1>
+      <ol class="breadcrumb flex-nowrap">
+        <li class="breadcrumb-item">
+          <a routerLink="/">Home</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Patient</li>
+      </ol>
+    </div>
+    <div class="flex-fill">
+      <div class="d-md-flex">
+        <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
+          <div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
+              Name: <b>{{displayFilter.searchKey}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+              Stage: <b>{{displayFilter.stage}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.riskCategory">
+              Risk Category: <b>{{displayFilter.riskCategory}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.careMember">
+              Care Member: <b>{{displayFilter.careMember}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+              Status: <b>{{displayFilter.status}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.assignment && displayFilter.assignment.length > 1">
+              Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.discharge && displayFilter.discharge.length > 1">
+              Discharge: <b>{{moment(displayFilter.discharge[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.discharge[0]).format("MM/DD/YYYY")}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('discharge')">x</a>
+            </div>
+          </div>
+        </div>
+        <div class="pt-2 text-nowrap text-end">
+          <div class="tags mt-1 me-2" 
+            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage || displayFilter.searchKey || displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
+            Clear Filters<a href="Javascript:void(0)"
+            class="tags__icon"
+            (click)="clearFilterHandler()">x</a>
+          </div>
+          <a
+            data-bs-target="#modalFilter"
+            data-bs-toggle="modal"
+            href="javascript:void(0)"
+            class="p-1 text-secondary fs-16 align-middle"
+            ><i class="fa fa-filter"></i
+          ></a>
+          <a
+            href="javascript: void(0)"
+            data-bs-target="#exportFilter"
+            data-bs-toggle="modal"
+            (click)="exportClickHandler()"
+            class="btn btn-outline-secondary ms-3"
+            ><i class="fa fa-download  me-1"></i> Export</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="searchPatient" class="mb-1">Patient</label>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search by Patient"
+            id="searchPatient"
+            [(ngModel)]="filter.patientFilter.searchKey"
+            class="form-control"
+          />
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-6">
+            <label for="stage" class="mb-1">Stage</label>
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.stage"
+              id="stage"
+            >
+              <option value="">Select</option>
+              <option *ngFor="let stage of stages" [value]="stage">
+                {{ stage }}
+              </option>
+            </select>
+          </div>
+          <div class="col-6">
+            <label for="riskCategory" class="mb-1">Risk Category</label>
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.riskCategory"
+              id="riskCategory"
+            >
+              <option value="">Select</option>
+              <option value="N/A">N/A</option>
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-12 col-sm-6">
+            <label for="careMember" class="mb-1">Care Member</label>
+            <input
+              type="text"
+              name="text"
+              placeholder="Search by Care Member"
+              id="careMember"
+              [(ngModel)]="filter.patientFilter.careMember"
+              class="form-control"
+            />
+          </div>
+          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+            <label for="status" class="mb-1">Status</label>
+            <select
+              class="form-select"
+              [(ngModel)]="filter.patientFilter.status"
+              id="status"
+            >
+              <option value="">Select</option>
+              <option *ngFor="let status of statusList" [value]="status">
+                {{ status }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row mt-4">
+          <div class="col-12 col-sm-6">
+            <label for="Assignment" class="mb-1">Assessment</label>
+            <div class="input-group">
+              <mbsc-datepicker
+                class="form-control fs-12"
+                #rangeDatepickerAssignment
+                [options]="dateRangeOptionsAssignment"
+                [(ngModel)]="filter.patientFilter.assignment"
+                placeholder="Select date range"
+              ></mbsc-datepicker>
+
+              <button
+                class="input-group-text bg-white"
+                type="button"
+                (click)="rangeDatepickerAssignment.open()"
+              >
+                <i class="fa fa-calendar"></i>
+              </button>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+            <label for="Discharge" class="mb-1">Discharge</label>
+            <div class="input-group input-group-lg">
+              <!-- value="13 Sep 22 - 20 Sep 22" -->
+              <!-- [(ngModel)]="filter.patientFilter.discharge" -->
+              <div class="input-group">
+                <mbsc-datepicker
+                  class="form-control fs-12"
+                  #rangeDatepicker
+                  [options]="dateRangeOptions"
+                  [(ngModel)]="filter.patientFilter.discharge"
+                  placeholder="Select date range"
+                ></mbsc-datepicker>
+                <button
+                  class="input-group-text bg-white"
+                  type="button"
+                  (click)="rangeDatepicker.open()"
+                >
+                  <i class="fa fa-calendar"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT MODAL -->
+<div class="modal fade" id="exportFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Export Patient Report</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-4" *ngIf="!exportStatus">
+          <label for="stage" class="mb-1">File Name</label>
+          <div class="input-group mb-4">
+            <input
+              type="text"
+              name="text"
+              placeholder="Enter File Name"
+              id="searchPatient"
+              class="form-control w-50"
+              [(ngModel)]="fileNameExport"
+            />
+            <input
+              type="text"
+              name="text"
+              value=".xlsx"
+              class="form-control"
+              readonly
+            />
+            <button
+              class="btn btn-secondary"
+              type="button"
+              [disabled]="!fileNameExport || disabledExport"
+              (click)="submitExport()"
+            >
+              Export
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-4" *ngIf="exportStatus">
+          <!-- <h4 class="mb-2">Report Already Submitted</h4> -->
+          <div
+            class="h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'waitingForStatus'"
+          >
+            Your export request is being processed now. Please check notification bell icon to download.
+          </div>
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'submitted'"
+          >
+            <div
+              class="progress-bar progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Submitted for Review
+            </div>
+          </div>
+
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'inprogress'"
+          >
+            <div
+              class="progress-bar bg-warning progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Sending patient export request, please wait...
+            </div>
+          </div>
+
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'approved'"
+          >
+            <div
+              class="progress-bar bg-success progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Approved
+            </div>
+          </div>
+
+          <div
+            class="progress h-6 mb-2 fs-16"
+            *ngIf="exportStatus === 'rejected'"
+          >
+            <div
+              class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Rejected
+            </div>
+          </div>
+          <div class="progress h-6 mb-2 fs-16" *ngIf="exportStatus === 'error'">
+            <div
+              class="progress-bar bg-danger progress-bar-striped progress-bar-animated w-100"
+              role="progressbar"
+              aria-valuenow="75"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              Error
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

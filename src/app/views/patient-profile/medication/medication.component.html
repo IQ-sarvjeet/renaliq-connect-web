@@ -1,0 +1,35 @@
+<div class="card-header title-submenu d-flex p-0">
+  <h3 class="card-title flex-fill">
+    Medication
+    <div class="fs-12 op-0-75">Medication as per the care plan</div>
+  </h3>
+</div>
+<table class="table border text-nowrap text-md-nowrap mt-4 mb-0">
+  <thead>
+    <tr class="bg-gray-200">
+      <td>DRUG NAME</td>
+      <td>FORM</td>
+      <td>DELIVERY</td>
+      <td>FREQUENCY</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="border-top" *ngFor="let medication of medications">
+      <td>{{medication.drugName}}<div class="fs-12 op-0-75">{{medication.strength}} {{medication.unit}}</div>
+      </td>
+      <td class="col-3">{{medication.form}}</td>
+      <td class="col-3">{{medication.delivery}}</td>
+      <td class="col-3">{{medication.frequency}}</td>
+    </tr>
+    <tr *ngIf="medications.length === 0 && !showLoading">
+      <td colspan="10">
+        <div role="alert" class="alert alert-danger d-flex fade show">
+          <div>
+            <i aria-hidden="true" class="fa fa-warning me-2"></i>
+          </div>
+          <div class="flex-fill">No data found!</div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

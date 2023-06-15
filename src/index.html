@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- META DATA -->
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Welcome to RenalIQ Connect" />
+    <meta name="author" content="RenalIQConnect" />
+    <meta name="keywords" content="RenalIQConnect" />
+    <!-- FAVICON -->
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="./assets/images/brand/favicon.ico"
+    />
+    <!-- TITLE -->
+    <title>Welcome to RenalIQ Connect</title>
+    <meta http-equiv="imagetoolbar" content="no" />
+    <link
+      id="style"
+      href="./assets/plugins/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL8rv08S2zuQmWXgKSEXSgxD8XGpegMTU&libraries=visualization&callback=initMap">
+    </script>
+  </head>
+  <body class="ltr app sidebar-mini">
+    <!-- GLOBAL-LOADER -->
+    <div id="global-loader">
+      <img src="./assets/images/loader.svg" class="loader-img" alt="Loader" />
+    </div>
+    <!-- /GLOBAL-LOADER -->
+    <div class="page">
+      <div class="page-main">
+        <app-root></app-root>
+      </div>
+    </div>
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      xmlns="http://www.w3.org/2000/svg"
+      class="d-none"
+    >
+      <defs>
+        <g id="svg_test" viewBox="0 0 28 27"></g>
+        <g id="svg_file" viewBox="0 0 96 96">
+          <path id="Path_191" data-name="Path 191" d="M10,84V12a8,8,0,0,1,8-8H62.563A8.3,8.3,0,0,1,68.43,6.43L83.57,21.57A8.3,8.3,0,0,1,86,27.437V84a8,8,0,0,1-8,8H18A8,8,0,0,1,10,84Z" fill="none"  stroke-linecap="round" stroke-miterlimit="10" stroke-width="4"/>
+          <path id="Path_192" data-name="Path 192" d="M64,5V17a8,8,0,0,0,8,8H84" fill="none" stroke-linecap="round" stroke-miterlimit="10" stroke-width="4"/>
+        </g>
+        <g id="svg_folder" viewBox="0 0 1024 1024">
+          <path d="M853.333333 256H469.333333l-85.333333-85.333333H170.666667c-46.933333 0-85.333333 38.4-85.333334 85.333333v170.666667h853.333334v-85.333334c0-46.933333-38.4-85.333333-85.333334-85.333333z" fill="#FFA000"/><path d="M853.333333 256H170.666667c-46.933333 0-85.333333 38.4-85.333334 85.333333v426.666667c0 46.933333 38.4 85.333333 85.333334 85.333333h682.666666c46.933333 0 85.333333-38.4 85.333334-85.333333V341.333333c0-46.933333-38.4-85.333333-85.333334-85.333333z" fill="#FFCA28"/>
+        </g>
+      </defs>
+    </svg>
+    <!-- BACK-TO-TOP -->
+    <a href="#top" id="back-to-top"><i class="fa fa-long-arrow-up"></i></a>
+
+    <!-- JQUERY JS -->
+    <script src="./assets/js/jquery.min.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="./assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="./assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <div id="scrnli_recorder_root"></div>
+    <!-- INTERNAL SELECT2 JS -->
+    <script src="./assets/plugins/select2/select2.full.min.js"></script>
+    <script src="./assets/js/circle-progress.min.js"></script>
+
+    <!-- INTERNAL DATA-TABLES JS-->
+    <script src="./assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="./assets/plugins/datatable/dataTables.responsive.min.js"></script>
+
+    <!-- PERFECT SCROLLBAR JS-->
+    <script src="./assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="./assets/plugins/p-scroll/pscroll.js"></script>
+
+    <!-- SELECT2 JS -->
+    <script src="./assets/plugins/select2/select2.full.min.js"></script>
+
+    <!-- FORMVALIDATION JS -->
+    <script src="./assets/js/form-validation.js"></script>
+
+    <!-- STICKY JS -->
+    <script src="./assets/js/sticky.js"></script>
+    <!-- COLOR THEME JS -->
+    <script src="./assets/js/themeColors.js"></script>
+    <!-- DONUT CHART JS -->
+    <!-- <script src="./assets/js/chart.min.js"></script> -->
+    <!-- CUSTOM JS -->
+    <script src="./assets/js/custom.js"></script>
+    <!-- <script>
+      $(document).ready(function () {
+        // DONUT CHART JS
+        function donutChart() {
+          var ctx = document.getElementById("donutChart");
+          var myChart = new Chart(ctx, {
+            type: "doughnut",
+            data: {
+              labels: [
+                "CKD Stage 3a",
+                "CKD Stage 3b",
+                "CKD Stage 4",
+                "CKD Stage 4",
+                "ESKD",
+              ],
+              datasets: [
+                {
+                  label: "# of Tomatoes",
+                  data: [47, 19, 71, 51, 22],
+                  backgroundColor: [
+                    "rgba(8, 48, 80, 0.2)",
+                    "rgba(8, 48, 80, 0.5)",
+                    "rgba(8, 48, 80, 0.75)",
+                    "rgba(8, 48, 80, 1)",
+                    "rgba(38, 132, 255, 1)",
+                  ],
+
+                  borderColor: [
+                    "rgba(8, 48, 80, 0.2)",
+                    "rgba(8, 48, 80, 0.5)",
+                    "rgba(8, 48, 80, 0.75)",
+                    "rgba(8, 48, 80, 1)",
+                    "rgba(38, 132, 255, 1)",
+                  ],
+
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              title: {
+                display: false,
+                text: "This is Title",
+              },
+              animation: {
+                animateScale: true,
+                animateRotate: true,
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+
+              legend: {
+                position: "right",
+                labels: {
+                  boxWidth: 10,
+                  padding: 12,
+                },
+              },
+            },
+          });
+        }
+        setTimeout(donutChart, 5000);
+      });
+    </script> -->
+  </body>
+</html>

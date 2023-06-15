@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-12 col-md-12">
+    <div class="card mb-2">
+      <div class="card-header border-bottom title-submenu p-2 d-block">
+        <div class="row">
+          <div class="col-12 col-lg-4">
+            <h3 class="card-title pt-3 ms-2 ms-lg-0">
+              Patient Population Demographics
+            </h3>
+          </div>
+          <div class="col-12 col-lg-8 mt-3 mt-lg-0">
+            <div class="row form-row">
+              <div class="col-12 col-sm-6 col-md-4">
+                <div class="form-floating">
+                  <select
+                    id="selectAge"
+                    class="form-select fs-14"
+                    (change)="onAgeChanged($event)"
+                  >
+                    <option value="">-- Select Age --</option>
+                    <option value="LessThan65">{{ "<" }} 65</option>
+                    <option value="Between65_74">65-74</option>
+                    <option value="Between75_84">75-84</option>
+                    <option value="GreaterThan85">>85</option>
+                  </select>
+                  <label for="selectAge">Age</label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 pt-2 pt-sm-0">
+                <div class="form-floating">
+                  <select
+                    class="form-select fs-14"
+                    id="diseaseState"
+                    (change)="onStageChanged($event)"
+                  >
+                    <option value="">-- Select Disease Stage --</option>
+                    <option
+                      [value]="stage"
+                      *ngFor="let stage of patientByStageKeys"
+                    >
+                      {{ stage }}
+                    </option>
+                  </select>
+                  <label for="diseaseState">Disease Stage</label>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 pt-2 pt-md-0">
+                <div class="form-floating">
+                  <select
+                    class="form-select fs-14"
+                    id="riskCategory"
+                    (change)="onRiskCategoryChanged($event)"
+                  >
+                    <option value="">-- Select Risk Category --</option>
+                    <option
+                      [value]="risk"
+                      *ngFor="let risk of patientByRiskCategoryKeys"
+                    >
+                      {{ risk }}
+                    </option>
+                  </select>
+                  <label for="riskCategory">Risk Category</label>
+                </div>
+              </div>
+              <!-- <div class="dropdown">
+                <a
+                  class="nav-link text-muted fs-16 p-0 ps-4"
+                  href="javascript:;"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-edit me-1"></i> Edit</a
+                  >
+                  <a class="dropdown-item" href="#"
+                    ><i class="fe fe-trash-2 me-1"></i> Delete</a
+                  >
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="px-1 pb-1">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fs-11 op-0-7 mb-4">
+      <i>Data Updated on : 10 Sep 2022 11:30 AM</i>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<router-outlet></router-outlet>
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-xl-6">
+          <h1 class="page-title m-0">{{ metricName }} Metric</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/">Home</a>
+            </li>
+            <li
+              class="breadcrumb-item"
+              aria-current="page"
+              routerLink="/reports"
+            >
+              Reports
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+              Clinical Quality Metrics
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+              {{ metricName }}
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Patients</li>
+          </ol>
+        </div>
+        <div class="col-12 col-xl-6 d-md-flex pb-2 pb-xl-0">
+          <!--<div class="d-inline-block ms-3">
+            <select
+              class="form-select form-select-sm"
+              aria-label="Default select example"
+              [(ngModel)]="filterModel.filter.numerator"
+              (change)="onNumeratorSelected()"
+            >
+              <option selected value="0">Select Numerator</option>
+              <option *ngFor="let item of numeratorList" value="{{ item.Id }}">
+                {{ item.Name }}
+              </option>
+            </select>
+          </div>-->
+          <div
+            class="d-md-inline-block ms-xl-3 me-md-3 form-floating align-top d-flex flex-fill"
+          >
+            <select
+              class="form-select fs-14"
+              aria-label="Clinical Quality Metrics"
+              (change)="onMetricSelected($event.target)"
+              [(ngModel)]="filterModel.filter.metricId"
+            >
+              <option *ngFor="let item of metricList" value="{{ item.id }}">
+                {{ item.name }}
+              </option>
+            </select>
+            <label for="floatingSelect">Clinical Quality Metrics</label>
+          </div>
+          <div class="d-flex mt-3 mt-md-0">
+            <div class="form-floating flex-fill">
+              <select
+                class="form-select fs-14"
+                id="status"
+                aria-label="Performance Period"
+                (change)="dateSelectionHandler($event)"
+              >
+                <option
+                  [selected]="filterModel.filter.periodId === dateItem.id"
+                  [value]="dateItem.id"
+                  *ngFor="let dateItem of dateList"
+                >
+                  {{ moment(dateItem.periodStart).format("MM/DD/YYYY") }} -
+                  {{ moment(dateItem.periodEnd).format("MM/DD/YYYY") }}
+                </option>
+              </select>
+              <label for="floatingSelect">Performance Period</label>
+            </div>
+            <div class="d-inline-block align-top">
+              <a
+                href="#/reports/qualityMatrix"
+                class="btn btn-danger ms-3 pt-3 pb-2 align-top"
+                ><i class="fe fe-x"></i>
+              </a>
+            </div>
+          </div>
+          <!--a href="#" class="btn btn-outline-secondary ms-3"
+            ><i class="icon icon-share-alt me-1"></i> Export</a
+          -->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="errorMsg" class="alert alert-danger" role="alert">
+      Error! {{ errorMsg }}
+    </div>
+  </div>
+
+  <div class="main-container container">
+    <div class="card mt-1 mb-5 p-2">
+      <app-reports-grid
+        [metricId]="filterModel.filter.metricId"
+        [periodId]="filterModel.filter.periodId"
+      ></app-reports-grid>
+    </div>
+  </div>
+</div>

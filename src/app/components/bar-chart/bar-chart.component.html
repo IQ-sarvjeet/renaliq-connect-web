@@ -1,0 +1,14 @@
+<highcharts-chart
+    style="width: 100%; height: 100%; display: block;"
+    [Highcharts]="Highcharts"
+    [options]="option">
+</highcharts-chart>
+<div *ngIf="errorMessage">
+    <div class="alert alert-danger d-flex fade show"
+      role="alert">
+      <div><i class="fa fa-warning me-2" aria-hidden="true"></i></div>
+      <div class="flex-fill">
+        {{ errorMessage }}
+      </div>
+    </div>
+</div>

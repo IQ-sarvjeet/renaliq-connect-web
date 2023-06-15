@@ -1,0 +1,23 @@
+<div>
+  {{ cardData.cardTitle }}
+  <div class="text-dark fw-bold fs-22 lh-sm">
+    <a *ngIf="cardData.routeName"
+      class="nav-link pe-2" (click)="navigetOnPage(cardData.routeName)">{{ cardData.count }}</a>
+    <span *ngIf="!cardData.routeName">{{ cardData.count }}</span>
+    <!--<span
+      class="fw-semibold fs-12"
+      [class]="cardData.performance === 'up' ? 'text-success' : 'text-danger'"
+    >
+      <span class="mx-1"
+        ><i
+          class="fa fs-16"
+          [class]="
+            cardData.performance === 'up' ? 'fa-caret-up' : 'fa-caret-down'
+          "
+        ></i
+      ></span>
+      {{ cardData.percentile }}
+    </span>-->
+    <ng-content select="[description]"></ng-content>
+  </div>
+</div>
