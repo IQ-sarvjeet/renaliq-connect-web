@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Messages } from 'src/app/shared/common-constants/messages';
+import { environment } from 'src/environments/environment';
 
 type ChartApiResponse = {
   categories: any;
@@ -31,14 +32,10 @@ export class BarChartHorizontalComponent {
         chart: {
           type: "bar"
         },
-        colors: [
-            '#0D2F4F',
-            '#5A7287',
-            '#95A3B2',
-            '#B2BCC7'
-        ],
+        colors: ['#0D2F4F'],
         title: {
-          text: ''
+          text: '',
+          align: 'left',
         },
         xAxis:{
           categories: []
@@ -46,9 +43,9 @@ export class BarChartHorizontalComponent {
         yAxis: {
           // min:0,
           // max:2000,
-          tickInterval: 500,
+          tickInterval: 10,
           title: {
-            text: "Patient By Age",
+            text: "",
             align: "high"
           },
           labels: {
@@ -69,7 +66,7 @@ export class BarChartHorizontalComponent {
         },
         series: [{
           type: 'column',
-          name: 'Unemployed',
+          name: '',
           colorByPoint: true,
           data: [],
           showInLegend: false
@@ -80,7 +77,11 @@ export class BarChartHorizontalComponent {
   
   protected renderChart(chartData: ChartApiResponse): void {
     const series = this.option.series;
-    series[0].data = chartData.series;
+    let convertedSeries: number[] = [];
+    chartData.series.forEach((series: any) => {
+      convertedSeries.push(parseInt(series));
+    });
+    series[0].data = convertedSeries;
     this.option = {
       ...this.option,
       title: {
@@ -91,6 +92,13 @@ export class BarChartHorizontalComponent {
         ...this.option.xAxis,
         categories: chartData.categories
       },
+      yAxis: {
+        ...this.option.yAxis,
+        title: {
+          ...this.option.yAxis.title,
+          text: this.chartConfig.title,
+        }        
+      },
       series: [
         ...series
       ]
@@ -98,7 +106,7 @@ export class BarChartHorizontalComponent {
   }
   private fetchChartData(url: string): void {
     this.showLoading = true;
-    this.httpClient.get(url).subscribe((data: any) => {
+    this.httpClient.get(`${environment.baseApiUrl}/api/${url}`).subscribe((data: any) => {
       if (data) {
         this.renderChart(data);
         this.showLoading = false;
