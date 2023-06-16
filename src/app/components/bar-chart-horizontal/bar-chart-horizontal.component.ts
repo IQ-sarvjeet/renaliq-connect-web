@@ -22,7 +22,7 @@ export class BarChartHorizontalComponent {
   // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  private chartConfig: BarChartConfig = {} as BarChartConfig;
+   chartConfig: BarChartConfig = {} as BarChartConfig;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -32,7 +32,7 @@ export class BarChartHorizontalComponent {
         chart: {
           type: "bar"
         },
-        colors: ['#0D2F4F'],
+        colors: ['#62539e'],
         title: {
           text: '',
           align: 'left',
