@@ -6001,3 +6001,22 @@ div.dataTables_wrapper div.dataTables_length label {
     width: 75% !important;
   }
 }
+
+.progress-bar-chart-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.bar-chart-wrapper {
+  height: 100%;
+}
+
+.chart-wrapper {
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-wrapper highcharts-chart {
+  flex-grow: 1;
+}
