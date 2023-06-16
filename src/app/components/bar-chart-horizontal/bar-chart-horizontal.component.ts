@@ -22,7 +22,7 @@ export class BarChartHorizontalComponent {
   // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  private chartConfig: BarChartConfig = {} as BarChartConfig;
+   chartConfig: BarChartConfig = {} as BarChartConfig;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -32,7 +32,7 @@ export class BarChartHorizontalComponent {
         chart: {
           type: "bar"
         },
-        colors: ['#0D2F4F'],
+        colors: ['#62539e'],
         title: {
           text: '',
           align: 'left',
@@ -41,25 +41,36 @@ export class BarChartHorizontalComponent {
           categories: []
         },
         yAxis: {
-          // min:0,
+       //    min:0,
           // max:2000,
-          tickInterval: 10,
-          title: {
-            text: "",
-            align: "high"
+          tickInterval: 1,
+       //   tickLength:0,
+         title: {
+            text: null,
+        //    align: "high"
           },
+          
           labels: {
             overflow: "justify"
           },
           
         },
         plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: true
+          series: {
+            animation: false,
+            groupPadding: 0,
+            pointPadding: 0.1,
+            borderWidth: 0,
+            colorByPoint: true,
+            dataSorting: {
+                enabled: true,
+                matchByName: true
             },
-            colorByPoint: true
-          },
+            type: 'bar',
+            dataLabels: {
+                enabled: true
+            }
+        }
         },
         credits: {
           enabled: false
@@ -84,21 +95,18 @@ export class BarChartHorizontalComponent {
     series[0].data = convertedSeries;
     this.option = {
       ...this.option,
-      title: {
-        ...this.option.title,
-        text: this.chartConfig.title 
-      },
       xAxis: {
         ...this.option.xAxis,
         categories: chartData.categories
       },
       yAxis: {
         ...this.option.yAxis,
-        title: {
-          ...this.option.yAxis.title,
-          text: this.chartConfig.title,
-        }        
+     //   title: {
+     //     ...this.option.yAxis.title,
+       //   text: this.chartConfig.title,
+    //    }        
       },
+      
       series: [
         ...series
       ]
