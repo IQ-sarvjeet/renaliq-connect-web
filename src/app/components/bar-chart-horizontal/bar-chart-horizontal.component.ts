@@ -30,7 +30,8 @@ export class BarChartHorizontalComponent {
   }
   option: any = {
         chart: {
-          type: "bar"
+          type: "bar",
+          innerHeight:500
         },
         colors: ['#62539e'],
         title: {
@@ -43,7 +44,7 @@ export class BarChartHorizontalComponent {
         yAxis: {
        //    min:0,
           // max:2000,
-          tickInterval: 1,
+          tickInterval: undefined,
        //   tickLength:0,
          title: {
             text: null,
