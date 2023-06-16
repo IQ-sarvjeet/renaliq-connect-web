@@ -28,7 +28,7 @@ export class RiskAnalysisComponent {
     apiUrl: 'Patient/summary/riskcategory',
   };
   patientByHCC: BarChartConfig = {
-    title: 'Patients by HCC',
+    title: 'Patients by HCC*',
     apiUrl: 'Hcc/patient-count',
   };
   patients: DataCardInput = {
