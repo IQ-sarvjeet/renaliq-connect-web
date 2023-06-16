@@ -11,6 +11,7 @@ type ChartApiResponse = {
 export type BarChartConfig = {
   apiUrl: string;
   title: string;
+  footer?: string;
 }
 
 @Component({
