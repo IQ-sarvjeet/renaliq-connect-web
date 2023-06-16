@@ -98,4 +98,7 @@ export class QualityMatrixComponent {
     this.eventService.dateRangeEventUpdate(dateRange[0]);
     this.route.navigate([`/reports/${ selectedRow.matricId }/${this.selectedDate}`]);
   }
+  openModal(){
+    this.eventService.openModalEvent(true,false);
+  }
 }
