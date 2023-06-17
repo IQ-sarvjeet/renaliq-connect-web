@@ -109,10 +109,7 @@
               <th class="text-center">POPULATION</th>
               <th class="text-center">NUMERATOR</th>
               <th class="text-center">DENOMINATOR</th>
-              <th>
-                PERFORMANCE 
-                <a href="javascript:void(0)" class="fa fa-question-circle-o ms-1" (click)="openModal()"></a>
-              </th>
+              <th>PERFORMANCE</th>
               <th class="text-center" width="40"></th>
               <th width="40"></th>
             </tr>
@@ -133,7 +130,10 @@
                   *ngFor="let item of matirc.metrices; let m = index"
                 >
                   <tr class="border-top">
-                    <td class="px-3">{{ item.martricName }}</td>
+                    <td class="px-3">
+                      {{ item.martricName }} 
+                      <a href="javascript:void(0)" class="fa fa-question-circle-o ms-1" (click)="openModal()"></a>
+                    </td>
                     <td class="text-center">
                       {{ item.type }}
                       <!-- <span class="text-muted"
