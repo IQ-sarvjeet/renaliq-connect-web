@@ -55,7 +55,7 @@ export class BarChartHorizontalComponent {
           labels: {
             overflow: "justify"
           },
-          
+          visible: false,
         },
         plotOptions: {
           series: {
