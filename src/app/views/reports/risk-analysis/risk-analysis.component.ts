@@ -30,6 +30,7 @@ export class RiskAnalysisComponent {
   patientByHCC: BarChartConfig = {
     title: 'Patients by HCC*',
     apiUrl: 'Hcc/patient-count',
+    footer: '* Patients may be counted more than once if they have multiple conditions',
   };
   patients: DataCardInput = {
     iconClass: 'fa fa-user-circle',
