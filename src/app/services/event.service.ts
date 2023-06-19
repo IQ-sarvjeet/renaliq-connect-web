@@ -17,6 +17,7 @@ export class EventService {
   private dateRangeEvent$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private notificationEvent$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private documentsFilter$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  private openModal$: BehaviorSubject<[boolean,boolean]> = new BehaviorSubject<[boolean,boolean]>([false,false]);
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -59,5 +60,11 @@ export class EventService {
   }
   documentsFilterSubscription(): Observable<any> {
     return this.documentsFilter$.asObservable();
+  }
+  openModalEvent(openModal: boolean, isGlobal: boolean) {
+    this.openModal$.next([openModal,isGlobal]);
+  }
+  openModalSubscription(): Observable<[boolean,boolean]> {
+    return this.openModal$.asObservable();
   }
 }

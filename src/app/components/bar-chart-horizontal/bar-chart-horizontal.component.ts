@@ -11,6 +11,7 @@ type ChartApiResponse = {
 export type BarChartConfig = {
   apiUrl: string;
   title: string;
+  footer?: string;
 }
 
 @Component({
@@ -54,7 +55,7 @@ export class BarChartHorizontalComponent {
           labels: {
             overflow: "justify"
           },
-          
+          visible: false,
         },
         plotOptions: {
           series: {

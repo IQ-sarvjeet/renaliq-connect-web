@@ -130,7 +130,10 @@
                   *ngFor="let item of matirc.metrices; let m = index"
                 >
                   <tr class="border-top">
-                    <td class="px-3">{{ item.martricName }}</td>
+                    <td class="px-3">
+                      {{ item.martricName }} 
+                      <a href="javascript:void(0)" class="fa fa-question-circle-o ms-1" (click)="openModal()"></a>
+                    </td>
                     <td class="text-center">
                       {{ item.type }}
                       <!-- <span class="text-muted"
@@ -358,3 +361,5 @@
     </div>
   </div>
 </div>
+
+<app-measure-definitions></app-measure-definitions>
