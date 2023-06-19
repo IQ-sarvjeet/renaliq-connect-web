@@ -1,32 +1,11 @@
-<div class="mb-4 p-4 minh-content"
-  [ngClass]="{ 'd-flex align-items-center justify-content-center': !recentExports.data.length && !documentsLoading }">
-  <div *ngIf="!recentExports.data.length && !documentsLoading" class="text-center">
-    <h2>A place for all of your files</h2>
-    <div class="fs-22 my-3">
-      <i class="fa fa-file-pdf-o mx-2 info-pdf"></i>
-      <i class="fa fa-file-word-o mx-2 info-word"></i>
-      <i class="fa fa-file-excel-o mx-2 info-excel"></i>
-      <i class="fa fa-file-photo-o mx-2 info-code"></i>
-      <i class="fa fa-file-movie-o mx-2 info-image"></i>
+<div class="mb-4 p-4 minh-content">
+  <div class="d-flex mt-2">
+    <div class="flex-fill d-flex align-items-center">
+      <h3 class="card-title">Exports</h3>
     </div>
-    <div>
-      View all documents by "<a href="javascript: void(0)" class="a-link text-secondary"
-        routerLink="/documents/sharedbysomatus">
-        Shared By Somatus</a>" or "<a href="javascript: void(0)" class="a-link text-secondary"
-        routerLink="/documents/knowledge-center">
-        Knowledge Center</a>"
-    </div>
-
   </div>
-  <div *ngIf="(filesLoaded && recentExports.data.length) || !filesLoaded">
-    <div class="d-flex mt-2">
-      <div class="flex-fill d-flex align-items-center">
-        <h3 class="card-title">Exports</h3>
-      </div>
-    </div>
-    <hr />
-  </div>
-  <div class="d-sm-flex" *ngIf="recentExports.data.length">
+  <hr />
+  <div class="d-sm-flex" *ngIf="!loadingFolders">
     <div class="flex-fill">
       <a href="javascript: void(0)" class="folders-item" [ngClass]="(filters.type === 1) ? 'active': ''"
         (click)="selectFolderHandler(1)">
