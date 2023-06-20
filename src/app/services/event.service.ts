@@ -67,4 +67,7 @@ export class EventService {
   openModalSubscription(): Observable<[boolean,boolean]> {
     return this.openModal$.asObservable();
   }
+  closeModalEvent() {
+    this.openModal$.next([false, false]);
+  }
 }

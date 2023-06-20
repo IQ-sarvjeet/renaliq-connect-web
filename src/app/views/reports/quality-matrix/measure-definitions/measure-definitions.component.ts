@@ -17,4 +17,7 @@ export class MeasureDefinitionsComponent {
       }
     })
   }
+  ngOnDestroy(): void {
+    this.eventService.closeModalEvent();
+  }
 }
