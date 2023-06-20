@@ -18,9 +18,11 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { DataCardComponent } from './data-card/data-card.component';
 import { NoRecordsFoundComponent } from './no-records-found/no-records-found.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
+import { PowerBIEmbedModule } from 'powerbi-client-angular';
+import { PowerBIComponent } from './power-bi/power-bi.component';
 
 @NgModule({
- imports:      [ CommonModule, HighchartsChartModule, ],
+ imports:      [ CommonModule, HighchartsChartModule, PowerBIEmbedModule ],
  declarations: [
     ProgressBarChartWidgetComponent,
     BarChartHorizontalComponent,
@@ -34,7 +36,8 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
     NotificationsComponent,
     DataCardComponent,
     NoRecordsFoundComponent,
-    TypeaheadComponent
+    TypeaheadComponent,
+    PowerBIComponent
   ],
 
   providers: [
@@ -57,7 +60,8 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
     NotificationsComponent,
     DataCardComponent,
     NoRecordsFoundComponent,
-    TypeaheadComponent
+    TypeaheadComponent,
+    PowerBIComponent
   ],
  
 })

@@ -23,6 +23,7 @@
     "highcharts-angular": "^3.0.0",
     "moment": "^2.29.4",
     "ngx-mask": "^15.0.2",
+    "powerbi-client-angular": "^3.0.5",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
