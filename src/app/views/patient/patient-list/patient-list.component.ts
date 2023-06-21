@@ -11,7 +11,11 @@ declare var $:any;
   templateUrl: './patient-list.component.html',
   styleUrls: ['./patient-list.component.scss']
 })
+
+
+
 export class PatientListComponent {
+  [x: string]: any;
   moment = moment;
   carePlans: any = [];
   patientDetail: any = {};
@@ -36,15 +40,26 @@ export class PatientListComponent {
         }
       })
     } else {
-      this.route.navigate([`/patient-profile/${this.patientDetail.patient.patientId}`, {
-          patientId: this.patientDetail.patient.patientId ? this.patientDetail.patient.patientId: '',
-          enrollmentNo: this.patientDetail.patient.enrollmentNo ? this.patientDetail.patient.enrollmentNo: ''
-        }
-      ])
-    }
+      this.route.navigate([
+      ]).then(result => {  window.open(url,'_blank'); });
+
+        const fragment = '#';
+        const urlTree = this.route.createUrlTree([`/patient-profile/${this.patientDetail.patient.patientId}`,{
+        patientId: this.patientDetail.patient.patientId ? this.patientDetail.patient.patientId: '',
+        enrollmentNo: this.patientDetail.patient.enrollmentNo ? this.patientDetail.patient.enrollmentNo: ''
+      }]);
+      const urlWithoutFragment = this.route.serializeUrl(urlTree);
+      const url = `${fragment}${urlWithoutFragment}`;
+     }
+   
+     
   }
   downloadPlan(plan: any) {
     const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`
     this.downloadService.startDownloading(this.elementRef, this.renderer, url, `Somatus Care Plan ${plan.patientActivityId}`);
   }
+
+  
+ 
 }
+
