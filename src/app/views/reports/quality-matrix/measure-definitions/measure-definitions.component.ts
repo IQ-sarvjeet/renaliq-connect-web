@@ -11,6 +11,7 @@ declare var $: any;
 })
 export class MeasureDefinitionsComponent {
   metricDefinition: any;
+  showLoading: boolean = true;
 
   constructor(private eventService: EventService,
     private reportService: ReportEventService,
@@ -24,12 +25,15 @@ export class MeasureDefinitionsComponent {
     });
 
     this.reportService.metricIdSubscription().subscribe((metricID: number) => {
+      this.showLoading = true;
       if(metricID) {
         this._qualityService.apiClinicalQualityMatrixMetricDetailsIdGet(metricID).subscribe({
           next: (response: any) => {
+            this.showLoading = false;
             this.metricDefinition = response;
           },
           error: (error: any) => {
+            this.showLoading = false;
           }
         });
       }

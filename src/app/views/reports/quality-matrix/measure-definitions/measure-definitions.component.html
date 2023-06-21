@@ -8,29 +8,47 @@
         </button>
       </div>
       <div class="modal-body p-5">
-        <div *ngIf="metricDefinition.name">
-          <h4 class="fw-semibold fs-16">Measure Name</h4>
-          <p>{{ metricDefinition.name }}</p>
-          <hr/>
+        <div *ngIf="showLoading">
+          <h4><span class="skeleton-loader my-1 w-100 w-md-75"></span></h4>
+          <p><span class="skeleton-loader my-1 w-100 w-md-75"></span></p>
+          <hr />
+          <h4><span class="skeleton-loader my-1 w-100 w-md-75"></span></h4>
+          <p><span class="skeleton-loader my-1 w-100 w-md-75"></span></p>
+          <hr />
+          <h4><span class="skeleton-loader my-1 w-100 w-md-75"></span></h4>
+          <p><span class="skeleton-loader my-1 w-100 w-md-75"></span></p>
+          <hr />
+          <h4><span class="skeleton-loader my-1 w-100 w-md-75"></span></h4>
+          <p><span class="skeleton-loader my-1 w-100 w-md-75"></span></p>
+          <hr />
+          <h4><span class="skeleton-loader my-1 w-100 w-md-75"></span></h4>
+          <p><span class="skeleton-loader my-1 w-100 w-md-75"></span></p>
         </div>
-        <div *ngIf="metricDefinition.description">
-          <h4 class="fw-semibold fs-16">Description</h4>
-          <p>{{ metricDefinition.description }}</p>
-          <hr/>
-        </div>
-        <div *ngIf="metricDefinition.dataSource">
-          <h4 class="fw-semibold fs-16">Data Source</h4>
-          <p>{{ metricDefinition.dataSource }}</p>
-          <hr/>
-        </div>
-        <div *ngIf="metricDefinition.denominatorDescription">
-          <h4 class="fw-semibold fs-16">Denominator</h4>
-          <p>{{ metricDefinition.denominatorDescription }}</p>
-          <hr/>
-        </div>
-        <div *ngIf="metricDefinition.numeratorDescription">
-          <h4 class="fw-semibold fs-16">Numerator</h4>
-          <p>{{ metricDefinition.numeratorDescription }}</p>
+        <div *ngIf="!showLoading">
+          <div *ngIf="metricDefinition.name">
+            <h4 class="fw-semibold fs-16">Measure Name</h4>
+            <p>{{ metricDefinition.name }}</p>
+            <hr />
+          </div>
+          <div *ngIf="metricDefinition.description">
+            <h4 class="fw-semibold fs-16">Description</h4>
+            <p>{{ metricDefinition.description }}</p>
+            <hr />
+          </div>
+          <div *ngIf="metricDefinition.dataSource">
+            <h4 class="fw-semibold fs-16">Data Source</h4>
+            <p>{{ metricDefinition.dataSource }}</p>
+            <hr />
+          </div>
+          <div *ngIf="metricDefinition.denominatorDescription">
+            <h4 class="fw-semibold fs-16">Denominator</h4>
+            <p>{{ metricDefinition.denominatorDescription }}</p>
+            <hr />
+          </div>
+          <div *ngIf="metricDefinition.numeratorDescription">
+            <h4 class="fw-semibold fs-16">Numerator</h4>
+            <p>{{ metricDefinition.numeratorDescription }}</p>
+          </div>
         </div>
       </div>
     </div>
