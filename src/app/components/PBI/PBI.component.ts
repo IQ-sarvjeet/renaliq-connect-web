@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-power-bi',
-  templateUrl: './power-bi.component.html',
-  styleUrls: ['./power-bi.component.scss']
+  selector: 'app-PBI',
+  templateUrl: './PBI.component.html',
+  styleUrls: ['./PBI.component.scss']
 })
-export class PowerBIComponent {
+export class PBIComponent {
   embedConfig!: any;
   @Input() config: any;
 

@@ -19,7 +19,7 @@ import { DataCardComponent } from './data-card/data-card.component';
 import { NoRecordsFoundComponent } from './no-records-found/no-records-found.component';
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { PowerBIEmbedModule } from 'powerbi-client-angular';
-import { PowerBIComponent } from './power-bi/power-bi.component';
+import { PBIComponent } from './PBI/PBI.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, PowerBIEmbedModule ],
@@ -37,7 +37,7 @@ import { PowerBIComponent } from './power-bi/power-bi.component';
     DataCardComponent,
     NoRecordsFoundComponent,
     TypeaheadComponent,
-    PowerBIComponent
+    PBIComponent
   ],
 
   providers: [
@@ -61,7 +61,7 @@ import { PowerBIComponent } from './power-bi/power-bi.component';
     DataCardComponent,
     NoRecordsFoundComponent,
     TypeaheadComponent,
-    PowerBIComponent
+    PBIComponent
   ],
  
 })

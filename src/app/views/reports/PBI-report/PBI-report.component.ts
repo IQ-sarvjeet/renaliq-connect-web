@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { PBIReportService } from 'src/app/api-client';
 
 @Component({
-  selector: 'app-power-bi-report',
-  templateUrl: './power-bi-report.component.html',
-  styleUrls: ['./power-bi-report.component.scss']
+  selector: 'app-PBI-report',
+  templateUrl: './PBI-report.component.html',
+  styleUrls: ['./PBI-report.component.scss']
 })
-export class PowerBIReportComponent {
+export class PBIReportComponent {
   configData: any;
   constructor(private PBIReportService: PBIReportService) {}
   ngOnInit() {

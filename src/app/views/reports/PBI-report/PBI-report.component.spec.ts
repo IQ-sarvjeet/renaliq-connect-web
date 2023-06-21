@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PowerBIComponent } from './power-bi.component';
+import { PBIReportComponent } from './PBI-report.component';
 
-describe('PowerBIComponent', () => {
-  let component: PowerBIComponent;
-  let fixture: ComponentFixture<PowerBIComponent>;
+describe('PowerBIReportComponent', () => {
+  let component: PBIReportComponent;
+  let fixture: ComponentFixture<PBIReportComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PowerBIComponent ]
+      declarations: [ PBIReportComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PowerBIComponent);
+    fixture = TestBed.createComponent(PBIReportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
