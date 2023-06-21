@@ -23,7 +23,7 @@
   <div class="mt-1 pt-3 border-top">
     <div class="main-container container">
         <div>
-            <app-power-bi></app-power-bi>
+            <app-power-bi *ngIf="configData" [config]="configData"></app-power-bi>
         </div>
       </div>
   </div>
