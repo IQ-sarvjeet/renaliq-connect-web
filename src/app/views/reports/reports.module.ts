@@ -30,7 +30,7 @@ const routes: Routes = [
     component: QualityMatrixComponent,
   },
   {
-    path: 'powerBI',
+    path: 'ckcc',
     component: PowerBIReportComponent,
   },
   {

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { PBIReportService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-power-bi-report',
@@ -8,13 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PowerBIReportComponent {
   configData: any;
-  constructor(private httpClient: HttpClient) {}
+  constructor(private PBIReportService: PBIReportService) {}
   ngOnInit() {
     this.getPowerBIReport();
   }
 
   async getPowerBIReport(){
-    this.httpClient.get('https://localhost:5001/api/Report/report?reporturi=ckcc').subscribe({
+    this.PBIReportService.apiPBIReportReporturiConfigGet('ckcc').subscribe({
       next: (reportData: any) => {
         this.configData = reportData;
       },
