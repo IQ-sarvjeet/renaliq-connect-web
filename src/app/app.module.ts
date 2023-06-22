@@ -23,9 +23,7 @@ import { SummaryModule } from './views/summary/summary.module';
 import { SampleUiComponent } from './views/sample-ui/sample-ui.component';
 import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { InitialsPipe } from './pipes/initials.pipe';
-
 import { DownloadComponent } from './views/download/download.component';
-
 
 @NgModule({
   declarations: [
@@ -41,7 +39,6 @@ import { DownloadComponent } from './views/download/download.component';
     SampleUiComponent,
     InitialsPipe,
     DownloadComponent
-
   ],
   imports: [  
     MbscModule,  

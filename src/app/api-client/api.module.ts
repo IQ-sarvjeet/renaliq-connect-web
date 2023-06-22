@@ -10,6 +10,7 @@ import { CareMemberService } from './api/careMember.service';
 import { ClinicalQualityMatrixService } from './api/clinicalQualityMatrix.service';
 import { DocumentService } from './api/document.service';
 import { ExportService } from './api/export.service';
+import { HccService } from './api/hcc.service';
 import { NotificationService } from './api/notification.service';
 import { PBIReportService } from './api/pBIReport.service';
 import { PatientService } from './api/patient.service';
@@ -30,6 +31,7 @@ import { UserRoleService } from './api/userRole.service';
     ClinicalQualityMatrixService,
     DocumentService,
     ExportService,
+    HccService,
     NotificationService,
     PBIReportService,
     PatientService,
@@ -39,7 +41,7 @@ import { UserRoleService } from './api/userRole.service';
     UserRoleService ]
 })
 export class ApiModule {
-    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any>  {
+    public static forRoot(configurationFactory: () => Configuration): ModuleWithProviders<any> {
         return {
             ngModule: ApiModule,
             providers: [ { provide: Configuration, useFactory: configurationFactory } ]
