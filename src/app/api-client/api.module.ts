@@ -11,6 +11,7 @@ import { ClinicalQualityMatrixService } from './api/clinicalQualityMatrix.servic
 import { DocumentService } from './api/document.service';
 import { ExportService } from './api/export.service';
 import { NotificationService } from './api/notification.service';
+import { PBIReportService } from './api/pBIReport.service';
 import { PatientService } from './api/patient.service';
 import { PracticeService } from './api/practice.service';
 import { RoleService } from './api/role.service';
@@ -30,6 +31,7 @@ import { UserRoleService } from './api/userRole.service';
     DocumentService,
     ExportService,
     NotificationService,
+    PBIReportService,
     PatientService,
     PracticeService,
     RoleService,
