@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
-  appUrl: 'https://localhost:4200',
+  appUrl: 'https://agreeable-forest-060cbdb10.2.azurestaticapps.net',
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
@@ -18,7 +18,7 @@ export const environment = {
 };
 
 /*
- * For easier debugging in development mode, you can import the following file
+ * For easier debugging in development mode, you can import the following fil
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
  *
  * This import should be commented out in production mode because it will have a negative impact

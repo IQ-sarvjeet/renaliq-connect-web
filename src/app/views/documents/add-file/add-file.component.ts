@@ -124,7 +124,7 @@ export class AddFileComponent {
   private loadTags() {
     this.tagsData = [];
     //console.log("Fetching tags data");
-   // console.log("Global Value:"+this.addFileForm.value.isGlobal);
+    console.log("Global Value:"+this.addFileForm.value.isGlobal);
     this.documentService.apiDocumentListTagsIsGlobalGet(this.addFileForm.value.isGlobal).subscribe({
       next: (tagsResponse: any) => {
         //console.log("Tags Response");

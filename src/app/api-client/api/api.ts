@@ -12,8 +12,6 @@ export * from './document.service';
 import { DocumentService } from './document.service';
 export * from './export.service';
 import { ExportService } from './export.service';
-export * from './hcc.service';
-import { HccService } from './hcc.service';
 export * from './notification.service';
 import { NotificationService } from './notification.service';
 export * from './pBIReport.service';

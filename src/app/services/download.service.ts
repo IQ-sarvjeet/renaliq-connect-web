@@ -56,7 +56,9 @@ export class DownloadService {
       let headerOptions = new HttpHeaders({
         'Content-Type': 'application/json',
       // 'Accept': 'application/xslx',
+
         // 'Authorization': 'JWT ' + token
+
       });
 
       let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
@@ -73,7 +75,10 @@ export class DownloadService {
           const blob = new Blob([response], {
             type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
           });
+
           this.downloadFile(blob, `${fileName}`, elementRef, renderer);
+          //this.downloadFile(blob, `${fileName}.xlsx`, elementRef, renderer);
+
           resolve();
         },
         error: () => {

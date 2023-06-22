@@ -10,7 +10,6 @@ export * from './documentDocumentBody';
 export * from './documentFilter';
 export * from './documentFilterModel';
 export * from './documentListViewModel';
-export * from './exportListFilterModel';
 export * from './forgotPasswordModel';
 export * from './loginModel';
 export * from './notificationListRequestModel';
