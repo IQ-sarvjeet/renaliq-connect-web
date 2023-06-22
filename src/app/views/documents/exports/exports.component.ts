@@ -83,7 +83,7 @@ export class ExportsComponent {
       message: `Downloading document.`,
       type: 'success',
     });
-    const url: string = `${environment.baseApiUrl}/api/Document/download/${viewDoc.id}`;
+    const url: string = `${environment.baseApiUrl}/api/Export/download/file/${viewDoc.id}`;
     this.downloadService.startDownloadingXSLX(this.elementRef, this.renderer, url, viewDoc.name);
   }
   public gotoPage(page: number): void {
