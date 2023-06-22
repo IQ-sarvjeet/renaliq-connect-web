@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Messages } from 'src/app/shared/common-constants/messages';
+import { environment } from 'src/environments/environment';
 
 type ChartApiResponse = {
   categories: any;
@@ -10,6 +11,7 @@ type ChartApiResponse = {
 export type BarChartConfig = {
   apiUrl: string;
   title: string;
+  footer?: string;
 }
 
 @Component({
@@ -21,7 +23,7 @@ export class BarChartHorizontalComponent {
   // @ViewChild('barChart', { static: false }) barChart!: ElementRef<HTMLDivElement>;
   showLoading: boolean = false;
   errorMessage: string | null = null;
-  private chartConfig: BarChartConfig = {} as BarChartConfig;
+   chartConfig: BarChartConfig = {} as BarChartConfig;
   Highcharts = Highcharts;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
@@ -29,47 +31,55 @@ export class BarChartHorizontalComponent {
   }
   option: any = {
         chart: {
-          type: "bar"
+          type: "bar",
+          innerHeight:500
         },
-        colors: [
-            '#0D2F4F',
-            '#5A7287',
-            '#95A3B2',
-            '#B2BCC7'
-        ],
+        colors: ['#62539e'],
         title: {
-          text: ''
+          text: '',
+          align: 'left',
         },
         xAxis:{
           categories: []
         },
         yAxis: {
-          // min:0,
+       //    min:0,
           // max:2000,
-          tickInterval: 500,
-          title: {
-            text: "Patient By Age",
-            align: "high"
+          tickInterval: undefined,
+       //   tickLength:0,
+         title: {
+            text: null,
+        //    align: "high"
           },
+          
           labels: {
             overflow: "justify"
           },
-          
+          visible: false,
         },
         plotOptions: {
-          bar: {
-            dataLabels: {
-              enabled: true
+          series: {
+            animation: false,
+            groupPadding: 0,
+            pointPadding: 0.1,
+            borderWidth: 0,
+            colorByPoint: true,
+            dataSorting: {
+                enabled: true,
+                matchByName: true
             },
-            colorByPoint: true
-          },
+            type: 'bar',
+            dataLabels: {
+                enabled: true
+            }
+        }
         },
         credits: {
           enabled: false
         },
         series: [{
           type: 'column',
-          name: 'Unemployed',
+          name: '',
           colorByPoint: true,
           data: [],
           showInLegend: false
@@ -80,17 +90,25 @@ export class BarChartHorizontalComponent {
   
   protected renderChart(chartData: ChartApiResponse): void {
     const series = this.option.series;
-    series[0].data = chartData.series;
+    let convertedSeries: number[] = [];
+    chartData.series.forEach((series: any) => {
+      convertedSeries.push(parseInt(series));
+    });
+    series[0].data = convertedSeries;
     this.option = {
       ...this.option,
-      title: {
-        ...this.option.title,
-        text: this.chartConfig.title 
-      },
       xAxis: {
         ...this.option.xAxis,
         categories: chartData.categories
       },
+      yAxis: {
+        ...this.option.yAxis,
+     //   title: {
+     //     ...this.option.yAxis.title,
+       //   text: this.chartConfig.title,
+    //    }        
+      },
+      
       series: [
         ...series
       ]
@@ -98,7 +116,7 @@ export class BarChartHorizontalComponent {
   }
   private fetchChartData(url: string): void {
     this.showLoading = true;
-    this.httpClient.get(url).subscribe((data: any) => {
+    this.httpClient.get(`${environment.baseApiUrl}/api/${url}`).subscribe((data: any) => {
       if (data) {
         this.renderChart(data);
         this.showLoading = false;

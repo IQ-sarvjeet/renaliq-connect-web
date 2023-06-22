@@ -148,26 +148,26 @@
           </div>
         </div>
       </div>
-      <div class="row mt-3 card-lg">
-        <div class="col-12 col-md-6 col-xl-3">
-          <app-progress-bar-chart-widget
-            [config]="patientByStage"
-          ></app-progress-bar-chart-widget>
+      <div class="row mt-3">
+        <div class="col-12 col-md-12 col-xl-7">
+          <div class="bar-chart-wrapper">
+          <app-bar-chart-horizontal
+            [config]="patientByHCC"
+          ></app-bar-chart-horizontal>
+          </div>
         </div>
-        <div class="col-12 col-md-6 col-xl-3">
+        <div class="col-12 col-md-12 col-xl-5">
+          <div class="progress-bar-chart-container">
+          <app-progress-bar-chart-widget
+            [config]="patientByRiskCategory"
+          ></app-progress-bar-chart-widget>
           <app-progress-bar-chart-widget
             [config]="patientByPayer"
           ></app-progress-bar-chart-widget>
-        </div>
-        <div class="col-12 col-md-6 col-xl-3">
           <app-progress-bar-chart-widget
             [config]="patientByLOB"
           ></app-progress-bar-chart-widget>
         </div>
-        <div class="col-12 col-md-6 col-xl-3">
-          <app-progress-bar-chart-widget
-            [config]="patientByRiskCategory"
-          ></app-progress-bar-chart-widget>
         </div>
       </div>
       <app-heatmaps

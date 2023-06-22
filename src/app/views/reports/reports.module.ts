@@ -13,6 +13,7 @@ import { RiskStratificationAnalysisComponent } from './risk-stratification-analy
 import { HighchartsChartModule } from 'highcharts-angular';
 import { MapComponent } from './map/map.component';
 import { HeatmapsComponent } from './heatmaps/heatmaps.component';
+import { MeasureDefinitionsComponent } from './quality-matrix/measure-definitions/measure-definitions.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,7 @@ const routes: Routes = [
     RiskStratificationAnalysisComponent,
     MapComponent,
     HeatmapsComponent,
+    MeasureDefinitionsComponent,
   ],
   imports: [
     MbscModule,

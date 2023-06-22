@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PatientService } from 'src/app/api-client';
+import { BarChartConfig } from 'src/app/interfaces/bar-chart-config';
 import { DataCardInput } from 'src/app/interfaces/data-card';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { ProgressBarChartWidgetInput } from '../../../../../src/app/interfaces/progress-bar-chart-widget';
@@ -25,6 +26,11 @@ export class RiskAnalysisComponent {
   patientByRiskCategory: ProgressBarChartWidgetInput = {
     title: 'Patients by Risk Category',
     apiUrl: 'Patient/summary/riskcategory',
+  };
+  patientByHCC: BarChartConfig = {
+    title: 'Patients by HCC*',
+    apiUrl: 'Hcc/patient-count',
+    footer: '* Patients may be counted more than once if they have multiple conditions',
   };
   patients: DataCardInput = {
     iconClass: 'fa fa-user-circle',

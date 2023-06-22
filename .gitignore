@@ -43,3 +43,5 @@ Thumbs.db
 /.vs
 /package-lock.json
 /package-lock.json
+
+.fake
