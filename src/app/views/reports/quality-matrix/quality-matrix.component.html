@@ -19,10 +19,10 @@
         </div>
         <div class="col-12 col-sm-5 col-md-4 col-lg-3 mb-2 mb-sm-0">
           <!-- <div class="input-group">
-            <mbsc-datepicker 
+            <mbsc-datepicker
               class="form-control fs-12"
               #rangeDatepicker
-              [options]="dateRangeOptions" 
+              [options]="dateRangeOptions"
               placeholder="Select date range" ></mbsc-datepicker>
             <button class="input-group-text bg-white"
               type="button"
@@ -131,8 +131,8 @@
                 >
                   <tr class="border-top">
                     <td class="px-3">
-                      {{ item.martricName }} 
-                      <a href="javascript:void(0)" class="fa fa-question-circle-o ms-1" (click)="openModal()"></a>
+                      {{ item.martricName }}
+                      <a href="javascript:void(0)" class="fa fa-question-circle-o ms-1" (click)="openModal(item.matricId)"></a>
                     </td>
                     <td class="text-center">
                       {{ item.type }}

@@ -19,22 +19,22 @@
           />
         </svg>
       </div>
-      <h4 class="mt-3">{{ profileDetail.name }}</h4>
+      <h4 class="mt-3">{{ profileDetail.name ? profileDetail.name : '-' }}</h4>
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
         <div class="fs-12 op-0-75">Enrollement No</div>
-        <div>{{ profileDetail.enrollmentNumber }}</div>
+        <div>{{ profileDetail.enrollmentNumber ? profileDetail.enrollmentNumber : '-' }}</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Risk Category</div>
-        <div>{{ patientStatus.riskCategory }}</div>
+        <div>{{ patientStatus.riskCategory ? patientStatus.riskCategory : '-' }}</div>
       </div>
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
         <div class="fs-12 op-0-75">Status</div>
-        <div>{{ profileDetail.status }}</div>
+        <div>{{ profileDetail.status ? profileDetail.status : '-' }}</div>
       </div>
       <div class="col-6">
         <div class="fs-12 op-0-75">Date Of Birth</div>
@@ -42,7 +42,7 @@
           {{
             profileDetail.dateofBirth
               ? moment(profileDetail.dateofBirth).format("MM/DD/YYYY")
-              : ""
+              : "-"
           }}
         </div>
       </div>
@@ -60,7 +60,7 @@
       <div class="col-6">
         <div class="fs-12 op-0-75">Assessment Date</div>
         <div>
-          {{ patientStatus.lastAssessmentDate ? moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY") : '' }}
+          {{ patientStatus.lastAssessmentDate ? moment(patientStatus.lastAssessmentDate).format("MM/DD/YYYY") : '-' }}
         </div>
       </div>
     </div>
