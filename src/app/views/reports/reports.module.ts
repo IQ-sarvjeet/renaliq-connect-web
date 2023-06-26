@@ -14,6 +14,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { MapComponent } from './map/map.component';
 import { HeatmapsComponent } from './heatmaps/heatmaps.component';
 import { MeasureDefinitionsComponent } from './quality-matrix/measure-definitions/measure-definitions.component';
+import { PBIReportComponent } from './PBI-report/PBI-report.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'qualityMatrix',
     component: QualityMatrixComponent,
+  },
+  {
+    path: 'ckcc',
+    component: PBIReportComponent,
   },
   {
     path: 'insight',
@@ -54,6 +59,7 @@ const routes: Routes = [
     MapComponent,
     HeatmapsComponent,
     MeasureDefinitionsComponent,
+    PBIReportComponent
   ],
   imports: [
     MbscModule,
