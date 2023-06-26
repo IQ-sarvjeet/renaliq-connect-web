@@ -1,0 +1,30 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="side-app">
+  <div class="sub-header">
+    <div class="main-container container">
+      <div class="row">
+        <div class="col-12 col-sm-7 col-md-8 col-lg-9">
+          <h1 class="page-title m-0">CKCC Summary - Kidney Care Center Alliance</h1>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a routerLink="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a routerLink="#">Reports</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              CKCC Summary - Kidney Care Center Alliance
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mt-1 pt-3 border-top">
+    <div class="main-container container">
+        <div class="report-container">
+            <app-PBI *ngIf="configData" [config]="configData"></app-PBI>
+        </div>
+      </div>
+  </div>
+</div>
