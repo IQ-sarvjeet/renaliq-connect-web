@@ -32,15 +32,11 @@ export class PBIComponent implements OnInit {
       }
     };
 
-    console.log("PBI COMPONENT CONFIG SET...");
-    console.log(config);
-
     const report = powerbi.embed(embedContainer, config);
 
     report.off("loaded");
 
     report.on("loaded", () => {
-      console.log("Report loaded");
     });
 
     report.off("error");
