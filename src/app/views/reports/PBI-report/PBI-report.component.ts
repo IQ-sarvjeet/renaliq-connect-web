@@ -11,14 +11,32 @@ export class PBIReportComponent {
   constructor(private PBIReportService: PBIReportService) {}
   ngOnInit() {
     this.getPowerBIReport();
+    console.log("Config Data Fetched..");
+    console.log(this.configData);
   }
 
   async getPowerBIReport(){
+   
+   /* this.configData = {
+      id: '',
+      embedUrl: '',
+      embedToken: {Token:''}
+    };
+    this.configData.id="bb7b195c-c998-4226-a8a2-be0c10812d86";
+    this.configData.embedUrl="https://app.powerbi.com/reportEmbed?reportId=bb7b195c-c998-4226-a8a2-be0c10812d86&groupId=1865d301-4421-4600-9e14-1ba88a7b895f&w=2&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVVTLUVBU1QtQS1QUklNQVJZLXJlZGlyZWN0LmFuYWx5c2lzLndpbmRvd3MubmV0IiwiZW1iZWRGZWF0dXJlcyI6eyJtb2Rlcm5FbWJlZCI6dHJ1ZSwidXNhZ2VNZXRyaWNzVk5leHQiOnRydWV9fQ%3d%3d";
+    this.configData.embedToken.Token="H4sIAAAAAAAEACVWxw7syBH7l3eVAWWNZGAPyjln3ZSzRjkt_O-etU99IRoEWVXk33-s9Bm-afHn339UF5iGgqHJJpLueoYEvSe3A0Z9oPqcpcR80m_p3y-swIxfggSAq_3-pQslpM3rvnIiVDjck8FP5K5-ltTH2qg9OTL2FWvyqjVH-_UZ6uifuE6IRhGmAIC8z6OwiFwYJXHmKdr7eMueFB6EZIVLy8T1vaQrwEdw9xuS4QFQl9nx4jKo-v4Z9V5UcxgNSLLztFaUNZboazrIdtknNrFBOPci1WT9IJJJfjCT8IXy09cI7CwzyedG-tmRIrUpy2k8FiOvrnyuI2g610-5vuk7IrDc-3CKvlO6iAYBwtlErZsetzZ2hBNmFM-2gGlRtKr5Z_TRGLJSiEL72SZeDSlaHppUO3E82GBh7lyZ6hq06ms55Rim2FUONOLXhVk4FGB3tKd_RuQRS_AmmRfV4iOLtbcs0nwtroHQQmv5cI0xiSp7qq7HBeB1yZ8ENC2Z2M-1_d62f_XotK3UVA5dcVE5whpg4BYeRQKWdL0PDYsNoDBfASN_hr2Epg3OZZ5fJ9OxVSzkd5pzeodD3HYCFyGdphqaDCc-w0rFveOwJrnKkUrrTATWBxG8SqJntG0jAjEcyxeKMdNiYJAfmVxuXCIrIltaBB_phWZ8dDbYoZCF0rsn6yF6Pa0PKs6cu0AnYBH1e9rCgi_9mcY5SeqWt09fHom4jC4MJc3Cl2O2nKzsyfe7OigKhZHn7oQgtmJpbHSsPh-fikvc_zosQ4ekgeUdRAnjLnfJkzcGCA-d2ZiVPvjLpp4WrWjnSRzYS7FY8Y57CdchMAYrIZ5FvRvMXIMXXedqcxO4IbeigfnberAKNvMFtAXXOSBUsqBoSLLvxnZ1H9pO9tYaSLlTFyeD6aO-nfl-A1dCk9x4ChkiTyR3cp4VyhNaVddMMS01niw0ezI2itb9P-wD90ylT0pDLpWDOrqz93fuCEhMfG5dv7FPKjEb2U3iTjs9ePwPap6b9aM-io2s-aH925wv0AVD5wueiItcww1R81tHMK73woA3MOnnq7jQz95Z43A0pkcytE_q7ExmfsAdw_OSw-4IYGsrZh1-I-Pj5p9YciV3PugKiyTBza4rzywYIA5PIt7xcOVZE01qnsdyLLHX9vJEaO-we8qqPqeVcHojfywiW6c8-n6BhJGqvKMKYLLoFayGygJrPY9lxKMy1_x-BW5nCLCCorJZam2ec2YYHhb3c6I6JdoPnkj6tofYuv0HKTMeEgqS3QG2qAOaXlHb15l1uTo2jlPPrXtGhHwdVlMwxUtWOdUxW-pekuFm-25AT_lTM4RyugkLCLt9HCC3CvR6PQIC6LiIg3FMVHhvnwbr1O_xEJ_b1g6k5OpV0bNtL9WigUcmlA8MDSFHyLIshrmc6NKtaCqLlAyNSCqmf-oB4zO9rtg6VffdhZ8SdCimOn46caX2Dg1squwUz_GOpFTBBTWXUSf9zKzcZc1_Dzc9q3PuiTEv46C7vOkRYIQpti2lwGuBAW0aUR7GqiVF9FKL3MjmYk-lpFoPoLolFk5swb2INomwKsSwfEsGMAVTYVEc8VIojaQ8d_IO8KT4ekXa2m0A1kY-Msxtn2TQPN6Vqr5yz4XoT9SvPj1h4c4puHqhiQKxLBhrZVv8kXfHfSAfhPXoWYA5ZYwswH0Stp7CSavH0CXO0Y7mBWpOi7RpdCB4oSJZmAdAFFty5UEz45A5DZdw6Up-sLYeQT3OjqrwPFS6JIUbfC0tn1TtgVQVjrFzB41nGAyQP7EDMC5wjYLbHshAUnI-xa0KVQTyptF18lN2v0GrM8PPEU_inU55oaNShfC1EqQz8DUl6ZnjNBKECyYDe3C0eecieHzb2Zb03pXFH62d77TuNPrVyNJteBtnCwztVh387tH9lDwHnO6HOFtbcn850052OMu63QmzMl-EnOMoLchQxfJy3eMOcNG4ZN2VX3G9eiEFhBB3DRMcfywAdPGhTQNILlLQqeQjgKUyzQWlcpDSzNW_DAN5gS-K_qyDd5al3j2_-Ek0NDIFMd90gnvCqMcOB7szEDWGNYHqXoRcHM1PIQZt35xa37BsAOBL8uQH96dPXFDc6-dsa1povDxUPZjJZ1z3BpR1tClV5KScVc6X1nBKrljynkAGmkjJBNi0TAilkCvhFDUtWICNRO28rdjtdGkQewAcInZuPBPzoEPSLdqiHRAGvzq-QBaT_bpV0QARYlFISknCI8F2y-2DIMxHWdI7c7nVr_jpEZcxq-p2mFa0cC1bFfYKo_yzIpXFzbyqiP4GEoX4NObWTZCZnY8Hcwal3EdzyK9UGiHotnsNja9K_e5cupB-bTAcntii2rvweMDvhPUEVHvu-i1Nw584xZ2_lICeaSCS4h7oertmNN3jcMnWifmQhPYeInerg9SYdH6fZIjLucvsQLGiBh98TX6-_vrrz7_-sOsz71-1fH41SwrnWutxQfa5eFKWU7gijswr9uGjMTdLxK29BK6CPl_9oUVWr_oFUNsv5to8iTQRLBmJfWABO1wfmEjWEnFULZ3OIAieNIkyOwdzlSDQ2ptgQR2TLI0YvIeA-5pdGCYoiW0aMWDt-KW5TWUfRnH_yhqqIUshu8PgE0L-kDm9KBtR25FqBPDkB2nLAJYehg8qwlPSv1edRwU5IbsdIo7HAr8RHKXLihjsS6ooEoogOIRQsugAXiW-Ty2_rF8dyyeOGfKrZAHjy0tixc5WR23Gjsu8k4-ikSi8SnqmQjyBkw5s_xnuG0mUEUsQTvyFfXKn6xE4XNBXANbGvvlJJ_ztTvm0_y_zMzflKgc_lYNTDv7xmpiKB0cvG53at6L_h3Lbekr3Yy1_MKb1d1UKi7v59brW2DgAWvXg4y8Wsnxl3jw-VNILP583mzcYl1D2d89n0Ig9SVnSamw88FNAbkNV4JdJt7O6OhHjC7v6FCtFzqOhPqs86c2SaUH-Bb7Z17vdG4YLlLScijCWN_R7Jars78lSgCEIILyphDTvpbWBXMk17PFrmwmVO1aq6rZXipYs7hPj4CX0-7HX4Kd4XQWNOyp23y4bXjKMA1uuMcrZAx5ekFXGB4UG5KzHfndZ4jtBwNr2_BhHe4ZEWjr2-Ixy7chmUB_2awZQaBoGjTUAg2OOsDn2nP3sNTbpAz_qOk17t_ft3SUg2jKHi06juosdiqRhpvWJQ5G394_M__kvV_H2mVoMAAA=.eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly9XQUJJLVVTLUVBU1QtQS1QUklNQVJZLXJlZGlyZWN0LmFuYWx5c2lzLndpbmRvd3MubmV0IiwiZXhwIjoxNjg3Njg0ODM1LCJhbGxvd0FjY2Vzc092ZXJQdWJsaWNJbnRlcm5ldCI6dHJ1ZX0=";
+*/
+    
     this.PBIReportService.apiPBIReportReporturiConfigGet('ckcc').subscribe({
       next: (reportData: any) => {
         this.configData = reportData;
+        console.log(this.configData);
       },
-      error: (error: any) => {},
+      error: (error: any) => {
+        console.log("Error...");
+       
+      },
     });
+    
   }
 }

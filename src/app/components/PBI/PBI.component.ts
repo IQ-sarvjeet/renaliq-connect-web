@@ -1,31 +1,52 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+declare const powerbi: any;
 
 @Component({
   selector: 'app-PBI',
   templateUrl: './PBI.component.html',
   styleUrls: ['./PBI.component.scss']
 })
-export class PBIComponent {
-  embedConfig!: any;
+export class PBIComponent implements OnInit {
   @Input() config: any;
 
   ngOnInit(): void {
-    this.embedConfig = {
+    this.embedReport();
+  }
+
+  embedReport(): void {
+    const embedContainer = document.getElementById('embedContainer');
+
+    const config = {
       type: 'report',
       id: this.config.id,
       embedUrl: this.config.embedUrl,
       accessToken: this.config.embedToken.token,
-      // tokenType: models.TokenType.Embed,
-      hostname: 'https://app.powerbi.com',
+      tokenType: 1,
       settings: {
         panes: {
           filters: {
             expanded: false,
-            visible: false,
-          },
+            visible: false
+          }
         },
-        // background: models.BackgroundType.Transparent,
-      },
+      }
     };
+
+    console.log("PBI COMPONENT CONFIG SET...");
+    console.log(config);
+
+    const report = powerbi.embed(embedContainer, config);
+
+    report.off("loaded");
+
+    report.on("loaded", () => {
+      console.log("Report loaded");
+    });
+
+    report.off("error");
+
+    report.on("error", (error: any) => {
+      console.error(error);
+    });
   }
 }
