@@ -367,8 +367,6 @@
     $(".card-btn").removeClass("is-active");
     $(this).addClass("is-active");
   });
-
- 
 })(jQuery);
 
 // OFF-CANVAS STYLE
@@ -404,3 +402,9 @@ $("#customFile").change(function(){
     $('#filePath').html(filename);
   }
 });
+
+// URL Change STYLE
+$(window).on('hashchange', function(e){
+  $('.modal').hide();
+  $(".modal-backdrop").remove();
+ });

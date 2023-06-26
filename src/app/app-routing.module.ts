@@ -82,7 +82,7 @@ const routes: Routes = [
         (m) => m.DocumentsModule
       ),
     canActivate: [AuthguardGuard],
-    canLoad: [AuthgaurdCanloadService]
+    // canLoad: [AuthgaurdCanloadService]
   },
   {
     path: 'patient-profile/:id',
