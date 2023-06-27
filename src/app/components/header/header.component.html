@@ -210,6 +210,58 @@
                     </a>
                   </div>
                 </div>
+                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                  <a
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    class="nav-link pe-0 leading-none d-flex animate"
+                    [ngClass]="{
+                      'is-active': this.currentRoute.indexOf('reports') !== -1
+                    }"
+                  >
+                    Admin <i class="user-angle ms-1 fa fa-angle-down"></i>
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                  >
+                    <a
+                      class="dropdown-item"
+                      routerLink="/users-management/usersList"
+                    >
+                      Users List
+                    </a>
+                    <a
+                      class="dropdown-item"
+                      routerLink="/users-management/userDetails"
+                    >
+                      User Details
+                    </a>
+                    <a
+                      class="dropdown-item border-top"
+                      routerLink="/practice-management/practiceList"
+                    >
+                      Practices List
+                    </a>
+                    <a
+                      class="dropdown-item border-top"
+                      routerLink="/practice-management/practiceDetails"
+                    >
+                      Practice Details
+                    </a>
+                    <a
+                      class="dropdown-item border-top"
+                      routerLink="/roles-management/rolesList"
+                    >
+                      Roles List
+                    </a>
+                    <a
+                      class="dropdown-item border-top"
+                      routerLink="/roles-management/roleDetails"
+                    >
+                      Role Details
+                    </a>
+                  </div>
+                </div>
               </div>
               <!-- NAVIGATION -->
 
