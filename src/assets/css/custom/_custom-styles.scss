@@ -6001,7 +6001,10 @@ div.dataTables_wrapper div.dataTables_length label {
     width: 75% !important;
   }
 }
-
+.mx--3 {
+  margin-left: -1rem;
+  margin-right: -1rem;
+}
 .progress-bar-chart-container {
   display: flex;
   flex-direction: column;

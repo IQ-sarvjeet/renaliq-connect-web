@@ -1,1 +1,913 @@
-<p>users-list works!</p>
+<div class="table-responsive">
+    <table
+      id="admissionTable"
+      class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
+    >
+      <thead class="table-head">
+        <tr class="text-secondary bg-gray-200">
+          <th
+            class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
+          ></th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">USER</th>
+          <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">EMAIL</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">ENROLLMENT NO</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">RISK CATEGORY</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">STATUS</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">DOB</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">ENGAGED</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">ASSIGNMENT</th>
+          <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr>
+          <td>
+            <div class="skeleton-loader__media-rounded">
+              <span class="skeleton-loader m-auto"></span>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="skeleton-loader__media-xs me-4">
+                <span class="skeleton-loader"></span>
+              </div>
+              <div class="flex-fill">
+                <span class="skeleton-loader"></span>
+              </div>
+            </div>
+          </td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+          <td><span class="skeleton-loader"></span></td>
+        </tr>
+        <tr>
+            <td>
+              <div class="skeleton-loader__media-rounded">
+                <span class="skeleton-loader m-auto"></span>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <div class="skeleton-loader__media-xs me-4">
+                  <span class="skeleton-loader"></span>
+                </div>
+                <div class="flex-fill">
+                  <span class="skeleton-loader"></span>
+                </div>
+              </div>
+            </td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+            <td><span class="skeleton-loader"></span></td>
+          </tr>
+      </tbody>
+      <tbody class="table-body">
+        <tr>
+          <td class="text-center">
+            <i class="fa fa-circle text-warning"></i>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+                <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
+                    <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
+                </svg>
+              <div class="user-details ms-2">
+                <a
+                  class="text-secondary"
+                  href="javascript: void(0)"
+                  ><h6 class="mb-0">Hemant kumar</h6></a
+                >
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="text-truncate mw-truncate">hemant.kumar@indoqubix.com</div>
+          </td>
+          <td class="text-center">IPCCA5050</td>
+          <td>
+            <div class="d-flex">
+                <div class="flex-fill">
+                    <div class="progress progress-sm mt-1">
+                        <div class="progress-bar bg-success wp-25"></div>
+                    </div>
+                </div>
+                <div class="ms-2">Low</div>
+            </div>
+          </td>
+          <td>
+            New (2/23/2021)
+          </td>
+          <td class="text-center">
+            11/13/2000
+          </td>
+          <td class="text-center">
+            Yes
+          </td>
+          <td class="text-center">01/01/1900</td>
+          <td class="text-center">
+            <a
+              href="#"
+              class="br-5 px-2 py-1"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="fe fe-more-vertical"></i
+            ></a>
+            <div class="dropdown-menu dropdown-menu-start">
+                <a
+                    class="dropdown-item"
+                    href="Javascript: void(0);"
+                    data-bs-target="#modalEditUser"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Edit Details</a
+                >
+                <a
+                    class="dropdown-item"
+                    href="Javascript: void(0);"
+                    data-bs-target="#modalDeleteUser"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                >
+              </div>
+          </td>
+        </tr>
+        <tr>
+            <td class="text-center">
+              <i class="fa fa-circle text-success"></i>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <span
+                  class="data-image avatar avatar-sm rounded-circle"
+                  style="background-image: url(../assets/images/users/1.jpg)"
+                ></span>
+                <div class="user-details ms-2">
+                  <a
+                    class="text-secondary"
+                    href="javascript: void(0)"
+                    ><h6 class="mb-0">Shravan kumar</h6></a
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="text-truncate mw-truncate">shravan.kumar@indoqubix.com</div>
+            </td>
+            <td class="text-center">IPCCA5066</td>
+            <td>
+              <div class="d-flex">
+                  <div class="flex-fill">
+                      <div class="progress progress-sm mt-1">
+                          <div class="progress-bar bg-warning wp-50"></div>
+                      </div>
+                  </div>
+                  <div class="ms-2">Medium</div>
+              </div>
+            </td>
+            <td>
+              New (2/23/2021)
+            </td>
+            <td class="text-center">
+              11/13/2000
+            </td>
+            <td class="text-center">
+              No
+            </td>
+            <td class="text-center">01/01/1900</td>
+            <td class="text-center">
+              <a
+                href="#"
+                class="br-5 px-2 py-1"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fe fe-more-vertical"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-start">
+                <a
+                    class="dropdown-item"
+                    href="Javascript: void(0);"
+                    data-bs-target="#modalEditUser"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-edit me-2"></i> Edit Details</a
+                >
+                <a
+                    class="dropdown-item"
+                    href="Javascript: void(0);"
+                    data-bs-target="#modalDeleteUser"
+                    data-bs-toggle="modal"
+                    ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                >
+              </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-center">
+              <i class="fa fa-circle text-warning"></i>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                  <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
+                      <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
+                  </svg>
+                <div class="user-details ms-2">
+                  <a
+                    class="text-secondary"
+                    href="javascript: void(0)"
+                    ><h6 class="mb-0">Hemant kumar</h6></a
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="text-truncate mw-truncate">hemant.kumar@indoqubix.com</div>
+            </td>
+            <td class="text-center">IPCCA5050</td>
+            <td>
+              <div class="d-flex">
+                  <div class="flex-fill">
+                      <div class="progress progress-sm mt-1">
+                          <div class="progress-bar bg-success wp-25"></div>
+                      </div>
+                  </div>
+                  <div class="ms-2">Low</div>
+              </div>
+            </td>
+            <td>
+              New (2/23/2021)
+            </td>
+            <td class="text-center">
+              11/13/2000
+            </td>
+            <td class="text-center">
+              Yes
+            </td>
+            <td class="text-center">01/01/1900</td>
+            <td class="text-center">
+              <a
+                href="#"
+                class="br-5 px-2 py-1"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fe fe-more-vertical"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+            </td>
+          </tr>
+          <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-success"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/1.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a
+                      class="text-secondary"
+                      href="javascript: void(0)"
+                      ><h6 class="mb-0">Shravan kumar</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate mw-truncate">shravan.kumar@indoqubix.com</div>
+              </td>
+              <td class="text-center">IPCCA5066</td>
+              <td>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <div class="progress progress-sm mt-1">
+                            <div class="progress-bar bg-warning wp-50"></div>
+                        </div>
+                    </div>
+                    <div class="ms-2">Medium</div>
+                </div>
+              </td>
+              <td>
+                New (2/23/2021)
+              </td>
+              <td class="text-center">
+                11/13/2000
+              </td>
+              <td class="text-center">
+                No
+              </td>
+              <td class="text-center">01/01/1900</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+              </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <i class="fa fa-circle text-warning"></i>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                  <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
+                      <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
+                  </svg>
+                <div class="user-details ms-2">
+                  <a
+                    class="text-secondary"
+                    href="javascript: void(0)"
+                    ><h6 class="mb-0">Hemant kumar</h6></a
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="text-truncate mw-truncate">hemant.kumar@indoqubix.com</div>
+            </td>
+            <td class="text-center">IPCCA5050</td>
+            <td>
+              <div class="d-flex">
+                  <div class="flex-fill">
+                      <div class="progress progress-sm mt-1">
+                          <div class="progress-bar bg-success wp-25"></div>
+                      </div>
+                  </div>
+                  <div class="ms-2">Low</div>
+              </div>
+            </td>
+            <td>
+              New (2/23/2021)
+            </td>
+            <td class="text-center">
+              11/13/2000
+            </td>
+            <td class="text-center">
+              Yes
+            </td>
+            <td class="text-center">01/01/1900</td>
+            <td class="text-center">
+              <a
+                href="#"
+                class="br-5 px-2 py-1"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fe fe-more-vertical"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+            </td>
+          </tr>
+          <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-success"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/1.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a
+                      class="text-secondary"
+                      href="javascript: void(0)"
+                      ><h6 class="mb-0">Shravan kumar</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate mw-truncate">shravan.kumar@indoqubix.com</div>
+              </td>
+              <td class="text-center">IPCCA5066</td>
+              <td>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <div class="progress progress-sm mt-1">
+                            <div class="progress-bar bg-warning wp-50"></div>
+                        </div>
+                    </div>
+                    <div class="ms-2">Medium</div>
+                </div>
+              </td>
+              <td>
+                New (2/23/2021)
+              </td>
+              <td class="text-center">
+                11/13/2000
+              </td>
+              <td class="text-center">
+                No
+              </td>
+              <td class="text-center">01/01/1900</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+              </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <i class="fa fa-circle text-warning"></i>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                  <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
+                      <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
+                  </svg>
+                <div class="user-details ms-2">
+                  <a
+                    class="text-secondary"
+                    href="javascript: void(0)"
+                    ><h6 class="mb-0">Hemant kumar</h6></a
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="text-truncate mw-truncate">hemant.kumar@indoqubix.com</div>
+            </td>
+            <td class="text-center">IPCCA5050</td>
+            <td>
+              <div class="d-flex">
+                  <div class="flex-fill">
+                      <div class="progress progress-sm mt-1">
+                          <div class="progress-bar bg-success wp-25"></div>
+                      </div>
+                  </div>
+                  <div class="ms-2">Low</div>
+              </div>
+            </td>
+            <td>
+              New (2/23/2021)
+            </td>
+            <td class="text-center">
+              11/13/2000
+            </td>
+            <td class="text-center">
+              Yes
+            </td>
+            <td class="text-center">01/01/1900</td>
+            <td class="text-center">
+              <a
+                href="#"
+                class="br-5 px-2 py-1"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fe fe-more-vertical"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+            </td>
+          </tr>
+          <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-success"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/1.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a
+                      class="text-secondary"
+                      href="javascript: void(0)"
+                      ><h6 class="mb-0">Shravan kumar</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate mw-truncate">shravan.kumar@indoqubix.com</div>
+              </td>
+              <td class="text-center">IPCCA5066</td>
+              <td>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <div class="progress progress-sm mt-1">
+                            <div class="progress-bar bg-warning wp-50"></div>
+                        </div>
+                    </div>
+                    <div class="ms-2">Medium</div>
+                </div>
+              </td>
+              <td>
+                New (2/23/2021)
+              </td>
+              <td class="text-center">
+                11/13/2000
+              </td>
+              <td class="text-center">
+                No
+              </td>
+              <td class="text-center">01/01/1900</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+              </td>
+          </tr>
+          <tr>
+            <td class="text-center">
+              <i class="fa fa-circle text-warning"></i>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                  <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
+                      <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
+                  </svg>
+                <div class="user-details ms-2">
+                  <a
+                    class="text-secondary"
+                    href="javascript: void(0)"
+                    ><h6 class="mb-0">Hemant kumar</h6></a
+                  >
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="text-truncate mw-truncate">hemant.kumar@indoqubix.com</div>
+            </td>
+            <td class="text-center">IPCCA5050</td>
+            <td>
+              <div class="d-flex">
+                  <div class="flex-fill">
+                      <div class="progress progress-sm mt-1">
+                          <div class="progress-bar bg-success wp-25"></div>
+                      </div>
+                  </div>
+                  <div class="ms-2">Low</div>
+              </div>
+            </td>
+            <td>
+              New (2/23/2021)
+            </td>
+            <td class="text-center">
+              11/13/2000
+            </td>
+            <td class="text-center">
+              Yes
+            </td>
+            <td class="text-center">01/01/1900</td>
+            <td class="text-center">
+              <a
+                href="#"
+                class="br-5 px-2 py-1"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                ><i class="fe fe-more-vertical"></i
+              ></a>
+              <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+            </td>
+          </tr>
+          <tr>
+              <td class="text-center">
+                <i class="fa fa-circle text-success"></i>
+              </td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span
+                    class="data-image avatar avatar-sm rounded-circle"
+                    style="background-image: url(../assets/images/users/1.jpg)"
+                  ></span>
+                  <div class="user-details ms-2">
+                    <a
+                      class="text-secondary"
+                      href="javascript: void(0)"
+                      ><h6 class="mb-0">Shravan kumar</h6></a
+                    >
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="text-truncate mw-truncate">shravan.kumar@indoqubix.com</div>
+              </td>
+              <td class="text-center">IPCCA5066</td>
+              <td>
+                <div class="d-flex">
+                    <div class="flex-fill">
+                        <div class="progress progress-sm mt-1">
+                            <div class="progress-bar bg-warning wp-50"></div>
+                        </div>
+                    </div>
+                    <div class="ms-2">Medium</div>
+                </div>
+              </td>
+              <td>
+                New (2/23/2021)
+              </td>
+              <td class="text-center">
+                11/13/2000
+              </td>
+              <td class="text-center">
+                No
+              </td>
+              <td class="text-center">01/01/1900</td>
+              <td class="text-center">
+                <a
+                  href="#"
+                  class="br-5 px-2 py-1"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  ><i class="fe fe-more-vertical"></i
+                ></a>
+                <div class="dropdown-menu dropdown-menu-start">
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalEditUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-edit me-2"></i> Edit Details</a
+                  >
+                  <a
+                      class="dropdown-item"
+                      href="Javascript: void(0);"
+                      data-bs-target="#modalDeleteUser"
+                      data-bs-toggle="modal"
+                      ><i class="fe fe-x-circle me-2"></i> Delete User</a
+                  >
+                </div>
+              </td>
+          </tr>
+      </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <div class="d-md-flex">
+            <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
+                <div>Showing 1 to 10 of 18 Records</div>
+            </div>
+            <div class="mt-3 mt-md-0">
+                <ul class="pagination justify-content-center justify-content-md-end mt-2 mb-0">
+                    <li class="page-item disabled">
+                        <button tabindex="-1" aria-disabled="true" class="page-link"> First </button>
+                    </li>
+                    <li class="page-item disabled">
+                        <button tabindex="-1" aria-disabled="true" class="page-link"><i class="fa fa-angle-left"></i></button>
+                    </li>
+                    <li class="page-item d-none d-sm-block active">
+                        <button class="page-link"> 1 </button></li>
+                    <li class="page-item d-none d-sm-block"><button class="page-link"> 2 </button></li>
+                    <li class="page-item"><button class="page-link"><i class="fa fa-angle-right"></i></button></li>
+                    <li class="page-item"><button class="page-link"> Last </button></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Edit User MODAL -->
+<div class="modal fade" id="modalEditUser">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modal-content-demo">
+        <div class="modal-header bg-gray-200">
+            <h4 class="modal-title fw-semibold">Edit UserName Details</h4>
+            <button aria-label="Close" data-bs-dismiss="modal" class="btn-close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-4 d-flex justify-content-center align-items-center">
+                    <a href="#">
+                        <span class="data-image avatar avatar-xxxl rounded-circle" style="background-image: url(../assets/images/users/1.jpg);"></span>
+                        <span class="d-block text-center mt-1">Change</span>
+                    </a>
+                </div>
+                <div class="col-8">
+                    <div>
+                        <label for="userName" class="mb-1">User Name</label>
+                        <input type="text" name="text" placeholder="Enter User name" value="Hemant kumar" id="userName" class="form-control">
+                    </div>
+                    <div class="mt-4">
+                        <label for="userEmail" class="mb-1">Email Address</label>
+                        <input type="text" name="text" placeholder="Enter Email Address" value="hemant.kumar@indoqubix.com" id="userEmail" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4 mx--3"/>
+            <div class="form-row">
+                <div class="col-6">
+                    <label for="enrollmentNo" class="mb-1">Enrollment No</label>
+                    <input type="text" name="text" placeholder="Enter Enrollment No" value="IPCCA5050" id="enrollmentNo" class="form-control">
+                </div>
+                <div class="col-6">
+                    <label for="riskCategory" class="mb-1">Risk Category</label>
+                    <select class="form-select" id="riskCategory">
+                        <option value="Low" selected>Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="col-6">
+                    <label for="status" class="mb-1">Status</label>
+                    <input type="text" name="text" placeholder="Enter Status" value="New (2/23/2021)" id="status" class="form-control">
+                </div>
+                <div class="col-6">
+                    <label for="DOB" class="mb-1">Date of Birth</label>
+                    <input type="text" name="text" placeholder="Enter Date of Birth" value="11/13/2000" id="DOB" class="form-control">
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="col-6">
+                    <label for="engaged" class="mb-1">Engaged</label>
+                    <select class="form-select" id="engaged">
+                        <option value="yes" selected>Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="assignment" class="mb-1">Assignment</label>
+                    <input type="text" name="text" placeholder="Enter Assignment" value="01/01/1900" id="assignment" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button
+            class="btn btn-outline-light"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+          Update
+          </button>
+          </div>
+      </div>
+    </div>
+</div>
+  
+<!-- Delete MODAL -->
+<div class="modal fade" id="modalDeleteUser">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content modal-content-demo rounded-4">
+        <div class="modal-body p-5">
+          <div class="text-center">
+            <div class="fs-16">Are you sure you want to  delete <span class="text-nowrap"><strong>UserName</strong>?</span></div>
+            <h4 class="fw-bold text-primary mt-1">you can't undo this action</h4>
+            <div class="d-flex alert alert-danger my-4 rounded-3 border-0 badge-danger-lighter">
+              <span class="alert-inner--icon me-3"><i class="fe fe-info fs-32"></i></span>
+              <div class="flex-fill text-start alert-inner--text lh-normal text-dark">By deleting user will not be able to access his account any more.</div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button
+            class="btn btn-outline-light mx-1 py-2 px-5 fw-bold"
+            data-bs-dismiss="modal"
+          >
+            Cancel
+          </button>
+          <button
+            class="btn btn-danger mx-1 py-2 px-5 fw-bold"
+            data-bs-dismiss="modal"
+          >
+          Confirm
+          </button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</div>
