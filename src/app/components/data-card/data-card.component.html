@@ -2,8 +2,8 @@
   {{ cardData.cardTitle }}
   <div class="text-dark fw-bold fs-22 lh-sm">
     <a *ngIf="cardData.routeName"
-      class="nav-link pe-2" (click)="navigetOnPage(cardData.routeName)">{{ cardData.count }}</a>
-    <span *ngIf="!cardData.routeName">{{ cardData.count }}</span>
+      class="nav-link d-inline-block px-0" href="javascript:void(0)" (click)="navigetOnPage(cardData.routeName)">{{ cardData.count }}</a>
+    <span *ngIf="!cardData.routeName" class="d-inline-block pt-1">{{ cardData.count }}</span>
     <!--<span
       class="fw-semibold fs-12"
       [class]="cardData.performance === 'up' ? 'text-success' : 'text-danger'"
