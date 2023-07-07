@@ -5,6 +5,7 @@ import { UsersManagementComponent } from './users-management.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -34,6 +35,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class UsersManagementModule { }
