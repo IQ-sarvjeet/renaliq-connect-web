@@ -6,6 +6,7 @@ import { UsersListComponent } from './users-list/users-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/components/shared.module';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class UsersManagementModule { }

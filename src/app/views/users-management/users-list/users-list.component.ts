@@ -8,7 +8,15 @@ import { UserFilterModel, UserService } from 'src/app/api-client';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  usersList: any = [];
+  usersList: any = {
+    data: [],
+    pagingModel: {
+      currentPage: 1,
+      pageSize: 10,
+      totalPages: 1,
+      totalRecords: 0
+    }
+  };
   showLoading: boolean = true;
   deleteId: number = 0;
   filters: UserFilterModel = {
@@ -38,7 +46,7 @@ export class UsersListComponent implements OnInit {
     this.userService.apiUserListPost(this.filters).subscribe({
       next: (response: any) => {
         if (response.data) {
-          this.usersList = response.data;
+          this.usersList = response;
         }
         this.showLoading = false;
       },
@@ -85,7 +93,6 @@ export class UsersListComponent implements OnInit {
               sortDirection: ''
             }
           };
-          this.usersList = [];
           this.loadUsersList();
         }
       },
@@ -102,7 +109,6 @@ export class UsersListComponent implements OnInit {
       next: (response: boolean) => {
         if(response) {
           this.deleteId = 0;
-          this.usersList = [];
           this.loadUsersList();
         }
       },
@@ -110,5 +116,9 @@ export class UsersListComponent implements OnInit {
 
       }
     });
+  }
+  public gotoPage(page: number): void {
+    this.filters.currentPage = page;
+    this.loadUsersList();
   }
 }
