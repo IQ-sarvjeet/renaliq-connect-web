@@ -203,11 +203,12 @@
         <form [formGroup]="updateUserForm" (ngSubmit)="submit()">
           <div class="modal-header bg-gray-200">
               <h4 class="modal-title fw-semibold">Edit User</h4>
-              <button type="button" aria-label="Close" data-bs-dismiss="modal" class="btn-close">
+              <button type="button" aria-label="Close" data-bs-dismiss="modal" class="btn-close" (click)="resetValues()">
                   <span aria-hidden="true">×</span>
               </button>
           </div>
           <div class="modal-body">
+            <app-spinner *ngIf="userLoading"></app-spinner>
               <div class="row">
                   <div class="col-4 d-flex justify-content-center align-items-center">
                       <input type="file" id="imgupload" class="d-none" style="display:none"/>
@@ -246,7 +247,7 @@
               <button
               class="btn btn-outline-light"
               data-bs-dismiss="modal"
-              type="button"
+              type="button"  (click)="resetValues()"
             >
               Cancel
             </button>
@@ -268,8 +269,9 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content modal-content-demo rounded-4">
         <div class="modal-body p-5">
-          <div class="text-center">
-            <div class="fs-16">Are you sure you want to delete <span class="text-nowrap"><strong>UserName</strong>?</span></div>
+            <app-spinner *ngIf="userLoading"></app-spinner>
+            <div class="text-center">
+            <div class="fs-16">Are you sure you want to delete <span class="text-nowrap"><strong>{{ userToDelete }}</strong>?</span></div>
             <h4 class="fw-bold text-primary mt-1">you can't undo this action</h4>
             <div class="d-flex alert alert-danger my-4 rounded-3 border-0 badge-danger-lighter">
               <span class="alert-inner--icon me-3"><i class="fe fe-info fs-32"></i></span>
@@ -279,7 +281,7 @@
           <div class="text-center mt-4">
             <button
             class="btn btn-outline-light mx-1 py-2 px-5 fw-bold"
-            data-bs-dismiss="modal" type="button"
+            data-bs-dismiss="modal" type="button" (click)="resetValues()"
           >
             Cancel
           </button>

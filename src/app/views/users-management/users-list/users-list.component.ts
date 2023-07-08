@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFilterModel, UserService } from 'src/app/api-client';
 import { UserEventService } from '../services/user-event.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-users-list',
@@ -9,6 +10,8 @@ import { UserEventService } from '../services/user-event.service';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  userToDelete!: string;
+  userLoading:boolean = false;
   usersList: any = {
     data: [],
     pagingModel: {
@@ -39,7 +42,8 @@ export class UsersListComponent implements OnInit {
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
-    private userEventService: UserEventService){}
+    private userEventService: UserEventService,
+    private eventService: EventService){}
   ngOnInit(): void {
     this.loadUsersList();
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
@@ -65,6 +69,7 @@ export class UsersListComponent implements OnInit {
     });
   }
   getUser(userEmail: string, action: string){
+    this.userLoading = true;
     this.IsDeleteAction = action === 'update' ? false : true;
     this.filters = {
       ...this.filters,
@@ -76,6 +81,8 @@ export class UsersListComponent implements OnInit {
     this.userService.apiUserListPost(this.filters).subscribe({
       next: (response: any) => {
         if (response.data) {
+          this.userLoading = false;
+          this.userToDelete = response.data[0].firstName + ' ' + response.data[0].lastname;
           this.updateUserForm.patchValue({
             loginUserId: response.data[0].id,
             firstName: response.data[0].firstName,
@@ -86,6 +93,7 @@ export class UsersListComponent implements OnInit {
         }
       },
       error: (error: any) => {
+        this.userLoading = false;
       }
     });
   }
@@ -94,6 +102,11 @@ export class UsersListComponent implements OnInit {
       this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
         next: (response: boolean) => {
           if(response) {
+            this.eventService.openToaster({
+              showToster: true,
+              message: `User updated successfully.`,
+              type: 'success',
+            });
             this.IsDeleteAction = false;
             this.filters = {
               ...this.filters,
@@ -105,12 +118,17 @@ export class UsersListComponent implements OnInit {
                 sortDirection: ''
               }
             };
+            this.userToDelete = '';
             this.updateUserForm.reset();
             this.loadUsersList();
           }
         },
         error: (error: any) => {
-
+          this.eventService.openToaster({
+            showToster: true,
+            message: `Error while updating user.`,
+            type: 'danger',
+          });
         }
       });
     }
@@ -120,6 +138,11 @@ export class UsersListComponent implements OnInit {
       this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.loginUserId).subscribe({
         next: (response: boolean) => {
           if(response) {
+            this.eventService.openToaster({
+              showToster: true,
+              message: `User deleted successfully.`,
+              type: 'success',
+            });
             this.IsDeleteAction = false;
             this.filters = {
               ...this.filters,
@@ -131,15 +154,24 @@ export class UsersListComponent implements OnInit {
                 sortDirection: ''
               }
             };
+            this.userToDelete = '';
             this.updateUserForm.reset();
             this.loadUsersList();
           }
         },
         error: (error: any) => {
-  
+          this.eventService.openToaster({
+            showToster: true,
+            message: `Error while deleting user.`,
+            type: 'danger',
+          });
         }
       });
     }
+  }
+  resetValues(){
+    this.updateUserForm.reset();
+    this.userToDelete = '';
   }
   public gotoPage(page: number): void {
     this.filters.currentPage = page;
