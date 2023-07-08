@@ -5,9 +5,9 @@
     >
       <thead class="table-head">
         <tr class="text-secondary bg-gray-200">
-          <th
+          <!-- <th
             class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
-          ></th>
+          ></th> -->
           <th class="bg-transparent border-bottom-0 fs-12 table-header">USER</th>
           <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">EMAIL</th>
           <th class="bg-transparent border-bottom-0 fs-12 table-header">PHONE</th>
@@ -16,11 +16,11 @@
       </thead>
       <tbody class="table-body" *ngIf="showLoading && !usersList.data.length">
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -36,11 +36,11 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -56,11 +56,11 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -76,11 +76,11 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -96,11 +96,11 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -116,11 +116,11 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <td>
+          <!-- <td>
             <div class="skeleton-loader__media-rounded">
               <span class="skeleton-loader m-auto"></span>
             </div>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
               <div class="skeleton-loader__media-xs me-4">
@@ -138,20 +138,16 @@
       </tbody>
       <tbody class="table-body" *ngIf="!showLoading && usersList.data.length">
         <tr *ngFor="let user of usersList.data">
-          <td class="text-center">
+          <!-- <td class="text-center">
             <i class="fa fa-circle text-warning"></i>
-          </td>
+          </td> -->
           <td>
             <div class="d-flex align-items-center">
                 <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
                     <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
                 </svg>
               <div class="user-details ms-2">
-                <a
-                  class="text-secondary"
-                  href="javascript: void(0)"
-                  ><h6 class="mb-0">{{ user.firstName + ' ' + user.lastname }}</h6></a
-                >
+                {{ user.firstName + ' ' + user.lastname }}
               </div>
             </div>
           </td>
@@ -257,7 +253,7 @@
             <button
               class="btn btn-secondary"
               data-bs-dismiss="modal"
-              type="submit"
+              type="submit" [disabled]="!updateUserForm.valid"
             >
             Update
             </button>

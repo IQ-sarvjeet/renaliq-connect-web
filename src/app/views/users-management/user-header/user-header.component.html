@@ -147,7 +147,7 @@
             <button class="btn btn-outline-light" data-bs-dismiss="modal" type="button">
               Cancel
             </button>
-            <button class="btn btn-secondary" data-bs-dismiss="modal" type="submit">
+            <button class="btn btn-secondary" data-bs-dismiss="modal" type="submit" [disabled]="!addUserForm.valid">
               Add User
             </button>
           </div>

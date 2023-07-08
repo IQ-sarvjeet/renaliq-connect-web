@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFilterModel, UserService } from 'src/app/api-client';
+import { UserEventService } from '../services/user-event.service';
 
 @Component({
   selector: 'app-users-list',
@@ -33,13 +34,17 @@ export class UsersListComponent implements OnInit {
     loginUserId: [0, Validators.required],
     firstName: ['', Validators.required],
     lastname: ['', Validators.required],
-    email: ['', Validators.required],
-    phoneNumber: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
   });
   constructor(private userService: UserService,
-    private fb: FormBuilder){}
+    private fb: FormBuilder,
+    private userEventService: UserEventService){}
   ngOnInit(): void {
     this.loadUsersList();
+    this.userEventService.userIdSubscription().subscribe((userId: number) => {
+      this.loadUsersList();
+    })
   }
   loadUsersList(){
     this.showLoading = true;
@@ -85,28 +90,30 @@ export class UsersListComponent implements OnInit {
     });
   }
   submit(){
-    this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
-      next: (response: boolean) => {
-        if(response) {
-          this.IsDeleteAction = false;
-          this.filters = {
-            ...this.filters,
-            userFilter: {
-              ...this.filters.userFilter,
-              email: '',
-              name: '',
-              sortBy: '',
-              sortDirection: ''
-            }
-          };
-          this.updateUserForm.reset();
-          this.loadUsersList();
-        }
-      },
-      error: (error: any) => {
+    if(this.updateUserForm.valid) {
+      this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
+        next: (response: boolean) => {
+          if(response) {
+            this.IsDeleteAction = false;
+            this.filters = {
+              ...this.filters,
+              userFilter: {
+                ...this.filters.userFilter,
+                email: '',
+                name: '',
+                sortBy: '',
+                sortDirection: ''
+              }
+            };
+            this.updateUserForm.reset();
+            this.loadUsersList();
+          }
+        },
+        error: (error: any) => {
 
-      }
-    });
+        }
+      });
+    }
   }
   deleteUser(){
     if(this.IsDeleteAction){
