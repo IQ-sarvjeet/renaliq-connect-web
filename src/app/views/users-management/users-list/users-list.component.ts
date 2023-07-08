@@ -18,7 +18,7 @@ export class UsersListComponent implements OnInit {
     }
   };
   showLoading: boolean = true;
-  deleteId: number = 0;
+  IsDeleteAction: boolean = false;
   filters: UserFilterModel = {
     userFilter: {
       email: '',
@@ -43,6 +43,10 @@ export class UsersListComponent implements OnInit {
   }
   loadUsersList(){
     this.showLoading = true;
+    this.usersList = {
+      ...this.usersList,
+      data: []
+    };
     this.userService.apiUserListPost(this.filters).subscribe({
       next: (response: any) => {
         if (response.data) {
@@ -55,14 +59,15 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  getUser(userEmail: string){
+  getUser(userEmail: string, action: string){
+    this.IsDeleteAction = action === 'update' ? false : true;
     this.filters = {
       ...this.filters,
       userFilter: {
         ...this.filters.userFilter,
         email: userEmail
       }
-    }
+    };
     this.userService.apiUserListPost(this.filters).subscribe({
       next: (response: any) => {
         if (response.data) {
@@ -77,12 +82,13 @@ export class UsersListComponent implements OnInit {
       },
       error: (error: any) => {
       }
-    })
+    });
   }
   submit(){
     this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
       next: (response: boolean) => {
         if(response) {
+          this.IsDeleteAction = false;
           this.filters = {
             ...this.filters,
             userFilter: {
@@ -93,6 +99,7 @@ export class UsersListComponent implements OnInit {
               sortDirection: ''
             }
           };
+          this.updateUserForm.reset();
           this.loadUsersList();
         }
       },
@@ -100,22 +107,32 @@ export class UsersListComponent implements OnInit {
 
       }
     });
-  }
-  deleteUserId(userId: number){
-    this.deleteId = userId;
   }
   deleteUser(){
-    this.userService.apiUserDeleteLoginUserIdDelete(this.deleteId).subscribe({
-      next: (response: boolean) => {
-        if(response) {
-          this.deleteId = 0;
-          this.loadUsersList();
+    if(this.IsDeleteAction){
+      this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.loginUserId).subscribe({
+        next: (response: boolean) => {
+          if(response) {
+            this.IsDeleteAction = false;
+            this.filters = {
+              ...this.filters,
+              userFilter: {
+                ...this.filters.userFilter,
+                email: '',
+                name: '',
+                sortBy: '',
+                sortDirection: ''
+              }
+            };
+            this.updateUserForm.reset();
+            this.loadUsersList();
+          }
+        },
+        error: (error: any) => {
+  
         }
-      },
-      error: (error: any) => {
-
-      }
-    });
+      });
+    }
   }
   public gotoPage(page: number): void {
     this.filters.currentPage = page;
