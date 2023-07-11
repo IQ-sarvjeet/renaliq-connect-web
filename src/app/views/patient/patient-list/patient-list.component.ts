@@ -36,11 +36,15 @@ export class PatientListComponent {
         }
       })
     } else {
-      this.route.navigate([`/patient-profile/${this.patientDetail.patient.patientId}`, {
-          patientId: this.patientDetail.patient.patientId ? this.patientDetail.patient.patientId: '',
-          enrollmentNo: this.patientDetail.patient.enrollmentNo ? this.patientDetail.patient.enrollmentNo: ''
-        }
-      ])
+      this.route.navigate([
+      ]).then(() => {  window.open(url,'_blank'); });
+        const fragment = '#';
+        const urlTree = this.route.createUrlTree([`/patient-profile/${this.patientDetail.patient.patientId}`,{
+        patientId: this.patientDetail.patient.patientId ? this.patientDetail.patient.patientId: '',
+        enrollmentNo: this.patientDetail.patient.enrollmentNo ? this.patientDetail.patient.enrollmentNo: ''
+      }]);
+      const urlWithoutFragment = this.route.serializeUrl(urlTree);
+      const url = `${fragment}${urlWithoutFragment}`;
     }
   }
   downloadPlan(plan: any) {
