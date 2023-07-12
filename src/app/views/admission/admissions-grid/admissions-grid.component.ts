@@ -60,10 +60,15 @@ export class AdmissionsGridComponent {
   }
   
   redirectOnPatientProfileHandler(patient: any) {
-    this.route.navigate([`/patient-profile/${patient.patientId}`, {
-        patientId: patient.patientId ? patient.patientId: '',
-        enrollmentNo: patient.enrollmentNo ? patient.enrollmentNo: ''
-      }
-    ])
+    const fragment = '#';
+    this.route.navigate([]).then(() => {
+      window.open(url, '_blank');
+    });
+    const urlTree = this.route.createUrlTree([`/patient-profile/${patient.patientId}`,{
+      patientId: patient.patientId ? patient.patientId: '',
+      enrollmentNo: patient.enrollmentNo ? patient.enrollmentNo: ''
+    }]);
+    const urlWithoutFragment = this.route.serializeUrl(urlTree);
+    const url = `${fragment}${urlWithoutFragment}`;
   }
 }
