@@ -7,6 +7,7 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/components/shared.module';
+import { MbscModule } from '@mobiscroll/angular';
 
 const routes: Routes = [
   {
@@ -37,7 +38,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MbscModule
   ]
 })
 export class UsersManagementModule { }

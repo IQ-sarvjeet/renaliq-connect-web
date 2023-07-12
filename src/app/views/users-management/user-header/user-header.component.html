@@ -43,108 +43,85 @@
         <form [formGroup]="addUserForm" (ngSubmit)="submit()">
           <div class="modal-header bg-gray-200">
             <h4 class="modal-title fw-semibold">Add User</h4>
-            <button type="button" aria-label="Close" data-bs-dismiss="modal" class="btn-close">
+            <button type="button" aria-label="Close" data-bs-dismiss="modal" class="btn-close" (click)="resetForm()">
               <span aria-hidden="true">×</span>
             </button>
           </div>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-4 d-flex justify-content-center align-items-center">
-                <input type="file" id="imgupload" class="d-none" style="display:none" />
-                <a id="imgUploadClick" href="javascript:void(0)">
-                  <svg viewBox="0 0 512 512" class="data-image avatar avatar-xxxl rounded-circle">
-                    <path
-                      d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"
-                      style="fill: #d3d0d0;"></path>
-                  </svg>
-                  <span class="d-block text-center mt-1">Avtar</span>
-                </a>
-              </div>
-              <div class="col-8">
-                <div>
-                  <label for="userName" class="mb-1">User Name</label>
-                  <input type="text" placeholder="User Name" formControlName="userName" id="userName" class="form-control">
+            <div class="form-row">
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" placeholder="First Name" formControlName="firstName" id="firstName" class="form-control" />
+                  <label for="firstName" class="mb-1">First Name</label>
                 </div>
-                <div class="mt-4">
-                  <label for="userEmail" class="mb-1">Email Address</label>
+                <div class="text-danger" *ngIf="addUserForm.controls['firstName'].invalid && addUserForm.controls['firstName'].touched">Please enter valid name</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" placeholder="Last Name" formControlName="lastName" id="lastName" class="form-control">
+                  <label for="lastName" class="mb-1">Last Name</label>
+                </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['lastName'].invalid && addUserForm.controls['lastName'].touched">Please enter valid name</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-12 mb-3">
+                <div class="form-floating">
                   <input type="text" placeholder="Enter Email Address" formControlName="email" id="userEmail"
                     class="form-control">
+                  <label for="userEmail" class="mb-1">Email/Login ID</label>
                 </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['email'].invalid && addUserForm.controls['email'].touched">Please enter valid email</div>
               </div>
             </div>
-            <hr class="my-4 mx--3" />
-            <div class="form-row mt-4">
-              <div class="col-6">
-                <label for="firstName" class="mb-1">First Name</label>
-                <input type="text" placeholder="First Name" formControlName="firstName" id="firstName" class="form-control">
-              </div>
-              <div class="col-6">
-                <label for="middleName" class="mb-1">Middle Name</label>
-                <input type="text" placeholder="Middle Name" formControlName="middleName" id="middleName" class="form-control">
+            <div class="form-row">
+              <div class="col-12 mb-3">
+                <div class="form-floating">
+                  <input type="text" placeholder="Enter Email Address" formControlName="title" id="title"
+                    class="form-control">
+                  <label for="title" class="mb-1">Title (optional)</label>
+                </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['title'].invalid && addUserForm.controls['title'].touched">Title is required</div>
               </div>
             </div>
-            <div class="form-row mt-4">
-              <div class="col-6">
-                <label for="lastName" class="mb-1">Last Name</label>
-                <input type="text" placeholder="Last Name" formControlName="lastName" id="lastName" class="form-control">
+            <div class="form-row">
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" placeholder="Phone Number" formControlName="phoneNumber" id="phoneNumber" class="form-control">
+                  <label for="phoneNumber" class="mb-1">Mobile Number</label>
+                </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['phoneNumber'].invalid && addUserForm.controls['phoneNumber'].touched">Please enter valid contact number</div>
               </div>
-              <div class="col-6">
-                <label for="phoneNumber" class="mb-1">Phone Number</label>
-                <input type="text" placeholder="Phone Number" formControlName="phoneNumber" id="phoneNumber" class="form-control">
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <select class="form-select" id="roleId" formControlName="roleId">
+                    <option value="" selected>-Select-</option>
+                    <option [value]="role.id" *ngFor="let role of rolesList">{{ role.name }}</option>
+                  </select>
+                  <label for="roleId" class="mb-1">User Role</label>
+                </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['roleId'].invalid && addUserForm.controls['roleId'].touched">Please select user role</div>
               </div>
             </div>
-            <!-- <div class="form-row mt-4">
+            <div class="form-row">
               <div class="col-6">
-                <label for="password" class="mb-1">Password</label>
-                <input type="text" placeholder="Password" formControlName="password" id="password" class="form-control">
+                <mbsc-select [data]="practicesList" 
+                  formControlName="practiceId"
+                  display="anchored" 
+                  [itemHeight]="50" 
+                  [selectMultiple]="true" 
+                  label="Select Practices to Assign" 
+                  class="form-control select-tags mb-3" 
+                  inputStyle="box" 
+                  labelStyle="stacked" 
+                  placeholder="Please select Tags..."
+                >
+                </mbsc-select>
               </div>
-              <div class="col-6">
-                <label for="confirmPassword" class="mb-1">Confirm Password</label>
-                <input type="text" placeholder="Confirm Password" formControlName="confirmPassword" id="confirmPassword" class="form-control">
-              </div>
-            </div> -->
-            <!-- <div class="form-row">
-                    <div class="col-6">
-                        <label for="enrollmentNo" class="mb-1">Enrollment No</label>
-                        <input type="text" name="text" placeholder="Enter Enrollment No" id="enrollmentNo" class="form-control">
-                    </div>
-                    <div class="col-6">
-                        <label for="riskCategory" class="mb-1">Risk Category</label>
-                        <select class="form-select" id="riskCategory">
-                            <option value="Low" selected>-Select-</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row mt-4">
-                    <div class="col-6">
-                        <label for="status" class="mb-1">Status</label>
-                        <input type="text" name="text" placeholder="Enter Status" id="status" class="form-control">
-                    </div>
-                    <div class="col-6">
-                        <label for="DOB" class="mb-1">Date of Birth</label>
-                        <input type="text" name="text" placeholder="Enter Date of Birth" id="DOB" class="form-control">
-                    </div>
-                </div>
-                <div class="form-row mt-4">
-                    <div class="col-6">
-                        <label for="engaged" class="mb-1">Engaged</label>
-                        <select class="form-select" id="engaged">
-                            <option value="yes" selected>-Select-</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <label for="assignment" class="mb-1">Assignment</label>
-                        <input type="text" name="text" placeholder="Enter Assignment" id="assignment" class="form-control">
-                    </div>
-                </div> -->
+            </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-outline-light" data-bs-dismiss="modal" type="button">
+            <button class="btn btn-outline-light" data-bs-dismiss="modal" type="button" (click)="resetForm()">
               Cancel
             </button>
             <button class="btn btn-secondary" data-bs-dismiss="modal" type="submit" [disabled]="!addUserForm.valid">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserFilterModel, UserService } from 'src/app/api-client';
+import { PracticeService, RoleService, UserFilterModel, UserService } from 'src/app/api-client';
 import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
@@ -11,6 +11,8 @@ import * as moment from 'moment';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  practicesList: any = [];
+  rolesList: any = [];
   moment = moment;
   userToDelete!: string;
   userLoading:boolean = false;
@@ -36,18 +38,24 @@ export class UsersListComponent implements OnInit {
     pageSize: 10,
   };
   updateUserForm: FormGroup = this.fb.group({
-    loginUserId: [0, Validators.required],
-    firstName: ['', Validators.required],
-    lastname: ['', Validators.required],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     email: ['', [Validators.required, Validators.email]],
-    phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]*$')]],
+    title: ['', [Validators.required]],
+    phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
+    roleId: ['', Validators.required],
+    practiceId: ['', Validators.required],
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
     private userEventService: UserEventService,
-    private eventService: EventService){}
+    private eventService: EventService,
+    private practiceService: PracticeService,
+    private roleService: RoleService){}
   ngOnInit(): void {
     this.loadUsersList();
+    this.loadPractices();
+    this.loadRoles();
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
       this.loadUsersList();
     })
@@ -99,11 +107,13 @@ export class UsersListComponent implements OnInit {
           this.userLoading = false;
           this.userToDelete = response.data[0].firstName + ' ' + response.data[0].lastname;
           this.updateUserForm.patchValue({
-            loginUserId: response.data[0].id,
-            firstName: response.data[0].firstName,
-            lastname: response.data[0].lastname,
+            firstName:response.data[0].firstName,
+            lastName: response.data[0].lastname,
             email: response.data[0].emailAddress,
             phoneNumber: response.data[0].phoneNumber,
+            title: response.data[0].title,
+            roleId: response.data[0].roles[0].id,
+            practiceId: response.data[0].practices,
           });
         }
       },
@@ -192,4 +202,45 @@ export class UsersListComponent implements OnInit {
     this.filters.currentPage = page;
     this.loadUsersList();
   }
+  loadPractices(){
+    this.practicesList = [];
+    this.practiceService.apiPracticeListGet().subscribe({
+      next: (response: any) => {
+        if(response.length) {
+          const data: any = [];
+          response.map((item: any, index: number ) => {
+            data.push({text: item.name, value: item.practiceId, avatar: 'm' + index});
+          });
+          this.practicesList = [...data];
+        }
+      },
+      error: (error: any) => {
+      }
+    });
+  }
+  loadRoles(){
+    this.rolesList = [];
+    this.roleService.apiRolesGet().subscribe({
+      next: (response: any) => {
+        if(response.length) {
+          this.rolesList = response;
+        }
+      },
+      error: (error: any) => {
+      }
+    });
+  }
+  applySort(columnName: string) {
+    const prevSortBy = this.filters.userFilter?.sortBy;
+    if(prevSortBy === columnName && this.filters.userFilter?.sortDirection === '') {
+      this.filters.userFilter.sortDirection = 'asc';
+    } else {
+      this.filters.userFilter!.sortDirection = '';
+    }
+    this.filters.userFilter!.sortBy = columnName;
+    this.loadUsersList();
+  }
+  // changeStatus($event){
+
+  // }
 }
