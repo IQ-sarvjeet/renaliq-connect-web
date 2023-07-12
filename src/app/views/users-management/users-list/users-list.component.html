@@ -4,13 +4,19 @@
       class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
     >
       <thead class="table-head">
-        <tr class="text-secondary bg-gray-200">
+        <tr class="text-secondary bg-gray-200 text-uppercase">
           <!-- <th
             class="bg-transparent border-bottom-0 wp-3 fs-12 text-center sorting_off"
           ></th> -->
-          <th class="bg-transparent border-bottom-0 fs-12 table-header">USER</th>
-          <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">EMAIL</th>
-          <th class="bg-transparent border-bottom-0 fs-12 table-header">PHONE</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">User Name</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Email/Login ID</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Title</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Mobile number</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Practices Assigned</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">User Role</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">User Status</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Date user created</th>
+          <th class="bg-transparent border-bottom-0 fs-12 table-header">Date User Termed</th>
           <th class="bg-transparent border-bottom-0 no-btn fs-12 wp-3"></th>
         </tr>
       </thead>
@@ -116,16 +122,8 @@
           <td><span class="skeleton-loader"></span></td>
         </tr>
         <tr>
-          <!-- <td>
-            <div class="skeleton-loader__media-rounded">
-              <span class="skeleton-loader m-auto"></span>
-            </div>
-          </td> -->
           <td>
             <div class="d-flex align-items-center">
-              <div class="skeleton-loader__media-xs me-4">
-                <span class="skeleton-loader"></span>
-              </div>
               <div class="flex-fill">
                 <span class="skeleton-loader"></span>
               </div>
@@ -141,20 +139,17 @@
           <!-- <td class="text-center">
             <i class="fa fa-circle text-warning"></i>
           </td> -->
+          <td>{{ user.name ? user.name : '-' }}</td>
           <td>
-            <div class="d-flex align-items-center">
-                <svg viewBox="0 0 512 512" class="data-image avatar avatar-sm rounded-circle">
-                    <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z" style="fill: #d3d0d0;"></path>
-                </svg>
-              <div class="user-details ms-2">
-                {{ user.firstName + ' ' + user.lastname }}
-              </div>
-            </div>
+            <div class="text-truncate mw-truncate">{{ user.userName ? user.userName : '-' }}</div>
           </td>
-          <td>
-            <div class="text-truncate mw-truncate">{{ user.emailAddress }}</div>
-          </td>
-          <td>{{ user.phoneNumber }}</td>
+          <td>{{ user.title ? user.title : '-' }}</td>
+          <td>{{ user.phoneNumber ? user.phoneNumber : '-' }}</td>
+          <td>{{ user.practices ? user.practices : '-' }}</td>
+          <td>{{ user.roles ? user.roles : '-' }}</td>
+          <td>{{ user.userStatus ? user.userStatus : '-' }}</td>
+          <td>{{ user.createdOn ? moment(user.createdOn).format("MM/DD/YYYY") : '-' }}</td>
+          <td>{{ user.terminationDate ? user.terminationDate : '-' }}</td>
           <td class="text-center">
             <a
               href="#"

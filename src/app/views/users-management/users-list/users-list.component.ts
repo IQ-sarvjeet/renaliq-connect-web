@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserFilterModel, UserService } from 'src/app/api-client';
 import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-users-list',
@@ -10,6 +11,7 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  moment = moment;
   userToDelete!: string;
   userLoading:boolean = false;
   usersList: any = {
@@ -60,6 +62,19 @@ export class UsersListComponent implements OnInit {
       next: (response: any) => {
         if (response.data) {
           this.usersList = response;
+          this.usersList.data.forEach((user: any) => {
+            let userPractices: string[] = [];
+            user.practices.forEach((practice: any) => {
+              userPractices.push(practice.name);
+            });
+            user.practices = userPractices.join(', ');
+
+            let userRoles: string[] = [];
+            user.roles.forEach((role: any) => {
+              userRoles.push(role.name);
+            });
+            user.roles = userRoles.join(', ');
+          });
         }
         this.showLoading = false;
       },
