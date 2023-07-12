@@ -19,7 +19,7 @@ import { Observable }                                        from 'rxjs';
 
 import { CareTeamModel } from '../model/careTeamModel';
 import { PracticeUserEditModel } from '../model/practiceUserEditModel';
-import { PracticeViewModel } from '../model/practiceViewModel';
+import { PracticeUserViewModel } from '../model/practiceUserViewModel';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -197,9 +197,51 @@ export class PracticeService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public apiPracticeListGet(observe?: 'body', reportProgress?: boolean): Observable<Array<PracticeViewModel>>;
-    public apiPracticeListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<PracticeViewModel>>>;
-    public apiPracticeListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<PracticeViewModel>>>;
+    public apiPracticeListAllGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPracticeListAllGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPracticeListAllGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPracticeListAllGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Practice/list/all`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPracticeListGet(observe?: 'body', reportProgress?: boolean): Observable<Array<PracticeUserViewModel>>;
+    public apiPracticeListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<PracticeUserViewModel>>>;
+    public apiPracticeListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<PracticeUserViewModel>>>;
     public apiPracticeListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
@@ -226,7 +268,7 @@ export class PracticeService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.request<Array<PracticeViewModel>>('get',`${this.basePath}/api/Practice/list`,
+        return this.httpClient.request<Array<PracticeUserViewModel>>('get',`${this.basePath}/api/Practice/list`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
