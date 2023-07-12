@@ -11,8 +11,7 @@
  */
 
 export interface UserFilter { 
-    email?: string;
-    name?: string;
+    searchKey?: string;
     sortBy?: string;
     sortDirection?: string;
 }

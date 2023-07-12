@@ -29,8 +29,7 @@ export class UsersListComponent implements OnInit {
   IsDeleteAction: boolean = false;
   filters: UserFilterModel = {
     userFilter: {
-      email: '',
-      name: '',
+      searchKey: '',
       sortBy: '',
       sortDirection: ''
     },
@@ -41,8 +40,8 @@ export class UsersListComponent implements OnInit {
     firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     email: ['', [Validators.required, Validators.email]],
-    title: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
+    title: [''],
+    phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
     roleId: ['', Validators.required],
     practiceId: ['', Validators.required],
   });
@@ -58,6 +57,18 @@ export class UsersListComponent implements OnInit {
     this.loadRoles();
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
       this.loadUsersList();
+    });
+    this.userEventService.userSearchSubscription().subscribe({
+      next: (value: any) => {
+        this.filters = {
+          ...this.filters,
+          userFilter: {
+            ...this.filters.userFilter,
+            searchKey: value,
+          }
+        };
+        this.loadUsersList();
+      }
     })
   }
   loadUsersList(){
@@ -98,7 +109,7 @@ export class UsersListComponent implements OnInit {
       ...this.filters,
       userFilter: {
         ...this.filters.userFilter,
-        email: userEmail
+        searchKey: userEmail
       }
     };
     this.userService.apiUserListPost(this.filters).subscribe({
@@ -108,7 +119,7 @@ export class UsersListComponent implements OnInit {
           this.userToDelete = response.data[0].firstName + ' ' + response.data[0].lastname;
           this.updateUserForm.patchValue({
             firstName:response.data[0].firstName,
-            lastName: response.data[0].lastname,
+            lastName: response.data[0].lastName,
             email: response.data[0].emailAddress,
             phoneNumber: response.data[0].phoneNumber,
             title: response.data[0].title,
@@ -137,8 +148,7 @@ export class UsersListComponent implements OnInit {
               ...this.filters,
               userFilter: {
                 ...this.filters.userFilter,
-                email: '',
-                name: '',
+                searchKey: '',
                 sortBy: '',
                 sortDirection: ''
               }
@@ -173,8 +183,7 @@ export class UsersListComponent implements OnInit {
               ...this.filters,
               userFilter: {
                 ...this.filters.userFilter,
-                email: '',
-                name: '',
+                searchKey: '',
                 sortBy: '',
                 sortDirection: ''
               }

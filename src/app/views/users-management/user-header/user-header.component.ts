@@ -15,8 +15,8 @@ export class UserHeaderComponent implements OnInit{
     firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     email: ['', [Validators.required, Validators.email]],
-    title: ['', [Validators.required]],
-    phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
+    title: [''],
+    phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
     roleId: ['', Validators.required],
     practiceId: ['', Validators.required],
   });
@@ -74,5 +74,8 @@ export class UserHeaderComponent implements OnInit{
   }
   resetForm(){
     this.addUserForm.reset();
+  }
+  searchHandler($event: any){
+    this.userEventService.userSearchEvent($event.target.value);
   }
 }

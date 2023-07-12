@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-export interface PracticeViewModel { 
+export interface PracticeUserViewModel { 
     id?: number;
     practiceId?: number;
     userId?: number;

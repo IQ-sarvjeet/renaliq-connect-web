@@ -19,7 +19,7 @@ export * from './patientFilter';
 export * from './patientFilterModel';
 export * from './patientLatLongRequestModel';
 export * from './practiceUserEditModel';
-export * from './practiceViewModel';
+export * from './practiceUserViewModel';
 export * from './recentDocumentModel';
 export * from './recentDocumentViewModel';
 export * from './registerModel';
