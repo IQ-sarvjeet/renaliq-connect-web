@@ -12,6 +12,7 @@ import { SigninComponent } from './views/signin/signin.component';
 import { SignupComponent } from './views/signup/signup.component';
 import { TwoFectorAuthComponent } from './views/two-fector-auth/two-fector-auth.component';
 import { AuthgaurdCanloadService } from './auth/authgaurd-canload.service';
+import { AccountsComponent } from './views/accounts/accounts.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,11 @@ const routes: Routes = [
       import('./views/admission/admission.module').then(
         (m) => m.AdmissionModule
       ),
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'account',
+    component: AccountsComponent,
     canActivate: [AuthguardGuard]
   },
   {
