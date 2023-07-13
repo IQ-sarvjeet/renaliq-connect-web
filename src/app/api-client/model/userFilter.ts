@@ -10,11 +10,8 @@
  * Do not edit the class manually.
  */
 
-export interface PracticeViewModel { 
-    id?: number;
-    practiceId?: number;
-    userId?: number;
-    name?: string;
-    npi?: string;
-    isSelected?: boolean;
+export interface UserFilter { 
+    searchKey?: string;
+    sortBy?: string;
+    sortDirection?: string;
 }

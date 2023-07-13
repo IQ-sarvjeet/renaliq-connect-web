@@ -121,6 +121,30 @@ const routes: Routes = [
   {
     path: 'sampleui',
     component: SampleUiComponent
+  },
+  {
+    path: 'users-management',
+    loadChildren: () =>
+      import('./views/users-management/users-management.module').then(
+        (m) => m.UsersManagementModule
+      ),
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'roles-management',
+    loadChildren: () =>
+      import('./views/roles-management/roles-management.module').then(
+        (m) => m.RolesManagementModule
+      ),
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'practice-management',
+    loadChildren: () =>
+      import('./views/practice-management/practice-management.module').then(
+        (m) => m.PracticeManagementModule
+      ),
+    canActivate: [AuthguardGuard]
   }
 ];
 

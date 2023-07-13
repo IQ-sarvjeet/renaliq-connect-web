@@ -605,7 +605,7 @@ table.dataTable {
 .dropdown-item:focus,
 .dropdown-item.active {
   background-color: $primary;
-  color: $white !important;
+  /*color: $white !important;*/
 }
 div.dt-button-collection .dt-button {
   border-bottom: 1px solid rgba($primary, 0.35);
