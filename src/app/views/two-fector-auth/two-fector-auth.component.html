@@ -66,62 +66,74 @@
           <div class="form-row">
             <div class="col-12">
               <input
-                class="input100 ps-4 text-center verification-code-input"
+                class="input100 ps-4 text-center verification-code-input no-caret"
                 type="text"
                 maxlength="1"
                 name="pass"
                 formControlName="digit1"
+                [(ngModel)]="otpDigits[0]"
+                (paste)="onPaste($event, 0)"
                 id="verificationCode1"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
               <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
+                class="input100 ps-4 text-center verification-code-input ml2perc no-caret"
                 type="text"
                 name="pass"
                 maxlength="1"
                 formControlName="digit2"
+                (paste)="onPaste($event, 1)"
+                [(ngModel)]="otpDigits[1]"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
               <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
+                class="input100 ps-4 text-center verification-code-input ml2perc no-caret"
                 type="text"
                 name="pass"
                 maxlength="1"
                 formControlName="digit3"
+                (paste)="onPaste($event, 2)"
+                [(ngModel)]="otpDigits[2]"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
               <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
+                class="input100 ps-4 text-center verification-code-input ml2perc no-caret"
                 type="text"
                 name="pass"
                 maxlength="1"
                 formControlName="digit4"
+                (paste)="onPaste($event, 3)"
+                [(ngModel)]="otpDigits[3]"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
               <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
+                class="input100 ps-4 text-center verification-code-input ml2perc no-caret"
                 type="text"
                 name="pass"
                 maxlength="1"
                 formControlName="digit5"
+                (paste)="onPaste($event, 4)"
+                [(ngModel)]="otpDigits[4]"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
               <input
-                class="input100 ps-4 text-center verification-code-input ml2perc"
+                class="input100 ps-4 text-center verification-code-input ml2perc no-caret"
                 type="text"
                 name="pass"
                 maxlength="1"
                 formControlName="digit6"
+                (paste)="onPaste($event, 5)"
+                [(ngModel)]="otpDigits[5]"
                 (keyup)="onDigitInput($event)"
                 [attr.autocomplete]="'off'"
                 required

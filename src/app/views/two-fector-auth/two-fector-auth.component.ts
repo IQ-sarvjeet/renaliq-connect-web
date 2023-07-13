@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
@@ -17,6 +17,8 @@ import { LoginResponseModel } from 'src/app/interfaces/login-response-model';
 declare const $: any;
 @Component({
   selector: 'app-two-fector-auth',
+  template: `
+    <input *ngFor="let digit of otpDigits; let i = index" [(ngModel)]="otpDigits[i]" maxlength="1">`,
   templateUrl: './two-fector-auth.component.html',
   styleUrls: ['./two-fector-auth.component.scss'],
 })
@@ -27,6 +29,7 @@ export class TwoFectorAuthComponent {
   messages: any = Messages;
   username: any = '';
   twoFACode: any = '';
+  isKeyPressed: boolean = false;;
   password: any = '';
   showToster: boolean = false;
   errorMessage: any;
@@ -35,6 +38,8 @@ export class TwoFectorAuthComponent {
   showLoading: boolean = false;
   showResendCode: boolean = false;
   private timerSubscription: any;
+  otpDigits: string[] = ['', '', '', '', '', ''];
+  verificationForm: FormGroup;
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
     digit2: [''],
@@ -50,7 +55,14 @@ export class TwoFectorAuthComponent {
     private fb: FormBuilder,
     private eventService: EventService,
     private storeService: StoreService,
-    private authService: AuthService) {
+    private authService: AuthService) { this.verificationForm = this.fb.group({
+      digit1: ['', Validators.required],
+      digit2: ['', Validators.required],
+      digit3: ['', Validators.required],
+      digit4: ['', Validators.required],
+      digit5: ['', Validators.required],
+      digit6: ['', Validators.required]
+    });
   }
   ngOnInit(): void {
 
@@ -152,7 +164,25 @@ export class TwoFectorAuthComponent {
           this.redirectOnLogin();
         }
       });
-  };
+  }
+  onPaste(event: ClipboardEvent, index: number) {
+    const clipboardData = event.clipboardData || (window as any).clipboardData;
+    const pastedText = clipboardData.getData('text');
+    const otp = pastedText.trim().substring(0, 6); 
+    for (let i = 0; i < otp.length; i++) {
+      this.otpDigits[index + i] = otp[i];
+    }
+    for (let i = 0; i < otp.length; i++) {
+      this.verificationForm.controls[`digit${index + i + 1}`].setValue(otp[i]);
+    }
+    const lastIndex = index + otp.length - 1;
+    const inputElements = document.getElementsByClassName('verification-code-input');
+    if (inputElements[lastIndex]) {
+      const lastInputElement = inputElements[lastIndex] as HTMLInputElement;
+      lastInputElement.focus();
+      lastInputElement.selectionStart = lastInputElement.selectionEnd = lastInputElement.value.length;
+    }
+  }
   addMinutes(date: Date, minutes: number) {
     date.setMinutes(date.getMinutes() + minutes);
     return date;
@@ -258,19 +288,26 @@ export class TwoFectorAuthComponent {
   };
 
   onDigitInput(event: any) {
-    let element;
-    if (event.code !== 'Backspace' || event.code === 'ArrowRight')
-      element = event.srcElement.nextElementSibling;
-
-    if (event.code === 'Backspace' || event.code === 'ArrowLeft')
-      element = event.srcElement.previousElementSibling;
-
-    if (element == null) {
-      return;
-    } else {
-      element.focus();
+    const currentElement = event.target as HTMLInputElement;
+    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
+    
+    if (event.key >= '0' && event.key <= '9') {
+      currentElement.value = event.key;
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
+    } else if ((event.code === 'Backspace' || event.code === 'ArrowLeft') && currentIndex > 0) {
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    } else if (event.code === 'ArrowRight' && currentIndex < 5) {
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
     }
   }
+  
   hasRequiredError() {
     return this.twoFAForm.touched && this.twoFAForm.invalid
   }
