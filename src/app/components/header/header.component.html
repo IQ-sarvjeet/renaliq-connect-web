@@ -210,6 +210,28 @@
                     </a> -->
                   </div>
                 </div>
+                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                  <a
+                    href="#"
+                    data-bs-toggle="dropdown"
+                    class="nav-link pe-0 leading-none d-flex animate"
+                    [ngClass]="{
+                      'is-active': this.currentRoute.indexOf('reports') !== -1
+                    }"
+                  >
+                    Admin <i class="user-angle ms-1 fa fa-angle-down"></i>
+                  </a>
+                  <div
+                    class="dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+                  >
+                    <a
+                      class="dropdown-item"
+                      routerLink="/users-management/usersList"
+                    >
+                      Users List
+                    </a>
+                  </div>
+                </div>
               </div>
               <!-- NAVIGATION -->
 
