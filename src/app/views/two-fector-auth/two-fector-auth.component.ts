@@ -17,8 +17,6 @@ import { LoginResponseModel } from 'src/app/interfaces/login-response-model';
 declare const $: any;
 @Component({
   selector: 'app-two-fector-auth',
-  template: `
-    <input *ngFor="let digit of otpDigits; let i = index" [(ngModel)]="otpDigits[i]" maxlength="1">`,
   templateUrl: './two-fector-auth.component.html',
   styleUrls: ['./two-fector-auth.component.scss'],
 })
