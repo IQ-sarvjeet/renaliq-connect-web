@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -6,9 +6,11 @@ import * as Highcharts from 'highcharts';
   templateUrl: './combination-chart.component.html',
   styleUrls: ['./combination-chart.component.scss']
 })
-export class CombinationChartComponent {
+export class CombinationChartComponent implements OnInit{
   showLoading: boolean = false;
   Highcharts = Highcharts;
+  @Input() chartData: any;
+
   // option: any = {
   //   title: {
   //     text: 'Combination chart'
@@ -159,8 +161,7 @@ export class CombinationChartComponent {
       text: 'Combination chart'
     },
     xAxis: {
-      categories: ['August 2022', 'September 2022', 'October 2022', 'November 2022', 'December 2022', 
-      'January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023']
+      categories: []
     },
     yAxis: {
       min: 0,
@@ -183,32 +184,23 @@ export class CombinationChartComponent {
             }
         }
     },
-    series: [
-      {
-        type: 'column',
-        name: 'Engaged',
-        data: [3, 2, 1, 3, 4, 2, 1, 3, 4, 9, 2, 5]
-      },
-      {
-        type: 'column',
-        name: 'Patient Count',
-        data: [2, 3, 5, 7, 6, 2, 1, 3, 4, 9, 5, 2]
-      },
-      {
-        type: 'line',
-        name: 'PMPM Payment Amount',
-        data: [3, 2, 1, 3, 4, 2, 1, 3, 4, 9, 2, 5]
-      },
-      {
-        type: 'line',
-        name: 'Incentive at 80%',
-        data: [2, 3, 5, 7, 6, 2, 1, 3, 4, 9, 5, 2]
-      },
-      {
-        type: 'line',
-        name: 'Incentive at 100%',
-        data: [2, 10, 5, 8, 4, 9, 1, 3, 6, 3, 7, 8]
-      }
-    ]
+    series: []
   };
+
+  constructor(){}
+
+  ngOnInit(): void {
+    this.renderChart();
+  }
+  renderChart() {
+    const series = this.option.series;    
+    this.option = {
+      ...this.option,
+      xAxis: {
+        ...this.option.xAxis,
+        categories: this.chartData.categories
+      },
+      series: this.chartData.series
+    }
+  }
 }

@@ -18,7 +18,8 @@
                                 <div class="d-sm-flex w-100">
                                     <div class="flex-fill border-sm-end px-4 w-50">
                                         <div> Attributed Patients <div class="text-dark fw-bold fs-22 lh-sm"><a
-                                                    href="javascript:void(0)" class="nav-link d-inline-block px-0">18</a>
+                                                    href="javascript:void(0)"
+                                                    class="nav-link d-inline-block px-0">18</a>
                                             </div>
                                         </div>
                                     </div>
@@ -43,13 +44,14 @@
                                 <div class="d-sm-flex w-100">
                                     <div class="flex-fill border-sm-end px-4">
                                         <div> Assessed <div class="text-dark fw-bold fs-22 lh-sm">
-                                                <a href="javascript:void(0)" class="nav-link d-inline-block px-0">294</a>
+                                                <a href="javascript:void(0)"
+                                                    class="nav-link d-inline-block px-0">294</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-fill px-4 mt-3 mt-sm-0">
                                         <div> Last Payment <div class="text-dark fw-bold fs-22 lh-sm">
-                                            <span class="d-inline-block pt-1">$2175</span>
+                                                <span class="d-inline-block pt-1">$2175</span>
                                             </div>
                                         </div>
                                     </div>
@@ -59,365 +61,107 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="card">
                 <div class="card-header border-bottom title-submenu d-flex">
                     <h3 class="card-title flex-fill">Show last 12 months of payments</h3>
                 </div>
                 <div class="card-body pt-3">
                     <div class="text-center">
-                        <app-combination-chart></app-combination-chart>
+                        <app-combination-chart [chartData]="sampleJSON"></app-combination-chart>
                     </div>
                 </div>
             </div>
             <div class="card mt-1 mb-5 p-2">
                 <div class="table-responsive">
-                    <table
-                    id="admissionTable"
-                    class="table text-nowrap m-0 table-bordered table-striped sorting_disabled"
-                    >
-                    <thead class="table-head text-uppercase">
-                        <tr class="text-secondary bg-gray-200">
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Reporting <div>Period</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">Practice <div>Name</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Attributed <div>Patients</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Engaged</th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Assessed</th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Amount</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Payment Amt</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 80%</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 100%</div></th>
-                            <th class="bg-transparent border-bottom-0 fs-12 table-header">Report <div>Date</div></th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-body">
-                        <tr>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        <td><span class="skeleton-loader"></span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                            <td><span class="skeleton-loader"></span></td>
-                        </tr>
-                    </tbody>
-                    <tbody class="table-body">
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                August 2020
-                            </td>
-                        <td class="text-center">
-                            <div class="text-truncate mw-truncate">Kidney Care center - Multistate</div>
-                        </td>
-                        <td class="text-center">
-                            315
-                        </td>
-                        <td class="text-center">
-                            117
-                        </td>
-                        <td class="text-center">
-                            111
-                        </td>
-                        <td class="text-center">
-                            $15
-                        </td>
-                        <td class="text-center">$1,755</td>
-                        <td class="text-center">
-                            3780.00
-                        </td>
-                        <td class="text-center">
-                            4725.00
-                        </td>
-                        <td class="text-center">
-                            09/01/2022
-                        </td>
-                        </tr>
-                    </tbody>
+                    <table id="admissionTable"
+                        class="table text-nowrap m-0 table-bordered table-striped sorting_disabled">
+                        <thead class="table-head text-uppercase">
+                            <tr class="text-secondary bg-gray-200">
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Reporting <div>Period
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">Practice <div>Name
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Attributed <div>Patients
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Engaged</th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Assessed</th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Amount</div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Payment Amt
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 80%
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 100%
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Report <div>Date</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body">
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                        </tbody>
+                        <tbody class="table-body">
+                            <tr *ngFor="let data of sampleJSON.tableData">
+                                <td>
+                                    {{ data.reportingPeriod }}
+                                </td>
+                                <td class="text-center">
+                                    <div class="text-truncate mw-truncate">{{ data.practiceName }}</div>
+                                </td>
+                                <td class="text-center">
+                                    {{ data.attributedPatients }}
+                                </td>
+                                <td class="text-center">
+                                    {{ data.engaged }}
+                                </td>
+                                <td class="text-center">
+                                    {{ data.assessed }}
+                                </td>
+                                <td class="text-center">
+                                    {{ data.pmpmAmount }}
+                                </td>
+                                <td class="text-center">{{ data.pmpmPaymentAmt }}</td>
+                                <td class="text-center">
+                                    {{ data.incentiveAtEightyPercent }}
+                                </td>
+                                <td class="text-center">
+                                    {{ data.incentiveAtHunderedPercent }}
+                                </td>
+                                <td class="text-center">
+                                    {{ data.ReportDate }}
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
                         <div class="d-md-flex">
@@ -430,12 +174,15 @@
                                         <button tabindex="-1" aria-disabled="true" class="page-link"> First </button>
                                     </li>
                                     <li class="page-item disabled">
-                                        <button tabindex="-1" aria-disabled="true" class="page-link"><i class="fa fa-angle-left"></i></button>
+                                        <button tabindex="-1" aria-disabled="true" class="page-link"><i
+                                                class="fa fa-angle-left"></i></button>
                                     </li>
                                     <li class="page-item d-none d-sm-block active">
-                                        <button class="page-link"> 1 </button></li>
+                                        <button class="page-link"> 1 </button>
+                                    </li>
                                     <li class="page-item d-none d-sm-block"><button class="page-link"> 2 </button></li>
-                                    <li class="page-item"><button class="page-link"><i class="fa fa-angle-right"></i></button></li>
+                                    <li class="page-item"><button class="page-link"><i
+                                                class="fa fa-angle-right"></i></button></li>
                                     <li class="page-item"><button class="page-link"> Last </button></li>
                                 </ul>
                             </div>
