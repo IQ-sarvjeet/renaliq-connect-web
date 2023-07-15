@@ -3,5 +3,8 @@ export enum Status {
     'SUBMITTED' = 'Submitted',
     'IN_PROGRESS' = 'InProgress',
     'COMPLETED' = 'Completed',
-    'ERROR' = 'Error'
+    'ERROR' = 'Error',
+    'READY' = 'Ready',
+    'ACTIVE' = 'Active',
+    'TERMED' = 'Termed'
 }

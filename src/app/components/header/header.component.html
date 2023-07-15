@@ -170,7 +170,7 @@
                     Documents
                   </div>
                 </a>
-                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                <div class="dropdown d-md-flex profile-1 text-nowrap pe-2">
                   <a
                     href="#"
                     data-bs-toggle="dropdown"
@@ -210,7 +210,7 @@
                     </a> -->
                   </div>
                 </div>
-                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                <div class="dropdown d-md-flex profile-1 text-nowrap pe-2" *ngIf="userRole === userRoleTypes.SYTEM_ADMIN">
                   <a
                     href="#"
                     data-bs-toggle="dropdown"
@@ -228,7 +228,7 @@
                       class="dropdown-item"
                       routerLink="/users-management/usersList"
                     >
-                      Users List
+                      User List
                     </a>
                   </div>
                 </div>

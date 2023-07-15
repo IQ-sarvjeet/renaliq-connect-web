@@ -4,6 +4,7 @@ import { PracticeService, RoleService, UserFilterModel, UserService } from 'src/
 import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
+import { Status } from 'src/app/enums/status';
 
 @Component({
   selector: 'app-users-list',
@@ -13,6 +14,7 @@ import * as moment from 'moment';
 export class UsersListComponent implements OnInit {
   practicesList: any = [];
   rolesList: any = [];
+  Userstatus = Status;
   moment = moment;
   userToDelete!: string;
   userLoading:boolean = false;
