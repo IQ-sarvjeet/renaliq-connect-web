@@ -20,6 +20,7 @@ import { NoRecordsFoundComponent } from './no-records-found/no-records-found.com
 import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { PowerBIEmbedModule } from 'powerbi-client-angular';
 import { PBIComponent } from './PBI/PBI.component';
+import { CombinationChartComponent } from './combination-chart/combination-chart.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, PowerBIEmbedModule ],
@@ -37,7 +38,8 @@ import { PBIComponent } from './PBI/PBI.component';
     DataCardComponent,
     NoRecordsFoundComponent,
     TypeaheadComponent,
-    PBIComponent
+    PBIComponent,
+    CombinationChartComponent
   ],
 
   providers: [
@@ -61,7 +63,8 @@ import { PBIComponent } from './PBI/PBI.component';
     DataCardComponent,
     NoRecordsFoundComponent,
     TypeaheadComponent,
-    PBIComponent
+    PBIComponent,
+    CombinationChartComponent
   ],
  
 })
