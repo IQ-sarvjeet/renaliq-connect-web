@@ -170,7 +170,7 @@
           </td>
           <td class="text-center">{{ user.phoneNumber ? user.phoneNumber : '-' }}</td>
           <td>
-            <div class="text-truncate mw-truncate" data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top">
+            <div class="text-truncate mw-truncate" data-bs-toggle="tooltip-info" data-bs-placement="top" [title]="user.practices ? user.practices : '-'">
               {{ user.practices ? user.practices : '-' }}
             </div>
           </td>
