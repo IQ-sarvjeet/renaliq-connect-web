@@ -128,7 +128,7 @@ const routes: Routes = [
       import('./views/users-management/users-management.module').then(
         (m) => m.UsersManagementModule
       ),
-    canActivate: [AuthguardGuard]
+    canLoad: [AuthgaurdCanloadService]
   },
   {
     path: 'roles-management',
