@@ -6899,11 +6899,14 @@ body.dark-mode .overflow-x::-webkit-scrollbar-thumb {
   .highcharts-tooltip text {
     fill: rgb(51, 51, 51) !important;
   }
-  .mbsc-ios.mbsc-textfield-wrapper-underline {
+  .mbsc-ios.mbsc-textfield-wrapper-underline,
+  .mbsc-windows.mbsc-textfield-wrapper-underline {
     background: transparent;
   }
   .mbsc-ios.mbsc-label,
-  .mbsc-ios.mbsc-textfield {
+  .mbsc-ios.mbsc-textfield,
+  .mbsc-windows.mbsc-label,
+  .mbsc-windows.mbsc-textfield {
     color: #fff;
   }
   .bg-label {

@@ -5945,22 +5945,32 @@ div.dataTables_wrapper div.dataTables_length label {
     }
   }
 }
-
+.mbsc-ios.mbsc-popup,
+.mbsc-windows.mbsc-popup {
+  border-radius: 0.5rem;
+}
 .select-tags {
-
-  .mbsc-ios.mbsc-textfield-wrapper-box {
+  .mbsc-ios.mbsc-textfield-wrapper-box,
+  .mbsc-windows.mbsc-textfield-wrapper-box {
     margin: 0;
   }
   .mbsc-ios.mbsc-textarea-inner.mbsc-textfield-inner-stacked,
-  .mbsc-ios.mbsc-textfield-inner-box {
+  .mbsc-ios.mbsc-textfield-inner-box,
+  .mbsc-windows.mbsc-textarea-inner.mbsc-textfield-inner-stacked,
+  .mbsc-windows.mbsc-textfield-inner-box {
     padding-top: 1rem;
   }
-  .mbsc-ios.mbsc-label-stacked.mbsc-ltr {
+  .mbsc-ios.mbsc-label-stacked.mbsc-ltr,
+  .mbsc-windows.mbsc-label-stacked.mbsc-ltr {
     left: 0;
     top: 0;
     opacity: 0.75;
+    position: absolute;
+    font-size: 0.75rem;
+    line-height: 1em;
   }
-  .mbsc-ios.mbsc-select-icon.mbsc-ltr {
+  .mbsc-ios.mbsc-select-icon.mbsc-ltr,
+  .mbsc-windows.mbsc-select-icon.mbsc-ltr {
     right: -0.25rem;
     top: calc(50% - 0.75rem);
   }
@@ -5968,20 +5978,47 @@ div.dataTables_wrapper div.dataTables_length label {
     line-height: normal;
     opacity: 1;
   }
-  .mbsc-ios.mbsc-textfield-tags.mbsc-textfield-stacked {
+  .mbsc-ios.mbsc-textfield-tags.mbsc-textfield-stacked,
+  .mbsc-windows.mbsc-textfield-tags.mbsc-textfield-stacked {
     min-height: inherit;
     line-height: normal;
   }
 }
 .mbsc-select-scroller.mbsc-scroller-pointer .mbsc-scroller-wheel-item.mbsc-ltr {
-  padding: 0;
+  padding: 0 1rem 0 0;
   margin: 0;
 }
 .mbsc-ios.mbsc-scroller-wheel-cont-inline.mbsc-scroller-wheel-cont-3d, 
 .mbsc-ios.mbsc-scroller-pointer.mbsc-scroller, 
-.mbsc-ios.mbsc-scroller-pointer.mbsc-scroller-inline {
+.mbsc-ios.mbsc-scroller-pointer.mbsc-scroller-inline,
+.mbsc-windows.mbsc-scroller-wheel-cont-inline.mbsc-scroller-wheel-cont-3d, 
+.mbsc-windows.mbsc-scroller-pointer.mbsc-scroller, 
+.mbsc-windows.mbsc-scroller-pointer.mbsc-scroller-inline {
   margin: 0 !important;
 }
+.mbsc-ios.mbsc-textfield-icon, 
+.mbsc-ios.mbsc-select-icon,
+.mbsc-windows.mbsc-textfield-icon, 
+.mbsc-windows.mbsc-select-icon {
+  color: #8c8c8c;
+}
+.mbsc-ios.mbsc-scroller-pointer .mbsc-wheel-item-checkmark.mbsc-ltr,
+.mbsc-windows.mbsc-scroller-pointer .mbsc-wheel-item-checkmark.mbsc-ltr {
+  text-align: left;
+  padding-left: 1.75em;
+}
+.mbsc-ios.mbsc-scroller-wheel-item.mbsc-active, 
+.mbsc-ios.mbsc-scroller-wheel-item.mbsc-hover, 
+.mbsc-ios.mbsc-scroller-wheel-item.mbsc-focus, 
+.mbsc-ios.mbsc-scroller-wheel-header.mbsc-focus,
+.mbsc-windows.mbsc-scroller-wheel-item.mbsc-active, 
+.mbsc-windows.mbsc-scroller-wheel-item.mbsc-hover, 
+.mbsc-windows.mbsc-scroller-wheel-item.mbsc-focus, 
+.mbsc-windows.mbsc-scroller-wheel-header.mbsc-focus {
+  background: rgba(0, 122, 255, 0.15) !important;
+  border-radius: 0.5rem;
+}
+
 @media (min-width: 768px) {
   .card-lg {
     .card-body {
