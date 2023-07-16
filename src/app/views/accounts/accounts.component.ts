@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./accounts.component.scss']
 })
 export class AccountsComponent {
-  showNoData: boolean = false;
   sampleJSON: any = {
     summary: {
       attributed: 294,

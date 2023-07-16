@@ -1,12 +1,26 @@
 <div>
     <div class="sub-header">
         <div class="main-container container">
-            <h1 class="page-title pt-1">Account</h1>
+            <div class="row">
+                <div class="col-12 col-md-3 col-lg-4 col-xl-5 align-item-center d-flex">
+                  <div class="mt-3">
+                    <h1 class="page-title m-0">Account</h1>
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item">
+                        <a routerLink="/">Home</a>
+                      </li>
+                      <li class="breadcrumb-item active" aria-current="page">
+                        Account
+                      </li>
+                    </ol>
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="main-container container">
-        <div class="mt-3" *ngIf="!showNoData"> 
+        <div class="mt-3" *ngIf="sampleJSON"> 
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="card card-style3 p-4">
@@ -61,17 +75,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card-header border-bottom title-submenu d-flex">
-                    <h3 class="card-title flex-fill">Show last 12 months of payments</h3>
-                </div>
-                <div class="card-body pt-3">
-                    <div class="text-center">
-                        <app-combination-chart [chartData]="sampleJSON"></app-combination-chart>
-                    </div>
-                </div>
-            </div>
+            <app-combination-chart [chartData]="sampleJSON"></app-combination-chart>
             <div class="card mt-1 mb-5 p-2">
                 <div class="table-responsive">
                     <table id="admissionTable"
@@ -191,6 +195,6 @@
                 </div>
             </div>
         </div> 
-        <app-no-records-found *ngIf="showNoData"></app-no-records-found>
+        <app-no-records-found *ngIf="!sampleJSON"></app-no-records-found>
     </div>
 </div>
