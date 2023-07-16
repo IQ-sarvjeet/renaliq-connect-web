@@ -46,12 +46,12 @@ export class UserHeaderComponent implements OnInit{
   }
   loadPractices(){
     this.practicesList = [];
-    this.practiceService.apiPracticeListGet().subscribe({
+    this.practiceService.apiPracticeListAllGet().subscribe({
       next: (response: any) => {
         if(response.length) {
           const data: any = [];
           response.map((item: any, index: number ) => {
-            data.push({text: item.name, value: item.practiceId, avatar: 'm' + index});
+            data.push({text: item.name, value: item.id, avatar: 'm' + index});
           });
           this.practicesList = [...data];
         }
