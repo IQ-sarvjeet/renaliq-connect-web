@@ -146,7 +146,7 @@
 .bs-tooltip-auto[data-popper-placement^="top"] .tooltip-arrow::before {
   top: -1px;
   border-width: 0.4rem 0.4rem 0;
-  border-top-color: $black;
+  border-top-color: rgba(8,48,80,0.95);
 }
 .bs-tooltip-end,
 .bs-tooltip-auto[data-popper-placement^="right"] {
@@ -176,7 +176,7 @@
 .bs-tooltip-auto[data-popper-placement^="bottom"] .tooltip-arrow::before {
   bottom: -1px;
   border-width: 0 0.4rem 0.4rem;
-  border-bottom-color: $black;
+  border-bottom-color: rgba(8,48,80,0.95);
 }
 .bs-tooltip-start,
 .bs-tooltip-auto[data-popper-placement^="left"] {
@@ -192,14 +192,14 @@
 .bs-tooltip-auto[data-popper-placement^="left"] .tooltip-arrow::before {
   left: -1px;
   border-width: 0.4rem 0 0.4rem 0.4rem;
-  border-left-color: $black;
+  border-left-color: rgba(8,48,80,0.95);
 }
 .tooltip-inner {
   max-width: 200px;
   padding: 0.25rem 0.5rem;
   color: $white;
   text-align: center;
-  background-color: $black;
+  background-color: rgba(8,48,80,0.95);
   border-radius: 3px;
 }
 .bs-popover-top .popover-arrow,
