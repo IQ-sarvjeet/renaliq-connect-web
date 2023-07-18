@@ -12,6 +12,7 @@ export interface PatientFilterModel {
     status: string,
     assignment?: Date[],
     discharge?: Date[],
+    assessed?: string,
     SortDirection: string,
     SortBy: string
 }
