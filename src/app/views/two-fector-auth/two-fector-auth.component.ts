@@ -27,7 +27,6 @@ export class TwoFectorAuthComponent {
   messages: any = Messages;
   username: any = '';
   twoFACode: any = '';
-  isKeyPressed: boolean = false;;
   password: any = '';
   showToster: boolean = false;
   errorMessage: any;
@@ -36,8 +35,6 @@ export class TwoFectorAuthComponent {
   showLoading: boolean = false;
   showResendCode: boolean = false;
   private timerSubscription: any;
-  otpDigits: string[] = ['', '', '', '', '', ''];
-  verificationForm: FormGroup;
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
     digit2: [''],
@@ -53,15 +50,7 @@ export class TwoFectorAuthComponent {
     private fb: FormBuilder,
     private eventService: EventService,
     private storeService: StoreService,
-    private authService: AuthService) { this.verificationForm = this.fb.group({
-      digit1: ['', Validators.required],
-      digit2: ['', Validators.required],
-      digit3: ['', Validators.required],
-      digit4: ['', Validators.required],
-      digit5: ['', Validators.required],
-      digit6: ['', Validators.required]
-    });
-  }
+    private authService: AuthService) {}
   ngOnInit(): void {
 
     $('.header').addClass('d-none');
@@ -168,10 +157,7 @@ export class TwoFectorAuthComponent {
     const pastedText = clipboardData.getData('text');
     const otp = pastedText.trim().substring(0, 6); 
     for (let i = 0; i < otp.length; i++) {
-      this.otpDigits[index + i] = otp[i];
-    }
-    for (let i = 0; i < otp.length; i++) {
-      this.verificationForm.controls[`digit${index + i + 1}`].setValue(otp[i]);
+      this.twoFAForm.controls[`digit${index + i + 1}`].setValue(otp[i]);
     }
     const lastIndex = index + otp.length - 1;
     const inputElements = document.getElementsByClassName('verification-code-input');
