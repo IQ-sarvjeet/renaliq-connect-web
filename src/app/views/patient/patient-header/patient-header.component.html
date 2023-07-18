@@ -95,16 +95,14 @@
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="mb-1">Stage</label>
-            <select
-              class="form-select"
+            <mbsc-select [data] = "stages"
+              class="form-control"
               [(ngModel)]="filter.patientFilter.stage"
               id="stage"
+              placeholder="Select"
+              [selectMultiple]="true"
             >
-              <option value="">Select</option>
-              <option *ngFor="let stage of stages" [value]="stage">
-                {{ stage }}
-              </option>
-            </select>
+            </mbsc-select>
           </div>
           <div class="col-6">
             <label for="riskCategory" class="mb-1">Risk Category</label>
@@ -135,16 +133,15 @@
           </div>
           <div class="col-12 col-sm-6 mt-4 mt-sm-0">
             <label for="status" class="mb-1">Status</label>
-            <select
-              class="form-select"
+            <mbsc-select [data]="statusList"
+              class="form-control"
               [(ngModel)]="filter.patientFilter.status"
               id="status"
-            >
-              <option value="">Select</option>
-              <option *ngFor="let status of statusList" [value]="status">
-                {{ status }}
-              </option>
-            </select>
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
           </div>
         </div>
 
@@ -170,27 +167,32 @@
             </div>
           </div>
           <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-            <label for="Discharge" class="mb-1">Discharge</label>
-            <div class="input-group input-group-lg">
-              <!-- value="13 Sep 22 - 20 Sep 22" -->
-              <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-              <div class="input-group">
-                <mbsc-datepicker
-                  class="form-control fs-12"
-                  #rangeDatepicker
-                  [options]="dateRangeOptions"
-                  [(ngModel)]="filter.patientFilter.discharge"
-                  placeholder="Select date range"
-                ></mbsc-datepicker>
-                <button
-                  class="input-group-text bg-white"
-                  type="button"
-                  (click)="rangeDatepicker.open()"
-                >
-                  <i class="fa fa-calendar"></i>
-                </button>
+            <div class="form-group">
+              <label class="mb-1">IsAssessed</label>
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  [(ngModel)]="filter.patientFilter.assessed"
+                  name="assessed"
+                  id="assessed-yes"
+                  [value]="true"
+                />
+                <label class="form-check-label" for="assessed-yes">Yes</label>
+              </div>
+              <div class="form-check">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  [(ngModel)]="filter.patientFilter.assessed"
+                  name="assessed"
+                  id="assessed-no"
+                  [value]="false"
+                />
+                <label class="form-check-label" for="assessed-no">No</label>
               </div>
             </div>
+            
           </div>
         </div>
       </div>
