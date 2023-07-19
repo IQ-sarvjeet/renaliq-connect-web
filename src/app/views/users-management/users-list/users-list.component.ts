@@ -28,7 +28,6 @@ export class UsersListComponent implements OnInit {
     }
   };
   showLoading: boolean = true;
-  IsDeleteAction: boolean = false;
   filters: UserFilterModel = {
     userFilter: {
       searchKey: '',
@@ -104,35 +103,15 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  getUser(userEmail: string, action: string){
-    this.userLoading = true;
-    this.IsDeleteAction = action === 'update' ? false : true;
-    this.filters = {
-      ...this.filters,
-      userFilter: {
-        ...this.filters.userFilter,
-        searchKey: userEmail
-      }
-    };
-    this.userService.apiUserListPost(this.filters).subscribe({
-      next: (response: any) => {
-        if (response.data) {
-          this.userLoading = false;
-          this.userToDelete = response.data[0].firstName + ' ' + response.data[0].lastname;
-          this.updateUserForm.patchValue({
-            firstName:response.data[0].firstName,
-            lastName: response.data[0].lastName,
-            email: response.data[0].emailAddress,
-            phoneNumber: response.data[0].phoneNumber,
-            title: response.data[0].title,
-            roleId: response.data[0].roles[0].id,
-            practiceId: response.data[0].practices,
-          });
-        }
-      },
-      error: (error: any) => {
-        this.userLoading = false;
-      }
+  getUser(user: any){
+    this.updateUserForm.patchValue({
+      firstName:user.firstName,
+      lastName: user.lastName,
+      email: user.emailAddress,
+      phoneNumber: user.phoneNumber,
+      title: user.title,
+      roleId: user.roles[0].id,
+      practiceId: user.practices,
     });
   }
   submit(){
@@ -145,7 +124,6 @@ export class UsersListComponent implements OnInit {
               message: `User updated successfully.`,
               type: 'success',
             });
-            this.IsDeleteAction = false;
             this.filters = {
               ...this.filters,
               userFilter: {
@@ -171,39 +149,36 @@ export class UsersListComponent implements OnInit {
     }
   }
   deleteUser(){
-    if(this.IsDeleteAction){
-      this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.loginUserId).subscribe({
-        next: (response: boolean) => {
-          if(response) {
-            this.eventService.openToaster({
-              showToster: true,
-              message: `User deleted successfully.`,
-              type: 'success',
-            });
-            this.IsDeleteAction = false;
-            this.filters = {
-              ...this.filters,
-              userFilter: {
-                ...this.filters.userFilter,
-                searchKey: '',
-                sortBy: '',
-                sortDirection: ''
-              }
-            };
-            this.userToDelete = '';
-            this.updateUserForm.reset();
-            this.loadUsersList();
-          }
-        },
-        error: (error: any) => {
+    this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.email).subscribe({
+      next: (response: boolean) => {
+        if(response) {
           this.eventService.openToaster({
             showToster: true,
-            message: `Error while deleting user.`,
-            type: 'danger',
+            message: `User deleted successfully.`,
+            type: 'success',
           });
+          this.filters = {
+            ...this.filters,
+            userFilter: {
+              ...this.filters.userFilter,
+              searchKey: '',
+              sortBy: '',
+              sortDirection: ''
+            }
+          };
+          this.userToDelete = '';
+          this.updateUserForm.reset();
+          this.loadUsersList();
         }
-      });
-    }
+      },
+      error: (error: any) => {
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Error while deleting user.`,
+          type: 'danger',
+        });
+      }
+    });
   }
   resetValues(){
     this.updateUserForm.reset();
