@@ -11,14 +11,11 @@
  */
 
 export interface RegisterModel { 
-    email?: string;
-    firstName?: string;
-    middleName?: string;
-    lastName?: string;
-    userName?: string;
-    password: string;
-    confirmPassword?: string;
-    token?: string;
-    returnUrl?: string;
-    phoneNumber: string;
+    title?: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber?: string;
+    practiceId: Array<number>;
+    roleId: number;
 }
