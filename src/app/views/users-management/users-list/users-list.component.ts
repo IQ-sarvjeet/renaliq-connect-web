@@ -15,9 +15,9 @@ export class UsersListComponent implements OnInit {
   practicesList: any = [];
   rolesList: any = [];
   Userstatus = Status;
+  userToUpdate: any = '';
   moment = moment;
-  userToDelete!: string;
-  userLoading:boolean = false;
+  userLoading: boolean = false;
   usersList: any = {
     data: [],
     pagingModel: {
@@ -38,20 +38,22 @@ export class UsersListComponent implements OnInit {
     pageSize: 10,
   };
   updateUserForm: FormGroup = this.fb.group({
+    loginUserId: ['', [Validators.required]],
     firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    email: ['', [Validators.required, Validators.email]],
     title: [''],
     phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
     roleId: ['', Validators.required],
-    practiceId: ['', Validators.required],
+    practiceId: [[], Validators.required],
+    isTermed: [false],
+    emailAddress: ['']
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
     private userEventService: UserEventService,
     private eventService: EventService,
     private practiceService: PracticeService,
-    private roleService: RoleService){}
+    private roleService: RoleService) { }
   ngOnInit(): void {
     this.loadUsersList();
     this.loadPractices();
@@ -72,7 +74,7 @@ export class UsersListComponent implements OnInit {
       }
     })
   }
-  loadUsersList(){
+  loadUsersList() {
     this.showLoading = true;
     this.usersList = {
       ...this.usersList,
@@ -87,13 +89,12 @@ export class UsersListComponent implements OnInit {
             user.practices.forEach((practice: any) => {
               userPractices.push(practice.name);
             });
-            user.practices = userPractices.join(', ');
-
             let userRoles: string[] = [];
             user.roles.forEach((role: any) => {
               userRoles.push(role.name);
             });
-            user.roles = userRoles.join(', ');
+            user.userPractices = userPractices.join(', ');
+            user.userRoles = userRoles.join(', ');
           });
         }
         this.showLoading = false;
@@ -103,38 +104,39 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  getUser(user: any){
+  getUser(user: any) {
+    this.userToUpdate = user;
+    let userPractices: number[] = [];
+    user.practices.forEach((practice: any) => {
+      userPractices.push(practice.id);
+    });
     this.updateUserForm.patchValue({
-      firstName:user.firstName,
+      loginUserId: user.id,
+      firstName: user.firstName,
       lastName: user.lastName,
-      email: user.emailAddress,
       phoneNumber: user.phoneNumber,
       title: user.title,
       roleId: user.roles[0].id,
-      practiceId: user.practices,
+      practiceId: userPractices,
+      isTermed: user.userStatus === this.Userstatus.TERMED,
+      emailAddress: user.emailAddress
     });
   }
-  submit(){
-    if(this.updateUserForm.valid) {
+  submit() {
+    if (this.updateUserForm.valid) {
+      console.log(this.updateUserForm.value);
+      debugger;
+      return;
       this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
         next: (response: boolean) => {
-          if(response) {
+          if (response) {
             this.eventService.openToaster({
               showToster: true,
               message: `User updated successfully.`,
               type: 'success',
             });
-            this.filters = {
-              ...this.filters,
-              userFilter: {
-                ...this.filters.userFilter,
-                searchKey: '',
-                sortBy: '',
-                sortDirection: ''
-              }
-            };
-            this.userToDelete = '';
-            this.updateUserForm.reset();
+            this.resetFilters();
+            this.resetValues();
             this.loadUsersList();
           }
         },
@@ -148,26 +150,20 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
-  deleteUser(){
-    this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.email).subscribe({
+  deleteUser() {
+    this.updateUserForm.patchValue({
+      isTermed: true
+    });
+    this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
       next: (response: boolean) => {
-        if(response) {
+        if (response) {
           this.eventService.openToaster({
             showToster: true,
             message: `User deleted successfully.`,
             type: 'success',
           });
-          this.filters = {
-            ...this.filters,
-            userFilter: {
-              ...this.filters.userFilter,
-              searchKey: '',
-              sortBy: '',
-              sortDirection: ''
-            }
-          };
-          this.userToDelete = '';
-          this.updateUserForm.reset();
+          this.resetFilters();
+          this.resetValues();
           this.loadUsersList();
         }
       },
@@ -180,22 +176,22 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  resetValues(){
+  resetValues() {
     this.updateUserForm.reset();
-    this.userToDelete = '';
+    this.userToUpdate = '';
   }
   public gotoPage(page: number): void {
     this.filters.currentPage = page;
     this.loadUsersList();
   }
-  loadPractices(){
+  loadPractices() {
     this.practicesList = [];
     this.practiceService.apiPracticeListAllGet().subscribe({
       next: (response: any) => {
-        if(response.length) {
+        if (response.length) {
           const data: any = [];
-          response.map((item: any, index: number ) => {
-            data.push({text: item.name, value: item.id, avatar: 'm' + index});
+          response.map((item: any, index: number) => {
+            data.push({ text: item.name, value: item.id, avatar: 'm' + index });
           });
           this.practicesList = [...data];
         }
@@ -204,11 +200,11 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  loadRoles(){
+  loadRoles() {
     this.rolesList = [];
     this.roleService.apiRolesGet().subscribe({
       next: (response: any) => {
-        if(response.length) {
+        if (response.length) {
           this.rolesList = response;
         }
       },
@@ -218,13 +214,24 @@ export class UsersListComponent implements OnInit {
   }
   applySort(columnName: string) {
     const prevSortBy = this.filters.userFilter?.sortBy;
-    if(prevSortBy === columnName && this.filters.userFilter?.sortDirection === '') {
+    if (prevSortBy === columnName && this.filters.userFilter?.sortDirection === '') {
       this.filters.userFilter.sortDirection = 'asc';
     } else {
       this.filters.userFilter!.sortDirection = '';
     }
     this.filters.userFilter!.sortBy = columnName;
     this.loadUsersList();
+  }
+  resetFilters() {
+    this.filters = {
+      ...this.filters,
+      userFilter: {
+        ...this.filters.userFilter,
+        searchKey: '',
+        sortBy: '',
+        sortDirection: ''
+      }
+    };
   }
   // changeStatus($event){
 

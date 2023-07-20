@@ -88,12 +88,12 @@ export class GridComponent implements OnInit {
  }
   public async bindPatientList() {
     try {
-      this.showLoading = true;
-      var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
-      this.list = result?.data;
-      this.gridData.items = result?.data;
-      this.gridData.pagingModel = result?.pagingModel;
-      this.showLoading = false;
+      // this.showLoading = true;
+      // var result = await this._patientService.apiPatientListPost(this.filterModel).toPromise();
+      // this.list = result?.data;
+      // this.gridData.items = result?.data;
+      // this.gridData.pagingModel = result?.pagingModel;
+      // this.showLoading = false;
     } 
     catch (ex: any) {
       this.errorMsg = ex.error?.message?.message;

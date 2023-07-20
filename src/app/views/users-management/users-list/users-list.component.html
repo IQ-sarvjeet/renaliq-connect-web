@@ -170,14 +170,14 @@
           </td>
           <td class="text-center">{{ user.phoneNumber ? user.phoneNumber : '-' }}</td>
           <td>
-            <div class="text-truncate mw-truncate" data-bs-toggle="tooltip-info" data-bs-placement="top" [title]="user.practices ? user.practices : '-'">
-              {{ user.practices ? user.practices : '-' }}
+            <div class="text-truncate mw-truncate" data-bs-toggle="tooltip-info" data-bs-placement="top" [title]="user.userPractices ? user.userPractices : '-'">
+              {{ user.userPractices ? user.userPractices : '-' }}
             </div>
           </td>
-          <td>{{ user.roles ? user.roles : '-' }}</td>
+          <td>{{ user.userRoles ? user.userRoles : '-' }}</td>
           <td class="text-center">{{ user.userStatus ? user.userStatus : '-' }}</td>
           <td class="text-center">{{ user.createdOn ? moment(user.createdOn).format("MM/DD/YYYY") : '-' }}</td>
-          <td class="text-center">{{ user.terminationDate ? user.terminationDate : '-' }}</td>
+          <td class="text-center">{{ user.terminationDate ? moment(user.terminationDate).format("MM/DD/YYYY") : '-' }}</td>
           <td class="text-center">
             <a
               href="#"
@@ -235,8 +235,9 @@
             <div class="form-row">
               <div class="col-12 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Enter Email Address" formControlName="title" id="title"
-                    class="form-control">
+                  <input type="text" class="form-control" formControlName="title"
+                    id="title" [attr.disabled]="userToUpdate.userStatus === 'Termed'"
+                    />
                   <label for="title" class="mb-1">Title</label>
                 </div>
               </div>
@@ -244,14 +245,17 @@
             <div class="form-row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="First Name" formControlName="firstName" id="firstName" class="form-control" />
+                  <input type="text" class="form-control" formControlName="firstName"
+                    id="firstName" [attr.disabled]="userToUpdate.userStatus === 'Termed'"
+                    />
                   <label for="firstName" class="mb-1">First Name <span class="text-danger">*</span></label>
                 </div>
                 <div class="text-danger" *ngIf="updateUserForm.controls['firstName'].invalid && updateUserForm.controls['firstName'].touched">Please enter valid name</div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Last Name" formControlName="lastName" id="lastName" class="form-control">
+                  <input type="text" id="lastName" class="form-control" 
+                  [attr.disabled]="userToUpdate.userStatus === 'Termed'" formControlName="lastName">
                   <label for="lastName" class="mb-1">Last Name <span class="text-danger">*</span></label>
                 </div>
                 <div class="text-danger" *ngIf="updateUserForm.controls['lastName'].invalid && updateUserForm.controls['lastName'].touched">Please enter valid name</div>
@@ -260,24 +264,25 @@
             <div class="form-row">
               <div class="col-12 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Enter Email Address" formControlName="email" id="userEmail"
-                    class="form-control">
+                  <input type="text" id="userEmail" [attr.disabled]="true" 
+                    [value]="updateUserForm.controls['emailAddress'].value" class="form-control">
                   <label for="userEmail" class="mb-1">Email/Login ID <span class="text-danger">*</span></label>
                 </div>
-                <div class="text-danger" *ngIf="updateUserForm.controls['email'].invalid && updateUserForm.controls['email'].touched">Please enter valid email</div>
               </div>
             </div>
             <div class="form-row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Phone Number" formControlName="phoneNumber" id="phoneNumber" class="form-control">
+                  <input type="text" id="phoneNumber" [attr.disabled]="userToUpdate.userStatus === 'Termed'" 
+                    class="form-control" formControlName="phoneNumber">
                   <label for="phoneNumber" class="mb-1">Mobile Number</label>
                 </div>
                 <div class="text-danger" *ngIf="updateUserForm.controls['phoneNumber'].invalid && updateUserForm.controls['phoneNumber'].touched">Please enter valid contact number</div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <select class="form-select" id="roleId" formControlName="roleId">
+                  <select class="form-select" id="roleId" name="roleId"
+                    [attr.disabled]="userToUpdate.userStatus === 'Termed'" formControlName="roleId">
                     <option value="" selected>-Select-</option>
                     <option [value]="role.id" *ngFor="let role of rolesList">{{ role.name }}</option>
                   </select>
@@ -287,7 +292,13 @@
               </div>
             </div>
             <div class="mb-3">
-              <mbsc-select [data]="practicesList" 
+              <div class="form-floating" *ngIf="userToUpdate.userStatus === 'Termed'">
+                <select class="form-select" [disabled]="true">
+                  <option value="" selected>-Select-</option>
+                </select>
+                <label class="mb-1">Assign Practices <span class="text-danger">*</span></label>
+              </div>
+              <mbsc-select [data]="practicesList" *ngIf="userToUpdate.userStatus != 'Termed'"
                 formControlName="practiceId"
                 display="anchored" 
                 [itemHeight]="50" 
@@ -307,19 +318,21 @@
               <div class="flex-fill">
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" type="radio" 
-                      name="userStatus"
-                      formControlName="userStatus"
-                      id="inlineRadio2" 
-                      [value]="" />
-                  <label class="form-check-label" for="inlineRadio2">Active</label>
+                      name="isTermed"
+                      formControlName="isTermed"
+                      id="inlineRadio2"
+                      [checked]="userToUpdate.userStatus === Userstatus.ACTIVE"
+                      value="false" />
+                  <label class="form-check-label" for="inlineRadio2">{{ Userstatus.ACTIVE }}</label>
                 </div>
                 <div class="form-check form-check-inline">
                   <input class="form-check-input" 
                       type="radio"
-                      name="userStatus"
-                      formControlName="userStatus"
-                      id="inlineRadio1" [value]="" />
-                  <label class="form-check-label" for="inlineRadio1">Termed</label>
+                      name="isTermed"
+                      formControlName="isTermed"
+                      [checked]="userToUpdate.userStatus === Userstatus.TERMED"
+                      id="inlineRadio1" value="true" />
+                  <label class="form-check-label" for="inlineRadio1">{{Userstatus.TERMED}}</label>
                 </div>
               </div>
             </div>
@@ -352,7 +365,7 @@
         <div class="modal-body p-5">
             <app-spinner *ngIf="userLoading"></app-spinner>
             <div class="text-center">
-            <div class="fs-16">Are you sure you want to delete <span class="text-nowrap"><strong>{{ userToDelete }}</strong>?</span></div>
+            <div class="fs-16">Are you sure you want to delete <span class="text-nowrap"><strong>{{ updateUserForm.value.firstName + ' ' + updateUserForm.value.lastName }}</strong>?</span></div>
             <h4 class="fw-bold text-primary mt-1">you can't undo this action</h4>
             <div class="d-flex alert alert-danger my-4 rounded-3 border-0 badge-danger-lighter">
               <span class="alert-inner--icon me-3"><i class="fe fe-info fs-32"></i></span>
