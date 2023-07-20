@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
@@ -50,8 +50,7 @@ export class TwoFectorAuthComponent {
     private fb: FormBuilder,
     private eventService: EventService,
     private storeService: StoreService,
-    private authService: AuthService) {
-  }
+    private authService: AuthService) {}
   ngOnInit(): void {
 
     $('.header').addClass('d-none');
@@ -152,7 +151,22 @@ export class TwoFectorAuthComponent {
           this.redirectOnLogin();
         }
       });
-  };
+  }
+  onPaste(event: ClipboardEvent, index: number) {
+    const clipboardData = event.clipboardData || (window as any).clipboardData;
+    const pastedText = clipboardData.getData('text');
+    const otp = pastedText.trim().substring(0, 6); 
+    for (let i = 0; i < otp.length; i++) {
+      this.twoFAForm.controls[`digit${index + i + 1}`].setValue(otp[i]);
+    }
+    const lastIndex = index + otp.length - 1;
+    const inputElements = document.getElementsByClassName('verification-code-input');
+    if (inputElements[lastIndex]) {
+      const lastInputElement = inputElements[lastIndex] as HTMLInputElement;
+      lastInputElement.focus();
+      lastInputElement.selectionStart = lastInputElement.selectionEnd = lastInputElement.value.length;
+    }
+  }
   addMinutes(date: Date, minutes: number) {
     date.setMinutes(date.getMinutes() + minutes);
     return date;
@@ -258,19 +272,26 @@ export class TwoFectorAuthComponent {
   };
 
   onDigitInput(event: any) {
-    let element;
-    if (event.code !== 'Backspace' || event.code === 'ArrowRight')
-      element = event.srcElement.nextElementSibling;
-
-    if (event.code === 'Backspace' || event.code === 'ArrowLeft')
-      element = event.srcElement.previousElementSibling;
-
-    if (element == null) {
-      return;
-    } else {
-      element.focus();
+    const currentElement = event.target as HTMLInputElement;
+    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
+    
+    if (event.key >= '0' && event.key <= '9') {
+      currentElement.value = event.key;
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
+    } else if ((event.code === 'Backspace' || event.code === 'ArrowLeft') && currentIndex > 0) {
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    } else if (event.code === 'ArrowRight' && currentIndex < 5) {
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
     }
   }
+  
   hasRequiredError() {
     return this.twoFAForm.touched && this.twoFAForm.invalid
   }
