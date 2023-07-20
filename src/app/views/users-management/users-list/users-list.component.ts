@@ -124,6 +124,7 @@ export class UsersListComponent implements OnInit {
   }
   submit() {
     if (this.updateUserForm.valid) {
+      this.updateUserForm.value.isTermed = this.updateUserForm.value.isTermed === 'true' ? true : false;
       this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
         next: (response: boolean) => {
           if (response) {

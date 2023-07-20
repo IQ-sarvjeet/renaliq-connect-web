@@ -245,35 +245,6 @@
             <div class="form-row">
               <div class="col-12 mb-3">
                 <div class="form-floating">
-                  <input type="text" class="form-control" formControlName="title"
-                    id="title" [attr.disabled]="updateUserForm.value.isTermed"
-                    />
-                  <label for="title" class="mb-1">Title {{updateUserForm.value.isTermed}}</label>
-                </div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-6 mb-3">
-                <div class="form-floating">
-                  <input type="text" class="form-control" formControlName="firstName"
-                    id="firstName" [attr.disabled]="userToUpdate.userStatus === 'Termed'"
-                    />
-                  <label for="firstName" class="mb-1">First Name <span class="text-danger">*</span></label>
-                </div>
-                <div class="text-danger" *ngIf="updateUserForm.controls['firstName'].invalid && updateUserForm.controls['firstName'].touched">Please enter valid name</div>
-              </div>
-              <div class="col-6 mb-3">
-                <div class="form-floating">
-                  <input type="text" id="lastName" class="form-control" 
-                  [attr.disabled]="userToUpdate.userStatus === 'Termed'" formControlName="lastName">
-                  <label for="lastName" class="mb-1">Last Name <span class="text-danger">*</span></label>
-                </div>
-                <div class="text-danger" *ngIf="updateUserForm.controls['lastName'].invalid && updateUserForm.controls['lastName'].touched">Please enter valid name</div>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="col-12 mb-3">
-                <div class="form-floating">
                   <input type="text" id="userEmail" [attr.disabled]="true" 
                     [value]="updateUserForm.controls['emailAddress'].value" class="form-control">
                   <label for="userEmail" class="mb-1">Email/Login ID <span class="text-danger">*</span></label>
@@ -283,7 +254,26 @@
             <div class="form-row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" id="phoneNumber" [attr.disabled]="userToUpdate.userStatus === 'Termed'" 
+                  <input type="text" class="form-control" formControlName="firstName"
+                    id="firstName" 
+                    />
+                  <label for="firstName" class="mb-1">First Name <span class="text-danger">*</span></label>
+                </div>
+                <div class="text-danger" *ngIf="updateUserForm.controls['firstName'].invalid && updateUserForm.controls['firstName'].touched">Please enter valid name</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" id="lastName" class="form-control" 
+                   formControlName="lastName">
+                  <label for="lastName" class="mb-1">Last Name <span class="text-danger">*</span></label>
+                </div>
+                <div class="text-danger" *ngIf="updateUserForm.controls['lastName'].invalid && updateUserForm.controls['lastName'].touched">Please enter valid name</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" id="phoneNumber"  
                     class="form-control" formControlName="phoneNumber">
                   <label for="phoneNumber" class="mb-1">Mobile Number</label>
                 </div>
@@ -291,8 +281,17 @@
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
+                  <input type="text" class="form-control" formControlName="title"
+                    id="title" />
+                  <label for="title" class="mb-1">Title</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col-12 mb-3">
+                <div class="form-floating">
                   <select class="form-select" id="roleId" name="roleId"
-                    [attr.disabled]="userToUpdate.userStatus === 'Termed'" formControlName="roleId">
+                     formControlName="roleId">
                     <option value="" selected>-Select-</option>
                     <option [value]="role.id" *ngFor="let role of rolesList">{{ role.name }}</option>
                   </select>
