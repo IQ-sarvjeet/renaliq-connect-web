@@ -131,7 +131,7 @@
               class="form-control"
             />
           </div>
-          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+          <div class="col-6">
             <label for="status" class="mb-1">Status</label>
             <mbsc-select [data]="statusList"
               class="form-control"
@@ -168,31 +168,15 @@
           </div>
           <div class="col-12 col-sm-6 mt-4 mt-sm-0">
             <div class="form-group">
-              <label class="mb-1">IsAssessed</label>
-              <div class="form-check">
-                <input
-                  type="radio"
-                  class="form-check-input"
-                  [(ngModel)]="filter.patientFilter.assessed"
-                  name="assessed"
-                  id="assessed-yes"
-                  [value]="true"
-                />
-                <label class="form-check-label" for="assessed-yes">Yes</label>
-              </div>
-              <div class="form-check">
-                <input
-                  type="radio"
-                  class="form-check-input"
-                  [(ngModel)]="filter.patientFilter.assessed"
-                  name="assessed"
-                  id="assessed-no"
-                  [value]="false"
-                />
-                <label class="form-check-label" for="assessed-no">No</label>
-              </div>
+              <label class="mb-1">Is Assessed</label>
+                <div class="d-flex">
+                  <select class="form-control" [(ngModel)]="filter.patientFilter.isAssessed" name="assessed">
+                    <option value="">Select</option>
+                    <option value=1>Yes</option>
+                    <option value=0>No</option>
+                  </select>
+                </div>
             </div>
-            
           </div>
         </div>
       </div>
