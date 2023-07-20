@@ -19,11 +19,7 @@ export class PatientHeaderComponent {
   moment: any = moment;
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
-  
-  assessedList: any = [
-    'IsAssessed',
-    'NotAssessed'
-  ]
+
 
   stages: any = [
     'CKD Stage 3a',
@@ -70,12 +66,12 @@ export class PatientHeaderComponent {
     pageSize: environment.pageSize,
     patientFilter :{
       searchKey:'',
-      stage:'',
+      stage:[],
       riskCategory:'',
       careMember:'',
-      status:'',
+      status:[],
       assignment:[],
-      assessed:'',
+      isAssessed:undefined,
       SortBy: '',
       SortDirection: ''
     }
@@ -87,7 +83,8 @@ export class PatientHeaderComponent {
     careMember:'',
     status:'',
     assignment:[],
-    assessed:''
+    isAssessed:undefined
+   
   }
   disabledExport: boolean = false;
   patients: any;
@@ -97,6 +94,7 @@ export class PatientHeaderComponent {
 
   }
   submit(){
+    console.log(this.filter);
     this.displayFilter = { ...this.filter.patientFilter }
     this._interactionService.setPatientFilter(this.filter);
   }
@@ -137,12 +135,12 @@ export class PatientHeaderComponent {
   clearFilterHandler() {
     this.filter.patientFilter = {
       searchKey:'',
-      stage:'',
+      stage:[],
       riskCategory:'',
       careMember:'',
-      status:'',
+      status:[],
       assignment:[],
-      assessed:'',
+      isAssessed:undefined,
       SortBy: '',
       SortDirection: ''
     };
@@ -155,8 +153,8 @@ export class PatientHeaderComponent {
       this.filter.patientFilter.searchKey = '';
     }
     if(key === 'stage') {
-      this.displayFilter.stage = '';
-      this.filter.patientFilter.stage = '';
+      this.displayFilter.stage = [];
+      this.filter.patientFilter.stage = [];
     }
     if(key === 'riskCategory') {
       this.displayFilter.riskCategory = '';
@@ -171,12 +169,12 @@ export class PatientHeaderComponent {
       this.filter.patientFilter.assignment = [];
     }
     if(key === 'status') {
-      this.displayFilter.status = '';
-      this.filter.patientFilter.status = '';
+      this.displayFilter.status = [];
+      this.filter.patientFilter.status = [];
     }
     if(key === 'assessed') {
-      this.displayFilter.assessed = '';
-      this.filter.patientFilter.assessed = '';
+      this.displayFilter.isAssessed=undefined;
+      this.filter.patientFilter.isAssessed = undefined;
     }
     this.submit();
   }

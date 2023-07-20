@@ -6,13 +6,13 @@ export interface FilterModel {
 
 export interface PatientFilterModel {
     searchKey: string,
-    stage: string,
+    stage: Array<string>,
     riskCategory: string,
     careMember: string,
-    status: string,
+    status: Array<string>,
     assignment?: Date[],
     discharge?: Date[],
-    assessed?: string,
+    isAssessed?: boolean,
     SortDirection: string,
     SortBy: string
 }
