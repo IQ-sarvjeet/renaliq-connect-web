@@ -34,10 +34,10 @@ export class GridComponent implements OnInit {
     pageSize: environment.pageSize,
     patientFilter: {
       searchKey: '',
-      stage: '',
+      stage: [],
       riskCategory: '',
       careMember: '',
-      status: '',
+      status: [],
       assignment: [],
       discharge: [],
       SortDirection: '',
