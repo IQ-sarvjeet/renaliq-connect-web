@@ -124,9 +124,6 @@ export class UsersListComponent implements OnInit {
   }
   submit() {
     if (this.updateUserForm.valid) {
-      console.log(this.updateUserForm.value);
-      debugger;
-      return;
       this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
         next: (response: boolean) => {
           if (response) {
