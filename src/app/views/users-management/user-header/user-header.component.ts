@@ -13,8 +13,8 @@ export class UserHeaderComponent implements OnInit{
   practicesList: any = [];
   rolesList: any = [];
   addUserForm: FormGroup = this.fb.group({
-    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
     email: ['', [Validators.required, Validators.email]],
     title: [''],
     phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],

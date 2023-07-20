@@ -39,8 +39,8 @@ export class UsersListComponent implements OnInit {
   };
   updateUserForm: FormGroup = this.fb.group({
     loginUserId: ['', [Validators.required]],
-    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
     title: [''],
     phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
     roleId: ['', Validators.required],
