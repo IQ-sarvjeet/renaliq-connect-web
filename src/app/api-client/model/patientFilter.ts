@@ -18,7 +18,7 @@ export interface PatientFilter {
     status?: Array<string>;
     assignment?: Array<Date>;
     discharge?: Array<Date>;
-    isAssessed?: boolean;
+    isAssessed?: string;
     sortBy?: string;
     sortDirection?: string;
 }
