@@ -1426,6 +1426,32 @@ body.fixed-header .header {
   }
 }
 
+.sub-header {
+  .main-header-center {
+    .form-control {
+      border: 1px solid var(--border);
+      height: 50px;
+      padding: 1rem 0 1rem 3rem;
+    }
+   .btn {
+      left: 10px;
+      top: 4px;
+    }
+  }
+}
+
+.search-tablet {
+  .position-relative {
+    padding: 0.5rem;
+  }
+  .btn {
+    display: none;
+  }
+  .search-results {
+    top: 47px;
+  }
+}
+
 .search-results {
   background-color: $white;
   border-radius: 0 0 0.25rem 0.25rem;

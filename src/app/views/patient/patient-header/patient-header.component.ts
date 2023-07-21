@@ -19,6 +19,8 @@ export class PatientHeaderComponent {
   moment: any = moment;
   @ViewChild('rangeDatepicker', { static: false }) rangeDatepicker!: any;
   @ViewChild('rangeDatepickerAssignment', { static: false }) rangeDatepickerAssignment!: any;
+
+
   stages: any = [
     'CKD Stage 3a',
     'CKD Stage 3b',
@@ -36,26 +38,6 @@ export class PatientHeaderComponent {
     'On Hold'
   ]
   dateRangeFilter: any = "02/06/2023 - 02/14/2023";
-  dateRangeOptions: MbscDatepickerOptions = {
-    theme: 'ios',
-    controls: ['calendar'],
-    select: 'range',
-    // defaultValue: this.dateRangeFilter,
-    onChange: (value: any) => {
-      ////console.log('Date change value:', value);
-    },
-    onActiveDateChange: (event, inst) => {
-      ////console.log('onActiveDateChange:', event, ':::event::', inst);
-    },
-    onClose: (event) => {
-      let discharge = event.value.filter((x:any)=>x==null);
-      if(discharge.length  != 0) 
-      {
-        this.filter.patientFilter.discharge = [];
-      }
-      //console.log('onClose:', event);
-    }
-  };
   dateRangeOptionsAssignment: MbscDatepickerOptions = {
     theme: 'ios',
     controls: ['calendar'],
@@ -84,26 +66,27 @@ export class PatientHeaderComponent {
     pageSize: environment.pageSize,
     patientFilter :{
       searchKey:'',
-      stage:'',
+      stage:[],
       riskCategory:'',
       careMember:'',
-      status:'',
+      status:[],
       assignment:[],
-      discharge:[],
+      isAssessed:'',
       SortBy: '',
       SortDirection: ''
     }
   };
   displayFilter: any = {
     searchKey:'',
-    stage:'',
+    stage:[],
     riskCategory:'',
     careMember:'',
-    status:'',
+    status:[],
     assignment:[],
-    discharge:[]
+    isAssessed:''
   }
   disabledExport: boolean = false;
+  patients: any;
   constructor(  private _interactionService: InteractionService,
     private patientService: PatientService,
     private eventService: EventService){
@@ -150,12 +133,12 @@ export class PatientHeaderComponent {
   clearFilterHandler() {
     this.filter.patientFilter = {
       searchKey:'',
-      stage:'',
+      stage:[],
       riskCategory:'',
       careMember:'',
-      status:'',
+      status:[],
       assignment:[],
-      discharge:[],
+      isAssessed:'',
       SortBy: '',
       SortDirection: ''
     };
@@ -168,8 +151,8 @@ export class PatientHeaderComponent {
       this.filter.patientFilter.searchKey = '';
     }
     if(key === 'stage') {
-      this.displayFilter.stage = '';
-      this.filter.patientFilter.stage = '';
+      this.displayFilter.stage = [];
+      this.filter.patientFilter.stage = [];
     }
     if(key === 'riskCategory') {
       this.displayFilter.riskCategory = '';
@@ -184,12 +167,12 @@ export class PatientHeaderComponent {
       this.filter.patientFilter.assignment = [];
     }
     if(key === 'status') {
-      this.displayFilter.status = '';
-      this.filter.patientFilter.status = '';
+      this.displayFilter.status = [];
+      this.filter.patientFilter.status = [];
     }
-    if(key === 'discharge') {
-      this.displayFilter.discharge = [];
-      this.filter.patientFilter.discharge = [];
+    if(key === 'isAssessed') {
+      this.displayFilter.isAssessed = '';
+      this.filter.patientFilter.isAssessed = '';
     }
     this.submit();
   }

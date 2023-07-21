@@ -52,24 +52,25 @@
             <div class="form-row">
               <div class="col-12 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Enter Email Address" formControlName="title" id="title"
+                  <input type="text" placeholder="Email/Login ID" formControlName="email" id="userEmail"
                     class="form-control">
-                  <label for="title" class="mb-1">Title</label>
+                  <label for="userEmail" class="mb-1">Email/Login ID <span class="text-danger">*</span></label>
                 </div>
+                <div class="text-danger" *ngIf="addUserForm.controls['email'].invalid && addUserForm.controls['email'].touched">Please enter valid email</div>
               </div>
             </div>
             <div class="form-row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
                   <input type="text" placeholder="First Name" formControlName="firstName" id="firstName" class="form-control" />
-                  <label for="firstName" class="mb-1">First Name</label>
+                  <label for="firstName" class="mb-1">First Name <span class="text-danger">*</span></label>
                 </div>
                 <div class="text-danger" *ngIf="addUserForm.controls['firstName'].invalid && addUserForm.controls['firstName'].touched">Please enter valid first name</div>
               </div>
               <div class="col-6 mb-3">
                 <div class="form-floating">
                   <input type="text" placeholder="Last Name" formControlName="lastName" id="lastName" class="form-control">
-                  <label for="lastName" class="mb-1">Last Name</label>
+                  <label for="lastName" class="mb-1">Last Name <span class="text-danger">*</span></label>
                 </div>
                 <div class="text-danger" *ngIf="addUserForm.controls['lastName'].invalid && addUserForm.controls['lastName'].touched">Please enter valid last name</div>
               </div>
@@ -77,18 +78,17 @@
             <div class="form-row">
               <div class="col-6 mb-3">
                 <div class="form-floating">
-                  <input type="text" placeholder="Enter Email Address" formControlName="email" id="userEmail"
-                    class="form-control">
-                  <label for="userEmail" class="mb-1">Email/Login ID</label>
-                </div>
-                <div class="text-danger" *ngIf="addUserForm.controls['email'].invalid && addUserForm.controls['email'].touched">Please enter valid email</div>
-              </div>
-              <div class="col-6 mb-3">
-                <div class="form-floating">
-                  <input type="text" placeholder="Phone Number" formControlName="phoneNumber" id="phoneNumber" class="form-control">
+                  <input type="text" placeholder="Mobile Number" formControlName="phoneNumber" id="phoneNumber" class="form-control">
                   <label for="phoneNumber" class="mb-1">Mobile Number</label>
                 </div>
                 <div class="text-danger" *ngIf="addUserForm.controls['phoneNumber'].invalid && addUserForm.controls['phoneNumber'].touched">Please enter valid contact number</div>
+              </div>
+              <div class="col-6 mb-3">
+                <div class="form-floating">
+                  <input type="text" placeholder="Title" formControlName="title" id="title"
+                    class="form-control">
+                  <label for="title" class="mb-1">Title</label>
+                </div>
               </div>
             </div>
             <div class="form-row">
@@ -98,7 +98,7 @@
                     <option value="" selected>-Select-</option>
                     <option [value]="role.id" *ngFor="let role of rolesList">{{ role.name }}</option>
                   </select>
-                  <label for="roleId" class="mb-1">User Role</label>
+                  <label for="roleId" class="mb-1">User Role <span class="text-danger">*</span></label>
                 </div>
                 <div class="text-danger" *ngIf="addUserForm.controls['roleId'].invalid && addUserForm.controls['roleId'].touched">Please select user role</div>
               </div>
@@ -110,11 +110,11 @@
                   display="anchored" 
                   [itemHeight]="50" 
                   [selectMultiple]="true" 
-                  label="Assign Practices" 
-                  class="form-control select-tags mb-3" 
+                  label="Assign Practices *" 
+                  class="form-control select-tags" 
                   inputStyle="box" 
                   labelStyle="stacked" 
-                  placeholder="Please select Tags..."
+                  placeholder="Assign Practices *"
                 >
                 </mbsc-select>
               </div>

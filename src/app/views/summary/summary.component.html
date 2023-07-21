@@ -29,17 +29,17 @@
       <div class="col-12 col-xl-8">
         <div class="row">
           <div class="col-12 col-md-6">
-            <div class="card card-style3 p-4">
+            <div class="card p-4">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
                   <i class="fa fa-user"></i>
                 </div>
-                <div class="flex-fill d-flex align-items-center text-nowrap">
+                <div class="flex-fill d-flex align-items-stretch text-nowrap">
                   <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-50">
+                    <div class="flex-fill border-sm-end px-4 w-50 card-style3 py-1">
                       <app-data-card [cardData]="patients"></app-data-card>
                     </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50 py-1">
                       <app-data-card
                         [cardData]="engagedPatients"
                       ></app-data-card>
@@ -50,17 +50,17 @@
             </div>
           </div>
           <div class="col-12 col-md-6">
-            <div class="card card-style3 p-4">
+            <div class="card p-4">
               <div class="d-flex">
                 <div class="notifyimg bg-info">
                   <i class="fa fa-bed"></i>
                 </div>
-                <div class="flex-fill d-flex align-items-center text-nowrap">
+                <div class="flex-fill d-flex align-items-stretch text-nowrap">
                   <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4">
+                    <div class="flex-fill border-sm-end px-4 card-style3 py-1">
                       <app-data-card [cardData]="admissions"></app-data-card>
                     </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0">
+                    <div class="flex-fill px-4 mt-3 mt-sm-0 py-1">
                       <app-data-card
                         [cardData]="admissionRecent"
                       ></app-data-card>

@@ -4,6 +4,16 @@
   // PAGE LOADING
   $(window).on("load", function (e) {
     $("#global-loader").fadeOut("slow");
+    // TOOLTIP
+    function toolTipsFunc() {
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip-info"]')
+      );
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    }
+    setTimeout(toolTipsFunc, 5000);
   });
 
   //Slide SHOW HIDE
@@ -181,14 +191,6 @@
 
   // CARD
   const DIV_CARD = "div.card";
-
-  // TOOLTIP
-  var tooltipTriggerList = [].slice.call(
-    document.querySelectorAll('[data-bs-toggle="tooltip"]')
-  );
-  var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-    return new bootstrap.Tooltip(tooltipTriggerEl);
-  });
 
   // POPOVER
   var popoverTriggerList = [].slice.call(

@@ -4,6 +4,7 @@ import { PracticeService, RoleService, UserFilterModel, UserService } from 'src/
 import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
+import { Status } from 'src/app/enums/status';
 
 @Component({
   selector: 'app-users-list',
@@ -13,9 +14,10 @@ import * as moment from 'moment';
 export class UsersListComponent implements OnInit {
   practicesList: any = [];
   rolesList: any = [];
+  Userstatus = Status;
+  userToUpdate: any = '';
   moment = moment;
-  userToDelete!: string;
-  userLoading:boolean = false;
+  userLoading: boolean = false;
   usersList: any = {
     data: [],
     pagingModel: {
@@ -26,7 +28,6 @@ export class UsersListComponent implements OnInit {
     }
   };
   showLoading: boolean = true;
-  IsDeleteAction: boolean = false;
   filters: UserFilterModel = {
     userFilter: {
       searchKey: '',
@@ -37,20 +38,22 @@ export class UsersListComponent implements OnInit {
     pageSize: 10,
   };
   updateUserForm: FormGroup = this.fb.group({
-    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    email: ['', [Validators.required, Validators.email]],
+    loginUserId: ['', [Validators.required]],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
     title: [''],
     phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
     roleId: ['', Validators.required],
-    practiceId: ['', Validators.required],
+    practiceId: [[], Validators.required],
+    isTermed: [false],
+    emailAddress: ['']
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
     private userEventService: UserEventService,
     private eventService: EventService,
     private practiceService: PracticeService,
-    private roleService: RoleService){}
+    private roleService: RoleService) { }
   ngOnInit(): void {
     this.loadUsersList();
     this.loadPractices();
@@ -71,7 +74,7 @@ export class UsersListComponent implements OnInit {
       }
     })
   }
-  loadUsersList(){
+  loadUsersList() {
     this.showLoading = true;
     this.usersList = {
       ...this.usersList,
@@ -86,13 +89,12 @@ export class UsersListComponent implements OnInit {
             user.practices.forEach((practice: any) => {
               userPractices.push(practice.name);
             });
-            user.practices = userPractices.join(', ');
-
             let userRoles: string[] = [];
             user.roles.forEach((role: any) => {
               userRoles.push(role.name);
             });
-            user.roles = userRoles.join(', ');
+            user.userPractices = userPractices.join(', ');
+            user.userRoles = userRoles.join(', ');
           });
         }
         this.showLoading = false;
@@ -102,59 +104,37 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  getUser(userEmail: string, action: string){
-    this.userLoading = true;
-    this.IsDeleteAction = action === 'update' ? false : true;
-    this.filters = {
-      ...this.filters,
-      userFilter: {
-        ...this.filters.userFilter,
-        searchKey: userEmail
-      }
-    };
-    this.userService.apiUserListPost(this.filters).subscribe({
-      next: (response: any) => {
-        if (response.data) {
-          this.userLoading = false;
-          this.userToDelete = response.data[0].firstName + ' ' + response.data[0].lastname;
-          this.updateUserForm.patchValue({
-            firstName:response.data[0].firstName,
-            lastName: response.data[0].lastName,
-            email: response.data[0].emailAddress,
-            phoneNumber: response.data[0].phoneNumber,
-            title: response.data[0].title,
-            roleId: response.data[0].roles[0].id,
-            practiceId: response.data[0].practices,
-          });
-        }
-      },
-      error: (error: any) => {
-        this.userLoading = false;
-      }
+  getUser(user: any) {
+    this.userToUpdate = user;
+    let userPractices: number[] = [];
+    user.practices.forEach((practice: any) => {
+      userPractices.push(practice.id);
+    });
+    this.updateUserForm.patchValue({
+      loginUserId: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      phoneNumber: user.phoneNumber,
+      title: user.title,
+      roleId: user.roles[0].id,
+      practiceId: userPractices,
+      isTermed: user.userStatus === this.Userstatus.TERMED,
+      emailAddress: user.emailAddress
     });
   }
-  submit(){
-    if(this.updateUserForm.valid) {
+  submit() {
+    if (this.updateUserForm.valid) {
+      this.updateUserForm.value.isTermed = this.updateUserForm.value.isTermed === 'true' ? true : false;
       this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
         next: (response: boolean) => {
-          if(response) {
+          if (response) {
             this.eventService.openToaster({
               showToster: true,
               message: `User updated successfully.`,
               type: 'success',
             });
-            this.IsDeleteAction = false;
-            this.filters = {
-              ...this.filters,
-              userFilter: {
-                ...this.filters.userFilter,
-                searchKey: '',
-                sortBy: '',
-                sortDirection: ''
-              }
-            };
-            this.userToDelete = '';
-            this.updateUserForm.reset();
+            this.resetFilters();
+            this.resetValues();
             this.loadUsersList();
           }
         },
@@ -168,57 +148,48 @@ export class UsersListComponent implements OnInit {
       });
     }
   }
-  deleteUser(){
-    if(this.IsDeleteAction){
-      this.userService.apiUserDeleteLoginUserIdDelete(this.updateUserForm.value.loginUserId).subscribe({
-        next: (response: boolean) => {
-          if(response) {
-            this.eventService.openToaster({
-              showToster: true,
-              message: `User deleted successfully.`,
-              type: 'success',
-            });
-            this.IsDeleteAction = false;
-            this.filters = {
-              ...this.filters,
-              userFilter: {
-                ...this.filters.userFilter,
-                searchKey: '',
-                sortBy: '',
-                sortDirection: ''
-              }
-            };
-            this.userToDelete = '';
-            this.updateUserForm.reset();
-            this.loadUsersList();
-          }
-        },
-        error: (error: any) => {
+  deleteUser() {
+    this.updateUserForm.patchValue({
+      isTermed: true
+    });
+    this.userService.apiUserUpdatePut(this.updateUserForm.value).subscribe({
+      next: (response: boolean) => {
+        if (response) {
           this.eventService.openToaster({
             showToster: true,
-            message: `Error while deleting user.`,
-            type: 'danger',
+            message: `User deleted successfully.`,
+            type: 'success',
           });
+          this.resetFilters();
+          this.resetValues();
+          this.loadUsersList();
         }
-      });
-    }
+      },
+      error: (error: any) => {
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Error while deleting user.`,
+          type: 'danger',
+        });
+      }
+    });
   }
-  resetValues(){
+  resetValues() {
     this.updateUserForm.reset();
-    this.userToDelete = '';
+    this.userToUpdate = '';
   }
   public gotoPage(page: number): void {
     this.filters.currentPage = page;
     this.loadUsersList();
   }
-  loadPractices(){
+  loadPractices() {
     this.practicesList = [];
-    this.practiceService.apiPracticeListGet().subscribe({
+    this.practiceService.apiPracticeListAllGet().subscribe({
       next: (response: any) => {
-        if(response.length) {
+        if (response.length) {
           const data: any = [];
-          response.map((item: any, index: number ) => {
-            data.push({text: item.name, value: item.practiceId, avatar: 'm' + index});
+          response.map((item: any, index: number) => {
+            data.push({ text: item.name, value: item.id, avatar: 'm' + index });
           });
           this.practicesList = [...data];
         }
@@ -227,11 +198,11 @@ export class UsersListComponent implements OnInit {
       }
     });
   }
-  loadRoles(){
+  loadRoles() {
     this.rolesList = [];
     this.roleService.apiRolesGet().subscribe({
       next: (response: any) => {
-        if(response.length) {
+        if (response.length) {
           this.rolesList = response;
         }
       },
@@ -241,13 +212,24 @@ export class UsersListComponent implements OnInit {
   }
   applySort(columnName: string) {
     const prevSortBy = this.filters.userFilter?.sortBy;
-    if(prevSortBy === columnName && this.filters.userFilter?.sortDirection === '') {
+    if (prevSortBy === columnName && this.filters.userFilter?.sortDirection === '') {
       this.filters.userFilter.sortDirection = 'asc';
     } else {
       this.filters.userFilter!.sortDirection = '';
     }
     this.filters.userFilter!.sortBy = columnName;
     this.loadUsersList();
+  }
+  resetFilters() {
+    this.filters = {
+      ...this.filters,
+      userFilter: {
+        ...this.filters.userFilter,
+        searchKey: '',
+        sortBy: '',
+        sortDirection: ''
+      }
+    };
   }
   // changeStatus($event){
 

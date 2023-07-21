@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService, PracticeService, RoleService } from 'src/app/api-client';
 import { UserEventService } from '../services/user-event.service';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-user-header',
@@ -12,8 +13,8 @@ export class UserHeaderComponent implements OnInit{
   practicesList: any = [];
   rolesList: any = [];
   addUserForm: FormGroup = this.fb.group({
-    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
-    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z]*$')]],
+    firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+    lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
     email: ['', [Validators.required, Validators.email]],
     title: [''],
     phoneNumber: ['', [Validators.pattern('^[0-9]{10,15}$')]],
@@ -24,6 +25,7 @@ export class UserHeaderComponent implements OnInit{
     private accountService: AccountService,
     private userEventService: UserEventService,
     private practiceService: PracticeService,
+    private eventService: EventService,
     private roleService: RoleService){}
   ngOnInit(): void {
     this.loadPractices();
@@ -34,11 +36,20 @@ export class UserHeaderComponent implements OnInit{
       this.accountService.apiAccountRegisterPost(this.addUserForm.value).subscribe({
         next: (response: number) => {
           if(response) {
+            this.eventService.openToaster({
+              showToster: true,
+              message: `User Added successfully.`,
+              type: 'success',
+            });
             this.userEventService.setNewUserID(response);
           }
         },
         error: (error: any) => {
-
+          this.eventService.openToaster({
+            showToster: true,
+            message: error.error.message.message,
+            type: 'danger',
+          });
         }
       });
       this.addUserForm.reset();
@@ -46,12 +57,12 @@ export class UserHeaderComponent implements OnInit{
   }
   loadPractices(){
     this.practicesList = [];
-    this.practiceService.apiPracticeListGet().subscribe({
+    this.practiceService.apiPracticeListAllGet().subscribe({
       next: (response: any) => {
         if(response.length) {
           const data: any = [];
           response.map((item: any, index: number ) => {
-            data.push({text: item.name, value: item.practiceId, avatar: 'm' + index});
+            data.push({text: item.name, value: item.id, avatar: 'm' + index});
           });
           this.practicesList = [...data];
         }

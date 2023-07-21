@@ -181,7 +181,7 @@
                     Documents
                   </div>
                 </a>
-                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                <div class="dropdown d-md-flex profile-1 text-nowrap pe-2">
                   <a
                     href="#"
                     data-bs-toggle="dropdown"
@@ -221,13 +221,13 @@
                     </a> -->
                   </div>
                 </div>
-                <div class="dropdown d-md-flex profile-1 text-nowrap">
+                <div class="dropdown d-md-flex profile-1 text-nowrap pe-2" *ngIf="userRole === userRoleTypes.SYTEM_ADMIN">
                   <a
                     href="#"
                     data-bs-toggle="dropdown"
                     class="nav-link pe-0 leading-none d-flex animate"
                     [ngClass]="{
-                      'is-active': this.currentRoute.indexOf('reports') !== -1
+                      'is-active': this.currentRoute.indexOf('users-management') !== -1
                     }"
                   >
                     Admin <i class="user-angle ms-1 fa fa-angle-down"></i>
@@ -239,7 +239,7 @@
                       class="dropdown-item"
                       routerLink="/users-management/usersList"
                     >
-                      Users List
+                      User List
                     </a>
                   </div>
                 </div>

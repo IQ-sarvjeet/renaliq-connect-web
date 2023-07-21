@@ -17,7 +17,7 @@
               Name: <b>{{displayFilter.searchKey}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
               Stage: <b>{{displayFilter.stage}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
             </div>
@@ -29,7 +29,7 @@
               Care Member: <b>{{displayFilter.careMember}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.status.length">
               Status: <b>{{displayFilter.status}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
             </div>
@@ -37,15 +37,15 @@
               Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.discharge && displayFilter.discharge.length > 1">
-              Discharge: <b>{{moment(displayFilter.discharge[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.discharge[0]).format("MM/DD/YYYY")}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('discharge')">x</a>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.isAssessed">
+              isAssessed: <b>{{displayFilter.isAssessed}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('isAssessed')">x</a>
             </div>
           </div>
         </div>
         <div class="pt-2 text-nowrap text-end">
           <div class="tags mt-1 me-2" 
-            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage || displayFilter.searchKey || displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
+            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage.length || displayFilter.searchKey || displayFilter.status.length|| (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.isAssessed)">
             Clear Filters<a href="Javascript:void(0)"
             class="tags__icon"
             (click)="clearFilterHandler()">x</a>
@@ -95,16 +95,14 @@
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="mb-1">Stage</label>
-            <select
-              class="form-select"
+            <mbsc-select [data] = "stages"
+              class="form-control form-control-mbsc"
               [(ngModel)]="filter.patientFilter.stage"
               id="stage"
+              placeholder="Select"
+              [selectMultiple]="true"
             >
-              <option value="">Select</option>
-              <option *ngFor="let stage of stages" [value]="stage">
-                {{ stage }}
-              </option>
-            </select>
+            </mbsc-select>
           </div>
           <div class="col-6">
             <label for="riskCategory" class="mb-1">Risk Category</label>
@@ -133,18 +131,17 @@
               class="form-control"
             />
           </div>
-          <div class="col-12 col-sm-6 mt-4 mt-sm-0">
+          <div class="col-6">
             <label for="status" class="mb-1">Status</label>
-            <select
-              class="form-select"
+            <mbsc-select [data]="statusList"
+              class="form-control form-control-mbsc"
               [(ngModel)]="filter.patientFilter.status"
               id="status"
-            >
-              <option value="">Select</option>
-              <option *ngFor="let status of statusList" [value]="status">
-                {{ status }}
-              </option>
-            </select>
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
           </div>
         </div>
 
@@ -153,7 +150,7 @@
             <label for="Assignment" class="mb-1">Assessment</label>
             <div class="input-group">
               <mbsc-datepicker
-                class="form-control fs-12"
+                class="form-control form-control-datepicker"
                 #rangeDatepickerAssignment
                 [options]="dateRangeOptionsAssignment"
                 [(ngModel)]="filter.patientFilter.assignment"
@@ -170,26 +167,15 @@
             </div>
           </div>
           <div class="col-12 col-sm-6 mt-4 mt-sm-0">
-            <label for="Discharge" class="mb-1">Discharge</label>
-            <div class="input-group input-group-lg">
-              <!-- value="13 Sep 22 - 20 Sep 22" -->
-              <!-- [(ngModel)]="filter.patientFilter.discharge" -->
-              <div class="input-group">
-                <mbsc-datepicker
-                  class="form-control fs-12"
-                  #rangeDatepicker
-                  [options]="dateRangeOptions"
-                  [(ngModel)]="filter.patientFilter.discharge"
-                  placeholder="Select date range"
-                ></mbsc-datepicker>
-                <button
-                  class="input-group-text bg-white"
-                  type="button"
-                  (click)="rangeDatepicker.open()"
-                >
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </div>
+            <div class="form-group">
+              <label class="mb-1">Is Assessed</label>
+                <div class="d-flex">
+                  <select class="form-control" [(ngModel)]="filter.patientFilter.isAssessed" name="assessed">
+                    <option value="">Select</option>
+                    <option value=1>Yes</option>
+                    <option value=0>No</option>
+                  </select>
+                </div>
             </div>
           </div>
         </div>
