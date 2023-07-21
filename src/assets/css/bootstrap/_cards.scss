@@ -1846,11 +1846,28 @@ a.card-tabs-item {
   }
 }
 .card-style3 {
+  position: relative;
   transition: 0.3s linear all;
 
+  &:before {
+    content: '';
+    position: absolute;
+    left: -0.5rem;
+    top: 0;
+    bottom: 0;
+    width: 0.5rem;
+    background-color: $info;
+    opacity: 0;
+  }
+
   &:hover {
-    border: 1px solid $primary;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+    background-color: $info;
+    border-radius: 0 0.5rem 0.5rem 0;
+    border-right: 1px solid transparent !important;
+
+    &:before {
+      opacity: 1;
+    }
   }
 }
   .info-image {

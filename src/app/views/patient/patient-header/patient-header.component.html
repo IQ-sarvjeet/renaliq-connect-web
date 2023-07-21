@@ -96,7 +96,7 @@
           <div class="col-6">
             <label for="stage" class="mb-1">Stage</label>
             <mbsc-select [data] = "stages"
-              class="form-control"
+              class="form-control form-control-mbsc"
               [(ngModel)]="filter.patientFilter.stage"
               id="stage"
               placeholder="Select"
@@ -134,7 +134,7 @@
           <div class="col-6">
             <label for="status" class="mb-1">Status</label>
             <mbsc-select [data]="statusList"
-              class="form-control"
+              class="form-control form-control-mbsc"
               [(ngModel)]="filter.patientFilter.status"
               id="status"
               display="anchored" 
@@ -150,7 +150,7 @@
             <label for="Assignment" class="mb-1">Assessment</label>
             <div class="input-group">
               <mbsc-datepicker
-                class="form-control fs-12"
+                class="form-control form-control-datepicker"
                 #rangeDatepickerAssignment
                 [options]="dateRangeOptionsAssignment"
                 [(ngModel)]="filter.patientFilter.assignment"
