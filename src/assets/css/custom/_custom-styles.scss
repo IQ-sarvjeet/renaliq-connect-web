@@ -6019,6 +6019,28 @@ div.dataTables_wrapper div.dataTables_length label {
   border-radius: 0.5rem;
 }
 
+.form-control-mbsc {
+  padding: 0.375rem 0.75rem !important;
+
+  .mbsc-textfield-wrapper {
+    margin: 0 !important;
+    line-height: normal !important;
+  }
+  .mbsc-select-icon {
+    width: 0.75rem !important;
+    right: -0.25rem !important;
+    height: 0.75rem !important;
+  }
+}
+
+.form-control-datepicker {
+  .mbsc-ios.mbsc-textfield, 
+  .mbsc-windows.mbsc-textfield {
+    font-size: 0.875rem !important;
+    padding: 0 !important;
+  }
+}
+
 @media (min-width: 768px) {
   .card-lg {
     .card-body {
