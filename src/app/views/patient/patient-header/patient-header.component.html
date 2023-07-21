@@ -17,7 +17,7 @@
               Name: <b>{{displayFilter.searchKey}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage">
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
               Stage: <b>{{displayFilter.stage}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
             </div>
@@ -29,7 +29,7 @@
               Care Member: <b>{{displayFilter.careMember}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.status">
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.status.length">
               Status: <b>{{displayFilter.status}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
             </div>
@@ -37,15 +37,15 @@
               Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.discharge && displayFilter.discharge.length > 1">
-              Discharge: <b>{{moment(displayFilter.discharge[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.discharge[0]).format("MM/DD/YYYY")}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('discharge')">x</a>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.isAssessed">
+              isAssessed: <b>{{displayFilter.isAssessed}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('isAssessed')">x</a>
             </div>
           </div>
         </div>
         <div class="pt-2 text-nowrap text-end">
           <div class="tags mt-1 me-2" 
-            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage || displayFilter.searchKey || displayFilter.status || (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.discharge && displayFilter.discharge.length > 1)">
+            *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage.length || displayFilter.searchKey || displayFilter.status.length|| (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.isAssessed)">
             Clear Filters<a href="Javascript:void(0)"
             class="tags__icon"
             (click)="clearFilterHandler()">x</a>

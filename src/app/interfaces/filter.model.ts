@@ -12,7 +12,7 @@ export interface PatientFilterModel {
     status: Array<string>,
     assignment?: Date[],
     discharge?: Date[],
-    isAssessed?: boolean,
+    isAssessed?: string,
     SortDirection: string,
     SortBy: string
 }

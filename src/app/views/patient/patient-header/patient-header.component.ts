@@ -71,20 +71,19 @@ export class PatientHeaderComponent {
       careMember:'',
       status:[],
       assignment:[],
-      isAssessed:undefined,
+      isAssessed:'',
       SortBy: '',
       SortDirection: ''
     }
   };
   displayFilter: any = {
     searchKey:'',
-    stage:'',
+    stage:[],
     riskCategory:'',
     careMember:'',
-    status:'',
+    status:[],
     assignment:[],
-    isAssessed:undefined
-   
+    isAssessed:''
   }
   disabledExport: boolean = false;
   patients: any;
@@ -94,7 +93,6 @@ export class PatientHeaderComponent {
 
   }
   submit(){
-    console.log(this.filter);
     this.displayFilter = { ...this.filter.patientFilter }
     this._interactionService.setPatientFilter(this.filter);
   }
@@ -140,7 +138,7 @@ export class PatientHeaderComponent {
       careMember:'',
       status:[],
       assignment:[],
-      isAssessed:undefined,
+      isAssessed:'',
       SortBy: '',
       SortDirection: ''
     };
@@ -172,9 +170,9 @@ export class PatientHeaderComponent {
       this.displayFilter.status = [];
       this.filter.patientFilter.status = [];
     }
-    if(key === 'assessed') {
-      this.displayFilter.isAssessed=undefined;
-      this.filter.patientFilter.isAssessed = undefined;
+    if(key === 'isAssessed') {
+      this.displayFilter.isAssessed = '';
+      this.filter.patientFilter.isAssessed = '';
     }
     this.submit();
   }
