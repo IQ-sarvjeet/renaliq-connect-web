@@ -78,10 +78,10 @@ export class PatientHeaderComponent {
   };
   displayFilter: any = {
     searchKey:'',
-    stage:'',
+    stage:[],
     riskCategory:'',
     careMember:'',
-    status:'',
+    status:[],
     assignment:[],
     isAssessed:''
   }
@@ -93,7 +93,6 @@ export class PatientHeaderComponent {
 
   }
   submit(){
-    console.log(this.filter);
     this.displayFilter = { ...this.filter.patientFilter }
     this._interactionService.setPatientFilter(this.filter);
   }
