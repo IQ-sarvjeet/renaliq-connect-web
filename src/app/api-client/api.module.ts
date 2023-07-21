@@ -14,6 +14,7 @@ import { HccService } from './api/hcc.service';
 import { NotificationService } from './api/notification.service';
 import { PBIReportService } from './api/pBIReport.service';
 import { PatientService } from './api/patient.service';
+import { PaymentReportService } from './api/paymentReport.service';
 import { PracticeService } from './api/practice.service';
 import { RoleService } from './api/role.service';
 import { UserService } from './api/user.service';
@@ -35,6 +36,7 @@ import { UserRoleService } from './api/userRole.service';
     NotificationService,
     PBIReportService,
     PatientService,
+    PaymentReportService,
     PracticeService,
     RoleService,
     UserService,

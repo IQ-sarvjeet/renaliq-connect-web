@@ -12,12 +12,13 @@
 
 export interface PatientFilter { 
     searchKey?: string;
-    stage?: string;
+    stage?: Array<string>;
     riskCategory?: string;
     careMember?: string;
-    status?: string;
+    status?: Array<string>;
     assignment?: Array<Date>;
     discharge?: Array<Date>;
+    isAssessed?: string;
     sortBy?: string;
     sortDirection?: string;
 }

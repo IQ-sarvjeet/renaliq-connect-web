@@ -11,9 +11,12 @@
  */
 
 export interface UserDetailEditModel { 
-    loginUserId?: number;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
+    title?: string;
+    loginUserId: number;
+    firstName: string;
+    lastName: string;
+    practiceId: Array<number>;
+    roleId: number;
+    isTermed?: boolean;
     phoneNumber?: string;
 }
