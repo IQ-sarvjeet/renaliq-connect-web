@@ -18,14 +18,15 @@
                                 <div class="d-sm-flex w-100">
                                     <div class="flex-fill border-sm-end px-4 w-50">
                                         <div> Attributed Patients <div class="text-dark fw-bold fs-22 lh-sm"><a
-                                                    href="javascript:void(0)"
-                                                    class="nav-link d-inline-block px-0">18</a>
+                                                    href="javascript:void(0)" class="nav-link d-inline-block px-0">{{
+                                                    paymentReport.summary.attributed }}</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
                                         <div> Engaged Patients <div class="text-dark fw-bold fs-22 lh-sm">
-                                                <span class="d-inline-block pt-1">18</span>
+                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.engaged
+                                                    }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -44,14 +45,15 @@
                                 <div class="d-sm-flex w-100">
                                     <div class="flex-fill border-sm-end px-4">
                                         <div> Assessed <div class="text-dark fw-bold fs-22 lh-sm">
-                                                <a href="javascript:void(0)"
-                                                    class="nav-link d-inline-block px-0">294</a>
+                                                <a href="javascript:void(0)" class="nav-link d-inline-block px-0">{{
+                                                    paymentReport.summary.assessed }}</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="flex-fill px-4 mt-3 mt-sm-0">
                                         <div> Last Payment <div class="text-dark fw-bold fs-22 lh-sm">
-                                                <span class="d-inline-block pt-1">$2175</span>
+                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.lastPayment
+                                                    }}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -68,7 +70,8 @@
                 </div>
                 <div class="card-body pt-3">
                     <div class="text-center">
-                        <app-combination-chart [chartData]="sampleJSON"></app-combination-chart>
+                        <app-combination-chart [chartData]="paymentReport"
+                            *ngIf="paymentReport.data.length"></app-combination-chart>
                     </div>
                 </div>
             </div>
@@ -91,7 +94,7 @@
                                 <th class="bg-transparent border-bottom-0 fs-12 table-header">Assessed</th>
                                 <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Amount</div>
                                 </th>
-                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Payment Amt
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Payment Amount
                                     </div>
                                 </th>
                                 <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 80%
@@ -104,7 +107,79 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="table-body">
+                        <tbody class="table-body" *ngIf="loadingPymentReport && !paymentReport.data.length">
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
                             <tr>
                                 <td><span class="skeleton-loader"></span></td>
                                 <td><span class="skeleton-loader"></span></td>
@@ -130,64 +205,21 @@
                                 <td><span class="skeleton-loader"></span></td>
                             </tr>
                         </tbody>
-                        <tbody class="table-body">
-                            <tr *ngFor="let data of sampleJSON.tableData">
-                                <td>
-                                    {{ data.reportingPeriod }}
-                                </td>
-                                <td class="text-center">
-                                    <div class="text-truncate mw-truncate">{{ data.practiceName }}</div>
-                                </td>
-                                <td class="text-center">
-                                    {{ data.attributedPatients }}
-                                </td>
-                                <td class="text-center">
-                                    {{ data.engaged }}
-                                </td>
-                                <td class="text-center">
-                                    {{ data.assessed }}
-                                </td>
-                                <td class="text-center">
-                                    {{ data.pmpmAmount }}
-                                </td>
-                                <td class="text-center">{{ data.pmpmPaymentAmt }}</td>
-                                <td class="text-center">
-                                    {{ data.incentiveAtEightyPercent }}
-                                </td>
-                                <td class="text-center">
-                                    {{ data.incentiveAtHunderedPercent }}
-                                </td>
-                                <td class="text-center">
-                                    {{ data.ReportDate }}
-                                </td>
+                        <tbody class="table-body" *ngIf="paymentReport.data.length">
+                            <tr *ngFor="let data of paymentReport.data">
+                                <td>{{ data.reportingPeriod }}</td>
+                                <td>{{ data.practiceName }}</td>
+                                <td>{{ data.attributedPatients }}</td>
+                                <td>{{ data.engaged }}</td>
+                                <td>{{ data.assessed }}</td>
+                                <td>{{ data.pmpmAmount }}</td>
+                                <td>{{ data.pmpmPaymentAmount }}</td>
+                                <td>{{ data.incentiveAtEightyPercent }}</td>
+                                <td>{{ data.incentiveAtHundredPercent }}</td>
+                                <td>{{ data.reportDate }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <nav aria-label="Page navigation example">
-                        <div class="d-md-flex">
-                            <div class="flex-fill d-md-flex text-center text-md-start align-items-center mt-4 mt-md-0">
-                                <div>Showing 1 to 10 of 18 Records</div>
-                            </div>
-                            <div class="mt-3 mt-md-0">
-                                <ul class="pagination justify-content-center justify-content-md-end mt-2 mb-0">
-                                    <li class="page-item disabled">
-                                        <button tabindex="-1" aria-disabled="true" class="page-link"> First </button>
-                                    </li>
-                                    <li class="page-item disabled">
-                                        <button tabindex="-1" aria-disabled="true" class="page-link"><i
-                                                class="fa fa-angle-left"></i></button>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block active">
-                                        <button class="page-link"> 1 </button>
-                                    </li>
-                                    <li class="page-item d-none d-sm-block"><button class="page-link"> 2 </button></li>
-                                    <li class="page-item"><button class="page-link"><i
-                                                class="fa fa-angle-right"></i></button></li>
-                                    <li class="page-item"><button class="page-link"> Last </button></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
                 </div>
             </div>
         </div>

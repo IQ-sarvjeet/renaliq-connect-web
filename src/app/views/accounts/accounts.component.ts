@@ -1,168 +1,73 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PaymentReportService } from 'src/app/api-client';
 
 @Component({
   selector: 'app-accounts',
   templateUrl: './accounts.component.html',
   styleUrls: ['./accounts.component.scss']
 })
-export class AccountsComponent {
-  sampleJSON: any = {
-    summary: {
-      attributed: 294,
-      engaged: 145,
-      assessed: 343,
-      lastPayment: 3434,
-    },
-    categories: ['August 2022', 'September 2022', 'October 2022', 'November 2022', 'December 2022',
-      'January 2023', 'February 2023', 'March 2023', 'April 2023', 'May 2023', 'June 2023', 'July 2023'],
+export class AccountsComponent implements OnInit {
+  loadingPymentReport: boolean = false;
+  paymentReport: any = {
+    summary: {},
+    categories: [],
     series: [
       {
         type: 'column',
         name: 'Engaged',
-        data: [3, 2, 1, 3, 4, 2, 1, 3, 4, 9, 2, 5]
+        data: []
       },
       {
         type: 'column',
         name: 'Patient Count',
-        data: [2, 3, 5, 7, 6, 2, 1, 3, 4, 9, 5, 2]
+        data: []
       },
       {
         type: 'line',
         name: 'PMPM Payment Amount',
-        data: [3, 2, 1, 3, 4, 2, 1, 3, 4, 9, 2, 5]
+        data: []
       },
       {
         type: 'line',
         name: 'Incentive at 80%',
-        data: [2, 3, 5, 7, 6, 2, 1, 3, 4, 9, 5, 2]
+        data: []
       },
       {
         type: 'line',
         name: 'Incentive at 100%',
-        data: [2, 10, 5, 8, 4, 9, 1, 3, 6, 3, 7, 8]
+        data: []
       }
     ],
-    tableData: [
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
+    data: []
+  }
+
+  constructor(private paymentReportService: PaymentReportService) { }
+
+  ngOnInit(): void {
+    this.loadPaymentReport()
+  }
+
+  loadPaymentReport() {
+    this.loadingPymentReport = true;
+    this.paymentReportService.apiPaymentReportGet().subscribe({
+      next: (response: any) => {
+        if (response.data) {
+          this.paymentReport.data = response.data;
+          this.paymentReport.summary = response.summary;
+          response.data.forEach((data: any) => {
+            this.paymentReport.series[0].data.push(data.engaged);
+            this.paymentReport.series[1].data.push(data.patientCount);
+            this.paymentReport.series[2].data.push(data.pmpmPaymentAmount);
+            this.paymentReport.series[3].data.push(data.incentiveAtEightyPercent);
+            this.paymentReport.series[4].data.push(data.incentiveAtHundredPercent);
+            this.paymentReport.categories.push(data.reportingPeriod);
+          });
+          this.loadingPymentReport = false;
+        }
       },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
-      },
-      {
-        reportingPeriod: "August 2020",
-        practiceName: "Kidney Care center - Multistate",
-        attributedPatients: 315,
-        engaged: 117,
-        assessed: 111,
-        pmpmAmount: "$15",
-        pmpmPaymentAmt: "$1,755",
-        incentiveAtEightyPercent: 3780,
-        incentiveAtHunderedPercent: 4725,
-        ReportDate: "09/01/2022"
+      error: (error: any) => {
+        this.loadingPymentReport = false;
       }
-    ]
+    });
   }
 }

@@ -6,159 +6,14 @@ import * as Highcharts from 'highcharts';
   templateUrl: './combination-chart.component.html',
   styleUrls: ['./combination-chart.component.scss']
 })
-export class CombinationChartComponent implements OnInit{
+export class CombinationChartComponent implements OnInit {
   showLoading: boolean = false;
   Highcharts = Highcharts;
   @Input() chartData: any;
 
-  // option: any = {
-  //   title: {
-  //     text: 'Combination chart'
-  //   },
-  //   xAxis: {
-  //     categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
-  //   },
-  //   labels: {
-  //     items: [{
-  //       html: 'Total fruit consumption',
-  //       style: {
-  //         left: '50px',
-  //         top: '18px',
-  //         color: 'black'
-  //       }
-  //     }]
-  //   },
-  //   series: [
-  //     {
-  //       type: 'column',
-  //       name: 'Jane',
-  //       data: [3, 2, 1, 3, 4]
-  //     },
-  //     {
-  //       type: 'column',
-  //       name: 'John',
-  //       data: [2, 3, 5, 7, 6]
-  //     },
-  //     {
-  //       type: 'column',
-  //       name: 'Joe',
-  //       data: [4, 3, 3, 9, 0]
-  //     },
-  //     {
-  //       type: 'spline',
-  //       name: 'Average',
-  //       data: [3, 2.67, 3, 6.33, 3.33]
-  //     },
-  //     {
-  //       type: 'pie',
-  //       name: 'Total consumption',
-  //       data: [
-  //         {
-  //           name: 'Jane',
-  //           y: 13,
-  //           color: '#C8DB70' // Jane's color
-  //         },
-  //         {
-  //           name: 'John',
-  //           y: 23,
-  //           color: '#0B314F' // John's color
-  //         },
-  //         {
-  //           name: 'Joe',
-  //           y: 19,
-  //           color: '#999999' // Joe's color
-  //         }
-  //       ],
-  //       center: [100, 80],
-  //       size: 100,
-  //       showInLegend: false,
-  //       dataLabels: {
-  //         enabled: false
-  //       }
-  //     },
-  //   ]
-  // };
-
-  // option: any = {
-  //   title: {
-  //     text: 'Sales of petroleum products March, Norway',
-  //     align: 'left'
-  //   },
-  //   xAxis: {
-  //     categories: ['Jet fuel', 'Duty-free diesel', 'Petrol', 'Diesel', 'Gas oil']
-  //   },
-  //   yAxis: {
-  //     title: {
-  //       text: 'Million liters'
-  //     }
-  //   },
-  //   tooltip: {
-  //     valueSuffix: ' million liters'
-  //   },
-  //   plotOptions: {
-  //     series: {
-  //       borderRadius: '25%'
-  //     }
-  //   },
-  //   series: [{
-  //     type: 'column',
-  //     name: '2020',
-  //     data: [59, 83, 65, 228, 184]
-  //   }, {
-  //     type: 'column',
-  //     name: '2021',
-  //     data: [24, 79, 72, 240, 167]
-  //   }, {
-  //     type: 'column',
-  //     name: '2022',
-  //     data: [58, 88, 75, 250, 176]
-  //   }, {
-  //     type: 'spline',
-  //     name: 'Average',
-  //     data: [47, 83.33, 70.66, 239.33, 175.66],
-  //     marker: {
-  //       lineWidth: 2,
-  //       lineColor: '#76ADDB',
-  //       fillColor: 'white'
-  //     }
-  //   }, {
-  //     type: 'pie',
-  //     name: 'Total',
-  //     data: [{
-  //       name: '2020',
-  //       y: 619,
-  //       color: '#C8DB70', // 2020 color
-  //       dataLabels: {
-  //         enabled: true,
-  //         distance: -50,
-  //         format: '{point.total} M',
-  //         style: {
-  //           fontSize: '15px'
-  //         }
-  //       }
-  //     }, {
-  //       name: '2021',
-  //       y: 586,
-  //       color: '#0B314F' // 2021 color
-  //     }, {
-  //       name: '2022',
-  //       y: 647,
-  //       color: '#999999' // 2022 color
-  //     }],
-  //     center: [75, 65],
-  //     size: 100,
-  //     innerSize: '70%',
-  //     showInLegend: false,
-  //     dataLabels: {
-  //       enabled: false
-  //     }
-  //   }]
-  // };
-
-
   option: any = {
     title: {
-      text: 'Combination chart'
+      text: ''
     },
     xAxis: {
       categories: []
@@ -166,10 +21,10 @@ export class CombinationChartComponent implements OnInit{
     yAxis: {
       min: 0,
       title: {
-          text: 'Count trophies'
+        text: ''
       },
       stackLabels: {
-          enabled: true
+        enabled: true
       }
     },
     tooltip: {
@@ -177,23 +32,22 @@ export class CombinationChartComponent implements OnInit{
       pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
     },
     plotOptions: {
-        column: {
-            stacking: 'normal',
-            dataLabels: {
-                enabled: true
-            }
+      column: {
+        stacking: 'normal',
+        dataLabels: {
+          enabled: true
         }
+      }
     },
     series: []
   };
 
-  constructor(){}
+  constructor() { }
 
   ngOnInit(): void {
     this.renderChart();
   }
   renderChart() {
-    const series = this.option.series;    
     this.option = {
       ...this.option,
       xAxis: {
