@@ -1,0 +1,227 @@
+<div>
+    <div class="sub-header">
+        <div class="main-container container">
+            <h1 class="page-title pt-1">Account</h1>
+        </div>
+    </div>
+
+    <div class="main-container container">
+        <div class="mt-3">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card card-style3 p-4">
+                        <div class="d-flex">
+                            <div class="notifyimg bg-info">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="flex-fill d-flex align-items-center text-nowrap">
+                                <div class="d-sm-flex w-100">
+                                    <div class="flex-fill border-sm-end px-4 w-50">
+                                        <div> Attributed Patients <div class="text-dark fw-bold fs-22 lh-sm"><a
+                                                    href="javascript:void(0)" class="nav-link d-inline-block px-0">{{
+                                                    paymentReport.summary.attributed }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50">
+                                        <div> Engaged Patients <div class="text-dark fw-bold fs-22 lh-sm">
+                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.engaged
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="card card-style3 p-4">
+                        <div class="d-flex">
+                            <div class="notifyimg bg-info">
+                                <i class="fa fa-home"></i>
+                            </div>
+                            <div class="flex-fill d-flex align-items-center text-nowrap">
+                                <div class="d-sm-flex w-100">
+                                    <div class="flex-fill border-sm-end px-4">
+                                        <div> Assessed <div class="text-dark fw-bold fs-22 lh-sm">
+                                                <a href="javascript:void(0)" class="nav-link d-inline-block px-0">{{
+                                                    paymentReport.summary.assessed }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill px-4 mt-3 mt-sm-0">
+                                        <div> Last Payment <div class="text-dark fw-bold fs-22 lh-sm">
+                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.lastPayment
+                                                    }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header border-bottom title-submenu d-flex">
+                    <h3 class="card-title flex-fill">Show last 12 months of payments</h3>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="text-center">
+                        <app-combination-chart [chartData]="paymentReport"
+                            *ngIf="paymentReport.data.length"></app-combination-chart>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-1 mb-5 p-2">
+                <div class="table-responsive">
+                    <table id="admissionTable"
+                        class="table text-nowrap m-0 table-bordered table-striped sorting_disabled">
+                        <thead class="table-head text-uppercase">
+                            <tr class="text-secondary bg-gray-200">
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Reporting <div>Period
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 wp-20 table-header">Practice <div>Name
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Attributed <div>Patients
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Engaged</th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Assessed</th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Amount</div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">PMPM <div>Payment Amount
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 80%
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Incentive <div>at 100%
+                                    </div>
+                                </th>
+                                <th class="bg-transparent border-bottom-0 fs-12 table-header">Report <div>Date</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-body" *ngIf="loadingPymentReport && !paymentReport.data.length">
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                                <td><span class="skeleton-loader"></span></td>
+                            </tr>
+                        </tbody>
+                        <tbody class="table-body" *ngIf="paymentReport.data.length">
+                            <tr *ngFor="let data of paymentReport.data">
+                                <td>{{ data.reportingPeriod }}</td>
+                                <td>{{ data.practiceName }}</td>
+                                <td>{{ data.attributedPatients }}</td>
+                                <td>{{ data.engaged }}</td>
+                                <td>{{ data.assessed }}</td>
+                                <td>{{ data.pmpmAmount }}</td>
+                                <td>{{ data.pmpmPaymentAmount }}</td>
+                                <td>{{ data.incentiveAtEightyPercent }}</td>
+                                <td>{{ data.incentiveAtHundredPercent }}</td>
+                                <td>{{ data.reportDate }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

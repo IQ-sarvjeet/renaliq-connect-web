@@ -536,6 +536,8 @@
 .table-header {
   cursor: pointer;
   transition: 0.3s color;
+  vertical-align: top !important;
+  position: relative;
   &:hover {
     color: #294865 !important;
   }
@@ -545,6 +547,9 @@
     display: inline-block;
     margin-left: 0.5rem;
     font-size: 0.75rem;
+    position: absolute;
+    right: 0.5rem;
+    top: calc(50% - 9px);
   }
 }
 

@@ -1,0 +1,6 @@
+<app-spinner *ngIf="showLoading"></app-spinner>
+<div class="card chart-wrapper">
+  <div class="card-body pt-1 mh-11">
+    <highcharts-chart style="width: 100%; height: 100%; display: block;" [Highcharts]="Highcharts" [options]="option">
+    </highcharts-chart>
+  </div>

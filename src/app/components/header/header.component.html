@@ -160,6 +160,17 @@
                   </div>
                 </a>
                 <a
+                  routerLink="/account"
+                  class="nav-link pe-2"
+                  [ngClass]="{
+                    'is-active': this.currentRoute.indexOf('account') !== -1
+                  }"
+                >
+                  <div class="text-center py-1 d-flex d-lg-none-max">
+                    Account
+                  </div>
+                </a>
+                <a
                   routerLink="/documents/recentdocuments"
                   class="nav-link pe-2"
                   [ngClass]="{
