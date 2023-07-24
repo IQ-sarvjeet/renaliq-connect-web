@@ -73,7 +73,9 @@
                 formControlName="digit1"
                 (paste)="onPaste($event, 0)"
                 id="verificationCode1"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
@@ -84,7 +86,9 @@
                 maxlength="1"
                 formControlName="digit2"
                 (paste)="onPaste($event, 1)"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
@@ -95,7 +99,9 @@
                 maxlength="1"
                 formControlName="digit3"
                 (paste)="onPaste($event, 2)"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
@@ -106,7 +112,9 @@
                 maxlength="1"
                 formControlName="digit4"
                 (paste)="onPaste($event, 3)"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
@@ -117,7 +125,9 @@
                 maxlength="1"
                 formControlName="digit5"
                 (paste)="onPaste($event, 4)"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />
@@ -128,7 +138,9 @@
                 maxlength="1"
                 formControlName="digit6"
                 (paste)="onPaste($event, 5)"
-                (keyup)="onDigitInput($event)"
+                (keyup)="moveKeyEvent($event)"
+                (keypress)="acceptAlphaNumeric($event)"
+                (keydown)="backspacekeyEvent($event)"
                 [attr.autocomplete]="'off'"
                 required
               />

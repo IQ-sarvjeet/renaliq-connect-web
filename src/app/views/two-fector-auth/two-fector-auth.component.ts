@@ -271,17 +271,44 @@ export class TwoFectorAuthComponent {
     this.showToster = event;
   };
 
-  onDigitInput(event: any) {
+  acceptAlphaNumeric(event: any): boolean {
+    var inp = String.fromCharCode(event.keyCode);
     const currentElement = event.target as HTMLInputElement;
-    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
-    
-    if (event.key >= '0' && event.key <= '9') {
+    if (/[a-zA-Z0-9]/.test(inp)) {
       currentElement.value = event.key;
       const nextElement = currentElement.nextElementSibling as HTMLInputElement;
       if (nextElement) {
         nextElement.focus();
       }
-    } else if ((event.code === 'Backspace' || event.code === 'ArrowLeft') && currentIndex > 0) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  backspacekeyEvent(event: any) {
+    const currentElement = event.target as HTMLInputElement;
+    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
+    if ((event.code === 'ArrowLeft') && currentIndex > 0) {
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    } else if ((event.code === 'Backspace') && currentIndex > 0 && event.target.selectionStart === 0 && event.target.selectionEnd === 0) {
+      currentElement.value = '';
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    } else if (event.code === 'ArrowRight' && currentIndex < 5) {
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
+    }
+  }
+
+  moveKeyEvent(event: any) {
+    const currentElement = event.target as HTMLInputElement;
+    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
+    if ((event.code === 'ArrowLeft') && currentIndex > 0) {
       const previousElement = currentElement.previousElementSibling as HTMLInputElement;
       previousElement.focus();
     } else if (event.code === 'ArrowRight' && currentIndex < 5) {
