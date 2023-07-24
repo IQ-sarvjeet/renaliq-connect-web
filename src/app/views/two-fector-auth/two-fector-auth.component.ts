@@ -34,7 +34,7 @@ export class TwoFectorAuthComponent {
   isDisabled: boolean = false;
   showLoading: boolean = false;
   showResendCode: boolean = false;
-  private timerSubscription: any;
+  private timerSubscription: any;  
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
     digit2: [''],
@@ -93,7 +93,14 @@ export class TwoFectorAuthComponent {
   };
 
   public async onSubmit() {
-    if (this.hasRequiredError()) {
+    const digit1 = document.getElementById('verificationCode1') as HTMLInputElement
+    const digit2 = document.getElementById('verificationCode2') as HTMLInputElement
+    const digit3 = document.getElementById('verificationCode3') as HTMLInputElement
+    const digit4 = document.getElementById('verificationCode4') as HTMLInputElement
+    const digit5 = document.getElementById('verificationCode5') as HTMLInputElement
+    const digit6 = document.getElementById('verificationCode6') as HTMLInputElement
+
+    if (digit1.value === '' || digit2.value === '' || digit3.value === '' || digit4.value === '' || digit5.value === '' || digit6.value === '') {
       this.requiredFieldError = true;
       return;
     }
@@ -101,17 +108,11 @@ export class TwoFectorAuthComponent {
     this.showLoading = true;
     this.successMsg = "";
     this.errorMessage = "";
-    await this.twoFALogin();
-  };
-
-  public async twoFALogin() {
-    this.successMsg = "";
-    this.errorMessage = "";
-    const formValues = this.twoFAForm.value;
+    
     let model: UserTokenRequestModel = {
       username: this.username,
       password: this.password,
-      twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
+      twoFactorCode: `${digit1.value}${digit2.value}${digit3.value}${digit4.value}${digit5.value}${digit6.value}`,
       rememberMe: false,
       client_id: environment.identity.clientId,
       client_secret: environment.identity.clientSecret,
@@ -316,9 +317,6 @@ export class TwoFectorAuthComponent {
     }
   }
   
-  hasRequiredError() {
-    return this.twoFAForm.touched && this.twoFAForm.invalid
-  }
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
