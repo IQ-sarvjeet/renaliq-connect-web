@@ -39,6 +39,9 @@ export class CombinationChartComponent implements OnInit {
         }
       }
     },
+    credits: {
+      enabled: false
+    },
     series: []
   };
 
