@@ -309,6 +309,10 @@ export class TwoFectorAuthComponent {
       currentElement.value = '';
       const previousElement = currentElement.previousElementSibling as HTMLInputElement;
       previousElement.focus();
+    }  else if (event.code === 'Delete') {
+      currentElement.value = '';
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
     } else if (event.code === 'ArrowRight' && currentIndex < 5) {
       const nextElement = currentElement.nextElementSibling as HTMLInputElement;
       if (nextElement) {
