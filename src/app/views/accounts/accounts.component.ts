@@ -19,7 +19,7 @@ export class AccountsComponent implements OnInit {
       },
       {
         type: 'column',
-        name: 'Patients Count',
+        name: 'Patient Count',
         data: []
       },
       {
