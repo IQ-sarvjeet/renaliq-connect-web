@@ -14,7 +14,7 @@ export class AccountsComponent implements OnInit {
     series: [
       {
         type: 'column',
-        name: 'Engaged',
+        name: 'Engaged Patients',
         data: []
       },
       {
