@@ -34,7 +34,7 @@ export class TwoFectorAuthComponent {
   isDisabled: boolean = false;
   showLoading: boolean = false;
   showResendCode: boolean = false;
-  private timerSubscription: any;
+  private timerSubscription: any;  
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
     digit2: [''],
@@ -93,7 +93,14 @@ export class TwoFectorAuthComponent {
   };
 
   public async onSubmit() {
-    if (this.hasRequiredError()) {
+    const digit1 = document.getElementById('verificationCode1') as HTMLInputElement
+    const digit2 = document.getElementById('verificationCode2') as HTMLInputElement
+    const digit3 = document.getElementById('verificationCode3') as HTMLInputElement
+    const digit4 = document.getElementById('verificationCode4') as HTMLInputElement
+    const digit5 = document.getElementById('verificationCode5') as HTMLInputElement
+    const digit6 = document.getElementById('verificationCode6') as HTMLInputElement
+
+    if (digit1.value === '' || digit2.value === '' || digit3.value === '' || digit4.value === '' || digit5.value === '' || digit6.value === '') {
       this.requiredFieldError = true;
       return;
     }
@@ -101,17 +108,11 @@ export class TwoFectorAuthComponent {
     this.showLoading = true;
     this.successMsg = "";
     this.errorMessage = "";
-    await this.twoFALogin();
-  };
-
-  public async twoFALogin() {
-    this.successMsg = "";
-    this.errorMessage = "";
-    const formValues = this.twoFAForm.value;
+    
     let model: UserTokenRequestModel = {
       username: this.username,
       password: this.password,
-      twoFactorCode: `${formValues.digit1}${formValues.digit2}${formValues.digit3}${formValues.digit4}${formValues.digit5}${formValues.digit6}`,
+      twoFactorCode: `${digit1.value}${digit2.value}${digit3.value}${digit4.value}${digit5.value}${digit6.value}`,
       rememberMe: false,
       client_id: environment.identity.clientId,
       client_secret: environment.identity.clientSecret,
@@ -271,17 +272,45 @@ export class TwoFectorAuthComponent {
     this.showToster = event;
   };
 
-  onDigitInput(event: any) {
+  acceptAlphaNumeric(event: any): boolean {
+    var inp = String.fromCharCode(event.keyCode);
     const currentElement = event.target as HTMLInputElement;
     const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
-    
-    if (event.key >= '0' && event.key <= '9') {
+    if (/[a-zA-Z0-9]/.test(inp)) {
       currentElement.value = event.key;
       const nextElement = currentElement.nextElementSibling as HTMLInputElement;
       if (nextElement) {
         nextElement.focus();
       }
-    } else if ((event.code === 'Backspace' || event.code === 'ArrowLeft') && currentIndex > 0) {
+      return true;
+    } else if ((event.code === 'ArrowLeft') && currentIndex > 0) {
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+      return true;
+    } else if (event.code === 'ArrowRight' && currentIndex < 5) {
+      const nextElement = currentElement.nextElementSibling as HTMLInputElement;
+      if (nextElement) {
+        nextElement.focus();
+      }
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  }
+
+  backspacekeyEvent(event: any) {
+    const currentElement = event.target as HTMLInputElement;
+    const currentIndex = Array.from(currentElement.parentElement!.children).indexOf(currentElement);
+    if ((event.code === 'ArrowLeft') && currentIndex > 0) {
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    } else if ((event.code === 'Backspace') && currentIndex > 0 && event.target.selectionStart === 0 && event.target.selectionEnd === 0) {
+      currentElement.value = '';
+      const previousElement = currentElement.previousElementSibling as HTMLInputElement;
+      previousElement.focus();
+    }  else if (event.code === 'Delete') {
+      currentElement.value = '';
       const previousElement = currentElement.previousElementSibling as HTMLInputElement;
       previousElement.focus();
     } else if (event.code === 'ArrowRight' && currentIndex < 5) {
@@ -292,9 +321,6 @@ export class TwoFectorAuthComponent {
     }
   }
   
-  hasRequiredError() {
-    return this.twoFAForm.touched && this.twoFAForm.invalid
-  }
   ngOnDestroy(): void {
     $('.header').removeClass('d-none');
     $('.footer').removeClass('d-none');
