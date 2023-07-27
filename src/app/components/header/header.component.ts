@@ -25,7 +25,6 @@ type Practice = {
 })
 export class HeaderComponent {
   userRoleTypes = Roles;
-  userRole!: number | undefined;
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
   practiceList: Practice[] = [];
@@ -52,8 +51,6 @@ export class HeaderComponent {
     });
   }
   async ngOnInit() {
-    const info = await this._accountService.apiAccountUserInfoGet().toPromise();
-    this.userRole = info?.roles![0];
     this.eventService.userLoggedInSubscription().subscribe({
       next: (response: boolean) => {
         if (!this.authService.isLoggedIn()) return;
