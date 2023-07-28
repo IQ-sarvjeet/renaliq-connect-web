@@ -5,6 +5,10 @@ import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
 import { Status } from 'src/app/enums/status';
+import { StoreService } from 'src/app/services/store.service';
+import { UserInfo } from 'src/app/interfaces/user';
+import { Roles } from 'src/app/enums/roles';
+
 
 @Component({
   selector: 'app-users-list',
@@ -18,6 +22,11 @@ export class UsersListComponent implements OnInit {
   userToUpdate: any = '';
   moment = moment;
   userLoading: boolean = false;
+  userInfo: UserInfo = {
+    fullName: '',
+    roleName: '',
+    role: Roles.PRACTICE_USER
+  };
   usersList: any = {
     data: [],
     pagingModel: {
@@ -50,6 +59,7 @@ export class UsersListComponent implements OnInit {
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
+    private storeService: StoreService,
     private userEventService: UserEventService,
     private eventService: EventService,
     private practiceService: PracticeService,
@@ -58,6 +68,9 @@ export class UsersListComponent implements OnInit {
     this.loadUsersList();
     this.loadPractices();
     this.loadRoles();
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;
+    });
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
       this.loadUsersList();
     });
@@ -134,8 +147,11 @@ export class UsersListComponent implements OnInit {
               type: 'success',
             });
             this.resetFilters();
-            this.resetValues();
             this.loadUsersList();
+            if (this.updateUserForm.value.loginUserId === this.userInfo.userLoginId) {
+              window.location.reload();
+            }
+            this.resetValues();
           }
         },
         error: (error: any) => {
@@ -231,7 +247,4 @@ export class UsersListComponent implements OnInit {
       }
     };
   }
-  // changeStatus($event){
-
-  // }
 }
