@@ -5,6 +5,18 @@ import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
 import { Status } from 'src/app/enums/status';
+import { Messages } from 'src/app/shared/common-constants/messages';
+import { Router } from '@angular/router';
+import { StoreService } from 'src/app/services/store.service';
+import { UserInfo } from 'src/app/interfaces/user';
+import { Roles } from 'src/app/enums/roles';
+
+type Practice = {
+  isSelected: boolean;
+  name: string;
+  practiceId: number;
+  npi: string;
+}
 
 @Component({
   selector: 'app-users-list',
@@ -12,12 +24,19 @@ import { Status } from 'src/app/enums/status';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
+  messages: any = Messages;
   practicesList: any = [];
+  userPractices: Practice[] = [];
   rolesList: any = [];
   Userstatus = Status;
   userToUpdate: any = '';
   moment = moment;
   userLoading: boolean = false;
+  userInfo: UserInfo = {
+    fullName: '',
+    roleName: '',
+    role: Roles.PRACTICE_USER
+  };
   usersList: any = {
     data: [],
     pagingModel: {
@@ -50,14 +69,19 @@ export class UsersListComponent implements OnInit {
   });
   constructor(private userService: UserService,
     private fb: FormBuilder,
+    private storeService: StoreService,
     private userEventService: UserEventService,
     private eventService: EventService,
+    private route: Router,
     private practiceService: PracticeService,
     private roleService: RoleService) { }
   ngOnInit(): void {
     this.loadUsersList();
     this.loadPractices();
     this.loadRoles();
+    this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
+      this.userInfo = info;
+    });
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
       this.loadUsersList();
     });
@@ -134,8 +158,11 @@ export class UsersListComponent implements OnInit {
               type: 'success',
             });
             this.resetFilters();
-            this.resetValues();
             this.loadUsersList();
+            if (this.updateUserForm.value.loginUserId === this.userInfo.userLoginId) {
+              this.loadUserPractices();
+            }
+            this.resetValues();
           }
         },
         error: (error: any) => {
@@ -231,7 +258,41 @@ export class UsersListComponent implements OnInit {
       }
     };
   }
-  // changeStatus($event){
+  private loadUserPractices() {
+    this.practiceService.apiPracticeListGet().subscribe({
+      next: (practiceList: any) => {
+        this.userPractices = practiceList;
+        if (!practiceList.length) {
+          this.eventService.errorMessageUpdate({
+            type: 'error',
+            title: '',
+            body: this.messages.errorPractice
+          });
+          this.route.navigate(['/error']);
+          return;
+        };
+        this.selectPracticeHandlar(this.userPractices[0]);
+      },
+      error: (error) => {
+        this.eventService.errorMessageUpdate({
+          type: 'error',
+          title: '',
+          body: this.messages.errorPractice
+        });
+        this.route.navigate(['/error']);
+      },
 
-  // }
+    })
+  }
+  selectPracticeHandlar(practice: Practice) {
+    this.practiceService.apiPracticeUpdatePracticeIdPost(practice.practiceId)
+      .subscribe((response: any) => {
+        if (window.location.href.includes('patient-profile')) {
+          this.route.navigate(['/patients']);
+          this.loadUserPractices();
+        } else {
+          window.location.reload();
+        }
+      });
+  }
 }
