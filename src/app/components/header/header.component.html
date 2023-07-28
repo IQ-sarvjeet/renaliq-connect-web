@@ -49,7 +49,7 @@
             <ng-container *ngFor="let practice of practiceList">
               <a
                 class="dropdown-item border-top"
-                *ngIf="!practice.isSelected"
+                *ngIf="selectedPractice.practiceId !== practice.practiceId"
                 href="javascript: void(0)"
                 (click)="selectPracticeHandlar(practice)"
               >
@@ -375,7 +375,7 @@
               <ng-container *ngFor="let practice of practiceList">
                 <a
                   class="slide-item d-block"
-                  *ngIf="!practice.isSelected"
+                  *ngIf="selectedPractice.practiceId !== practice.practiceId"
                   href="javascript: void(0)"
                   (click)="selectPracticeHandlar(practice)"
                 >
@@ -420,6 +420,19 @@
             <li class="border-top">
               <a routerLink="/reports/riskAnalysis" class="slide-item"
                 >Patient Risk Stratification</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="slide border-top" *ngIf="userInfo.role === userRoleTypes.SYTEM_ADMIN">
+          <a class="side-menu__item has-link" data-bs-toggle="slide" href="#">
+            <span class="side-menu__label">Admin</span>
+            <i class="angle fa fa-angle-right"></i>
+          </a>
+          <ul class="slide-menu ms-0">
+            <li class="border-top">
+              <a routerLink="/users-management/usersList" class="slide-item"
+                >User List</a
               >
             </li>
           </ul>
