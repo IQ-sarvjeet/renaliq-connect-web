@@ -5,18 +5,10 @@ import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
 import * as moment from 'moment';
 import { Status } from 'src/app/enums/status';
-import { Messages } from 'src/app/shared/common-constants/messages';
-import { Router } from '@angular/router';
 import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
 
-type Practice = {
-  isSelected: boolean;
-  name: string;
-  practiceId: number;
-  npi: string;
-}
 
 @Component({
   selector: 'app-users-list',
@@ -24,9 +16,7 @@ type Practice = {
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent implements OnInit {
-  messages: any = Messages;
   practicesList: any = [];
-  userPractices: Practice[] = [];
   rolesList: any = [];
   Userstatus = Status;
   userToUpdate: any = '';
@@ -72,7 +62,6 @@ export class UsersListComponent implements OnInit {
     private storeService: StoreService,
     private userEventService: UserEventService,
     private eventService: EventService,
-    private route: Router,
     private practiceService: PracticeService,
     private roleService: RoleService) { }
   ngOnInit(): void {
@@ -160,7 +149,7 @@ export class UsersListComponent implements OnInit {
             this.resetFilters();
             this.loadUsersList();
             if (this.updateUserForm.value.loginUserId === this.userInfo.userLoginId) {
-              this.loadUserPractices();
+              window.location.reload();
             }
             this.resetValues();
           }
@@ -257,42 +246,5 @@ export class UsersListComponent implements OnInit {
         sortDirection: ''
       }
     };
-  }
-  private loadUserPractices() {
-    this.practiceService.apiPracticeListGet().subscribe({
-      next: (practiceList: any) => {
-        this.userPractices = practiceList;
-        if (!practiceList.length) {
-          this.eventService.errorMessageUpdate({
-            type: 'error',
-            title: '',
-            body: this.messages.errorPractice
-          });
-          this.route.navigate(['/error']);
-          return;
-        };
-        this.selectPracticeHandlar(this.userPractices[0]);
-      },
-      error: (error) => {
-        this.eventService.errorMessageUpdate({
-          type: 'error',
-          title: '',
-          body: this.messages.errorPractice
-        });
-        this.route.navigate(['/error']);
-      },
-
-    })
-  }
-  selectPracticeHandlar(practice: Practice) {
-    this.practiceService.apiPracticeUpdatePracticeIdPost(practice.practiceId)
-      .subscribe((response: any) => {
-        if (window.location.href.includes('patient-profile')) {
-          this.route.navigate(['/patients']);
-          this.loadUserPractices();
-        } else {
-          window.location.reload();
-        }
-      });
   }
 }
