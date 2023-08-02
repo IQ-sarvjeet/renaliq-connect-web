@@ -9,6 +9,7 @@ import { UserInfo } from 'src/app/interfaces/user';
 import { StoreService } from 'src/app/services/store.service';
 import { filter } from 'rxjs/operators';
 import { Roles } from 'src/app/enums/roles';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 type Practice = {
@@ -27,6 +28,11 @@ export class HeaderComponent {
   userRoleTypes = Roles;
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
+  OTPSettingForm: FormGroup = this.fb.group({
+    viaEmail: [true],
+    viaText: [true]
+  });
+  showLoading: boolean = false;
   practiceList: Practice[] = [];
   userInfo: UserInfo = {
     fullName: '',
@@ -40,6 +46,7 @@ export class HeaderComponent {
     private practiceService: PracticeService,
     private route: Router,
     private eventService: EventService,
+    private fb: FormBuilder,
     private authService: AuthService,
     private storeService: StoreService,
     private userRolesService: UserRoleService
@@ -143,5 +150,22 @@ export class HeaderComponent {
       window.location.reload();
     }
     });
+  }
+  setNotifications(event: any, type: string){
+    if(!this.OTPSettingForm.value.viaEmail && !this.OTPSettingForm.value.viaText) {
+      this.showLoading = true;
+      setTimeout(() => {
+        this.OTPSettingForm.patchValue({
+          viaEmail: true,
+          viaText: true
+        });
+        this.showLoading = false;
+        this.eventService.openToaster({
+          showToster: true,
+          message: `You cannot turn off both notifications.`,
+          type: 'danger',
+        });
+      }, 1500);      
+    }
   }
 }
