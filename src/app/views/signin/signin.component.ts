@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../../api-client';
+import { AccountService, SystemService } from '../../api-client';
 import { Router } from '@angular/router';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
@@ -22,6 +22,8 @@ export class SigninComponent {
   showToster: boolean = false;
   errorMessage: any = '';
   showLoading: boolean = false;
+  apiVersion!: string;
+  webVersion!: string;
 
   constructor(
     private _httpclientwapperSerivce: HttpClientWapperService,
@@ -29,7 +31,8 @@ export class SigninComponent {
     private _localStorage: LocalStorageService,
     private _accountService: AccountService,
     private route: Router,
-    private eventService: EventService
+    private eventService: EventService,
+    private systemService: SystemService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +46,21 @@ export class SigninComponent {
         this.errorMessage = data.message;
       }
     })
+    this.getVersion();
+    this.webVersion = CommonConstants.WEB_VERSION;
   };
+
+  private getVersion(){
+    this.systemService.apiVersionGet().subscribe(
+      (response: any) => {
+        this.apiVersion = response.version;
+      },
+      (error) => {
+        //console.error('Error fetching API version:', error);
+        this.apiVersion = 'Unknown';
+      }
+    );
+  }
 
   redirectSummaryDashboard() {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);

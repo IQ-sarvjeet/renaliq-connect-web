@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/api-client';
+import { AccountService, SystemService } from 'src/app/api-client';
+import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
 declare const $: any;
@@ -16,9 +17,11 @@ export class ResetPasswordComponent implements OnInit{
   resetForm:any = FormGroup;
   errorMsg :any ="";
   private token: string;
-
+  apiVersion!: string;
+  webVersion!: string;
   constructor(private _accountService: AccountService, private route: ActivatedRoute, private router: Router,
-               private fb: FormBuilder, private _localStorage: LocalStorageService){
+               private fb: FormBuilder, private _localStorage: LocalStorageService,
+               private systemService: SystemService){
     //this.token = this.route.snapshot.queryParams['token'];
     this.token = this.route.snapshot.params['token'];
   }
@@ -28,6 +31,8 @@ export class ResetPasswordComponent implements OnInit{
     $('#back-to-top').addClass('d-none');
     this._localStorage.clearAll();
     this.intializeform();
+    this.getVersion();
+    this.webVersion = CommonConstants.WEB_VERSION;
   } 
   intializeform() {
     this.resetForm = this.fb.group({
@@ -35,7 +40,18 @@ export class ResetPasswordComponent implements OnInit{
       confirmPassword: ['', [Validators.required,Validators.pattern(pattern)]],
     });
   }
- 
+  
+  private getVersion(){
+    this.systemService.apiVersionGet().subscribe(
+      (response: any) => {
+        this.apiVersion = response.version;
+      },
+      (error) => {
+        //console.error('Error fetching API version:', error);
+        this.apiVersion = 'Unknown';
+      }
+    );
+  }
   public async onSubmit(form: FormGroup) {
     this.errorMsg ="";
     if (form.invalid) {

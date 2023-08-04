@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from 'src/app/api-client';
+import { AccountService, SystemService } from 'src/app/api-client';
+import { CommonConstants } from 'src/app/shared/common-constants/common-constants';
 import { Messages } from 'src/app/shared/common-constants/messages';
 declare const $: any;
 let pattern = /^\d{10}$/;
@@ -15,17 +16,21 @@ export class ForgotPasswordComponent implements OnInit{
   form:any = FormGroup;
   errorMsg :any ="";
   successMsg :any ="";
+  apiVersion!: string;
+  webVersion!: string;
   fields :any ={email :1 ,mobile:2};
   forgotPasswordModel :any ={
     emailId:'',
     mobileNumber:''
   }
-  constructor(private _accountService: AccountService, private fb: FormBuilder){}
+  constructor(private _accountService: AccountService, private fb: FormBuilder,private systemService: SystemService){}
   ngOnInit(): void {
     $('.header').addClass('d-none');
     $('.footer').addClass('d-none');
     $('#back-to-top').addClass('d-none');
     this.intializeform();
+    this.getVersion();
+    this.webVersion = CommonConstants.WEB_VERSION;
   }
   intializeform() {
     this.form = this.fb.group({
@@ -33,7 +38,17 @@ export class ForgotPasswordComponent implements OnInit{
       mobileNumber: ['', [Validators.required,Validators.pattern(pattern)]],
     });
   }
-
+  private getVersion(){
+    this.systemService.apiVersionGet().subscribe(
+      (response: any) => {
+        this.apiVersion = response.version;
+      },
+      (error) => {
+        //console.error('Error fetching API version:', error);
+        this.apiVersion = 'Unknown';
+      }
+    );
+  }
   public async onSubmit(form: FormGroup) {
     this.errorMsg="";
     this.successMsg ="";

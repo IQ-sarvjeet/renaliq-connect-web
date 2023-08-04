@@ -6,7 +6,7 @@ import { EventService } from 'src/app/services/event.service';
 import { StoreService } from 'src/app/services/store.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from '../../../environments/environment';
-import { AccountService, LoginModel } from '../../api-client';
+import { AccountService, LoginModel, SystemService } from '../../api-client';
 import { CommonConstants } from '../../shared/common-constants/common-constants';
 import { setCookie } from '../../shared/services/cookie.service';
 import { HttpClientWapperService } from '../../shared/services/httpclient.wapper.service';
@@ -34,6 +34,8 @@ export class TwoFectorAuthComponent {
   isDisabled: boolean = false;
   showLoading: boolean = false;
   showResendCode: boolean = false;
+  apiVersion!: string;
+  webVersion!: string;
   private timerSubscription: any;  
   twoFAForm: FormGroup = this.fb.group({
     digit1: [''],
@@ -50,7 +52,8 @@ export class TwoFectorAuthComponent {
     private fb: FormBuilder,
     private eventService: EventService,
     private storeService: StoreService,
-    private authService: AuthService) {}
+    private authService: AuthService,
+    private systemService: SystemService) {}
   ngOnInit(): void {
 
     $('.header').addClass('d-none');
@@ -67,8 +70,21 @@ export class TwoFectorAuthComponent {
     if (elementReference instanceof HTMLElement) {
       elementReference.focus();
     }
+    this.getVersion();
+    this.webVersion = CommonConstants.WEB_VERSION;
   }
-
+  
+  private getVersion(){
+    this.systemService.apiVersionGet().subscribe(
+      (response: any) => {
+        this.apiVersion = response.version;
+      },
+      (error) => {
+        //console.error('Error fetching API version:', error);
+        this.apiVersion = 'Unknown';
+      }
+    );
+  }
   redirectSummaryDashboard() {
     let token = this._localStorage.getItem(CommonConstants.CONNECT_TOKEN_KEY);
     if (token != null) {
