@@ -293,6 +293,9 @@ export class TwoFectorAuthComponent {
         nextElement.focus();
       }
       return true;
+    } else if(event.code === 'Enter' || (event.keyCode === 13 && event.location === 3)) {
+      this.onSubmit()
+      return true;
     } else {
       event.preventDefault();
       return false;
