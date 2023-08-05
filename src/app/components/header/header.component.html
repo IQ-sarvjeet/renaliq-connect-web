@@ -477,8 +477,8 @@
               </div>
               <div class="col-lg-4">
                 <div class="form-check form-switch p-0">
-                  <input formControlName="viaEmail" class="form-check-input ms-2" type="checkbox" [checked]="OTPSettingForm.controls['viaEmail'].value"
-                    (change)="setNotifications($event, 'email')">
+                  <input formControlName="isEmailEnabled" class="form-check-input ms-2" type="checkbox" [checked]="OTPSettingForm.controls['isEmailEnabled'].value"
+                    (change)="setNotifications('email')">
                 </div>
               </div>
             </div>
@@ -489,8 +489,8 @@
               </div>
               <div class="col-lg-4">
                 <div class="form-check form-switch p-0">
-                  <input formControlName="viaText" class="form-check-input ms-2" type="checkbox" [checked]="OTPSettingForm.controls['viaText'].value"
-                    (change)="setNotifications($event, 'text')">
+                  <input formControlName="isSmsEnabled" class="form-check-input ms-2" type="checkbox" [checked]="OTPSettingForm.controls['isSmsEnabled'].value"
+                    (change)="setNotifications('text')">
                 </div>
               </div>
             </div>

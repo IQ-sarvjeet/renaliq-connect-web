@@ -1,7 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
-import { AccountService, PracticeService, UserRoleService, UserService } from '../../api-client';
+import { AccountService, NotificationService, PracticeService, UserRoleService, UserService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { AuthService } from 'src/app/services/auth.service';
@@ -29,8 +29,8 @@ export class HeaderComponent {
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
   OTPSettingForm: FormGroup = this.fb.group({
-    viaEmail: [true],
-    viaText: [true]
+    isEmailEnabled: [true],
+    isSmsEnabled: [true]
   });
   showLoading: boolean = false;
   practiceList: Practice[] = [];
@@ -49,6 +49,7 @@ export class HeaderComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private storeService: StoreService,
+    private notificationService: NotificationService,
     private userRolesService: UserRoleService
   ) {
     route.events.pipe(
@@ -151,21 +152,31 @@ export class HeaderComponent {
     }
     });
   }
-  setNotifications(event: any, type: string){
-    if(!this.OTPSettingForm.value.viaEmail && !this.OTPSettingForm.value.viaText) {
-      this.showLoading = true;
-      setTimeout(() => {
+  setNotifications(type: string){
+    this.showLoading = true;
+    if(!this.OTPSettingForm.value.isEmailEnabled && !this.OTPSettingForm.value.isSmsEnabled) {
+      if(type === 'email') {
         this.OTPSettingForm.patchValue({
-          viaEmail: true,
-          viaText: true
+          isSmsEnabled: true
         });
+      } else if(type === 'text') {
+        this.OTPSettingForm.patchValue({
+          isEmailEnabled: true,
+        });
+      }
+    }
+    this.notificationService.apiNotificationUpdateNotifyMediumPut(this.OTPSettingForm.value).subscribe({
+      next: (status: any) => {
+        this.showLoading = false;
+      },
+      error: (error) => {
         this.showLoading = false;
         this.eventService.openToaster({
           showToster: true,
-          message: `You cannot turn off both notifications.`,
+          message: `Error While setting notifications alert.`,
           type: 'danger',
         });
-      }, 1500);      
-    }
+      }
+    });
   }
 }
