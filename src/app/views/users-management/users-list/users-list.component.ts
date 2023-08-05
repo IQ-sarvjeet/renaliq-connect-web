@@ -146,12 +146,12 @@ export class UsersListComponent implements OnInit {
               message: `User updated successfully.`,
               type: 'success',
             });
-            this.resetFilters();
+            // this.resetFilters();
+            this.resetValues();
             this.loadUsersList();
             if (this.updateUserForm.value.loginUserId === this.userInfo.userLoginId) {
               window.location.reload();
             }
-            this.resetValues();
           }
         },
         error: (error: any) => {
