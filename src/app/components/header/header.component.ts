@@ -71,6 +71,7 @@ export class HeaderComponent {
     })
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
       this.userInfo = info;
+      this.setNotificationFormValues();
       if (!this.authService.isLoggedIn()) return;
       if(!this.rolesLoaded) {
         this.loadUserRoles();
