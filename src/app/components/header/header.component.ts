@@ -10,6 +10,7 @@ import { StoreService } from 'src/app/services/store.service';
 import { filter } from 'rxjs/operators';
 import { Roles } from 'src/app/enums/roles';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { TwoFactorOTPMedium } from 'src/app/enums/twoFactorOTPMedium';
 
 
 type Practice = {
@@ -29,15 +30,16 @@ export class HeaderComponent {
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
   OTPSettingForm: FormGroup = this.fb.group({
-    isEmailEnabled: [true],
-    isSmsEnabled: [true]
+    isEmailEnabled: [],
+    isSmsEnabled: []
   });
   showLoading: boolean = false;
   practiceList: Practice[] = [];
   userInfo: UserInfo = {
     fullName: '',
     roleName: '',
-    role: Roles.PRACTICE_USER
+    role: Roles.PRACTICE_USER,
+    twoFactorNotificationMedium: 0
   };
   currentRoute: string = '/';
   rolesLoaded: boolean = false;
@@ -64,6 +66,7 @@ export class HeaderComponent {
         if (!this.authService.isLoggedIn()) return;
         this.loadPracticeList();
         this.loadUserRoles();
+        this.setNotificationFormValues();
       }
     })
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
@@ -88,6 +91,24 @@ export class HeaderComponent {
         console.error(error);
       }
     })
+  }
+  setNotificationFormValues() {
+    if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.ALL) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: true,
+        isSmsEnabled: true
+      });
+    } else if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.EMAIL) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: true,
+        isSmsEnabled: false
+      });
+    } else if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.SMS) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: false,
+        isSmsEnabled: true
+      });
+    }
   }
   private loadUserRoles() {
     if (!this.userInfo.userLoginId || !this.userInfo.userLoginId) return;
