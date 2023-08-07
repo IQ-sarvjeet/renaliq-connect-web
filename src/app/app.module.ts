@@ -25,6 +25,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { InitialsPipe } from './pipes/initials.pipe';
 import { DownloadComponent } from './views/download/download.component';
 import { AccountsComponent } from './views/accounts/accounts.component';
+import { GoogleAnalyticsModule } from 'angular-ga';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AccountsComponent } from './views/accounts/accounts.component';
     FormsModule,
     NgxMaskDirective,
     NgxMaskPipe,
-    SummaryModule
+    SummaryModule,
+    GoogleAnalyticsModule.forRoot()
   ],
   exports: [],
   providers: [

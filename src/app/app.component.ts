@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GoogleAnalyticsService } from 'angular-ga';
+import { CommonConstants } from './shared/common-constants/common-constants';
 declare const $: any;
 @Component({
   selector: 'app-root',
@@ -7,7 +9,9 @@ declare const $: any;
 })
 export class AppComponent {
   title = 'new-angular-app';
+  constructor(private gaService: GoogleAnalyticsService) { }
   ngOnInit(): void {
+    this.gaService.configure(CommonConstants.GTAG_ID);
     // ----- Horizontal Style ------- //
     $('body').addClass('horizontal');
     let bodyhorizontal = $('body').hasClass('horizontal');
