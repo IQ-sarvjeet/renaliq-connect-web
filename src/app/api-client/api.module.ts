@@ -17,6 +17,7 @@ import { PatientService } from './api/patient.service';
 import { PaymentReportService } from './api/paymentReport.service';
 import { PracticeService } from './api/practice.service';
 import { RoleService } from './api/role.service';
+import { SystemService } from './api/system.service';
 import { UserService } from './api/user.service';
 import { UserRoleService } from './api/userRole.service';
 
@@ -39,6 +40,7 @@ import { UserRoleService } from './api/userRole.service';
     PaymentReportService,
     PracticeService,
     RoleService,
+    SystemService,
     UserService,
     UserRoleService ]
 })

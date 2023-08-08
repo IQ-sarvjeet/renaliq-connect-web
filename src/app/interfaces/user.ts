@@ -4,5 +4,6 @@ export interface UserInfo {
     fullName: string;
     roleName?: string;
     userLoginId?: number;
-    role: Roles
+    role: Roles;
+    twoFactorNotificationMedium?: number;
 }
