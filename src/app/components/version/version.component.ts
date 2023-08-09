@@ -13,9 +13,9 @@ export class VersionComponent implements OnInit{
   constructor(private systemService: SystemService){}
   ngOnInit(): void {
     this.webVersion = CommonConstants.WEB_VERSION;
-    this.getVersion();
+    this.getAPIVersion();
   }
-  getVersion(){
+  getAPIVersion(){
     this.systemService.apiVersionGet().subscribe({
       next: (response: any) => {
         if (response.version) {
