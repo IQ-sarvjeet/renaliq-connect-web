@@ -14,7 +14,7 @@
           </ol>
         </div>
       </div>
-      <div class="col-12 col-md-9 col-lg-8 col-xl-7 pt-1 text-sm-end">
+      <div class="col-11 col-md-8 col-lg-7 col-xl-6 pt-1 text-sm-end">
         <div class="row">
           <div class="col-12 col-md-7 col-lg-7 col-xl-7">
             <div class="border rounded-2 py-2 px-3 bg-white">
@@ -103,6 +103,75 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-1 col-md-1 col-lg-1 col-xl-1 pt-1 text-sm-end">
+        <a
+          data-bs-target="#modalAdmissionFilter"
+          data-bs-toggle="modal"
+          href="javascript:void(0)"
+          class="p-1 text-secondary fs-16 align-middle"
+          ><i class="fa fa-filter"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalAdmissionFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="searchPatient" class="mb-1">Patient</label>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search by Patient"
+            id="searchPatient"
+            [(ngModel)]="filter.patientFilter.searchKey"
+            class="form-control"
+          />
+        </div>
+        <div class="form-row mt-4 mb-4">
+          <div class="col-6">
+            <label for="stage" class="mb-1">Stage</label>
+            <mbsc-select [data] = "stages"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.patientFilter.stage"
+              id="stage"
+              placeholder="Select"
+              [selectMultiple]="true"
+            >
+            </mbsc-select>
+          </div>
+          <div class="col-6">
+            <label for="status" class="mb-1">Case Category</label>
+            <mbsc-select [data]="caseCategory"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.patientFilter.status"
+              id="status"
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
+          </div>
+        </div>
+        
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Update
+        </button>
       </div>
     </div>
   </div>

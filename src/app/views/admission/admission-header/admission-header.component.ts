@@ -3,6 +3,9 @@ import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from '../interfaces/admission';
+import { FilterModel } from 'src/app/interfaces/filter.model';
+import { environment } from 'src/environments/environment';
+import { EventService } from 'src/app/services/event.service';
 
 //const startOfWeek = moment().startOf('week').toDate();
 //const endOfWeek   = moment().endOf('week').toDate();
@@ -35,8 +38,51 @@ export class AdmissionHeaderComponent {
       }
   };
   admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
+  filter: any = {
+    currentPage: 1,
+    pageSize: environment.pageSize,
+    patientFilter :{
+      searchKey:'',
+      stage:[],
+      caseCategory:[]
+    }
+  };
+  displayFilter: any = {
+    searchKey:'',
+    stage:[],
+    caseCategory:[],
+  }
+  stages: any = [
+    'CKD Stage 3a',
+    'CKD Stage 3b',
+    'CKD Stage 4',
+    'CKD Stage 5',
+    'ESKD'
+  ]
+  caseCategory: any = [
+    'Acute inpatient',
+    'Inpatient',
+    'Medical'
+  ]
+  dateRangeOptionsAssignment: MbscDatepickerOptions = {
+    theme: 'ios',
+    controls: ['calendar'],
+    select: 'range',
+    onChange: (value: any) => {
+    },
+    onActiveDateChange: (event, inst) => {
+    },
+    onClose: (event) => {
+      let assignment = event.value.filter((x:any)=>x==null);
+      if(assignment.length != 0)
+      {
+        this.filter.patientFilter.assignment = [];
+      }
+    }
+  };
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
-  constructor(private admissionService: AdmissionService) {}
+  constructor(private admissionService: AdmissionService,
+    private eventService: EventService) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
@@ -49,5 +95,10 @@ export class AdmissionHeaderComponent {
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(dateRange.fromDate, dateRange.toDate).subscribe((data: any) => {
       this.admissionHeaders = data;
     })
+  }
+  submit(){
+    console.log('submit Filte::::::::::');
+    this.displayFilter = { ...this.filter.patientFilter }
+    this.eventService.admissionFilterSet({ ...this.filter.patientFilter });
   }
 }
