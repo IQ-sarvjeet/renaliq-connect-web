@@ -15,8 +15,11 @@
               "
               >-</span
             >
-            | {{ profileDetail.age }} Years</span
-          >
+            | {{ profileDetail.age }} Years
+            | <span [ngClass]="profileDetail.isSomatusRegistered ? 'text-success' : 'text-danger'">
+              {{ profileDetail.isSomatusRegistered ? 'Registered on Somatus' : 'Not Registered on Somatus'}}
+            </span>
+          </span>
         </h1>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
@@ -31,6 +34,9 @@
         <!-- <a href="#" class="btn btn-outline-secondary ms-3"
           ><i class="icon icon-printer me-1"></i> Print</a
         > -->
+        <span class="badge bg-primary" [ngClass]="profileDetail.isSomatusRegistered ? 'text-success' : 'text-danger'">
+          {{ profileDetail.isSomatusRegistered ? 'Registered on Somatus' : 'Not Registered on Somatus'}}
+        </span>
         <a routerLink="/patients" onclick="window.close();" class="btn btn-danger">Close</a>
         <!-- <a
           href="#"
