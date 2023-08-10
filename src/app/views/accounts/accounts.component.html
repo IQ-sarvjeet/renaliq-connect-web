@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="flex-fill px-4 mt-3 mt-sm-0">
                                         <div> Last Payment <div class="text-dark fw-bold fs-22 lh-sm">
-                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.lastPayment
+                                                <span class="d-inline-block pt-1">{{ paymentReport.summary.lastPayment | currency:'USD'
                                                     }}</span>
                                             </div>
                                         </div>
@@ -212,10 +212,10 @@
                                 <td>{{ data.attributedPatients }}</td>
                                 <td>{{ data.engaged }}</td>
                                 <td>{{ data.assessed }}</td>
-                                <td>{{ data.pmpmAmount }}</td>
-                                <td>{{ data.pmpmPaymentAmount }}</td>
-                                <td>{{ data.incentiveAtEightyPercent.toFixed(2) }}</td>
-                                <td>{{ data.incentiveAtHundredPercent.toFixed(2) }}</td>
+                                <td>{{ data.pmpmAmount | currency:'USD' }}</td>
+                                <td>{{ data.pmpmPaymentAmount | currency:'USD' }}</td>
+                                <td>{{ data.incentiveAtEightyPercent.toFixed(2) | currency:'USD' }}</td>
+                                <td>{{ data.incentiveAtHundredPercent.toFixed(2) | currency:'USD' }}</td>
                                 <td>{{ data.reportDate }}</td>
                             </tr>
                         </tbody>
