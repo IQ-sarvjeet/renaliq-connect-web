@@ -44,14 +44,20 @@ export class AdmissionHeaderComponent {
     patientFilter :{
       searchKey:'',
       stage:[],
-      caseCategory:[]
+      caseCategory:[],
+      diagnosis: [],
+      facilityName: []
     }
   };
   displayFilter: any = {
     searchKey:'',
     stage:[],
     caseCategory:[],
+    diagnosis: [],
+    facilityName: []
   }
+  diagnosis: any = [];
+  facilityName: any = [];
   stages: any = [
     'CKD Stage 3a',
     'CKD Stage 3b',
@@ -62,7 +68,9 @@ export class AdmissionHeaderComponent {
   caseCategory: any = [
     'Acute inpatient',
     'Inpatient',
-    'Medical'
+    'Medical',
+    'Emergency',
+    'Skilled Nursing'
   ]
   dateRangeOptionsAssignment: MbscDatepickerOptions = {
     theme: 'ios',

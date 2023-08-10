@@ -40,7 +40,8 @@ export class AdmissionsGridComponent {
     }
   ngOnInit() {
     this.eventService.admissionFilterSubscription().subscribe((value: any) => {
-        console.log('Filter updated::::::::::', value);
+        this.filters = {...this.filters, ...value};
+        this.getAdmissionList();
       })
   }
   private getAdmissionList() {

@@ -121,7 +121,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content modal-content-demo">
       <div class="modal-header bg-gray-200">
-        <h4 class="modal-title fw-semibold">Filter Patient</h4>
+        <h4 class="modal-title fw-semibold">Filter Admissions</h4>
         <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -138,7 +138,7 @@
             class="form-control"
           />
         </div>
-        <div class="form-row mt-4 mb-4">
+        <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="mb-1">Stage</label>
             <mbsc-select [data] = "stages"
@@ -151,11 +151,36 @@
             </mbsc-select>
           </div>
           <div class="col-6">
-            <label for="status" class="mb-1">Case Category</label>
+            <label for="caseCategory" class="mb-1">Case Category</label>
             <mbsc-select [data]="caseCategory"
               class="form-control form-control-mbsc"
-              [(ngModel)]="filter.patientFilter.status"
-              id="status"
+              [(ngModel)]="filter.patientFilter.caseCategory"
+              id="caseCategory"
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
+          </div>
+        </div>
+        <div class="form-row mt-4 mb-4">
+          <div class="col-6">
+            <label for="stage" class="mb-1">Diagnosis</label>
+            <mbsc-select [data] = "diagnosis"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.patientFilter.diagnosis"
+              id="diagnosis"
+              placeholder="Select"
+              [selectMultiple]="true"
+            >
+            </mbsc-select>
+          </div>
+          <div class="col-6">
+            <label for="facilityName" class="mb-1">Facility Name</label>
+            <mbsc-select [data]="facilityName"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.patientFilter.facilityName"
+              id="facilityName"
               display="anchored" 
               placeholder="Select"
               labelStyle="stacked" 
