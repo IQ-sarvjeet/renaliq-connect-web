@@ -14,12 +14,12 @@ export class AccountsComponent implements OnInit {
     series: [
       {
         type: 'column',
-        name: 'Engaged Patients',
+        name: 'Patient Count',
         data: []
       },
       {
         type: 'column',
-        name: 'Patient Count',
+        name: 'Engaged Patients',
         data: []
       },
       {
@@ -55,8 +55,8 @@ export class AccountsComponent implements OnInit {
           this.paymentReport.data = response.data;
           this.paymentReport.summary = response.summary;
           response.data.forEach((data: any) => {
-            this.paymentReport.series[0].data.push(data.engaged);
-            this.paymentReport.series[1].data.push(data.patientCount);
+            this.paymentReport.series[0].data.push(data.attributedPatients);
+            this.paymentReport.series[1].data.push(data.engaged);
             this.paymentReport.series[2].data.push(data.pmpmPaymentAmount);
             this.paymentReport.series[3].data.push(data.incentiveAtEightyPercent);
             this.paymentReport.series[4].data.push(data.incentiveAtHundredPercent);

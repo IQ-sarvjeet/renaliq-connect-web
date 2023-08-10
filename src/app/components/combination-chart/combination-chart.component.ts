@@ -23,20 +23,22 @@ export class CombinationChartComponent implements OnInit {
       title: {
         text: ''
       },
-      stackLabels: {
-        enabled: true
-      }
+      // stackLabels: {
+      //   enabled: true
+      // }
     },
+    colors: ['#083050', '#84acd6', '#90ed7d', '#f7a35c', '#8085e9'],
     tooltip: {
       headerFormat: '<b>{point.x}</b><br/>',
-      pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+      // pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+      pointFormat: '{series.name}: {point.y}'
     },
     plotOptions: {
       column: {
-        stacking: 'normal',
-        dataLabels: {
-          enabled: true
-        }
+        // stacking: 'normal',
+        // dataLabels: {
+        //   enabled: true
+        // }
       }
     },
     credits: {
