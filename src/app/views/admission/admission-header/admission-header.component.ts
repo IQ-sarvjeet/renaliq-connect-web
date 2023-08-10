@@ -105,7 +105,6 @@ export class AdmissionHeaderComponent {
     })
   }
   submit(){
-    console.log('submit Filte::::::::::');
     this.displayFilter = { ...this.filter.patientFilter }
     this.eventService.admissionFilterSet({ ...this.filter.patientFilter });
   }
