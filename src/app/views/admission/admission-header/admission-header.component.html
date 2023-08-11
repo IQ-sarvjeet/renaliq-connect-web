@@ -1,7 +1,7 @@
 <div class="sub-header">
   <div class="main-container container">
     <div class="row">
-      <div class="col-12 col-md-3 col-lg-4 col-xl-5 align-item-center d-flex">
+      <div class="col-12 col-md-4 col-lg-4 col-xl-4 align-item-center d-flex">
         <div class="mt-3">
           <h1 class="page-title m-0">Utilization
             <div class="admissions-subheader">(Includes admissions, discharges, emergency, transfers and more)</div>
@@ -16,9 +16,10 @@
           </ol>
         </div>
       </div>
-      <div class="col-12 col-md-9 col-lg-8 col-xl-7 pt-1 text-sm-end">
+        
+      <div class="col-12 col-md-8 col-lg-8 col-xl-8 pt-1 text-sm-end">
         <div class="row">
-          <div class="col-12 col-md-7 col-lg-7 col-xl-7">
+          <div class="col-12 col-md-6 col-lg-7 col-xl-7">
             <div class="border rounded-2 py-2 px-3 bg-white">
               <div class="row text-start">
                 <div class="col-12 col-sm-5">
@@ -81,7 +82,7 @@
             </div>
           </div>
           <div
-            class="col-12 col-md-5 col-lg-5 col-xl-5 align-item-center d-flex py-3 py-md-0"
+            class="col-12 col-md-6 col-lg-5 col-xl-5 align-item-center d-flex py-3 py-md-0"
           >
             <div class="input-group admissions-period">
               <mbsc-datepicker
@@ -103,8 +104,133 @@
                 <i class="fa fa-calendar"></i>
               </button>
             </div>
+            <a
+              data-bs-target="#modalAdmissionFilter"
+              data-bs-toggle="modal"
+              href="javascript:void(0)"
+              class="text-secondary fs-16 align-middle"
+              style="padding-left: 10px;"
+              ><i class="fa fa-filter"></i
+            ></a>
           </div>
         </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-12 col-xl-12 pt-1 pb-1 text-sm-end">
+        <div class="d-none d-md-flex flex-fill pb-2 align-items-center">
+          <div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
+              Name: <b>{{displayFilter.searchKey}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
+              Stage: <b>{{displayFilter.stage}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.caseCategory.length">
+              Case Category: <b>{{displayFilter.caseCategory}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('caseCategory')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.diagnosis.length">
+              Diagnosis: <b>{{displayFilter.diagnosis}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('diagnosis')">x</a>
+            </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.facilityName.length">
+              Facility Name: <b>{{displayFilter.facilityName}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('facilityName')">x</a>
+            </div>
+          </div>
+          <div class="tags mt-1 me-2" 
+            *ngIf="displayFilter.searchKey || displayFilter.stage.length || displayFilter.caseCategory.length || displayFilter.diagnosis.length || displayFilter.facilityName.length">
+            Clear Filters<a href="Javascript:void(0)"
+            class="tags__icon"
+            (click)="clearFilterHandler()">x</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- FILTER MODAL -->
+<div class="modal fade" id="modalAdmissionFilter">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content modal-content-demo">
+      <div class="modal-header bg-gray-200">
+        <h4 class="modal-title fw-semibold">Filter Admissions</h4>
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <label for="searchPatient" class="mb-1">Patient</label>
+          <input
+            type="text"
+            name="text"
+            placeholder="Search by Patient"
+            id="searchPatient"
+            [(ngModel)]="filter.searchKey"
+            class="form-control"
+          />
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-6">
+            <label for="stage" class="mb-1">Stage</label>
+            <mbsc-select [data] = "stages"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.stage"
+              id="stage"
+              placeholder="Select"
+              [selectMultiple]="true"
+            >
+            </mbsc-select>
+          </div>
+          <div class="col-6">
+            <label for="caseCategory" class="mb-1">Case Category</label>
+            <mbsc-select [data]="caseCategory"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.caseCategory"
+              id="caseCategory"
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
+          </div>
+        </div>
+        <div class="form-row mt-4 mb-4">
+          <div class="col-6">
+            <label for="stage" class="mb-1">Diagnosis</label>
+            <mbsc-select [data] = "diagnosis"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.diagnosis"
+              id="diagnosis"
+              placeholder="Select"
+              [selectMultiple]="true"
+            >
+            </mbsc-select>
+          </div>
+          <div class="col-6">
+            <label for="facilityName" class="mb-1">Facility Name</label>
+            <mbsc-select [data]="facilityName"
+              class="form-control form-control-mbsc"
+              [(ngModel)]="filter.facilityName"
+              id="facilityName"
+              display="anchored" 
+              placeholder="Select"
+              labelStyle="stacked" 
+              [selectMultiple]="true">
+            </mbsc-select>
+          </div>
+        </div>
+        
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          data-bs-dismiss="modal"
+          (click)="submit()"
+        >
+          Update
+        </button>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { AdmissionHeaderComponent } from './admission-header/admission-header.co
 import { AdmissionsAdmissionByComponent } from './admissions-admission-by/admissions-admission-by.component';
 import { AdmissionsGridComponent } from './admissions-grid/admissions-grid.component';
 import { SharedModule } from 'src/app/components/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -26,7 +27,9 @@ const routes: Routes = [
     MbscModule,
     RouterModule.forChild(routes),
     CommonModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AdmissionModule { }

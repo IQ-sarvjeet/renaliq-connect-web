@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ErrorMessage, ErrorReachedAttempt } from '../interfaces/error-message';
 import { Toaster } from '../interfaces/toaster';
 
@@ -18,6 +18,7 @@ export class EventService {
   private notificationEvent$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private documentsFilter$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   private openModal$: BehaviorSubject<[boolean,boolean]> = new BehaviorSubject<[boolean,boolean]>([false,false]);
+  private admissionFilters$: BehaviorSubject<any> = new BehaviorSubject<any>({});
   constructor() { }
   openToaster(value: any) {
     this.openToaster$.next(value);
@@ -69,5 +70,11 @@ export class EventService {
   }
   closeModalEvent() {
     this.openModal$.next([false, false]);
+  }
+  admissionFilterSubscription(): Observable<any> {
+    return this.admissionFilters$.asObservable();
+  }
+  admissionFilterSet(value: any) {
+    this.admissionFilters$.next(value);
   }
 }
