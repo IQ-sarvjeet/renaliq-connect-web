@@ -39,15 +39,11 @@ export class AdmissionHeaderComponent {
   };
   admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
   filter: any = {
-    currentPage: 1,
-    pageSize: environment.pageSize,
-    patientFilter :{
-      searchKey:'',
-      stage:[],
-      caseCategory:[],
-      diagnosis: [],
-      facilityName: []
-    }
+    searchKey:'',
+    stage:[],
+    caseCategory:[],
+    diagnosis: [],
+    facilityName: []
   };
   displayFilter: any = {
     searchKey:'',
@@ -72,22 +68,6 @@ export class AdmissionHeaderComponent {
     'Emergency',
     'Skilled Nursing'
   ]
-  dateRangeOptionsAssignment: MbscDatepickerOptions = {
-    theme: 'ios',
-    controls: ['calendar'],
-    select: 'range',
-    onChange: (value: any) => {
-    },
-    onActiveDateChange: (event, inst) => {
-    },
-    onClose: (event) => {
-      let assignment = event.value.filter((x:any)=>x==null);
-      if(assignment.length != 0)
-      {
-        this.filter.patientFilter.assignment = [];
-      }
-    }
-  };
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
   constructor(private admissionService: AdmissionService,
     private eventService: EventService) {}
@@ -105,7 +85,41 @@ export class AdmissionHeaderComponent {
     })
   }
   submit(){
-    this.displayFilter = { ...this.filter.patientFilter }
-    this.eventService.admissionFilterSet({ ...this.filter.patientFilter });
+    this.displayFilter = { ...this.filter }
+    this.eventService.admissionFilterSet({ ...this.filter });
+  }
+  clearFilterHandler() {
+    this.filter = {
+      searchKey:'',
+      stage:[],
+      caseCategory:[],
+      diagnosis: [],
+      facilityName: []
+    };
+    this.displayFilter = {...this.filter};
+    this.submit();
+  }
+  clearFilter(key: string) {
+    if(key === 'searchKey') {
+      this.displayFilter.searchKey = '';
+      this.filter.searchKey = '';
+    }
+    if(key === 'stage') {
+      this.displayFilter.stage = [];
+      this.filter.stage = [];
+    }
+    if(key === 'caseCategory') {
+      this.displayFilter.caseCategory = [];
+      this.filter.caseCategory = [];
+    }
+    if(key === 'diagnosis') {
+      this.displayFilter.diagnosis = [];
+      this.filter.diagnosis = [];
+    }
+    if(key === 'facilityName') {
+      this.displayFilter.facilityName = [];
+      this.filter.facilityName = [];
+    }
+    this.submit();
   }
 }
