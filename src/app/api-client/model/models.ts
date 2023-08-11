@@ -28,6 +28,7 @@ export * from './roleViewModel';
 export * from './sortOrder';
 export * from './tagListViewModel';
 export * from './tagModel';
+export * from './updateNotificationMediumRequest';
 export * from './userActivityLogEditModel';
 export * from './userDetailEditModel';
 export * from './userFilter';

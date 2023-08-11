@@ -21,6 +21,7 @@ import { TypeaheadComponent } from './typeahead/typeahead.component';
 import { PowerBIEmbedModule } from 'powerbi-client-angular';
 import { PBIComponent } from './PBI/PBI.component';
 import { CombinationChartComponent } from './combination-chart/combination-chart.component';
+import { VersionComponent } from './version/version.component';
 
 @NgModule({
  imports:      [ CommonModule, HighchartsChartModule, PowerBIEmbedModule ],
@@ -39,6 +40,7 @@ import { CombinationChartComponent } from './combination-chart/combination-chart
     NoRecordsFoundComponent,
     TypeaheadComponent,
     PBIComponent,
+    VersionComponent,
     CombinationChartComponent
   ],
 
@@ -64,6 +66,7 @@ import { CombinationChartComponent } from './combination-chart/combination-chart
     NoRecordsFoundComponent,
     TypeaheadComponent,
     PBIComponent,
+    VersionComponent,
     CombinationChartComponent
   ],
  

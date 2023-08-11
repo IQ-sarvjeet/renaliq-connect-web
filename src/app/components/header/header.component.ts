@@ -1,7 +1,7 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { LocalStorageService } from 'src/app/shared/services/localstorage.service';
-import { AccountService, PracticeService, UserRoleService, UserService } from '../../api-client';
+import { AccountService, NotificationService, PracticeService, UserRoleService, UserService } from '../../api-client';
 import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,8 @@ import { UserInfo } from 'src/app/interfaces/user';
 import { StoreService } from 'src/app/services/store.service';
 import { filter } from 'rxjs/operators';
 import { Roles } from 'src/app/enums/roles';
-
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { TwoFactorOTPMedium } from 'src/app/enums/twoFactorOTPMedium';
 
 type Practice = {
   isSelected: boolean;
@@ -27,11 +28,17 @@ export class HeaderComponent {
   userRoleTypes = Roles;
   messages: any = Messages;
   selectedPractice: Practice = {} as Practice;
+  OTPSettingForm: FormGroup = this.fb.group({
+    isEmailEnabled: [],
+    isSmsEnabled: []
+  });
+  showLoading: boolean = false;
   practiceList: Practice[] = [];
   userInfo: UserInfo = {
     fullName: '',
     roleName: '',
-    role: Roles.PRACTICE_USER
+    role: Roles.PRACTICE_USER,
+    twoFactorNotificationMedium: 0
   };
   currentRoute: string = '/';
   rolesLoaded: boolean = false;
@@ -42,6 +49,8 @@ export class HeaderComponent {
     private eventService: EventService,
     private authService: AuthService,
     private storeService: StoreService,
+    private fb: FormBuilder,
+    private notificationService: NotificationService,
     private userRolesService: UserRoleService
   ) {
     route.events.pipe(
@@ -56,10 +65,12 @@ export class HeaderComponent {
         if (!this.authService.isLoggedIn()) return;
         this.loadPracticeList();
         this.loadUserRoles();
+        this.setNotificationFormValues();
       }
     })
     this.storeService.userInfoSubscription().subscribe(async (info: UserInfo) => {
       this.userInfo = info;
+      this.setNotificationFormValues();
       if (!this.authService.isLoggedIn()) return;
       if(!this.rolesLoaded) {
         this.loadUserRoles();
@@ -80,6 +91,51 @@ export class HeaderComponent {
         console.error(error);
       }
     })
+  }
+  setNotificationFormValues() {
+    if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.ALL) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: true,
+        isSmsEnabled: true
+      });
+    } else if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.EMAIL) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: true,
+        isSmsEnabled: false
+      });
+    } else if(this.userInfo.twoFactorNotificationMedium === TwoFactorOTPMedium.SMS) {
+      this.OTPSettingForm.patchValue({
+        isEmailEnabled: false,
+        isSmsEnabled: true
+      });
+    }
+  }
+  updateNotificationMedium(type: string){
+    this.showLoading = true;
+    if(!this.OTPSettingForm.value.isEmailEnabled && !this.OTPSettingForm.value.isSmsEnabled) {
+      if(type === 'email') {
+        this.OTPSettingForm.patchValue({
+          isSmsEnabled: true
+        });
+      } else if(type === 'text') {
+        this.OTPSettingForm.patchValue({
+          isEmailEnabled: true,
+        });
+      }
+    }
+    this.notificationService.apiNotificationUpdateNotifyMediumPut(this.OTPSettingForm.value).subscribe({
+      next: (status: any) => {
+        this.showLoading = false;
+      },
+      error: (error) => {
+        this.showLoading = false;
+        this.eventService.openToaster({
+          showToster: true,
+          message: `Error While setting notifications alert.`,
+          type: 'danger',
+        });
+      }
+    });
   }
   private loadUserRoles() {
     if (!this.userInfo.userLoginId || !this.userInfo.userLoginId) return;
