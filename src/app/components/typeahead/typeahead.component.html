@@ -1,9 +1,10 @@
-<div class="form-floating mb-3">
+<div class="mb-3"
+    [ngClass]="classParentElement">
     <input type="text" class="form-control" 
-        placeholder="Folder"
+        [placeholder]="placeholder"
         [value]="selectedItem"
         #searchInput />
-    <label class="lh-sm" for="folder">{{fieldLable}}</label>
+    <label *ngIf="fieldLable" class="lh-sm" for="folder">{{fieldLable}}</label>
     <div *ngIf="(filteredData | async) as data"
         style="position: relative; width: 100%; height: auto;">
         <ul *ngIf="data.length && displayList"
