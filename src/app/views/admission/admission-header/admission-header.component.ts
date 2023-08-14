@@ -3,6 +3,9 @@ import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from '../interfaces/admission';
+import { FilterModel } from 'src/app/interfaces/filter.model';
+import { environment } from 'src/environments/environment';
+import { EventService } from 'src/app/services/event.service';
 
 //const startOfWeek = moment().startOf('week').toDate();
 //const endOfWeek   = moment().endOf('week').toDate();
@@ -35,8 +38,39 @@ export class AdmissionHeaderComponent {
       }
   };
   admissionHeaders: AdmissionHeaders = {} as AdmissionHeaders;
+  filter: any = {
+    searchKey:'',
+    stage:[],
+    caseCategory:[],
+    diagnosis: [],
+    facilityName: []
+  };
+  displayFilter: any = {
+    searchKey:'',
+    stage:[],
+    caseCategory:[],
+    diagnosis: [],
+    facilityName: []
+  }
+  diagnosis: any = [];
+  facilityName: any = [];
+  stages: any = [
+    'CKD Stage 3a',
+    'CKD Stage 3b',
+    'CKD Stage 4',
+    'CKD Stage 5',
+    'ESKD'
+  ]
+  caseCategory: any = [
+    'Acute inpatient',
+    'Inpatient',
+    'Medical',
+    'Emergency',
+    'Skilled Nursing'
+  ]
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
-  constructor(private admissionService: AdmissionService) {}
+  constructor(private admissionService: AdmissionService,
+    private eventService: EventService) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
@@ -49,5 +83,43 @@ export class AdmissionHeaderComponent {
     this.admissionService.apiAdmissionSummaryFromdateTodateGet(dateRange.fromDate, dateRange.toDate).subscribe((data: any) => {
       this.admissionHeaders = data;
     })
+  }
+  submit(){
+    this.displayFilter = { ...this.filter }
+    this.eventService.admissionFilterSet({ ...this.filter });
+  }
+  clearFilterHandler() {
+    this.filter = {
+      searchKey:'',
+      stage:[],
+      caseCategory:[],
+      diagnosis: [],
+      facilityName: []
+    };
+    this.displayFilter = {...this.filter};
+    this.submit();
+  }
+  clearFilter(key: string) {
+    if(key === 'searchKey') {
+      this.displayFilter.searchKey = '';
+      this.filter.searchKey = '';
+    }
+    if(key === 'stage') {
+      this.displayFilter.stage = [];
+      this.filter.stage = [];
+    }
+    if(key === 'caseCategory') {
+      this.displayFilter.caseCategory = [];
+      this.filter.caseCategory = [];
+    }
+    if(key === 'diagnosis') {
+      this.displayFilter.diagnosis = [];
+      this.filter.diagnosis = [];
+    }
+    if(key === 'facilityName') {
+      this.displayFilter.facilityName = [];
+      this.filter.facilityName = [];
+    }
+    this.submit();
   }
 }

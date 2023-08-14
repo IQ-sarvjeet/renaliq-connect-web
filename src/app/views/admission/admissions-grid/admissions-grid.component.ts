@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { AdmissionFilterModel, AdmissionService } from 'src/app/api-client';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { EventService } from 'src/app/services/event.service';
 
 @Component({
   selector: 'app-admissions-grid',
@@ -33,8 +34,16 @@ export class AdmissionsGridComponent {
     this.filters.endDateTime = new Date(value.toDate);
     this.getAdmissionList();
   }
-  constructor(private admissionService: AdmissionService, private route: Router) {}
-  ngOnInit() {}
+  constructor(private admissionService: AdmissionService,
+    private route: Router,
+    private eventService: EventService) {
+    }
+  ngOnInit() {
+    this.eventService.admissionFilterSubscription().subscribe((value: any) => {
+        this.filters = {...this.filters, ...value};
+        this.getAdmissionList();
+      })
+  }
   private getAdmissionList() {
     this.showLoading = true;
     this.admissionService.apiAdmissionListPost({...this.filters}).subscribe((data: any) => {

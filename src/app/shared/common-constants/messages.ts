@@ -1,5 +1,5 @@
 export const Messages = {
-  admissions: 'Admissions Last 90 Days',
+  admissions: 'Utilization Last 90 Days',
   admissions7Days: 'Last 7 Days',
   attributed: 'Attributed Patients',
   checkSpamMessage: "If you don't see it, check your spam.",
