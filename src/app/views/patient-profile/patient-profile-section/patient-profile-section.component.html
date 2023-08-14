@@ -22,8 +22,13 @@
       </div>
       <h4 class="mt-3">
         {{ profileDetail.name ? profileDetail.name : '-' }}
-        <i class="fa" [ngClass]="!profileDetail.isSomatusRegistered ? 'fa-circle text-light' : 'fa-check-circle text-success'"></i>
       </h4>
+      <div class="text-center my-2">
+        <span class="d-inline-block py-1 px-3 rounded-2 border fs-13" [ngClass]="profileDetail.isSomatusRegistered ? 'text-success border-success' : 'text-danger border-danger'">
+          <i class="fa me-1" [ngClass]="profileDetail.isSomatusRegistered ? 'text-success fa-check-circle' : 'text-danger fa-times-circle'"></i>
+          {{ profileDetail.isSomatusRegistered ? 'Registered on mySomatus' : 'Not Registered on mySomatus'}}
+        </span>
+      </div>
     </div>
     <div class="form-row mt-4">
       <div class="col-6">
