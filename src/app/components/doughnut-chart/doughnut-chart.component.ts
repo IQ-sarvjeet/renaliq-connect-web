@@ -1,8 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import HC_exporting from 'highcharts/modules/exporting';
+import offlineExporting from 'highcharts/modules/offline-exporting';
+import HC_Data from 'highcharts/modules/export-data';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
+
+HC_exporting(Highcharts);
+offlineExporting(Highcharts);
+HC_Data(Highcharts);
 
 type BarChartConfig = {
   apiUrl: string;
@@ -70,7 +77,8 @@ export class DoughnutChartComponent {
       innerSize: '50%',
       data: [],
       showInLegend: false
-    }]
+    }],
+    exporting: { showTable: true, allowHTML: true, enabled: true },
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
   constructor(private httpClient: HttpClient) {
@@ -112,5 +120,6 @@ export class DoughnutChartComponent {
         ...series
       ]
     }
+    // Highcharts.chart('abcde', this.options);
   }
 }
