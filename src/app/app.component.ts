@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 declare const $: any;
 @Component({
   selector: 'app-root',
@@ -7,6 +8,14 @@ declare const $: any;
 })
 export class AppComponent {
   title = 'new-angular-app';
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
+      }
+    });
+  }
   ngOnInit(): void {
     // ----- Horizontal Style ------- //
     $('body').addClass('horizontal');
