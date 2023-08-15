@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { CommonConstants } from './shared/common-constants/common-constants';
 declare const $: any;
+// (<any>window).dataLayer = (<any>window).dataLayer || [];
+// (<any>window).gtag = function() { (<any>window).dataLayer.push(arguments); }
+declare const dataLayer: any;
+declare const gtag: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,15 +14,38 @@ declare const $: any;
 })
 export class AppComponent {
   title = 'new-angular-app';
+  gtagId! : string;
   constructor(private router: Router) {
+    const myScriptElement = document.createElement("script");
+    myScriptElement.src = `https://www.googletagmanager.com/gtag/js?id=${CommonConstants.GTAG_ID}`;
+    document.body.appendChild(myScriptElement);
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        (<any>window).ga('set', 'page', event.urlAfterRedirects);
-        (<any>window).ga('send', 'pageview');
+      try {
+        if (event instanceof NavigationEnd) {
+          // (<any>window).gtag('set', 'page', event.urlAfterRedirects);
+          // (<any>window).gtag('send', 'pageview');
+          const routeNameArr = event.urlAfterRedirects.split('/');
+          // gtag('event', 'page_view', {
+          //   'page_location': document.location.origin + event.urlAfterRedirects,
+          //   'page_title': routeNameArr[routeNameArr.length -1]
+          // });
+          (<any>window).dataLayer.push({
+            event: 'virtualPageview',
+            virtualPageURL: document.location.origin + event.urlAfterRedirects,
+            virtualPageTitle: routeNameArr[routeNameArr.length -1],
+          });
+        }
+      } catch(error) {
+        console.log('error:', error);
       }
     });
   }
   ngOnInit(): void {
+    this.gtagId = CommonConstants.GTAG_ID;
+    
+    // gtag('js', new Date());
+    // gtag('config', '{{gtagId}}');
+
     // ----- Horizontal Style ------- //
     $('body').addClass('horizontal');
     let bodyhorizontal = $('body').hasClass('horizontal');

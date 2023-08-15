@@ -9,8 +9,8 @@ import { Messages } from 'src/app/shared/common-constants/messages';
 })
 export class FooterComponent implements OnInit{
   messages: any = Messages;
-  gtagId! : string;
+  // gtagId! : string;
   ngOnInit() {
-    this.gtagId = CommonConstants.GTAG_ID;
+    // this.gtagId = CommonConstants.GTAG_ID;
  }
 }
