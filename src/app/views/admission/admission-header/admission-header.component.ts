@@ -6,6 +6,7 @@ import { AdmissionHeaders } from '../interfaces/admission';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
+import { HttpClient } from '@angular/common/http';
 
 //const startOfWeek = moment().startOf('week').toDate();
 //const endOfWeek   = moment().endOf('week').toDate();
@@ -70,10 +71,23 @@ export class AdmissionHeaderComponent {
   ]
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
   constructor(private admissionService: AdmissionService,
-    private eventService: EventService) {}
+    private eventService: EventService,
+    private httpClient: HttpClient) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
+    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/diagnosis/list`).subscribe((data: any) => {
+      console.log('diagnosis data:', data)
+      data.map((item: any) => {
+        this.diagnosis.push(item.name);
+      })
+    })
+    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/facility/list`).subscribe((data: any) => {
+      console.log('facility data:', data);
+      data.map((item: any) => {
+        this.facilityName.push(item.name);
+      })
+    })
   }
   private renderSummary() {
     const dateRange: any = {
