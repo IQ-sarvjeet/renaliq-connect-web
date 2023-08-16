@@ -71,22 +71,23 @@ export class AdmissionHeaderComponent {
   ]
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
   constructor(private admissionService: AdmissionService,
-    private eventService: EventService,
-    private httpClient: HttpClient) {}
+    private eventService: EventService) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
-    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/diagnosis/list`).subscribe((data: any) => {
-      console.log('diagnosis data:', data)
-      data.map((item: any) => {
-        this.diagnosis.push(item.name);
-      })
+    this.admissionService.apiAdmissionDiagnosisListGet().subscribe({
+      next: (data: any) => {
+        data.map((item: any) => {
+          this.diagnosis.push(item.name);
+        })
+      }
     })
-    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/facility/list`).subscribe((data: any) => {
-      console.log('facility data:', data);
-      data.map((item: any) => {
-        this.facilityName.push(item.name);
-      })
+    this.admissionService.apiAdmissionFacilityListGet().subscribe({
+      next: (data: any) => {
+        data.map((item: any) => {
+          this.facilityName.push(item.name);
+        })
+      }
     })
   }
   private renderSummary() {
