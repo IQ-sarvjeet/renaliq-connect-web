@@ -7,7 +7,6 @@
     
     <div class="donut-chart__wrapper">
       <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
-      <div class="col-12">
         <div class="row">
           <div class="col-12 col-sm-6 pe-xl-1">
             <app-doughnut-chart 
@@ -20,12 +19,12 @@
                 <tr *ngFor="let stage of patientByStage">
                   <td style="padding: 2px !important;">{{stage.key}}</td>
                   <td style="padding: 2px !important;">{{stage.value}}</td>
+                  <td style="padding: 2px !important;">{{stage.percent}}%</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </div>

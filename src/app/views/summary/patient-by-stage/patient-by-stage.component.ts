@@ -15,9 +15,13 @@ export class PatientByStageComponent {
     this.httpClient.get(`${environment.baseApiUrl}/api/Patient/summary/stage`).subscribe({
       next: (response: any) => {
         const gridData: any = [];
+        let sum: number = 0;
         Object.keys(response).forEach((key: string) => {
-          gridData.push({key, value: response[key]});
-        })
+          sum += response[key];
+        });
+        Object.keys(response).forEach((key: string) => {
+          gridData.push({key, value: response[key], percent: parseFloat((response[key]/sum * 100).toFixed(0))});
+        });
         this.patientByStage = gridData;
       },
       error: (error: any) => {
