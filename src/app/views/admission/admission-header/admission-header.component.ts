@@ -42,15 +42,15 @@ export class AdmissionHeaderComponent {
     searchKey:'',
     stage:[],
     caseCategory:[],
-    diagnosis: [],
-    facilityName: []
+    diagnosis: '',
+    facilityName: ''
   };
   displayFilter: any = {
     searchKey:'',
     stage:[],
     caseCategory:[],
-    diagnosis: [],
-    facilityName: []
+    diagnosis: '',
+    facilityName: ''
   }
   diagnosis: any = [];
   facilityName: any = [];
@@ -74,6 +74,20 @@ export class AdmissionHeaderComponent {
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
+    this.admissionService.apiAdmissionDiagnosisListGet().subscribe({
+      next: (data: any) => {
+        data.map((item: any) => {
+          this.diagnosis.push(item.name);
+        })
+      }
+    })
+    this.admissionService.apiAdmissionFacilityListGet().subscribe({
+      next: (data: any) => {
+        data.map((item: any) => {
+          this.facilityName.push(item.name);
+        })
+      }
+    })
   }
   private renderSummary() {
     const dateRange: any = {
@@ -84,6 +98,12 @@ export class AdmissionHeaderComponent {
       this.admissionHeaders = data;
     })
   }
+  public diagnosisSelectHandler($event: any) {
+    this.filter.diagnosis = $event;
+  }
+  public facilityNameSelectHandler($event: any) {
+    this.filter.facilityName = $event;
+  }
   submit(){
     this.displayFilter = { ...this.filter }
     this.eventService.admissionFilterSet({ ...this.filter });
@@ -93,8 +113,8 @@ export class AdmissionHeaderComponent {
       searchKey:'',
       stage:[],
       caseCategory:[],
-      diagnosis: [],
-      facilityName: []
+      diagnosis: '',
+      facilityName: ''
     };
     this.displayFilter = {...this.filter};
     this.submit();

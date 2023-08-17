@@ -12,11 +12,15 @@ export class TypeaheadComponent {
   filteredData?: Observable<any>;
   selectedItem: any = '';
   displayList: boolean = false;
+  placeholder: string = '';
+  classParentElement: string = 'form-floating';
   @Input() set dataList(value: any) {
-    if(value) {
+    if (value) {
       this.optionList = value.data;
       this.fieldLable = value.label;
       this.selectedItem = value.defaultSelected;
+      this.placeholder = value.placeholder ? value.placeholder: '';
+      this.classParentElement = value.classParentElement ? value.classParentElement: 'form-floating';
     }
   }
   @Output() itemSelected = new EventEmitter<string>();
