@@ -6,7 +6,6 @@ import { AdmissionHeaders } from '../interfaces/admission';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
-import { HttpClient } from '@angular/common/http';
 
 //const startOfWeek = moment().startOf('week').toDate();
 //const endOfWeek   = moment().endOf('week').toDate();
