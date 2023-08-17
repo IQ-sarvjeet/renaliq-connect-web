@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class PatientByStageComponent {
   chartConfig: any = { apiUrl: 'Patient/summary/stage', title: '' };
   patientByStage: any = [];
+  chartColors: String[] = ["#76ADDB", "#C8DB70", "#0B314F", "#999999", "#d96716"];
   constructor(private httpClient: HttpClient) {}
   ngOnInit(){
     this.httpClient.get(`${environment.baseApiUrl}/api/Patient/summary/stage`).subscribe({
@@ -19,8 +20,8 @@ export class PatientByStageComponent {
         Object.keys(response).forEach((key: string) => {
           sum += response[key];
         });
-        Object.keys(response).forEach((key: string) => {
-          gridData.push({key, value: response[key], percent: parseFloat((response[key]/sum * 100).toFixed(0))});
+        Object.keys(response).forEach((key: string, index: number) => {
+          gridData.push({key, value: response[key], percent: parseFloat((response[key]/sum * 100).toFixed(0)), color: this.chartColors[index]});
         });
         this.patientByStage = gridData;
       },
