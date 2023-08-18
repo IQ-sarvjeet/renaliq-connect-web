@@ -7,8 +7,8 @@
         class="avatar-xxxl rounded-circle me-3 my-auto"
       /> -->
       <div>
-        <img src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" class="w-50 rounded-circle profile-image" *ngIf="profileDetail.proileImage" />
-        <svg *ngIf="!profileDetail.proileImage"
+        <img [src]="sanitizeImageUrl(profileDetail.imageUrl)" class="w-50 rounded-circle profile-image" *ngIf="profileDetail.imageUrl" />
+        <svg *ngIf="!profileDetail.imageUrl"
           xmlns="http://www.w3.org/2000/svg"
           class="w-50"
           viewBox="0 0 512 512"

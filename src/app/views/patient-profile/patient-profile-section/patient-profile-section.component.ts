@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { PatientService } from 'src/app/api-client';
@@ -23,6 +24,7 @@ export class PatientProfileSectionComponent implements OnInit  {
   constructor(private activatedRoute: ActivatedRoute,
     private patientService: PatientService,
     private elementRef: ElementRef,
+    private sanitizer: DomSanitizer,
     private renderer: Renderer2,
     private downloadService: DownloadService) {
     // this.routeState = this.router.getCurrentNavigation()?.extras.state;
@@ -43,6 +45,9 @@ export class PatientProfileSectionComponent implements OnInit  {
         this.loadingCarePlan = false;
       }
     })
+  }
+  sanitizeImageUrl(imageUrl: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imageUrl);
   }
   downloadPlan(plan: any) {
     const url: string = `${environment.baseApiUrl}/api/Patient/careplan/download/${plan.patientActivityId}`;

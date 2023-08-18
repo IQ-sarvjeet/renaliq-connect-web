@@ -1,7 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PatientService } from 'src/app/api-client';
+import { EventService } from 'src/app/services/event.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-patient-profile',
@@ -40,6 +42,7 @@ export class PatientProfileComponent {
     lineOfBusinessId: null,
     enableCareTeamMapping: false,
     isCentralTeamOutReachMode: false,
+    imageUrl: null,
     phoneNumber: null,
     npEligibilityStatus: ""
   }
@@ -62,6 +65,8 @@ export class PatientProfileComponent {
     enrollmentNo: null,
   }
   constructor(private router: Router,
+    private httpClient: HttpClient,
+    private eventService: EventService,
     private patientService: PatientService,
     private activatedRoute: ActivatedRoute) {
     this.routerEventSubscription = this.router.events.subscribe(
@@ -99,8 +104,31 @@ export class PatientProfileComponent {
           this.profileNotFound = true;
         } else {
           this.profileNotFound = false;
+          this.profileDetail = details;
+          const url: string = `${environment.baseApiUrl}/api/Patient/profile-image/${this.profileDetail.enrollmentNumber}`;
+          let headerOptions = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Accept': 'application/pdf',
+          });
+          let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
+          this.httpClient.get(url, requestOptions).subscribe({
+            next: (response: any) => {
+              if (response.size === 0) {
+                this.eventService.openToaster({
+                  showToster: true,
+                  message: `Error in downloading file.`,
+                  type: 'danger',
+                });
+                return;
+              }
+              const blob = new Blob([response], {
+                type: 'data:application/pdf;base64',
+              });
+              const imageUrl = (window.URL || window.webkitURL).createObjectURL(blob);
+              this.profileDetail.imageUrl = imageUrl
+            }
+          });
         }
-        this.profileDetail = details;
       },
       error: (error: any) => {
         this.profileNotFound = true;
