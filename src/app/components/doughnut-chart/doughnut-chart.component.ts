@@ -19,6 +19,7 @@ export class DoughnutChartComponent {
   showLoading: boolean = false;
   errorMessage: string | null = null;
   Highcharts = Highcharts;
+  totalSum: number = 0;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -84,6 +85,7 @@ export class DoughnutChartComponent {
         if (response) {
           const gridData: any = [];
           Object.keys(response).forEach((key: string) => {
+            this.totalSum += response[key];
             gridData.push([key, response[key]]);
           })
           this.renderChart(gridData);
@@ -100,6 +102,7 @@ export class DoughnutChartComponent {
     })
   }
   private renderChart(chartData: any): void {
+    let sum = this.totalSum;
     const series = this.options.series;
     series[0].data = chartData;
     this.options = {
@@ -110,7 +113,13 @@ export class DoughnutChartComponent {
       },
       series: [
         ...series
-      ]
+      ],
+      tooltip: {
+        ...this.options.tooltip,
+        formatter: function() {
+          return '<b>' + this.point.name + '</b><br/> Count: ' + this.y + '<br/> Percentage: '+ ((this.y / sum)*100).toFixed(0) + '%';
+        }
+      }
     }
   }
 }
