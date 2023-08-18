@@ -21,7 +21,6 @@ export class PatientByStageComponent {
         Object.keys(response).forEach((key: string) => {
           if (response[key] && typeof (response[key]) === 'number') {
             sum += response[key];
-            gridData.push([key, response[key]]);
           } else {
             this.eventService.openToaster({
               showToster: true,
