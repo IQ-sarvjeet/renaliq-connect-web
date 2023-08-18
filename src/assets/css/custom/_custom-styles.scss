@@ -5581,9 +5581,8 @@ div.dataTables_wrapper div.dataTables_length label {
   position: relative;
   &__label {
     position: absolute;
-    opacity: 0.65;
     transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
-    left: 0;
+    left: 6px;
     top: 0.75rem;
   }
   .form-control {
