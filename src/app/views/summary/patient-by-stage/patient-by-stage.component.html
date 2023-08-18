@@ -3,23 +3,26 @@
     <h3 class="card-title flex-fill">Patients by Stage</h3>
     <a routerLink="/patients" class="ms-auto">View Patients</a>
   </div>
-  <div class="card-body pt-3 px-3">
+  <div class="card-body pt-3">
     
     <div class="donut-chart__wrapper">
       <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
-        <div class="row g-3">
-          <div class="col-12 col-sm-5">
+        <div class="row">
+          <div class="col-12 col-sm-5 pe-xl-1">
             <app-doughnut-chart 
               [config]="chartConfig">
             </app-doughnut-chart>
           </div>
-          <div class="col-12 col-sm-7 ps-5 ps-sm-0">
+          <div class="col-12 col-sm-7 pe-xl-1">
             <table class="table text-nowrap m-0 table-bordered table-striped">
               <tbody class="table-body">
                 <tr *ngFor="let stage of patientByStage">
-                  <td class="position-relative p-1"><i class="fa fa-circle stage-icon" [ngStyle]="{'color': stage.color, 'fill': stage.color }"></i> {{stage.key}}</td>
-                  <td class="position-relative p-1 text-center">{{stage.value}}</td>
-                  <td class="position-relative p-1 text-center">{{stage.percent}}%</td>
+                  <td style="padding: 2px !important;" class="text-center">
+                    <i class="fa fa-circle" [ngStyle]="{'color': stage.color, 'fill': stage.color }"></i>
+                  </td>
+                  <td style="padding: 2px !important;">{{stage.key}}</td>
+                  <td style="padding: 2px !important;">{{stage.value}}</td>
+                  <td style="padding: 2px !important;">{{stage.percent}}%</td>
                 </tr>
               </tbody>
             </table>

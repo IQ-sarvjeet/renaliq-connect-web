@@ -215,23 +215,12 @@ a.icon {
 
   &__wrapper {
     display: block;
-    /*overflow: hidden;*/
+    overflow: hidden;
     margin: 0 auto;
-    /*height: 130px;*/
-
-    svg {
-      height: 185px;
-      width: 160px;
-    }
+    height: 130px;
   }
-
-  
 }
 
-.highcharts-container {
-  height: 135px !important;
-  margin-top: -0.5rem;
-}
 
 @media (max-width: 992px) {
   .hor-content .container,

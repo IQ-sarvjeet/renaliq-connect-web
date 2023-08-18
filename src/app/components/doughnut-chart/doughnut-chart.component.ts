@@ -117,7 +117,7 @@ export class DoughnutChartComponent {
       tooltip: {
         ...this.options.tooltip,
         formatter: function() {
-          return '<b>' + this.point.name + '</b><br/> Count: ' + this.y + '<br/> Percentage: '+ ((this.y / sum)*100).toFixed(0) + '%';
+          return '<b>' + this.point.name + ':</b><br/> ' + this.y + ' ('+ ((this.y / sum)*100).toFixed(0) + '%)';
         }
       }
     }
