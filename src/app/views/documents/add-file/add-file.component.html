@@ -60,7 +60,13 @@
                           formControlName="folder" />
                       <label class="lh-sm" for="folder">Folder</label>
                     </div> -->
-                    <app-typeahead [dataList]="{label: 'Folder', data: folders, defaultSelected: addFileForm.controls['folder'].value}"
+                    <app-typeahead 
+                      [dataList]="{ 
+                        placeholder: 'Folder',
+                        label: 'Folder',
+                        data: folders,
+                        defaultSelected: addFileForm.controls['folder'].value
+                      }"
                       (itemSelected)="itemSelected($event)"></app-typeahead>
                     <div class="d-flex mb-3">
                       <div>
