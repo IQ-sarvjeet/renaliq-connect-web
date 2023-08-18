@@ -199,27 +199,30 @@
         </div>
         <div class="form-row mt-4 mb-4">
           <div class="col-6">
-            <label for="stage" class="mb-1">Diagnosis</label>
-            <mbsc-select [data] = "diagnosis"
-              class="form-control form-control-mbsc"
-              [(ngModel)]="filter.diagnosis"
-              id="diagnosis"
-              placeholder="Select"
-              [selectMultiple]="true"
-            >
-            </mbsc-select>
+            <label for="diagnosis" class="mb-1">Diagnosis</label>
+            <app-typeahead 
+              [dataList]="{
+                classParentElement: 'form-group',
+                placeholder: 'Search by diagnosis',
+                label: '',
+                data: diagnosis,
+                defaultSelected: filter.diagnosis
+              }"
+              (itemSelected)="diagnosisSelectHandler($event)">
+            </app-typeahead>
           </div>
           <div class="col-6">
             <label for="facilityName" class="mb-1">Facility Name</label>
-            <mbsc-select [data]="facilityName"
-              class="form-control form-control-mbsc"
-              [(ngModel)]="filter.facilityName"
-              id="facilityName"
-              display="anchored" 
-              placeholder="Select"
-              labelStyle="stacked" 
-              [selectMultiple]="true">
-            </mbsc-select>
+            <app-typeahead 
+              [dataList]="{
+                classParentElement: 'form-group',
+                placeholder: 'Search by facility',
+                label: '',
+                data: facilityName,
+                defaultSelected: filter.facilityName
+              }"
+              (itemSelected)="facilityNameSelectHandler($event)">
+            </app-typeahead>
           </div>
         </div>
         
