@@ -105,13 +105,7 @@ export class PatientProfileComponent {
         } else {
           this.profileNotFound = false;
           this.profileDetail = details;
-          const url: string = `${environment.baseApiUrl}/api/Patient/profile-image/${this.profileDetail.enrollmentNumber}`;
-          let headerOptions = new HttpHeaders({
-            'Content-Type': 'application/json',
-            'Accept': 'application/pdf',
-          });
-          let requestOptions = { headers: headerOptions, responseType: 'blob' as 'blob' };
-          this.httpClient.get(url, requestOptions).subscribe({
+          this.patientService.apiPatientProfileImageEnrollmentNumberGet(this.profileDetail.enrollmentNumber).subscribe({
             next: (response: any) => {
               if (response.size === 0) {
                 this.eventService.openToaster({
