@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 
@@ -74,7 +75,7 @@ export class DoughnutChartComponent {
     }]
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private eventService: EventService) {
 
   }
   ngOnInit() {}
@@ -85,9 +86,18 @@ export class DoughnutChartComponent {
         if (response) {
           const gridData: any = [];
           Object.keys(response).forEach((key: string) => {
-            this.totalSum += response[key];
-            gridData.push([key, response[key]]);
-          })
+            if (response[key] && typeof (response[key]) === 'number') {
+              this.totalSum += response[key];
+              gridData.push([key, response[key]]);
+            } else {
+              this.eventService.openToaster({
+                showToster: true,
+                message: `Patient By Stage Data is not coming in correct format from backend.`,
+                type: 'danger',
+              });
+              return;
+            }
+          });
           this.renderChart(gridData);
           this.showLoading = false;
           this.errorMessage = null;
