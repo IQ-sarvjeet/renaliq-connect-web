@@ -529,6 +529,53 @@ export class PatientService {
     /**
      * 
      * 
+     * @param enrollmentNumber 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPatientProfileImageEnrollmentNumberGet(enrollmentNumber: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPatientProfileImageEnrollmentNumberGet(enrollmentNumber: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPatientProfileImageEnrollmentNumberGet(enrollmentNumber: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPatientProfileImageEnrollmentNumberGet(enrollmentNumber: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        if (enrollmentNumber === null || enrollmentNumber === undefined) {
+            throw new Error('Required parameter enrollmentNumber was null or undefined when calling apiPatientProfileImageEnrollmentNumberGet.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/profile-image/${encodeURIComponent(String(enrollmentNumber))}`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
      * @param searchString 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.

@@ -19,8 +19,8 @@ export interface AdmissionFilterModel {
     sortBy?: string;
     sortOrderBy?: SortOrder;
     caseCategory?: Array<string>;
-    diagnosis?: Array<string>;
-    facilityName?: Array<string>;
+    diagnosis?: string;
+    facilityName?: string;
     stage?: Array<string>;
     searchKey?: string;
 }
