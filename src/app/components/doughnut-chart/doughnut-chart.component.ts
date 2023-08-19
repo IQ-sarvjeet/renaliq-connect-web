@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
+import { EventService } from 'src/app/services/event.service';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { environment } from 'src/environments/environment';
 
@@ -19,6 +20,7 @@ export class DoughnutChartComponent {
   showLoading: boolean = false;
   errorMessage: string | null = null;
   Highcharts = Highcharts;
+  totalSum: number = 0;
   @Input() set config(inputValue: BarChartConfig) {
     this.chartConfig = inputValue;
     this.fetchChartData(inputValue.apiUrl);
@@ -73,7 +75,7 @@ export class DoughnutChartComponent {
     }]
   }
   private chartConfig: BarChartConfig = {} as BarChartConfig;
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private eventService: EventService) {
 
   }
   ngOnInit() {}
@@ -84,8 +86,18 @@ export class DoughnutChartComponent {
         if (response) {
           const gridData: any = [];
           Object.keys(response).forEach((key: string) => {
-            gridData.push([key, response[key]]);
-          })
+            if (response[key] && typeof (response[key]) === 'number') {
+              this.totalSum += response[key];
+              gridData.push([key, response[key]]);
+            } else {
+              this.eventService.openToaster({
+                showToster: true,
+                message: `Patient By Stage Data is not coming in correct format from backend.`,
+                type: 'danger',
+              });
+              return;
+            }
+          });
           this.renderChart(gridData);
           this.showLoading = false;
           this.errorMessage = null;
@@ -100,6 +112,7 @@ export class DoughnutChartComponent {
     })
   }
   private renderChart(chartData: any): void {
+    let sum = this.totalSum;
     const series = this.options.series;
     series[0].data = chartData;
     this.options = {
@@ -110,7 +123,13 @@ export class DoughnutChartComponent {
       },
       series: [
         ...series
-      ]
+      ],
+      tooltip: {
+        ...this.options.tooltip,
+        formatter: function() {
+          return '<b>' + this.point.name + ':</b><br/> ' + this.y + ' ('+ ((this.y / sum)*100).toFixed(0) + '%)';
+        }
+      }
     }
   }
 }

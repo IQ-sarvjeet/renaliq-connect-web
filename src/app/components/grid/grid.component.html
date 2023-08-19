@@ -191,6 +191,7 @@
               class="data-image avatar avatar-sm rounded-circle"
               style="background-image: url(../assets/images/users/11.jpg)"
             ></span> -->
+            <i class="fa" [ngClass]="!item.isRegistered ? 'fa-times-circle text-danger' : 'fa-check-circle text-success'"></i>
             <div class="user-details ms-2">
               <a
                 class="text-secondary"

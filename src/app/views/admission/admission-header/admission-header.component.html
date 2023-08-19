@@ -108,8 +108,8 @@
               data-bs-target="#modalAdmissionFilter"
               data-bs-toggle="modal"
               href="javascript:void(0)"
-              class="text-secondary fs-16 align-middle"
-              style="padding-left: 10px;"
+              class="text-secondary fs-21 align-middle"
+              style="padding-left: 10px; line-height: 51px;"
               ><i class="fa fa-filter"></i
             ></a>
           </div>
@@ -197,13 +197,13 @@
             </mbsc-select>
           </div>
         </div>
-        <div class="form-row mt-4 mb-4">
+        <div class="form-row mt-4">
           <div class="col-6">
             <label for="diagnosis" class="mb-1">Diagnosis</label>
             <app-typeahead 
               [dataList]="{
                 classParentElement: 'form-group',
-                placeholder: 'Search by diagnosis',
+                placeholder: 'Search by Diagnosis',
                 label: '',
                 data: diagnosis,
                 defaultSelected: filter.diagnosis
@@ -216,7 +216,7 @@
             <app-typeahead 
               [dataList]="{
                 classParentElement: 'form-group',
-                placeholder: 'Search by facility',
+                placeholder: 'Search by Facility Name',
                 label: '',
                 data: facilityName,
                 defaultSelected: filter.facilityName
@@ -225,7 +225,7 @@
             </app-typeahead>
           </div>
         </div>
-        
+      </div>
       <div class="modal-footer">
         <button
           class="btn btn-secondary"
@@ -234,7 +234,6 @@
         >
           Update
         </button>
-      </div>
     </div>
   </div>
 </div>
