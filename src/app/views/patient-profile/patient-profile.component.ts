@@ -1,9 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { PatientService } from 'src/app/api-client';
 import { EventService } from 'src/app/services/event.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-patient-profile',
@@ -65,7 +63,6 @@ export class PatientProfileComponent {
     enrollmentNo: null,
   }
   constructor(private router: Router,
-    private httpClient: HttpClient,
     private eventService: EventService,
     private patientService: PatientService,
     private activatedRoute: ActivatedRoute) {
