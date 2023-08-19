@@ -61,6 +61,48 @@ export class AdmissionService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
+    public apiAdmissionCasecategoryListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiAdmissionCasecategoryListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiAdmissionCasecategoryListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiAdmissionCasecategoryListGet(observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+        ];
+
+        return this.httpClient.request<any>('get',`${this.basePath}/api/Admission/casecategory/list`,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
     public apiAdmissionDiagnosisListGet(observe?: 'body', reportProgress?: boolean): Observable<any>;
     public apiAdmissionDiagnosisListGet(observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
     public apiAdmissionDiagnosisListGet(observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
