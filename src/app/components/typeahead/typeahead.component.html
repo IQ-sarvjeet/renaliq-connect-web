@@ -16,7 +16,7 @@
                 <a href="javascript: void(0);" 
                     (mousedown)="selectListItem(item)"
                     class="dropdown-item"
-                    [ngClass]="{'active': item.toLowerCase() === selectedItem.toLowerCase()}"
+                    [ngClass]="{'active': selectedItem && item.toLowerCase() === selectedItem.toLowerCase()}"
                     style="width: 100%; height: auto; border: 1px solid rgba(28, 125, 167, 0.2)"
                 >{{item}}</a>
             </li>
