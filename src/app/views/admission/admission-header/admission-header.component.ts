@@ -6,6 +6,7 @@ import { AdmissionHeaders } from '../interfaces/admission';
 import { FilterModel } from 'src/app/interfaces/filter.model';
 import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
+import { HttpClient } from '@angular/common/http';
 
 //const startOfWeek = moment().startOf('week').toDate();
 //const endOfWeek   = moment().endOf('week').toDate();
@@ -41,14 +42,14 @@ export class AdmissionHeaderComponent {
   filter: any = {
     searchKey:'',
     stage:[],
-    caseCategory:[],
+    caseCategory: '',
     diagnosis: '',
     facilityName: ''
   };
   displayFilter: any = {
     searchKey:'',
     stage:[],
-    caseCategory:[],
+    caseCategory: '',
     diagnosis: '',
     facilityName: ''
   }
@@ -70,7 +71,8 @@ export class AdmissionHeaderComponent {
   ]
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
   constructor(private admissionService: AdmissionService,
-    private eventService: EventService) {}
+    private eventService: EventService,
+    private httpClient: HttpClient) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
@@ -85,6 +87,14 @@ export class AdmissionHeaderComponent {
       next: (data: any) => {
         data.map((item: any) => {
           this.facilityName.push(item.name);
+        })
+      }
+    })
+    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/casecategory/list`).subscribe({
+      next: (data: any) => {
+        this.caseCategory = [];
+        data.map((item: any) => {
+          this.caseCategory.push(item.name);
         })
       }
     })
@@ -112,7 +122,7 @@ export class AdmissionHeaderComponent {
     this.filter = {
       searchKey:'',
       stage:[],
-      caseCategory:[],
+      caseCategory:'',
       diagnosis: '',
       facilityName: ''
     };
@@ -129,16 +139,16 @@ export class AdmissionHeaderComponent {
       this.filter.stage = [];
     }
     if(key === 'caseCategory') {
-      this.displayFilter.caseCategory = [];
-      this.filter.caseCategory = [];
+      this.displayFilter.caseCategory = '';
+      this.filter.caseCategory = '';
     }
     if(key === 'diagnosis') {
-      this.displayFilter.diagnosis = [];
-      this.filter.diagnosis = [];
+      this.displayFilter.diagnosis = '';
+      this.filter.diagnosis = '';
     }
     if(key === 'facilityName') {
-      this.displayFilter.facilityName = [];
-      this.filter.facilityName = [];
+      this.displayFilter.facilityName = '';
+      this.filter.facilityName = '';
     }
     this.submit();
   }
