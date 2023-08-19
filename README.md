@@ -57,3 +57,16 @@ Remove import { ProblemDetails } from '../model/problemDetails';
 Delete file problemDetails.ts
 Remove  in model.ts
 export * from './problemDetails';
+
+
+#Update patient.service.ts
+
+    return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/profile-image/${encodeURIComponent(String(enrollmentNumber))}`,
+        {
+            withCredentials: this.configuration.withCredentials,
+            headers: headers,
+            observe: observe,
+            reportProgress: reportProgress,
+            responseType: 'blob' as any
+        }
+    );
