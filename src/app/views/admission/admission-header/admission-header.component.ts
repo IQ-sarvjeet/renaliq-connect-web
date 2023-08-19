@@ -37,14 +37,14 @@ export class AdmissionHeaderComponent {
   filter: any = {
     searchKey:'',
     stage:[],
-    caseCategory: '',
+    caseCategory: [],
     diagnosis: '',
     facilityName: ''
   };
   displayFilter: any = {
     searchKey:'',
     stage:[],
-    caseCategory: '',
+    caseCategory: [],
     diagnosis: '',
     facilityName: ''
   }
@@ -116,7 +116,7 @@ export class AdmissionHeaderComponent {
     this.filter = {
       searchKey:'',
       stage:[],
-      caseCategory:'',
+      caseCategory:[],
       diagnosis: '',
       facilityName: ''
     };
@@ -133,8 +133,8 @@ export class AdmissionHeaderComponent {
       this.filter.stage = [];
     }
     if(key === 'caseCategory') {
-      this.displayFilter.caseCategory = '';
-      this.filter.caseCategory = '';
+      this.displayFilter.caseCategory = [];
+      this.filter.caseCategory = [];
     }
     if(key === 'diagnosis') {
       this.displayFilter.diagnosis = '';
