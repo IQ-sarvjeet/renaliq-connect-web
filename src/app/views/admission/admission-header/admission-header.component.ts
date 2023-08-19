@@ -1,15 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from '../interfaces/admission';
-import { FilterModel } from 'src/app/interfaces/filter.model';
-import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
-import { HttpClient } from '@angular/common/http';
 
-//const startOfWeek = moment().startOf('week').toDate();
-//const endOfWeek   = moment().endOf('week').toDate();
 const todayDate = new Date();
 const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
@@ -71,8 +66,7 @@ export class AdmissionHeaderComponent {
   ]
   @Output() dateRangeChangeHandler: EventEmitter<string> = new EventEmitter();
   constructor(private admissionService: AdmissionService,
-    private eventService: EventService,
-    private httpClient: HttpClient) {}
+    private eventService: EventService) {}
   ngOnInit() {
     this.dateRangeChangeHandler.emit(this.dateRangeFilter);
     this.renderSummary();
@@ -90,7 +84,7 @@ export class AdmissionHeaderComponent {
         })
       }
     })
-    this.httpClient.get(`${environment.baseApiUrl}/api/Admission/casecategory/list`).subscribe({
+    this.admissionService.apiAdmissionCasecategoryListGet().subscribe({
       next: (data: any) => {
         this.caseCategory = [];
         data.map((item: any) => {
