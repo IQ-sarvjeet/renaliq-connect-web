@@ -41,6 +41,7 @@ export class PatientProfileComponent {
     enableCareTeamMapping: false,
     isCentralTeamOutReachMode: false,
     imageUrl: null,
+    isSomatusRegistered: null,
     phoneNumber: null,
     npEligibilityStatus: ""
   }
@@ -102,23 +103,25 @@ export class PatientProfileComponent {
         } else {
           this.profileNotFound = false;
           this.profileDetail = details;
-          this.patientService.apiPatientProfileImageEnrollmentNumberGet(this.profileDetail.enrollmentNumber).subscribe({
-            next: (response: any) => {
-              if (response.size === 0) {
-                this.eventService.openToaster({
-                  showToster: true,
-                  message: `Error in downloading file.`,
-                  type: 'danger',
+          if(this.profileDetail.isSomatusRegistered) {
+            this.patientService.apiPatientProfileImageEnrollmentNumberGet(this.profileDetail.enrollmentNumber).subscribe({
+              next: (response: any) => {
+                if (response.size === 0) {
+                  this.eventService.openToaster({
+                    showToster: true,
+                    message: `Error in downloading file.`,
+                    type: 'danger',
+                  });
+                  return;
+                }
+                const blob = new Blob([response], {
+                  type: 'data:application/pdf;base64',
                 });
-                return;
+                const imageUrl = (window.URL || window.webkitURL).createObjectURL(blob);
+                this.profileDetail.imageUrl = imageUrl
               }
-              const blob = new Blob([response], {
-                type: 'data:application/pdf;base64',
-              });
-              const imageUrl = (window.URL || window.webkitURL).createObjectURL(blob);
-              this.profileDetail.imageUrl = imageUrl
-            }
-          });
+            });
+          }
         }
       },
       error: (error: any) => {
