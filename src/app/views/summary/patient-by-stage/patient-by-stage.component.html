@@ -7,13 +7,13 @@
     
     <div class="donut-chart__wrapper">
       <!-- <canvas class="donut-chart" id="donutChart"></canvas> -->
-        <div class="row">
-          <div class="col-12 col-sm-5 pe-xl-1">
+        <div class="row g-3">
+          <div class="col-12 col-sm-5">
             <app-doughnut-chart 
               [config]="chartConfig">
             </app-doughnut-chart>
           </div>
-          <div class="col-12 col-sm-7 pe-xl-1">
+          <div class="col-12 col-sm-7 ps-5 ps-sm-0">
             <table class="table text-nowrap m-0 table-bordered table-striped">
               <tbody class="table-body">
                 <tr *ngFor="let stage of patientByStage">

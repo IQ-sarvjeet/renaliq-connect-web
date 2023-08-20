@@ -1,14 +1,10 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 import { AdmissionService } from 'src/app/api-client';
 import { AdmissionHeaders } from '../interfaces/admission';
-import { FilterModel } from 'src/app/interfaces/filter.model';
-import { environment } from 'src/environments/environment';
 import { EventService } from 'src/app/services/event.service';
 
-//const startOfWeek = moment().startOf('week').toDate();
-//const endOfWeek   = moment().endOf('week').toDate();
 const todayDate = new Date();
 const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
 
@@ -41,14 +37,14 @@ export class AdmissionHeaderComponent {
   filter: any = {
     searchKey:'',
     stage:[],
-    caseCategory:[],
+    caseCategory: [],
     diagnosis: '',
     facilityName: ''
   };
   displayFilter: any = {
     searchKey:'',
     stage:[],
-    caseCategory:[],
+    caseCategory: [],
     diagnosis: '',
     facilityName: ''
   }
@@ -85,6 +81,14 @@ export class AdmissionHeaderComponent {
       next: (data: any) => {
         data.map((item: any) => {
           this.facilityName.push(item.name);
+        })
+      }
+    })
+    this.admissionService.apiAdmissionCasecategoryListGet().subscribe({
+      next: (data: any) => {
+        this.caseCategory = [];
+        data.map((item: any) => {
+          this.caseCategory.push(item.name);
         })
       }
     })
@@ -133,12 +137,12 @@ export class AdmissionHeaderComponent {
       this.filter.caseCategory = [];
     }
     if(key === 'diagnosis') {
-      this.displayFilter.diagnosis = [];
-      this.filter.diagnosis = [];
+      this.displayFilter.diagnosis = '';
+      this.filter.diagnosis = '';
     }
     if(key === 'facilityName') {
-      this.displayFilter.facilityName = [];
-      this.filter.facilityName = [];
+      this.displayFilter.facilityName = '';
+      this.filter.facilityName = '';
     }
     this.submit();
   }
