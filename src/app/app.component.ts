@@ -4,8 +4,8 @@ import { CommonConstants } from './shared/common-constants/common-constants';
 declare const $: any;
 // (<any>window).dataLayer = (<any>window).dataLayer || [];
 // (<any>window).gtag = function() { (<any>window).dataLayer.push(arguments); }
-declare const dataLayer: any;
-declare const gtag: any;
+// declare const dataLayer: any;
+// declare const gtag: any;
 
 @Component({
   selector: 'app-root',
@@ -16,9 +16,9 @@ export class AppComponent {
   title = 'new-angular-app';
   gtagId! : string;
   constructor(private router: Router) {
-    const myScriptElement = document.createElement("script");
-    myScriptElement.src = `https://www.googletagmanager.com/gtag/js?id=${CommonConstants.GTAG_ID}`;
-    document.body.appendChild(myScriptElement);
+    // const myScriptElement = document.createElement("script");
+    // myScriptElement.src = `https://www.googletagmanager.com/gtag/js?id=${CommonConstants.GTAG_ID}`;
+    // document.body.appendChild(myScriptElement);
     this.router.events.subscribe(event => {
       try {
         if (event instanceof NavigationEnd) {
