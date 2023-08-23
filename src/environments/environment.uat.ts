@@ -13,6 +13,7 @@ export const environment = {
     scopes: 'ConnectApi offline_access'
   },
   pageSize: 10,
+  gTag_Id: "G-ZMXS65JS1G"
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };

@@ -12,7 +12,8 @@ export const environment = {
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
     grantType: 'password',
     scopes: 'ConnectApi offline_access'
-  }
+  },
+  gTag_Id: "G-ZMXS65JS1G"
   //Username: tom@yopmail.com
   //Password: Pass@12345
 };

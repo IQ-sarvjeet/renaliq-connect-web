@@ -12,6 +12,7 @@ export const environment = {
     grantType: 'password',
     scopes: 'ConnectApi offline_access'
   },
+  gTag_Id: "G-ZMXS65JS1G",
 
   //grantType: 'password',
   //scope: 'ConnectApi',
