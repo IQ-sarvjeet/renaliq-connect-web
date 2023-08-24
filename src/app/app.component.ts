@@ -1,12 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { CommonConstants } from './shared/common-constants/common-constants';
-import { environment } from 'src/environments/environment';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 declare const $: any;
-(<any>window).dataLayer = (<any>window).dataLayer || [];
-// (<any>window).gtag = function() { (<any>window).dataLayer.push(arguments); }
-// declare const dataLayer: any;
-declare const gtag: any;
 
 @Component({
   selector: 'app-root',
@@ -15,21 +10,11 @@ declare const gtag: any;
 })
 export class AppComponent {
   title = 'new-angular-app';
-  gtagId! : string;
-  constructor(private router: Router) {
-    const myScriptElement = document.createElement("script");
-    myScriptElement.src = `https://www.googletagmanager.com/gtag/js?id=${environment.gTag_Id}`;
-    document.body.appendChild(myScriptElement);
+  constructor(private router: Router, private gaService: GoogleAnalyticsService) {
     this.router.events.subscribe(event => {
       try {
         if (event instanceof NavigationEnd) {
-          // (<any>window).gtag('set', 'page', event.urlAfterRedirects);
-          // (<any>window).gtag('send', 'pageview');
           const routeNameArr = event.urlAfterRedirects.split('/');
-          // gtag('event', 'page_view', {
-          //   'page_location': document.location.origin + event.urlAfterRedirects,
-          //   'page_title': routeNameArr[routeNameArr.length -1]
-          // });
           (<any>window).dataLayer.push({
             event: 'virtualPageview',
             virtualPageURL: document.location.origin + event.urlAfterRedirects,
@@ -42,11 +27,7 @@ export class AppComponent {
     });
   }
   ngOnInit(): void {
-    this.gtagId = environment.gTag_Id;
-    
-    gtag('js', new Date());
-    gtag('config', environment.gTag_Id);
-
+    this.gaService.init();
     // ----- Horizontal Style ------- //
     $('body').addClass('horizontal');
     let bodyhorizontal = $('body').hasClass('horizontal');
