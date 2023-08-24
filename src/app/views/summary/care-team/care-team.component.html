@@ -65,7 +65,7 @@
       </span>
       <li
         class="list-group-item border-top py-2"
-        *ngFor="let member of careTeamList"
+        *ngFor="let member of careTeamList; let i = index"
       >
         <div class="text-dark">
           <div class="media mt-0 d-sm-flex d-block">
@@ -89,8 +89,8 @@
           <div class="media mt-2 d-sm-flex d-block">
             <div class="media-body">
               <div class="d-flex">
-                <span class="flex-fill"><i class="fa fa-envelope me-1 bg-info p-1" style="border-radius: 3px;"></i> <u>support@somatus.com</u></span>
-                <span class="ms-auto"><i class="fa fa-phone me-1 bg-info p-1" style="border-radius: 3px;"></i> (855) 851-8384</span>
+                <span class="flex-fill"><i class="fa fa-envelope me-1 bg-info p-1" style="border-radius: 3px;"></i> <u>care.{{member.name?.substring(0,3) | lowercase}}@somatus.com</u></span>
+                <span class="ms-auto"><i class="fa fa-phone me-1 bg-info p-1" style="border-radius: 3px;"></i> ({{i+1}}{{i+1}}{{i+1}}) {{i+1}}{{i+1}}{{i+1}}-{{i+1}}{{i+1}}{{i+1}}{{i+1}}</span>
               </div>
             </div>
           </div>
