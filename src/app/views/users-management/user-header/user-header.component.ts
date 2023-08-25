@@ -7,15 +7,14 @@ import { Status } from 'src/app/enums/status';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 
-const todayDate = new Date();
-const datePrior90 = new Date(new Date().setDate(todayDate.getDate() - 90));
-
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit{
+  moment = moment;
+  statusFilter: string[] = [];
   practicesList: any = [];
   rolesList: any = [];
   rolesListForFilter: string[] = [];
@@ -30,8 +29,8 @@ export class UserHeaderComponent implements OnInit{
   userRole: [],
   userStatus: [],
   sortBy: '',
-  fromDate: moment(datePrior90),
-  toDate: moment(todayDate)
+  fromDate: '',
+  toDate: ''
 }
  dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
@@ -129,7 +128,39 @@ export class UserHeaderComponent implements OnInit{
   resetForm(){
     this.addUserForm.reset();
   }
-  FilterUsers(){
+  filterUsers(){
+    if(this.userFilter.userStatus.length) {
+      this.statusFilter = [];
+      this.statusFilter = this.userFilter.userStatus.map((status: number) => {
+        return status === -1 ? 'Ready' : status === 0 ? 'Termed' : 'Active';
+      });
+    }
     this.userEventService.userFilterEvent(this.userFilter);
+  }
+  clearFilter(key: string) {
+    if(key === 'userRole') {
+      this.userFilter.userRole = [];
+    }
+    if(key === 'userStatus') {
+      this.userFilter.userStatus = [];
+      this.statusFilter = [];
+    }
+    if(key === 'filterDate') {
+      this.userFilter.fromDate = '';
+      this.userFilter.toDate = '';
+    }
+    this.filterUsers();
+  }
+  clearFilterHandler() {
+    this.userFilter = {
+      searchKey: '',
+      userRole: [],
+      userStatus: [],
+      sortBy: '',
+      fromDate: '',
+      toDate: ''
+    };
+    this.statusFilter = [];
+    this.filterUsers();
   }
 }
