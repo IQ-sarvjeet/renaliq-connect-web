@@ -25,6 +25,7 @@ import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { InitialsPipe } from './pipes/initials.pipe';
 import { DownloadComponent } from './views/download/download.component';
 import { AccountsComponent } from './views/accounts/accounts.component';
+import { GoogleAnalyticsService } from './services/google-analytics.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AccountsComponent } from './views/accounts/accounts.component';
   ],
   exports: [],
   providers: [
+    GoogleAnalyticsService,
     { provide: BASE_PATH, useValue: environment.baseApiUrl },
     {
       provide: HTTP_INTERCEPTORS,
