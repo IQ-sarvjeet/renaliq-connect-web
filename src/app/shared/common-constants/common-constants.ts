@@ -7,7 +7,6 @@ export class CommonConstants {
   public static USER_INFO_KEY: string = "user-info";
   public static EXPIRATION_TIME: string = "expiration_time";
   public static WEB_VERSION: string = "7.0";
-  public static GTAG_ID: string = "G-ZMXS65JS1G";
 
 
 
