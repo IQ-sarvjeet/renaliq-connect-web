@@ -19,10 +19,10 @@ export class UserHeaderComponent implements OnInit{
   practicesList: any = [];
   rolesList: any = [];
   rolesListForFilter: string[] = [];
-  userStatus: string[] = [
-    Status.READY,
-    Status.ACTIVE,
-    Status.TERMED
+  userStatus: any[] = [
+    { value: -1, text: 'Ready' },
+    { value: 0, text: 'Termed' },
+    { value: 1, text: 'Active' }
   ];
  dateRangeFilter: any ='';
  userFilter: any = {
