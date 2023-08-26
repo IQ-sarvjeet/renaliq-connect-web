@@ -1,7 +1,7 @@
 <div class="mb-5">
   <div class="pb-3">
     <div class="d-flex">
-      <h3 class="card-title mb-0">Care Team</h3>
+      <h3 class="card-title mb-0">Somatus Care Team</h3>
     </div>
   </div>
   <div *ngIf="!errorMessage">
@@ -64,7 +64,7 @@
         </li>
       </span>
       <li
-        class="list-group-item border-top py-2"
+        class="border-top p-2"
         *ngFor="let member of careTeamList"
       >
         <div class="text-dark">
@@ -75,15 +75,21 @@
               [src]="member.imageSrc"
               alt="Image description"
             />
-            <div class="media-body d-sm-flex d-block">
-              <div class="d-flex align-items-center">
+            <div class="media-body">
                 <div class="mt-1">
-                  <h5 class="mb-1">{{ member.name }}</h5>
-                  <p class="mb-0 text-13 text-primary">
+                  <h5 class="mb-0">{{ member.name }}</h5>
+                  <p class="mb-1 text-13 text-primary">
                     {{ member.designation }}
                   </p>
+                  <div class="row g-2">
+                    <div class="col-7 d-flex minw-0">
+                      <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="mailto:emailid@esolutionsfirst.com"><i class="fa fa-envelope-square me-1 fs-16 align-middle text-primary"></i> emailid@esolutionsfirst.com</a>
+                    </div>
+                    <div class="col-5 d-flex minw-0 justify-content-end">
+                      <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="tel:(222) 222-2222"><i class="fa fa-phone-square me-1 fs-16 align-text-top text-primary"></i> (222) 222-2222</a>
+                    </div>
                 </div>
-              </div>
+                </div>
             </div>
           </div>
         </div>

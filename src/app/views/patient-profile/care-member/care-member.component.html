@@ -55,16 +55,18 @@
   <!-- <div>Information Not Avaiable</div> -->
 </div>
 <div class="card" *ngIf="careMembers.length > 0">
-  <div class="card-header border-bottom title-submenu d-flex">
+  <div class="card-header border-bottom title-submenu d-flex py-4">
     <h3 class="card-title flex-fill">
       Care Member
-      <div class="fs-12 op-0-75">Care Member assigned to Patient</div>
+      <div class="fs-13 op-0-75 fw-normal mt-1">Care Member assigned to Patient</div>
     </h3>
   </div>
   <div class="card-body px-3 py-2">
     <ul class="list-group blog-autors">
-      <li class="list-group-item py-2" *ngFor="let member of careMembers">
-        <a href="#" class="text-dark">
+      <li *ngFor="let member of careMembers; let i=index;" [ngClass]="['mx-3', i != 0
+        ? 'border-top pt-0 pb-3'
+        : 'py-3']">
+
           <div class="media mt-0 d-sm-flex d-block">
             <svg *ngIf="!member.photoUrl || member.photoUrl === ''" class="me-3" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path style="fill: #d3d0d0;" d="M406.5 399.6C387.4 352.9 341.5 320 288 320H224c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3h64c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
@@ -75,16 +77,20 @@
               class="avatar-md rounded-circle me-3 my-auto"
               [src]="member.photoUrl"
             />
-            <div class="media-body d-sm-flex d-block">
-              <div class="d-flex align-items-center">
+            <div class="media-body minw-0">
                 <div class="mt-1">
-                  <h5 class="mb-1">{{member.name}}</h5>
+                  <h5 class="mb-0">{{member.name}}</h5>
                   <p class="mb-0 text-13 text-primary">{{member.type}}</p>
+                  <div class="d-flex minw-0">
+                    <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="mailto:{{member.emailId}}"><i class="fa fa-envelope-square me-1 fs-16 align-middle text-primary"></i> {{member.emailId}}</a>
+                  </div>
+                  <div class="d-flex minw-0">
+                    <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="tel:{{member.mobileNo}}"><i class="fa fa-phone-square me-1 fs-16 align-text-top text-primary"></i> {{member.mobileNo}}</a>
+                  </div>
                 </div>
-              </div>
             </div>
           </div>
-        </a>
+       
       </li>
     </ul>
   </div>
