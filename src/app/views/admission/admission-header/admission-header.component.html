@@ -115,35 +115,43 @@
           </div>
         </div>
       </div>
-      <div class="col-12 col-md-12 col-lg-12 col-xl-12 pt-1 pb-1 text-sm-end">
-        <div class="d-none d-md-flex flex-fill pb-2 align-items-center">
-          <div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
-              Name: <b>{{displayFilter.searchKey}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12">
+        <div class="flex-fill">
+          <div class="d-md-flex">
+            <div class="d-none d-md-flex flex-fill pb-2 align-items-center">
+              <div>
+                <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
+                  Name: <b>{{displayFilter.searchKey}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
+                </div>
+                <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
+                  Stage: <b>{{displayFilter.stage}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+                </div>
+                <div class="tags mt-1 me-2" *ngIf="displayFilter.caseCategory.length">
+                  Case Category: <b>{{displayFilter.caseCategory}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('caseCategory')">x</a>
+                </div>
+                <div class="tags mt-1 me-2" *ngIf="displayFilter.diagnosis.length">
+                  Diagnosis: <b>{{displayFilter.diagnosis}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('diagnosis')">x</a>
+                </div>
+                <div class="tags mt-1 me-2" *ngIf="displayFilter.facilityName.length">
+                  Facility Name: <b>{{displayFilter.facilityName}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('facilityName')">x</a>
+                </div>
+              </div>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
-              Stage: <b>{{displayFilter.stage}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+            <div class="pt-1 text-nowrap text-end">
+              <div class="tags"
+                *ngIf="displayFilter.searchKey || displayFilter.stage.length || displayFilter.caseCategory.length || displayFilter.diagnosis.length || displayFilter.facilityName.length">
+                Clear Filters<a href="Javascript:void(0)"
+                class="tags__icon"
+                (click)="clearFilterHandler()">x</a>
+              </div>
             </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.caseCategory.length">
-              Case Category: <b>{{displayFilter.caseCategory}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('caseCategory')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.diagnosis.length">
-              Diagnosis: <b>{{displayFilter.diagnosis}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('diagnosis')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.facilityName.length">
-              Facility Name: <b>{{displayFilter.facilityName}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('facilityName')">x</a>
-            </div>
-          </div>
-          <div class="tags mt-1 me-2" 
-            *ngIf="displayFilter.searchKey || displayFilter.stage.length || displayFilter.caseCategory.length || displayFilter.diagnosis.length || displayFilter.facilityName.length">
-            Clear Filters<a href="Javascript:void(0)"
-            class="tags__icon"
-            (click)="clearFilterHandler()">x</a>
           </div>
         </div>
       </div>
