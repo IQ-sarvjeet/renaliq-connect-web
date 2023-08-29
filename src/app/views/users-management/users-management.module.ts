@@ -5,7 +5,7 @@ import { UsersManagementComponent } from './users-management.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { UserHeaderComponent } from './user-header/user-header.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/components/shared.module';
 import { MbscModule } from '@mobiscroll/angular';
 
@@ -39,7 +39,8 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     SharedModule,
-    MbscModule
+    MbscModule,
+    FormsModule
   ]
 })
 export class UsersManagementModule { }

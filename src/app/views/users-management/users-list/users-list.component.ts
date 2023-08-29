@@ -9,6 +9,8 @@ import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
 
+const todayDate = new Date();
+const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
 
 @Component({
   selector: 'app-users-list',
@@ -40,8 +42,12 @@ export class UsersListComponent implements OnInit {
   filters: UserFilterModel = {
     userFilter: {
       searchKey: '',
+      userRole: [],
+      userStatus: [],
       sortBy: '',
-      sortDirection: ''
+      sortDirection: '',
+      fromDate: undefined,
+      toDate: undefined
     },
     currentPage: 1,
     pageSize: 10,
@@ -74,13 +80,17 @@ export class UsersListComponent implements OnInit {
     this.userEventService.userIdSubscription().subscribe((userId: number) => {
       this.loadUsersList();
     });
-    this.userEventService.userSearchSubscription().subscribe({
+    this.userEventService.userFilterSubscription().subscribe({
       next: (value: any) => {
         this.filters = {
           ...this.filters,
           userFilter: {
             ...this.filters.userFilter,
-            searchKey: value,
+            searchKey: value.searchKey,
+            userRole: value.userRole,
+            userStatus: value.userStatus,
+            fromDate: value.fromDate,
+            toDate: value.toDate
           }
         };
         this.loadUsersList();
@@ -242,8 +252,12 @@ export class UsersListComponent implements OnInit {
       userFilter: {
         ...this.filters.userFilter,
         searchKey: '',
+        userRole: [],
+        userStatus: [],
         sortBy: '',
-        sortDirection: ''
+        sortDirection: '',
+        fromDate: undefined,
+        toDate: undefined
       }
     };
   }

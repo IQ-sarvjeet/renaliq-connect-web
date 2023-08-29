@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class UserEventService {
   public newUserID$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  private userSearchKey$: BehaviorSubject<any> = new BehaviorSubject<any>('');
+  private userFilter$: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
   constructor() { }
 
@@ -16,10 +16,10 @@ export class UserEventService {
   userIdSubscription(): Observable<number> {
     return this.newUserID$.asObservable();
   }
-  userSearchEvent(value: any) {
-    this.userSearchKey$.next(value);
+  userFilterEvent(value: any) {
+    this.userFilter$.next(value);
   }
-  userSearchSubscription(): Observable<any> {
-    return this.userSearchKey$.asObservable();
+  userFilterSubscription(): Observable<any> {
+    return this.userFilter$.asObservable();
   }
 }

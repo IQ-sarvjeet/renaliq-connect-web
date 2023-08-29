@@ -14,4 +14,8 @@ export interface UserFilter {
     searchKey?: string;
     sortBy?: string;
     sortDirection?: string;
+    userRole?: Array<number>;
+    userStatus?: Array<number>;
+    fromDate?: Date;
+    toDate?: Date;
 }
