@@ -3,6 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountService, PracticeService, RoleService } from 'src/app/api-client';
 import { UserEventService } from '../services/user-event.service';
 import { EventService } from 'src/app/services/event.service';
+import { Status } from 'src/app/enums/status';
+import { MbscDatepickerOptions } from '@mobiscroll/angular';
+import * as moment from 'moment';
+
+const todayDate = new Date();
+const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
 
 @Component({
   selector: 'app-user-header',
@@ -10,8 +16,45 @@ import { EventService } from 'src/app/services/event.service';
   styleUrls: ['./user-header.component.scss']
 })
 export class UserHeaderComponent implements OnInit{
+  moment = moment;
+  submitFilter: boolean = false;
+  statusFilter: string[] = [];
+  rolesFilter: string[] = [];
   practicesList: any = [];
   rolesList: any = [];
+  rolesListForFilter: any[] = [];
+  userStatus: any[] = [
+    { value: -1, text: 'Ready' },
+    { value: 0, text: 'Termed' },
+    { value: 1, text: 'Active' }
+  ];
+ dateRangeFilter: any ='';
+ userFilter: any = {
+    searchKey: '',
+    userRole: [],
+    userStatus: [],
+    fromDate: undefined,
+    toDate: undefined
+ }
+ dateRangeOptions: MbscDatepickerOptions = {
+    theme: 'ios',
+    dateFormat: 'MM/DD/YYYY',
+    controls: ['calendar'],
+    select: 'range',
+    defaultValue: this.dateRangeFilter,
+    onChange: (value: any) => {
+    },
+    onActiveDateChange: (event, inst) => {
+    },
+    onClose: (event) => {
+      this.dateRangeFilter = event.valueText;
+      this.userFilter = {
+        ...this.userFilter,
+        fromDate: event.value[0],
+        toDate: event.value[1]
+        }
+    }
+};
   addUserForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
     lastName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
@@ -77,6 +120,9 @@ export class UserHeaderComponent implements OnInit{
       next: (response: any) => {
         if(response.length) {
           this.rolesList = response;
+          this.rolesList.forEach((role: any) => {
+            this.rolesListForFilter.push({ value: role.id, text: role.name });
+          });
         }
       },
       error: (error: any) => {
@@ -86,7 +132,60 @@ export class UserHeaderComponent implements OnInit{
   resetForm(){
     this.addUserForm.reset();
   }
-  searchHandler($event: any){
-    this.userEventService.userSearchEvent($event.target.value);
+  filterUsers(){
+    this.submitFilter = true;
+    if(this.userFilter.userStatus.length) {
+      this.statusFilter = [];
+      this.statusFilter = this.userFilter.userStatus.map((status: number) => {
+        return status === -1 ? 'Ready' : status === 0 ? 'Termed' : 'Active';
+      });
+    }
+    if(this.userFilter.userRole.length) {
+      this.rolesFilter = [];
+      this.rolesFilter = this.userFilter.userRole.map((role: number) => {
+        return role === 1 ? 'System Admin' : role === 2 ? 'Document Manager' : role === 3 ? 'Somatus User' : 'Practice User';
+      });      
+    }
+    this.userEventService.userFilterEvent(this.userFilter);
+  }
+  clearFilter(key: string) {
+    if(key === 'userRole') {
+      this.userFilter = {
+        ...this.userFilter,
+        userRole: []
+      };
+      this.rolesFilter = [];
+    }
+    if(key === 'userStatus') {
+      this.userFilter = {
+        ...this.userFilter,
+        userStatus: []
+      };
+      this.statusFilter = [];
+    }
+    if(key === 'filterDate') {
+      this.submitFilter = false;
+      this.userFilter = {
+        ...this.userFilter,
+        fromDate: undefined,
+        toDate: undefined
+      };
+    }
+    this.filterUsers();
+  }
+  clearFilterHandler() {
+    this.submitFilter = false;
+    this.userFilter = {
+      ...this.userFilter,
+      searchKey: '',
+      userRole: [],
+      userStatus: [],
+      sortBy: '',
+      fromDate: undefined,
+      toDate: undefined
+    };
+    this.statusFilter = [];
+    this.rolesFilter = [];
+    this.filterUsers();
   }
 }
