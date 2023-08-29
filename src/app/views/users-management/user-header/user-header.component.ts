@@ -7,6 +7,9 @@ import { Status } from 'src/app/enums/status';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 
+const todayDate = new Date();
+const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
+
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -14,6 +17,7 @@ import * as moment from 'moment';
 })
 export class UserHeaderComponent implements OnInit{
   moment = moment;
+  submitFilter: boolean = false;
   statusFilter: string[] = [];
   rolesFilter: string[] = [];
   practicesList: any = [];
@@ -26,13 +30,12 @@ export class UserHeaderComponent implements OnInit{
   ];
  dateRangeFilter: any ='';
  userFilter: any = {
-  searchKey: '',
-  userRole: [],
-  userStatus: [],
-  sortBy: '',
-  fromDate: '',
-  toDate: ''
-}
+    searchKey: '',
+    userRole: [],
+    userStatus: [],
+    fromDate: datePrior365,
+    toDate: todayDate
+ }
  dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
     dateFormat: 'MM/DD/YYYY',
@@ -49,7 +52,7 @@ export class UserHeaderComponent implements OnInit{
         ...this.userFilter,
         fromDate: event.value[0],
         toDate: event.value[1]
-      }
+        }
     }
 };
   addUserForm: FormGroup = this.fb.group({
@@ -130,6 +133,7 @@ export class UserHeaderComponent implements OnInit{
     this.addUserForm.reset();
   }
   filterUsers(){
+    this.submitFilter = true;
     if(this.userFilter.userStatus.length) {
       this.statusFilter = [];
       this.statusFilter = this.userFilter.userStatus.map((status: number) => {
@@ -146,21 +150,33 @@ export class UserHeaderComponent implements OnInit{
   }
   clearFilter(key: string) {
     if(key === 'userRole') {
-      this.userFilter.userRole = [];
+      this.userFilter = {
+        ...this.userFilter,
+        userRole: []
+      };
       this.rolesFilter = [];
     }
     if(key === 'userStatus') {
-      this.userFilter.userStatus = [];
+      this.userFilter = {
+        ...this.userFilter,
+        userStatus: []
+      };
       this.statusFilter = [];
     }
     if(key === 'filterDate') {
-      this.userFilter.fromDate = '';
-      this.userFilter.toDate = '';
+      this.submitFilter = false;
+      this.userFilter = {
+        ...this.userFilter,
+        fromDate: '',
+        toDate: ''
+      };
     }
     this.filterUsers();
   }
   clearFilterHandler() {
+    this.submitFilter = false;
     this.userFilter = {
+      ...this.userFilter,
       searchKey: '',
       userRole: [],
       userStatus: [],

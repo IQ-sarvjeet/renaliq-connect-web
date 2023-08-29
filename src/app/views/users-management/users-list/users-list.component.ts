@@ -9,6 +9,8 @@ import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
 
+const todayDate = new Date();
+const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
 
 @Component({
   selector: 'app-users-list',
@@ -44,8 +46,8 @@ export class UsersListComponent implements OnInit {
       userStatus: [],
       sortBy: '',
       sortDirection: '',
-      fromDate: '',
-      toDate: ''
+      fromDate: datePrior365,
+      toDate: todayDate
     },
     currentPage: 1,
     pageSize: 10,
@@ -101,6 +103,16 @@ export class UsersListComponent implements OnInit {
       ...this.usersList,
       data: []
     };
+    if(this.filters.userFilter.fromDate == '' && this.filters.userFilter.toDate == ''){
+      this.filters = {
+        ...this.filters,
+        userFilter: {
+          ...this.filters.userFilter,
+          fromDate: datePrior365,
+          toDate: todayDate
+        }
+      };
+    }
     this.userService.apiUserListPost(this.filters).subscribe({
       next: (response: any) => {
         if (response.data) {
@@ -250,8 +262,12 @@ export class UsersListComponent implements OnInit {
       userFilter: {
         ...this.filters.userFilter,
         searchKey: '',
+        userRole: [],
+        userStatus: [],
         sortBy: '',
-        sortDirection: ''
+        sortDirection: '',
+        fromDate: datePrior365,
+        toDate: todayDate
       }
     };
   }
