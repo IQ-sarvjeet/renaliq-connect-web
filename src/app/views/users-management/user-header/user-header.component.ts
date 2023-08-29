@@ -15,9 +15,10 @@ import * as moment from 'moment';
 export class UserHeaderComponent implements OnInit{
   moment = moment;
   statusFilter: string[] = [];
+  rolesFilter: string[] = [];
   practicesList: any = [];
   rolesList: any = [];
-  rolesListForFilter: string[] = [];
+  rolesListForFilter: any[] = [];
   userStatus: any[] = [
     { value: -1, text: 'Ready' },
     { value: 0, text: 'Termed' },
@@ -117,7 +118,7 @@ export class UserHeaderComponent implements OnInit{
         if(response.length) {
           this.rolesList = response;
           this.rolesList.forEach((role: any) => {
-            this.rolesListForFilter.push(role.name);
+            this.rolesListForFilter.push({ value: role.id, text: role.name });
           });
         }
       },
@@ -135,11 +136,18 @@ export class UserHeaderComponent implements OnInit{
         return status === -1 ? 'Ready' : status === 0 ? 'Termed' : 'Active';
       });
     }
+    if(this.userFilter.userRole.length) {
+      this.rolesFilter = [];
+      this.rolesFilter = this.userFilter.userRole.map((role: number) => {
+        return role === 1 ? 'System Admin' : role === 2 ? 'Document Manager' : role === 3 ? 'Somatus User' : 'Practice User';
+      });      
+    }
     this.userEventService.userFilterEvent(this.userFilter);
   }
   clearFilter(key: string) {
     if(key === 'userRole') {
       this.userFilter.userRole = [];
+      this.rolesFilter = [];
     }
     if(key === 'userStatus') {
       this.userFilter.userStatus = [];
@@ -161,6 +169,7 @@ export class UserHeaderComponent implements OnInit{
       toDate: ''
     };
     this.statusFilter = [];
+    this.rolesFilter = [];
     this.filterUsers();
   }
 }

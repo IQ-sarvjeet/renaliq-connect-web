@@ -50,8 +50,8 @@
           <div class="d-md-flex">
             <div class="d-none d-md-flex flex-fill pe-3 align-items-center">
               <div>
-                <div class="tags mt-1 me-2" *ngIf="userFilter.userRole.length">
-                  User Role: <b>{{userFilter.userRole}}</b>
+                <div class="tags mt-1 me-2" *ngIf="rolesFilter.length">
+                  User Role: <b>{{rolesFilter}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userRole')">x</a>
                 </div>
                 <div class="tags mt-1 me-2" *ngIf="statusFilter.length">
@@ -59,14 +59,14 @@
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userStatus')">x</a>
                 </div>
                 <div class="tags mt-1 me-2" *ngIf="userFilter.fromDate && userFilter.toDate">
-                  Created Between: <b>{{moment(userFilter.fromDate).format("MM/DD/YYYY") + ' to ' + moment(userFilter.toDate).format("MM/DD/YYYY")}}</b>
+                  Created Created On: <b>{{moment(userFilter.fromDate).format("MM/DD/YYYY") + ' to ' + moment(userFilter.toDate).format("MM/DD/YYYY")}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('filterDate')">x</a>
                 </div>
               </div>
             </div>
             <div class="pt-2 text-nowrap text-end">
               <div class="tags mt-1 me-2"
-                *ngIf="userFilter.userRole.length || statusFilter.length || (userFilter.fromDate && userFilter.toDate)">
+                *ngIf="rolesFilter.length || statusFilter.length || (userFilter.fromDate && userFilter.toDate)">
                 Clear Filters<a href="Javascript:void(0)" class="tags__icon" (click)="clearFilterHandler()">x</a>
               </div>
             </div>
@@ -184,7 +184,7 @@
       </div>
       <div class="modal-body">
         <div class="form-row">
-          <div class="col-6">
+          <div class="col-12">
             <label for="searchPatient" class="mb-1">User Role</label>
             <mbsc-select [data]="rolesListForFilter" *ngIf="rolesListForFilter.length"
               class="form-control form-control-mbsc"
@@ -195,6 +195,8 @@
             >
             </mbsc-select>
           </div>
+        </div>
+        <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="mb-1">User Status</label>
             <mbsc-select [data]="userStatus"
@@ -206,25 +208,24 @@
             >
             </mbsc-select>
           </div>
-        </div>
-        <div class="form-row mt-4">
-          <label for="stage" class="mb-1">Created Between</label>
-          <div class="input-group">
-            <mbsc-datepicker
-                id="admissionsPeriod"
-                class="form-control fs-12"
-                style="padding: 0.375rem 0.75rem"
-                #rangeDatepicker
-                [options]="dateRangeOptions"
-                placeholder="Select date range"
-            ></mbsc-datepicker>
-            <button
-                class="input-group-text bg-white"
-                type="button"
-                (click)="rangeDatepicker.open()"
-            >
-                <i class="fa fa-calendar"></i>
-            </button>
+          <div class="col-6">
+            <label for="stage" class="mb-1">User Created On</label>
+            <div class="input-group">
+              <mbsc-datepicker
+                  id="admissionsPeriod"
+                  class="form-control pe-0 fs-12"
+                  #rangeDatepicker
+                  [options]="dateRangeOptions"
+                  placeholder="Select date range"
+              ></mbsc-datepicker>
+              <button
+                  class="input-group-text bg-white"
+                  type="button"
+                  (click)="rangeDatepicker.open()"
+              >
+                  <i class="fa fa-calendar"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -234,7 +235,7 @@
           data-bs-dismiss="modal"
           (click)="filterUsers()"
         >
-          Submit
+          Update
         </button>
     </div>
   </div>
