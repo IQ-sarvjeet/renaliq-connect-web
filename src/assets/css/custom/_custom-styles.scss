@@ -11,6 +11,14 @@
   }
 }
 
+.minw-0 {
+  min-width: 0 !important;
+}
+
+.left-0 {
+  left: 0 !important;
+}
+
 .collapse:not(.show) {
   display: none;
   background: $white;
@@ -5843,6 +5851,11 @@ div.dataTables_wrapper div.dataTables_length label {
     right: 0;
     transition: all .2s linear;
   }
+  &.a-link-sm {
+    &:before {
+      height: 0.06225rem;
+    }
+  }
 
   &.text-secondary {
     &:before {
@@ -5855,6 +5868,21 @@ div.dataTables_wrapper div.dataTables_length label {
       left: 50%;
       right: 50%;
       opacity: 0;
+    }
+  }
+
+  &.is-reverse {
+    &:before {
+      left: 50%;
+      right: 50%;
+      opacity: 0;
+    }
+    &:hover {
+      &:before {
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
     }
   }
 }
