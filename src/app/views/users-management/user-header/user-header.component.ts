@@ -33,8 +33,8 @@ export class UserHeaderComponent implements OnInit{
     searchKey: '',
     userRole: [],
     userStatus: [],
-    fromDate: datePrior365,
-    toDate: todayDate
+    fromDate: undefined,
+    toDate: undefined
  }
  dateRangeOptions: MbscDatepickerOptions = {
     theme: 'ios',
@@ -167,8 +167,8 @@ export class UserHeaderComponent implements OnInit{
       this.submitFilter = false;
       this.userFilter = {
         ...this.userFilter,
-        fromDate: '',
-        toDate: ''
+        fromDate: undefined,
+        toDate: undefined
       };
     }
     this.filterUsers();
@@ -181,8 +181,8 @@ export class UserHeaderComponent implements OnInit{
       userRole: [],
       userStatus: [],
       sortBy: '',
-      fromDate: '',
-      toDate: ''
+      fromDate: undefined,
+      toDate: undefined
     };
     this.statusFilter = [];
     this.rolesFilter = [];
