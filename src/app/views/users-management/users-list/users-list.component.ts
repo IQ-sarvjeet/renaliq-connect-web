@@ -9,9 +9,6 @@ import { StoreService } from 'src/app/services/store.service';
 import { UserInfo } from 'src/app/interfaces/user';
 import { Roles } from 'src/app/enums/roles';
 
-const todayDate = new Date();
-const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
-
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
@@ -39,9 +36,10 @@ export class UsersListComponent implements OnInit {
     }
   };
   showLoading: boolean = true;
-  filters: UserFilterModel = {
+  filters: any = {
     userFilter: {
       searchKey: '',
+      practiceId: 0,
       userRole: [],
       userStatus: [],
       sortBy: '',
@@ -89,6 +87,7 @@ export class UsersListComponent implements OnInit {
             searchKey: value.searchKey,
             userRole: value.userRole,
             userStatus: value.userStatus,
+            practiceId: value.practiceId,
             fromDate: value.fromDate,
             toDate: value.toDate
           }
@@ -256,6 +255,7 @@ export class UsersListComponent implements OnInit {
         userStatus: [],
         sortBy: '',
         sortDirection: '',
+        practice: '',
         fromDate: undefined,
         toDate: undefined
       }

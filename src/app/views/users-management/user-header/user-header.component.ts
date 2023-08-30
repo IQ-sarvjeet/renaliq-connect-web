@@ -7,9 +7,6 @@ import { Status } from 'src/app/enums/status';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 
-const todayDate = new Date();
-const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
-
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -19,6 +16,7 @@ export class UserHeaderComponent implements OnInit{
   moment = moment;
   submitFilter: boolean = false;
   statusFilter: string[] = [];
+  practiceFilter: string[] = [];
   rolesFilter: string[] = [];
   practicesList: any = [];
   rolesList: any = [];
@@ -33,6 +31,8 @@ export class UserHeaderComponent implements OnInit{
     searchKey: '',
     userRole: [],
     userStatus: [],
+    practice: '',
+    practiceId: 0,
     fromDate: undefined,
     toDate: undefined
  }
@@ -106,6 +106,7 @@ export class UserHeaderComponent implements OnInit{
           const data: any = [];
           response.map((item: any, index: number ) => {
             data.push({text: item.name, value: item.id, avatar: 'm' + index});
+            this.practiceFilter.push(item.name);
           });
           this.practicesList = [...data];
         }
@@ -146,7 +147,32 @@ export class UserHeaderComponent implements OnInit{
         return role === 1 ? 'System Admin' : role === 2 ? 'Document Manager' : role === 3 ? 'Somatus User' : 'Practice User';
       });      
     }
+    this.practicesList.forEach((item: any) => {
+      if (item.text === this.userFilter.practice) {
+        this.userFilter = {
+          ...this.userFilter,
+          practiceId: item.value
+        }
+      }
+    });
     this.userEventService.userFilterEvent(this.userFilter);
+  }
+  itemSelected($event: any) {
+    this.userFilter = {
+      ...this.userFilter,
+      practice: $event
+    };
+  }
+  resetFilterPopup(){
+    this.userFilter = {
+      ...this.userFilter,
+      userRole: [],
+      userStatus: [],
+      practice: '',
+      practiceId: 0,
+      fromDate: undefined,
+      toDate: undefined
+    };
   }
   clearFilter(key: string) {
     if(key === 'userRole') {
@@ -162,6 +188,13 @@ export class UserHeaderComponent implements OnInit{
         userStatus: []
       };
       this.statusFilter = [];
+    }
+    if(key === 'userPractice') {
+      this.userFilter = {
+        ...this.userFilter,
+        practice: '',
+        practiceId: 0,
+      };
     }
     if(key === 'filterDate') {
       this.submitFilter = false;
@@ -180,6 +213,8 @@ export class UserHeaderComponent implements OnInit{
       searchKey: '',
       userRole: [],
       userStatus: [],
+      practice: '',
+      practiceId: 0,
       sortBy: '',
       fromDate: undefined,
       toDate: undefined
