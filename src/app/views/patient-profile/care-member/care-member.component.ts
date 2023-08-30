@@ -34,7 +34,7 @@ export class CareMemberComponent {
     this.patientService.apiPatientCaremembersEnrollmentNumberGet(value).subscribe({
       next: (response: any) => {
         this.careMembers = response.filter((member: any) => {
-          return member.name !== 'Unengaged Member' && member.type !== 'Admin';
+          return !member.name.toLowerCase().includes('engage') && !member.type.toLowerCase().includes('admin');
         });
       }
     })
