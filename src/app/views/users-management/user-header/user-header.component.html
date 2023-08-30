@@ -195,9 +195,20 @@
             >
             </mbsc-select>
           </div>
+          <div class="col-12 mt-4">
+            <label for="searchPractices" class="mb-1">Practices Assigned</label>
+            <mbsc-select [data]="rolesListForFilter" *ngIf="rolesListForFilter.length"
+              class="form-control form-control-mbsc"
+              id="role"
+              placeholder="Select"
+              [selectMultiple]="true"
+              [(ngModel)]="userFilter.practicesAssigned"
+            >
+            </mbsc-select>
+          </div>
         </div>
-        <div class="form-row mt-4">
-          <div class="col-6">
+        <div class="form-row">
+          <div class="col-6 mt-4">
             <label for="stage" class="mb-1">User Status</label>
             <mbsc-select [data]="userStatus"
               class="form-control form-control-mbsc"
@@ -208,12 +219,12 @@
             >
             </mbsc-select>
           </div>
-          <div class="col-6">
+          <div class="col-6 mt-4">
             <label for="stage" class="mb-1">User Created On</label>
-            <div class="input-group">
+            <div class="input-group fs-14">
               <mbsc-datepicker
                   id="admissionsPeriod"
-                  class="form-control pe-0 fs-12"
+                  class="form-control"
                   #rangeDatepicker
                   [options]="dateRangeOptions"
                   placeholder="Select date range"
