@@ -4,8 +4,7 @@ import { DataCardInput } from 'src/app/interfaces/data-card';
 import { ProgressBarChartWidgetInput } from 'src/app/interfaces/progress-bar-chart-widget';
 import { Messages } from 'src/app/shared/common-constants/messages';
 import { DescriptionCardInput } from './summary-interfaces/description-card';
-
-declare const $: any;
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-summary',
@@ -13,6 +12,7 @@ declare const $: any;
   styleUrls: ['./summary.component.scss'],
 })
 export class SummaryComponent {
+  configJson: any;
   patients: DataCardInput = {
     iconClass: 'fa fa-user-circle',
     cardTitle: Messages.attributed,
@@ -74,8 +74,9 @@ export class SummaryComponent {
     title: Messages.patientText2,
     apiUrl: 'Patient/summary/age',
   };
-  constructor(private _patientService: PatientService) {}
+  constructor(private _patientService: PatientService, private http: HttpClient) {}
   ngOnInit() {
+    this.getDashboardConfiguration(); 
     this._patientService.apiPatientCountGet().subscribe((response: any) => {
       this.admissions = {
         ...this.admissions,
@@ -93,6 +94,13 @@ export class SummaryComponent {
         ...this.admissionRecent,
         ...response.totalRecentAdmission,
       };
+    });
+  }
+  getDashboardConfiguration(){
+    this.http.get('assets/mockData/dashboard-config.json').subscribe({
+      next: (res) => {
+        this.configJson = res;
+      }
     });
   }
 }

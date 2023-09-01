@@ -23,108 +23,89 @@
     </div>
   </div>
 
-  <div class="main-container container">
-    <!-- BLOCK-1 -->
-    <div class="row mt-3">
-      <div class="col-12 col-xl-8">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <div class="card p-4">
-              <div class="d-flex">
-                <div class="notifyimg bg-info">
-                  <i class="fa fa-user"></i>
-                </div>
-                <div class="flex-fill d-flex align-items-stretch text-nowrap">
-                  <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 w-50 card-style3 py-1">
-                      <app-data-card [cardData]="patients"></app-data-card>
-                    </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 w-50 py-1">
-                      <app-data-card
-                        [cardData]="engagedPatients"
-                      ></app-data-card>
+<div class="{{ configJson.container }}">
+  <div *ngFor="let mainRrow of configJson.rows" class="row {{ mainRrow.row?.className }}">
+    <div *ngFor="let col of mainRrow.row.col" class="col-12 col-{{ col.size }}">
+      <div *ngFor="let nestedRow of col.rows" class="row">
+        <div *ngFor="let nestedCol of nestedRow.row.col" class="col-12 col-{{ nestedCol.size }} {{ nestedCol.component.className }}" id="{{ nestedCol.component.type }}">
+          <div [ngSwitch]="nestedCol.component.type">
+            <div *ngSwitchCase="'PatientCountWidget'">
+              <div class="card p-4">
+                <div class="d-flex">
+                  <div class="notifyimg bg-info">
+                    <i class="fa fa-user"></i>
+                  </div>
+                  <div class="flex-fill d-flex align-items-stretch text-nowrap">
+                    <div class="d-sm-flex w-100">
+                      <div class="flex-fill border-sm-end px-4 w-50 card-style3 py-1">
+                        <app-data-card [cardData]="patients"></app-data-card>
+                      </div>
+                      <div class="flex-fill px-4 mt-3 mt-sm-0 w-50 py-1">
+                        <app-data-card
+                          [cardData]="engagedPatients"
+                        ></app-data-card>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-12 col-md-6">
-            <div class="card p-4">
-              <div class="d-flex">
-                <div class="notifyimg bg-info">
-                  <i class="fa fa-bed"></i>
-                </div>
-                <div class="flex-fill d-flex align-items-stretch text-nowrap">
-                  <div class="d-sm-flex w-100">
-                    <div class="flex-fill border-sm-end px-4 card-style3 py-1">
-                      <app-data-card [cardData]="admissions"></app-data-card>
-                    </div>
-                    <div class="flex-fill px-4 mt-3 mt-sm-0 py-1">
-                      <app-data-card
-                        [cardData]="admissionRecent"
-                      ></app-data-card>
+            <div *ngSwitchCase="'AdmissionsCountWidget'">
+              <div class="card p-4">
+                <div class="d-flex">
+                  <div class="notifyimg bg-info">
+                    <i class="fa fa-bed"></i>
+                  </div>
+                  <div class="flex-fill d-flex align-items-stretch text-nowrap">
+                    <div class="d-sm-flex w-100">
+                      <div class="flex-fill border-sm-end px-4 card-style3 py-1">
+                        <app-data-card [cardData]="admissions"></app-data-card>
+                      </div>
+                      <div class="flex-fill px-4 mt-3 mt-sm-0 py-1">
+                        <app-data-card
+                          [cardData]="admissionRecent"
+                        ></app-data-card>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-xl-4">
-        <div class="row">
-          <div class="col-12 col-sm-6 pe-xl-1">
-            <app-description-card
-              [cardData]="qualityMatrics"
-            ></app-description-card>
-          </div>
-          <div class="col-12 col-sm-6 ps-xl-1">
-            <app-description-card
-              [cardData]="riskStratification"
-            ></app-description-card>
+            <div *ngSwitchCase="'QualityMatricsWidget'">
+              <app-description-card
+                [cardData]="qualityMatrics"
+              ></app-description-card>
+            </div>
+            <div *ngSwitchCase="'RiskStratificationWidget'">
+              <app-description-card
+                [cardData]="riskStratification"
+              ></app-description-card>
+            </div>
+            <div *ngSwitchCase="'PatientByStage'">
+              <app-patient-by-stage></app-patient-by-stage>
+            </div>
+            <div *ngSwitchCase="'PatientByRiskCategory'">
+              <app-progress-bar-chart-widget
+                [config]="patientByRiskCategor"
+              ></app-progress-bar-chart-widget>
+            </div>
+            <div *ngSwitchCase="'PatientByComorbidity'">
+              <app-progress-bar-chart-widget
+                [config]="patientByComorbidity"
+              ></app-progress-bar-chart-widget>
+            </div>
+            <div *ngSwitchCase="'PatientByAgeGroup'">
+              <app-progress-bar-chart-widget
+                [config]="patientByAgeGroup"
+              ></app-progress-bar-chart-widget>
+            </div>
+            <div *ngSwitchCase="'CareTeam'">
+              <app-care-team></app-care-team>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- BLOCK-1 END-->
-    <!-- BLOCK-2 -->
-    <div class="row">
-      <div class="col-12 col-xl-8">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <app-patient-by-stage></app-patient-by-stage>
-          </div>
-          <div class="col-12 col-md-6">
-            <app-progress-bar-chart-widget
-              [config]="patientByRiskCategor"
-            ></app-progress-bar-chart-widget>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <app-progress-bar-chart-widget
-              [config]="patientByComorbidity"
-            ></app-progress-bar-chart-widget>
-          </div>
-          <div class="col-12 col-md-6">
-            <app-progress-bar-chart-widget
-              [config]="patientByAgeGroup"
-            ></app-progress-bar-chart-widget>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-xl-4">
-        <div class="row">
-          <div class="col-12 col-md-6 col-xl-12">
-            <app-care-team></app-care-team>
-          </div>
-          <!--div class="col-12 col-md-6 col-xl-12">
-            <app-latest-updates></app-latest-updates>
-          </div-->
-        </div>
-      </div>
-    </div>
-    <!-- BLOCK-2 END -->
   </div>
+</div>
 </div>
