@@ -14,4 +14,6 @@ export interface CareTeamModel {
     name?: string;
     designation?: string;
     imageSrc?: string;
+    mobileNumber?: string;
+    email?: string;
 }
