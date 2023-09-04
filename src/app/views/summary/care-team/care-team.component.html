@@ -83,7 +83,7 @@
                   </p>
                   <div class="row g-2">
                     <div class="col-7 d-flex minw-0">
-                      <a *ngIf="member.email" class="text-truncate a-link a-link-sm text-secondary is-reverse"><i class="fa fa-envelope-square me-1 fs-16 align-middle text-primary"></i>{{member.email}}</a>
+                      <a *ngIf="member.email" class="text-truncate a-link a-link-sm text-secondary is-reverse" href="mailto:{{member.email}}"><i class="fa fa-envelope-square me-1 fs-16 align-middle text-primary"></i>{{member.email}}</a>
                     </div>
                     <div class="col-5 d-flex minw-0 justify-content-end">
                       <a *ngIf="member.mobileNumber" class="text-truncate a-link a-link-sm text-secondary is-reverse" ><i class="fa fa-phone-square me-1 fs-16 align-text-top text-primary"></i>{{member.mobileNumber}}</a>
