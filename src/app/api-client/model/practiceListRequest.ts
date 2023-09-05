@@ -10,13 +10,6 @@
  * Do not edit the class manually.
  */
 
-export interface UserFilter { 
-    searchKey?: string;
-    sortBy?: string;
-    sortDirection?: string;
-    userRole?: Array<number>;
-    userStatus?: Array<number>;
-    practiceId?: number;
-    fromDate?: Date;
-    toDate?: Date;
+export interface PracticeListRequest { 
+    role?: Array<number>;
 }

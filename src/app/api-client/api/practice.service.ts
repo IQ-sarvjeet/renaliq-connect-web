@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { CareTeamModel } from '../model/careTeamModel';
+import { PracticeListRequest } from '../model/practiceListRequest';
 import { PracticeUserEditModel } from '../model/practiceUserEditModel';
 import { PracticeUserViewModel } from '../model/practiceUserViewModel';
 
@@ -270,6 +271,58 @@ export class PracticeService {
 
         return this.httpClient.request<Array<PracticeUserViewModel>>('get',`${this.basePath}/api/Practice/list`,
             {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * 
+     * 
+     * @param body 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public apiPracticeListRolesAllPost(body?: PracticeListRequest, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public apiPracticeListRolesAllPost(body?: PracticeListRequest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public apiPracticeListRolesAllPost(body?: PracticeListRequest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public apiPracticeListRolesAllPost(body?: PracticeListRequest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+
+        let headers = this.defaultHeaders;
+
+        // authentication (Bearer) required
+        if (this.configuration.accessToken) {
+            const accessToken = typeof this.configuration.accessToken === 'function'
+                ? this.configuration.accessToken()
+                : this.configuration.accessToken;
+            headers = headers.set('Authorization', 'Bearer ' + accessToken);
+        }
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json',
+            'text/json',
+            'application/_*+json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected != undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.request<any>('post',`${this.basePath}/api/Practice/list/roles/all`,
+            {
+                body: body,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
