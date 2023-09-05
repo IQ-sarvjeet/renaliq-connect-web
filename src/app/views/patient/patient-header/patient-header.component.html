@@ -30,7 +30,7 @@
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
             </div>
             <div class="tags mt-1 me-2" *ngIf="displayFilter.careMember">
-              Care Member: <b>{{displayFilter.careMember}}</b>
+              Somatus Lead: <b>{{displayFilter.careMember}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
             </div>
             <div class="tags mt-1 me-2" *ngIf="displayFilter.status.length">
@@ -137,11 +137,11 @@
         </div>
         <div class="form-row mt-4">
           <div class="col-12 col-sm-6">
-            <label for="careMember" class="mb-1">Care Member</label>
+            <label for="careMember" class="mb-1">Somatus Lead</label>
             <input
               type="text"
               name="text"
-              placeholder="Search by Care Member"
+              placeholder="Search by Somatus Lead"
               id="careMember"
               [(ngModel)]="filter.patientFilter.careMember"
               class="form-control"
