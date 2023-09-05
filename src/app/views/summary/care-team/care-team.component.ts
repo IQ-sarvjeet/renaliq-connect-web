@@ -24,7 +24,9 @@ export class CareTeamComponent {
       if (!careTeamMemberList) {
         this.errorMessage = Messages.noData;
       } else {
-        this.careTeamList = careTeamMemberList;
+        this.careTeamList = careTeamMemberList.filter((member: any) => {
+          return !member.name.toLowerCase().includes('engage') && !member.designation.toLowerCase().includes('admin');
+        });
       }
       this.showLoading = false;
     },

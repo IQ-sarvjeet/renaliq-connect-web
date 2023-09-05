@@ -41,7 +41,8 @@ export class GridComponent implements OnInit {
       assignment: [],
       discharge: [],
       SortDirection: '',
-      SortBy: ''
+      SortBy: '',
+      nephrologistName: ''
     }
   };
   attributePatients: any = {
