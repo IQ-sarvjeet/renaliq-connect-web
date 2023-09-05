@@ -42,7 +42,7 @@
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
             </div>
             <div class="tags mt-1 me-2" *ngIf="displayFilter.isAssessed">
-              isAssessed: <b>{{displayFilter.isAssessed}}</b>
+              isAssessed: <b>{{displayFilter.isAssessed == 1 ? 'Yes' : 'No' }}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('isAssessed')">x</a>
             </div>
           </div>
