@@ -11,43 +11,43 @@
     </div>
     <div class="flex-fill">
       <div class="d-md-flex">
-        <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
-          <div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
-              Name: <b>{{displayFilter.searchKey}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.nephrologistName">
-              Nephrologist: <b>{{displayFilter.nephrologistName}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('nephrologist')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
-              Stage: <b>{{displayFilter.stage}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.riskCategory">
-              Risk Category: <b>{{displayFilter.riskCategory}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.careMember">
-              Somatus Lead: <b>{{displayFilter.careMember}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.status.length">
-              Status: <b>{{displayFilter.status}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.assignment && displayFilter.assignment.length > 1">
-              Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
-            </div>
-            <div class="tags mt-1 me-2" *ngIf="displayFilter.isAssessed">
-              isAssessed: <b>{{displayFilter.isAssessed}}</b>
-              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('isAssessed')">x</a>
-            </div>
-          </div>
+            <div class="d-none d-md-flex flex-fill ps-5 pe-3 align-items-center">
+      <div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.searchKey">
+          Name: <b>{{displayFilter.searchKey}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
         </div>
-        <div class="pt-2 text-nowrap text-end">
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.nephrologistName">
+          Nephrologist: <b>{{displayFilter.nephrologistName}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('nephrologist')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
+          Stage: <b>{{displayFilter.stage}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.riskCategory">
+          Risk Category: <b>{{displayFilter.riskCategory}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('riskCategory')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.careMember">
+          Somatus Lead: <b>{{displayFilter.careMember}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('careMember')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.status.length">
+          Status: <b>{{displayFilter.status}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('status')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.assignment && displayFilter.assignment.length > 1">
+          Assessment: <b>{{moment(displayFilter.assignment[0]).format("MM/DD/YYYY") }} - {{moment(displayFilter.assignment[0]).format("MM/DD/YYYY")}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('assignment')">x</a>
+        </div>
+        <div class="tags mt-1 me-2" *ngIf="displayFilter.isAssessed">
+          isAssessed: <b>{{ displayFilter.isAssessed == 1 ? "Yes" : "No"}}</b>
+          <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('isAssessed')">x</a>
+        </div>
+      </div>
+    </div> 
+<div class="pt-2 text-nowrap text-end">
           <div class="tags mt-1 me-2" 
             *ngIf="displayFilter.careMember || displayFilter.riskCategory || displayFilter.stage.length || displayFilter.searchKey || displayFilter.status.length|| (displayFilter.assignment && displayFilter.assignment.length > 1) || (displayFilter.isAssessed) || (displayFilter.nephrologistName)">
             Clear Filters<a href="Javascript:void(0)"
