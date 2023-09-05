@@ -17,6 +17,10 @@
               Name: <b>{{displayFilter.searchKey}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('searchKey')">x</a>
             </div>
+            <div class="tags mt-1 me-2" *ngIf="displayFilter.nephrologist">
+              Nephrologist: <b>{{displayFilter.nephrologist}}</b>
+              <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('nephrologist')">x</a>
+            </div>
             <div class="tags mt-1 me-2" *ngIf="displayFilter.stage.length">
               Stage: <b>{{displayFilter.stage}}</b>
               <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('stage')">x</a>
@@ -81,7 +85,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <div>
+        <div class="form-row">
+        <div class="col-6">
           <label for="searchPatient" class="mb-1">Patient</label>
           <input
             type="text"
@@ -91,6 +96,17 @@
             [(ngModel)]="filter.patientFilter.searchKey"
             class="form-control"
           />
+        </div>
+          <div class="col-6">
+            <label for="nephrologist" class="mb-1">Nephrologist</label>
+            <input
+              type="text"
+              placeholder="Search by Nephrologist"
+              id="nephrologist"
+              [(ngModel)]="filter.patientFilter.nephrologist"
+              class="form-control"
+            />
+          </div>
         </div>
         <div class="form-row mt-4">
           <div class="col-6">

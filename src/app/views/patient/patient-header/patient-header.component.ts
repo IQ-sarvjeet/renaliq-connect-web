@@ -60,8 +60,7 @@ export class PatientHeaderComponent {
   };
   fileNameExport: string = '';
   exportStatus: string = ''
-  
-  filter: FilterModel = {
+  filter: any = {
     currentPage: 1,
     pageSize: environment.pageSize,
     patientFilter :{
@@ -73,7 +72,8 @@ export class PatientHeaderComponent {
       assignment:[],
       isAssessed:'',
       SortBy: '',
-      SortDirection: ''
+      SortDirection: '',
+      nephrologist: ''
     }
   };
   displayFilter: any = {
@@ -83,7 +83,8 @@ export class PatientHeaderComponent {
     careMember:'',
     status:[],
     assignment:[],
-    isAssessed:''
+    isAssessed:'',
+    nephrologist:''
   }
   disabledExport: boolean = false;
   patients: any;
@@ -140,7 +141,8 @@ export class PatientHeaderComponent {
       assignment:[],
       isAssessed:'',
       SortBy: '',
-      SortDirection: ''
+      SortDirection: '',
+      nephrologist:''
     };
     this.displayFilter = {...this.filter.patientFilter};
     this.submit();
@@ -149,6 +151,10 @@ export class PatientHeaderComponent {
     if(key === 'searchKey') {
       this.displayFilter.searchKey = '';
       this.filter.patientFilter.searchKey = '';
+    }
+    if(key === 'nephrologist'){
+      this.displayFilter.nephrologist = '';
+      this.filter.patientFilter.nephrologist = '';
     }
     if(key === 'stage') {
       this.displayFilter.stage = [];
