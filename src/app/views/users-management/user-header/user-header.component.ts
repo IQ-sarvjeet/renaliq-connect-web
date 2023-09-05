@@ -14,6 +14,7 @@ import * as moment from 'moment';
 })
 export class UserHeaderComponent implements OnInit{
   moment = moment;
+  practicesLoading: boolean = false;
   submitFilter: boolean = false;
   statusFilter: string[] = [];
   practiceFilter: string[] = [];
@@ -106,7 +107,6 @@ export class UserHeaderComponent implements OnInit{
           const data: any = [];
           response.map((item: any, index: number ) => {
             data.push({text: item.name, value: item.id, avatar: 'm' + index});
-            this.practiceFilter.push(item.name);
           });
           this.practicesList = [...data];
         }
@@ -156,6 +156,19 @@ export class UserHeaderComponent implements OnInit{
       }
     });
     this.userEventService.userFilterEvent(this.userFilter);
+  }
+  getPractices(){
+    this.practicesLoading = true;
+    this.userFilter.practice = '';
+    this.practiceFilter = [];
+    this.practiceService.apiPracticeListRolesAllPost({role: this.userFilter.userRole}).subscribe({
+      next: (response: any) => {
+        this.practicesLoading = false;
+        response.map((item: any) => {
+          this.practiceFilter.push(item.name);
+        });
+      }
+    });
   }
   itemSelected($event: any) {
     this.userFilter = {

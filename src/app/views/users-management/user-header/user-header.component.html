@@ -188,6 +188,7 @@
         </button>
       </div>
       <div class="modal-body">
+        <app-spinner *ngIf="practicesLoading"></app-spinner>
         <div class="form-row">
           <div class="col-12">
             <label for="searchPatient" class="mb-1">User Role</label>
@@ -197,6 +198,7 @@
               placeholder="Select"
               [selectMultiple]="true"
               [(ngModel)]="userFilter.userRole"
+              (change)="getPractices()"
             >
             </mbsc-select>
           </div>
