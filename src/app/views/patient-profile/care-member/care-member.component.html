@@ -81,12 +81,12 @@
                 <div class="mt-1">
                   <h5 class="mb-0">{{member.name}}</h5>
                   <p class="mb-0 text-13 text-primary">{{member.type}}</p>
-                  <div class="d-flex minw-0">
+                  <div *ngIf="member.emailId" class="d-flex minw-0">
                     <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="mailto:{{member.emailId}}"><i class="fa fa-envelope-square me-1 fs-16 align-middle text-primary"></i> {{member.emailId}}</a>
                   </div>
-                  <div class="d-flex minw-0">
+                  <!-- <div class="d-flex minw-0">
                     <a class="text-truncate a-link a-link-sm text-secondary is-reverse" href="tel:{{member.mobileNo}}"><i class="fa fa-phone-square me-1 fs-16 align-text-top text-primary"></i> {{member.mobileNo}}</a>
-                  </div>
+                  </div> -->
                 </div>
             </div>
           </div>

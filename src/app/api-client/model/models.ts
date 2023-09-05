@@ -18,6 +18,7 @@ export * from './pagingModel';
 export * from './patientFilter';
 export * from './patientFilterModel';
 export * from './patientLatLongRequestModel';
+export * from './practiceListRequest';
 export * from './practiceUserEditModel';
 export * from './practiceUserViewModel';
 export * from './recentDocumentModel';

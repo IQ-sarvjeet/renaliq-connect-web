@@ -14,5 +14,6 @@ export interface PatientFilterModel {
     discharge?: Date[],
     isAssessed?: string,
     SortDirection: string,
-    SortBy: string
+    SortBy: string,
+    nephrologistName?: string
 }

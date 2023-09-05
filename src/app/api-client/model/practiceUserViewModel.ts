@@ -17,4 +17,5 @@ export interface PracticeUserViewModel {
     name?: string;
     npi?: string;
     isSelected?: boolean;
+    programType?: string;
 }

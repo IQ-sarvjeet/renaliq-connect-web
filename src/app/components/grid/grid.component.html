@@ -15,7 +15,11 @@
           [ngClass]="renderArrowIcon('patientname')">
           PATIENT
         </th>
-
+        <th class="bg-transparent border-bottom-0 fs-12 table-header"
+          (click)="applySortPatient('nephrologist')"
+          [ngClass]="renderArrowIcon('nephrologist')">
+          NEPHROLOGIST
+        </th>
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           (click)="applySort('BirthDate')"
           [ngClass]="renderArrowIcon('BirthDate')">
@@ -34,7 +38,7 @@
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           (click)="applySort('PrimaryCareMember')"
           [ngClass]="renderArrowIcon('PrimaryCareMember')">
-          CARE MEMBER
+          SOMATUS LEAD
         </th>
         <th class="bg-transparent border-bottom-0 fs-12 table-header"
           [ngClass]="renderArrowIcon('Status')"
@@ -203,7 +207,13 @@
             </div>
           </div>
         </td>
-
+        <td>
+          <div class="d-flex align-items-center">
+            <div class="user-details ms-2">
+                {{ item.nephrologistName ? item.nephrologistName : '-' }}
+            </div>
+          </div>
+        </td>
         <td class="text-center">
           {{ getFormatDate(item.dob)
           }}<strong class="fw-semibold"> ({{ getAge(item.dob) }})</strong>
