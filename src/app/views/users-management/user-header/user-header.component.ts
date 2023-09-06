@@ -7,9 +7,6 @@ import { Status } from 'src/app/enums/status';
 import { MbscDatepickerOptions } from '@mobiscroll/angular';
 import * as moment from 'moment';
 
-const todayDate = new Date();
-const datePrior365 = new Date(new Date().setDate(todayDate.getDate() - 365));
-
 @Component({
   selector: 'app-user-header',
   templateUrl: './user-header.component.html',
@@ -35,7 +32,7 @@ export class UserHeaderComponent implements OnInit{
     userRole: [],
     userStatus: [],
     practice: '',
-    practiceId: 0,
+    practiceId: undefined,
     fromDate: undefined,
     toDate: undefined
  }
@@ -150,23 +147,26 @@ export class UserHeaderComponent implements OnInit{
         return role === 1 ? 'System Admin' : role === 2 ? 'Document Manager' : role === 3 ? 'Somatus User' : 'Practice User';
       });      
     }
+    this.practicesList.forEach((item: any) => {
+      if (item.text === this.userFilter.practice) {
+        this.userFilter = {
+          ...this.userFilter,
+          practiceId: item.value
+        }
+      }
+    });
+    if(!this.userFilter.userStatus.length){
+      this.statusFilter = [];
+    }
+    if(!this.userFilter.userRole.length){
+      this.rolesFilter = [];
+    }
     this.userEventService.userFilterEvent(this.userFilter);
   }
   itemSelected($event: any) {
     this.userFilter = {
       ...this.userFilter,
       practice: $event
-    };
-  }
-  resetFilterPopup(){
-    this.userFilter = {
-      ...this.userFilter,
-      userRole: [],
-      userStatus: [],
-      practice: '',
-      practiceId: 0,
-      fromDate: undefined,
-      toDate: undefined
     };
   }
   clearFilter(key: string) {
@@ -188,7 +188,7 @@ export class UserHeaderComponent implements OnInit{
       this.userFilter = {
         ...this.userFilter,
         practice: '',
-        practiceId: 0,
+        practiceId: undefined,
       };
     }
     if(key === 'filterDate') {
@@ -208,6 +208,8 @@ export class UserHeaderComponent implements OnInit{
       searchKey: '',
       userRole: [],
       userStatus: [],
+      practice: '',
+      practiceId: undefined,
       sortBy: '',
       fromDate: undefined,
       toDate: undefined

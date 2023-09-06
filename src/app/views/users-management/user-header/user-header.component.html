@@ -58,6 +58,10 @@
                   User Status: <b>{{statusFilter}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userStatus')">x</a>
                 </div>
+                <div class="tags mt-1 me-2" *ngIf="userFilter.practice !== '' && submitFilter">
+                  Practice: <b>{{userFilter.practice}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userPractice')">x</a>
+                </div>
                 <div class="tags mt-1 me-2" *ngIf="(userFilter.fromDate && userFilter.toDate) && submitFilter">
                   Created Created On: <b>{{moment(userFilter.fromDate).format("MM/DD/YYYY") + ' to ' + moment(userFilter.toDate).format("MM/DD/YYYY")}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('filterDate')">x</a>
@@ -66,7 +70,7 @@
             </div>
             <div class="pt-2 text-nowrap text-end">
               <div class="tags mt-1 me-2"
-                *ngIf="(rolesFilter.length || statusFilter.length || (userFilter.fromDate && userFilter.toDate)) && submitFilter">
+                *ngIf="(rolesFilter.length || statusFilter.length ||  userFilter.practice !== '' ||(userFilter.fromDate && userFilter.toDate)) && submitFilter">
                 Clear Filters<a href="Javascript:void(0)" class="tags__icon" (click)="clearFilterHandler()">x</a>
               </div>
             </div>
@@ -178,7 +182,8 @@
     <div class="modal-content modal-content-demo">
       <div class="modal-header bg-gray-200">
         <h4 class="modal-title fw-semibold">Filter Users</h4>
-        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal">
+        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"
+        (click)="filterUsers()">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
