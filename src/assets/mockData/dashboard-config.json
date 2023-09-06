@@ -1,0 +1,126 @@
+{
+    "container": "main-container container",
+    "rows": [
+        {
+            "row": {
+                "className": "mt-3",
+                "col": [
+                    {
+                        "size": "xl-8",
+                        "rows": [
+                            {
+                                "row": {
+                                    "col": [
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "PatientCountWidget"
+                                            }
+                                        },
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "AdmissionsCountWidget"
+                                            }
+                                        }
+                                    ]
+                                    
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "size": "xl-4",
+                        "rows": [
+                            {
+                                "row": {
+                                    "col": [
+                                        {
+                                            "size": "sm-6",
+                                            "component": {
+                                                "type": "QualityMatricsWidget",
+                                                "className": "pe-xl-1"
+                                            }
+                                        },
+                                        {
+                                            "size": "sm-6",
+                                            "component": {
+                                                "type": "RiskStratificationWidget",
+                                                "className": "ps-xl-1"
+                                            }
+                                        }
+                                    ]
+                                    
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "row": {
+                "col": [
+                    {
+                        "size": "xl-8",
+                        "rows": [
+                            {
+                                "row": {
+                                    "col": [
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "PatientByStage"
+                                            }
+                                        },
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "PatientByRiskCategory"
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "row": {
+                                    "col": [
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "PatientByComorbidity"
+                                            }
+                                        },
+                                        {
+                                            "size": "md-6",
+                                            "component": {
+                                                "type": "PatientByAgeGroup"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "size": "xl-4",
+                        "rows": [
+                            {
+                                "row": {
+                                    "col": [
+                                        {
+                                            "size": "md-6 col-xl-12",
+                                            "component": {
+                                                "type": "CareTeam"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
