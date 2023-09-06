@@ -19,6 +19,7 @@ export class UserHeaderComponent implements OnInit{
   moment = moment;
   submitFilter: boolean = false;
   statusFilter: string[] = [];
+  practiceFilter: string[] = [];
   rolesFilter: string[] = [];
   practicesList: any = [];
   rolesList: any = [];
@@ -33,6 +34,8 @@ export class UserHeaderComponent implements OnInit{
     searchKey: '',
     userRole: [],
     userStatus: [],
+    practice: '',
+    practiceId: 0,
     fromDate: undefined,
     toDate: undefined
  }
@@ -106,6 +109,7 @@ export class UserHeaderComponent implements OnInit{
           const data: any = [];
           response.map((item: any, index: number ) => {
             data.push({text: item.name, value: item.id, avatar: 'm' + index});
+            this.practiceFilter.push(item.name);
           });
           this.practicesList = [...data];
         }
@@ -148,6 +152,23 @@ export class UserHeaderComponent implements OnInit{
     }
     this.userEventService.userFilterEvent(this.userFilter);
   }
+  itemSelected($event: any) {
+    this.userFilter = {
+      ...this.userFilter,
+      practice: $event
+    };
+  }
+  resetFilterPopup(){
+    this.userFilter = {
+      ...this.userFilter,
+      userRole: [],
+      userStatus: [],
+      practice: '',
+      practiceId: 0,
+      fromDate: undefined,
+      toDate: undefined
+    };
+  }
   clearFilter(key: string) {
     if(key === 'userRole') {
       this.userFilter = {
@@ -162,6 +183,13 @@ export class UserHeaderComponent implements OnInit{
         userStatus: []
       };
       this.statusFilter = [];
+    }
+    if(key === 'userPractice') {
+      this.userFilter = {
+        ...this.userFilter,
+        practice: '',
+        practiceId: 0,
+      };
     }
     if(key === 'filterDate') {
       this.submitFilter = false;

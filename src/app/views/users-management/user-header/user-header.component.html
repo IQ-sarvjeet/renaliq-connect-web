@@ -196,6 +196,19 @@
             </mbsc-select>
           </div>
         </div>
+        
+        <div class="form-row mt-4">
+          <div class="col-12" id="practice-filter">
+            <label for="stage" class="mb-1">Practice Assigned</label>
+            <app-typeahead 
+              [dataList]="{ 
+                data: practiceFilter,
+                defaultSelected: userFilter.practice,
+                classParentElement: 'none'
+              }"
+              (itemSelected)="itemSelected($event)"></app-typeahead>
+          </div>
+        </div>
         <div class="form-row mt-4">
           <div class="col-6">
             <label for="stage" class="mb-1">User Status</label>
