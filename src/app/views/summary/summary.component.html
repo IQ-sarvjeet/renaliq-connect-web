@@ -27,7 +27,7 @@
   <div *ngFor="let mainRrow of configJson.rows" class="row {{ mainRrow.row?.className }}">
     <div *ngFor="let col of mainRrow.row.col" class="col-12 col-{{ col.size }}">
       <div *ngFor="let nestedRow of col.rows" class="row">
-        <div *ngFor="let nestedCol of nestedRow.row.col" class="col-12 col-{{ nestedCol.size }} {{ nestedCol.component.className }}" id="{{ nestedCol.component.type }}">
+        <div *ngFor="let nestedCol of nestedRow.row.col" class="col-12 col-{{ nestedCol.size }} {{ nestedCol.component.className }}">
           <div [ngSwitch]="nestedCol.component.type">
             <div *ngSwitchCase="'PatientCountWidget'">
               <div class="card p-4">
