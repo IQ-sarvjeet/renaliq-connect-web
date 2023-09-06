@@ -21,4 +21,5 @@ export interface PatientFilter {
     isAssessed?: string;
     sortBy?: string;
     sortDirection?: string;
+    nephrologistName?: string;
 }
