@@ -58,15 +58,19 @@
                   User Status: <b>{{statusFilter}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userStatus')">x</a>
                 </div>
+                <div class="tags mt-1 me-2" *ngIf="userFilter.practice !== '' && submitFilter">
+                  Practice: <b>{{userFilter.practice}}</b>
+                  <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('userPractice')">x</a>
+                </div>
                 <div class="tags mt-1 me-2" *ngIf="(userFilter.fromDate && userFilter.toDate) && submitFilter">
-                  Created Created On: <b>{{moment(userFilter.fromDate).format("MM/DD/YYYY") + ' to ' + moment(userFilter.toDate).format("MM/DD/YYYY")}}</b>
+                  Created On: <b>{{moment(userFilter.fromDate).format("MM/DD/YYYY") + ' to ' + moment(userFilter.toDate).format("MM/DD/YYYY")}}</b>
                   <a href="Javascript:void(0)" class="tags__icon" (click)="clearFilter('filterDate')">x</a>
                 </div>
               </div>
             </div>
             <div class="pt-2 text-nowrap text-end">
               <div class="tags mt-1 me-2"
-                *ngIf="(rolesFilter.length || statusFilter.length || (userFilter.fromDate && userFilter.toDate)) && submitFilter">
+                *ngIf="(rolesFilter.length || statusFilter.length ||  userFilter.practice !== '' ||(userFilter.fromDate && userFilter.toDate)) && submitFilter">
                 Clear Filters<a href="Javascript:void(0)" class="tags__icon" (click)="clearFilterHandler()">x</a>
               </div>
             </div>
@@ -194,6 +198,19 @@
               [(ngModel)]="userFilter.userRole"
             >
             </mbsc-select>
+          </div>
+        </div>
+        
+        <div class="form-row mt-4">
+          <div class="col-12" id="practice-filter">
+            <label for="stage" class="mb-1">Practice Assigned</label>
+            <app-typeahead 
+              [dataList]="{ 
+                data: practiceFilter,
+                defaultSelected: userFilter.practice,
+                classParentElement: 'none'
+              }"
+              (itemSelected)="itemSelected($event)"></app-typeahead>
           </div>
         </div>
         <div class="form-row mt-4">
