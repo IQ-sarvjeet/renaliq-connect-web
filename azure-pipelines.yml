@@ -23,9 +23,14 @@ stages:
 
           - script: |
               npm install -g @angular/cli
-              npm install 
-              ng build --configuration=uat --output-hashing=all
+              npm install
+               
             displayName: 'npm install and UATbuild'
+          - script: |
+              ng build --configuration=production --output-hashing=all
+              dir
+            displayName: build
+
 
           - task: ArchiveFiles@2
             displayName: 'Archive '
@@ -52,6 +57,7 @@ stages:
               npm install -g @angular/cli
               npm install
               ng build --configuration=production --output-hashing=all
+              dir
             displayName: 'npm install and PRODbuild'
           - task: ArchiveFiles@2
             displayName: 'Archive '
