@@ -21,18 +21,27 @@ stages:
               versionSpec: '16.x'
             displayName: 'Install Node.js'
 
+          - task: Npm@1
+            displayName: 'npm custom'
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: 'install -g @angular/cli'
+
+          - task: Npm@1
+            displayName: 'npm install'
+            inputs:
+              verbose: false
+  
           - script: |
-              npm install -g @angular/cli
-              npm install
-              ng build --configuration=production --output-hashing=all
+              ng build --configuration=uat --output-hashing=all
               dir
             displayName: build
-
 
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: $(Build.BinariesDirectory)/dist/new-angular-app'
+              rootFolderOrFile: $(System.DefaultWorkingDirectory)/dist/new-angular-app'
               includeRootFolder: false
 
           - task: PublishBuildArtifacts@1
@@ -50,16 +59,27 @@ stages:
               versionSpec: '16.x'
             displayName: 'Install Node.js'
 
+          - task: Npm@1
+            displayName: 'npm custom'
+            inputs:
+              command: custom
+              verbose: false
+              customCommand: 'install -g @angular/cli'
+
+          - task: Npm@1
+            displayName: 'npm install'
+            inputs:
+              verbose: false
+  
           - script: |
-              npm install -g @angular/cli
-              npm install
               ng build --configuration=production --output-hashing=all
               dir
-            displayName: 'npm install and PRODbuild'
+            displayName: build
+
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: '$(Build.BinariesDirectory)/dist/new-angular-app'
+              rootFolderOrFile: $(System.DefaultWorkingDirectory)/dist/new-angular-app'
               includeRootFolder: false
           - task: PublishBuildArtifacts@1
             inputs:
