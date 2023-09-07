@@ -34,14 +34,14 @@ stages:
               verbose: false
   
           - script: |
-              ng build --configuration=production --output-hashing=all
+              ng build --configuration=uat --output-hashing=all
               dir
             
 
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: $(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              rootFolderOrFile: $(System.DefaultWorkingDirectory)/**/dist/new-angular-app'
               includeRootFolder: false
 
           - task: PublishBuildArtifacts@1
@@ -79,7 +79,7 @@ stages:
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: $(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              rootFolderOrFile: $(System.DefaultWorkingDirectory)/**/dist/new-angular-app'
               includeRootFolder: false
           - task: PublishBuildArtifacts@1
             inputs:
