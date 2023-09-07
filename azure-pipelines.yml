@@ -34,7 +34,7 @@ stages:
               verbose: false
   
           - script: |
-              ng build --configuration=uat --output-hashing=all
+              ng build --configuration=production --output-hashing=all
               dir
             
 
