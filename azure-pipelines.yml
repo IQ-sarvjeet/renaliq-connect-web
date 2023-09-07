@@ -1,0 +1,66 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+  branches:
+    include:
+      - testing_5sept
+
+pool:
+  vmImage: windows-latest
+
+stages:
+  - stage: BuildforUAT
+    jobs:
+      - job: BuildJob
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm install -g @angular/cli
+              npm install 
+              ng build --configuration=uat --output-hashing=all
+            displayName: 'npm install and UATbuild'
+
+          - task: ArchiveFiles@2
+            displayName: 'Archive '
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              includeRootFolder: false
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container'
+
+  - stage: BuildforPROD
+    jobs:
+      - job: BuildJob
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.x'
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm install -g @angular/cli
+              npm install
+              ng build --configuration=production --output-hashing=all
+            displayName: 'npm install and PRODbuild'
+          - task: ArchiveFiles@2
+            displayName: 'Archive '
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              includeRootFolder: false
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'drop'
+              publishLocation: 'Container' 
+        
