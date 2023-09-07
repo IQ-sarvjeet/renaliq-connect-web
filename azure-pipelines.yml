@@ -32,7 +32,7 @@ stages:
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              rootFolderOrFile: $(Build.BinariesDirectory)/dist/new-angular-app'
               includeRootFolder: false
 
           - task: PublishBuildArtifacts@1
@@ -59,7 +59,7 @@ stages:
           - task: ArchiveFiles@2
             displayName: 'Archive '
             inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/new-angular-app'
+              rootFolderOrFile: '$(Build.BinariesDirectory)/dist/new-angular-app'
               includeRootFolder: false
           - task: PublishBuildArtifacts@1
             inputs:
