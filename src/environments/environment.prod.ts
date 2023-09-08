@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: 'https://renaliq-comm-api-dev-connect.azurewebsites.net',
-  appUrl: 'https://agreeable-forest-060cbdb10.2.azurestaticapps.net',
+  baseApiUrl: __baseApiUrl__,
+  appUrl: __appUrl__,
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
