@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseApiUrl: '__baseApiUrl__',
-  appUrl: '__appUrl__' ,
+  baseApiUrl: '_@_baseApiUrl_@_',
+  appUrl: '_@_appUrl_@_' ,
   identity: {
     clientId: 'WebUI.Admin',
     clientSecret: 'eNuscFFwA8X4tJEYsQyjndUkrQhxN3Xu',
