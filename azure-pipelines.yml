@@ -56,7 +56,7 @@ stages:
         vmImage: 'windows-latest'
       environment: dev
       variables:
-      - group: prod
+      - group: uat
       strategy:
         runOnce:
           deploy:
@@ -93,4 +93,48 @@ stages:
                 SlotName: 'env-test'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
 
-        
+  - stage: 'prod'
+    displayName: 'Deploy to the prod environment'
+    dependsOn: Dev
+    jobs:
+    - deployment: Deploy
+      pool:
+        vmImage: 'windows-latest'
+      environment: prod
+      variables:
+      - group: prod
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - download: current
+              artifact: drop
+
+            - task: PowerShell@2
+              inputs:
+                targetType: 'inline'
+                script: 'mkdir dist'
+
+            - task: CopyFiles@2
+              displayName: 'Copy Files to: $(System.DefaultWorkingDirectory)/dist'
+              inputs:
+                SourceFolder: '$(Agent.BuildDirectory)\drop'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/dist'
+
+            - task: replacetokens@5
+              inputs:
+                rootDirectory: '$(System.DefaultWorkingDirectory)/dist'
+                targetFiles: 'main.*.js'
+                tokenPattern: 'custom'
+                tokenPrefix: '_@_'
+                tokenSuffix: '_@_'
+            - task: AzureRmWebAppDeployment@4
+              inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'Azure Developer (7e07cf2b-f33e-470a-82ad-395d1d3bf702)'
+                appType: 'webApp'
+                WebAppName: 'web-patient-dev-api'
+                deployToSlotOrASE: true
+                ResourceGroupName: 'rsg-patientportal-dev-01'
+                SlotName: 'env-test'
+                packageForLinux: '$(System.DefaultWorkingDirectory)/dist'       
