@@ -51,7 +51,6 @@ stages:
     dependsOn: Build
     condition:  succeeded()
     jobs:
-    - job: actualwork
     - deployment: Deploy
       pool:
         vmImage: 'windows-latest'
@@ -96,15 +95,16 @@ stages:
     
     - job: Notification
       displayName: Information
+      condition: succeeded()
+      dependsOn: Deploy
       pool: server
-      timeoutInMinutes: 4320
       steps:
       
       - task: ManualValidation@0
         inputs:
           notifyUsers: 'azureadmin@esolutionsfirst.com'
           instructions: 'Deployment is completed.'
-          onTimeout: 'resume'
+
 
   - stage: 'prod'
     displayName: 'Deploy to the prod environment'
