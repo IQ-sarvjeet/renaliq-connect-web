@@ -97,13 +97,7 @@ stages:
       displayName: Information
       condition: succeeded()
       dependsOn: Deploy
-      pool: server
-      steps:
-      
-      - task: ManualValidation@0
-        inputs:
-          notifyUsers: 'azureadmin@esolutionsfirst.com'
-          instructions: 'Deployment is completed.'
+
 
 
   - stage: 'prod'
