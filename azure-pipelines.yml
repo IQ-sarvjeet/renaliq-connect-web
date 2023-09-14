@@ -72,7 +72,7 @@ stages:
             - task: CopyFiles@2
               displayName: 'Copy Files to: $(System.DefaultWorkingDirectory)/dist'
               inputs:
-                SourceFolder: '$(System.DefaultWorkingDirectory)/IQ-sarvjeet.renaliq-connect-web/drop'
+                SourceFolder: '$(Agent.BuildDirectory)\drop'
                 TargetFolder: '$(System.DefaultWorkingDirectory)/dist'
 
             - task: replacetokens@5
