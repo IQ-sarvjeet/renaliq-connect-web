@@ -55,18 +55,12 @@ stages:
       pool:
         vmImage: 'windows-latest'
       environment: dev
-      timeoutInMinutes: 4320 # job times out in 3 days
       variables:
       - group: uat
       strategy:
         runOnce:
           deploy:
             steps:
-            - task: ManualValidation@0
-              inputs:
-                notifyUsers: 'azureadmin@esolutionsfirst.com'
-                instructions: 'Build is Complete. Please approve for deployment on Dev.'
-
             - download: current
               artifact: drop
 
@@ -113,11 +107,6 @@ stages:
         runOnce:
           deploy:
             steps:
-            - task: ManualValidation@0
-              inputs:
-                notifyUsers: 'azureadmin@esolutionsfirst.com'
-                instructions: 'Deployment is completed on Dev. Please approve for PROD development.'
-
             - download: current
               artifact: drop
 
