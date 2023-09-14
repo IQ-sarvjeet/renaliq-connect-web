@@ -54,7 +54,7 @@ stages:
     - deployment: Deploy
       pool:
         vmImage: 'windows-latest'
-      #environment: dev
+      environment: dev
       timeoutInMinutes: 4320 # job times out in 3 days
       variables:
       - group: uat
