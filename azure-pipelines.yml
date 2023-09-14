@@ -8,82 +8,89 @@ trigger:
     include:
       - testing_5sept
 
-pool:
-  vmImage: windows-latest
-
 stages:
-  - stage: BuildforUAT
+  - stage: 'Build'
+    displayName: 'Buildd the web appication'
     jobs:
-      - job: BuildJob
+      - job: 'Build'
+        displayName: 'Build job'
+        pool:
+          vmImage: 'windows-latest'
+          demands:
+          - npm
+        
         steps:
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '16.x'
-            displayName: 'Install Node.js'
+        - task: NodeTool@0
+          displayName: 'Use Node 16.x'
+          inputs:
+            versionSpec: 16.x 
+          
+        - task: Npm@1
+          displayName: 'npm custom'
+          inputs:
+            command: custom
+            verbose: false
+            customCommand: 'install -g @angular/cli'
+        
+        - task: Npm@1
+          displayName: 'npm install'
+          inputs:
+            verbose: false
+          
+        - script: 'ng build '
+          displayName: build
+        
+        - task: PublishPipelineArtifact@1
+          displayName: 'Publish Pipeline Artifact'
+          inputs:
+            targetPath: 'dist/new-angular-app'
+            artifact: drop
 
-          - task: Npm@1
-            displayName: 'npm custom'
-            inputs:
-              command: custom
-              verbose: false
-              customCommand: 'install -g @angular/cli'
-
-          - task: Npm@1
-            displayName: 'npm install'
-            inputs:
-              verbose: false
-  
-          - script: |
-              ng build --configuration=production --output-hashing=all
-              dir
-            
-
-          - task: ArchiveFiles@2
-            displayName: 'Archive '
-            inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/**/dist/new-angular-app'
-              includeRootFolder: false
-
-          - task: PublishBuildArtifacts@1
-            inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'drop'
-              publishLocation: 'Container'
-
-  - stage: BuildforPROD
+  - stage: 'Dev'
+    displayName: 'Deploy to the dev environment'
+    dependsOn: Build
+    condition:  succeeded()
     jobs:
-      - job: BuildJob
-        steps:
-          - task: NodeTool@0
-            inputs:
-              versionSpec: '16.x'
-            displayName: 'Install Node.js'
+    - deployment: Deploy
+      pool:
+        vmImage: 'windows-latest'
+      environment: dev
+      variables:
+      - group: prod
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - download: current
+              artifact: drop
 
-          - task: Npm@1
-            displayName: 'npm custom'
-            inputs:
-              command: custom
-              verbose: false
-              customCommand: 'install -g @angular/cli'
+            - task: PowerShell@2
+              inputs:
+                targetType: 'inline'
+                script: 'mkdir dist'
 
-          - task: Npm@1
-            displayName: 'npm install'
-            inputs:
-              verbose: false
-  
-          - script: |
-              ng build --configuration=production --output-hashing=all
-              dir
-            
+            - task: CopyFiles@2
+              displayName: 'Copy Files to: $(System.DefaultWorkingDirectory)/dist'
+              inputs:
+                SourceFolder: '$(System.DefaultWorkingDirectory)/_-test_env-CI-tokken/drop'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/dist'
 
-          - task: ArchiveFiles@2
-            displayName: 'Archive '
-            inputs:
-              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/**/dist/new-angular-app'
-              includeRootFolder: false
-          - task: PublishBuildArtifacts@1
-            inputs:
-              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-              ArtifactName: 'drop'
-              publishLocation: 'Container' 
+            - task: replacetokens@5
+              inputs:
+                rootDirectory: '$(System.DefaultWorkingDirectory)/dist'
+                targetFiles: 'main.*.js'
+                tokenPattern: 'custom'
+                tokenPrefix: '_@_'
+                tokenSuffix: '_@_'
+            - task: AzureRmWebAppDeployment@4
+              inputs:
+                ConnectionType: 'AzureRM'
+                azureSubscription: 'Azure Developer (7e07cf2b-f33e-470a-82ad-395d1d3bf702)'
+                appType: 'webApp'
+                WebAppName: 'web-patient-dev-api'
+                deployToSlotOrASE: true
+                ResourceGroupName: 'rsg-patientportal-dev-01'
+                SlotName: 'env-test'
+                packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
+
         
