@@ -39,12 +39,11 @@ stages:
           
         - script: 'ng build '
           displayName: build
-        
-        - task: PublishPipelineArtifact@1
-          displayName: 'Publish Pipeline Artifact'
+        - task: PublishBuildArtifacts@1
           inputs:
-            targetPath: 'dist/new-angular-app'
-            artifact: drop
+            PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist/new-angular-app'
+            ArtifactName: 'drop'
+            publishLocation: 'Container'
 
   - stage: 'Dev'
     displayName: 'Deploy to the dev environment'
@@ -61,8 +60,16 @@ stages:
         runOnce:
           deploy:
             steps:
-            - download: current
-              artifact: drop
+            - task: DownloadBuildArtifacts@1
+              inputs:
+                buildType: 'specific'
+                project: '6769d0e1-4e1d-4c87-808c-8776814a37a7'
+                pipeline: '16'
+                buildVersionToDownload: 'latest'
+                downloadType: 'single'
+                artifactName: 'drop'
+                downloadPath: '$(System.ArtifactsDirectory)'
+            
 
             - task: PowerShell@2
               inputs:
