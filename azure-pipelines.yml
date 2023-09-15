@@ -41,7 +41,7 @@ stages:
           displayName: build
         - task: PublishBuildArtifacts@1
           inputs:
-            PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist/new-angular-app'
+            PathtoPublish: '$(Agent.BuildDirectory)/dist/new-angular-app'
             ArtifactName: 'drop'
             publishLocation: 'Container'
 
