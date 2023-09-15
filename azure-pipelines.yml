@@ -68,7 +68,7 @@ stages:
                 definition: '16'
                 buildVersionToDownload: 'latest'
                 artifactName: 'drop'
-                targetPath: '$(Pipeline.Workspace)'
+                targetPath: '$(Agent.BuildDirectory)/drop'
               
             - task: PowerShell@2
               inputs:
@@ -99,13 +99,6 @@ stages:
                 SlotName: 'env-test'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
     
-    - job: Notification
-      displayName: Information
-      condition: succeeded()
-      dependsOn: Deploy
-
-
-
   - stage: 'prod'
     displayName: 'Deploy to the prod environment'
     dependsOn: Dev
