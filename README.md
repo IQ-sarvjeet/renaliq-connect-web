@@ -62,6 +62,8 @@ export * from './problemDetails';
 #Update patient.service.ts
 
     return this.httpClient.request<any>('get',`${this.basePath}/api/Patient/profile-image/${encodeURIComponent(String(enrollmentNumber))}`,
+
+TEST
         {
             withCredentials: this.configuration.withCredentials,
             headers: headers,
