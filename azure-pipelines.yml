@@ -91,12 +91,9 @@ stages:
             - task: AzureRmWebAppDeployment@4
               inputs:
                 ConnectionType: 'AzureRM'
-                azureSubscription: 'Azure Developer (7e07cf2b-f33e-470a-82ad-395d1d3bf702)'
-                appType: 'webApp'
-                WebAppName: 'web-patient-dev-api'
-                deployToSlotOrASE: true
-                ResourceGroupName: 'rsg-patientportal-dev-01'
-                SlotName: 'env-test'
+                azureSubscription: 'Azure Development Subscription(16546ea7-0c0e-4810-9aa2-820727239256)'
+                appType: 'webAppLinux'
+                WebAppName: 'mdm-prototype'
                 packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
     
   - stage: 'prod'
