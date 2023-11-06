@@ -63,10 +63,7 @@ stages:
 
             - task: DownloadPipelineArtifact@2
               inputs:
-                buildType: 'specific'
-                project: '6769d0e1-4e1d-4c87-808c-8776814a37a7'
-                definition: '16'
-                buildVersionToDownload: 'latest'
+                buildType: 'current'
                 artifactName: 'drop'
                 targetPath: '$(Agent.BuildDirectory)/drop'
               
@@ -112,10 +109,7 @@ stages:
             steps:
             - task: DownloadPipelineArtifact@2
               inputs:
-                buildType: 'specific'
-                project: '6769d0e1-4e1d-4c87-808c-8776814a37a7'
-                definition: '16'
-                buildVersionToDownload: 'latest'
+                buildType: 'current'
                 artifactName: 'drop'
                 targetPath: '$(Agent.BuildDirectory)/drop'
 
@@ -140,10 +134,7 @@ stages:
             - task: AzureRmWebAppDeployment@4
               inputs:
                 ConnectionType: 'AzureRM'
-                azureSubscription: 'Azure Developer (7e07cf2b-f33e-470a-82ad-395d1d3bf702)'
-                appType: 'webApp'
-                WebAppName: 'web-patient-dev-api'
-                deployToSlotOrASE: true
-                ResourceGroupName: 'rsg-patientportal-dev-01'
-                SlotName: 'env-test'
-                packageForLinux: '$(System.DefaultWorkingDirectory)/dist'       
+                azureSubscription: 'Azure Development Subscription(16546ea7-0c0e-4810-9aa2-820727239256)'
+                appType: 'webAppLinux'
+                WebAppName: 'mdm-prototype'
+                packageForLinux: '$(System.DefaultWorkingDirectory)/dist'
